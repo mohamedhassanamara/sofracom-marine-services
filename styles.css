@@ -1,0 +1,10 @@
+/* Custom styles (override or add on top of Tailwind) */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.hero-bg {
+    background-image: url('hero.jpg');
+    background-size: cover;
+    background-position: center;
+}
