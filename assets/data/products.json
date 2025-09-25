@@ -1,0 +1,76 @@
+{
+  "categories": [
+    {
+      "name": "Antifouling & Coatings",
+      "slug": "antifouling-coatings",
+      "image": "assets/bosch.png",
+      "description": "Bottom paints, primers, and topcoats for local waters.",
+      "products": [
+        {
+          "title": "Jotun SeaForce 30",
+          "image": "assets/bosch.png",
+          "description": "Self-polishing antifouling for sailing yachts and motorboats.",
+          "brand": "JOTUN",
+          "usage": ["Antifouling", "Warm waters", "Self-polishing"],
+          "price": 380
+        },
+        {
+          "title": "Hempel Mille NCT",
+          "image": "assets/bosch.png",
+          "description": "High-performance antifouling with advanced binder.",
+          "brand": "HEMPEL",
+          "usage": ["Antifouling", "Long-lasting", "Easy apply"],
+          "price": 420
+        }
+      ]
+    },
+    {
+      "name": "Sealants & Adhesives",
+      "slug": "sealants-adhesives",
+      "image": "assets/bosch.png",
+      "description": "Marine sealants for deck hardware, teak, hatches, and glazing.",
+      "products": [
+        {
+          "title": "Sika 291i",
+          "image": "assets/bosch.png",
+          "description": "Multi-purpose marine sealant/adhesive for general use.",
+          "brand": "SIKA",
+          "usage": ["Deck hardware", "General bonding", "Flexible"],
+          "price": 65
+        },
+        {
+          "title": "Sika 295 UV",
+          "image": "assets/bosch.png",
+          "description": "UV-resistant adhesive for organic glass (PMMA/PC).",
+          "brand": "SIKA",
+          "usage": ["Windows", "UV-resistant", "Elastic"],
+          "price": 89
+        }
+      ]
+    },
+    {
+      "name": "Oils, Filters & Batteries",
+      "slug": "oils-filters-batteries",
+      "image": "assets/bosch.png",
+      "description": "Engine oils, filters and reliable onboard power.",
+      "products": [
+        {
+          "title": "Shell Rimula R4 15W-40",
+          "image": "assets/bosch.png",
+          "description": "Heavy-duty engine oil for marine diesel.",
+          "brand": "SHELL",
+          "usage": ["Engine", "Protection"],
+          "price": 120
+        },
+        {
+          "title": "VARTA Blue Dynamic 75Ah",
+          "image": "assets/bosch.png",
+          "description": "Marine battery with strong cold cranking performance.",
+          "brand": "VARTA",
+          "usage": ["Battery", "Electrical"],
+          "price": 780
+        }
+      ]
+    }
+  ]
+}
