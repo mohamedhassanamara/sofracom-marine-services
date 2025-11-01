@@ -21,7 +21,7 @@
         },
         {
           "title": "Hempel Mille NCT",
-          "image": "assets/bosch.png",
+          "image": "assets/products/1691502620863-mhgkqnod.jpg",
           "description": "High-performance antifouling with advanced binder.",
           "brand": "HEMPEL",
           "usage": [
@@ -29,8 +29,8 @@
             "Long-lasting",
             "Easy apply"
           ],
-          "price": 420,
-          "stock": "in"
+          "price": 120,
+          "stock": "out"
         }
       ]
     },
