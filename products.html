@@ -30,6 +30,35 @@
         .stock-badge--out{background:rgba(215,38,56,.12); color:#d72638; border:1px solid rgba(215,38,56,.2)}
         .product-out .card-img{filter:grayscale(.25); opacity:.8}
         .product-out .price{opacity:.7}
+        .cart-fab{position:fixed; bottom:1.5rem; right:1.5rem; z-index:60; display:flex; align-items:center; gap:0.5rem; background:var(--deep-navy); color:#fff; padding:0.85rem 1.2rem; border-radius:999px; box-shadow:0 12px 24px rgba(11,32,80,.35); font-weight:600; transition:transform .2s ease, box-shadow .2s ease}
+        .cart-fab:hover{transform:translateY(-2px); box-shadow:0 16px 32px rgba(11,32,80,.4)}
+        .cart-overlay{position:fixed; inset:0; background:rgba(11,32,80,.35); backdrop-filter:blur(2px); z-index:70; opacity:0; pointer-events:none; transition:opacity .25s ease}
+        .cart-overlay.active{opacity:1; pointer-events:auto}
+        .cart-drawer{position:fixed; top:0; right:0; height:100%; width:min(420px,100vw); background:#fff; z-index:80; transform:translateX(100%); transition:transform .28s ease; display:flex; flex-direction:column; box-shadow:-8px 0 24px rgba(11,32,80,.18)}
+        .cart-drawer.open{transform:translateX(0)}
+        .cart-header{padding:1.25rem 1.5rem; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(15,61,114,.12)}
+        .cart-body{flex:1; overflow-y:auto; padding:1rem 1.5rem}
+        .cart-item{display:grid; grid-template-columns:64px 1fr; gap:0.75rem; padding:0.75rem 0; border-bottom:1px solid rgba(15,61,114,.08)}
+        .cart-item:last-child{border-bottom:none}
+        .cart-item img{width:64px; height:64px; object-fit:cover; border-radius:0.5rem; background:#f3f4f6}
+        .cart-item-title{font-weight:600; color:#0b2050}
+        .cart-qty{display:inline-flex; align-items:center; gap:0.4rem; border:1px solid rgba(11,32,80,.15); border-radius:999px; padding:0.25rem 0.6rem}
+        .cart-qty button{border:none; background:transparent; font-weight:700; cursor:pointer; padding:0 0.3rem}
+        .cart-qty input{width:2.5rem; border:none; text-align:center; font-weight:600; background:transparent}
+        .cart-summary{padding:1rem 1.5rem; border-top:1px solid rgba(15,61,114,.12)}
+        .cart-summary-row{display:flex; justify-content:space-between; font-weight:600; color:#0b2050}
+        .cart-form{padding:1rem 1.5rem 1.5rem; border-top:1px solid rgba(15,61,114,.12); display:grid; gap:0.75rem}
+        .cart-form label{display:grid; gap:0.35rem; font-size:0.85rem; font-weight:600; color:#0b2050}
+        .cart-form input,.cart-form textarea{border:1px solid rgba(11,32,80,.18); border-radius:0.65rem; padding:0.6rem 0.75rem; font-size:0.95rem; font-family:inherit; transition:border-color .2s ease, box-shadow .2s ease}
+        .cart-form input:focus,.cart-form textarea:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(36,180,255,.2)}
+        .cart-submit{background:var(--deep-navy); color:#fff; border:none; border-radius:0.75rem; padding:0.8rem 1rem; font-weight:600; cursor:pointer; transition:background .2s ease, transform .2s ease}
+        .cart-submit:disabled{opacity:.6; cursor:not-allowed}
+        .cart-submit:hover:not(:disabled){background:var(--sea); transform:translateY(-1px)}
+        .cart-alert{margin:0; font-size:0.85rem; font-weight:600}
+        .cart-alert.error{color:#d72638}
+        .cart-alert.success{color:#0f7a2e}
+        .empty-cart{padding:1.25rem; text-align:center; color:#6b7280}
+        @media (max-width:640px){.cart-fab{bottom:1rem; right:1rem; width:calc(100vw - 2rem); justify-content:center}}
     </style>
 </head>
 <body class="bg-white text-gray-800 scroll-smooth">
@@ -104,6 +133,50 @@
         <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="prodGrid"></div>
     </section>
 </main>
+
+<button id="cartFab" class="cart-fab" type="button">
+    <span data-i18n="ui.cart">Cart</span>
+    <span class="px-2 py-1 rounded-full bg-white/15 text-sm font-semibold" id="cartCount">0</span>
+</button>
+
+<div id="cartOverlay" class="cart-overlay"></div>
+
+<aside id="cartDrawer" class="cart-drawer" aria-hidden="true" aria-labelledby="cartTitle">
+    <div class="cart-header">
+        <div>
+            <h3 id="cartTitle" class="text-lg font-semibold text-gray-900" data-i18n="cart.title">Your order</h3>
+            <p class="text-sm text-gray-500" data-i18n="cart.subtitle">Review items then confirm your details.</p>
+        </div>
+        <button id="cartClose" type="button" aria-label="Close cart" class="text-2xl leading-none text-gray-500 hover:text-gray-800">×</button>
+    </div>
+    <div class="cart-body" id="cartItems"></div>
+    <div class="cart-summary">
+        <div class="cart-summary-row">
+            <span data-i18n="cart.total">Total</span>
+            <span id="cartTotal">0 TND</span>
+        </div>
+        <p id="cartAlert" class="cart-alert" role="status"></p>
+    </div>
+    <form id="checkoutForm" class="cart-form" novalidate>
+        <label>
+            <span data-i18n="cart.name">Full name</span>
+            <input type="text" name="name" autocomplete="name" required minlength="2" placeholder="John Doe" />
+        </label>
+        <label>
+            <span data-i18n="cart.phone">Phone</span>
+            <input type="tel" name="phone" autocomplete="tel" required minlength="6" placeholder="+216 00 000 000" />
+        </label>
+        <label>
+            <span data-i18n="cart.address">Delivery address</span>
+            <textarea name="address" rows="2" required placeholder="Marina Monastir, dock 5"></textarea>
+        </label>
+        <label>
+            <span data-i18n="cart.note">Notes (optional)</span>
+            <textarea name="notes" rows="2" placeholder="Preferred delivery time, marina berth, etc."></textarea>
+        </label>
+        <button id="cartSubmitBtn" type="submit" class="cart-submit" data-i18n="cart.submit">Send order</button>
+    </form>
+</aside>
 
 <!-- Footer -->
 <footer class="bg-blue-950 text-blue-100 mt-16">
@@ -185,8 +258,306 @@
     const breadcrumb = document.getElementById('breadcrumb');
     const langSel = document.getElementById('lang');
 
+    const CART_KEY = 'sofracom.cart.v1';
+    const PRODUCT_INDEX = {};
+    const cartFab = document.getElementById('cartFab');
+    const cartOverlay = document.getElementById('cartOverlay');
+    const cartDrawer = document.getElementById('cartDrawer');
+    const cartItemsEl = document.getElementById('cartItems');
+    const cartCountEl = document.getElementById('cartCount');
+    const cartTotalEl = document.getElementById('cartTotal');
+    const cartAlert = document.getElementById('cartAlert');
+    const cartCloseBtn = document.getElementById('cartClose');
+    const cartForm = document.getElementById('checkoutForm');
+    const cartSubmitBtn = document.getElementById('cartSubmitBtn');
+
     let STORE = null, activeCat = null, filtered = [];
     let currentLang = 'en';
+    let cart = [];
+
+    function loadCart(){
+        if (typeof localStorage === 'undefined') return [];
+        try {
+            const raw = localStorage.getItem(CART_KEY);
+            if (!raw) return [];
+            const parsed = JSON.parse(raw);
+            if (!Array.isArray(parsed)) return [];
+            return parsed.map(item => ({
+                ...item,
+                quantity: Number.isFinite(item.quantity) && item.quantity > 0
+                    ? Math.max(1, Math.trunc(item.quantity))
+                    : 1,
+            }));
+        } catch (error) {
+            console.warn('cart: failed to read storage', error);
+            return [];
+        }
+    }
+
+    function saveCart(){
+        if (typeof localStorage === 'undefined') return;
+        try {
+            localStorage.setItem(CART_KEY, JSON.stringify(cart));
+        } catch (error) {
+            console.warn('cart: failed to persist', error);
+        }
+    }
+
+    function calculateCartTotal(){
+        return cart.reduce((total, item) => {
+            if (typeof item.price === 'number') {
+                return total + item.price * item.quantity;
+            }
+            return total;
+        }, 0);
+    }
+
+    function updateCartCount(){
+        const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCountEl.textContent = count;
+        cartFab.dataset.count = count;
+    }
+
+    function getCartQuantity(id){
+        const item = cart.find(entry => entry.id === id);
+        return item ? item.quantity : 0;
+    }
+
+    function showCartAlert(message = '', type = ''){
+        cartAlert.textContent = message;
+        cartAlert.classList.remove('error', 'success');
+        if (message && type) {
+            cartAlert.classList.add(type);
+        }
+    }
+
+    function renderCart(){
+        const total = calculateCartTotal();
+        if (!cart.length){
+            cartItemsEl.innerHTML = `<div class="empty-cart" data-i18n="cart.empty">${getLabel('cart.empty')}</div>`;
+            cartTotalEl.textContent = formatPrice(0);
+            cartSubmitBtn.disabled = true;
+            return;
+        }
+
+        cartSubmitBtn.disabled = false;
+        cartItemsEl.innerHTML = cart.map(item => {
+            const lineTotal = typeof item.price === 'number'
+                ? formatPrice(item.price * item.quantity)
+                : getLabel('cart.contact');
+            const unitPrice = typeof item.price === 'number'
+                ? `<span class="text-xs text-gray-500">${formatPrice(item.price)} / ${getLabel('cart.unit')}</span>`
+                : '';
+            return `
+        <div class="cart-item" data-id="${item.id}">
+            <img src="${item.image}" alt="${item.title}">
+            <div>
+                <div class="flex items-start justify-between gap-2">
+                    <div>
+                        <p class="cart-item-title">${item.title}</p>
+                        <p class="text-xs text-gray-500">${item.category || ''}</p>
+                    </div>
+                    <button type="button" class="text-sm text-red-500 hover:text-red-600" data-action="remove" aria-label="${getLabel('cart.remove')}">×</button>
+                </div>
+                <div class="mt-3 flex items-center justify-between gap-3">
+                    <div class="cart-qty" aria-label="${getLabel('cart.quantity')}">
+                        <button type="button" data-action="decrement" aria-label="${getLabel('cart.decrease')}">−</button>
+                        <input type="number" min="1" step="1" value="${item.quantity}" data-action="quantity" aria-label="${getLabel('cart.quantityInput')}">
+                        <button type="button" data-action="increment" aria-label="${getLabel('cart.increase')}">+</button>
+                    </div>
+                    <div class="text-right">
+                        <div class="font-semibold price">${lineTotal}</div>
+                        ${unitPrice}
+                    </div>
+                </div>
+            </div>
+        </div>`;
+        }).join('');
+
+        cartTotalEl.textContent = total > 0 ? formatPrice(total) : getLabel('cart.contact');
+    }
+
+    function openCart(){
+        cartDrawer.classList.add('open');
+        cartDrawer.setAttribute('aria-hidden', 'false');
+        cartOverlay.classList.add('active');
+    }
+
+    function closeCart(){
+        cartDrawer.classList.remove('open');
+        cartDrawer.setAttribute('aria-hidden', 'true');
+        cartOverlay.classList.remove('active');
+    }
+
+    function addToCartById(id, quantity = 1){
+        const product = PRODUCT_INDEX[id];
+        if (!product){
+            showCartAlert(getLabel('cart.notFound'), 'error');
+            return;
+        }
+        if (product.stock === 'out'){
+            showCartAlert(getLabel('cart.outOfStock'), 'error');
+            return;
+        }
+
+        const existing = cart.find(item => item.id === id);
+        if (existing){
+            existing.quantity += quantity;
+        } else {
+            const numericPrice = typeof product.price === 'number' ? product.price : Number(product.price);
+            cart.push({
+                id,
+                title: product.title,
+                price: Number.isFinite(numericPrice) ? numericPrice : null,
+                quantity: Math.max(1, quantity),
+                image: product.image || 'assets/placeholder-prod.jpg',
+                category: product.categoryName || '',
+            });
+        }
+
+        saveCart();
+        renderCart();
+        updateCartCount();
+        showCartAlert(getLabel('cart.added'), 'success');
+    }
+
+    function updateCartQuantity(id, value){
+        const item = cart.find(entry => entry.id === id);
+        if (!item) return;
+        const next = Number.isFinite(value) ? Math.trunc(value) : 1;
+        if (next <= 0){
+            removeFromCart(id);
+            return;
+        }
+        item.quantity = Math.max(1, next);
+        saveCart();
+        renderCart();
+        updateCartCount();
+    }
+
+    function removeFromCart(id){
+        cart = cart.filter(entry => entry.id !== id);
+        saveCart();
+        renderCart();
+        updateCartCount();
+        showCartAlert(getLabel('cart.removed'), 'success');
+    }
+
+    cart = loadCart();
+    updateCartCount();
+
+    cartFab.addEventListener('click', () => {
+        renderCart();
+        showCartAlert('', '');
+        openCart();
+    });
+    cartOverlay.addEventListener('click', closeCart);
+    cartCloseBtn.addEventListener('click', closeCart);
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') closeCart();
+    });
+
+    cartItemsEl.addEventListener('click', event => {
+        const action = event.target.dataset.action;
+        if (!action) return;
+        const row = event.target.closest('[data-id]');
+        if (!row) return;
+        const id = row.dataset.id;
+        if (action === 'remove'){
+            removeFromCart(id);
+        } else if (action === 'increment'){
+            updateCartQuantity(id, getCartQuantity(id) + 1);
+        } else if (action === 'decrement'){
+            updateCartQuantity(id, getCartQuantity(id) - 1);
+        }
+    });
+
+    cartItemsEl.addEventListener('change', event => {
+        if (event.target.dataset.action !== 'quantity') return;
+        const row = event.target.closest('[data-id]');
+        if (!row) return;
+        const id = row.dataset.id;
+        const value = Number.parseInt(event.target.value, 10);
+        if (!Number.isFinite(value)){
+            event.target.value = getCartQuantity(id);
+            return;
+        }
+        updateCartQuantity(id, value);
+    });
+
+    cartForm.addEventListener('submit', handleCheckoutSubmit);
+
+    async function handleCheckoutSubmit(event){
+        event.preventDefault();
+        if (!cart.length){
+            showCartAlert(getLabel('cart.empty'), 'error');
+            return;
+        }
+
+        const formData = new FormData(cartForm);
+        const customer = {
+            name: (formData.get('name') || '').trim(),
+            phone: (formData.get('phone') || '').trim(),
+            address: (formData.get('address') || '').trim(),
+            notes: (formData.get('notes') || '').trim(),
+        };
+
+        if (customer.name.length < 2){
+            showCartAlert(getLabel('cart.nameRequired'), 'error');
+            return;
+        }
+        if (customer.phone.length < 6){
+            showCartAlert(getLabel('cart.phoneRequired'), 'error');
+            return;
+        }
+        if (customer.address.length < 6){
+            showCartAlert(getLabel('cart.addressRequired'), 'error');
+            return;
+        }
+
+        const payload = {
+            customer,
+            items: cart.map(item => ({
+                id: item.id,
+                title: item.title,
+                price: item.price,
+                quantity: item.quantity,
+                image: item.image,
+                category: item.category,
+            })),
+            total: calculateCartTotal(),
+            currency: 'TND',
+        };
+
+        const defaultLabel = cartSubmitBtn.textContent;
+        cartSubmitBtn.disabled = true;
+        cartSubmitBtn.textContent = getLabel('cart.sending');
+        showCartAlert('', '');
+
+        try {
+            const response = await fetch('/api/create-order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+            const result = await response.json().catch(() => ({ ok: false }));
+            if (!response.ok || !result.ok){
+                throw new Error(result.error || `HTTP ${response.status}`);
+            }
+            cart = [];
+            saveCart();
+            renderCart();
+            updateCartCount();
+            cartForm.reset();
+            showCartAlert(getLabel('cart.success'), 'success');
+        } catch (error){
+            console.error('order submit failed', error);
+            showCartAlert(getLabel('cart.error'), 'error');
+        } finally {
+            cartSubmitBtn.disabled = false;
+            cartSubmitBtn.textContent = defaultLabel;
+        }
+    }
 
     function getEmbeddedJSON(){
         try { const el = document.getElementById('productsData'); return el ? JSON.parse(el.textContent) : null; }
@@ -266,12 +637,36 @@
 
     function renderProducts(){
         const list = filtered;
+        Object.keys(PRODUCT_INDEX).forEach(key => delete PRODUCT_INDEX[key]);
+
         if (!list.length){
-            prodGrid.innerHTML = `<div class="col-span-full text-gray-500" data-i18n="ui.none">No products found.</div>`;
+            prodGrid.innerHTML = `<div class="col-span-full text-gray-500" data-i18n="ui.none">${getLabel('ui.none')}</div>`;
             return;
         }
-        prodGrid.innerHTML = list.map(p => productCard(p)).join('');
+
+        const catSlug = activeCat ? (activeCat.slug || slugify(activeCat.name)) : 'catalogue';
+        prodGrid.innerHTML = list.map((p, idx) => {
+            const id = `${catSlug}::${slugify(p.title || 'item')}-${idx}`;
+            const numericPrice = typeof p.price === 'number' ? p.price : Number(p.price);
+            PRODUCT_INDEX[id] = {
+                ...p,
+                price: Number.isFinite(numericPrice) ? numericPrice : null,
+                image: p.image || 'assets/placeholder-prod.jpg',
+                categorySlug: catSlug,
+                categoryName: activeCat ? activeCat.name : '',
+                stock: p.stock === 'out' ? 'out' : 'in',
+            };
+            return productCard(activeCat, p, id);
+        }).join('');
+
         prodGrid.querySelectorAll('.tilt').forEach(tiltify);
+        prodGrid.querySelectorAll('[data-product-id]').forEach(btn => {
+            btn.addEventListener('click', event => {
+                const id = event.currentTarget.dataset.productId;
+                addToCartById(id, 1);
+                openCart();
+            });
+        });
     }
 
     function getLabel(key){
@@ -280,17 +675,19 @@
         return dict[key] || (dictionaries.en ? dictionaries.en[key] : key) || key;
     }
 
-    function productCard(p){
+    function productCard(category, p, id){
         const img = p.image || 'assets/placeholder-prod.jpg';
         const usage = Array.isArray(p.usage) ? p.usage.map(u=>`<span class="px-2 py-1 rounded tag text-xs">${u}</span>`).join(' ') : '';
-        const price = (p.price!=null) ? `<span class="font-bold price">${formatPrice(p.price)}</span>` : '';
+        const price = (p.price!=null && Number.isFinite(Number(p.price))) ? `<span class="font-bold price">${formatPrice(Number(p.price))}</span>` : '';
         const stock = (p.stock === 'out') ? 'out' : 'in';
         const stockKey = stock === 'in' ? 'ui.inStock' : 'ui.outStock';
         const stockBadge = `<span class="stock-badge ${stock === 'in' ? 'stock-badge--in' : 'stock-badge--out'}" data-i18n="${stockKey}">${getLabel(stockKey)}</span>`;
         const metaItems = [price, stockBadge].filter(Boolean).join('');
         const meta = metaItems ? `<div class="mt-3 flex flex-wrap items-center justify-between gap-2">${metaItems}</div>` : '';
         const brandLabel = getLabel('ui.brand');
+        const buttonLabel = stock === 'out' ? getLabel('ui.outStock') : getLabel('ui.addToCart');
         const stateClass = stock === 'out' ? ' product-out' : '';
+        const button = `<button type="button" class="mt-4 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-semibold shadow transition hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed" data-product-id="${id}" ${stock === 'out' ? 'disabled' : ''}>${buttonLabel}</button>`;
         return `
       <article class="tilt bg-white rounded-2xl overflow-hidden shadow hover:shadow-xl transform transition${stateClass}">
         <div class="layer">
@@ -301,6 +698,7 @@
             <div class="mt-2 text-xs text-gray-500"><span data-i18n="ui.brand">${brandLabel}</span>: <b>${p.brand||'—'}</b></div>
             <div class="mt-3 flex flex-wrap gap-2">${usage}</div>
             ${meta}
+            ${button}
           </div>
         </div>
       </article>`;
@@ -340,21 +738,43 @@
             'hero.title':'Products','hero.subtitle':'Browse categories → open products',
             'crumb.home':'Home','crumb.products':'Products',
             'cats.title':'Categories','ui.back':'← Back to categories','ui.allBrands':'All brands','ui.none':'No products found.','ui.brand':'Brand',
-            'ui.search':'Search products…','ui.inStock':'In stock','ui.outStock':'Out of stock'
+            'ui.search':'Search products…','ui.inStock':'In stock','ui.outStock':'Out of stock','ui.addToCart':'Add to cart','ui.cart':'Cart',
+            'cart.title':'Your order','cart.subtitle':'Review items then confirm your details.','cart.total':'Total','cart.name':'Full name','cart.phone':'Phone',
+            'cart.address':'Delivery address','cart.note':'Notes (optional)','cart.submit':'Send order','cart.empty':'Your cart is empty.','cart.contact':'Contact us',
+            'cart.unit':'unit','cart.remove':'Remove item','cart.quantity':'Quantity','cart.decrease':'Decrease quantity','cart.increase':'Increase quantity',
+            'cart.quantityInput':'Quantity value','cart.added':'Added to cart','cart.removed':'Removed from cart','cart.outOfStock':'Out of stock',
+            'cart.notFound':'Product no longer available','cart.nameRequired':'Enter a valid name to continue','cart.phoneRequired':'Enter a valid phone number',
+            'cart.addressRequired':'Enter a delivery address','cart.sending':'Sending…','cart.success':'Order received! We will contact you shortly.',
+            'cart.error':'Submission failed. Please try again or contact us.'
         },
         fr:{
             'nav.home':'Accueil','nav.about':'À propos','nav.brands':'Marques','nav.products':'Produits','nav.contact':'Contact',
             'hero.title':'Produits','hero.subtitle':'Parcourez les catégories → ouvrez les produits',
             'crumb.home':'Accueil','crumb.products':'Produits',
             'cats.title':'Catégories','ui.back':'← Retour aux catégories','ui.allBrands':'Toutes les marques','ui.none':'Aucun produit trouvé.','ui.brand':'Marque',
-            'ui.search':'Rechercher des produits…','ui.inStock':'En stock','ui.outStock':'En rupture'
+            'ui.search':'Rechercher des produits…','ui.inStock':'En stock','ui.outStock':'En rupture','ui.addToCart':'Ajouter au panier','ui.cart':'Panier',
+            'cart.title':'Votre commande','cart.subtitle':'Vérifiez les articles puis confirmez vos coordonnées.','cart.total':'Total','cart.name':'Nom complet',
+            'cart.phone':'Téléphone','cart.address':'Adresse de livraison','cart.note':'Notes (optionnel)','cart.submit':'Envoyer la commande',
+            'cart.empty':'Votre panier est vide.','cart.contact':'Nous contacter','cart.unit':'unité','cart.remove':'Retirer l’article','cart.quantity':'Quantité',
+            'cart.decrease':'Diminuer la quantité','cart.increase':'Augmenter la quantité','cart.quantityInput':'Valeur de la quantité',
+            'cart.added':'Ajouté au panier','cart.removed':'Retiré du panier','cart.outOfStock':'En rupture','cart.notFound':'Produit indisponible',
+            'cart.nameRequired':'Veuillez entrer un nom valide','cart.phoneRequired':'Veuillez entrer un numéro de téléphone valide',
+            'cart.addressRequired':'Veuillez indiquer une adresse de livraison','cart.sending':'Envoi…','cart.success':'Commande reçue ! Nous vous contacterons rapidement.',
+            'cart.error':'Échec de l’envoi. Réessayez ou contactez-nous.'
         },
         ar:{
             'nav.home':'الرئيسية','nav.about':'من نحن','nav.brands':'العلامات','nav.products':'المنتجات','nav.contact':'اتصل بنا',
             'hero.title':'المنتجات','hero.subtitle':'تصفح الفئات ← فتح المنتجات',
             'crumb.home':'الرئيسية','crumb.products':'المنتجات',
             'cats.title':'الفئات','ui.back':'← عودة إلى الفئات','ui.allBrands':'كل العلامات','ui.none':'لا توجد منتجات.','ui.brand':'العلامة',
-            'ui.search':'ابحث في المنتجات…','ui.inStock':'متوفر','ui.outStock':'غير متوفر'
+            'ui.search':'ابحث في المنتجات…','ui.inStock':'متوفر','ui.outStock':'غير متوفر','ui.addToCart':'أضف إلى السلة','ui.cart':'السلة',
+            'cart.title':'طلبك','cart.subtitle':'راجع العناصر ثم أكد بياناتك.','cart.total':'الإجمالي','cart.name':'الاسم الكامل','cart.phone':'رقم الهاتف',
+            'cart.address':'عنوان التوصيل','cart.note':'ملاحظات (اختياري)','cart.submit':'أرسل الطلب','cart.empty':'سلتك فارغة.','cart.contact':'تواصل معنا',
+            'cart.unit':'وحدة','cart.remove':'إزالة العنصر','cart.quantity':'الكمية','cart.decrease':'إنقاص الكمية','cart.increase':'زيادة الكمية',
+            'cart.quantityInput':'قيمة الكمية','cart.added':'تمت الإضافة إلى السلة','cart.removed':'تمت الإزالة من السلة','cart.outOfStock':'غير متوفر',
+            'cart.notFound':'المنتج غير متاح','cart.nameRequired':'يرجى إدخال اسم صالح','cart.phoneRequired':'يرجى إدخال رقم هاتف صالح',
+            'cart.addressRequired':'يرجى إدخال عنوان التوصيل','cart.sending':'جاري الإرسال…','cart.success':'تم استلام الطلب! سنعاود الاتصال بك قريباً.',
+            'cart.error':'فشل الإرسال. حاول مرة أخرى أو اتصل بنا.'
         }
     };
 
@@ -394,6 +814,7 @@
         if (activeCat) {
             renderProducts();
         }
+        renderCart();
     }
 
     // sync i18n on language change
