@@ -7,19 +7,27 @@
       "description": "Bottom paints, primers, and topcoats for local waters.",
       "products": [
         {
-          "title": "Jotun SeaForce 30",
+          "title": "Jotun SeaForce",
           "image": "assets/bosch.png",
           "description": "Self-polishing antifouling for sailing yachts and motorboats.",
           "brand": "JOTUN",
-          "usage": ["Antifouling", "Warm waters", "Self-polishing"],
-          "price": 380
+          "usage": [
+            "Antifouling",
+            "Warm waters",
+            "Self-polishing"
+          ],
+          "price": 500
         },
         {
           "title": "Hempel Mille NCT",
           "image": "assets/bosch.png",
           "description": "High-performance antifouling with advanced binder.",
           "brand": "HEMPEL",
-          "usage": ["Antifouling", "Long-lasting", "Easy apply"],
+          "usage": [
+            "Antifouling",
+            "Long-lasting",
+            "Easy apply"
+          ],
           "price": 420
         }
       ]
@@ -35,7 +43,11 @@
           "image": "assets/bosch.png",
           "description": "Multi-purpose marine sealant/adhesive for general use.",
           "brand": "SIKA",
-          "usage": ["Deck hardware", "General bonding", "Flexible"],
+          "usage": [
+            "Deck hardware",
+            "General bonding",
+            "Flexible"
+          ],
           "price": 65
         },
         {
@@ -43,7 +55,11 @@
           "image": "assets/bosch.png",
           "description": "UV-resistant adhesive for organic glass (PMMA/PC).",
           "brand": "SIKA",
-          "usage": ["Windows", "UV-resistant", "Elastic"],
+          "usage": [
+            "Windows",
+            "UV-resistant",
+            "Elastic"
+          ],
           "price": 89
         }
       ]
@@ -59,7 +75,10 @@
           "image": "assets/bosch.png",
           "description": "Heavy-duty engine oil for marine diesel.",
           "brand": "SHELL",
-          "usage": ["Engine", "Protection"],
+          "usage": [
+            "Engine",
+            "Protection"
+          ],
           "price": 120
         },
         {
@@ -67,7 +86,10 @@
           "image": "assets/bosch.png",
           "description": "Marine battery with strong cold cranking performance.",
           "brand": "VARTA",
-          "usage": ["Battery", "Electrical"],
+          "usage": [
+            "Battery",
+            "Electrical"
+          ],
           "price": 780
         }
       ]
