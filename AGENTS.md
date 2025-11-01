@@ -18,10 +18,11 @@ Until automated tests exist, validate changes manually in Chromium- and WebKit-b
 Commit messages follow an imperative style (`add products grid`, `fix navbar blur`) as seen in `git log`. Keep the subject under 72 characters and expand with bullet points in the body if context is required. Pull requests should include: a concise summary of changes, before/after screenshots for visual tweaks, reproduction steps for bug fixes, and links to relevant issues or stakeholder notes.
 
 ## Order & Checkout Flow
-`products.html` exposes a cart + checkout form. Submissions hit `api/create-order.js`, which validates payloads and either logs orders (default) or persists them to Supabase when credentials are present.
+`products.html` exposes a cart + checkout form. Submissions hit `api/create-order.js`, which validates payloads and writes them to Firebase Firestore using the Admin SDK.
 
-- Configure persistence by adding `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` to `.env` (and to Vercel project settings). Create an `orders` table with columns: `id` (uuid primary key), `created_at` (timestamp default now), `customer_name`, `customer_phone`, `customer_address`, `customer_notes`, `items` (jsonb), `total` (numeric), `currency` (text), `status` (text).
-- Without Supabase, the API returns `200 OK` and logs the order server-side—extend the handler to email or trigger webhooks if needed. Consider adding rate limiting or CAPTCHA before going live.
+- Place the Firebase service account JSON in the project root (for local dev) and set `FIREBASE_SERVICE_ACCOUNT_PATH` to its relative path, or provide environment credentials via `FIREBASE_PROJECT_ID`, `FIREBASE_CLIENT_EMAIL`, and `FIREBASE_PRIVATE_KEY`. Mirror the same secrets in Vercel project settings.
+- Firestore collection: `orders` documents expect `{id, created_at, customer_name, customer_phone, customer_address, customer_notes, items[], total, currency, status}`; feel free to add indexes or triggers (Cloud Functions, email notifications) as needed.
+- Keep service account files out of version control—add the filename to `.gitignore` and rotate keys when sharing access.
 - Test the full flow with `vercel dev` so the serverless endpoint runs locally alongside the static site. Remember to reset `localStorage` to clear the cart during QA.
 
 ## Security & Asset Hygiene

@@ -50,31 +50,28 @@ function validatePayload(payload) {
   return errors;
 }
 
-async function persistWithSupabase(order) {
-  const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!url || !key) {
-    return { persisted: false, reason: 'supabase_not_configured' };
+const path = require('path');
+const admin = require('firebase-admin');
+
+function getFirebaseApp() {
+  if (admin.apps.length) {
+    return admin.app();
   }
 
-  const endpoint = `${url.replace(/\/+$/, '')}/rest/v1/orders`;
-  const response = await fetch(endpoint, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      apikey: key,
-      Authorization: `Bearer ${key}`,
-      Prefer: 'return=representation',
-    },
-    body: JSON.stringify([order]),
+  const serviceAccountPath =
+    process.env.FIREBASE_SERVICE_ACCOUNT_PATH ||
+    path.join(__dirname, '..', 'sofracom-firebase-adminsdk-fbsvc-94ea761cbb.json');
+
+  let serviceAccount;
+  try {
+    serviceAccount = require(serviceAccountPath);
+  } catch (error) {
+    throw new Error(`Firebase service account not found at ${serviceAccountPath}`);
+  }
+
+  return admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
   });
-
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(`Supabase insert failed (${response.status}): ${text}`);
-  }
-
-  return { persisted: true };
 }
 
 module.exports = async function handler(req, res) {
@@ -125,17 +122,14 @@ module.exports = async function handler(req, res) {
   };
 
   try {
-    let supabaseResult = { persisted: false };
-    if (process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY) {
-      supabaseResult = await persistWithSupabase(order);
-    } else {
-      console.log('[order] received (no persistence configured)', order);
-    }
+    const app = getFirebaseApp();
+    const firestore = app.firestore();
+    await firestore.collection('orders').doc(orderId).set(order);
 
     res.status(200).json({
       ok: true,
       orderId,
-      persisted: supabaseResult.persisted,
+      persisted: true,
     });
   } catch (err) {
     console.error('[order] persistence failed', err);
