@@ -16,7 +16,8 @@
             "Warm waters",
             "Self-polishing"
           ],
-          "price": 222
+          "price": 222,
+          "stock": "in"
         },
         {
           "title": "Hempel Mille NCT",
@@ -28,7 +29,8 @@
             "Long-lasting",
             "Easy apply"
           ],
-          "price": 420
+          "price": 420,
+          "stock": "in"
         }
       ]
     },
@@ -48,7 +50,8 @@
             "General bonding",
             "Flexible"
           ],
-          "price": 65
+          "price": 65,
+          "stock": "in"
         },
         {
           "title": "Sika 295 UV",
@@ -60,7 +63,8 @@
             "UV-resistant",
             "Elastic"
           ],
-          "price": 89
+          "price": 89,
+          "stock": "in"
         }
       ]
     },
@@ -79,7 +83,8 @@
             "Engine",
             "Protection"
           ],
-          "price": 120
+          "price": 120,
+          "stock": "in"
         },
         {
           "title": "VARTA Blue Dynamic 75Ah",
@@ -90,7 +95,8 @@
             "Battery",
             "Electrical"
           ],
-          "price": 780
+          "price": 780,
+          "stock": "in"
         }
       ]
     }

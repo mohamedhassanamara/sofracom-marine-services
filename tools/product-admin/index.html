@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOFRACOM Product Admin</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div>
+        <h1>Product Catalog Admin</h1>
+        <p>Review, edit, add, or remove products stored in <code>assets/data/products.json</code>. Saving will commit and push automatically.</p>
+      </div>
+      <div class="header-actions">
+        <button id="refreshBtn" type="button">Reload Data</button>
+        <button id="saveBtn" class="primary" type="button">
+          Save &amp; Deploy
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section id="status" class="status" role="status" aria-live="polite"></section>
+
+      <section class="actions">
+        <button id="addCategoryBtn" type="button">Add Category</button>
+      </section>
+
+      <section id="categories" class="categories"></section>
+    </main>
+
+    <template id="categoryTemplate">
+      <article class="category">
+        <header class="category-header">
+          <h2></h2>
+          <div class="category-actions">
+            <button class="add-product" type="button">Add Product</button>
+            <button class="delete-category danger" type="button">Delete Category</button>
+          </div>
+        </header>
+        <div class="category-meta">
+          <label>
+            Display name
+            <input type="text" class="category-name" />
+          </label>
+          <label>
+            Slug
+            <input type="text" class="category-slug" />
+          </label>
+          <div class="image-field">
+            <label>
+              Image path
+              <input type="text" class="category-image" />
+            </label>
+            <div class="image-dropzone category-dropzone" data-bucket="categories">
+              <input type="file" accept="image/*" class="dropzone-input" hidden />
+              <div class="dropzone-preview" aria-hidden="true"></div>
+              <div class="dropzone-text">
+                <span class="dropzone-title">Drag &amp; drop image</span>
+                <span class="dropzone-subtitle">or click to browse</span>
+                <span class="dropzone-path"></span>
+              </div>
+            </div>
+            <p class="dropzone-hint">Uploads are saved to <code>assets/categories</code></p>
+          </div>
+          <label>
+            Description
+            <textarea class="category-description" rows="2"></textarea>
+          </label>
+        </div>
+        <div class="products"></div>
+      </article>
+    </template>
+
+    <template id="productTemplate">
+      <div class="product">
+        <div class="product-header">
+          <h3></h3>
+          <button class="delete-product danger" type="button">Delete</button>
+        </div>
+        <div class="product-fields">
+          <label>
+            Title
+            <input type="text" class="product-title" />
+          </label>
+          <label>
+            Brand
+            <input type="text" class="product-brand" />
+          </label>
+          <div class="image-field">
+            <label>
+              Image path
+              <input type="text" class="product-image" />
+            </label>
+            <div class="image-dropzone product-dropzone" data-bucket="products">
+              <input type="file" accept="image/*" class="dropzone-input" hidden />
+              <div class="dropzone-preview" aria-hidden="true"></div>
+              <div class="dropzone-text">
+                <span class="dropzone-title">Drag &amp; drop image</span>
+                <span class="dropzone-subtitle">or click to browse</span>
+                <span class="dropzone-path"></span>
+              </div>
+            </div>
+            <p class="dropzone-hint">Uploads are saved to <code>assets/products</code></p>
+          </div>
+          <label>
+            Usage tags (comma separated)
+            <input type="text" class="product-usage" />
+          </label>
+          <label>
+            Price (numeric)
+            <input type="number" class="product-price" min="0" step="1" />
+          </label>
+          <div class="stock-field">
+            <span>Status</span>
+            <label class="toggle">
+              <input type="checkbox" class="product-stock" />
+              <span class="slider" aria-hidden="true"></span>
+              <span class="toggle-label in-stock">In stock</span>
+              <span class="toggle-label out-of-stock">Out of stock</span>
+            </label>
+          </div>
+          <label>
+            Description
+            <textarea class="product-description" rows="3"></textarea>
+          </label>
+        </div>
+      </div>
+    </template>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>
