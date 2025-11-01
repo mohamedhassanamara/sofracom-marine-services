@@ -31,6 +31,15 @@
           ],
           "price": 120,
           "stock": "out"
+        },
+        {
+          "title": "tttrrrUntitled product",
+          "image": "assets/products/screenshot-2025-10-31-at-10.04.41-mhgkrmwy.png",
+          "description": "",
+          "brand": "ggh",
+          "usage": [],
+          "price": 2222,
+          "stock": "in"
         }
       ]
     },
