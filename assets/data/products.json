@@ -16,7 +16,7 @@
             "Warm waters",
             "Self-polishing"
           ],
-          "price": 222,
+          "price": 229,
           "stock": "out"
         },
         {
@@ -108,6 +108,13 @@
           "stock": "in"
         }
       ]
+    },
+    {
+      "name": "New Category",
+      "slug": "new-category",
+      "image": "assets/categories/placeholder.png",
+      "description": "",
+      "products": []
     }
   ]
 }
