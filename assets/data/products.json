@@ -108,6 +108,28 @@
           "stock": "in"
         }
       ]
+    },
+    {
+      "name": "HARDWARE TOOLS ",
+      "slug": "hardware-tools",
+      "image": "assets/categories/striaform-mhhmd328.jpg",
+      "description": "Every day tools that yachtsmen use ",
+      "products": [
+        {
+          "title": "cristal brush N30",
+          "image": "assets/products/pinceau-cristan-n30-mhhmgsae.jpg",
+          "description": "cristal brush n30",
+          "brand": "CRISTAL",
+          "usage": [
+            "brush",
+            "pinceau",
+            "n30",
+            "cristal"
+          ],
+          "price": 2.3,
+          "stock": "in"
+        }
+      ]
     }
   ]
 }
