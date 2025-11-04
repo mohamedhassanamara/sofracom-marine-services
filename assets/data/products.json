@@ -42,12 +42,17 @@
           "stock": "in"
         },
         {
-          "title": "Untitled product",
-          "image": "assets/products/placeholder.png",
-          "description": "",
-          "brand": "",
-          "usage": [],
-          "price": 0,
+          "title": "Penguard Primer Red / Rouge (04L(A)+01L(B)",
+          "image": "assets/products/20251104_163524-mhks2j7m.jpg",
+          "description": "This is a two component, polyamide cured, high molecular weight epoxy coating. It has a semi gloss finish with\nfair gloss retention. Can be used as primer, finish coat or as single coat system in atmospheric environments or\nas a final coat in immersed environment. To be used as topcoat in atmospheric and immersed environments.",
+          "brand": "JOTUN",
+          "usage": [
+            "Primer",
+            "epoxy based",
+            "2K",
+            "Polyamide"
+          ],
+          "price": 230.686,
           "stock": "in"
         }
       ]
