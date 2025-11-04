@@ -59,6 +59,24 @@
           ],
           "price": 230.686,
           "stock": "in"
+        },
+        {
+          "title": "jotamastic 80 Grey / Gris 16L(A)+2.3L(B)",
+          "image": "assets/products/20251104_163007-mhkt8n4o.jpg",
+          "description": "This is a two component polyamine cured epoxy mastic coating. It is a surface tolerant, high solids product.\nSpecially designed for areas where optimum surface preparation is not possible or required. Can be used as\nprimer, mid coat, finish coat or as single coat system in atmospheric environments. Suitable for properly\nprepared carbon steel and aged coating surfaces. It can be applied at sub zero surface temperatures",
+          "brand": "JOTUN",
+          "usage": [
+            "2K",
+            "epoxy",
+            "mastic",
+            "mastique",
+            "primer",
+            "primaire",
+            "mid coat",
+            "finish coat"
+          ],
+          "price": 752.261,
+          "stock": "in"
         }
       ]
     },
