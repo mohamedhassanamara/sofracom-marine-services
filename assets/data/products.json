@@ -4,7 +4,7 @@
       "name": "Antifouling & Coatings",
       "slug": "antifouling-coatings",
       "image": "assets/categories/chatgpt-image-nov-3-2025-12_59_31-pm-mhj4ub3c.png",
-      "description": "Bottom paints, primers, and topcoats for local waters.",
+      "description": "Bottom paints, primers, érodable, topcoats for local waters, erodable",
       "products": [
         {
           "title": "Jotun SeaForce 2.5L Black / Noir",
@@ -14,7 +14,9 @@
           "usage": [
             "Antifouling",
             "Warm waters",
-            "Self-polishing"
+            "Self-polishing",
+            "érodable",
+            "erodable"
           ],
           "price": 341.887,
           "stock": "in"
@@ -27,7 +29,8 @@
           "usage": [
             "Antifouling",
             "Long-lasting",
-            "Easy apply"
+            "Easy apply",
+            "érodable"
           ],
           "price": 655.272,
           "stock": "in"
@@ -130,7 +133,9 @@
             "antifouling",
             "Smartfibre",
             "hydrolysable",
-            "self polishing"
+            "self polishing",
+            "érodable",
+            "erodable"
           ],
           "price": 321.845,
           "stock": "in"
@@ -145,7 +150,9 @@
             "antifouling",
             "Smartfibre",
             "hydrolysable",
-            "self polishing"
+            "self polishing",
+            "érodable",
+            "erodable"
           ],
           "price": 282.112,
           "stock": "in"
