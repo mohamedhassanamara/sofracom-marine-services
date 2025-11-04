@@ -20,16 +20,16 @@
           "stock": "in"
         },
         {
-          "title": "Hempel Mille NCT",
-          "image": "assets/products/1691502620863-mhgkqnod.jpg",
+          "title": "Jotun SeaForce 04L Blue / Bleu",
+          "image": "assets/products/20251104_142934-mhkq1zha.png",
           "description": "High-performance antifouling with advanced binder.",
-          "brand": "HEMPEL",
+          "brand": "JOTUN",
           "usage": [
             "Antifouling",
             "Long-lasting",
             "Easy apply"
           ],
-          "price": 120,
+          "price": 655.272,
           "stock": "in"
         },
         {
@@ -39,6 +39,15 @@
           "brand": "ggh",
           "usage": [],
           "price": 2222,
+          "stock": "in"
+        },
+        {
+          "title": "Untitled product",
+          "image": "assets/products/placeholder.png",
+          "description": "",
+          "brand": "",
+          "usage": [],
+          "price": 0,
           "stock": "in"
         }
       ]
