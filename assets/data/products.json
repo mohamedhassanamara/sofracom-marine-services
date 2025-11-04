@@ -179,16 +179,17 @@
           "stock": "in"
         },
         {
-          "title": "Sika 295 UV",
-          "image": "assets/bosch.png",
-          "description": "UV-resistant adhesive for organic glass (PMMA/PC).",
+          "title": "Sika 295 UV 400ml White/Blanc",
+          "image": "assets/products/20251027_153952-mhkvp45z.png",
+          "description": "Sikaflex®-295 UV is a 1-component polyurethane adhesive of paste-like consistency that\ncures on exposure to atmospheric moisture. It\nis suitable for interior and exterior sealing applications and to bond organic glass in the\nMarine business.\nSikaflex®-295 UV meets the requirements set\nout by the International Maritime Organization (IMO).\n▪ Excellent application properties\n▪ Resistant to ageing and weathering\n▪ Suitable for organic glasses\n▪ Approved for the OEM market\n▪ Wheelmark approved",
           "brand": "SIKA",
           "usage": [
             "Windows",
             "UV-resistant",
-            "Elastic"
+            "Elastic",
+            "sika"
           ],
-          "price": 89,
+          "price": 60.036,
           "stock": "in"
         }
       ]
