@@ -7,8 +7,8 @@
       "description": "Bottom paints, primers, and topcoats for local waters.",
       "products": [
         {
-          "title": "Jotun SeaForce",
-          "image": "assets/products/screenshot-2025-10-31-at-10.04.41-mhgjxmly.png",
+          "title": "Jotun SeaForce 2.5L Black / Noir",
+          "image": "assets/products/20251104_142605-mhkpnc7j.png",
           "description": "Self-polishing antifouling for sailing yachts and motorboats.",
           "brand": "JOTUN",
           "usage": [
@@ -16,8 +16,8 @@
             "Warm waters",
             "Self-polishing"
           ],
-          "price": 230,
-          "stock": "out"
+          "price": 341.887,
+          "stock": "in"
         },
         {
           "title": "Hempel Mille NCT",
