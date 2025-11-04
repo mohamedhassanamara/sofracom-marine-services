@@ -33,16 +33,21 @@
           "stock": "in"
         },
         {
-          "title": "JOTUN Safeguard universal es",
+          "title": "JOTUN Safeguard universal es 15L(A)+03L(B)",
           "image": "assets/products/20251104_162916-mhkrjjaq.png",
-          "description": "",
+          "description": "This is a two component polyamide cured vinyl epoxy based coating. Specially designed as a tie coat between\nepoxy primers and antifouling systems. Can be used as tie coat / holding primer for a wide range of topcoats. To\nbe used as tie coat in atmospheric and immersed environments. Suitable on approved primers on aluminium,\ncarbon steel, galvanised and stainless steel substrates. It can be applied at sub zero surface temperatures",
           "brand": "JOTUN",
-          "usage": [],
+          "usage": [
+            "2K",
+            "polyamide",
+            "epoxy",
+            "tie coat"
+          ],
           "price": 851.277,
           "stock": "in"
         },
         {
-          "title": "Penguard Primer Red / Rouge (04L(A)+01L(B)",
+          "title": "Penguard Primer Red / Rouge 04L(A)+01L(B)",
           "image": "assets/products/20251104_163524-mhks2j7m.jpg",
           "description": "This is a two component, polyamide cured, high molecular weight epoxy coating. It has a semi gloss finish with\nfair gloss retention. Can be used as primer, finish coat or as single coat system in atmospheric environments or\nas a final coat in immersed environment. To be used as topcoat in atmospheric and immersed environments.",
           "brand": "JOTUN",
