@@ -10,102 +10,188 @@
     />
     <link rel="stylesheet" href="styles.css" />
     <style>
-      body {
-        font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-        background: #f5f7fb;
-        margin: 0;
-        color: #0b1f3a;
-      }
-      .product-detail {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-        margin-top: 2rem;
-      }
-      .detail-gallery {
-        border-radius: 1rem;
-        padding: 1rem;
-        background: #fff;
-        border: 1px solid rgba(11, 32, 80, 0.08);
-      }
-      .detail-gallery img {
-        width: 100%;
-        height: 320px;
-        object-fit: contain;
-        border-radius: 0.9rem;
-        background: #f8fafc;
-      }
-      .detail-thumbs {
-        margin-top: 0.75rem;
-        display: flex;
-        gap: 0.6rem;
-      }
-      .detail-thumbs img {
-        width: 64px;
-        height: 64px;
-        object-fit: cover;
-        border-radius: 0.6rem;
-        cursor: pointer;
-        border: 2px solid transparent;
-      }
-      .detail-thumbs img.active {
-        border-color: #0f172a;
-      }
-      .detail-info {
-        background: #fff;
-        padding: 1.5rem;
-        border-radius: 1rem;
-        border: 1px solid rgba(11, 32, 80, 0.08);
-        display: flex;
-        flex-direction: column;
-        gap: 0.8rem;
-      }
-      .detail-variants {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-      .variant-option {
-        border: 1px solid rgba(11, 32, 80, 0.25);
-        border-radius: 999px;
-        padding: 0.35rem 0.9rem;
-        cursor: pointer;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
-        transition: background 0.2s ease, color 0.2s ease;
-        background: #f8fafc;
-      }
-      .variant-option.active {
-        background: #0f172a;
-        color: #fff;
-        border-color: #0f172a;
-      }
-      .detail-status {
-        margin-top: 0.5rem;
-      }
-      .detail-datasheet {
-        color: #1d4ed8;
-        font-weight: 600;
-      }
+        :root{
+            --deep-navy:#0b2050;
+            --sea:#0f3d72;
+            --accent:#24b4ff;
+        }
+        html,body{font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin:0;}
+        .nav-glass{backdrop-filter: blur(10px); background: rgba(11,32,80,0.55);}
+        .nav-solid{background: var(--deep-navy);}
+        .nav-glass a{color:#fff;}
+        .nav-glass input,.nav-glass select{border:none;}
+        #mobileMenu{background:rgba(11,32,80,0.75);}
+        #mobileMenu a{color:#fff;text-decoration:none;}
+        #toTop{opacity:0; pointer-events:none; transition:opacity .3s ease; position:fixed; bottom:1.5rem; right:1.5rem; background:#0b2050; color:#fff; padding:0.6rem 0.9rem; border-radius:999px; border:none; box-shadow:0 12px 24px rgba(11,32,80,.25);}
+
+        body {
+          font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+          background: #f5f7fb;
+          color: #0b1f3a;
+        }
+        .product-detail {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 2rem;
+          margin-top: 2rem;
+        }
+        .detail-gallery {
+          border-radius: 1rem;
+          padding: 1rem;
+          background: #fff;
+          border: 1px solid rgba(11, 32, 80, 0.08);
+        }
+        .detail-gallery img {
+          width: 100%;
+          height: 320px;
+          object-fit: contain;
+          border-radius: 0.9rem;
+          background: #f8fafc;
+        }
+        .detail-thumbs {
+          margin-top: 0.75rem;
+          display: flex;
+          gap: 0.6rem;
+        }
+        .detail-thumbs img {
+          width: 64px;
+          height: 64px;
+          object-fit: cover;
+          border-radius: 0.6rem;
+          cursor: pointer;
+          border: 2px solid transparent;
+        }
+        .detail-thumbs img.active {
+          border-color: #0f172a;
+        }
+        .detail-info {
+          background: #fff;
+          padding: 1.5rem;
+          border-radius: 1rem;
+          border: 1px solid rgba(11, 32, 80, 0.08);
+          display: flex;
+          flex-direction: column;
+          gap: 0.8rem;
+        }
+        .detail-variants {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+        .variant-option {
+          border: 1px solid rgba(11, 32, 80, 0.25);
+          border-radius: 999px;
+          padding: 0.35rem 0.9rem;
+          cursor: pointer;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 0.3rem;
+          transition: background 0.2s ease, color 0.2s ease;
+          background: #f8fafc;
+        }
+        .variant-option.active {
+          background: #0f172a;
+          color: #fff;
+          border-color: #0f172a;
+        }
+        .detail-status {
+          margin-top: 0.5rem;
+        }
+        .detail-datasheet {
+          color: #1d4ed8;
+          font-weight: 600;
+        }
     </style>
   </head>
-  <body>
-    <header class="bg-white shadow-sm">
-      <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
-        <div>
-          <a href="index.html" class="text-sm text-gray-500 hover:text-gray-900">Home</a>
-          <span class="mx-2 text-gray-400">/</span>
-          <a href="products.html" class="text-sm text-blue-600 hover:underline">Products</a>
+  <body class="bg-white text-gray-800 scroll-smooth">
+    <header id="top" class="sticky top-0 z-40 nav-glass text-white">
+      <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
+        <div class="flex items-center gap-3">
+          <img
+            src="logo.jpeg"
+            alt="SOFRACOM Logo"
+            class="h-10 w-10 rounded-lg ring-2 ring-white ring-opacity-30"
+          />
+          <span class="text-xl font-extrabold tracking-wide">SOFRACOM</span>
         </div>
-        <a
-          href="products.html"
-          class="text-sm font-semibold text-white px-4 py-2 rounded-full bg-blue-600 hover:bg-blue-700 transition"
-          >Back to catalog</a
-        >
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+          <a href="#home" class="hover:text-blue-200">Home</a>
+          <a href="#about" class="hover:text-blue-200">About</a>
+          <a href="#brands" class="hover:text-blue-200">Brands</a>
+          <a href="products.html" class="hover:text-blue-200">Products</a>
+          <a href="#services" class="hover:text-blue-200">Services</a>
+          <a href="#contact" class="hover:text-blue-200">Contact</a>
+        </div>
+        <div class="flex items-center gap-3">
+          <input
+            id="siteSearch"
+            type="text"
+            placeholder="Search…"
+            class="hidden sm:block px-3 py-1.5 rounded-md bg-white bg-opacity-15 placeholder-black text-black border border-white border-opacity-20 focus:outline-none focus:ring-2 focus:ring-blue-200"
+          />
+          <select
+            id="lang"
+            class="px-3 py-1.5 rounded-md bg-white bg-opacity-15 text-black border border-white border-opacity-20 focus:outline-none focus:ring-2 focus:ring-blue-200"
+          >
+            <option value="en">EN</option>
+            <option value="fr">FR</option>
+            <option value="ar">AR</option>
+          </select>
+          <button
+            id="mobileMenuBtn"
+            class="md:hidden px-3 py-2 rounded-md border border-white border-opacity-30"
+          >
+            Menu
+          </button>
+        </div>
       </div>
-    </header>
+      <nav id="mobileMenu" class="md:hidden hidden px-4 pb-4">
+        <ul class="grid gap-2 text-sm">
+          <li>
+            <a
+              class="block px-3 py-2 bg-white bg-opacity-10 rounded"
+              href="#home"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              class="block px-3 py-2 bg-white bg-opacity-10 rounded"
+              href="#about"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              class="block px-3 py-2 bg-white bg-opacity-10 rounded"
+              href="#brands"
+              >Brands</a
+            >
+          </li>
+          <li>
+            <a
+              class="block px-3 py-2 bg-white bg-opacity-10 rounded"
+              href="products.html"
+              >Products</a
+            >
+          </li>
+          <li>
+            <a
+              class="block px-3 py-2 bg-white bg-opacity-10 rounded"
+              href="#services"
+              >Services</a
+            >
+          </li>
+          <li>
+            <a
+              class="block px-3 py-2 bg-white bg-opacity-10 rounded"
+              href="#contact"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </nav>
 
     <main class="max-w-6xl mx-auto px-6 py-10">
       <section id="detail-wrapper">
@@ -367,6 +453,106 @@
 
         init();
       })();
+    </script>
+    <!-- Footer copied from main site -->
+    <footer class="bg-blue-950 text-black-100">
+      <div class="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="font-bold">SOFRACOM</h3>
+          <p class="text-sm mt-2 opacity-80">
+            Marine coatings & supplies in Monastir. Products, expertise, and partner yard for hassle‑free projects.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-semibold">Quick Links</h4>
+          <ul class="mt-2 space-y-1 text-sm">
+            <li><a href="#home" class="hover:underline">Home</a></li>
+            <li><a href="#about" class="hover:underline">About</a></li>
+            <li><a href="#brands" class="hover:underline">Brands</a></li>
+            <li><a href="#services" class="hover:underline">Services</a></li>
+            <li><a href="#contact" class="hover:underline">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold">Monastir</h4>
+          <p class="text-sm mt-2 opacity-80">Near Marina Monastir & Port de pêche</p>
+        </div>
+      </div>
+      <div class="border-t border-blue-900">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between text-xs opacity-70">
+          <span>© <span id="y"></span> SOFRACOM. All rights reserved.</span>
+          <a href="#top" class="hover:underline">Back to top</a>
+        </div>
+      </div>
+    </footer>
+    <button id="toTop" class="fixed bottom-6 right-6 px-4 py-2 rounded-full bg-blue-900 text-white shadow-lg">
+      ↑
+    </button>
+    <script>
+      const header = document.querySelector('header');
+      const toTopBtn = document.getElementById('toTop');
+      const onScrollExtras = () => {
+        if (!header) return;
+        if (window.scrollY > 40) header.classList.add('nav-solid');
+        else header.classList.remove('nav-solid');
+        toTopBtn.classList.toggle('show', window.scrollY > 500);
+      };
+      document.addEventListener('scroll', onScrollExtras);
+      const mBtn = document.getElementById('mobileMenuBtn');
+      const mNav = document.getElementById('mobileMenu');
+      if (mBtn && mNav) {
+        mBtn.addEventListener('click', () => mNav.classList.toggle('hidden'));
+      }
+      const io = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      document.querySelectorAll('[data-animate]').forEach(el => io.observe(el));
+      const brandCards = document.querySelectorAll('#brands .brand-card[data-animate]');
+      brandCards.forEach((el, index) => {
+        el.style.transitionDelay = `${index * 90}ms`;
+      });
+      const tiles = document.querySelectorAll('.tilt');
+      tiles.forEach(card => {
+        const r = 12;
+        const move = e => {
+          const b = card.getBoundingClientRect();
+          const px = (e.clientX - b.left) / b.width;
+          const py = (e.clientY - b.top) / b.height;
+          const rx = (0.5 - py) * r;
+          const ry = (px - 0.5) * r;
+          card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+        };
+        const reset = () => {
+          card.style.transform = 'rotateX(0) rotateY(0)';
+        };
+        card.addEventListener('mousemove', move);
+        card.addEventListener('mouseleave', reset);
+      });
+      const searchInput = document.getElementById('siteSearch');
+      if (searchInput) {
+        searchInput.addEventListener('keydown', event => {
+          if (event.key === 'Enter') {
+            const value = event.target.value.trim().toLowerCase();
+            if (!value) return;
+            const sections = ['home', 'about', 'brands', 'services', 'contact'];
+            const match = sections.find(id => id.includes(value));
+            if (match) {
+              document.getElementById(match)?.scrollIntoView({ behavior: 'smooth' });
+              return;
+            }
+          }
+        });
+      }
+      const yEl = document.getElementById('y');
+      if (yEl) yEl.textContent = new Date().getFullYear();
     </script>
   </body>
 </html>
