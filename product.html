@@ -16,13 +16,30 @@
             --accent:#24b4ff;
         }
         html,body{font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin:0;}
-        .nav-glass{backdrop-filter: blur(10px); background: rgba(11,32,80,0.55);}
+        .nav-glass{background: var(--deep-navy);}
         .nav-solid{background: var(--deep-navy);}
         .nav-glass a{color:#fff;}
         .nav-glass input,.nav-glass select{border:none;}
         #mobileMenu{background:rgba(11,32,80,0.75);}
         #mobileMenu a{color:#fff;text-decoration:none;}
-        #toTop{opacity:0; pointer-events:none; transition:opacity .3s ease; position:fixed; bottom:1.5rem; right:1.5rem; background:#0b2050; color:#fff; padding:0.6rem 0.9rem; border-radius:999px; border:none; box-shadow:0 12px 24px rgba(11,32,80,.25);}
+        #toTop{
+            opacity:0;
+            pointer-events:none;
+            transition:opacity .3s ease;
+            position:fixed;
+            bottom:1.5rem;
+            right:1.5rem;
+            background:#0b2050;
+            color:#fff;
+            padding:0.6rem 0.9rem;
+            border-radius:999px;
+            border:none;
+            box-shadow:0 12px 24px rgba(11,32,80,.25);
+        }
+        #toTop.show{
+            opacity:1;
+            pointer-events:auto;
+        }
 
         body {
           font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -89,6 +106,7 @@
           gap: 0.3rem;
           transition: background 0.2s ease, color 0.2s ease;
           background: #f8fafc;
+          color: #0b1f3a;
         }
         .variant-option.active {
           background: #0f172a;
@@ -489,67 +507,17 @@
       ↑
     </button>
     <script>
-      const header = document.querySelector('header');
-      const toTopBtn = document.getElementById('toTop');
-      const onScrollExtras = () => {
-        if (!header) return;
-        if (window.scrollY > 40) header.classList.add('nav-solid');
-        else header.classList.remove('nav-solid');
-        toTopBtn.classList.toggle('show', window.scrollY > 500);
-      };
-      document.addEventListener('scroll', onScrollExtras);
       const mBtn = document.getElementById('mobileMenuBtn');
       const mNav = document.getElementById('mobileMenu');
       if (mBtn && mNav) {
         mBtn.addEventListener('click', () => mNav.classList.toggle('hidden'));
       }
-      const io = new IntersectionObserver(
-        entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('in-view');
-              io.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.15 }
-      );
-      document.querySelectorAll('[data-animate]').forEach(el => io.observe(el));
-      const brandCards = document.querySelectorAll('#brands .brand-card[data-animate]');
-      brandCards.forEach((el, index) => {
-        el.style.transitionDelay = `${index * 90}ms`;
-      });
-      const tiles = document.querySelectorAll('.tilt');
-      tiles.forEach(card => {
-        const r = 12;
-        const move = e => {
-          const b = card.getBoundingClientRect();
-          const px = (e.clientX - b.left) / b.width;
-          const py = (e.clientY - b.top) / b.height;
-          const rx = (0.5 - py) * r;
-          const ry = (px - 0.5) * r;
-          card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
-        };
-        const reset = () => {
-          card.style.transform = 'rotateX(0) rotateY(0)';
-        };
-        card.addEventListener('mousemove', move);
-        card.addEventListener('mouseleave', reset);
-      });
-      const searchInput = document.getElementById('siteSearch');
-      if (searchInput) {
-        searchInput.addEventListener('keydown', event => {
-          if (event.key === 'Enter') {
-            const value = event.target.value.trim().toLowerCase();
-            if (!value) return;
-            const sections = ['home', 'about', 'brands', 'services', 'contact'];
-            const match = sections.find(id => id.includes(value));
-            if (match) {
-              document.getElementById(match)?.scrollIntoView({ behavior: 'smooth' });
-              return;
-            }
-          }
+      const toTopBtn = document.getElementById('toTop');
+      if (toTopBtn) {
+        window.addEventListener('scroll', () => {
+          toTopBtn.classList.toggle('show', window.scrollY > 500);
         });
+        toTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
       }
       const yEl = document.getElementById('y');
       if (yEl) yEl.textContent = new Date().getFullYear();

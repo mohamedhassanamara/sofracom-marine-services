@@ -109,14 +109,15 @@ button.danger:hover {
 
 .categories {
   display: grid;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .category {
   background: #fff;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  box-shadow: 0 12px 24px rgba(11, 32, 80, 0.08);
+  border-radius: 1.25rem;
+  padding: 2rem;
+  box-shadow: 0 18px 30px rgba(11, 32, 80, 0.08);
+  margin-bottom: 1.25rem;
 }
 
 .category-header {
@@ -124,7 +125,7 @@ button.danger:hover {
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .category-header h2 {
@@ -139,9 +140,9 @@ button.danger:hover {
 
 .category-meta {
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  margin-bottom: 1rem;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-bottom: 1.5rem;
 }
 
 .category-meta label,
@@ -150,8 +151,30 @@ button.danger:hover {
   flex-direction: column;
   font-size: 0.85rem;
   font-weight: 600;
-  gap: 0.35rem;
+  gap: 0.45rem;
   color: #0b2050;
+}
+
+.product-fields label {
+  margin-bottom: 0.35rem;
+}
+
+.product-fields {
+  display: grid;
+  gap: 2rem;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.75rem;
+}
+.full-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.asset-dropzone-list {
+  margin-top: 0;
 }
 
 input,
@@ -175,14 +198,14 @@ textarea:focus {
 
 .products {
   display: grid;
-  gap: 1rem;
+  gap: 1.8rem;
 }
 
 .product {
   background: #f7f9fe;
   border: 1px solid #d8e2f3;
-  border-radius: 0.85rem;
-  padding: 1rem;
+  border-radius: 1rem;
+  padding: 1.5rem;
 }
 
 .product-header {
@@ -192,6 +215,27 @@ textarea:focus {
   margin-bottom: 1rem;
 }
 
+.product-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.product-header button.toggle-product {
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.3);
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.product-header button.toggle-product.active {
+  background: rgba(36, 180, 255, 0.15);
+}
+
+.product.collapsed .product-fields {
+  display: none;
+}
 .product-header h3 {
   margin: 0;
   font-size: 1.05rem;
@@ -199,8 +243,12 @@ textarea:focus {
 
 .product-fields {
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.product-fields > label {
+  margin-bottom: 0.35rem;
 }
 
 .image-field {
@@ -208,10 +256,21 @@ textarea:focus {
   gap: 0.75rem;
 }
 
+.image-field label {
+  margin-bottom: 0.35rem;
+}
+
+.large-textarea {
+  min-height: 120px;
+}
+.image-field label {
+  margin-bottom: 0.35rem;
+}
+
 .stock-field {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.65rem;
   font-size: 0.85rem;
   font-weight: 600;
   color: #0b2050;
@@ -305,8 +364,20 @@ textarea:focus {
 .variant-section {
   border: 1px dashed rgba(11, 32, 80, 0.25);
   border-radius: 0.85rem;
-  padding: 0.75rem;
+  padding: 0.9rem;
   background: #f5f7fb;
+  margin-top: 0.5rem;
+}
+
+.variant-section .variant-header {
+  margin-bottom: 0.65rem;
+}
+
+.asset-dropzone-list {
+  margin-top: -0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .variant-header {
@@ -416,6 +487,45 @@ textarea:focus {
   color: #0b2050;
   background: rgba(245, 247, 251, 0.92);
   border-radius: inherit;
+}
+
+.asset-dropzone-list {
+  margin-top: -0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.asset-dropzone-list .asset-dropzone {
+  border-radius: 0.85rem;
+  border: 2px dashed rgba(15, 23, 42, 0.2);
+  padding: 0.9rem;
+  background: rgba(245, 247, 251, 0.9);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.asset-dropzone-list .asset-dropzone:hover {
+  border-color: rgba(36, 180, 255, 0.7);
+  background: rgba(36, 180, 255, 0.1);
+}
+
+.asset-dropzone-list .asset-dropzone .dropzone-preview {
+  width: 56px;
+  height: 56px;
+  border-radius: 0.65rem;
+  background: rgba(11, 32, 80, 0.08) center/cover no-repeat;
+}
+
+.asset-dropzone-list .asset-dropzone .dropzone-text {
+  font-size: 0.8rem;
+  color: #0b1f3a;
+}
+
+.asset-dropzone-hint {
+  margin: 0;
+  font-size: 0.75rem;
+  color: rgba(11, 32, 80, 0.55);
 }
 
 @media (max-width: 768px) {

@@ -51,6 +51,29 @@
     return result.path;
   }
 
+  async function uploadAssetFile({ file, bucket }) {
+    if (!file) throw new Error('No file selected for upload');
+    if (file.size > 12 * 1024 * 1024) {
+      throw new Error('File exceeds 12MB limit');
+    }
+
+    const dataUrl = await readFileAsDataUrl(file);
+    const response = await fetch('/api/upload', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        dataUrl,
+        filename: file.name,
+        bucket,
+      }),
+    });
+    const result = await response.json();
+    if (!response.ok || !result.ok) {
+      throw new Error(result.error || 'Unable to upload file');
+    }
+    return result.path;
+  }
+
   function setupImageDropzone(container, { currentPath, bucket, onChange }) {
     const fileInput = container.querySelector('.dropzone-input');
     const preview = container.querySelector('.dropzone-preview');
@@ -116,6 +139,69 @@
 
     return {
       update: applyPath,
+    };
+  }
+
+  function setupAssetDropzone(container, { bucket, onChange, accept }) {
+    if (!container) return null;
+    const fileInput = container.querySelector('.dropzone-input');
+    const preview = container.querySelector('.dropzone-preview');
+    const pathLabel = container.querySelector('.dropzone-path');
+
+    if (accept && fileInput) {
+      fileInput.setAttribute('accept', accept);
+    }
+
+    const applyPath = value => {
+      const resolved = value || '';
+      if (preview && resolved) {
+        preview.style.backgroundImage = `url("${resolved}")`;
+      }
+      if (pathLabel) {
+        pathLabel.textContent = resolved || 'No file selected';
+      }
+    };
+
+    const beginUpload = async file => {
+      if (!file) return;
+      container.classList.add('loading');
+      try {
+        setStatus(`Uploading ${file.name}…`);
+        const uploadedPath = await uploadAssetFile({ file, bucket });
+        applyPath(uploadedPath);
+        onChange(uploadedPath);
+        setStatus(`Uploaded ${file.name}`, 'success');
+      } catch (error) {
+        console.error(error);
+        setStatus(error.message || 'File upload failed', 'error');
+      } finally {
+        container.classList.remove('loading');
+        fileInput.value = '';
+      }
+    };
+
+    container.addEventListener('click', () => fileInput.click());
+    container.addEventListener('dragover', event => {
+      event.preventDefault();
+      container.classList.add('dragover');
+    });
+    container.addEventListener('dragleave', event => {
+      event.preventDefault();
+      container.classList.remove('dragover');
+    });
+    container.addEventListener('drop', event => {
+      event.preventDefault();
+      container.classList.remove('dragover');
+      const [file] = event.dataTransfer.files;
+      beginUpload(file);
+    });
+    fileInput.addEventListener('change', event => {
+      const [file] = event.target.files;
+      beginUpload(file);
+    });
+
+    return {
+      applyPath,
     };
   }
 
@@ -408,12 +494,17 @@
           '.product-dropzone'
         );
         const imagesInput = productFragment.querySelector('.product-images');
-        const variantList = productFragment.querySelector('.variant-list');
-        const addVariantBtn =
-          productFragment.querySelector('.add-variant');
         const datasheetInput = productFragment.querySelector(
           '.product-datasheet'
         );
+        const imagesDropzoneEl = productFragment.querySelector(
+          '.asset-dropzone[data-asset="images"]'
+        );
+        const datasheetDropzoneEl = productFragment.querySelector(
+          '.asset-dropzone[data-asset="datasheet"]'
+        );
+        const variantList = productFragment.querySelector('.variant-list');
+        const addVariantBtn = productFragment.querySelector('.add-variant');
 
         productEl.dataset.categoryIndex = categoryIndex;
         productEl.dataset.productIndex = productIndex;
@@ -427,7 +518,7 @@
           product.price === null || product.price === undefined
             ? ''
             : product.price;
-        descriptionInput.value = product.description || '';
+       descriptionInput.value = product.description || '';
         stockToggle.checked = (product.stock || 'in') === 'in';
         resizeTextarea(descriptionInput);
         imagesInput.value = (product.images || []).join('\n');
@@ -458,12 +549,6 @@
         usageInput.addEventListener('input', event => {
           handleProductInput(event, categoryIndex, productIndex, 'usage');
         });
-        imagesInput.addEventListener('input', event =>
-          handleProductInput(event, categoryIndex, productIndex, 'images')
-        );
-        datasheetInput.addEventListener('input', event =>
-          handleProductInput(event, categoryIndex, productIndex, 'datasheet')
-        );
         priceInput.addEventListener('input', event =>
           handleProductInput(event, categoryIndex, productIndex, 'price')
         );
@@ -483,6 +568,11 @@
         deleteProductBtn.addEventListener('click', () =>
           deleteProduct(categoryIndex, productIndex)
         );
+        const toggleBtn = productFragment.querySelector('.toggle-product');
+        toggleBtn?.addEventListener('click', () => {
+          const collapsed = productEl.classList.toggle('collapsed');
+          toggleBtn.textContent = collapsed ? 'Show details' : 'Hide details';
+        });
 
         mountVariantSection(
           product,
@@ -491,6 +581,61 @@
           productIndex,
           addVariantBtn
         );
+
+        const appendImagePath = path => {
+          const current = (imagesInput.value || '')
+            .split(/\r?\n/)
+            .map(line => line.trim())
+            .filter(Boolean);
+          current.push(path);
+          imagesInput.value = current.join('\n');
+          handleProductInput(
+            { target: { value: imagesInput.value } },
+            categoryIndex,
+            productIndex,
+            'images'
+          );
+        };
+
+        const imagesDropzone = setupAssetDropzone(imagesDropzoneEl, {
+          bucket: 'products',
+          accept: 'image/*',
+          onChange: appendImagePath,
+        });
+        const syncImagesDropzone = () => {
+          const last = (imagesInput.value || '')
+            .split(/\r?\n/)
+            .map(line => line.trim())
+            .filter(Boolean)
+            .pop();
+          imagesDropzone?.applyPath(last || '');
+        };
+        syncImagesDropzone();
+
+        const fileToInput = path => {
+          datasheetInput.value = path;
+          handleProductInput(
+            { target: { value: path } },
+            categoryIndex,
+            productIndex,
+            'datasheet'
+          );
+        };
+        const datasheetDropzone = setupAssetDropzone(datasheetDropzoneEl, {
+          bucket: 'datasheets',
+          accept: '.pdf',
+          onChange: fileToInput,
+        });
+        datasheetDropzone?.applyPath(datasheetInput.value || '');
+
+        imagesInput.addEventListener('input', event => {
+          handleProductInput(event, categoryIndex, productIndex, 'images');
+          syncImagesDropzone();
+        });
+        datasheetInput.addEventListener('input', event => {
+          handleProductInput(event, categoryIndex, productIndex, 'datasheet');
+          datasheetDropzone?.applyPath(datasheetInput.value || '');
+        });
 
         productsContainer.appendChild(productFragment);
       });
