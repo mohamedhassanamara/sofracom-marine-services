@@ -397,26 +397,31 @@
                 <a href="#" class="inline-block px-6 py-3 rounded-xl bg-blue-900 text-white font-semibold hover:bg-blue-800 transition">Request a Free Quote</a>
             </div>
         </div>
-        <form class="bg-white rounded-2xl p-6 shadow" data-animate onsubmit="event.preventDefault(); alert('Thanks! We\'ll get back to you shortly.');">
+        <form id="quote-form" class="bg-white rounded-2xl p-6 shadow" data-animate>
             <div class="grid sm:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-sm text-gray-600">Name</label>
-                    <input class="mt-1 w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200" required/>
+                    <input id="quote-name" class="mt-1 w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200" required/>
                 </div>
                 <div>
                     <label class="block text-sm text-gray-600">Email</label>
-                    <input type="email" class="mt-1 w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200" required/>
+                    <input id="quote-email" type="email" class="mt-1 w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200" required/>
                 </div>
                 <div class="sm:col-span-2">
-                    <label class="block text-sm text-gray-600">Subject</label>
-                    <input class="mt-1 w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200"/>
+                    <label class="block text-sm text-gray-600">Phone</label>
+                    <input id="quote-phone" class="mt-1 w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200" required/>
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="block text-sm text-gray-600">Boat / Project</label>
+                    <input id="quote-subject" class="mt-1 w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200" placeholder="e.g. 42’ sloop, haul-out + antifouling"/>
                 </div>
                 <div class="sm:col-span-2">
                     <label class="block text-sm text-gray-600">Message</label>
-                    <textarea rows="4" class="mt-1 w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200" placeholder="Tell us about your vessel and needs…"></textarea>
+                    <textarea id="quote-details" rows="4" class="mt-1 w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200" placeholder="Tell us about your vessel and needs…"></textarea>
                 </div>
             </div>
             <button class="mt-4 w-full px-6 py-3 rounded-xl bg-blue-900 text-white font-semibold hover:bg-blue-800 transition">Send</button>
+            <p id="quote-status" class="quote-status hidden mt-4 text-sm" aria-live="polite"></p>
         </form>
     </div>
 </section>
@@ -636,6 +641,60 @@
         langSel.value = saved; applyLang(saved);
         langSel.addEventListener('change', e=> applyLang(e.target.value));
     })();
+</script>
+<script>
+(() => {
+    const form = document.getElementById('quote-form');
+    const statusEl = document.getElementById('quote-status');
+    const submitBtn = form?.querySelector('button[type="submit"]');
+
+    function setStatus(message, type = '') {
+        if (!statusEl) return;
+        statusEl.textContent = message;
+        statusEl.className = `quote-status${type ? ' ' + type : ''}`;
+        statusEl.classList.remove('hidden');
+    }
+
+    function clearStatus() {
+        if (!statusEl) return;
+        statusEl.className = 'quote-status hidden';
+    }
+
+    form?.addEventListener('submit', async event => {
+        event.preventDefault();
+        if (!form) return;
+        const name = document.getElementById('quote-name')?.value.trim();
+        const email = document.getElementById('quote-email')?.value.trim();
+        const phone = document.getElementById('quote-phone')?.value.trim();
+        const subject = document.getElementById('quote-subject')?.value.trim();
+        const details = document.getElementById('quote-details')?.value.trim();
+        if (!name || !email || !details) {
+            setStatus('Please fill name, email, and message first.', 'error');
+            return;
+        }
+
+        submitBtn?.setAttribute('disabled', 'disabled');
+        setStatus('Sending quote…', '');
+
+        try {
+            const response = await fetch('/api/create-quote', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, phone, subject, details }),
+            });
+            const payload = await response.json();
+            if (!payload.ok) throw new Error(payload.error || 'Unable to send quote');
+            setStatus('Quote received! We will reply within a day.', 'success');
+            form.reset();
+        } catch (err) {
+            console.error('[quote] submit failed', err);
+            setStatus(err.message || 'Unable to send quote right now.', 'error');
+        } finally {
+            submitBtn?.removeAttribute('disabled');
+            setTimeout(clearStatus, 6000);
+        }
+    });
+})();
 </script>
 </body>
 </html>

@@ -5,7 +5,8 @@
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "admin": "node tools/product-admin/server.js"
+    "admin": "node tools/product-admin/server.js",
+    "order-admin": "node tools/order-admin/server.js"
   },
   "private": true,
   "dependencies": {

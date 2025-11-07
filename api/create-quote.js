@@ -1,7 +1,6 @@
 const { randomUUID } = require('crypto');
 const { getFirebaseApp } = require('./firebase-service');
 
-/* ---------- utils ---------- */
 async function readJson(req) {
     if (req.body && typeof req.body === 'object') return req.body;
 
@@ -9,7 +8,7 @@ async function readJson(req) {
         let data = '';
         req.on('data', chunk => {
             data += chunk.toString();
-            if (data.length > 1_000_000) {
+            if (data.length > 500_000) {
                 reject(new Error('Payload too large'));
                 req.destroy();
             }
@@ -22,22 +21,15 @@ async function readJson(req) {
     });
 }
 
-function validatePayload(payload) {
+function validateQuote(payload) {
     const errors = [];
     if (!payload || typeof payload !== 'object') return ['Missing request body'];
-
-    const items = Array.isArray(payload.items) ? payload.items : [];
-    if (!items.length) errors.push('Cart is empty');
-
-    const customer = payload.customer || {};
-    if (!customer.name || String(customer.name).trim().length < 2) errors.push('Name is required');
-    if (!customer.phone || String(customer.phone).trim().length < 6) errors.push('Phone is required');
-    if (!customer.address || String(customer.address).trim().length < 6) errors.push('Address is required');
-
+    if (!payload.name || String(payload.name).trim().length < 2) errors.push('Name is required');
+    if (!payload.email || String(payload.email).trim().length < 5 || !payload.email.includes('@')) errors.push('Valid email is required');
+    if (!payload.details || String(payload.details).trim().length < 10) errors.push('Tell us more about your project');
     return errors;
 }
 
-/* ---------- handler ---------- */
 module.exports = async function handler(req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -63,35 +55,32 @@ module.exports = async function handler(req, res) {
         return;
     }
 
-    const errors = validatePayload(payload);
+    const errors = validateQuote(payload);
     if (errors.length) {
         res.status(400).json({ ok: false, error: errors.join(', ') });
         return;
     }
 
-    const orderId = randomUUID();
+    const quoteId = randomUUID();
     const timestamp = new Date().toISOString();
-
-    const order = {
-        id: orderId,
+    const quote = {
+        id: quoteId,
         created_at: timestamp,
-        customer_name: payload.customer.name.trim(),
-        customer_phone: payload.customer.phone.trim(),
-        customer_address: payload.customer.address.trim(),
-        customer_notes: (payload.customer.notes || '').trim(),
-        items: payload.items,
-        total: Number.isFinite(payload.total) ? payload.total : 0,
-        currency: payload.currency || 'TND',
+        customer_name: payload.name.trim(),
+        customer_email: payload.email.trim(),
+        customer_phone: (payload.phone || '').trim(),
+        subject: (payload.subject || '').trim(),
+        details: payload.details.trim(),
+        project_type: payload.project_type || 'general',
         status: 'new',
     };
 
     try {
         const firestore = getFirebaseApp().firestore();
-        await firestore.collection('orders').doc(orderId).set(order);
-
-        res.status(200).json({ ok: true, orderId, persisted: true });
+        await firestore.collection('quotes').doc(quoteId).set(quote);
+        res.status(200).json({ ok: true, quoteId });
     } catch (err) {
-        console.error('[order] persistence failed', err);
-        res.status(500).json({ ok: false, error: err.message || 'Unable to store order' });
+        console.error('[quote] persistence failed', err);
+        res.status(500).json({ ok: false, error: err.message || 'Unable to store quote' });
     }
 };

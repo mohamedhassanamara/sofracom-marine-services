@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Order Admin</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div>
+        <h1>Order Admin Console</h1>
+        <p>Fetch orders from Firebase and update their workflow status.</p>
+      </div>
+      <div class="filters">
+        <label for="status-filter">State</label>
+        <select id="status-filter">
+          <option value="">All orders</option>
+        </select>
+      </div>
+    </header>
+    <main>
+      <section id="status" class="status-pill hidden"></section>
+      <section class="panel">
+        <header class="panel-header">
+          <div>
+            <h2>Orders</h2>
+            <p class="muted">Recent checkout submissions</p>
+          </div>
+          <button id="refresh-orders" class="ghost-button">Refresh orders</button>
+        </header>
+        <div id="orders" class="orders-grid"></div>
+        <div id="empty" class="empty-state hidden">
+          <p>No orders yet. Click refresh or place an order from the storefront.</p>
+        </div>
+      </section>
+      <section class="panel">
+        <header class="panel-header">
+          <div>
+            <h2>Quotes</h2>
+            <p class="muted">Inquiries from the landing page</p>
+          </div>
+          <button id="refresh-quotes" class="ghost-button">Refresh quotes</button>
+        </header>
+        <div id="quotes" class="quotes-grid"></div>
+        <div id="quotes-empty" class="empty-state hidden">
+          <p>No quotes yet. Use the storefront form to log a request.</p>
+        </div>
+      </section>
+    </main>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
