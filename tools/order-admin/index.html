@@ -19,9 +19,13 @@
         </select>
       </div>
     </header>
+    <nav class="tab-menu" role="tablist">
+      <button type="button" class="tab-button active" data-tab="orders" aria-controls="orders-panel">Orders</button>
+      <button type="button" class="tab-button" data-tab="quotes" aria-controls="quotes-panel">Quotes</button>
+    </nav>
     <main>
-      <section id="status" class="status-pill hidden"></section>
-      <section class="panel">
+      <section id="status" class="status-pill hidden" role="status" aria-live="polite"></section>
+      <section id="orders-panel" class="panel active" role="tabpanel">
         <header class="panel-header">
           <div>
             <h2>Orders</h2>
@@ -34,7 +38,7 @@
           <p>No orders yet. Click refresh or place an order from the storefront.</p>
         </div>
       </section>
-      <section class="panel">
+      <section id="quotes-panel" class="panel hidden" role="tabpanel">
         <header class="panel-header">
           <div>
             <h2>Quotes</h2>

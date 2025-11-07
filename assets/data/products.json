@@ -9,6 +9,10 @@
         {
           "title": "Jotun SeaForce 2.5L Black / Noir",
           "image": "assets/products/20251104_142605-mhkpnc7j.png",
+          "images": [
+            "assets/products/20251104_142605-mhkpnc7j.png",
+            "assets/products/20251104_142934-mhkq1zha.png"
+          ],
           "description": "This is a one component acrylic, hydrolysing antifouling coating based on hydractive technology. It provides\ngood fouling protection. This is achieved through self polishing low friction characteristics reducing hull\ndeterioration. To be used as finish coat in immersed environments only. Suitable on approved primers and tie\ncoats on aluminium and carbon steel substrates. It can be applied at sub zero surface temperatures",
           "brand": "JOTUN",
           "usage": [
@@ -18,12 +22,27 @@
             "érodable",
             "erodable"
           ],
+          "variants": [
+            {
+              "label": "2.5L",
+              "price": 341.887
+            },
+            {
+              "label": "4L",
+              "price": 512.5
+            }
+          ],
+          "datasheet": "assets/datasheets/jotun-seaforce.pdf",
           "price": 341.887,
           "stock": "in"
         },
         {
           "title": "Jotun SeaForce 04L Blue / Bleu",
           "image": "assets/products/20251104_142934-mhkq1zha.png",
+          "images": [
+            "assets/products/20251104_142934-mhkq1zha.png",
+            "assets/products/20251104_163524-mhktr74d.png"
+          ],
           "description": "This is a one component acrylic, hydrolysing antifouling coating based on hydractive technology. It provides\ngood fouling protection. This is achieved through self polishing low friction characteristics reducing hull\ndeterioration. To be used as finish coat in immersed environments only. Suitable on approved primers and tie\ncoats on aluminium and carbon steel substrates. It can be applied at sub zero surface temperatures",
           "brand": "JOTUN",
           "usage": [
@@ -31,6 +50,16 @@
             "Long-lasting",
             "Easy apply",
             "érodable"
+          ],
+          "variants": [
+            {
+              "label": "04L",
+              "price": 655.272
+            },
+            {
+              "label": "08L",
+              "price": 1180.5
+            }
           ],
           "price": 655.272,
           "stock": "in"

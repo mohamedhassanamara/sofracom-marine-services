@@ -142,6 +142,23 @@
               product.stock === 'out' || product.stock === 'in'
                 ? product.stock
                 : 'in',
+            images:
+              Array.isArray(product.images) && product.images.length
+                ? product.images
+                : product.image
+                  ? [product.image]
+                  : [],
+            variants: Array.isArray(product.variants)
+              ? product.variants.map(variant => ({
+                  label: variant.label || '',
+                  price:
+                    Number.isFinite(Number(variant.price)) &&
+                    Number(variant.price) >= 0
+                      ? Number(variant.price)
+                      : null,
+                }))
+              : [],
+            datasheet: product.datasheet || '',
           }))
         : [],
     }));
@@ -179,6 +196,19 @@
       return;
     }
 
+    if (field === 'images') {
+      product.images = value
+        .split(/\r?\n/)
+        .map(line => line.trim())
+        .filter(Boolean);
+      return;
+    }
+
+    if (field === 'datasheet') {
+      product.datasheet = value;
+      return;
+    }
+
     product[field] = value;
     if (field === 'title') {
       const heading = event.target
@@ -200,6 +230,9 @@
       usage: [],
       price: 0,
       stock: 'in',
+      images: [],
+      variants: [],
+      datasheet: '',
     });
     render();
   }
@@ -238,6 +271,64 @@
   function resizeTextarea(textarea) {
     textarea.style.height = 'auto';
     textarea.style.height = `${textarea.scrollHeight}px`;
+  }
+
+  function mountVariantSection(
+    product,
+    container,
+    categoryIndex,
+    productIndex,
+    addBtn
+  ) {
+    if (!container) return;
+    const variants = () => state.categories[categoryIndex].products[productIndex]
+      .variants;
+
+    const renderList = () => {
+      container.innerHTML = '';
+      (variants() || []).forEach((variant, variantIndex) => {
+        const row = document.createElement('div');
+        row.className = 'variant-row';
+        row.innerHTML = `
+          <input type="text" class="variant-label" placeholder="Label" value="${variant.label || ''}" />
+          <input type="number" class="variant-price" min="0" step="0.01" placeholder="Price" value="${variant.price ?? ''}" />
+          <button type="button" class="remove-variant">Remove</button>
+        `;
+        const labelInput = row.querySelector('.variant-label');
+        const priceInput = row.querySelector('.variant-price');
+        const removeBtn = row.querySelector('.remove-variant');
+        labelInput.addEventListener('input', event => {
+          state.categories[categoryIndex].products[productIndex].variants[
+            variantIndex
+          ].label = event.target.value;
+        });
+        priceInput.addEventListener('input', event => {
+          const raw = Number(event.target.value);
+          state.categories[categoryIndex].products[productIndex].variants[
+            variantIndex
+          ].price = Number.isFinite(raw) ? raw : null;
+        });
+        removeBtn.addEventListener('click', () => {
+          state.categories[categoryIndex].products[productIndex].variants.splice(
+            variantIndex,
+            1
+          );
+          renderList();
+        });
+        container.appendChild(row);
+      });
+    };
+
+    renderList();
+    addBtn?.addEventListener('click', () => {
+      state.categories[categoryIndex].products[productIndex].variants =
+        state.categories[categoryIndex].products[productIndex].variants || [];
+      state.categories[categoryIndex].products[productIndex].variants.push({
+        label: '',
+        price: null,
+      });
+      renderList();
+    });
   }
 
   function render() {
@@ -316,6 +407,13 @@
         const productDropzoneEl = productFragment.querySelector(
           '.product-dropzone'
         );
+        const imagesInput = productFragment.querySelector('.product-images');
+        const variantList = productFragment.querySelector('.variant-list');
+        const addVariantBtn =
+          productFragment.querySelector('.add-variant');
+        const datasheetInput = productFragment.querySelector(
+          '.product-datasheet'
+        );
 
         productEl.dataset.categoryIndex = categoryIndex;
         productEl.dataset.productIndex = productIndex;
@@ -332,6 +430,8 @@
         descriptionInput.value = product.description || '';
         stockToggle.checked = (product.stock || 'in') === 'in';
         resizeTextarea(descriptionInput);
+        imagesInput.value = (product.images || []).join('\n');
+        datasheetInput.value = product.datasheet || '';
 
         const productDropzone = setupImageDropzone(productDropzoneEl, {
           currentPath: product.image || '',
@@ -358,6 +458,12 @@
         usageInput.addEventListener('input', event => {
           handleProductInput(event, categoryIndex, productIndex, 'usage');
         });
+        imagesInput.addEventListener('input', event =>
+          handleProductInput(event, categoryIndex, productIndex, 'images')
+        );
+        datasheetInput.addEventListener('input', event =>
+          handleProductInput(event, categoryIndex, productIndex, 'datasheet')
+        );
         priceInput.addEventListener('input', event =>
           handleProductInput(event, categoryIndex, productIndex, 'price')
         );
@@ -376,6 +482,14 @@
 
         deleteProductBtn.addEventListener('click', () =>
           deleteProduct(categoryIndex, productIndex)
+        );
+
+        mountVariantSection(
+          product,
+          variantList,
+          categoryIndex,
+          productIndex,
+          addVariantBtn
         );
 
         productsContainer.appendChild(productFragment);

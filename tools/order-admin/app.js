@@ -33,8 +33,13 @@ const refreshQuotesBtn = document.querySelector('#refresh-quotes');
 const filterEl = document.querySelector('#status-filter');
 const quotesEl = document.querySelector('#quotes');
 const quotesEmptyEl = document.querySelector('#quotes-empty');
+const tabButtons = document.querySelectorAll('[data-tab]');
+const panelMap = {
+  orders: document.getElementById('orders-panel'),
+  quotes: document.getElementById('quotes-panel'),
+};
 
-const state = { orders: [], quotes: [], fetchingOrders: false, fetchingQuotes: false, filter: '' };
+const state = { orders: [], quotes: [], fetchingOrders: false, fetchingQuotes: false, filter: '', activeTab: 'orders' };
 
 function populateFilterOptions() {
   if (!filterEl) return;
@@ -218,6 +223,18 @@ function renderOrders() {
   });
 }
 
+function switchTab(tab) {
+  if (!panelMap[tab]) return;
+  state.activeTab = tab;
+  tabButtons.forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.tab === tab);
+  });
+  Object.entries(panelMap).forEach(([key, panel]) => {
+    if (!panel) return;
+    panel.classList.toggle('hidden', key !== tab);
+  });
+}
+
 function renderQuotes() {
   if (!quotesEl) return;
   quotesEl.innerHTML = '';
@@ -281,8 +298,9 @@ async function performStatusUpdate(orderId, select, pill) {
       throw new Error(result.error || 'Unable to update status');
     }
     select.dataset.previous = desiredStatus;
-    pill.textContent = desiredStatus;
+    pill.textContent = formatStatusLabel(desiredStatus);
     showStatus(`Status of ${orderId} saved`, 'success');
+    await refreshOrders();
   } catch (err) {
     select.value = previous;
     showStatus(err.message || 'Failed to update', 'error');
@@ -333,8 +351,14 @@ filterEl?.addEventListener('change', () => {
   renderOrders();
 });
 
+tabButtons.forEach(btn => btn.addEventListener('click', () => {
+  const next = btn.dataset.tab;
+  if (next) switchTab(next);
+}));
+
 refreshOrdersBtn?.addEventListener('click', refreshOrders);
 refreshQuotesBtn?.addEventListener('click', refreshQuotes);
 populateFilterOptions();
+switchTab(state.activeTab);
 refreshOrders();
 refreshQuotes();

@@ -22,7 +22,7 @@
         .tilt{transform-style:preserve-3d; transition:transform .2s ease, box-shadow .2s ease}
         .tilt:hover{box-shadow:0 20px 45px rgba(0,0,0,.15)}
         .tilt .layer{transform:translateZ(18px)}
-        .card-img{aspect-ratio:16/10; object-fit:cover}
+        .card-img{width:100%;height:220px;object-fit:contain;background:#f3f4f6;display:block;border-radius:0.75rem}
         .price{color:#0b2050}
         .tag{background:rgba(36,180,255,.12); color:#0f3d72}
         .stock-badge{display:inline-flex; align-items:center; gap:0.35rem; padding:0.25rem 0.6rem; border-radius:999px; font-size:0.75rem; font-weight:600}
@@ -54,6 +54,21 @@
         .cart-submit{background:var(--deep-navy); color:#fff; border:none; border-radius:0.75rem; padding:0.8rem 1rem; font-weight:600; cursor:pointer; transition:background .2s ease, transform .2s ease}
         .cart-submit:disabled{opacity:.6; cursor:not-allowed}
         .cart-submit:hover:not(:disabled){background:var(--sea); transform:translateY(-1px)}
+        .product-card{border-radius:1.2rem; overflow:hidden; display:flex; flex-direction:column; background:#fff; transition:transform .2s ease, box-shadow .2s ease; border:1px solid rgba(15,61,114,.08)}
+        .product-card:hover{transform:translateY(-4px); box-shadow:0 20px 40px rgba(15,61,114,.15)}
+        .product-description{margin:0; color:#475569; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; transition:max-height .2s ease}
+        .product-description.expanded{-webkit-line-clamp:unset; max-height:none}
+        .read-more-btn{background:none;border:none;color:#2563eb;font-weight:600;margin-top:0.5rem;cursor:pointer;padding:0;font-size:0.85rem}
+        .product-price-row{display:flex; align-items:center; justify-content:space-between; gap:0.75rem; flex-wrap:wrap}
+        .product-actions{display:flex; align-items:center; justify-content:space-between; gap:0.75rem; flex-wrap:wrap}
+        .product-actions a{font-size:0.85rem; color:#2563eb; font-weight:600}
+        .product-variants{margin-top:0.75rem; display:flex; flex-wrap:wrap; gap:0.5rem}
+        .variant-option{border:1px solid rgba(15,61,114,.2); border-radius:999px; padding:0.35rem 0.9rem; background:#f8fafc; cursor:pointer; font-size:0.85rem; font-weight:600; display:flex; align-items:center; gap:0.35rem}
+        .variant-option.active{background:#0f172a; color:#fff; border-color:#0f172a}
+        .variant-option span{font-size:0.75rem; color:inherit; opacity:.8}
+        .product-price{font-size:1.05rem; font-weight:700}
+        .datasheet-link{display:inline-flex; align-items:center; gap:0.4rem; font-size:0.85rem; color:#1d4ed8; margin-top:0.5rem}
+        .datasheet-link svg{width:16px; height:16px}
         .cart-alert{margin:0; font-size:0.85rem; font-weight:600}
         .cart-alert.error{color:#d72638}
         .cart-alert.success{color:#0f7a2e}
@@ -355,7 +370,7 @@
                 <div class="flex items-start justify-between gap-2">
                     <div>
                         <p class="cart-item-title">${item.title}</p>
-                        <p class="text-xs text-gray-500">${item.category || ''}</p>
+                        <p class="text-xs text-gray-500">${item.variantLabel ? item.variantLabel + ' · ' : ''}${item.category || ''}</p>
                     </div>
                     <button type="button" class="text-sm text-red-500 hover:text-red-600" data-action="remove" aria-label="${getLabel('cart.remove')}">×</button>
                 </div>
@@ -389,28 +404,34 @@
         cartOverlay.classList.remove('active');
     }
 
-    function addToCartById(id, quantity = 1){
-        const product = PRODUCT_INDEX[id];
-        if (!product){
-            showCartAlert(getLabel('cart.notFound'), 'error');
-            return;
-        }
-        if (product.stock === 'out'){
-            showCartAlert(getLabel('cart.outOfStock'), 'error');
-            return;
-        }
+function addToCartById(id, quantity = 1, variantIndex = 0){
+    const product = PRODUCT_INDEX[id];
+    if (!product){
+        showCartAlert(getLabel('cart.notFound'), 'error');
+        return;
+    }
+    if (product.stock === 'out'){
+        showCartAlert(getLabel('cart.outOfStock'), 'error');
+        return;
+    }
 
-        const existing = cart.find(item => item.id === id);
+        const variant = Array.isArray(product.variants) ? product.variants[variantIndex] : null;
+        const unitPrice = variant && Number.isFinite(variant.price) ? variant.price : product.price;
+        const variantLabel = variant ? variant.label : '';
+        const image = Array.isArray(product.images) && product.images[0]
+            ? product.images[0]
+            : product.image || 'assets/placeholder-prod.jpg';
+        const existing = cart.find(item => item.id === id && item.variantLabel === variantLabel);
         if (existing){
             existing.quantity += quantity;
         } else {
-            const numericPrice = typeof product.price === 'number' ? product.price : Number(product.price);
             cart.push({
                 id,
                 title: product.title,
-                price: Number.isFinite(numericPrice) ? numericPrice : null,
+                price: Number.isFinite(unitPrice) ? unitPrice : null,
                 quantity: Math.max(1, quantity),
-                image: product.image || 'assets/placeholder-prod.jpg',
+                image,
+                variantLabel,
                 category: product.categoryName || '',
             });
         }
@@ -648,23 +669,80 @@
         prodGrid.innerHTML = list.map((p, idx) => {
             const id = `${catSlug}::${slugify(p.title || 'item')}-${idx}`;
             const numericPrice = typeof p.price === 'number' ? p.price : Number(p.price);
+            const images = Array.isArray(p.images)
+                ? p.images
+                : p.image
+                    ? [p.image]
+                    : ['assets/placeholder-prod.jpg'];
+            const variantsRaw = Array.isArray(p.variants) ? p.variants : [];
+            const variants = variantsRaw
+                .map(variant => ({
+                    label: variant.label || 'Option',
+                    price: Number.isFinite(Number(variant.price)) ? Number(variant.price) : null,
+                }))
+                .filter(v => v.price !== null);
             PRODUCT_INDEX[id] = {
                 ...p,
                 price: Number.isFinite(numericPrice) ? numericPrice : null,
-                image: p.image || 'assets/placeholder-prod.jpg',
+                images,
+                variants,
+                datasheet: p.datasheet || '',
                 categorySlug: catSlug,
                 categoryName: activeCat ? activeCat.name : '',
                 stock: p.stock === 'out' ? 'out' : 'in',
+                selectedVariantIndex: 0,
             };
             return productCard(activeCat, p, id);
         }).join('');
 
         prodGrid.querySelectorAll('.tilt').forEach(tiltify);
-        prodGrid.querySelectorAll('[data-product-id]').forEach(btn => {
+        wireVariantControls();
+        wireDescriptionToggles();
+        prodGrid.querySelectorAll('.product-add').forEach(btn => {
             btn.addEventListener('click', event => {
                 const id = event.currentTarget.dataset.productId;
-                addToCartById(id, 1);
+                const variantIndex = Number(event.currentTarget.dataset.variantIndex) || 0;
+                addToCartById(id, 1, variantIndex);
                 openCart();
+            });
+        });
+    }
+
+    function wireVariantControls() {
+        prodGrid.querySelectorAll('.product-variants').forEach(container => {
+            const card = container.closest('.product-card');
+            if (!card) return;
+            const productId = card.dataset.productId;
+            const product = PRODUCT_INDEX[productId];
+            if (!product) return;
+            const priceEl = card.querySelector('[data-product-price]');
+            const addBtn = card.querySelector('.product-add');
+            container.querySelectorAll('.variant-option').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const index = Number(btn.dataset.variantIndex);
+                    product.selectedVariantIndex = index;
+                    container.querySelectorAll('.variant-option').forEach(el => el.classList.remove('active'));
+                    btn.classList.add('active');
+                    const variant = product.variants[index];
+                    if (priceEl && variant) {
+                        priceEl.textContent = formatPrice(variant.price);
+                    }
+                    if (addBtn) {
+                        addBtn.dataset.variantIndex = index;
+                    }
+                });
+            });
+        });
+    }
+
+    function wireDescriptionToggles(){
+        prodGrid.querySelectorAll('.read-more-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const card = btn.closest('.product-card');
+                const description = card?.querySelector('.product-description');
+                if (!description) return;
+                const expanded = description.classList.toggle('expanded');
+                btn.textContent = expanded ? 'Show less' : 'Read more';
             });
         });
     }
@@ -676,29 +754,55 @@
     }
 
     function productCard(category, p, id){
-        const img = p.image || 'assets/placeholder-prod.jpg';
+        const heroImage = (Array.isArray(p.images) && p.images[0]) || p.image || 'assets/placeholder-prod.jpg';
         const usage = Array.isArray(p.usage) ? p.usage.map(u=>`<span class="px-2 py-1 rounded tag text-xs">${u}</span>`).join(' ') : '';
-        const price = (p.price!=null && Number.isFinite(Number(p.price))) ? `<span class="font-bold price">${formatPrice(Number(p.price))}</span>` : '';
         const stock = (p.stock === 'out') ? 'out' : 'in';
         const stockKey = stock === 'in' ? 'ui.inStock' : 'ui.outStock';
         const stockBadge = `<span class="stock-badge ${stock === 'in' ? 'stock-badge--in' : 'stock-badge--out'}" data-i18n="${stockKey}">${getLabel(stockKey)}</span>`;
-        const metaItems = [price, stockBadge].filter(Boolean).join('');
-        const meta = metaItems ? `<div class="mt-3 flex flex-wrap items-center justify-between gap-2">${metaItems}</div>` : '';
+        const stateClass = stock === 'out' ? ' product-out' : '';
         const brandLabel = getLabel('ui.brand');
         const buttonLabel = stock === 'out' ? getLabel('ui.outStock') : getLabel('ui.addToCart');
-        const stateClass = stock === 'out' ? ' product-out' : '';
-        const button = `<button type="button" class="mt-4 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-semibold shadow transition hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed" data-product-id="${id}" ${stock === 'out' ? 'disabled' : ''}>${buttonLabel}</button>`;
+        const description = (p.description || '').replace(/\n/g, ' ');
+        const variants = Array.isArray(p.variants) ? p.variants : [];
+        const fallbackPrice = Number.isFinite(Number(p.price)) ? Number(p.price) : null;
+        const initialVariant = variants.length ? variants[0] : null;
+        const priceValue = initialVariant ? initialVariant.price : fallbackPrice;
+        const priceMarkup = priceValue !== null ? `<span class="product-price" data-product-price>${formatPrice(priceValue)}</span>` : `<span class="product-price" data-product-price>${getLabel('cart.contact')}</span>`;
+        const variantMarkup = variants.length
+            ? `<div class="product-variants" data-product-id="${id}">
+                ${variants.map((variant, idx) => `<button type="button" class="variant-option${idx===0?' active':''}" data-variant-index="${idx}">
+                    ${variant.label} <span>${formatPrice(variant.price)}</span>
+                </button>`).join('')}
+              </div>`
+            : '';
+        const datasheetMarkup = p.datasheet
+            ? `<a class="datasheet-link" href="${p.datasheet}" target="_blank" rel="noopener">
+                 <span>Download datasheet</span>
+               </a>`
+            : '';
+        const button = `<button type="button" class="product-add mt-4 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-semibold shadow transition hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed" data-product-id="${id}" data-variant-index="0" ${stock === 'out' ? 'disabled' : ''}>${buttonLabel}</button>`;
         return `
-      <article class="tilt bg-white rounded-2xl overflow-hidden shadow hover:shadow-xl transform transition${stateClass}">
+      <article class="tilt product-card${stateClass}" data-product-id="${id}">
         <div class="layer">
-          <img src="${img}" alt="${p.title}" class="card-img w-full">
-          <div class="p-4">
-            <h3 class="text-lg font-semibold text-gray-900">${p.title}</h3>
-            <p class="text-sm text-gray-600 mt-1">${p.description||''}</p>
-            <div class="mt-2 text-xs text-gray-500"><span data-i18n="ui.brand">${brandLabel}</span>: <b>${p.brand||'—'}</b></div>
-            <div class="mt-3 flex flex-wrap gap-2">${usage}</div>
-            ${meta}
-            ${button}
+          <img src="${heroImage}" alt="${p.title}" class="card-img w-full" loading="lazy">
+          <div class="p-4 flex flex-col gap-2">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-semibold text-gray-900">${p.title}</h3>
+              ${stockBadge}
+            </div>
+            <p class="text-xs text-gray-500"><span data-i18n="ui.brand">${brandLabel}</span>: <b>${p.brand||'—'}</b></p>
+            <p class="product-description clamped" data-product-id="${id}">${description}</p>
+            <button type="button" class="read-more-btn" data-product-id="${id}">Read more</button>
+            ${datasheetMarkup}
+            <div class="mt-2 flex flex-wrap gap-2">${usage}</div>
+            <div class="mt-3 product-price-row flex flex-wrap items-center justify-between gap-2">
+              ${priceMarkup}
+              ${variantMarkup}
+            </div>
+            <div class="product-actions">
+              ${button}
+              <a href="product.html?id=${encodeURIComponent(id)}" class="text-blue-600">View details</a>
+            </div>
           </div>
         </div>
       </article>`;

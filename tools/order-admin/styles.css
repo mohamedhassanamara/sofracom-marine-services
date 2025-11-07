@@ -37,6 +37,29 @@ body {
     color: #475569;
 }
 
+.tab-menu {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tab-button {
+    border: 1px solid transparent;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(99, 102, 241, 0.1);
+    color: #0f172a;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.tab-button.active {
+    background: #0f172a;
+    color: #fff;
+    border-color: rgba(15, 23, 42, 0.4);
+}
+
 .filters {
     display: flex;
     align-items: center;

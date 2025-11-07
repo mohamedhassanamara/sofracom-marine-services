@@ -297,6 +297,52 @@ textarea:focus {
   color: #d72638;
 }
 
+.product-images,
+.product-datasheet {
+  min-height: 80px;
+}
+
+.variant-section {
+  border: 1px dashed rgba(11, 32, 80, 0.25);
+  border-radius: 0.85rem;
+  padding: 0.75rem;
+  background: #f5f7fb;
+}
+
+.variant-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.variant-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.variant-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.variant-row input {
+  flex: 1;
+}
+
+.variant-row button.remove-variant {
+  border: none;
+  background: transparent;
+  color: #d72638;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
 .image-dropzone {
   display: flex;
   align-items: center;

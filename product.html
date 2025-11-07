@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOFRACOM • Product</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+        background: #f5f7fb;
+        margin: 0;
+        color: #0b1f3a;
+      }
+      .product-detail {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+      .detail-gallery {
+        border-radius: 1rem;
+        padding: 1rem;
+        background: #fff;
+        border: 1px solid rgba(11, 32, 80, 0.08);
+      }
+      .detail-gallery img {
+        width: 100%;
+        height: 320px;
+        object-fit: contain;
+        border-radius: 0.9rem;
+        background: #f8fafc;
+      }
+      .detail-thumbs {
+        margin-top: 0.75rem;
+        display: flex;
+        gap: 0.6rem;
+      }
+      .detail-thumbs img {
+        width: 64px;
+        height: 64px;
+        object-fit: cover;
+        border-radius: 0.6rem;
+        cursor: pointer;
+        border: 2px solid transparent;
+      }
+      .detail-thumbs img.active {
+        border-color: #0f172a;
+      }
+      .detail-info {
+        background: #fff;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        border: 1px solid rgba(11, 32, 80, 0.08);
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .detail-variants {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .variant-option {
+        border: 1px solid rgba(11, 32, 80, 0.25);
+        border-radius: 999px;
+        padding: 0.35rem 0.9rem;
+        cursor: pointer;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        transition: background 0.2s ease, color 0.2s ease;
+        background: #f8fafc;
+      }
+      .variant-option.active {
+        background: #0f172a;
+        color: #fff;
+        border-color: #0f172a;
+      }
+      .detail-status {
+        margin-top: 0.5rem;
+      }
+      .detail-datasheet {
+        color: #1d4ed8;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="bg-white shadow-sm">
+      <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+        <div>
+          <a href="index.html" class="text-sm text-gray-500 hover:text-gray-900">Home</a>
+          <span class="mx-2 text-gray-400">/</span>
+          <a href="products.html" class="text-sm text-blue-600 hover:underline">Products</a>
+        </div>
+        <a
+          href="products.html"
+          class="text-sm font-semibold text-white px-4 py-2 rounded-full bg-blue-600 hover:bg-blue-700 transition"
+          >Back to catalog</a
+        >
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-10">
+      <section id="detail-wrapper">
+        <div class="text-sm text-gray-500" id="detail-breadcrumb"></div>
+        <div class="product-detail">
+          <div class="detail-gallery">
+            <img
+              id="detail-main-image"
+              src="assets/placeholder-prod.jpg"
+              alt="Product image"
+            />
+            <div class="detail-thumbs" id="detail-thumbs"></div>
+          </div>
+          <div class="detail-info">
+            <h1 id="detail-title" class="text-3xl font-semibold"></h1>
+            <p id="detail-brand" class="text-sm text-gray-500"></p>
+            <div id="detail-usage" class="flex flex-wrap gap-2"></div>
+            <div class="flex items-center gap-4">
+              <div id="detail-price" class="text-3xl font-bold"></div>
+            </div>
+            <div id="detail-variants" class="detail-variants"></div>
+            <p id="detail-description" class="text-gray-700 leading-relaxed"></p>
+            <div id="detail-datasheet"></div>
+            <button
+              id="detail-add"
+              class="bg-blue-600 text-white font-semibold px-5 py-3 rounded-full w-full hover:bg-blue-700 transition"
+              type="button"
+            >
+              Add to cart
+            </button>
+            <p id="detail-status" class="quote-status detail-status hidden" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        const CART_KEY = 'sofracom.cart.v1';
+        let cart = [];
+        const mainImage = document.getElementById('detail-main-image');
+        const thumbsEl = document.getElementById('detail-thumbs');
+        const titleEl = document.getElementById('detail-title');
+        const brandEl = document.getElementById('detail-brand');
+        const usageEl = document.getElementById('detail-usage');
+        const priceEl = document.getElementById('detail-price');
+        const descEl = document.getElementById('detail-description');
+        const variantContainer = document.getElementById('detail-variants');
+        const datasheetEl = document.getElementById('detail-datasheet');
+        const addBtn = document.getElementById('detail-add');
+        const statusEl = document.getElementById('detail-status');
+        const params = new URLSearchParams(window.location.search);
+        const targetId = params.get('id');
+
+        function formatPrice(value) {
+          try {
+            return new Intl.NumberFormat('fr-TN', {
+              style: 'currency',
+              currency: 'TND',
+            }).format(value);
+          } catch (err) {
+            return `${value} TND`;
+          }
+        }
+
+        function slugify(text) {
+          return (text || 'item')
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-|-$)/g, '');
+        }
+
+        function loadCart() {
+          if (typeof localStorage === 'undefined') return [];
+          try {
+            const raw = localStorage.getItem(CART_KEY);
+            if (!raw) return [];
+            const parsed = JSON.parse(raw);
+            if (!Array.isArray(parsed)) return [];
+            return parsed;
+          } catch (error) {
+            console.warn('cart: failed to load', error);
+            return [];
+          }
+        }
+
+        function saveCart() {
+          if (typeof localStorage === 'undefined') return;
+          try {
+            localStorage.setItem(CART_KEY, JSON.stringify(cart));
+          } catch (error) {
+            console.warn('cart: failed to save', error);
+          }
+        }
+
+        function setStatus(message, type = '') {
+          if (!statusEl) return;
+          statusEl.textContent = message;
+          statusEl.className = `quote-status detail-status${type ? ' ' + type : ''}`;
+          statusEl.classList.remove('hidden');
+          if (!message) return;
+          setTimeout(() => statusEl.classList.add('hidden'), 4000);
+        }
+
+        function addToCart(product, variantIndex = 0) {
+          const variant =
+            Array.isArray(product.variants) && product.variants[variantIndex]
+              ? product.variants[variantIndex]
+              : null;
+          const unitPrice =
+            variant && Number.isFinite(variant.price)
+              ? variant.price
+              : Number.isFinite(Number(product.price))
+              ? Number(product.price)
+              : null;
+          const variantLabel = variant ? variant.label : '';
+          const image =
+            Array.isArray(product.images) && product.images[0]
+              ? product.images[0]
+              : product.image || 'assets/placeholder-prod.jpg';
+          const existing = cart.find(
+            item => item.id === product.id && item.variantLabel === variantLabel
+          );
+          if (existing) {
+            existing.quantity += 1;
+          } else {
+            cart.push({
+              id: product.id,
+              title: product.title,
+              price: Number.isFinite(unitPrice) ? unitPrice : null,
+              variantLabel,
+              quantity: 1,
+              image,
+              category: product.categoryName || '',
+            });
+          }
+          saveCart();
+          setStatus('Item added to cart', 'success');
+        }
+
+        async function init() {
+          cart = loadCart();
+          if (!targetId) {
+            setStatus('Product not specified', 'error');
+            return;
+          }
+          try {
+            const response = await fetch('assets/data/products.json', {
+              cache: 'no-cache',
+            });
+            if (!response.ok) throw new Error('Unable to load data');
+            const payload = await response.json();
+            const found = findProduct(payload.categories || [], targetId);
+            if (!found) {
+              setStatus('Product not found', 'error');
+              return;
+            }
+            renderProduct(found);
+          } catch (error) {
+            console.error(error);
+            setStatus('Failed to load product', 'error');
+          }
+        }
+
+        function findProduct(categories, id) {
+          for (const category of categories) {
+            const catSlug = category.slug || slugify(category.name);
+            for (let idx = 0; idx < (category.products || []).length; idx++) {
+              const product = category.products[idx];
+              const candidateId = `${catSlug}::${slugify(product.title)}-${idx}`;
+              if (candidateId === id) {
+                return {
+                  product: product,
+                  id: candidateId,
+                  categoryName: category.name,
+                  categorySlug: catSlug,
+                  index: idx,
+                };
+              }
+            }
+          }
+          return null;
+        }
+
+        function renderProduct(payload) {
+          const product = payload.product;
+          const images = Array.isArray(product.images) && product.images.length
+            ? product.images
+            : product.image
+              ? [product.image]
+              : ['assets/placeholder-prod.jpg'];
+          titleEl.textContent = product.title;
+          brandEl.textContent = product.brand || '';
+          descEl.textContent = product.description || '';
+          priceEl.textContent =
+            Number.isFinite(Number(product.price)) && product.price !== null
+              ? formatPrice(Number(product.price))
+              : 'Contact for price';
+          usageEl.innerHTML = (product.usage || [])
+            .map(tag => `<span class="px-2 py-1 bg-indigo-50 text-indigo-800 rounded-full text-xs">${tag}</span>`)
+            .join('');
+          mainImage.src = images[0];
+          thumbsEl.innerHTML = '';
+          images.forEach((src, index) => {
+            const thumb = document.createElement('img');
+            thumb.src = src;
+            thumb.alt = product.title;
+            thumb.dataset.index = index;
+            if (index === 0) thumb.classList.add('active');
+            thumb.addEventListener('click', () => {
+              mainImage.src = src;
+              thumbsEl.querySelectorAll('img').forEach(el => el.classList.remove('active'));
+              thumb.classList.add('active');
+            });
+            thumbsEl.appendChild(thumb);
+          });
+          const variants = Array.isArray(product.variants) ? product.variants : [];
+          const renderVariants = () => {
+            variantContainer.innerHTML = '';
+            variants.forEach((variant, idx) => {
+              const btn = document.createElement('button');
+              btn.type = 'button';
+              btn.className = 'variant-option';
+              btn.dataset.index = idx;
+              btn.innerHTML = `${variant.label} <span>${formatPrice(variant.price)}</span>`;
+              btn.addEventListener('click', () => {
+                variantContainer.querySelectorAll('button').forEach(el => el.classList.remove('active'));
+                btn.classList.add('active');
+                priceEl.textContent = formatPrice(variant.price);
+                addBtn.dataset.variantIndex = idx;
+              });
+              variantContainer.appendChild(btn);
+            });
+            if (variants.length) {
+              variantContainer.querySelector('button')?.classList.add('active');
+            }
+          };
+          renderVariants();
+          if (variants.length) {
+            priceEl.textContent = formatPrice(variants[0].price);
+          }
+          addBtn.dataset.variantIndex = '0';
+          datasheetEl.innerHTML = '';
+          if (product.datasheet) {
+            const link = document.createElement('a');
+            link.href = product.datasheet;
+            link.target = '_blank';
+            link.rel = 'noopener';
+            link.className = 'detail-datasheet';
+            link.textContent = 'Download datasheet';
+            datasheetEl.appendChild(link);
+          }
+          addBtn.disabled = product.stock === 'out';
+          addBtn.addEventListener('click', () => {
+            addToCart({ ...product, id: payload.id, categoryName: payload.categoryName }, Number(addBtn.dataset.variantIndex || 0));
+          });
+          document.title = `${product.title} • SOFRACOM`;
+        }
+
+        init();
+      })();
+    </script>
+  </body>
+</html>
