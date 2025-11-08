@@ -33,7 +33,7 @@
           "stock": "in"
         },
         {
-          "title": "Jotun SeaForce 04L Blue / Bleu",
+          "title": "Jotun SeaForce Active 04L Blue / Bleu",
           "image": "assets/products/20251104_142934-mhkq1zha.png",
           "images": [
             "assets/products/20251104_142934-mhkq1zha.png",
@@ -51,15 +51,11 @@
             {
               "label": "04L",
               "price": 655.272
-            },
-            {
-              "label": "08L",
-              "price": 1180.5
             }
           ],
           "price": 655.272,
           "stock": "in",
-          "datasheet": ""
+          "datasheet": "assets/datasheets/seaforce-active-gb-mhqiiomu.pdf"
         },
         {
           "title": "JOTUN Safeguard universal es 15L(A)+03L(B)",
@@ -78,7 +74,7 @@
             "assets/products/20251104_162916-mhkrjjaq.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "assets/datasheets/safeguard-universal-es-gb-mhqii2j7.pdf"
         },
         {
           "title": "Penguard Primer Red / Rouge 04L(A)+01L(B)",
@@ -97,7 +93,7 @@
             "assets/products/20251104_163524-mhktr74d.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "assets/datasheets/penguard-fc-gb-mhqiksvb.pdf"
         },
         {
           "title": "jotamastic 80 Grey / Gris 16L(A)+2.3L(B)",
@@ -119,8 +115,13 @@
           "images": [
             "assets/products/20251104_163007-mhktrhqq.png"
           ],
-          "variants": [],
-          "datasheet": ""
+          "variants": [
+            {
+              "label": "5L",
+              "price": 210
+            }
+          ],
+          "datasheet": "assets/datasheets/jotamastic-80-gb-mhqil3cj.pdf"
         },
         {
           "title": "Thinner / Diluant N° 07 0.8L",
@@ -139,7 +140,7 @@
             "assets/products/20251104_164929-mhktsgsm.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "assets/datasheets/jotun-thinner-no.-7-gb-mhqinhe7.pdf"
         },
         {
           "title": "Thinner / Diluant N° 17 0.8L",
@@ -199,7 +200,7 @@
             "assets/products/20251104_181223-mhkujr6y.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "assets/datasheets/en-gb-mhqiphyv.pdf"
         },
         {
           "title": "HEMPEL'S Antifouling Olympic+ 72900/1999 05kg Black/noir",
@@ -221,7 +222,7 @@
             "assets/products/20251104_181235-mhkup44o.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "assets/datasheets/en-gb-mhqipu39.pdf"
         }
       ]
     },
