@@ -31,7 +31,14 @@ const staticFiles = new Map([
   ['/styles.css', path.join(__dirname, 'styles.css')],
 ]);
 
-const siteFileTargets = new Set(['/index.html', '/script.js', '/styles.css', '/favicon.ico']);
+const siteFileTargets = new Set([
+  '/index.html',
+  '/script.js',
+  '/styles.css',
+  '/favicon.ico',
+  '/product.html',
+  '/products.html',
+]);
 
 const VALID_STATUSES = ['new', 'waiting', 'in_progress', 'treated', 'declined'];
 
@@ -214,6 +221,43 @@ async function handleQuotesGet(req, res) {
   }
 }
 
+async function handleQuotesPost(req, res) {
+  try {
+    const payload = await parseBody(req);
+    const quoteId = String(payload.quoteId || '').trim();
+    const status = String(payload.status || 'treated').trim().toLowerCase();
+
+    if (!quoteId) {
+      sendJson(res, 400, { ok: false, error: 'quoteId is required' });
+      return;
+    }
+
+    if (!VALID_STATUSES.includes(status)) {
+      sendJson(res, 400, { ok: false, error: `status must be one of ${VALID_STATUSES.join(', ')}` });
+      return;
+    }
+
+    const firestore = getFirebaseApp().firestore();
+    const docRef = firestore.collection('quotes').doc(quoteId);
+    const snapshot = await docRef.get();
+    if (!snapshot.exists) {
+      sendJson(res, 404, { ok: false, error: 'Quote not found' });
+      return;
+    }
+
+    await docRef.update({
+      status,
+      status_updated_at: new Date().toISOString(),
+    });
+
+    sendJson(res, 200, { ok: true, status });
+  } catch (err) {
+    console.error('[order-admin] update quote failed', err);
+    const statusCode = err.statusCode || 500;
+    sendJson(res, statusCode, { ok: false, error: err.message || 'Unable to update quote' });
+  }
+}
+
 async function handleOrdersPost(req, res) {
   try {
     const payload = await parseBody(req);
@@ -279,6 +323,11 @@ const server = http.createServer(async (req, res) => {
 
   if (pathname === '/api/quotes' && req.method === 'GET') {
     await handleQuotesGet(req, res);
+    return;
+  }
+
+  if (pathname === '/api/quotes' && req.method === 'POST') {
+    await handleQuotesPost(req, res);
     return;
   }
 

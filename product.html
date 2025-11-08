@@ -90,6 +90,9 @@
           flex-direction: column;
           gap: 0.8rem;
         }
+        .detail-info #detail-title {
+          color: #0b1f3a;
+        }
         .detail-variants {
           display: flex;
           flex-wrap: wrap;
@@ -254,6 +257,7 @@
         const thumbsEl = document.getElementById('detail-thumbs');
         const titleEl = document.getElementById('detail-title');
         const brandEl = document.getElementById('detail-brand');
+        const breadcrumbEl = document.getElementById('detail-breadcrumb');
         const usageEl = document.getElementById('detail-usage');
         const priceEl = document.getElementById('detail-price');
         const descEl = document.getElementById('detail-description');
@@ -464,8 +468,21 @@
           }
           addBtn.disabled = product.stock === 'out';
           addBtn.addEventListener('click', () => {
-            addToCart({ ...product, id: payload.id, categoryName: payload.categoryName }, Number(addBtn.dataset.variantIndex || 0));
+            addToCart(
+              { ...product, id: payload.id, categoryName: payload.categoryName },
+              Number(addBtn.dataset.variantIndex || 0)
+            );
           });
+          if (breadcrumbEl) {
+            const categoryName = payload.categoryName || 'Products';
+            breadcrumbEl.innerHTML = `
+              <a href="index.html" class="hover:underline text-blue-700">Home</a>
+              <span class="mx-1">/</span>
+              <a href="products.html" class="hover:underline text-blue-700">Products</a>
+              <span class="mx-1">/</span>
+              <span class="font-semibold text-gray-700">${categoryName}</span>
+            `;
+          }
           document.title = `${product.title} • SOFRACOM`;
         }
 

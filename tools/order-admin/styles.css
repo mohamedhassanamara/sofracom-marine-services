@@ -121,6 +121,12 @@ body {
     gap: 0.5rem;
 }
 
+.quote-actions {
+    margin-top: 0.75rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
 .quote-card header {
     display: flex;
     align-items: center;
@@ -264,6 +270,15 @@ main {
 .item-info span {
     font-size: 0.85rem;
     color: #64748b;
+}
+
+.item-link {
+    color: #0f172a;
+    text-decoration: none;
+}
+
+.item-link:hover {
+    text-decoration: underline;
 }
 
 .item-price {

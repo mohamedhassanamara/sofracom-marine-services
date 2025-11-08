@@ -25,6 +25,7 @@ function normalizeImagePath(value) {
   return `/${trimmed.replace(/^\.?\//, '')}`;
 }
 
+const SITE_BASE = 'https://sofracom-marine-services.vercel.app';
 const ordersEl = document.querySelector('#orders');
 const statusEl = document.querySelector('#status');
 const emptyEl = document.querySelector('#empty');
@@ -40,6 +41,35 @@ const panelMap = {
 };
 
 const state = { orders: [], quotes: [], fetchingOrders: false, fetchingQuotes: false, filter: '', activeTab: 'orders' };
+
+function fetchJson(url, options = {}) {
+  return fetch(url, options)
+    .then(async response => {
+      const rawBody = await response.text();
+      let parsed = {};
+      if (rawBody) {
+        try {
+          parsed = JSON.parse(rawBody);
+        } catch (err) {
+          if (!response.ok) {
+            throw new Error(rawBody || response.statusText || 'Request failed');
+          }
+          throw new Error('Invalid JSON response from server');
+        }
+      }
+      if (!response.ok) {
+        const message = parsed?.error || rawBody || response.statusText;
+        throw new Error(message || 'Request failed');
+      }
+      return parsed;
+    })
+    .catch(err => {
+      if (err instanceof SyntaxError || err.message === 'Invalid JSON response from server') {
+        throw err;
+      }
+      throw err;
+    });
+}
 
 function populateFilterOptions() {
   if (!filterEl) return;
@@ -148,9 +178,19 @@ function renderOrders() {
 
       const info = document.createElement('div');
       info.className = 'item-info';
-      const title = document.createElement('strong');
-      title.textContent = item.title || item.description || 'Product';
-      info.appendChild(title);
+      const titleEl = document.createElement('strong');
+      if (item.id) {
+        const link = document.createElement('a');
+        link.href = `${SITE_BASE}/product.html?id=${encodeURIComponent(item.id)}`;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.textContent = item.title || item.description || 'Product';
+        link.className = 'item-link';
+        titleEl.appendChild(link);
+      } else {
+        titleEl.textContent = item.title || item.description || 'Product';
+      }
+      info.appendChild(titleEl);
       if (item.description) {
         const desc = document.createElement('span');
         desc.textContent = item.description;
@@ -278,6 +318,22 @@ function renderQuotes() {
     card.appendChild(subject);
     card.appendChild(details);
     card.appendChild(created);
+    const actions = document.createElement('div');
+    actions.className = 'quote-actions';
+    const currentStatus = (quote.status || 'new').toLowerCase();
+    const treatButton = document.createElement('button');
+    treatButton.type = 'button';
+    treatButton.className = 'ghost-button';
+    treatButton.textContent =
+      currentStatus === 'treated' ? 'Already treated' : 'Mark treated';
+    treatButton.disabled = currentStatus === 'treated';
+    if (currentStatus !== 'treated') {
+      treatButton.addEventListener('click', () => {
+        performQuoteStatusUpdate(quote.id, treatButton, statusBadge);
+      });
+    }
+    actions.appendChild(treatButton);
+    card.appendChild(actions);
 
     quotesEl.appendChild(card);
   });
@@ -288,12 +344,11 @@ async function performStatusUpdate(orderId, select, pill) {
   select.disabled = true;
   const previous = select.dataset.previous;
   try {
-    const response = await fetch('/api/orders', {
+    const result = await fetchJson('/api/orders', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ orderId, status: desiredStatus }),
     });
-    const result = await response.json();
     if (!result.ok) {
       throw new Error(result.error || 'Unable to update status');
     }
@@ -309,13 +364,34 @@ async function performStatusUpdate(orderId, select, pill) {
   }
 }
 
+async function performQuoteStatusUpdate(quoteId, button, badge) {
+  const desiredStatus = 'treated';
+  button.disabled = true;
+  try {
+    const result = await fetchJson('/api/quotes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ quoteId, status: desiredStatus }),
+    });
+    if (!result.ok) {
+      throw new Error(result.error || 'Unable to update quote');
+    }
+    badge.textContent = formatStatusLabel(result.status);
+    showStatus(`Quote ${quoteId} marked ${formatStatusLabel(result.status)}`, 'success');
+    await refreshQuotes();
+  } catch (err) {
+    showStatus(err.message || 'Failed to update quote', 'error');
+  } finally {
+    button.disabled = false;
+  }
+}
+
 async function refreshOrders() {
   if (state.fetchingOrders) return;
   state.fetchingOrders = true;
   refreshOrdersBtn?.setAttribute('disabled', 'disabled');
   try {
-    const response = await fetch('/api/orders?limit=100');
-    const payload = await response.json();
+    const payload = await fetchJson('/api/orders?limit=100');
     if (!payload.ok) throw new Error(payload.error || 'Unable to fetch orders');
     state.orders = Array.isArray(payload.orders) ? payload.orders : [];
     renderOrders();
@@ -333,8 +409,7 @@ async function refreshQuotes() {
   state.fetchingQuotes = true;
   refreshQuotesBtn?.setAttribute('disabled', 'disabled');
   try {
-    const response = await fetch('/api/quotes?limit=100');
-    const payload = await response.json();
+    const payload = await fetchJson('/api/quotes?limit=100');
     if (!payload.ok) throw new Error(payload.error || 'Unable to fetch quotes');
     state.quotes = Array.isArray(payload.quotes) ? payload.quotes : [];
     renderQuotes();
