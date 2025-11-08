@@ -389,12 +389,17 @@
           "datasheet": ""
         },
         {
-          "title": "Untitled product",
-          "image": "assets/products/placeholder.png",
-          "description": "",
-          "brand": "",
-          "usage": [],
-          "price": 0,
+          "title": "long Pile Paint Roller Pack Of 5",
+          "image": "assets/products/img-20251102-wa0035-mhqkjjou.jpg",
+          "description": "100 mm Width, 7mm diameter. \nSuitable for interior, exterior, and wood.\nWorks with oil and water based paints.",
+          "brand": "CRISTAL",
+          "usage": [
+            "Roller",
+            "Paint",
+            "Cristal",
+            "Long Pile"
+          ],
+          "price": 9.5,
           "stock": "in",
           "images": [],
           "variants": [],
