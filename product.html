@@ -90,6 +90,21 @@
           flex-direction: column;
           gap: 0.8rem;
         }
+        .detail-breadcrumb {
+          color: #475569;
+          font-size: 0.85rem;
+        }
+        .detail-breadcrumb a {
+          color: #0f3d72;
+          text-decoration: underline;
+        }
+        .detail-info h1,
+        .detail-info strong,
+        .detail-info p,
+        .detail-info span,
+        .detail-info small {
+          color: #0b1f3a;
+        }
         .detail-info #detail-title {
           color: #0b1f3a;
         }
@@ -216,7 +231,7 @@
 
     <main class="max-w-6xl mx-auto px-6 py-10">
       <section id="detail-wrapper">
-        <div class="text-sm text-gray-500" id="detail-breadcrumb"></div>
+        <div class="detail-breadcrumb text-sm text-gray-500" id="detail-breadcrumb"></div>
         <div class="product-detail">
           <div class="detail-gallery">
             <img
@@ -475,12 +490,16 @@
           });
           if (breadcrumbEl) {
             const categoryName = payload.categoryName || 'Products';
+            const categorySlug = payload.categorySlug || slugify(categoryName);
+            const categoryLink = categorySlug
+              ? `products.html?category=${encodeURIComponent(categorySlug)}`
+              : 'products.html';
             breadcrumbEl.innerHTML = `
               <a href="index.html" class="hover:underline text-blue-700">Home</a>
               <span class="mx-1">/</span>
               <a href="products.html" class="hover:underline text-blue-700">Products</a>
               <span class="mx-1">/</span>
-              <span class="font-semibold text-gray-700">${categoryName}</span>
+              <a href="${categoryLink}" class="hover:underline text-blue-700 font-semibold">${categoryName}</a>
             `;
           }
           document.title = `${product.title} • SOFRACOM`;
