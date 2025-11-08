@@ -89,6 +89,29 @@ module.exports = async function handler(req, res) {
         const firestore = getFirebaseApp().firestore();
         await firestore.collection('orders').doc(orderId).set(order);
 
+        try {
+            const messaging = getFirebaseApp().messaging();
+            const summary = Number.isFinite(order.total)
+                ? new Intl.NumberFormat('fr-TN', { style: 'currency', currency: order.currency || 'TND' }).format(order.total)
+                : `${order.total || 0} ${order.currency || 'TND'}`;
+
+            await messaging.send({
+                topic: 'sofracom-orders',
+                notification: {
+                    title: `New order from ${order.customer_name}`,
+                    body: `${order.items.length} item(s) · ${summary}`,
+                },
+                data: {
+                    orderId,
+                    customerName: order.customer_name,
+                    total: String(order.total ?? 0),
+                    currency: order.currency || 'TND',
+                },
+            });
+        } catch (err) {
+            console.warn('[order] FCM notify failed', err);
+        }
+
         res.status(200).json({ ok: true, orderId, persisted: true });
     } catch (err) {
         console.error('[order] persistence failed', err);
