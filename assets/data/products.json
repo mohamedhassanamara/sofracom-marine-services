@@ -276,25 +276,7 @@
       "slug": "oils-filters-batteries",
       "image": "assets/categories/chatgpt-image-nov-3-2025-01_32_28-pm-mhj4uyjc.png",
       "description": "Engine oils, filters and reliable onboard power.",
-      "products": [
-        {
-          "title": "VARTA Blue Dynamic 75Ah",
-          "image": "assets/bosch.png",
-          "description": "Marine battery with strong cold cranking performance.",
-          "brand": "VARTA",
-          "usage": [
-            "Battery",
-            "Electrical"
-          ],
-          "price": 780,
-          "stock": "in",
-          "images": [
-            "assets/bosch.png"
-          ],
-          "variants": [],
-          "datasheet": ""
-        }
-      ]
+      "products": []
     },
     {
       "name": "HARDWARE TOOLS ",
