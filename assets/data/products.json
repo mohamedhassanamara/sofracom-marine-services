@@ -320,9 +320,9 @@
       "description": "Every day tools that yachtsmen use ",
       "products": [
         {
-          "title": "Cristal paint brush ",
+          "title": "Disposable paint brush ",
           "image": "assets/products/pinceau-cristan-n30-mhhmgsae.jpg",
-          "description": "Paint brush ",
+          "description": "Ideal for painting, cleaning parts,  and touch-up work\nFor use with glue, paint, resin, acetone, and other solvents",
           "brand": "CRISTAL",
           "usage": [
             "brush",
@@ -333,7 +333,8 @@
           "price": 2.3,
           "stock": "in",
           "images": [
-            "assets/products/pinceau-cristan-n30-mhhmgsae.jpg"
+            "assets/products/pinceau-cristan-n30-mhhmgsae.jpg",
+            "assets/products/img-20251102-wa0048-mhqj1nks.jpg"
           ],
           "variants": [
             {
