@@ -62,6 +62,8 @@
         .product-price-row{display:flex; align-items:center; justify-content:space-between; gap:0.75rem; flex-wrap:wrap}
         .product-actions{display:flex; align-items:center; justify-content:space-between; gap:0.75rem; flex-wrap:wrap}
         .product-actions a{font-size:0.85rem; color:#2563eb; font-weight:600}
+        .product-detail-btn{background:none;border:none;padding:0;font-size:0.85rem;color:#2563eb;font-weight:600;cursor:pointer}
+        .product-detail-btn:hover{text-decoration:underline}
         .product-variants{margin-top:0.75rem; display:flex; flex-wrap:wrap; gap:0.5rem}
         .variant-option{border:1px solid rgba(15,61,114,.2); border-radius:999px; padding:0.35rem 0.9rem; background:#f8fafc; cursor:pointer; font-size:0.85rem; font-weight:600; display:flex; align-items:center; gap:0.35rem}
         .variant-option.active{background:#0f172a; color:#fff; border-color:#0f172a}
@@ -73,6 +75,17 @@
         .cart-alert.error{color:#d72638}
         .cart-alert.success{color:#0f7a2e}
         .empty-cart{padding:1.25rem; text-align:center; color:#6b7280}
+        .detail-panel{box-shadow:0 20px 45px rgba(15,23,42,.15)}
+        .detail-breadcrumb{background:linear-gradient(180deg,var(--deep-navy),#0f1f4e); padding:0.3rem 0.8rem; border-radius:999px; color:#fff; display:inline-flex; gap:0.35rem; align-items:center; font-size:0.65rem; letter-spacing:0.08em; text-transform:uppercase}
+        .detail-crumb{border:none;background:transparent;color:inherit;font-size:0.65rem;font-weight:600;cursor:pointer;text-transform:uppercase;letter-spacing:0.08em}
+        .detail-crumb:hover{text-decoration:underline}
+        .detail-main-img{min-height:320px;object-fit:contain}
+        .detail-thumbs img{width:64px;height:64px;object-fit:cover;border-radius:0.9rem;border:2px solid transparent;cursor:pointer;background:#f8fafc}
+        .detail-thumbs img.active{border-color:var(--accent)}
+        .detail-variant-btn{border-radius:999px;border:1px solid rgba(15,61,114,.2);background:#f8fafc;color:#0b1f3a;padding:0.35rem 1rem;font-size:0.85rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:0.4rem;transition:background .2s ease,color .2s ease}
+        .detail-variant-btn.active{background:var(--deep-navy);color:#fff;border-color:var(--deep-navy)}
+        .detail-layout .detail-gallery{border-radius:1.5rem;border:1px solid rgba(15,61,114,.08);padding:1rem;background:#fff}
+        @media (max-width:640px){ .detail-layout{grid-template-columns:1fr} }
         @media (max-width:640px){.cart-fab{bottom:1rem; right:1rem; width:calc(100vw - 2rem); justify-content:center}}
     </style>
 </head>
@@ -146,6 +159,37 @@
             </div>
         </div>
         <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="prodGrid"></div>
+    </section>
+    <section id="productDetailSection" class="hidden mt-10">
+        <div class="detail-panel rounded-3xl border border-gray-200 bg-white p-6 shadow-2xl">
+            <div class="detail-header flex items-center justify-between gap-4">
+                <div id="detailBreadcrumb" class="detail-breadcrumb text-xs uppercase tracking-wide"></div>
+                <button id="productDetailClose" type="button" class="detail-close text-sm text-gray-500 border border-gray-200 rounded-full px-3 py-1 hover:border-gray-400 hover:text-gray-900 transition">Close</button>
+            </div>
+            <div class="detail-layout grid gap-6 lg:grid-cols-2 mt-6">
+                <div class="detail-gallery">
+                    <img id="detailMainImage" src="assets/placeholder-prod.jpg" alt="Product image" class="detail-main-img block w-full rounded-2xl border border-gray-200 bg-gray-50 object-contain">
+                    <div id="detailThumbs" class="detail-thumbs mt-4 flex flex-wrap gap-3"></div>
+                </div>
+                <div class="detail-meta flex flex-col gap-4">
+                    <div>
+                        <p id="detailCategoryName" class="text-xs text-gray-500"></p>
+                        <h2 id="detailTitle" class="text-3xl font-semibold text-gray-900 leading-tight"></h2>
+                        <p id="detailBrand" class="text-sm text-gray-500 mt-1"></p>
+                    </div>
+                    <div id="detailUsage" class="flex flex-wrap gap-2"></div>
+                    <div class="detail-price-row flex flex-wrap items-center gap-3">
+                        <span id="detailPrice" class="text-3xl font-bold text-gray-900"></span>
+                        <span id="detailStockBadge" class="stock-badge"></span>
+                    </div>
+                    <div id="detailVariants" class="detail-variants flex flex-wrap gap-2"></div>
+                    <p id="detailDescription" class="text-sm text-gray-700 leading-relaxed"></p>
+                    <div id="detailDatasheet" class="text-sm"></div>
+                    <button id="detailAddBtn" type="button" class="w-full rounded-2xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white shadow hover:bg-blue-700 transition">Add to cart</button>
+                    <p id="detailStatus" class="quote-status hidden" aria-live="polite"></p>
+                </div>
+            </div>
+        </div>
     </section>
 </main>
 
@@ -285,10 +329,28 @@
     const cartCloseBtn = document.getElementById('cartClose');
     const cartForm = document.getElementById('checkoutForm');
     const cartSubmitBtn = document.getElementById('cartSubmitBtn');
+    const detailSection = document.getElementById('productDetailSection');
+    const detailBreadcrumb = document.getElementById('detailBreadcrumb');
+    const detailMainImage = document.getElementById('detailMainImage');
+    const detailThumbs = document.getElementById('detailThumbs');
+    const detailTitle = document.getElementById('detailTitle');
+    const detailBrand = document.getElementById('detailBrand');
+    const detailCategoryName = document.getElementById('detailCategoryName');
+    const detailUsage = document.getElementById('detailUsage');
+    const detailPrice = document.getElementById('detailPrice');
+    const detailVariants = document.getElementById('detailVariants');
+    const detailDescription = document.getElementById('detailDescription');
+    const detailDatasheet = document.getElementById('detailDatasheet');
+    const detailStockBadge = document.getElementById('detailStockBadge');
+    const detailAddBtn = document.getElementById('detailAddBtn');
+    const detailStatus = document.getElementById('detailStatus');
+    const detailCloseBtn = document.getElementById('productDetailClose');
 
     let STORE = null, activeCat = null, filtered = [];
     let currentLang = 'en';
     let cart = [];
+    let detailActiveProductId = null;
+    let detailActiveVariantIndex = 0;
 
     function loadCart(){
         if (typeof localStorage === 'undefined') return [];
@@ -617,24 +679,54 @@ function addToCartById(id, quantity = 1, variantIndex = 0){
             const s = c.slug || slugify(c.name);
             const img = c.image || 'assets/placeholder-cat.jpg';
             return `
-        <button data-cat="${s}" class="tilt group text-left bg-white rounded-2xl overflow-hidden shadow hover:shadow-xl transform transition">
-          <div class="layer">
-            <img src="${img}" alt="${c.name}" class="card-img w-full">
-            <div class="p-4">
-              <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-900">${c.name}</h3>
-              ${c.description ? `<p class="text-sm text-gray-600 mt-1">${c.description}</p>`:''}
-            </div>
-          </div>
-        </button>`;
+            <button data-cat="${s}" class="tilt group text-left bg-white rounded-2xl overflow-hidden shadow hover:shadow-xl transform transition">
+              <div class="layer">
+                <img src="${img}" alt="${c.name}" class="card-img w-full">
+                <div class="p-4">
+                  <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-900">${c.name}</h3>
+                  ${c.description ? `<p class="text-sm text-gray-600 mt-1">${c.description}</p>`:''}
+                </div>
+              </div>
+            </button>`;
         }).join('');
         catGrid.querySelectorAll('.tilt').forEach(tiltify);
         catGrid.querySelectorAll('[data-cat]').forEach(btn => btn.addEventListener('click', () => openCategory(btn.dataset.cat)));
+        hideProductDetail();
     }
+
+    function hideProductDetail(){
+        detailActiveProductId = null;
+        detailActiveVariantIndex = 0;
+        detailSection?.classList.add('hidden');
+    }
+
+    detailBreadcrumb?.addEventListener('click', event => {
+        const target = event.target.closest('[data-target]');
+        if (!target) return;
+        const action = target.dataset.target;
+        if (!action) return;
+        hideProductDetail();
+        if (action === 'home') {
+            window.location.href = 'index.html';
+            return;
+        }
+        if (action === 'products') {
+            renderCategories(STORE.categories);
+            history.replaceState(null, '', 'products.html');
+            return;
+        }
+        if (action === 'category') {
+            const slug = target.dataset.cat;
+            if (slug) openCategory(slug);
+        }
+    });
+    detailCloseBtn?.addEventListener('click', hideProductDetail);
 
     function openCategory(slug){
         const cat = STORE.categories.find(c => (c.slug || slugify(c.name)) === slug);
         if (!cat){ alert('Category not found'); return; }
         activeCat = cat;
+        hideProductDetail();
 
         categoriesSection.classList.add('hidden');
         productsSection.classList.remove('hidden');
@@ -698,6 +790,7 @@ function addToCartById(id, quantity = 1, variantIndex = 0){
         prodGrid.querySelectorAll('.tilt').forEach(tiltify);
         wireVariantControls();
         wireDescriptionToggles();
+        wireDetailButtons();
         prodGrid.querySelectorAll('.product-add').forEach(btn => {
             btn.addEventListener('click', event => {
                 const id = event.currentTarget.dataset.productId;
@@ -746,6 +839,96 @@ function addToCartById(id, quantity = 1, variantIndex = 0){
             });
         });
     }
+
+    function setDetailBreadcrumb(product){
+        if (!detailBreadcrumb) return;
+        const parts = [
+            `<button type="button" class="detail-crumb" data-target="home">Home</button>`,
+            `<button type="button" class="detail-crumb" data-target="products">Products</button>`,
+        ];
+        if (product.categoryName) {
+            const catSlug = product.categorySlug || slugify(product.categoryName);
+            parts.push(`<button type="button" class="detail-crumb" data-target="category" data-cat="${catSlug}">${product.categoryName}</button>`);
+        }
+        detailBreadcrumb.innerHTML = parts.map((part, idx) => idx ? `<span class="mx-1 text-white/70">/</span>${part}` : part).join('');
+    }
+
+    function renderDetailVariants(product){
+        detailVariants.innerHTML = '';
+        const variants = Array.isArray(product.variants) ? product.variants : [];
+        if (!variants.length){
+            const fallback = Number.isFinite(product.price) ? product.price : null;
+            detailPrice.textContent = fallback !== null ? formatPrice(fallback) : getLabel('cart.contact');
+            detailActiveVariantIndex = 0;
+            return;
+        }
+        variants.forEach((variant, idx) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = `detail-variant-btn${idx === 0 ? ' active' : ''}`;
+            btn.dataset.index = idx;
+            btn.innerHTML = `<span>${variant.label}</span><span>${formatPrice(variant.price)}</span>`;
+            btn.addEventListener('click', () => {
+                detailVariants.querySelectorAll('button').forEach(el => el.classList.remove('active'));
+                btn.classList.add('active');
+                detailActiveVariantIndex = idx;
+                detailPrice.textContent = formatPrice(variant.price);
+            });
+            detailVariants.appendChild(btn);
+        });
+        detailActiveVariantIndex = 0;
+        detailPrice.textContent = formatPrice(variants[0].price);
+    }
+
+    function openProductDetail(productId){
+        const product = PRODUCT_INDEX[productId];
+        if (!product) return;
+        detailActiveProductId = productId;
+        detailSection?.classList.remove('hidden');
+        const images = Array.isArray(product.images) && product.images.length ? product.images : [product.image || 'assets/placeholder-prod.jpg'];
+        detailMainImage.src = images[0];
+        detailThumbs.innerHTML = '';
+        images.forEach((src, idx) => {
+            const thumb = document.createElement('img');
+            thumb.src = src;
+            thumb.alt = product.title || 'Product';
+            if (idx === 0) thumb.classList.add('active');
+            thumb.addEventListener('click', () => {
+                detailMainImage.src = src;
+                detailThumbs.querySelectorAll('img').forEach(img => img.classList.remove('active'));
+                thumb.classList.add('active');
+            });
+            detailThumbs.appendChild(thumb);
+        });
+        detailTitle.textContent = product.title || '';
+        detailBrand.textContent = product.brand ? `Brand: ${product.brand}` : '';
+        detailCategoryName.textContent = product.categoryName || '';
+        detailUsage.innerHTML = (Array.isArray(product.usage) ? product.usage : []).map(tag => `<span class="tag text-xs">${tag}</span>`).join('');
+        detailDescription.textContent = product.description || '';
+        detailDatasheet.innerHTML = product.datasheet
+            ? `<a class="datasheet-link" href="${product.datasheet}" target="_blank" rel="noopener"><span>Download datasheet</span></a>`
+            : '';
+        detailStockBadge.innerHTML = `<span class="stock-badge ${product.stock === 'out' ? 'stock-badge--out' : 'stock-badge--in'}">${getLabel(product.stock === 'out' ? 'ui.outStock' : 'ui.inStock')}</span>`;
+        detailAddBtn.disabled = product.stock === 'out';
+        detailStatus?.classList.add('hidden');
+        renderDetailVariants(product);
+        setDetailBreadcrumb(product);
+        detailSection?.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    function wireDetailButtons(){
+        prodGrid.querySelectorAll('.product-detail-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                openProductDetail(btn.dataset.detail);
+            });
+        });
+    }
+
+    detailAddBtn?.addEventListener('click', () => {
+        if (!detailActiveProductId) return;
+        addToCartById(detailActiveProductId, 1, detailActiveVariantIndex);
+        openCart();
+    });
 
     function getLabel(key){
         const dictionaries = (typeof I18N !== 'undefined' && I18N) ? I18N : { en: {} };
@@ -801,7 +984,7 @@ function addToCartById(id, quantity = 1, variantIndex = 0){
             </div>
             <div class="product-actions">
               ${button}
-              <a href="product.html?id=${encodeURIComponent(id)}" class="text-blue-600">View details</a>
+              <button type="button" class="product-detail-btn text-blue-600 font-semibold" data-detail="${id}">View details</button>
             </div>
           </div>
         </div>
@@ -816,7 +999,7 @@ function addToCartById(id, quantity = 1, variantIndex = 0){
     // Filters
     brandFilter.addEventListener('change', applyFilters);
     searchBox.addEventListener('input', debounce(applyFilters, 120));
-    backBtn.addEventListener('click', ()=>{ history.replaceState(null,'','products.html'); renderCategories(STORE.categories); applyLang((localStorage.getItem('lang')||'en')); });
+    backBtn.addEventListener('click', ()=>{ history.replaceState(null,'','products.html'); renderCategories(STORE.categories); applyLang((localStorage.getItem('lang')||'en')); hideProductDetail(); });
 
     function applyFilters(){
         const q = (searchBox.value||'').toLowerCase();
