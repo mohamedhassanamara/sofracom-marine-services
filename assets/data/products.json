@@ -319,7 +319,7 @@
       "description": "Every day tools that yachtsmen use ",
       "products": [
         {
-          "title": "cristal brush N30",
+          "title": "Cristal paint brush N30",
           "image": "assets/products/pinceau-cristan-n30-mhhmgsae.jpg",
           "description": "cristal brush n30",
           "brand": "CRISTAL",
@@ -334,7 +334,40 @@
           "images": [
             "assets/products/pinceau-cristan-n30-mhhmgsae.jpg"
           ],
-          "variants": [],
+          "variants": [
+            {
+              "label": "N20",
+              "price": 2
+            },
+            {
+              "label": "N30",
+              "price": 2.3
+            },
+            {
+              "label": "N40",
+              "price": 3.5
+            },
+            {
+              "label": "N50",
+              "price": 4.2
+            },
+            {
+              "label": "N60",
+              "price": 5.5
+            },
+            {
+              "label": "N70",
+              "price": 7
+            },
+            {
+              "label": "N80",
+              "price": 8.5
+            },
+            {
+              "label": "N100",
+              "price": 9
+            }
+          ],
           "datasheet": ""
         }
       ]
