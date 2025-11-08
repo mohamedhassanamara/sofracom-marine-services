@@ -522,6 +522,30 @@ textarea:focus {
   color: #0b1f3a;
 }
 
+.asset-select-button {
+  margin-top: 0.55rem;
+  align-self: flex-start;
+  border: 1px solid #0b2050;
+  border-radius: 0.65rem;
+  background: #fff;
+  color: #0b2050;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.asset-select-button:hover {
+  background: #0b2050;
+  color: #fff;
+}
+
+.asset-select-button:focus-visible {
+  outline: 2px solid #24b4ff;
+  outline-offset: 2px;
+}
+
 .asset-dropzone-hint {
   margin: 0;
   font-size: 0.75rem;

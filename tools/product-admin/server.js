@@ -238,12 +238,27 @@ function runGitCommands() {
   };
 }
 
+const BUCKET_CONFIG = {
+  products: {
+    maxSize: 8 * 1024 * 1024,
+    type: 'image',
+  },
+  categories: {
+    maxSize: 8 * 1024 * 1024,
+    type: 'image',
+  },
+  datasheets: {
+    maxSize: 12 * 1024 * 1024,
+    type: 'pdf',
+  },
+};
+
 function normalizeBucket(rawBucket) {
   const bucket = typeof rawBucket === 'string' ? rawBucket.toLowerCase() : '';
-  if (bucket === 'products' || bucket === 'categories') {
-    return bucket;
+  if (!bucket || !Object.prototype.hasOwnProperty.call(BUCKET_CONFIG, bucket)) {
+    throw new Error('Invalid bucket provided for upload');
   }
-  throw new Error('Invalid bucket provided for upload');
+  return bucket;
 }
 
 function inferExtension(filename, mime) {
@@ -254,6 +269,7 @@ function inferExtension(filename, mime) {
     'image/gif': '.gif',
     'image/svg+xml': '.svg',
     'image/avif': '.avif',
+    'application/pdf': '.pdf',
   };
   if (mime && known[mime]) return known[mime];
 
@@ -294,22 +310,31 @@ async function handleUpload(req, res) {
     }
 
     const bucket = normalizeBucket(rawBucket);
+    const config = BUCKET_CONFIG[bucket];
+    if (!config) {
+      throw new Error('Missing bucket configuration');
+    }
     const match = dataUrl.match(/^data:([\w/+.-]+);base64,(.+)$/);
     if (!match) {
-      throw new Error('dataUrl must be base64 encoded image');
+      throw new Error('dataUrl must be base64 encoded data');
     }
     const [, mime, base64Data] = match;
-    if (!mime.startsWith('image/')) {
-      throw new Error('Only image uploads are allowed');
+    if (config.type === 'image' && !mime.startsWith('image/')) {
+      throw new Error('Only image uploads are allowed for this bucket');
+    }
+    if (config.type === 'pdf' && mime !== 'application/pdf') {
+      throw new Error('Only PDF uploads are allowed for this bucket');
     }
 
     const buffer = Buffer.from(base64Data, 'base64');
     if (!buffer.length) {
       throw new Error('Decoded image payload is empty');
     }
-    if (buffer.length > 8 * 1024 * 1024) {
+    if (buffer.length > config.maxSize) {
       const sizeMb = (buffer.length / (1024 * 1024)).toFixed(2);
-      throw new Error(`Image exceeds 8MB limit (received ${sizeMb}MB)`);
+      throw new Error(
+        `File exceeds ${config.maxSize / (1024 * 1024)}MB limit (received ${sizeMb}MB)`
+      );
     }
 
     const baseDir = ensureAssetsSubdir(bucket);

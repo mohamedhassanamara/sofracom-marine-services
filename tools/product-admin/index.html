@@ -142,39 +142,41 @@
                 Additional images (one per line)
                 <textarea class="product-images" rows="3" placeholder="assets/products/example.jpg"></textarea>
               </label>
-              <div class="asset-dropzone-list" data-asset="images">
-                <div class="asset-dropzone" data-bucket="products">
-                  <input type="file" accept="image/*" class="dropzone-input" hidden />
-                  <div class="dropzone-preview" aria-hidden="true"></div>
-                  <div class="dropzone-text">
-                    <span class="dropzone-title">Drop image here or click</span>
-                    <span class="dropzone-subtitle">Uploads land in <code>assets/products</code></span>
-                    <span class="dropzone-path"></span>
-                  </div>
+            <div class="asset-dropzone-list" data-asset="images">
+              <div class="asset-dropzone" data-bucket="products" data-asset="images">
+                <input type="file" accept="image/*" class="dropzone-input" hidden />
+                <div class="dropzone-preview" aria-hidden="true"></div>
+                <div class="dropzone-text">
+                  <span class="dropzone-title">Drop image here or click</span>
+                  <span class="dropzone-subtitle">Uploads land in <code>assets/products</code></span>
+                  <span class="dropzone-path"></span>
                 </div>
-                <p class="asset-dropzone-hint">Each upload appends its path to the list above.</p>
+                <button type="button" class="asset-select-button">Select image</button>
               </div>
+              <p class="asset-dropzone-hint">Each upload appends its path to the list above.</p>
             </div>
           </div>
+        </div>
           <div class="field-row">
             <div class="full-column">
               <label>
                 Datasheet path
                 <input type="text" class="product-datasheet" placeholder="assets/datasheets/example.pdf" />
               </label>
-              <div class="asset-dropzone-list" data-asset="datasheet">
-                <div class="asset-dropzone" data-bucket="datasheets">
-                  <input type="file" accept=".pdf" class="dropzone-input" hidden />
-                  <div class="dropzone-preview" aria-hidden="true"></div>
-                  <div class="dropzone-text">
-                    <span class="dropzone-title">Drop PDF here or click</span>
-                    <span class="dropzone-subtitle">Saved to <code>assets/datasheets</code></span>
-                    <span class="dropzone-path"></span>
-                  </div>
+            <div class="asset-dropzone-list" data-asset="datasheet">
+              <div class="asset-dropzone" data-bucket="datasheets" data-asset="datasheet">
+                <input type="file" accept=".pdf" class="dropzone-input" hidden />
+                <div class="dropzone-preview" aria-hidden="true"></div>
+                <div class="dropzone-text">
+                  <span class="dropzone-title">Drop PDF here or click</span>
+                  <span class="dropzone-subtitle">Saved to <code>assets/datasheets</code></span>
+                  <span class="dropzone-path"></span>
                 </div>
-                <p class="asset-dropzone-hint">Uploads update the datasheet field above.</p>
+                <button type="button" class="asset-select-button">Select PDF</button>
               </div>
+              <p class="asset-dropzone-hint">Uploads update the datasheet field above.</p>
             </div>
+          </div>
           </div>
           <div class="variant-section">
             <div class="variant-header">

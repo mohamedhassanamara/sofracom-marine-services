@@ -180,7 +180,18 @@
       }
     };
 
-    container.addEventListener('click', () => fileInput.click());
+    const selectButton = container.querySelector('.asset-select-button');
+    if (selectButton && fileInput) {
+      selectButton.addEventListener('click', event => {
+        event.stopPropagation();
+        fileInput.click();
+      });
+    }
+    container.addEventListener('click', event => {
+      if (!fileInput) return;
+      if (selectButton?.contains(event.target)) return;
+      fileInput.click();
+    });
     container.addEventListener('dragover', event => {
       event.preventDefault();
       container.classList.add('dragover');
