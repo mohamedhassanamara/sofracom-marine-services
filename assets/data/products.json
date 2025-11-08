@@ -32,7 +32,7 @@
               "price": 512.5
             }
           ],
-          "datasheet": "assets/datasheets/jotun-seaforce.pdf",
+          "datasheet": "assets/datasheets/seaforce-active-gb-mhqeuljf.pdf",
           "price": 341.887,
           "stock": "in"
         },
@@ -62,7 +62,8 @@
             }
           ],
           "price": 655.272,
-          "stock": "in"
+          "stock": "in",
+          "datasheet": ""
         },
         {
           "title": "JOTUN Safeguard universal es 15L(A)+03L(B)",
@@ -76,7 +77,12 @@
             "tie coat"
           ],
           "price": 851.277,
-          "stock": "in"
+          "stock": "in",
+          "images": [
+            "assets/products/20251104_162916-mhkrjjaq.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         },
         {
           "title": "Penguard Primer Red / Rouge 04L(A)+01L(B)",
@@ -90,7 +96,12 @@
             "Polyamide"
           ],
           "price": 230.686,
-          "stock": "in"
+          "stock": "in",
+          "images": [
+            "assets/products/20251104_163524-mhktr74d.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         },
         {
           "title": "jotamastic 80 Grey / Gris 16L(A)+2.3L(B)",
@@ -108,7 +119,12 @@
             "finish coat"
           ],
           "price": 752.261,
-          "stock": "in"
+          "stock": "in",
+          "images": [
+            "assets/products/20251104_163007-mhktrhqq.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         },
         {
           "title": "Thinner / Diluant N° 07 0.8L",
@@ -122,7 +138,12 @@
             "epoxy"
           ],
           "price": 16.779,
-          "stock": "in"
+          "stock": "in",
+          "images": [
+            "assets/products/20251104_164929-mhktsgsm.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         },
         {
           "title": "Thinner / Diluant N° 17 0.8L",
@@ -136,7 +157,12 @@
             "epoxy"
           ],
           "price": 16.779,
-          "stock": "in"
+          "stock": "in",
+          "images": [
+            "assets/products/20251104_164917-mhktskts.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         },
         {
           "title": "Thinner / Diluant N° 17 0.8L",
@@ -150,7 +176,12 @@
             "epoxy"
           ],
           "price": 82.842,
-          "stock": "in"
+          "stock": "in",
+          "images": [
+            "assets/products/20251104_181151-mhku46uw.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         },
         {
           "title": "HEMPEL'S Antifouling Olympic+ 72900/3017 05kg Blue/Bleu",
@@ -167,7 +198,12 @@
             "erodable"
           ],
           "price": 321.845,
-          "stock": "in"
+          "stock": "in",
+          "images": [
+            "assets/products/20251104_181223-mhkujr6y.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         },
         {
           "title": "HEMPEL'S Antifouling Olympic+ 72900/1999 05kg Black/noir",
@@ -184,7 +220,12 @@
             "erodable"
           ],
           "price": 282.112,
-          "stock": "in"
+          "stock": "in",
+          "images": [
+            "assets/products/20251104_181235-mhkup44o.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     },
@@ -205,7 +246,12 @@
             "Flexible"
           ],
           "price": 44.167,
-          "stock": "in"
+          "stock": "in",
+          "images": [
+            "assets/products/20251027_154046-mhkvwi0x.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         },
         {
           "title": "Sikaflex 295 UV 400ml White/Blanc",
@@ -219,7 +265,12 @@
             "sika"
           ],
           "price": 60.036,
-          "stock": "in"
+          "stock": "in",
+          "images": [
+            "assets/products/20251027_153952-mhkvp45z.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     },
@@ -239,7 +290,12 @@
             "Protection"
           ],
           "price": 120,
-          "stock": "in"
+          "stock": "in",
+          "images": [
+            "assets/bosch.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         },
         {
           "title": "VARTA Blue Dynamic 75Ah",
@@ -251,7 +307,12 @@
             "Electrical"
           ],
           "price": 780,
-          "stock": "in"
+          "stock": "in",
+          "images": [
+            "assets/bosch.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     },
@@ -273,7 +334,12 @@
             "cristal"
           ],
           "price": 2.3,
-          "stock": "in"
+          "stock": "in",
+          "images": [
+            "assets/products/pinceau-cristan-n30-mhhmgsae.jpg"
+          ],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
