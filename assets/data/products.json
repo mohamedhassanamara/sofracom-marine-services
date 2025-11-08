@@ -278,23 +278,6 @@
       "description": "Engine oils, filters and reliable onboard power.",
       "products": [
         {
-          "title": "Shell Rimula R4 15W-40",
-          "image": "assets/bosch.png",
-          "description": "Heavy-duty engine oil for marine diesel.",
-          "brand": "SHELL",
-          "usage": [
-            "Engine",
-            "Protection"
-          ],
-          "price": 120,
-          "stock": "in",
-          "images": [
-            "assets/bosch.png"
-          ],
-          "variants": [],
-          "datasheet": ""
-        },
-        {
           "title": "VARTA Blue Dynamic 75Ah",
           "image": "assets/bosch.png",
           "description": "Marine battery with strong cold cranking performance.",
