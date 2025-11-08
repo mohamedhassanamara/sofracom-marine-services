@@ -404,6 +404,22 @@
           "images": [],
           "variants": [],
           "datasheet": ""
+        },
+        {
+          "title": "Long Roller Frame",
+          "image": "assets/products/img-20251102-wa0050-mhqkqz6f.jpg",
+          "description": "CRISTAL Long roller frame.\n7mm diameter wire, 410mm length.\nPlastic handle.",
+          "brand": "CRISTAL",
+          "usage": [
+            "Roller",
+            "cristal",
+            "frame"
+          ],
+          "price": 2.922,
+          "stock": "in",
+          "images": [],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
