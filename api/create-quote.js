@@ -78,6 +78,24 @@ module.exports = async function handler(req, res) {
     try {
         const firestore = getFirebaseApp().firestore();
         await firestore.collection('quotes').doc(quoteId).set(quote);
+        try {
+            const messaging = getFirebaseApp().messaging();
+            const bodyText = quote.details.length > 100 ? `${quote.details.slice(0, 100)}…` : quote.details;
+            await messaging.send({
+                topic: 'sofracom-quotes',
+                notification: {
+                    title: `New quote from ${quote.customer_name}`,
+                    body: bodyText || 'Project request received',
+                },
+                data: {
+                    quoteId,
+                    customerName: quote.customer_name,
+                    subject: quote.subject || 'Project request',
+                },
+            });
+        } catch (err) {
+            console.warn('[quote] FCM notify failed', err);
+        }
         res.status(200).json({ ok: true, quoteId });
     } catch (err) {
         console.error('[quote] persistence failed', err);
