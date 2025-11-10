@@ -268,6 +268,30 @@
           ],
           "variants": [],
           "datasheet": ""
+        },
+        {
+          "title": "JULIEN STRIAFORM 2K Epoxy Putty 01kg ",
+          "image": "assets/products/striaform-22-mht2r1sx.png",
+          "description": "2K Thixotropic epoxy putty ",
+          "brand": "JULIEN",
+          "usage": [
+            "Julien",
+            "striaform",
+            "epoxy",
+            "putty",
+            "mastic",
+            "mastique"
+          ],
+          "price": 85.211,
+          "stock": "in",
+          "images": [],
+          "variants": [
+            {
+              "label": "05kg",
+              "price": 390.156
+            }
+          ],
+          "datasheet": "assets/datasheets/mastic-epoxy-striaform-mht38nm0.pdf"
         }
       ]
     },
@@ -564,6 +588,84 @@
             "Dégrippant"
           ],
           "price": 5.976,
+          "stock": "in",
+          "images": [],
+          "variants": [],
+          "datasheet": ""
+        },
+        {
+          "title": "SARATOGA Unloose Lubricant 300ml",
+          "image": "assets/products/20251110_113411-mht2gwwd.png",
+          "description": "Saratoga LASER is the strong throwing power fluid that melts the rust, incrustations, saltiness; it loosens in a very short time the mechanical fits, screws, bolts, hinges, bearings, locks, connections. It does not corrode metals, varnishes or rubber. It eliminates the humidity from the electric circuit; it lubricates and protects from the corrosion and the oxidation. The valve “All Positions” consents the use of the bomb in whichever position.\n\nAPPLICATION: Spray directly on the part to loosen. Leave the fluid to penetrate, therefore to unbolt.",
+          "brand": "SARATOGA",
+          "usage": [
+            "SARATOGA",
+            "lubricant",
+            "dégrippant"
+          ],
+          "price": 8.767,
+          "stock": "in",
+          "images": [
+            "assets/products/laser-1-mht2j39t.webp"
+          ],
+          "variants": [],
+          "datasheet": "assets/datasheets/54123001-en-mht2jfyh.pdf"
+        },
+        {
+          "title": "Untitled product",
+          "image": "assets/products/placeholder.png",
+          "description": "",
+          "brand": "",
+          "usage": [],
+          "price": 0,
+          "stock": "in",
+          "images": [],
+          "variants": [],
+          "datasheet": ""
+        },
+        {
+          "title": "Untitled product",
+          "image": "assets/products/placeholder.png",
+          "description": "",
+          "brand": "",
+          "usage": [],
+          "price": 0,
+          "stock": "in",
+          "images": [],
+          "variants": [],
+          "datasheet": ""
+        },
+        {
+          "title": "Untitled product",
+          "image": "assets/products/placeholder.png",
+          "description": "",
+          "brand": "",
+          "usage": [],
+          "price": 0,
+          "stock": "in",
+          "images": [],
+          "variants": [],
+          "datasheet": ""
+        },
+        {
+          "title": "Untitled product",
+          "image": "assets/products/placeholder.png",
+          "description": "",
+          "brand": "",
+          "usage": [],
+          "price": 0,
+          "stock": "in",
+          "images": [],
+          "variants": [],
+          "datasheet": ""
+        },
+        {
+          "title": "Untitled product",
+          "image": "assets/products/placeholder.png",
+          "description": "",
+          "brand": "",
+          "usage": [],
+          "price": 0,
           "stock": "in",
           "images": [],
           "variants": [],
