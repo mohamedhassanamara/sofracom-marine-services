@@ -276,7 +276,78 @@
       "slug": "oils-filters-batteries",
       "image": "assets/categories/chatgpt-image-nov-3-2025-01_32_28-pm-mhj4uyjc.png",
       "description": "Engine oils, filters and reliable onboard power.",
-      "products": []
+      "products": [
+        {
+          "title": "Pack Of 4 Kodak Zinc Batteries AA",
+          "image": "assets/products/img-20251102-wa0076-mhsup940.jpg",
+          "description": "AA Zinc battery cell composition.\nSingle use.",
+          "brand": "KODAK",
+          "usage": [
+            "kodak",
+            "zinc",
+            "batteries",
+            "AA"
+          ],
+          "price": 5.024,
+          "stock": "in",
+          "images": [],
+          "variants": [],
+          "datasheet": "assets/datasheets/kodak-zinc-batteries-aa-mhsuussb.pdf"
+        },
+        {
+          "title": "Pack Of 4 Kodak Zinc Batteries AAA",
+          "image": "assets/products/placeholder.png",
+          "description": "AAA Zinc batteries cell composition.\nSingle use.",
+          "brand": "KODAK",
+          "usage": [
+            "kodak",
+            "zinc",
+            "batteries",
+            "AAA",
+            "battery"
+          ],
+          "price": 5.024,
+          "stock": "in",
+          "images": [],
+          "variants": [],
+          "datasheet": "assets/datasheets/kodak-zinc-batteries-aa-mhsuyufh.pdf"
+        },
+        {
+          "title": "9V KODAK Zinc Battery",
+          "image": "assets/products/img-20251102-wa0057-mhsvepow.jpg",
+          "description": "9V Zinc battery cell composition.\nSingle use.",
+          "brand": "KODAK",
+          "usage": [
+            "9v",
+            "kodak",
+            "zinc",
+            "batterie",
+            "battery"
+          ],
+          "price": 8.841,
+          "stock": "in",
+          "images": [],
+          "variants": [],
+          "datasheet": ""
+        },
+        {
+          "title": "CR2025 MAXELL 3V Battery ",
+          "image": "assets/products/img-20251102-wa0044-mhsvehha.jpg",
+          "description": "Lithium 3V Coin Battery.\nCar Key Fobs, Watches, Home/Medical/Fitness Devices.",
+          "brand": "MAXELL",
+          "usage": [
+            "MAXELL",
+            "lithium",
+            "3v",
+            "cr2025"
+          ],
+          "price": 7.235,
+          "stock": "in",
+          "images": [],
+          "variants": [],
+          "datasheet": ""
+        }
+      ]
     },
     {
       "name": "HARDWARE TOOLS ",
@@ -349,7 +420,9 @@
           ],
           "price": 11,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/img-20251102-wa0036-mhqjeamb.jpg"
+          ],
           "variants": [],
           "datasheet": ""
         },
@@ -366,7 +439,9 @@
           ],
           "price": 9.5,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/img-20251102-wa0035-mhqkjjou.jpg"
+          ],
           "variants": [],
           "datasheet": ""
         },
@@ -381,6 +456,80 @@
             "frame"
           ],
           "price": 2.922,
+          "stock": "in",
+          "images": [
+            "assets/products/img-20251102-wa0050-mhqkqz6f.jpg"
+          ],
+          "variants": [],
+          "datasheet": ""
+        },
+        {
+          "title": "Untitled product",
+          "image": "assets/products/placeholder.png",
+          "description": "",
+          "brand": "",
+          "usage": [],
+          "price": 0,
+          "stock": "in",
+          "images": [],
+          "variants": [],
+          "datasheet": ""
+        },
+        {
+          "title": "Untitled product",
+          "image": "assets/products/placeholder.png",
+          "description": "",
+          "brand": "",
+          "usage": [],
+          "price": 0,
+          "stock": "in",
+          "images": [],
+          "variants": [],
+          "datasheet": ""
+        },
+        {
+          "title": "Untitled product",
+          "image": "assets/products/placeholder.png",
+          "description": "",
+          "brand": "",
+          "usage": [],
+          "price": 0,
+          "stock": "in",
+          "images": [],
+          "variants": [],
+          "datasheet": ""
+        },
+        {
+          "title": "Untitled product",
+          "image": "assets/products/placeholder.png",
+          "description": "",
+          "brand": "",
+          "usage": [],
+          "price": 0,
+          "stock": "in",
+          "images": [],
+          "variants": [],
+          "datasheet": ""
+        },
+        {
+          "title": "Untitled product",
+          "image": "assets/products/placeholder.png",
+          "description": "",
+          "brand": "",
+          "usage": [],
+          "price": 0,
+          "stock": "in",
+          "images": [],
+          "variants": [],
+          "datasheet": ""
+        },
+        {
+          "title": "Untitled product",
+          "image": "assets/products/placeholder.png",
+          "description": "",
+          "brand": "",
+          "usage": [],
+          "price": 0,
           "stock": "in",
           "images": [],
           "variants": [],
