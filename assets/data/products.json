@@ -506,48 +506,64 @@
           "datasheet": ""
         },
         {
-          "title": "Untitled product",
-          "image": "assets/products/placeholder.png",
-          "description": "",
-          "brand": "",
-          "usage": [],
-          "price": 0,
+          "title": "Body Filler Application Set 4pce",
+          "image": "assets/products/img-20251102-wa0078-mhsz9862.jpg",
+          "description": "Spring steel blades with composite grips.\nBlade sizes 50, 80, 100 & 120mm",
+          "brand": "ACEM",
+          "usage": [
+            "Jeu palette",
+            "acem",
+            "set",
+            "filling"
+          ],
+          "price": 3.335,
           "stock": "in",
           "images": [],
           "variants": [],
           "datasheet": ""
         },
         {
-          "title": "Untitled product",
-          "image": "assets/products/placeholder.png",
-          "description": "",
-          "brand": "",
-          "usage": [],
-          "price": 0,
+          "title": "SDS Paint Mixer ( 80 X 600 x 10MM)",
+          "image": "assets/products/img-20251102-wa0080-mhszkdn9.jpg",
+          "description": "Twin mixing blade design.\nIdeal for use with electric drills with an SDS chuck.\n",
+          "brand": "APT",
+          "usage": [
+            "tige",
+            "helice",
+            "malaxeur"
+          ],
+          "price": 29.789,
           "stock": "in",
           "images": [],
           "variants": [],
           "datasheet": ""
         },
         {
-          "title": "Untitled product",
-          "image": "assets/products/placeholder.png",
-          "description": "",
-          "brand": "",
-          "usage": [],
-          "price": 0,
+          "title": "Technopole 6 In 1 Penetrating / Lubricant Oil 300ml",
+          "image": "assets/products/img-20251102-wa0090-mhszv052.jpg",
+          "description": "Rapid Penetration, Rust Defense, Versatile Utility, equipped with precision straw",
+          "brand": "TECHNOPOLE",
+          "usage": [
+            "Dégrippant",
+            "6en1",
+            "lubricant",
+            "spray"
+          ],
+          "price": 7.582,
           "stock": "in",
           "images": [],
           "variants": [],
           "datasheet": ""
         },
         {
-          "title": "Untitled product",
-          "image": "assets/products/placeholder.png",
-          "description": "",
-          "brand": "",
-          "usage": [],
-          "price": 0,
+          "title": "Technopole Degrippant / Penetrating Express Spray 300ml",
+          "image": "assets/products/img-20251102-wa0091-mht0g77i.jpg",
+          "description": "Super Strong Penetrating Maintenance Spray 300ml.\nExcellent quality.",
+          "brand": "TECHNOPOLE",
+          "usage": [
+            "Dégrippant"
+          ],
+          "price": 5.976,
           "stock": "in",
           "images": [],
           "variants": [],
