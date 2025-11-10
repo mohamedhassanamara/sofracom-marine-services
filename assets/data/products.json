@@ -612,51 +612,86 @@
           "datasheet": "assets/datasheets/54123001-en-mht2jfyh.pdf"
         },
         {
-          "title": "Untitled product",
-          "image": "assets/products/placeholder.png",
-          "description": "",
-          "brand": "",
-          "usage": [],
-          "price": 0,
+          "title": "DS Earmuff, Ear Protection Black/Yellow",
+          "image": "assets/products/img-20251102-wa0037-mht3ka2d.jpg",
+          "description": "Comfortable and effective hearing protection. Reusable and lightweight",
+          "brand": "DS",
+          "usage": [
+            "earmuff",
+            "protection",
+            "safety",
+            "casque",
+            "cache-oreilles"
+          ],
+          "price": 17.791,
           "stock": "in",
           "images": [],
           "variants": [],
           "datasheet": ""
         },
         {
-          "title": "Untitled product",
-          "image": "assets/products/placeholder.png",
-          "description": "",
-          "brand": "",
-          "usage": [],
-          "price": 0,
+          "title": "CLIMAX Half Mask Ref. 324",
+          "image": "assets/products/img-20251102-wa0063-mht3sbov.jpg",
+          "description": "Half mask for professional use against gases, vapors, solid and liquid particles. ",
+          "brand": "CLIMAX",
+          "usage": [
+            "CLIMAX",
+            "protection",
+            "mask"
+          ],
+          "price": 39.014,
           "stock": "in",
           "images": [],
           "variants": [],
           "datasheet": ""
         },
         {
-          "title": "Untitled product",
-          "image": "assets/products/placeholder.png",
-          "description": "",
-          "brand": "",
-          "usage": [],
-          "price": 0,
+          "title": "SUN Nitrile Disposable Gloves, BlackXL",
+          "image": "assets/products/img-20251102-wa0075-mht46qor.jpg",
+          "description": "special heavy duty with rough surface.\nResist oils, acids, detergents and most chemicals.\nMade in china.",
+          "brand": "SUN",
+          "usage": [
+            "Gloves",
+            "gants",
+            "nitrile",
+            "disposable"
+          ],
+          "price": 4.958,
           "stock": "in",
           "images": [],
           "variants": [],
           "datasheet": ""
         },
         {
-          "title": "Untitled product",
-          "image": "assets/products/placeholder.png",
-          "description": "",
-          "brand": "",
-          "usage": [],
-          "price": 0,
+          "title": "ACEM Screwdriver, Orange, PH1 X 100MM",
+          "image": "assets/products/img-20251102-wa0064-mht4p7yw.jpg",
+          "description": "PH1 Screwdriver.\nDurable chrome vanadium steel.\nMagnetic tip.",
+          "brand": "ACEM",
+          "usage": [
+            "ACEM",
+            "tournevis",
+            "screwdriver",
+            "PH1",
+            "PH2",
+            "PH3"
+          ],
+          "price": 2.058,
           "stock": "in",
           "images": [],
-          "variants": [],
+          "variants": [
+            {
+              "label": "PH2 X 150",
+              "price": 3.335
+            },
+            {
+              "label": "PH3 X 150",
+              "price": 4.067
+            },
+            {
+              "label": "PH0 X 100",
+              "price": 1.804
+            }
+          ],
           "datasheet": ""
         },
         {
