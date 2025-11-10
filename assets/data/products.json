@@ -481,15 +481,28 @@
           "datasheet": ""
         },
         {
-          "title": "Untitled product",
-          "image": "assets/products/placeholder.png",
-          "description": "",
-          "brand": "",
-          "usage": [],
-          "price": 0,
+          "title": "Wood Handle Filling Knife 50MM",
+          "image": "assets/products/img-20251102-wa0056-mhsxtls9.jpg",
+          "description": "Made of steel and soft wood handle.",
+          "brand": "CRISTAL",
+          "usage": [
+            "Spatule",
+            "50mm",
+            "filling knife"
+          ],
+          "price": 1.708,
           "stock": "in",
           "images": [],
-          "variants": [],
+          "variants": [
+            {
+              "label": "70mm",
+              "price": 2.012
+            },
+            {
+              "label": "100mm",
+              "price": 2.242
+            }
+          ],
           "datasheet": ""
         },
         {
