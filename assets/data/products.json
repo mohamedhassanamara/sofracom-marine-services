@@ -296,7 +296,7 @@
         },
         {
           "title": "Pack Of 4 Kodak Zinc Batteries AAA",
-          "image": "assets/products/placeholder.png",
+          "image": "assets/products/img-20251102-wa0040-mhsvjyhi.jpg",
           "description": "AAA Zinc batteries cell composition.\nSingle use.",
           "brand": "KODAK",
           "usage": [
@@ -328,7 +328,7 @@
           "stock": "in",
           "images": [],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "assets/datasheets/super-heavy-duty-9v-ver-2.2-mhsvk769.pdf"
         },
         {
           "title": "CR2025 MAXELL 3V Battery ",
@@ -345,7 +345,7 @@
           "stock": "in",
           "images": [],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "assets/datasheets/cr2025_data_sheet_e-mhsvy50i.pdf"
         }
       ]
     },
@@ -464,12 +464,17 @@
           "datasheet": ""
         },
         {
-          "title": "Untitled product",
-          "image": "assets/products/placeholder.png",
-          "description": "",
-          "brand": "",
-          "usage": [],
-          "price": 0,
+          "title": "20CM Short Pile Paint Roller Plus Frame",
+          "image": "assets/products/img-20251102-wa0058-mhsw40fp.jpg",
+          "description": "Suitable for interior, exterior, and wood.\nWorks with oil and water based paints.",
+          "brand": "CRISTAL",
+          "usage": [
+            "Rouleau",
+            "antigoutte",
+            "cristal",
+            "short pile"
+          ],
+          "price": 8.822,
           "stock": "in",
           "images": [],
           "variants": [],
