@@ -292,6 +292,25 @@
             }
           ],
           "datasheet": "assets/datasheets/mastic-epoxy-striaform-mht38nm0.pdf"
+        },
+        {
+          "title": "Sika Primer-290 DC 225ML",
+          "image": "assets/products/20251110_120322-mht5esn2.png",
+          "description": "Sika® Primer-290 DC is used to improve adhesion\non Teak, Mahogany, Oregon pine and\nGRP based on polyester.\nSeek manufacturer’s advice and perform tests\non original substrates before using Sika®\nPrimer-290 DC on materials prone to stress\ncracking.\nThis product is suitable for experienced professional\nusers only. Tests with actual substrates\nand conditions have to be performed\nto ensure adhesion and material compatibility.",
+          "brand": "SIKA",
+          "usage": [
+            "Sika",
+            "Primer",
+            "DC",
+            "290"
+          ],
+          "price": 65.211,
+          "stock": "in",
+          "images": [
+            "assets/products/20251110_120330-mht5evx2.png"
+          ],
+          "variants": [],
+          "datasheet": "assets/datasheets/sika_primer-290_dc-mht5f9yj.pdf"
         }
       ]
     },
