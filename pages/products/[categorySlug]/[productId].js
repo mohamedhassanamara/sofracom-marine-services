@@ -345,23 +345,27 @@ export default function ProductDetailPage({ product, category }) {
                                 : `${previewDescription}${isLongDescription ? '…' : ''}`}
                         </p>
                         {isLongDescription && (
-                            <button
-                                type="button"
-                                className="text-blue-600 hover:underline text-sm font-semibold"
-                                onClick={() => setShowFullDescription(prev => !prev)}
-                            >
-                                {showFullDescription ? 'Show less' : 'Read more'}
-                            </button>
+                            <div className="flex items-center gap-2 mt-2">
+                                <button
+                                    type="button"
+                                    className="text-blue-600 hover:underline text-sm font-semibold"
+                                    onClick={() => setShowFullDescription(prev => !prev)}
+                                >
+                                    {showFullDescription ? 'Show less' : 'Read more'}
+                                </button>
+                            </div>
                         )}
                         {product.datasheet && (
-                            <a
-                                href={product.datasheet}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="datasheet-link"
-                            >
-                                Download datasheet
-                            </a>
+                            <div className="mt-2">
+                                <a
+                                    href={product.datasheet}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="datasheet-link"
+                                >
+                                    Download datasheet
+                                </a>
+                            </div>
                         )}
                         <button
                             type="button"

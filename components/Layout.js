@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useLang } from '../contexts/LangContext';
 
@@ -25,12 +25,40 @@ export default function Layout({ children }) {
     const [isNavSolid, setIsNavSolid] = useState(false);
     const [showToTop, setShowToTop] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [searchActive, setSearchActive] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [productsIndex, setProductsIndex] = useState([]);
+    const searchRef = useRef(null);
 
-    const sections = useMemo(
-        () => ['home', 'about', 'brands', 'services', 'contact'],
-        []
-    );
     const router = useRouter();
+    const ensurePath = value => {
+        if (!value) return '';
+        return value.startsWith('/') ? value : `/${value}`;
+    };
+
+    const slugify = value =>
+        (value || '')
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-|-$/g, '');
+    const formatCurrency = value =>
+        new Intl.NumberFormat('fr-TN', {
+            style: 'currency',
+            currency: 'TND',
+        }).format(Number.isFinite(value) ? value : 0);
+    const filteredSuggestions = useMemo(() => {
+        const term = searchTerm.trim().toLowerCase();
+        if (!term) return [];
+        return productsIndex
+            .filter(product => product.title.toLowerCase().includes(term))
+            .slice(0, 6);
+    }, [productsIndex, searchTerm]);
+    const navigateToSuggestion = suggestion => {
+        if (!suggestion?.categorySlug || !suggestion?.id) return;
+        setSearchTerm('');
+        setSearchActive(false);
+        router.push(`/products/${suggestion.categorySlug}/${suggestion.id}`);
+    };
 
     useEffect(() => {
         let ticking = false;
@@ -96,32 +124,50 @@ export default function Layout({ children }) {
         setMenuOpen(false);
     }, [router.asPath]);
 
+    useEffect(() => {
+        let isMounted = true;
+        fetch('/assets/data/products.json')
+            .then(response => response.json())
+            .then(data => {
+                if (!isMounted) return;
+                const entries = [];
+                (data.categories || []).forEach(category => {
+                    const categorySlug = category.slug || slugify(category.name);
+                    (category.products || []).forEach(product => {
+                        const productSlug = slugify(product.title);
+                        const id = `${categorySlug}-${productSlug || 'item'}`;
+                        entries.push({
+                            title: product.title || '',
+                            price: Number(product.price) || 0,
+                            image: ensurePath(product.image || product.images?.[0] || ''),
+                            id,
+                            categorySlug,
+                        });
+                    });
+                });
+                setProductsIndex(entries);
+            })
+            .catch(() => {});
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+
+    useEffect(() => {
+        const handleClickOutside = event => {
+            if (searchRef.current && !searchRef.current.contains(event.target)) {
+                setSearchActive(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
     const handleSearchKey = event => {
         if (event.key !== 'Enter') return;
         event.preventDefault();
-        const query = event.currentTarget.value.trim().toLowerCase();
-        if (!query) return;
-        const matchedSection = sections.find(id => id.includes(query));
-        if (matchedSection) {
-            document
-                .getElementById(matchedSection)
-                ?.scrollIntoView({ behavior: 'smooth' });
-            return;
-        }
-        const cards = Array.from(
-            document.querySelectorAll('#brands .brand-card')
-        );
-        const hit = cards.find(card =>
-            card.textContent.toLowerCase().includes(query)
-        );
-        if (hit) {
-            hit.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            hit.classList.add('ring', 'ring-4', 'ring-blue-300');
-            window.setTimeout(
-                () => hit.classList.remove('ring', 'ring-4', 'ring-blue-300'),
-                1500
-            );
-        }
+        if (!filteredSuggestions.length) return;
+        navigateToSuggestion(filteredSuggestions[0]);
     };
 
     const handleLangChange = event => {
@@ -151,7 +197,11 @@ export default function Layout({ children }) {
                             SOFRACOM
                         </span>
                     </Link>
-                    <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
+                    <nav
+                        className={`hidden md:flex items-center gap-8 text-sm font-medium ${
+                            searchActive ? 'md:hidden' : ''
+                        }`}
+                    >
                         {NAV_LINKS.map(link => {
                             const href = resolveLinkHref(link);
                             return (
@@ -166,13 +216,48 @@ export default function Layout({ children }) {
                         })}
                     </nav>
                     <div className="flex items-center gap-3">
-                        <input
-                            id="siteSearch"
-                            type="text"
-                            placeholder="Search…"
-                            className="hidden sm:block px-3 py-1.5 rounded-md bg-white bg-opacity-15 placeholder-black text-black border border-white border-opacity-20 focus:outline-none focus:ring-2 focus:ring-blue-200"
-                            onKeyDown={handleSearchKey}
-                        />
+                        <div className="relative" ref={searchRef}>
+                            <input
+                                id="siteSearch"
+                                type="text"
+                                placeholder="Search products…"
+                                className={`hidden sm:block px-3 py-1.5 rounded-md bg-white bg-opacity-15 placeholder-black text-black border border-white border-opacity-20 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all duration-200 ${
+                                    searchActive ? 'md:w-64' : 'md:w-44'
+                                }`}
+                                onKeyDown={handleSearchKey}
+                                onFocus={() => setSearchActive(true)}
+                                value={searchTerm}
+                                onChange={event => setSearchTerm(event.target.value)}
+                            />
+                            {searchActive && filteredSuggestions.length > 0 && (
+                                <div className="search-dropdown">
+                                    {filteredSuggestions.map(suggestion => (
+                                        <button
+                                            key={suggestion.id}
+                                            type="button"
+                                            className="search-suggestion"
+                                            onClick={() => navigateToSuggestion(suggestion)}
+                                        >
+                                            {suggestion.image && (
+                                                <img
+                                                    src={suggestion.image}
+                                                    alt={suggestion.title}
+                                                    className="search-suggestion-img"
+                                                />
+                                            )}
+                                            <div className="flex flex-col text-left">
+                                                <span className="font-semibold text-sm text-gray-900">
+                                                    {suggestion.title}
+                                                </span>
+                                                <span className="text-xs text-gray-500">
+                                                    {formatCurrency(suggestion.price)}
+                                                </span>
+                                            </div>
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
                         <select
                             id="lang"
                             className="px-3 py-1.5 rounded-md bg-white bg-opacity-15 text-black border border-white border-opacity-20 focus:outline-none focus:ring-2 focus:ring-blue-200"

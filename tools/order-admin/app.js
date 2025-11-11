@@ -179,9 +179,13 @@ function renderOrders() {
       const info = document.createElement('div');
       info.className = 'item-info';
       const titleEl = document.createElement('strong');
-      if (item.id) {
+      const productId = item.id;
+      if (productId) {
+        const categorySlug = productId.includes('-')
+          ? productId.slice(0, productId.indexOf('-'))
+          : '';
         const link = document.createElement('a');
-        link.href = `${SITE_BASE}/product.html?id=${encodeURIComponent(item.id)}`;
+        link.href = `${SITE_BASE}/products/${categorySlug}/${encodeURIComponent(productId)}`;
         link.target = '_blank';
         link.rel = 'noopener';
         link.textContent = item.title || item.description || 'Product';

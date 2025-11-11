@@ -62,6 +62,42 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.search-dropdown {
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    border: 1px solid rgba(15, 23, 42, 0.15);
+    box-shadow: 0 18px 30px rgba(15, 23, 42, 0.15);
+    z-index: 40;
+}
+
+.search-suggestion {
+    width: 100%;
+    border: none;
+    background: transparent;
+    text-align: left;
+    padding: 0.65rem 0.9rem;
+    font-size: 0.9rem;
+    color: #0f172a;
+    cursor: pointer;
+}
+
+.search-suggestion-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 0.75rem;
+    object-fit: cover;
+    margin-right: 0.75rem;
+}
+
+.search-suggestion:hover {
+    background: rgba(15, 23, 42, 0.06);
+}
+
 .nav-solid {
     background: rgba(5, 20, 64, 0.98);
     border-bottom: 1px solid rgba(11, 32, 80, 0.7);
