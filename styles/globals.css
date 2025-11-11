@@ -222,6 +222,12 @@ footer.site-footer a {
     border: 1px solid rgba(215, 38, 56, 0.2);
 }
 
+.stock-badge--order {
+    background: rgba(240, 145, 1, 0.15);
+    color: #f97316;
+    border: 1px solid rgba(252, 165, 79, 0.6);
+}
+
 .product-out .card-img {
     filter: grayscale(0.25);
     opacity: 0.8;

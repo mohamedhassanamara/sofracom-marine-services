@@ -73,15 +73,15 @@
   "dataRoutes": [
     {
       "page": "/products",
-      "dataRouteRegex": "^/_next/data/ISK0Hi0jnyiIxlQktqIEO/products\\.json$"
+      "dataRouteRegex": "^/_next/data/c16yXDBOksTNyzsvZmL39/products\\.json$"
     },
     {
       "page": "/products/[categorySlug]",
       "routeKeys": {
         "nxtPcategorySlug": "nxtPcategorySlug"
       },
-      "dataRouteRegex": "^/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/([^/]+?)\\.json$",
-      "namedDataRouteRegex": "^/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/(?<nxtPcategorySlug>[^/]+?)\\.json$"
+      "dataRouteRegex": "^/_next/data/c16yXDBOksTNyzsvZmL39/products/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/c16yXDBOksTNyzsvZmL39/products/(?<nxtPcategorySlug>[^/]+?)\\.json$"
     },
     {
       "page": "/products/[categorySlug]/[productId]",
@@ -89,8 +89,8 @@
         "nxtPcategorySlug": "nxtPcategorySlug",
         "nxtPproductId": "nxtPproductId"
       },
-      "dataRouteRegex": "^/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/([^/]+?)/([^/]+?)\\.json$",
-      "namedDataRouteRegex": "^/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/(?<nxtPcategorySlug>[^/]+?)/(?<nxtPproductId>[^/]+?)\\.json$"
+      "dataRouteRegex": "^/_next/data/c16yXDBOksTNyzsvZmL39/products/([^/]+?)/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/c16yXDBOksTNyzsvZmL39/products/(?<nxtPcategorySlug>[^/]+?)/(?<nxtPproductId>[^/]+?)\\.json$"
     }
   ],
   "rsc": {

@@ -19,3 +19,4 @@ public/.DS_Store
 # Static build outputs (add if tooling generates them)
 dist/
 build/
+.next/

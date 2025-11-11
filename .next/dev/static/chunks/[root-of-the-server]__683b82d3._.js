@@ -552,6 +552,13 @@ function useCart() {
     }["useCart.useMemo[total]"], [
         cart
     ]);
+    const hasOnOrderItem = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "useCart.useMemo[hasOnOrderItem]": ()=>cart.some({
+                "useCart.useMemo[hasOnOrderItem]": (item)=>item.stock === 'on-order'
+            }["useCart.useMemo[hasOnOrderItem]"])
+    }["useCart.useMemo[hasOnOrderItem]"], [
+        cart
+    ]);
     return {
         cart,
         addItem,
@@ -559,10 +566,11 @@ function useCart() {
         removeItem,
         count,
         total,
-        resetCart
+        resetCart,
+        hasOnOrderItem
     };
 }
-_s(useCart, "gmlR/YgbqwjLr1R9OwK3y/Fa9z0=");
+_s(useCart, "fq6g/fyCe1RNL4qCQvbHuHiGWpk=");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
@@ -596,6 +604,11 @@ const formatPrice = (value)=>{
     }
     return FR_NUMBER_FORMAT.format(value);
 };
+const STOCK_LABEL = {
+    'in': 'In stock',
+    'out': 'Out of stock',
+    'on-order': 'On order'
+};
 var __N_SSG = true;
 function CategoryPage({ category }) {
     _s();
@@ -613,7 +626,7 @@ function CategoryPage({ category }) {
         address: '',
         notes: ''
     });
-    const { cart, addItem, updateQuantity, removeItem, total, count } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$useCart$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"])();
+    const { cart, addItem, updateQuantity, removeItem, total, count, hasOnOrderItem } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$useCart$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"])();
     const availableBrands = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useMemo"])({
         "CategoryPage.useMemo[availableBrands]": ()=>{
             const brands = Array.from(new Set(category.products.map({
@@ -655,7 +668,8 @@ function CategoryPage({ category }) {
             image: product.image,
             category: product.categoryName,
             brand: product.brand,
-            variantLabel
+            variantLabel,
+            stock: product.stock
         });
         setCartOpen(true);
     };
@@ -759,7 +773,7 @@ function CategoryPage({ category }) {
                                         children: "Catalog"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 169,
+                                        lineNumber: 176,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -767,7 +781,7 @@ function CategoryPage({ category }) {
                                         children: "/"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 172,
+                                        lineNumber: 179,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -775,13 +789,13 @@ function CategoryPage({ category }) {
                                         children: category.name
                                     }, void 0, false, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 173,
+                                        lineNumber: 180,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                lineNumber: 168,
+                                lineNumber: 175,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -797,7 +811,7 @@ function CategoryPage({ category }) {
                                                 children: "All brands"
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                lineNumber: 181,
+                                                lineNumber: 188,
                                                 columnNumber: 29
                                             }, this),
                                             availableBrands.map((brand)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -805,13 +819,13 @@ function CategoryPage({ category }) {
                                                     children: brand
                                                 }, brand, false, {
                                                     fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                    lineNumber: 183,
+                                                    lineNumber: 190,
                                                     columnNumber: 33
                                                 }, this))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 176,
+                                        lineNumber: 183,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -822,7 +836,7 @@ function CategoryPage({ category }) {
                                         className: "px-3 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 188,
+                                        lineNumber: 195,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -835,19 +849,19 @@ function CategoryPage({ category }) {
                                         children: "Reset filters"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 195,
+                                        lineNumber: 202,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                lineNumber: 175,
+                                lineNumber: 182,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                        lineNumber: 167,
+                        lineNumber: 174,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -866,12 +880,12 @@ function CategoryPage({ category }) {
                                             className: "card-img"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                            lineNumber: 221,
+                                            lineNumber: 228,
                                             columnNumber: 33
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 216,
+                                        lineNumber: 223,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -885,7 +899,7 @@ function CategoryPage({ category }) {
                                                         children: product.title
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                        lineNumber: 229,
+                                                        lineNumber: 236,
                                                         columnNumber: 29
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -893,13 +907,13 @@ function CategoryPage({ category }) {
                                                         children: product.brand
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                        lineNumber: 232,
+                                                        lineNumber: 239,
                                                         columnNumber: 29
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                lineNumber: 228,
+                                                lineNumber: 235,
                                                 columnNumber: 25
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -907,7 +921,7 @@ function CategoryPage({ category }) {
                                                 children: product.description
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                lineNumber: 236,
+                                                lineNumber: 243,
                                                 columnNumber: 25
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -918,21 +932,21 @@ function CategoryPage({ category }) {
                                                         children: formatPrice(product.price)
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                        lineNumber: 240,
+                                                        lineNumber: 247,
                                                         columnNumber: 29
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: `stock-badge ${product.stock === 'in' ? 'stock-badge--in' : 'stock-badge--out'}`,
-                                                        children: product.stock === 'in' ? 'In stock' : 'Out of stock'
+                                                        className: `stock-badge ${product.stock === 'in' ? 'stock-badge--in' : product.stock === 'on-order' ? 'stock-badge--order' : 'stock-badge--out'}`,
+                                                        children: STOCK_LABEL[product.stock] || 'Unknown'
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                        lineNumber: 243,
+                                                        lineNumber: 250,
                                                         columnNumber: 29
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                lineNumber: 239,
+                                                lineNumber: 246,
                                                 columnNumber: 25
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -942,12 +956,12 @@ function CategoryPage({ category }) {
                                                         children: tag
                                                     }, `${product.id}-${tag}`, false, {
                                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                        lineNumber: 257,
+                                                        lineNumber: 264,
                                                         columnNumber: 33
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                lineNumber: 255,
+                                                lineNumber: 262,
                                                 columnNumber: 25
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -959,7 +973,7 @@ function CategoryPage({ category }) {
                                                         children: "View details"
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                        lineNumber: 266,
+                                                        lineNumber: 273,
                                                         columnNumber: 29
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -970,36 +984,36 @@ function CategoryPage({ category }) {
                                                         children: "Add to cart"
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                        lineNumber: 272,
+                                                        lineNumber: 279,
                                                         columnNumber: 29
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                lineNumber: 265,
+                                                lineNumber: 272,
                                                 columnNumber: 25
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 227,
+                                        lineNumber: 234,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, product.id, true, {
                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                lineNumber: 209,
+                                lineNumber: 216,
                                 columnNumber: 25
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                        lineNumber: 207,
+                        lineNumber: 214,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                lineNumber: 166,
+                lineNumber: 173,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1012,7 +1026,7 @@ function CategoryPage({ category }) {
                         children: "Cart"
                     }, void 0, false, {
                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                        lineNumber: 292,
+                        lineNumber: 299,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1020,13 +1034,13 @@ function CategoryPage({ category }) {
                         children: count
                     }, void 0, false, {
                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                        lineNumber: 293,
+                        lineNumber: 300,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                lineNumber: 291,
+                lineNumber: 298,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1035,7 +1049,7 @@ function CategoryPage({ category }) {
                 onClick: closeCart
             }, void 0, false, {
                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                lineNumber: 297,
+                lineNumber: 304,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("aside", {
@@ -1053,7 +1067,7 @@ function CategoryPage({ category }) {
                                         children: "Your order"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 309,
+                                        lineNumber: 316,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1061,13 +1075,13 @@ function CategoryPage({ category }) {
                                         children: "Review items then confirm your details."
                                     }, void 0, false, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 312,
+                                        lineNumber: 319,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                lineNumber: 308,
+                                lineNumber: 315,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1079,13 +1093,13 @@ function CategoryPage({ category }) {
                                 children: "×"
                             }, void 0, false, {
                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                lineNumber: 316,
+                                lineNumber: 323,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                        lineNumber: 307,
+                        lineNumber: 314,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1100,7 +1114,7 @@ function CategoryPage({ category }) {
                                         alt: item.title
                                     }, void 0, false, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 334,
+                                        lineNumber: 341,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1110,7 +1124,7 @@ function CategoryPage({ category }) {
                                                 children: item.title
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                lineNumber: 336,
+                                                lineNumber: 343,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1118,7 +1132,7 @@ function CategoryPage({ category }) {
                                                 children: item.variantLabel ? item.variantLabel : item.category
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                lineNumber: 339,
+                                                lineNumber: 346,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1130,7 +1144,7 @@ function CategoryPage({ category }) {
                                                         children: "−"
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                        lineNumber: 345,
+                                                        lineNumber: 352,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1144,7 +1158,7 @@ function CategoryPage({ category }) {
                                                         }
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                        lineNumber: 356,
+                                                        lineNumber: 363,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1153,7 +1167,7 @@ function CategoryPage({ category }) {
                                                         children: "+"
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                        lineNumber: 368,
+                                                        lineNumber: 375,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1163,37 +1177,37 @@ function CategoryPage({ category }) {
                                                         children: "Remove"
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                        lineNumber: 379,
+                                                        lineNumber: 386,
                                                         columnNumber: 41
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                                lineNumber: 344,
+                                                lineNumber: 351,
                                                 columnNumber: 37
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 335,
+                                        lineNumber: 342,
                                         columnNumber: 33
                                     }, this)
                                 ]
                             }, item.id, true, {
                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                lineNumber: 329,
+                                lineNumber: 336,
                                 columnNumber: 29
                             }, this)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                             className: "empty-cart",
                             children: "Your cart is empty."
                         }, void 0, false, {
                             fileName: "[project]/pages/products/[categorySlug]/index.js",
-                            lineNumber: 391,
+                            lineNumber: 398,
                             columnNumber: 25
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                        lineNumber: 326,
+                        lineNumber: 333,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1206,21 +1220,29 @@ function CategoryPage({ category }) {
                                         children: "Total"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 396,
+                                        lineNumber: 403,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: formatPrice(total)
                                     }, void 0, false, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 397,
+                                        lineNumber: 404,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                lineNumber: 395,
+                                lineNumber: 402,
                                 columnNumber: 21
+                            }, this),
+                            hasOnOrderItem && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-xs text-orange-500 mt-2",
+                                children: "Delivery may take longer for on-order items."
+                            }, void 0, false, {
+                                fileName: "[project]/pages/products/[categorySlug]/index.js",
+                                lineNumber: 407,
+                                columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: `cart-alert ${checkoutStatus.type}`,
@@ -1228,13 +1250,13 @@ function CategoryPage({ category }) {
                                 children: checkoutStatus.message
                             }, void 0, false, {
                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                lineNumber: 399,
+                                lineNumber: 411,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                        lineNumber: 394,
+                        lineNumber: 401,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -1249,7 +1271,7 @@ function CategoryPage({ category }) {
                                         children: "Full name"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 410,
+                                        lineNumber: 422,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1260,13 +1282,13 @@ function CategoryPage({ category }) {
                                         required: true
                                     }, void 0, false, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 411,
+                                        lineNumber: 423,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                lineNumber: 409,
+                                lineNumber: 421,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -1275,7 +1297,7 @@ function CategoryPage({ category }) {
                                         children: "Phone"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 420,
+                                        lineNumber: 432,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1286,13 +1308,13 @@ function CategoryPage({ category }) {
                                         required: true
                                     }, void 0, false, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 421,
+                                        lineNumber: 433,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                lineNumber: 419,
+                                lineNumber: 431,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -1301,7 +1323,7 @@ function CategoryPage({ category }) {
                                         children: "Delivery address"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 430,
+                                        lineNumber: 442,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -1312,13 +1334,13 @@ function CategoryPage({ category }) {
                                         required: true
                                     }, void 0, false, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 431,
+                                        lineNumber: 443,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                lineNumber: 429,
+                                lineNumber: 441,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -1327,7 +1349,7 @@ function CategoryPage({ category }) {
                                         children: "Notes (optional)"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 440,
+                                        lineNumber: 452,
                                         columnNumber: 25
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -1337,13 +1359,13 @@ function CategoryPage({ category }) {
                                         onChange: handleCheckoutInput
                                     }, void 0, false, {
                                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                        lineNumber: 441,
+                                        lineNumber: 453,
                                         columnNumber: 25
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                lineNumber: 439,
+                                lineNumber: 451,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1354,25 +1376,25 @@ function CategoryPage({ category }) {
                                 children: checkoutSubmitting ? 'Sending…' : 'Send order'
                             }, void 0, false, {
                                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                                lineNumber: 448,
+                                lineNumber: 460,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/products/[categorySlug]/index.js",
-                        lineNumber: 403,
+                        lineNumber: 415,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/products/[categorySlug]/index.js",
-                lineNumber: 302,
+                lineNumber: 309,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true);
 }
-_s(CategoryPage, "xYivBUz0S6u7AddVNi1OQEsWmDI=", false, function() {
+_s(CategoryPage, "T8PCtf1GH1aC8NsyOwZt3Mcvwck=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$useCart$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"]
     ];

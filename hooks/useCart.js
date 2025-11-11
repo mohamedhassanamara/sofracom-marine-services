@@ -84,6 +84,10 @@ export default function useCart() {
     );
 
     const total = useMemo(() => calcTotal(cart), [cart]);
+    const hasOnOrderItem = useMemo(
+        () => cart.some(item => item.stock === 'on-order'),
+        [cart]
+    );
 
     return {
         cart,
@@ -93,5 +97,6 @@ export default function useCart() {
         count,
         total,
         resetCart,
+        hasOnOrderItem,
     };
 }

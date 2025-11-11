@@ -220,6 +220,12 @@ footer.site-footer a {
   border: 1px solid #d7263833;
 }
 
+.stock-badge--order {
+  color: #f97316;
+  background: #f0910126;
+  border: 1px solid #fca54f99;
+}
+
 .product-out .card-img {
   filter: grayscale(.25);
   opacity: .8;

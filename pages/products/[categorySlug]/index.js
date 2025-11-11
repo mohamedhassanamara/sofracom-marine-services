@@ -42,6 +42,12 @@ export async function getStaticProps({ params }) {
     };
 }
 
+const STOCK_LABEL = {
+    'in': 'In stock',
+    'out': 'Out of stock',
+    'on-order': 'On order',
+};
+
 export default function CategoryPage({ category }) {
     const [brandFilter, setBrandFilter] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
@@ -54,7 +60,7 @@ export default function CategoryPage({ category }) {
         address: '',
         notes: '',
     });
-    const { cart, addItem, updateQuantity, removeItem, total, count } = useCart();
+    const { cart, addItem, updateQuantity, removeItem, total, count, hasOnOrderItem } = useCart();
 
     const availableBrands = useMemo(() => {
         const brands = Array.from(
@@ -91,6 +97,7 @@ export default function CategoryPage({ category }) {
             category: product.categoryName,
             brand: product.brand,
             variantLabel,
+            stock: product.stock,
         });
         setCartOpen(true);
     };
@@ -244,12 +251,12 @@ export default function CategoryPage({ category }) {
                                 className={`stock-badge ${
                                     product.stock === 'in'
                                         ? 'stock-badge--in'
-                                        : 'stock-badge--out'
+                                        : product.stock === 'on-order'
+                                            ? 'stock-badge--order'
+                                            : 'stock-badge--out'
                                 }`}
                             >
-                                {product.stock === 'in'
-                                    ? 'In stock'
-                                    : 'Out of stock'}
+                                {STOCK_LABEL[product.stock] || 'Unknown'}
                             </span>
                         </div>
                         <div className="flex gap-2 flex-wrap">
@@ -396,6 +403,11 @@ export default function CategoryPage({ category }) {
                         <span>Total</span>
                         <span>{formatPrice(total)}</span>
                     </div>
+                    {hasOnOrderItem && (
+                        <p className="text-xs text-orange-500 mt-2">
+                            Delivery may take longer for on-order items.
+                        </p>
+                    )}
                     <p className={`cart-alert ${checkoutStatus.type}`} role="status">
                         {checkoutStatus.message}
                     </p>

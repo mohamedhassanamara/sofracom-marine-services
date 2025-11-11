@@ -4,59 +4,7 @@
     "/products": {
       "initialRevalidateSeconds": false,
       "srcRoute": null,
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/products/antifouling-coatings": {
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/products/[categorySlug]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/antifouling-coatings.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/products/sealants-adhesives": {
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/products/[categorySlug]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/sealants-adhesives.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/products/oils-filters-batteries": {
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/products/[categorySlug]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/oils-filters-batteries.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/products/hardware-tools": {
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/products/[categorySlug]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/hardware-tools.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -69,7 +17,7 @@
     "/products/antifouling-coatings/antifouling-coatings-jotun-seaforce-2-5l-black-noir": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/antifouling-coatings/antifouling-coatings-jotun-seaforce-2-5l-black-noir.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/antifouling-coatings/antifouling-coatings-jotun-seaforce-2-5l-black-noir.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -82,7 +30,7 @@
     "/products/antifouling-coatings/antifouling-coatings-jotun-seaforce-active-04l-blue-bleu": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/antifouling-coatings/antifouling-coatings-jotun-seaforce-active-04l-blue-bleu.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/antifouling-coatings/antifouling-coatings-jotun-seaforce-active-04l-blue-bleu.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -95,7 +43,7 @@
     "/products/antifouling-coatings/antifouling-coatings-jotun-safeguard-universal-es-15l-a-03l-b": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/antifouling-coatings/antifouling-coatings-jotun-safeguard-universal-es-15l-a-03l-b.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/antifouling-coatings/antifouling-coatings-jotun-safeguard-universal-es-15l-a-03l-b.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -108,7 +56,7 @@
     "/products/antifouling-coatings/antifouling-coatings-penguard-primer-red-rouge-04l-a-01l-b": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/antifouling-coatings/antifouling-coatings-penguard-primer-red-rouge-04l-a-01l-b.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/antifouling-coatings/antifouling-coatings-penguard-primer-red-rouge-04l-a-01l-b.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -121,7 +69,7 @@
     "/products/antifouling-coatings/antifouling-coatings-jotamastic-80-grey-gris-16l-a-2-3l-b": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/antifouling-coatings/antifouling-coatings-jotamastic-80-grey-gris-16l-a-2-3l-b.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/antifouling-coatings/antifouling-coatings-jotamastic-80-grey-gris-16l-a-2-3l-b.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -134,7 +82,7 @@
     "/products/antifouling-coatings/antifouling-coatings-thinner-diluant-n-07-0-8l": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/antifouling-coatings/antifouling-coatings-thinner-diluant-n-07-0-8l.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/antifouling-coatings/antifouling-coatings-thinner-diluant-n-07-0-8l.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -147,7 +95,7 @@
     "/products/antifouling-coatings/antifouling-coatings-thinner-diluant-n-17-0-8l": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/antifouling-coatings/antifouling-coatings-thinner-diluant-n-17-0-8l.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/antifouling-coatings/antifouling-coatings-thinner-diluant-n-17-0-8l.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -160,7 +108,7 @@
     "/products/antifouling-coatings/antifouling-coatings-hempel-s-antifouling-olympic-72900-3017-05kg-blue-bleu": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/antifouling-coatings/antifouling-coatings-hempel-s-antifouling-olympic-72900-3017-05kg-blue-bleu.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/antifouling-coatings/antifouling-coatings-hempel-s-antifouling-olympic-72900-3017-05kg-blue-bleu.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -173,7 +121,7 @@
     "/products/antifouling-coatings/antifouling-coatings-hempel-s-antifouling-olympic-72900-1999-05kg-black-noir": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/antifouling-coatings/antifouling-coatings-hempel-s-antifouling-olympic-72900-1999-05kg-black-noir.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/antifouling-coatings/antifouling-coatings-hempel-s-antifouling-olympic-72900-1999-05kg-black-noir.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -186,7 +134,7 @@
     "/products/sealants-adhesives/sealants-adhesives-sikaflex-291i-400ml-white-blanc-black-noir": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/sealants-adhesives/sealants-adhesives-sikaflex-291i-400ml-white-blanc-black-noir.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/sealants-adhesives/sealants-adhesives-sikaflex-291i-400ml-white-blanc-black-noir.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -199,7 +147,7 @@
     "/products/sealants-adhesives/sealants-adhesives-sikaflex-295-uv-400ml-white-blanc": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/sealants-adhesives/sealants-adhesives-sikaflex-295-uv-400ml-white-blanc.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/sealants-adhesives/sealants-adhesives-sikaflex-295-uv-400ml-white-blanc.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -212,7 +160,7 @@
     "/products/sealants-adhesives/sealants-adhesives-julien-striaform-2k-epoxy-putty-01kg": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/sealants-adhesives/sealants-adhesives-julien-striaform-2k-epoxy-putty-01kg.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/sealants-adhesives/sealants-adhesives-julien-striaform-2k-epoxy-putty-01kg.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -225,7 +173,7 @@
     "/products/sealants-adhesives/sealants-adhesives-sika-primer-290-dc-225ml": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/sealants-adhesives/sealants-adhesives-sika-primer-290-dc-225ml.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/sealants-adhesives/sealants-adhesives-sika-primer-290-dc-225ml.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -238,7 +186,7 @@
     "/products/oils-filters-batteries/oils-filters-batteries-pack-of-4-kodak-zinc-batteries-aa": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/oils-filters-batteries/oils-filters-batteries-pack-of-4-kodak-zinc-batteries-aa.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/oils-filters-batteries/oils-filters-batteries-pack-of-4-kodak-zinc-batteries-aa.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -251,7 +199,7 @@
     "/products/oils-filters-batteries/oils-filters-batteries-pack-of-4-kodak-zinc-batteries-aaa": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/oils-filters-batteries/oils-filters-batteries-pack-of-4-kodak-zinc-batteries-aaa.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/oils-filters-batteries/oils-filters-batteries-pack-of-4-kodak-zinc-batteries-aaa.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -264,7 +212,7 @@
     "/products/oils-filters-batteries/oils-filters-batteries-9v-kodak-zinc-battery": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/oils-filters-batteries/oils-filters-batteries-9v-kodak-zinc-battery.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/oils-filters-batteries/oils-filters-batteries-9v-kodak-zinc-battery.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -277,7 +225,7 @@
     "/products/oils-filters-batteries/oils-filters-batteries-cr2025-maxell-3v-battery": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/oils-filters-batteries/oils-filters-batteries-cr2025-maxell-3v-battery.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/oils-filters-batteries/oils-filters-batteries-cr2025-maxell-3v-battery.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -290,7 +238,7 @@
     "/products/hardware-tools/hardware-tools-disposable-paint-brush": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/hardware-tools/hardware-tools-disposable-paint-brush.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/hardware-tools/hardware-tools-disposable-paint-brush.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -303,7 +251,7 @@
     "/products/hardware-tools/hardware-tools-short-pile-paint-roller-pack-of-5": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/hardware-tools/hardware-tools-short-pile-paint-roller-pack-of-5.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/hardware-tools/hardware-tools-short-pile-paint-roller-pack-of-5.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -316,7 +264,7 @@
     "/products/hardware-tools/hardware-tools-long-pile-paint-roller-pack-of-5": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/hardware-tools/hardware-tools-long-pile-paint-roller-pack-of-5.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/hardware-tools/hardware-tools-long-pile-paint-roller-pack-of-5.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -329,7 +277,7 @@
     "/products/hardware-tools/hardware-tools-long-roller-frame": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/hardware-tools/hardware-tools-long-roller-frame.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/hardware-tools/hardware-tools-long-roller-frame.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -342,7 +290,7 @@
     "/products/hardware-tools/hardware-tools-20cm-short-pile-paint-roller-plus-frame": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/hardware-tools/hardware-tools-20cm-short-pile-paint-roller-plus-frame.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/hardware-tools/hardware-tools-20cm-short-pile-paint-roller-plus-frame.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -355,7 +303,7 @@
     "/products/hardware-tools/hardware-tools-wood-handle-filling-knife-50mm": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/hardware-tools/hardware-tools-wood-handle-filling-knife-50mm.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/hardware-tools/hardware-tools-wood-handle-filling-knife-50mm.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -368,7 +316,7 @@
     "/products/hardware-tools/hardware-tools-body-filler-application-set-4pce": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/hardware-tools/hardware-tools-body-filler-application-set-4pce.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/hardware-tools/hardware-tools-body-filler-application-set-4pce.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -381,7 +329,7 @@
     "/products/hardware-tools/hardware-tools-sds-paint-mixer-80-x-600-x-10mm": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/hardware-tools/hardware-tools-sds-paint-mixer-80-x-600-x-10mm.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/hardware-tools/hardware-tools-sds-paint-mixer-80-x-600-x-10mm.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -394,7 +342,7 @@
     "/products/hardware-tools/hardware-tools-technopole-6-in-1-penetrating-lubricant-oil-300ml": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/hardware-tools/hardware-tools-technopole-6-in-1-penetrating-lubricant-oil-300ml.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/hardware-tools/hardware-tools-technopole-6-in-1-penetrating-lubricant-oil-300ml.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -407,7 +355,7 @@
     "/products/hardware-tools/hardware-tools-technopole-degrippant-penetrating-express-spray-300ml": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/hardware-tools/hardware-tools-technopole-degrippant-penetrating-express-spray-300ml.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/hardware-tools/hardware-tools-technopole-degrippant-penetrating-express-spray-300ml.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -420,7 +368,7 @@
     "/products/hardware-tools/hardware-tools-saratoga-unloose-lubricant-300ml": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/hardware-tools/hardware-tools-saratoga-unloose-lubricant-300ml.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/hardware-tools/hardware-tools-saratoga-unloose-lubricant-300ml.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -433,7 +381,7 @@
     "/products/hardware-tools/hardware-tools-ds-earmuff-ear-protection-black-yellow": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/hardware-tools/hardware-tools-ds-earmuff-ear-protection-black-yellow.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/hardware-tools/hardware-tools-ds-earmuff-ear-protection-black-yellow.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -446,7 +394,7 @@
     "/products/hardware-tools/hardware-tools-climax-half-mask-ref-324": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/hardware-tools/hardware-tools-climax-half-mask-ref-324.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/hardware-tools/hardware-tools-climax-half-mask-ref-324.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -459,7 +407,7 @@
     "/products/hardware-tools/hardware-tools-sun-nitrile-disposable-gloves-blackxl": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/hardware-tools/hardware-tools-sun-nitrile-disposable-gloves-blackxl.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/hardware-tools/hardware-tools-sun-nitrile-disposable-gloves-blackxl.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -472,7 +420,7 @@
     "/products/hardware-tools/hardware-tools-acem-screwdriver-orange-ph1-x-100mm": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/hardware-tools/hardware-tools-acem-screwdriver-orange-ph1-x-100mm.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/hardware-tools/hardware-tools-acem-screwdriver-orange-ph1-x-100mm.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -485,7 +433,59 @@
     "/products/hardware-tools/hardware-tools-untitled-product": {
       "initialRevalidateSeconds": false,
       "srcRoute": "/products/[categorySlug]/[productId]",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/hardware-tools/hardware-tools-untitled-product.json",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/hardware-tools/hardware-tools-untitled-product.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/products/antifouling-coatings": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/products/[categorySlug]",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/antifouling-coatings.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/products/sealants-adhesives": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/products/[categorySlug]",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/sealants-adhesives.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/products/oils-filters-batteries": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/products/[categorySlug]",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/oils-filters-batteries.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/products/hardware-tools": {
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/products/[categorySlug]",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/hardware-tools.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -497,11 +497,11 @@
     }
   },
   "dynamicRoutes": {
-    "/products/[categorySlug]": {
-      "routeRegex": "^/products/([^/]+?)(?:/)?$",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/[categorySlug].json",
+    "/products/[categorySlug]/[productId]": {
+      "routeRegex": "^/products/([^/]+?)/([^/]+?)(?:/)?$",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/[categorySlug]/[productId].json",
       "fallback": false,
-      "dataRouteRegex": "^/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/([^/]+?)\\.json$",
+      "dataRouteRegex": "^/_next/data/c16yXDBOksTNyzsvZmL39/products/([^/]+?)/([^/]+?)\\.json$",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -511,11 +511,11 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/products/[categorySlug]/[productId]": {
-      "routeRegex": "^/products/([^/]+?)/([^/]+?)(?:/)?$",
-      "dataRoute": "/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/[categorySlug]/[productId].json",
+    "/products/[categorySlug]": {
+      "routeRegex": "^/products/([^/]+?)(?:/)?$",
+      "dataRoute": "/_next/data/c16yXDBOksTNyzsvZmL39/products/[categorySlug].json",
       "fallback": false,
-      "dataRouteRegex": "^/_next/data/ISK0Hi0jnyiIxlQktqIEO/products/([^/]+?)/([^/]+?)\\.json$",
+      "dataRouteRegex": "^/_next/data/c16yXDBOksTNyzsvZmL39/products/([^/]+?)\\.json$",
       "allowHeader": [
         "host",
         "x-matched-path",

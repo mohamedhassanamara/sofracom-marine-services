@@ -225,19 +225,32 @@ export default function ProductDetailPage({ product, category }) {
                                 </span>
                             ))}
                         </div>
-                        <div className="flex items-center gap-4">
-                            <span className="text-4xl font-bold text-gray-900">
-                                {formatPrice(detailPrice)}
-                            </span>
-                            <span
-                                className={`stock-badge ${
-                                    product.stock === 'in'
-                                        ? 'stock-badge--in'
-                                        : 'stock-badge--out'
-                                }`}
-                            >
-                                {product.stock === 'in' ? 'In stock' : 'Out of stock'}
-                            </span>
+                        <div className="flex flex-col gap-1">
+                            <div className="flex items-center gap-4">
+                                <span className="text-4xl font-bold text-gray-900">
+                                    {formatPrice(detailPrice)}
+                                </span>
+                                <span
+                                    className={`stock-badge ${
+                                        product.stock === 'in'
+                                            ? 'stock-badge--in'
+                                            : product.stock === 'on-order'
+                                                ? 'stock-badge--order'
+                                                : 'stock-badge--out'
+                                    }`}
+                                >
+                                    {product.stock === 'in'
+                                        ? 'In stock'
+                                        : product.stock === 'on-order'
+                                            ? 'On order'
+                                            : 'Out of stock'}
+                                </span>
+                            </div>
+                            {product.stock === 'on-order' && (
+                                <p className="text-sm text-orange-400">
+                                    This item is on order; delivery will take longer.
+                                </p>
+                            )}
                         </div>
                         <div className="flex flex-wrap gap-2">
                             {product.variants.length ? (
