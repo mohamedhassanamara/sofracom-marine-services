@@ -12,7 +12,7 @@ pnpm-debug.log*
 
 # Editor & OS cruft
 .DS_Store
-assets/.DS_Store
+public/.DS_Store
 .idea/
 *.swp
 

@@ -1,0 +1,13 @@
+{
+  "/": "pages/index.html",
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/_error": "pages/_error.js",
+  "/api/create-order": "pages/api/create-order.js",
+  "/api/create-quote": "pages/api/create-quote.js",
+  "/api/firebase-service": "pages/api/firebase-service.js",
+  "/products": "pages/products.js",
+  "/products/[categorySlug]": "pages/products/[categorySlug].js",
+  "/products/[categorySlug]/[productId]": "pages/products/[categorySlug]/[productId].js",
+  "/404": "pages/404.html"
+}

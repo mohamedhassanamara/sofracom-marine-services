@@ -1,0 +1,172 @@
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+
+const TRANSLATIONS = {
+    en: {
+        'nav.home': 'Home',
+        'nav.about': 'About',
+        'nav.brands': 'Brands',
+        'nav.products': 'Products',
+        'nav.services': 'Services',
+        'nav.contact': 'Contact',
+        'hero.title': 'Marine Supplies & Services in Monastir',
+        'hero.subtitle': 'Quick repairs and full projects: antifouling, polishing, gelcoat, deck renewal, hauling & more.',
+        'hero.cta1': 'Explore Services',
+        'hero.cta2': 'Get a Quote',
+        'about.title': 'About SOFRACOM',
+        'brands.title': 'Trusted Brands',
+        'brands.subtitle': 'We stock leading marine brands and can quickly order what’s not on-hand via established suppliers.',
+        'services.title': 'Services',
+        'monoA.title': 'Monastir, Tunisia',
+        'monoA.subtitle': 'Marina views • Ribat • Old town',
+        'monoB.title': 'Haul-out near Port de pêche',
+        'monoB.subtitle': '1 mile from Monastir Marina',
+        'testimonials.title': 'What skippers say',
+        'faq.title': 'FAQ',
+        'faq.q1': 'Do you deliver to the marina?',
+        'faq.a1': 'Yes, we’re nearby and can arrange quick deliveries to Marina Monastir.',
+        'faq.q2': 'Can I request a free quote?',
+        'faq.a2': 'Absolutely. Use the contact form below or call us to discuss your project.',
+        'faq.q3': 'Do you stock everything shown?',
+        'faq.a3': 'Not all items are in stock at all times, but we can order quickly via suppliers.',
+        'contact.title': 'Contact Us',
+        'contact.address1': 'SOFRACOM Store',
+        'contact.address2': 'Remada Street, Monastir',
+        'contact.hours': 'Hours: Mon–Sat, 8:00–17:00 (Closed public holidays)',
+        'contact.btn': 'Request a Free Quote',
+        'form.name': 'Name',
+        'form.email': 'Email',
+        'form.subject': 'Subject',
+        'form.message': 'Message',
+        'form.send': 'Send',
+        'footer.quick': 'Quick Links',
+        'footer.monastir': 'Near Marina Monastir & Port de pêche',
+    },
+    fr: {
+        'nav.home': 'Accueil',
+        'nav.about': 'À propos',
+        'nav.brands': 'Marques',
+        'nav.products': 'Produits',
+        'nav.services': 'Services',
+        'nav.contact': 'Contact',
+        'hero.title': 'Fournitures et services marins à Monastir',
+        'hero.subtitle': 'Petites réparations et projets complets : antifouling, polissage, gelcoat, pont, carénage et plus.',
+        'hero.cta1': 'Découvrir les services',
+        'hero.cta2': 'Demander un devis',
+        'about.title': 'À propos de SOFRACOM',
+        'brands.title': 'Marques de confiance',
+        'brands.subtitle': 'Nous stockons des marques marines leaders et pouvons commander rapidement ce qui manque.',
+        'services.title': 'Services',
+        'monoA.title': 'Monastir, Tunisie',
+        'monoA.subtitle': 'Vue marina • Ribat • Médina',
+        'monoB.title': 'Carénage près du Port de pêche',
+        'monoB.subtitle': 'À 1 mile de la Marina de Monastir',
+        'testimonials.title': 'Avis de skippers',
+        'faq.title': 'FAQ',
+        'faq.q1': 'Livrez-vous à la marina ?',
+        'faq.a1': 'Oui, nous sommes proches et pouvons livrer rapidement à la Marina de Monastir.',
+        'faq.q2': 'Puis-je demander un devis gratuit ?',
+        'faq.a2': 'Bien sûr. Utilisez le formulaire de contact ou appelez-nous pour discuter de votre projet.',
+        'faq.q3': 'Tout est-il en stock ?',
+        'faq.a3': 'Pas toujours, mais nous pouvons commander rapidement via nos fournisseurs.',
+        'contact.title': 'Nous contacter',
+        'contact.address1': 'Magasin SOFRACOM',
+        'contact.address2': 'Rue Remada, Monastir',
+        'contact.hours': 'Horaires : Lun–Sam, 8:00–17:00 (Fériés fermés)',
+        'contact.btn': 'Demander un devis',
+        'form.name': 'Nom',
+        'form.email': 'E-mail',
+        'form.subject': 'Objet',
+        'form.message': 'Message',
+        'form.send': 'Envoyer',
+        'footer.quick': 'Liens rapides',
+        'footer.monastir': 'Près de la Marina de Monastir & Port de pêche',
+    },
+    ar: {
+        'nav.home': 'الرئيسية',
+        'nav.about': 'من نحن',
+        'nav.brands': 'العلامات',
+        'nav.products': 'المنتجات',
+        'nav.services': 'الخدمات',
+        'nav.contact': 'اتصل بنا',
+        'hero.title': 'خدمات ومستلزمات بحرية في المنستير',
+        'hero.subtitle': 'إصلاحات سريعة ومشاريع كاملة: مضاد fouling، تلميع، جيلكوت، تجديد السطح، الرفع والمزيد.',
+        'hero.cta1': 'استكشاف الخدمات',
+        'hero.cta2': 'طلب عرض سعر',
+        'about.title': 'عن SOFRACOM',
+        'brands.title': 'علامات موثوقة',
+        'brands.subtitle': 'نوفر أشهر العلامات البحرية ويمكننا طلب أي منتج غير متوفر بسرعة.',
+        'services.title': 'الخدمات',
+        'monoA.title': 'المنستير، تونس',
+        'monoA.subtitle': 'إطلالات المرسى • الرباط • المدينة العتيقة',
+        'monoB.title': 'حوض رفع قرب ميناء الصيد',
+        'monoB.subtitle': 'على بُعد 1 ميل من مرسى المنستير',
+        'testimonials.title': 'آراء الملاك',
+        'faq.title': 'الأسئلة الشائعة',
+        'faq.q1': 'هل توصلون إلى المرسى؟',
+        'faq.a1': 'نعم، نحن قريبون ويمكننا التوصيل بسرعة إلى مرسى المنستير.',
+        'faq.q2': 'هل يمكنني طلب عرض سعر مجاني؟',
+        'faq.a2': 'بالتأكيد. استخدم نموذج الاتصال أدناه أو اتصل بنا لمناقشة مشروعك.',
+        'faq.q3': 'هل كل ما هو معروض متوفر؟',
+        'faq.a3': 'ليست كل العناصر متوفرة دائمًا، لكن يمكننا طلبها بسرعة من الموردين.',
+        'contact.title': 'اتصل بنا',
+        'contact.address1': 'متجر سوفراكوم',
+        'contact.address2': 'شارع رمادة، المنستير',
+        'contact.hours': 'الساعات: الإثنين–السبت 8:00–17:00 (عطلات مغلق)',
+        'contact.btn': 'طلب عرض سعر',
+        'form.name': 'الاسم',
+        'form.email': 'البريد الإلكتروني',
+        'form.subject': 'الموضوع',
+        'form.message': 'الرسالة',
+        'form.send': 'إرسال',
+        'footer.quick': 'روابط سريعة',
+        'footer.monastir': 'بالقرب من مرسى المنستير وميناء الصيد',
+    },
+};
+
+const LangContext = createContext({
+    lang: 'en',
+    setLang: () => {},
+    t: key => TRANSLATIONS.en[key] || key,
+});
+
+const STORAGE_KEY = 'sofracom.lang.v1';
+
+export function LangProvider({ children }) {
+    const [lang, setLangState] = useState('en');
+
+    useEffect(() => {
+        const saved = typeof window !== 'undefined' ? window.localStorage.getItem(STORAGE_KEY) : null;
+        if (saved && TRANSLATIONS[saved]) {
+            setLangState(saved);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+        window.localStorage.setItem(STORAGE_KEY, lang);
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        document.body.classList.toggle('rtl', lang === 'ar');
+    }, [lang]);
+
+    const value = useMemo(() => {
+        const translator = key => {
+            return TRANSLATIONS[lang]?.[key] || TRANSLATIONS.en[key] || key;
+        };
+        return {
+            lang,
+            setLang: newLang => {
+                if (TRANSLATIONS[newLang]) {
+                    setLangState(newLang);
+                }
+            },
+            t: translator,
+        };
+    }, [lang]);
+
+    return <LangContext.Provider value={value}>{children}</LangContext.Provider>;
+}
+
+export function useLang() {
+    return useContext(LangContext);
+}

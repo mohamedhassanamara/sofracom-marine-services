@@ -1,0 +1,3 @@
+{
+  "/api/create-order": "pages/api/create-order.js"
+}

@@ -1,0 +1,55 @@
+globalThis.__BUILD_MANIFEST = {
+  "pages": {
+    "/": [
+      "static/chunks/01370c032f289d33.js",
+      "static/chunks/ad72b963e9754a2e.js",
+      "static/chunks/58c00ec137c96ff5.js",
+      "static/chunks/fea4393c4dddaa74.js",
+      "static/chunks/turbopack-68cc74a50e62ed9b.js"
+    ],
+    "/_app": [
+      "static/chunks/7966fc6728f7d4ac.js",
+      "static/chunks/ad72b963e9754a2e.js",
+      "static/chunks/58c00ec137c96ff5.js",
+      "static/chunks/fea4393c4dddaa74.js",
+      "static/chunks/81b2f8616c04ea0d.css",
+      "static/chunks/turbopack-6087f821186d763b.js"
+    ],
+    "/_error": [
+      "static/chunks/331cee5e69fdfc0b.js",
+      "static/chunks/ad72b963e9754a2e.js",
+      "static/chunks/fea4393c4dddaa74.js",
+      "static/chunks/58c00ec137c96ff5.js",
+      "static/chunks/turbopack-fe2f0705dfa6fd85.js"
+    ],
+    "/products": [
+      "static/chunks/6705cafad7330916.js",
+      "static/chunks/ad72b963e9754a2e.js",
+      "static/chunks/58c00ec137c96ff5.js",
+      "static/chunks/fea4393c4dddaa74.js",
+      "static/chunks/turbopack-87a6ba73fb87de95.js"
+    ],
+    "/products/[categorySlug]": [
+      "static/chunks/57beb6a141815c74.js",
+      "static/chunks/ad72b963e9754a2e.js",
+      "static/chunks/58c00ec137c96ff5.js",
+      "static/chunks/fea4393c4dddaa74.js",
+      "static/chunks/turbopack-7f97fa331e407b80.js"
+    ],
+    "/products/[categorySlug]/[productId]": [
+      "static/chunks/a239efd5aaa4c30b.js",
+      "static/chunks/ad72b963e9754a2e.js",
+      "static/chunks/58c00ec137c96ff5.js",
+      "static/chunks/fea4393c4dddaa74.js",
+      "static/chunks/turbopack-97b44c4875179ae1.js"
+    ]
+  },
+  "devFiles": [],
+  "polyfillFiles": [],
+  "lowPriorityFiles": [],
+  "rootMainFiles": []
+};
+globalThis.__BUILD_MANIFEST.lowPriorityFiles = [
+"/static/" + process.env.__NEXT_BUILD_ID + "/_buildManifest.js",
+"/static/" + process.env.__NEXT_BUILD_ID + "/_ssgManifest.js"
+];

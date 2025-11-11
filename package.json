@@ -4,12 +4,19 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "echo \"No lint configured\"",
+    "test": "npm run lint",
     "admin": "node tools/product-admin/server.js",
     "order-admin": "node tools/order-admin/server.js"
   },
   "private": true,
   "dependencies": {
-    "firebase-admin": "^11.11.1"
+    "firebase-admin": "^11.11.1",
+    "next": "^16.0.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   }
 }
