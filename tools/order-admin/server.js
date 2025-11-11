@@ -134,7 +134,7 @@ function serveStatic(req, res, pathname) {
   }
 
   if (pathname.startsWith('/assets/')) {
-    const assetRoot = path.join(repoRoot, 'assets');
+    const assetRoot = path.join(repoRoot, 'public', 'assets');
     const normalized = path.normalize(path.join(repoRoot, pathname));
     if (!normalized.startsWith(assetRoot)) {
       res.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8' });

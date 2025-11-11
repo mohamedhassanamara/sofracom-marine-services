@@ -284,7 +284,9 @@
           ],
           "price": 85.211,
           "stock": "out",
-          "images": [],
+          "images": [
+            "assets/products/striaform-22-mht2r1sx.png"
+          ],
           "variants": [
             {
               "label": "05kg",
@@ -333,7 +335,9 @@
           ],
           "price": 5.024,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/img-20251102-wa0076-mhsup940.jpg"
+          ],
           "variants": [],
           "datasheet": "assets/datasheets/kodak-zinc-batteries-aa-mhsuussb.pdf"
         },
@@ -351,7 +355,9 @@
           ],
           "price": 5.024,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/img-20251102-wa0040-mhsvjyhi.jpg"
+          ],
           "variants": [],
           "datasheet": "assets/datasheets/kodak-zinc-batteries-aa-mhsuyufh.pdf"
         },
@@ -369,7 +375,9 @@
           ],
           "price": 8.841,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/img-20251102-wa0057-mhsvepow.jpg"
+          ],
           "variants": [],
           "datasheet": "assets/datasheets/super-heavy-duty-9v-ver-2.2-mhsvk769.pdf"
         },
@@ -386,7 +394,9 @@
           ],
           "price": 7.235,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/img-20251102-wa0044-mhsvehha.jpg"
+          ],
           "variants": [],
           "datasheet": "assets/datasheets/cr2025_data_sheet_e-mhsvy50i.pdf"
         }
@@ -410,7 +420,7 @@
             "cristal"
           ],
           "price": 2.3,
-          "stock": "in",
+          "stock": "on-order",
           "images": [
             "assets/products/pinceau-cristan-n30-mhhmgsae.jpg",
             "assets/products/img-20251102-wa0048-mhqj1nks.jpg"
@@ -519,7 +529,9 @@
           ],
           "price": 8.822,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/img-20251102-wa0058-mhsw40fp.jpg"
+          ],
           "variants": [],
           "datasheet": ""
         },
@@ -535,7 +547,9 @@
           ],
           "price": 1.708,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/img-20251102-wa0056-mhsxtls9.jpg"
+          ],
           "variants": [
             {
               "label": "70mm",
@@ -561,7 +575,9 @@
           ],
           "price": 3.335,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/img-20251102-wa0078-mhsz9862.jpg"
+          ],
           "variants": [],
           "datasheet": ""
         },
@@ -577,7 +593,9 @@
           ],
           "price": 29.789,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/img-20251102-wa0080-mhszkdn9.jpg"
+          ],
           "variants": [],
           "datasheet": ""
         },
@@ -594,7 +612,9 @@
           ],
           "price": 7.582,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/img-20251102-wa0090-mhszv052.jpg"
+          ],
           "variants": [],
           "datasheet": ""
         },
@@ -608,7 +628,9 @@
           ],
           "price": 5.976,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/img-20251102-wa0091-mht0g77i.jpg"
+          ],
           "variants": [],
           "datasheet": ""
         },
@@ -644,7 +666,9 @@
           ],
           "price": 17.791,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/img-20251102-wa0037-mht3ka2d.jpg"
+          ],
           "variants": [],
           "datasheet": ""
         },
@@ -660,7 +684,9 @@
           ],
           "price": 39.014,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/img-20251102-wa0063-mht3sbov.jpg"
+          ],
           "variants": [],
           "datasheet": ""
         },
@@ -677,7 +703,9 @@
           ],
           "price": 4.958,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/img-20251102-wa0075-mht46qor.jpg"
+          ],
           "variants": [],
           "datasheet": ""
         },
@@ -696,7 +724,9 @@
           ],
           "price": 2.058,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/img-20251102-wa0064-mht4p7yw.jpg"
+          ],
           "variants": [
             {
               "label": "PH2 X 150",
@@ -721,7 +751,9 @@
           "usage": [],
           "price": 0,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/placeholder.png"
+          ],
           "variants": [],
           "datasheet": ""
         }

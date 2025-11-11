@@ -5,10 +5,12 @@
   const categoryTemplate = document.getElementById('categoryTemplate');
   const productTemplate = document.getElementById('productTemplate');
   const categoriesContainer = document.getElementById('categories');
+  const categoryNav = document.getElementById('categoryNav');
   const statusEl = document.getElementById('status');
   const saveBtn = document.getElementById('saveBtn');
   const refreshBtn = document.getElementById('refreshBtn');
   const addCategoryBtn = document.getElementById('addCategoryBtn');
+  let activeCategoryIndex = 0;
 
   function setStatus(message, type = '') {
     statusEl.textContent = message || '';
@@ -235,10 +237,9 @@
         ? category.products.map(product => ({
             ...product,
             usage: sanitizeUsage(product.usage),
-            stock:
-              product.stock === 'out' || product.stock === 'in'
-                ? product.stock
-                : 'in',
+            stock: ['out', 'in', 'on-order'].includes(product.stock)
+              ? product.stock
+              : 'in',
             images:
               Array.isArray(product.images) && product.images.length
                 ? product.images
@@ -289,7 +290,7 @@
     }
 
     if (field === 'stock') {
-      product.stock = event.target.checked ? 'in' : 'out';
+      product.stock = event.target.value;
       return;
     }
 
@@ -352,6 +353,7 @@
       description: '',
       products: [],
     });
+    activeCategoryIndex = state.categories.length - 1;
     render();
   }
 
@@ -362,7 +364,41 @@
     );
     if (!confirmed) return;
     state.categories.splice(index, 1);
+    if (activeCategoryIndex >= state.categories.length) {
+      activeCategoryIndex = state.categories.length - 1;
+    }
     render();
+  }
+
+  function setActiveCategory(index) {
+    activeCategoryIndex = Math.max(0, Math.min(index, state.categories.length - 1));
+    render();
+  }
+
+  function ensureActiveIndex() {
+    if (!state.categories.length) return -1;
+    if (activeCategoryIndex < 0) activeCategoryIndex = 0;
+    if (activeCategoryIndex >= state.categories.length) {
+      activeCategoryIndex = state.categories.length - 1;
+    }
+    return activeCategoryIndex;
+  }
+
+  function renderNav(activeIndex) {
+    if (!categoryNav) return;
+    categoryNav.innerHTML = '';
+    if (!state.categories.length) {
+      categoryNav.innerHTML = '<p class="empty-nav">No categories yet</p>';
+      return;
+    }
+    state.categories.forEach((category, index) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = category.name || `Category ${index + 1}`;
+      button.className = `category-tab${index === activeIndex ? ' active' : ''}`;
+      button.addEventListener('click', () => setActiveCategory(index));
+      categoryNav.appendChild(button);
+    });
   }
 
   function resizeTextarea(textarea) {
@@ -428,8 +464,49 @@
     });
   }
 
+  function clampActiveIndex() {
+    if (!state.categories.length) {
+      activeCategoryIndex = 0;
+      return -1;
+    }
+    if (activeCategoryIndex < 0) activeCategoryIndex = 0;
+    if (activeCategoryIndex >= state.categories.length) {
+      activeCategoryIndex = state.categories.length - 1;
+    }
+    return activeCategoryIndex;
+  }
+
+  function renderNav(activeIndex) {
+    if (!categoryNav) return;
+    categoryNav.innerHTML = '';
+    if (!state.categories.length) {
+      categoryNav.innerHTML = '<p class="empty-nav">Create a category to start</p>';
+      return;
+    }
+    state.categories.forEach((category, index) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = `category-tab${index === activeIndex ? ' active' : ''}`;
+      button.textContent = category.name || `Category ${index + 1}`;
+      button.addEventListener('click', () => {
+        activeCategoryIndex = index;
+        render();
+      });
+      categoryNav.appendChild(button);
+    });
+  }
+
+  function highlightActiveCategory(activeIndex) {
+    const nodes = categoriesContainer.querySelectorAll('.category');
+    nodes.forEach((node, idx) => {
+      node.classList.toggle('hidden', idx !== activeIndex);
+    });
+  }
+
   function render() {
     categoriesContainer.innerHTML = '';
+    const activeIndex = clampActiveIndex();
+    renderNav(activeIndex);
     state.categories.forEach((category, categoryIndex) => {
       const fragment = categoryTemplate.content.cloneNode(true);
       const categoryEl = fragment.querySelector('.category');
@@ -500,7 +577,7 @@
         const descriptionInput = productFragment.querySelector(
           '.product-description'
         );
-        const stockToggle = productFragment.querySelector('.product-stock');
+        const stockSelect = productFragment.querySelector('.product-stock');
         const productDropzoneEl = productFragment.querySelector(
           '.product-dropzone'
         );
@@ -530,7 +607,9 @@
             ? ''
             : product.price;
        descriptionInput.value = product.description || '';
-        stockToggle.checked = (product.stock || 'in') === 'in';
+        stockSelect.value = ['in', 'out', 'on-order'].includes(product.stock)
+          ? product.stock
+          : 'in';
         resizeTextarea(descriptionInput);
         imagesInput.value = (product.images || []).join('\n');
         datasheetInput.value = product.datasheet || '';
@@ -563,7 +642,7 @@
         priceInput.addEventListener('input', event =>
           handleProductInput(event, categoryIndex, productIndex, 'price')
         );
-        stockToggle.addEventListener('change', event =>
+        stockSelect.addEventListener('change', event =>
           handleProductInput(event, categoryIndex, productIndex, 'stock')
         );
         descriptionInput.addEventListener('input', event => {
@@ -653,6 +732,7 @@
 
       categoriesContainer.appendChild(fragment);
     });
+    highlightActiveCategory(activeIndex);
   }
 
   async function loadData() {

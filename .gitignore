@@ -12,10 +12,11 @@ pnpm-debug.log*
 
 # Editor & OS cruft
 .DS_Store
-assets/.DS_Store
+public/.DS_Store
 .idea/
 *.swp
 
 # Static build outputs (add if tooling generates them)
 dist/
 build/
+.next/

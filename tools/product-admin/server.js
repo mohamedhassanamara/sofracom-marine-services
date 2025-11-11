@@ -8,7 +8,7 @@ const HOST = process.env.HOST || '127.0.0.1';
 const PORT = Number(process.env.PORT || 5173);
 
 const repoRoot = path.resolve(__dirname, '../..');
-const dataPath = path.join(repoRoot, 'assets', 'data', 'products.json');
+const dataPath = path.join(repoRoot, 'public', 'assets', 'data', 'products.json');
 const envPath = path.join(repoRoot, '.env');
 let envLoaded = false;
 
@@ -84,8 +84,8 @@ function handleStatic(req, res, pathname) {
     return true;
   }
 
-  if (pathname.startsWith('/assets/')) {
-    const assetRoot = path.join(repoRoot, 'assets');
+    if (pathname.startsWith('/assets/')) {
+        const assetRoot = path.join(repoRoot, 'public', 'assets');
     const requested = path.normalize(path.join(repoRoot, pathname));
     if (!requested.startsWith(assetRoot)) {
       res.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8' });
@@ -291,7 +291,7 @@ function sanitizeBasename(name) {
 }
 
 function ensureAssetsSubdir(bucket) {
-  const target = path.join(repoRoot, 'assets', bucket);
+  const target = path.join(repoRoot, 'public', 'assets', bucket);
   if (!fs.existsSync(target)) {
     fs.mkdirSync(target, { recursive: true });
   }
