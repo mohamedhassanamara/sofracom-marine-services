@@ -50,7 +50,15 @@ export default function Layout({ children }) {
         const term = searchTerm.trim().toLowerCase();
         if (!term) return [];
         return productsIndex
-            .filter(product => product.title.toLowerCase().includes(term))
+            .filter(product => {
+                const imageText = (product.image || '').toLowerCase();
+                const priceText = formatCurrency(product.price).toLowerCase();
+                return (
+                    product.title.toLowerCase().includes(term) ||
+                    imageText.includes(term) ||
+                    priceText.includes(term)
+                );
+            })
             .slice(0, 6);
     }, [productsIndex, searchTerm]);
     const navigateToSuggestion = suggestion => {
