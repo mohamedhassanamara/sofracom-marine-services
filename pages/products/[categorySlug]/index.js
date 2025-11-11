@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
 import useCart from '../../../hooks/useCart';
 import {
     getCategoryBySlug,
@@ -12,12 +13,150 @@ const FR_NUMBER_FORMAT = new Intl.NumberFormat('fr-TN', {
     currency: OUTPUT_CURRENCY,
 });
 
+const DELIVERY_FEE = 7;
+
 const formatPrice = value => {
     if (!Number.isFinite(value)) {
         return `${value || 0} ${OUTPUT_CURRENCY}`;
     }
     return FR_NUMBER_FORMAT.format(value);
 };
+
+function ProductCard({ product, categorySlug, onAdd }) {
+    const [variantIndex, setVariantIndex] = useState(0);
+    const [showFull, setShowFull] = useState(false);
+    const description = product.description || '';
+    const isLongDescription = description.length > 140;
+    const previewDescription = description.slice(0, 140);
+    const variants = Array.isArray(product.variants) ? product.variants : [];
+    const selectedVariant = variants[variantIndex] || null;
+    const priceLabel = formatPrice(selectedVariant?.price ?? product.price ?? 0);
+
+    const handleVariantChange = event => {
+        setVariantIndex(Number(event.target.value));
+    };
+
+    const handleAdd = () => {
+        onAdd(product, selectedVariant);
+    };
+
+    return (
+        <article
+            className={`product-card ${product.stock === 'out' ? 'product-out' : ''}`}
+            data-tilt
+        >
+            <Link
+                href={`/products/${categorySlug}/${product.id}`}
+                className="block"
+                aria-label={`View ${product.title}`}
+            >
+                <img
+                    src={product.image}
+                    alt={product.title}
+                    className="card-img"
+                />
+            </Link>
+            <div className="p-6 flex flex-col gap-3">
+                <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-semibold text-gray-900">
+                        {product.title}
+                    </h3>
+                    <span className="text-xs text-gray-500 uppercase">
+                        {product.brand}
+                    </span>
+                </div>
+                <p className="product-description">
+                    {showFull || !isLongDescription
+                        ? description
+                        : `${previewDescription}…`}
+                    {isLongDescription && (
+                        <button
+                            type="button"
+                            className="product-readmore"
+                            onClick={() => setShowFull(prev => !prev)}
+                        >
+                            {showFull ? 'Show less' : 'Read more'}
+                        </button>
+                    )}
+                </p>
+                {product.datasheet && (
+                    <a
+                        href={product.datasheet}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="product-datasheet-link"
+                    >
+                        Download datasheet
+                    </a>
+                )}
+                <div className="variant-row">
+                    {variants.length ? (
+                        <>
+                            <label className="sr-only" htmlFor={`variant-${product.id}`}>
+                                Choose variant
+                            </label>
+                            <select
+                                id={`variant-${product.id}`}
+                                className="variant-select"
+                                value={variantIndex}
+                                onChange={handleVariantChange}
+                            >
+                                {variants.map((variant, idx) => (
+                                    <option key={`${product.id}-variant-${idx}`} value={idx}>
+                                        {variant.label || `Variant ${idx + 1}`} ·{' '}
+                                        {formatPrice(variant.price ?? product.price ?? 0)}
+                                    </option>
+                                ))}
+                            </select>
+                        </>
+                    ) : (
+                        <p className="text-xs text-gray-500">Single configuration</p>
+                    )}
+                </div>
+                <div className="product-price-row">
+                    <span className="product-price">{priceLabel}</span>
+                    <span
+                        className={`stock-badge ${
+                            product.stock === 'in'
+                                ? 'stock-badge--in'
+                                : product.stock === 'on-order'
+                                    ? 'stock-badge--order'
+                                    : 'stock-badge--out'
+                        }`}
+                    >
+                        {STOCK_LABEL[product.stock] || 'Unknown'}
+                    </span>
+                </div>
+                <div className="flex gap-2 flex-wrap">
+                    {product.usage.map(tag => (
+                        <span
+                            key={`${product.id}-${tag}`}
+                            className="tag px-3 py-1 rounded-full text-xs"
+                        >
+                            {tag}
+                        </span>
+                    ))}
+                </div>
+                <div className="product-actions mt-auto">
+                    <Link
+                        href={`/products/${categorySlug}/${product.id}`}
+                        className="product-detail-btn"
+                    >
+                        View details
+                    </Link>
+                    <button
+                        type="button"
+                        className="cart-submit px-4 py-2 text-sm"
+                        onClick={handleAdd}
+                        disabled={product.stock === 'out'}
+                    >
+                        Add to cart
+                    </button>
+                </div>
+            </div>
+        </article>
+    );
+}
 
 export async function getStaticPaths() {
     const categories = getCategories();
@@ -60,7 +199,39 @@ export default function CategoryPage({ category }) {
         address: '',
         notes: '',
     });
-    const { cart, addItem, updateQuantity, removeItem, total, count, hasOnOrderItem } = useCart();
+    const router = useRouter();
+    const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
+    const [orderConfirmationVisible, setOrderConfirmationVisible] = useState(false);
+    const [orderHadOnOrderItems, setOrderHadOnOrderItems] = useState(false);
+    const { cart, addItem, updateQuantity, removeItem, total, count, hasOnOrderItem, resetCart } = useCart();
+    const grandTotal = total + DELIVERY_FEE;
+    const [onOrderNoticeVisible, setOnOrderNoticeVisible] = useState(false);
+    const onOrderNoticeTimeout = useRef(null);
+
+    useEffect(() => {
+        return () => {
+            if (onOrderNoticeTimeout.current) {
+                clearTimeout(onOrderNoticeTimeout.current);
+            }
+        };
+    }, []);
+
+    const showOnOrderNotice = () => {
+        if (onOrderNoticeTimeout.current) {
+            clearTimeout(onOrderNoticeTimeout.current);
+        }
+        setOnOrderNoticeVisible(true);
+        onOrderNoticeTimeout.current = setTimeout(() => {
+            setOnOrderNoticeVisible(false);
+        }, 7000);
+    };
+
+    const hideOnOrderNotice = () => {
+        if (onOrderNoticeTimeout.current) {
+            clearTimeout(onOrderNoticeTimeout.current);
+        }
+        setOnOrderNoticeVisible(false);
+    };
 
     const availableBrands = useMemo(() => {
         const brands = Array.from(
@@ -122,6 +293,7 @@ export default function CategoryPage({ category }) {
         }
         setCheckoutSubmitting(true);
         setCheckoutStatus({ message: 'Sending order…', type: '' });
+        const currentGrandTotal = total + DELIVERY_FEE;
         const payload = {
             customer: checkoutForm,
             items: cart.map(item => ({
@@ -133,10 +305,12 @@ export default function CategoryPage({ category }) {
                 category: item.category,
                 variantLabel: item.variantLabel,
             })),
-            total,
+            total: currentGrandTotal,
+            delivery_fee: DELIVERY_FEE,
             currency: OUTPUT_CURRENCY,
         };
         try {
+            const hadOnOrderItems = hasOnOrderItem;
             const response = await fetch('/api/create-order', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -147,10 +321,14 @@ export default function CategoryPage({ category }) {
                 throw new Error(result.error || 'Unable to place order');
             }
             setCheckoutForm({ name: '', phone: '', address: '', notes: '' });
-            setCheckoutStatus({
-                message: 'Order submitted! We will confirm shortly.',
-                type: 'success',
-            });
+            setCheckoutStatus({ message: '', type: '' });
+            resetCart();
+            setCartOpen(false);
+            if (hadOnOrderItems) {
+                showOnOrderNotice();
+            }
+            setOrderHadOnOrderItems(hadOnOrderItems);
+            setOrderConfirmationVisible(true);
         } catch (error) {
             console.error('[order] submit failed', error);
             setCheckoutStatus({
@@ -167,6 +345,27 @@ export default function CategoryPage({ category }) {
         setCheckoutStatus({ message: '', type: '' });
     };
     const closeCart = () => setCartOpen(false);
+    const openCheckoutModal = () => {
+        if (!cart.length) return;
+        setOrderConfirmationVisible(false);
+        setCheckoutStatus({ message: '', type: '' });
+        setCheckoutModalOpen(true);
+    };
+    const closeCheckoutModal = () => {
+        setCheckoutModalOpen(false);
+        setOrderConfirmationVisible(false);
+        setCheckoutStatus({ message: '', type: '' });
+    };
+    const goHome = () => {
+        closeCheckoutModal();
+        router.push('/');
+    };
+    const confirmationTitle = orderHadOnOrderItems
+        ? 'Order received – delays expected'
+        : 'Order received';
+    const confirmationSubtitle = orderHadOnOrderItems
+        ? 'Order received but may have some delay until on-order items are present in the store.'
+        : 'Order received successfully.';
 
     return (
         <>
@@ -213,89 +412,19 @@ export default function CategoryPage({ category }) {
                 </div>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {renderedProducts.map(product => (
-                        <article
+                        <ProductCard
                             key={product.id}
-                            className={`product-card ${
-                                product.stock === 'out' ? 'product-out' : ''
-                            }`}
-                            data-tilt
-                        >
-                            <Link
-                                href={`/products/${category.slug}/${product.id}`}
-                                className="block"
-                                aria-label={`View ${product.title}`}
-                            >
-                                <img
-                                    src={product.image}
-                                    alt={product.title}
-                                    className="card-img"
-                                />
-                            </Link>
-                            <div className="p-6 flex flex-col gap-3">
-                        <div className="flex items-center justify-between">
-                            <h3 className="text-lg font-semibold text-gray-900">
-                                {product.title}
-                            </h3>
-                            <span className="text-xs text-gray-500 uppercase">
-                                {product.brand}
-                            </span>
-                        </div>
-                        <p className="product-description">
-                            {product.description}
-                        </p>
-                        <div className="product-price-row">
-                            <span className="product-price">
-                                {formatPrice(product.price)}
-                            </span>
-                            <span
-                                className={`stock-badge ${
-                                    product.stock === 'in'
-                                        ? 'stock-badge--in'
-                                        : product.stock === 'on-order'
-                                            ? 'stock-badge--order'
-                                            : 'stock-badge--out'
-                                }`}
-                            >
-                                {STOCK_LABEL[product.stock] || 'Unknown'}
-                            </span>
-                        </div>
-                        <div className="flex gap-2 flex-wrap">
-                            {product.usage.map(tag => (
-                                <span
-                                    key={`${product.id}-${tag}`}
-                                    className="tag px-3 py-1 rounded-full text-xs"
-                                >
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
-                        <div className="product-actions mt-auto">
-                            <Link
-                                href={`/products/${category.slug}/${product.id}`}
-                                className="product-detail-btn"
-                            >
-                                View details
-                            </Link>
-                            <button
-                                type="button"
-                                className="cart-submit px-4 py-2 text-sm"
-                                onClick={() =>
-                                    addToCart(
-                                        product,
-                                        product.variants[0]
-                                    )
-                                }
-                                disabled={product.stock !== 'in'}
-                            >
-                                Add to cart
-                            </button>
-                        </div>
-                            </div>
-                        </article>
+                            product={product}
+                            categorySlug={category.slug}
+                            onAdd={addToCart}
+                        />
                     ))}
                 </div>
             </main>
             <button id="cartFab" className="cart-fab" type="button" onClick={openCart}>
+                <span className="cart-icon" aria-hidden="true">
+                    🛒
+                </span>
                 <span>Cart</span>
                 <span className="px-2 py-1 rounded-full bg-white/15 text-sm font-semibold">
                     {count}
@@ -330,6 +459,24 @@ export default function CategoryPage({ category }) {
                         ×
                     </button>
                 </div>
+                {onOrderNoticeVisible && (
+                    <div className="cart-onorder-popup" role="alert">
+                        <div>
+                            <strong>On-demand items</strong>
+                            <p className="text-sm">
+                                Some items will take longer to arrive—expect a delay until they reach the store.
+                            </p>
+                        </div>
+                        <button
+                            type="button"
+                            className="cart-onorder-close"
+                            aria-label="Dismiss notice"
+                            onClick={hideOnOrderNotice}
+                        >
+                            ×
+                        </button>
+                    </div>
+                )}
                 <div className="cart-body" id="cartItems">
                     {cart.length ? (
                         cart.map(item => (
@@ -347,6 +494,9 @@ export default function CategoryPage({ category }) {
                                         {item.variantLabel
                                             ? item.variantLabel
                                             : item.category}
+                                    </p>
+                                    <p className="cart-item-price">
+                                        {formatPrice(item.price)}
                                     </p>
                                     <div className="cart-qty mt-2">
                                         <button
@@ -400,73 +550,125 @@ export default function CategoryPage({ category }) {
                 </div>
                 <div className="cart-summary">
                     <div className="cart-summary-row">
-                        <span>Total</span>
+                        <span>Items total</span>
                         <span>{formatPrice(total)}</span>
                     </div>
-                    {hasOnOrderItem && (
-                        <p className="text-xs text-orange-500 mt-2">
-                            Delivery may take longer for on-order items.
-                        </p>
-                    )}
-                    <p className={`cart-alert ${checkoutStatus.type}`} role="status">
-                        {checkoutStatus.message}
-                    </p>
-                </div>
-                <form
-                    id="checkoutForm"
-                    className="cart-form"
-                    onSubmit={handleCheckoutSubmit}
-                    noValidate
-                >
-                    <label>
-                        <span>Full name</span>
-                        <input
-                            type="text"
-                            name="name"
-                            value={checkoutForm.name}
-                            onChange={handleCheckoutInput}
-                            required
-                        />
-                    </label>
-                    <label>
-                        <span>Phone</span>
-                        <input
-                            type="tel"
-                            name="phone"
-                            value={checkoutForm.phone}
-                            onChange={handleCheckoutInput}
-                            required
-                        />
-                    </label>
-                    <label>
-                        <span>Delivery address</span>
-                        <textarea
-                            name="address"
-                            rows="2"
-                            value={checkoutForm.address}
-                            onChange={handleCheckoutInput}
-                            required
-                        />
-                    </label>
-                    <label>
-                        <span>Notes (optional)</span>
-                        <textarea
-                            name="notes"
-                            rows="2"
-                            value={checkoutForm.notes}
-                            onChange={handleCheckoutInput}
-                        />
-                    </label>
+                    <div className="cart-summary-row">
+                        <span>Delivery fee</span>
+                        <span>{formatPrice(DELIVERY_FEE)}</span>
+                    </div>
+                    <div className="cart-summary-row cart-summary-total">
+                        <span>Grand total</span>
+                        <span>{formatPrice(grandTotal)}</span>
+                    </div>
                     <button
-                        id="cartSubmitBtn"
-                        type="submit"
+                        type="button"
                         className="cart-submit"
-                        disabled={checkoutSubmitting}
+                        onClick={openCheckoutModal}
+                        disabled={!cart.length}
                     >
-                        {checkoutSubmitting ? 'Sending…' : 'Send order'}
+                        Checkout
                     </button>
-                </form>
+                </div>
             </aside>
+            {checkoutModalOpen && (
+                <div
+                    className="checkout-modal-overlay"
+                    role="dialog"
+                    aria-modal="true"
+                    onClick={closeCheckoutModal}
+                >
+                    <div className="checkout-modal" onClick={event => event.stopPropagation()}>
+                        <header className="checkout-modal-header">
+                            <h3 className="checkout-modal-title">Checkout</h3>
+                            <button
+                                type="button"
+                                className="checkout-modal-close"
+                                aria-label="Close checkout"
+                                onClick={closeCheckoutModal}
+                            >
+                                ×
+                            </button>
+                        </header>
+                        {orderConfirmationVisible ? (
+                            <div className="checkout-confirmation">
+                                <p className="text-base font-semibold text-gray-900">
+                                    {confirmationTitle}
+                                </p>
+                                <p className="text-sm text-gray-600 mt-1">
+                                    {confirmationSubtitle}
+                                </p>
+                                <button
+                                    type="button"
+                                    className="cart-submit"
+                                    onClick={goHome}
+                                >
+                                    Go to home
+                                </button>
+                            </div>
+                        ) : (
+                            <form
+                                id="checkoutForm"
+                                className="cart-form"
+                                onSubmit={handleCheckoutSubmit}
+                                noValidate
+                            >
+                                <label>
+                                    <span>Full name</span>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value={checkoutForm.name}
+                                        onChange={handleCheckoutInput}
+                                        required
+                                    />
+                                </label>
+                                <label>
+                                    <span>Phone</span>
+                                    <input
+                                        type="tel"
+                                        name="phone"
+                                        value={checkoutForm.phone}
+                                        onChange={handleCheckoutInput}
+                                        required
+                                    />
+                                </label>
+                                <label>
+                                    <span>Delivery address</span>
+                                    <textarea
+                                        name="address"
+                                        rows="2"
+                                        value={checkoutForm.address}
+                                        onChange={handleCheckoutInput}
+                                        required
+                                    />
+                                </label>
+                                <label>
+                                    <span>Notes (optional)</span>
+                                    <textarea
+                                        name="notes"
+                                        rows="2"
+                                        value={checkoutForm.notes}
+                                        onChange={handleCheckoutInput}
+                                    />
+                                </label>
+                                {checkoutStatus.type === 'error' && (
+                                    <p className="cart-alert error" role="status">
+                                        {checkoutStatus.message}
+                                    </p>
+                                )}
+                                <button
+                                    type="submit"
+                                    className="cart-submit"
+                                    disabled={checkoutSubmitting}
+                                >
+                                    {checkoutSubmitting ? 'Sending…' : 'Order'}
+                                </button>
+                            </form>
+                        )}
+                    </div>
+                </div>
+            )}
         </>
     );
 }

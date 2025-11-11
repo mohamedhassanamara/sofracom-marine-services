@@ -2,7 +2,7 @@ const admin = require('firebase-admin');
 const fs = require('fs');
 const path = require('path');
 
-const repoRoot = path.resolve(__dirname, '..');
+const repoRoot = path.resolve(process.cwd());
 const DEFAULT_SERVICE_ACCOUNT = path.join(
   repoRoot,
   'sofracom-firebase-adminsdk-fbsvc-94ea761cbb.json'
@@ -30,10 +30,10 @@ function loadFromEnv() {
   return { project_id: projectId, client_email: clientEmail, private_key: privateKey };
 }
 
-function loadFromJsonFile() {
-  if (!fs.existsSync(DEFAULT_SERVICE_ACCOUNT)) return null;
+function loadServiceAccountFromPath(filePath) {
+  if (!filePath || !fs.existsSync(filePath)) return null;
   try {
-    const raw = fs.readFileSync(DEFAULT_SERVICE_ACCOUNT, 'utf-8');
+    const raw = fs.readFileSync(filePath, 'utf-8');
     const parsed = JSON.parse(raw);
     if (!parsed.private_key || !parsed.private_key.includes('-----BEGIN PRIVATE KEY-----')) {
       console.warn('[firebase-service] service account JSON missing private_key');
@@ -46,6 +46,19 @@ function loadFromJsonFile() {
   }
 }
 
+function loadFromJsonFile() {
+  return loadServiceAccountFromPath(DEFAULT_SERVICE_ACCOUNT);
+}
+
+function loadFromCustomPath() {
+  const relativePath = process.env.FIREBASE_SERVICE_ACCOUNT_PATH;
+  if (!relativePath) return null;
+  const absolutePath = path.isAbsolute(relativePath)
+    ? relativePath
+    : path.join(repoRoot, relativePath);
+  return loadServiceAccountFromPath(absolutePath);
+}
+
 function getFirebaseApp() {
   if (admin.apps.length) return admin.app();
   const fromEnv = loadFromEnv();
@@ -55,6 +68,10 @@ function getFirebaseApp() {
   const fromBase64 = loadFromBase64();
   if (fromBase64) {
     return admin.initializeApp({ credential: admin.credential.cert(fromBase64) });
+  }
+  const fromCustomPath = loadFromCustomPath();
+  if (fromCustomPath) {
+    return admin.initializeApp({ credential: admin.credential.cert(fromCustomPath) });
   }
   const fromFile = loadFromJsonFile();
   if (fromFile) {

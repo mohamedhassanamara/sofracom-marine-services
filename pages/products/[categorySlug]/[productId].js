@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
 import useCart from '../../../hooks/useCart';
 import {
     getProductById,
@@ -11,6 +12,8 @@ const FR_NUMBER_FORMAT = new Intl.NumberFormat('fr-TN', {
     style: 'currency',
     currency: OUTPUT_CURRENCY,
 });
+
+const DELIVERY_FEE = 7;
 
 const formatPrice = value => {
     if (!Number.isFinite(value)) {
@@ -46,6 +49,7 @@ export async function getStaticProps({ params }) {
 }
 
 export default function ProductDetailPage({ product, category }) {
+    const router = useRouter();
     const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
     const [activeImageIndex, setActiveImageIndex] = useState(0);
     const [cartOpen, setCartOpen] = useState(false);
@@ -57,7 +61,38 @@ export default function ProductDetailPage({ product, category }) {
         address: '',
         notes: '',
     });
-    const { cart, addItem, updateQuantity, removeItem, total, count } = useCart();
+    const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
+    const [orderConfirmationVisible, setOrderConfirmationVisible] = useState(false);
+    const [orderHadOnOrderItems, setOrderHadOnOrderItems] = useState(false);
+    const { cart, addItem, updateQuantity, removeItem, total, count, hasOnOrderItem, resetCart } = useCart();
+    const grandTotal = total + DELIVERY_FEE;
+    const [onOrderNoticeVisible, setOnOrderNoticeVisible] = useState(false);
+    const onOrderNoticeTimeout = useRef(null);
+
+    useEffect(() => {
+        return () => {
+            if (onOrderNoticeTimeout.current) {
+                clearTimeout(onOrderNoticeTimeout.current);
+            }
+        };
+    }, []);
+
+    const showOnOrderNotice = () => {
+        if (onOrderNoticeTimeout.current) {
+            clearTimeout(onOrderNoticeTimeout.current);
+        }
+        setOnOrderNoticeVisible(true);
+        onOrderNoticeTimeout.current = setTimeout(() => {
+            setOnOrderNoticeVisible(false);
+        }, 7000);
+    };
+
+    const hideOnOrderNotice = () => {
+        if (onOrderNoticeTimeout.current) {
+            clearTimeout(onOrderNoticeTimeout.current);
+        }
+        setOnOrderNoticeVisible(false);
+    };
 
     const detailVariant = product.variants[selectedVariantIndex] ?? null;
     const detailPrice = detailVariant?.price ?? product.price ?? 0;
@@ -65,7 +100,7 @@ export default function ProductDetailPage({ product, category }) {
         product.images[activeImageIndex] || product.image;
 
     const addToCart = () => {
-        if (product.stock !== 'in') return;
+        if (product.stock === 'out') return;
         const price = detailVariant?.price ?? detailPrice;
         const variantLabel = detailVariant?.label;
         const itemId = variantLabel ? `${product.id}-${variantLabel}` : product.id;
@@ -78,6 +113,7 @@ export default function ProductDetailPage({ product, category }) {
             category: product.categoryName,
             brand: product.brand,
             variantLabel,
+            stock: product.stock,
         });
         setCartOpen(true);
     };
@@ -102,6 +138,7 @@ export default function ProductDetailPage({ product, category }) {
         }
         setCheckoutSubmitting(true);
         setCheckoutStatus({ message: 'Sending order…', type: '' });
+        const currentGrandTotal = total + DELIVERY_FEE;
         const payload = {
             customer: checkoutForm,
             items: cart.map(item => ({
@@ -113,10 +150,12 @@ export default function ProductDetailPage({ product, category }) {
                 category: item.category,
                 variantLabel: item.variantLabel,
             })),
-            total,
+            total: currentGrandTotal,
+            delivery_fee: DELIVERY_FEE,
             currency: OUTPUT_CURRENCY,
         };
         try {
+            const hadOnOrderItems = hasOnOrderItem;
             const response = await fetch('/api/create-order', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -127,10 +166,14 @@ export default function ProductDetailPage({ product, category }) {
                 throw new Error(result.error || 'Unable to place order');
             }
             setCheckoutForm({ name: '', phone: '', address: '', notes: '' });
-            setCheckoutStatus({
-                message: 'Order submitted! We will confirm shortly.',
-                type: 'success',
-            });
+            setCheckoutStatus({ message: '', type: '' });
+            resetCart();
+            setCartOpen(false);
+            if (hadOnOrderItems) {
+                showOnOrderNotice();
+            }
+            setOrderHadOnOrderItems(hadOnOrderItems);
+            setOrderConfirmationVisible(true);
         } catch (error) {
             console.error('[order] submit failed', error);
             setCheckoutStatus({
@@ -149,6 +192,27 @@ export default function ProductDetailPage({ product, category }) {
         setCheckoutStatus({ message: '', type: '' });
     };
     const closeCart = () => setCartOpen(false);
+    const openCheckoutModal = () => {
+        if (!cart.length) return;
+        setOrderConfirmationVisible(false);
+        setCheckoutStatus({ message: '', type: '' });
+        setCheckoutModalOpen(true);
+    };
+    const closeCheckoutModal = () => {
+        setCheckoutModalOpen(false);
+        setOrderConfirmationVisible(false);
+        setCheckoutStatus({ message: '', type: '' });
+    };
+    const goHome = () => {
+        closeCheckoutModal();
+        router.push('/');
+    };
+    const confirmationTitle = orderHadOnOrderItems
+        ? 'Order received – delays expected'
+        : 'Order received';
+    const confirmationSubtitle = orderHadOnOrderItems
+        ? 'Order received but may have some delay until on-order items are present in the store.'
+        : 'Order received successfully.';
 
     const description = product.description || '';
     const READ_MORE_LENGTH = 320;
@@ -303,22 +367,17 @@ export default function ProductDetailPage({ product, category }) {
                             type="button"
                             className="w-full rounded-2xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white shadow hover:bg-blue-700 transition"
                             onClick={addToCart}
-                            disabled={product.stock !== 'in'}
+                            disabled={product.stock === 'out'}
                         >
                             Add to cart
                         </button>
-                        <p
-                            className={`quote-status ${checkoutStatus.type} mt-2 text-sm ${
-                                checkoutStatus.message ? '' : 'hidden'
-                            }`}
-                            aria-live="polite"
-                        >
-                            {checkoutStatus.message}
-                        </p>
                     </div>
                 </div>
             </main>
             <button id="cartFab" className="cart-fab" type="button" onClick={openCart}>
+                <span className="cart-icon" aria-hidden="true">
+                    🛒
+                </span>
                 <span>Cart</span>
                 <span className="px-2 py-1 rounded-full bg-white/15 text-sm font-semibold">
                     {count}
@@ -351,6 +410,24 @@ export default function ProductDetailPage({ product, category }) {
                         ×
                     </button>
                 </div>
+                {onOrderNoticeVisible && (
+                    <div className="cart-onorder-popup" role="alert">
+                        <div>
+                            <strong>On-demand items</strong>
+                            <p className="text-sm">
+                                Some items will take longer to arrive—expect a delay until they reach the store.
+                            </p>
+                        </div>
+                        <button
+                            type="button"
+                            className="cart-onorder-close"
+                            aria-label="Dismiss notice"
+                            onClick={hideOnOrderNotice}
+                        >
+                            ×
+                        </button>
+                    </div>
+                )}
                 <div className="cart-body" id="cartItems">
                     {cart.length ? (
                         cart.map(item => (
@@ -360,6 +437,9 @@ export default function ProductDetailPage({ product, category }) {
                                     <p className="cart-item-title">{item.title}</p>
                                     <p className="text-xs text-gray-500">
                                         {item.variantLabel ? item.variantLabel : item.category}
+                                    </p>
+                                    <p className="cart-item-price">
+                                        {formatPrice(item.price)}
                                     </p>
                                     <div className="cart-qty mt-2">
                                         <button
@@ -405,68 +485,125 @@ export default function ProductDetailPage({ product, category }) {
                 </div>
                 <div className="cart-summary">
                     <div className="cart-summary-row">
-                        <span>Total</span>
+                        <span>Items total</span>
                         <span>{formatPrice(total)}</span>
                     </div>
-                    <p className={`cart-alert ${checkoutStatus.type}`} role="status">
-                        {checkoutStatus.message}
-                    </p>
-                </div>
-                <form
-                    id="checkoutForm"
-                    className="cart-form"
-                    onSubmit={handleCheckoutSubmit}
-                    noValidate
-                >
-                    <label>
-                        <span>Full name</span>
-                        <input
-                            type="text"
-                            name="name"
-                            value={checkoutForm.name}
-                            onChange={handleCheckoutInput}
-                            required
-                        />
-                    </label>
-                    <label>
-                        <span>Phone</span>
-                        <input
-                            type="tel"
-                            name="phone"
-                            value={checkoutForm.phone}
-                            onChange={handleCheckoutInput}
-                            required
-                        />
-                    </label>
-                    <label>
-                        <span>Delivery address</span>
-                        <textarea
-                            name="address"
-                            rows="2"
-                            value={checkoutForm.address}
-                            onChange={handleCheckoutInput}
-                            required
-                        />
-                    </label>
-                    <label>
-                        <span>Notes (optional)</span>
-                        <textarea
-                            name="notes"
-                            rows="2"
-                            value={checkoutForm.notes}
-                            onChange={handleCheckoutInput}
-                        />
-                    </label>
+                    <div className="cart-summary-row">
+                        <span>Delivery fee</span>
+                        <span>{formatPrice(DELIVERY_FEE)}</span>
+                    </div>
+                    <div className="cart-summary-row cart-summary-total">
+                        <span>Grand total</span>
+                        <span>{formatPrice(grandTotal)}</span>
+                    </div>
                     <button
-                        id="cartSubmitBtn"
-                        type="submit"
+                        type="button"
                         className="cart-submit"
-                        disabled={checkoutSubmitting}
+                        onClick={openCheckoutModal}
+                        disabled={!cart.length}
                     >
-                        {checkoutSubmitting ? 'Sending…' : 'Send order'}
+                        Checkout
                     </button>
-                </form>
+                </div>
             </aside>
+            {checkoutModalOpen && (
+                <div
+                    className="checkout-modal-overlay"
+                    role="dialog"
+                    aria-modal="true"
+                    onClick={closeCheckoutModal}
+                >
+                    <div className="checkout-modal" onClick={event => event.stopPropagation()}>
+                        <header className="checkout-modal-header">
+                            <h3 className="checkout-modal-title">Checkout</h3>
+                            <button
+                                type="button"
+                                className="checkout-modal-close"
+                                aria-label="Close checkout"
+                                onClick={closeCheckoutModal}
+                            >
+                                ×
+                            </button>
+                        </header>
+                        {orderConfirmationVisible ? (
+                            <div className="checkout-confirmation">
+                                <p className="text-base font-semibold text-gray-900">
+                                    {confirmationTitle}
+                                </p>
+                                <p className="text-sm text-gray-600 mt-1">
+                                    {confirmationSubtitle}
+                                </p>
+                                <button
+                                    type="button"
+                                    className="cart-submit"
+                                    onClick={goHome}
+                                >
+                                    Go to home
+                                </button>
+                            </div>
+                        ) : (
+                            <form
+                                id="checkoutForm"
+                                className="cart-form"
+                                onSubmit={handleCheckoutSubmit}
+                                noValidate
+                            >
+                                <label>
+                                    <span>Full name</span>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value={checkoutForm.name}
+                                        onChange={handleCheckoutInput}
+                                        required
+                                    />
+                                </label>
+                                <label>
+                                    <span>Phone</span>
+                                    <input
+                                        type="tel"
+                                        name="phone"
+                                        value={checkoutForm.phone}
+                                        onChange={handleCheckoutInput}
+                                        required
+                                    />
+                                </label>
+                                <label>
+                                    <span>Delivery address</span>
+                                    <textarea
+                                        name="address"
+                                        rows="2"
+                                        value={checkoutForm.address}
+                                        onChange={handleCheckoutInput}
+                                        required
+                                    />
+                                </label>
+                                <label>
+                                    <span>Notes (optional)</span>
+                                    <textarea
+                                        name="notes"
+                                        rows="2"
+                                        value={checkoutForm.notes}
+                                        onChange={handleCheckoutInput}
+                                    />
+                                </label>
+                                {checkoutStatus.type === 'error' && (
+                                    <p className="cart-alert error" role="status">
+                                        {checkoutStatus.message}
+                                    </p>
+                                )}
+                                <button
+                                    type="submit"
+                                    className="cart-submit"
+                                    disabled={checkoutSubmitting}
+                                >
+                                    {checkoutSubmitting ? 'Sending…' : 'Order'}
+                                </button>
+                            </form>
+                        )}
+                    </div>
+                </div>
+            )}
         </>
     );
 }
