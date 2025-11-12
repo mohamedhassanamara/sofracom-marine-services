@@ -756,7 +756,7 @@
           "datasheet": ""
         },
         {
-          "title": "ACEM Screwdriver, Orange, PH1 X 100MM",
+          "title": "ACEM Screwdriver, Orange, PH",
           "image": "assets/products/img-20251102-wa0064-mht4p7yw.jpg",
           "description": "PH1 Screwdriver.\nDurable chrome vanadium steel.\nMagnetic tip.",
           "brand": "ACEM",
@@ -785,6 +785,10 @@
             {
               "label": "PH0 X 100",
               "price": 1.804
+            },
+            {
+              "label": "PH1X100",
+              "price": 2.058
             }
           ],
           "datasheet": ""
