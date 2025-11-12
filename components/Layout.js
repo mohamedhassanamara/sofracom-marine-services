@@ -290,7 +290,7 @@ export default function Layout({ children }) {
                 {menuOpen && (
                     <div
                         id="mobileMenu"
-                        className="md:hidden bg-white/90 text-gray-900 px-4 py-3"
+                        className="md:hidden bg-[rgba(11,32,80,0.92)] text-white px-4 py-3"
                     >
                         <div className="flex flex-col gap-3">
                             {NAV_LINKS.map(link => {
@@ -299,7 +299,7 @@ export default function Layout({ children }) {
                                     <Link
                                         key={link.key}
                                         href={href}
-                                        className="block font-medium"
+                                        className="block font-medium hover:text-blue-200"
                                         onClick={() => setMenuOpen(false)}
                                     >
                                         {t(link.key)}
