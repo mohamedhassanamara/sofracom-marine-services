@@ -89,30 +89,26 @@ function ProductCard({ product, categorySlug, onAdd }) {
                         Download datasheet
                     </a>
                 )}
-                <div className="variant-row">
-                    {variants.length ? (
-                        <>
-                            <label className="sr-only" htmlFor={`variant-${product.id}`}>
-                                Choose variant
-                            </label>
-                            <select
-                                id={`variant-${product.id}`}
-                                className="variant-select"
-                                value={variantIndex}
-                                onChange={handleVariantChange}
-                            >
-                                {variants.map((variant, idx) => (
-                                    <option key={`${product.id}-variant-${idx}`} value={idx}>
-                                        {variant.label || `Variant ${idx + 1}`} ·{' '}
-                                        {formatPrice(variant.price ?? product.price ?? 0)}
-                                    </option>
-                                ))}
-                            </select>
-                        </>
-                    ) : (
-                        <p className="text-xs text-gray-500">Single configuration</p>
-                    )}
-                </div>
+                {variants.length > 0 && (
+                    <div className="variant-row">
+                        <label className="sr-only" htmlFor={`variant-${product.id}`}>
+                            Choose variant
+                        </label>
+                        <select
+                            id={`variant-${product.id}`}
+                            className="variant-select"
+                            value={variantIndex}
+                            onChange={handleVariantChange}
+                        >
+                            {variants.map((variant, idx) => (
+                                <option key={`${product.id}-variant-${idx}`} value={idx}>
+                                    {variant.label || `Variant ${idx + 1}`} ·{' '}
+                                    {formatPrice(variant.price ?? product.price ?? 0)}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                )}
                 <div className="product-price-row">
                     <span className="product-price">{priceLabel}</span>
                     <span

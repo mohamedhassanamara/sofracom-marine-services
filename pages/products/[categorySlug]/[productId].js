@@ -316,9 +316,9 @@ export default function ProductDetailPage({ product, category }) {
                                 </p>
                             )}
                         </div>
-                        <div className="flex flex-wrap gap-2">
-                            {product.variants.length ? (
-                                product.variants.map((variant, index) => (
+                        {product.variants.length > 0 && (
+                            <div className="flex flex-wrap gap-2">
+                                {product.variants.map((variant, index) => (
                                     <button
                                         key={`${variant.label}-${index}`}
                                         type="button"
@@ -332,13 +332,9 @@ export default function ProductDetailPage({ product, category }) {
                                         {variant.label}
                                         <span>{formatPrice(variant.price)}</span>
                                     </button>
-                                ))
-                            ) : (
-                                <span className="text-sm text-gray-500">
-                                    Single configuration
-                                </span>
-                            )}
-                        </div>
+                                ))}
+                            </div>
+                        )}
                         <p className="text-sm text-gray-700 leading-relaxed">
                             {showFullDescription
                                 ? description
