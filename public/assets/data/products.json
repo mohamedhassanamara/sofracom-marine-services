@@ -289,6 +289,10 @@
           ],
           "variants": [
             {
+              "label": "01kg",
+              "price": 85.211
+            },
+            {
               "label": "05kg",
               "price": 390.156
             }
@@ -328,7 +332,9 @@
           ],
           "price": 45.347,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/20251111_140038-mhw5opvd.png"
+          ],
           "variants": [],
           "datasheet": "assets/datasheets/yd-114_datasheet_no_photo-mhw7if3d.pdf"
         },
@@ -345,10 +351,16 @@
           ],
           "price": 15.221,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/20251111_171059-mhw8zwyx.png"
+          ],
           "variants": [
             {
-              "label": "18KG",
+              "label": "01KG",
+              "price": 15.221
+            },
+            {
+              "label": "18kg",
               "price": 246.58
             }
           ],
