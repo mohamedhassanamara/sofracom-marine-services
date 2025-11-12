@@ -331,6 +331,28 @@
           "images": [],
           "variants": [],
           "datasheet": "public/assets/datasheets/yd-114_datasheet_no_photo-mhw7if3d.pdf"
+        },
+        {
+          "title": "TP220TICO Polyester Resin 01L",
+          "image": "public/assets/products/20251111_171059-mhw8zwyx.png",
+          "description": "TP220TICO is a thixotropic, pre-accelerated, low reactive, low viscosity orthophthalic unsaturated polyester resin. It is specially designed for non-critical applications. TP220 is suitable for handlay-up and spray-up applications.\n\nMODIFICATIONS:\nTICO: Thixotropic and Accelerated\nCO:Pre-accelerated (Cobalt Octoat)\nAABP:Amine Accelerated\nUV: Contains UV Stabilizers\nLSE: Low Styrene Emission\nHV: High Viscosity\nLV:Low Viscosity\nSV:Special Viscosity",
+          "brand": "TURKUAZ",
+          "usage": [
+            "resin",
+            "polyester",
+            "TP220TICO",
+            "TP220"
+          ],
+          "price": 15.221,
+          "stock": "in",
+          "images": [],
+          "variants": [
+            {
+              "label": "18KG",
+              "price": 246.58
+            }
+          ],
+          "datasheet": ""
         }
       ]
     },
