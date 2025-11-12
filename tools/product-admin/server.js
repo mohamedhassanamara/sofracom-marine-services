@@ -84,10 +84,17 @@ function handleStatic(req, res, pathname) {
     return true;
   }
 
-    if (pathname.startsWith('/assets/')) {
-        const assetRoot = path.join(repoRoot, 'public', 'assets');
-    const requested = path.normalize(path.join(repoRoot, pathname));
-    if (!requested.startsWith(assetRoot)) {
+  if (pathname.startsWith('/assets/') || pathname.startsWith('/public/assets/')) {
+    const assetRoot = path.resolve(repoRoot, 'public', 'assets');
+    const normalizedPath = pathname
+      .replace(/^\/+/, '')
+      .replace(/^public\//, '');
+    const requested = path.resolve(repoRoot, 'public', normalizedPath);
+    const relativeToRoot = path.relative(assetRoot, requested);
+    if (
+      relativeToRoot.startsWith('..') ||
+      path.isAbsolute(relativeToRoot)
+    ) {
       res.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8' });
       res.end('Forbidden');
       return true;
@@ -345,7 +352,9 @@ async function handleUpload(req, res) {
     const absolutePath = path.join(baseDir, finalName);
     fs.writeFileSync(absolutePath, buffer);
 
+    const publicRoot = path.join(repoRoot, 'public');
     const relativePath = path.relative(repoRoot, absolutePath).split(path.sep).join('/');
+    const publicRelativePath = path.relative(publicRoot, absolutePath).split(path.sep).join('/');
     const gitEnv = { cwd: repoRoot, encoding: 'utf-8' };
     const addResult = spawnSync('git', ['add', relativePath], gitEnv);
     if (addResult.status !== 0) {
@@ -353,7 +362,7 @@ async function handleUpload(req, res) {
       throw new Error(addResult.stderr || 'Failed to stage uploaded image');
     }
 
-    sendJson(res, 200, { ok: true, path: relativePath });
+    sendJson(res, 200, { ok: true, path: publicRelativePath });
   } catch (err) {
     sendJson(res, err.statusCode || 400, { ok: false, error: err.message });
   }
