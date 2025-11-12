@@ -313,6 +313,24 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/sika_primer-290_dc-mht5f9yj.pdf"
+        },
+        {
+          "title": "EPOKUKDO YD-114 Low Viscosity Epoxy Resin 2K 01L",
+          "image": "public/assets/products/20251111_140038-mhw5opvd.png",
+          "description": "EPOKUKDO YD-114 is a Bisphenol-A type liquid Epoxy Resin diluted with aliphatic glycidyl ether\n(C12–C14). YD-114 is recommended for non-solvent system or low VOC coating system and has\nexcellent mechanical properties, chemical resistance and non-toxic minimum odor. YD-114 is\ngenerally used in solvent-free coating, floor coating, trowelling application, crack injection systems,\nadhesives, decoupage system, and high solids or low VOC industrial coatings.",
+          "brand": "KUKDO",
+          "usage": [
+            "epoxy",
+            "resin",
+            "2k",
+            "EPOKUKDO",
+            "yd-114"
+          ],
+          "price": 45.347,
+          "stock": "in",
+          "images": [],
+          "variants": [],
+          "datasheet": "public/assets/datasheets/yd-114_datasheet_no_photo-mhw7if3d.pdf"
         }
       ]
     },
