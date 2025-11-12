@@ -96,7 +96,7 @@
           "datasheet": "assets/datasheets/penguard-fc-gb-mhqiksvb.pdf"
         },
         {
-          "title": "jotamastic 80 Grey / Gris 16L(A)+2.3L(B)",
+          "title": "jotamastic 80 Grey / Gris ",
           "image": "assets/products/20251104_163007-mhktrhqq.png",
           "description": "This is a two component polyamine cured epoxy mastic coating. It is a surface tolerant, high solids product.\nSpecially designed for areas where optimum surface preparation is not possible or required. Can be used as\nprimer, mid coat, finish coat or as single coat system in atmospheric environments. Suitable for properly\nprepared carbon steel and aged coating surfaces. It can be applied at sub zero surface temperatures",
           "brand": "JOTUN",
@@ -119,6 +119,10 @@
             {
               "label": "5L",
               "price": 210
+            },
+            {
+              "label": "18.3L",
+              "price": 752.261
             }
           ],
           "datasheet": "assets/datasheets/jotamastic-80-gb-mhqil3cj.pdf"
@@ -158,26 +162,16 @@
           "images": [
             "assets/products/20251104_164917-mhktskts.png"
           ],
-          "variants": [],
-          "datasheet": ""
-        },
-        {
-          "title": "Thinner / Diluant N° 17 4.5L",
-          "image": "assets/products/20251104_181151-mhku46uw.png",
-          "description": "This is a paint thinner. Designed to improve the flow of a range of Jotun acrylic, vinyl and antifouling coatings.\nCan also be used as cleaner for pumps and tools before and after painting",
-          "brand": "JOTUN",
-          "usage": [
-            "thinner",
-            "diluant",
-            "jotun",
-            "epoxy"
+          "variants": [
+            {
+              "label": "0.8L",
+              "price": 16.779
+            },
+            {
+              "label": "4.5L",
+              "price": 82.842
+            }
           ],
-          "price": 82.842,
-          "stock": "in",
-          "images": [
-            "assets/products/20251104_181151-mhku46uw.png"
-          ],
-          "variants": [],
           "datasheet": ""
         },
         {
