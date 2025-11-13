@@ -232,7 +232,9 @@
           ],
           "price": 0,
           "stock": "on-order",
-          "images": [],
+          "images": [
+            "assets/products/20251113_140442-2-mhxnqwac.png"
+          ],
           "variants": [
             {
               "label": "05L",
@@ -396,7 +398,9 @@
           ],
           "price": 23.39,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/20251113_143051-mhxon7dr.png"
+          ],
           "variants": [],
           "datasheet": "assets/datasheets/kapci-380-aluminium-pe-putty-mhxord4a.pdf"
         },
@@ -414,7 +418,9 @@
           ],
           "price": 37.376,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/20251113_181252-mhxp9pwe.png"
+          ],
           "variants": [
             {
               "label": "0.9kg",
@@ -899,7 +905,6 @@
           "price": 30.51,
           "stock": "in",
           "images": [
-            "assets/products/placeholder.png",
             "assets/products/20251113_173720-mhxobgoq.png"
           ],
           "variants": [],
