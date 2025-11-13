@@ -812,12 +812,17 @@
           "datasheet": ""
         },
         {
-          "title": "Untitled product",
-          "image": "assets/products/placeholder.png",
-          "description": "",
+          "title": "15 Pack / Disposable Face Mask with Breathing Valve",
+          "image": "assets/products/20251112_162816-mhxi5hsh.png",
+          "description": "Disposable non-toxic dust and filter mask.\nClear vision; low profile design lets you see where you are going. Easily wear glasses or safety googles.",
           "brand": "",
-          "usage": [],
-          "price": 0,
+          "usage": [
+            "disposable",
+            "mask",
+            "jétable",
+            "masque"
+          ],
+          "price": 32,
           "stock": "in",
           "images": [
             "assets/products/placeholder.png"
