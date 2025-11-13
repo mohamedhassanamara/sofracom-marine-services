@@ -386,7 +386,7 @@
         {
           "title": "KAPCI Aluminium PE Putty 380 0.9Kg",
           "image": "assets/products/20251113_143051-mhxon7dr.png",
-          "description": "Seajet 039 Mono-component is an ultimate performing SPC antifouling. Based on the latest resin technology from Japan it is suited to\nall fouling environments and ideal for application to boats in the highest fouling areas.\nCan be used on all substrates except aluminium.",
+          "description": "",
           "brand": "KAPCI",
           "usage": [
             "kapci",
@@ -399,6 +399,24 @@
           "images": [],
           "variants": [],
           "datasheet": "assets/datasheets/kapci-380-aluminium-pe-putty-mhxord4a.pdf"
+        },
+        {
+          "title": "KAPCI Polyester Putty 350 1.9Kg",
+          "image": "assets/products/20251113_181252-mhxp9pwe.png",
+          "description": "Kapci 350 polyester is a general purpose putty. ",
+          "brand": "KAPCI",
+          "usage": [
+            "kapci",
+            "polyester",
+            "polystere",
+            "mastique",
+            "putty"
+          ],
+          "price": 37.376,
+          "stock": "in",
+          "images": [],
+          "variants": [],
+          "datasheet": "assets/datasheets/kapci-350-pe-putty-general-purpose-mhxpdp2q.pdf"
         }
       ]
     },
