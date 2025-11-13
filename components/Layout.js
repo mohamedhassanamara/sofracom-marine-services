@@ -28,6 +28,8 @@ export default function Layout({ children }) {
     const [searchActive, setSearchActive] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [productsIndex, setProductsIndex] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [showProductCategories, setShowProductCategories] = useState(false);
     const searchRef = useRef(null);
 
     const router = useRouter();
@@ -133,12 +135,23 @@ export default function Layout({ children }) {
     }, [router.asPath]);
 
     useEffect(() => {
+        setShowProductCategories(false);
+    }, [router.asPath]);
+
+    useEffect(() => {
         let isMounted = true;
         fetch('/assets/data/products.json')
             .then(response => response.json())
             .then(data => {
                 if (!isMounted) return;
                 const entries = [];
+                const normalizedCategories = (data.categories || []).map(category => ({
+                    name: category.name,
+                    slug: category.slug || slugify(category.name),
+                    image: ensurePath(category.image || ''),
+                }));
+                setCategories(normalizedCategories);
+
                 (data.categories || []).forEach(category => {
                     const categorySlug = category.slug || slugify(category.name);
                     (category.products || []).forEach(product => {
@@ -212,6 +225,58 @@ export default function Layout({ children }) {
                     >
                         {NAV_LINKS.map(link => {
                             const href = resolveLinkHref(link);
+                            if (link.key === 'nav.products') {
+                                return (
+                                    <div
+                                        key={link.key}
+                                        className="relative"
+                                        onMouseEnter={() => setShowProductCategories(true)}
+                                        onMouseLeave={() => setShowProductCategories(false)}
+                                    >
+                                        <Link
+                                            href={href}
+                                            className="inline-flex items-center gap-1 hover:text-blue-200"
+                                        >
+                                            {t(link.key)}
+                                            {categories.length > 0 && (
+                                                <span className="text-xs leading-none">
+                                                    ▾
+                                                </span>
+                                            )}
+                                        </Link>
+                                        {categories.length > 0 && (
+                                            <div
+                                                className={`absolute left-0 top-full w-56 rounded-lg bg-white text-gray-900 shadow-xl transition duration-200 z-50 overflow-hidden ${
+                                                    showProductCategories
+                                                        ? 'opacity-100 pointer-events-auto translate-y-0'
+                                                        : 'opacity-0 pointer-events-none -translate-y-1'
+                                                }`}
+                                            >
+                                                <div className="flex flex-col divide-y divide-gray-100">
+                                                    {categories.map(category => (
+                                                        <Link
+                                                            key={category.slug}
+                                                            href={`/products/${category.slug}`}
+                                                            className="flex items-center gap-3 px-4 py-2 text-sm transition-colors hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg"
+                                                        >
+                                                            {category.image && (
+                                                                <img
+                                                                    src={category.image}
+                                                                    alt={`${category.name} category`}
+                                                                    className="h-8 w-8 flex-shrink-0 rounded-md object-cover"
+                                                                />
+                                                            )}
+                                                            <span className="font-medium">
+                                                                {category.name}
+                                                            </span>
+                                                        </Link>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            }
                             return (
                                 <Link
                                     key={link.key}
@@ -307,6 +372,20 @@ export default function Layout({ children }) {
                                 );
                             })}
                         </div>
+                        {categories.length > 0 && (
+                            <div className="mt-4 border-t border-white/30 pt-3 space-y-1">
+                                {categories.map(category => (
+                                    <Link
+                                        key={category.slug}
+                                        href={`/products/${category.slug}`}
+                                        className="block font-medium text-sm hover:text-blue-200"
+                                        onClick={() => setMenuOpen(false)}
+                                    >
+                                        {category.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 )}
             </header>
