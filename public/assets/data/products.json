@@ -461,7 +461,12 @@
           "price": 0,
           "stock": "on-order",
           "images": [],
-          "variants": [],
+          "variants": [
+            {
+              "label": "20L",
+              "price": 169.65
+            }
+          ],
           "datasheet": ""
         }
       ]
