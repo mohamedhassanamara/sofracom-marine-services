@@ -30,7 +30,7 @@
           ],
           "datasheet": "assets/datasheets/seaforce-active-gb-mhqeuljf.pdf",
           "price": 341.887,
-          "stock": "in"
+          "stock": "on-order"
         },
         {
           "title": "Jotun SeaForce Active 04L Blue / Bleu",
@@ -460,7 +460,9 @@
           ],
           "price": 0,
           "stock": "on-order",
-          "images": [],
+          "images": [
+            "assets/products/20251110_114405-mhxgyngd.png"
+          ],
           "variants": [
             {
               "label": "20L",
