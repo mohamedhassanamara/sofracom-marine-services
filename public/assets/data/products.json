@@ -445,6 +445,24 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/cr2025_data_sheet_e-mhsvy50i.pdf"
+        },
+        {
+          "title": "REVLINE Hydraulic Oil HM/HLP 46",
+          "image": "assets/products/20251110_114405-mhxgyngd.png",
+          "description": "HYDROL LHM/\nHLP hydraulic oils for hydrostatic systems are manufactured basing on high quality mineral\nbase oils and a set of enriching additives improving antiwear, anticorrosive and antioxidative properties",
+          "brand": "REVLINE",
+          "usage": [
+            "Revline",
+            "hydraulic",
+            "oil",
+            "hm/hlp",
+            "46"
+          ],
+          "price": 0,
+          "stock": "on-order",
+          "images": [],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     },
