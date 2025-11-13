@@ -217,6 +217,29 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/en-gb-mhqipu39.pdf"
+        },
+        {
+          "title": "SEAJET 039 Mono-Component Black",
+          "image": "assets/products/20251113_140442-2-mhxnqwac.png",
+          "description": "Seajet 039 Mono-component is an ultimate performing SPC antifouling. Based on the latest resin technology from Japan it is suited to\nall fouling environments and ideal for application to boats in the highest fouling areas.\nCan be used on all substrates except aluminium.",
+          "brand": "SEAJET",
+          "usage": [
+            "SEAJET",
+            "039",
+            "mono",
+            "noir",
+            "black"
+          ],
+          "price": 0,
+          "stock": "on-order",
+          "images": [],
+          "variants": [
+            {
+              "label": "05L",
+              "price": 1425
+            }
+          ],
+          "datasheet": "assets/datasheets/seajet_039_platinum_mono-component-tds-english-consumer-mhxns6pa.pdf"
         }
       ]
     },
