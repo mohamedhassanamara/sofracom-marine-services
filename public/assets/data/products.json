@@ -820,7 +820,7 @@
         },
         {
           "title": "15 Pack / Disposable Face Mask with Breathing Valve",
-          "image": "assets/products/20251112_162816-mhxi5hsh.png",
+          "image": "assets/products/20251112_162816-mhxm6qzp.png",
           "description": "Disposable non-toxic dust and filter mask.\nClear vision; low profile design lets you see where you are going. Easily wear glasses or safety googles.",
           "brand": "DS",
           "usage": [
@@ -835,6 +835,37 @@
             "assets/products/placeholder.png"
           ],
           "variants": [],
+          "datasheet": ""
+        },
+        {
+          "title": "DELTAPLUS DT117 Disposable Suit",
+          "image": "assets/products/20251113_164339-mhxm0uaz.png",
+          "description": "Disposable, anti-static, dry particle resistant chemical protective coveralls offering a good fit and enhanced protection.",
+          "brand": "DELTAPLUS",
+          "usage": [
+            "combinaison",
+            "disposable",
+            "suit dt117"
+          ],
+          "price": 38.675,
+          "stock": "in",
+          "images": [
+            "assets/products/20251113_164351-mhxm6lki.png"
+          ],
+          "variants": [
+            {
+              "label": "XL",
+              "price": 38.675
+            },
+            {
+              "label": "XXL",
+              "price": 38.675
+            },
+            {
+              "label": "L",
+              "price": 38.675
+            }
+          ],
           "datasheet": ""
         }
       ]
