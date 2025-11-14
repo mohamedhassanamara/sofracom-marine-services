@@ -999,15 +999,33 @@
           "datasheet": ""
         },
         {
-          "title": "Untitled product",
-          "image": "assets/products/placeholder.png",
-          "description": "",
-          "brand": "",
-          "usage": [],
+          "title": "EUROSIL Packing Tape Clear/Brown",
+          "image": "assets/products/20251114_120122-mhyrsca7.png",
+          "description": "Durable and Reliable Packing Tape, Strong Adhesion.",
+          "brand": "EUROSIL",
+          "usage": [
+            "packing",
+            "tape",
+            "toile",
+            "transparent",
+            "havana",
+            "scotch"
+          ],
           "price": 0,
           "stock": "in",
-          "images": [],
-          "variants": [],
+          "images": [
+            "assets/products/eurosil-tape-mhyrsewj.jpg"
+          ],
+          "variants": [
+            {
+              "label": "45mm x 48m",
+              "price": 1.514
+            },
+            {
+              "label": "45mm x 90m",
+              "price": 3.011
+            }
+          ],
           "datasheet": ""
         }
       ]
