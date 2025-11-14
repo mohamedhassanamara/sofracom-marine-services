@@ -432,6 +432,32 @@
             }
           ],
           "datasheet": "assets/datasheets/kapci-350-pe-putty-general-purpose-mhxpdp2q.pdf"
+        },
+        {
+          "title": "GC Ecogel S3PA V2 Ral 9016 White",
+          "image": "assets/products/20251114_115423-mhyrz0aa.jpg",
+          "description": "Crystic Ecogel® S3PA is a high performance isophthalic neopentyl glycol gelcoat. This gelcoat is pre-accelerated and formulated for spray\napplication.\nCrystic Ecogel® S3PA is a low VOC product.\nCrystic Ecogel® S3PA has been specially designed for the production of high quality parts in the marine industry. This formulation offers an\nexcellent hydrolysis resistance combined with a high gloss and gloss retention.",
+          "brand": "SCOTT BADER",
+          "usage": [
+            "gelcoat",
+            "ecogel",
+            "ral 9016",
+            "S3PA"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [],
+          "variants": [
+            {
+              "label": "01KG",
+              "price": 31.808
+            },
+            {
+              "label": "25KG",
+              "price": 770.214
+            }
+          ],
+          "datasheet": "assets/datasheets/crystic-ecogel-s3-pa-english-mhys8xdo.pdf"
         }
       ]
     },
