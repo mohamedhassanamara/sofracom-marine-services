@@ -941,6 +941,74 @@
             }
           ],
           "datasheet": ""
+        },
+        {
+          "title": "GP Tape 25mm X 25M Multi Surface Masking Tape",
+          "image": "assets/products/gp-tape-mhyol11t.jpg",
+          "description": "Multi Surface Masking Tape For Painting, Painters Tape for Sharp Paint Lines, Decorators Tapes, Painters Masking Tapes ",
+          "brand": "GP TAPE",
+          "usage": [
+            "tape",
+            "masquage",
+            "ruban",
+            "toile"
+          ],
+          "price": 1.388,
+          "stock": "in",
+          "images": [],
+          "variants": [
+            {
+              "label": "25mm X 25m",
+              "price": 1.388
+            },
+            {
+              "label": "45mm X 25m",
+              "price": 2.456
+            },
+            {
+              "label": "25mm X 50m",
+              "price": 2.978
+            }
+          ],
+          "datasheet": ""
+        },
+        {
+          "title": "TT Electrical Tape ",
+          "image": "assets/products/img-20251102-wa0041-mhyozmf6.jpg",
+          "description": "Electrical Tape, Durable, Insulating, Assorted Colors and Sizes.\nRuban adhésif à base de PVC de qualité supérieure pour isolation électrique très facile à mettre en œuvre, il apporte des réponses à tous les bricoleurs, qu'ils soient grands ou petits.\n\n",
+          "brand": "TT",
+          "usage": [
+            "toile isolant",
+            "electrical tape"
+          ],
+          "price": 0.58,
+          "stock": "in",
+          "images": [
+            "assets/products/img-20251102-wa0039-mhyozp4v.jpg"
+          ],
+          "variants": [
+            {
+              "label": "12mm X 30m",
+              "price": 0.58
+            },
+            {
+              "label": "75 mm X 30m",
+              "price": 3.484
+            }
+          ],
+          "datasheet": ""
+        },
+        {
+          "title": "Untitled product",
+          "image": "assets/products/placeholder.png",
+          "description": "",
+          "brand": "",
+          "usage": [],
+          "price": 0,
+          "stock": "in",
+          "images": [],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
