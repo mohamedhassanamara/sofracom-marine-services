@@ -1053,6 +1053,53 @@
             }
           ],
           "datasheet": ""
+        },
+        {
+          "title": "TECHNOPOLE Multifonction Grease ",
+          "image": "assets/products/20251114_125508-mhytwhwc.png",
+          "description": "Lithium grease is a versatile, high-performance lubricant commonly used in automotive and industrial applications.\nIt provides excellent resistance to moisture, heat, and heavy loads, ensuring long-lasting protection.\nIts thick, stable consistency helps reduce friction and prevent wear on moving metal parts.\nWidely trusted for bearings, hinges, and machinery, lithium grease delivers reliable, all-purpose lubrication.",
+          "brand": "TECHNOPOLE",
+          "usage": [
+            "graisse",
+            "grease",
+            "lithium"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/img-20251102-wa0088-mhytwnq7.jpg"
+          ],
+          "variants": [
+            {
+              "label": "100gr Tube",
+              "price": 3.521
+            },
+            {
+              "label": "400 gr",
+              "price": 7.605
+            },
+            {
+              "label": "800gr",
+              "price": 10.859
+            },
+            {
+              "label": "04kg",
+              "price": 49.218
+            }
+          ],
+          "datasheet": ""
+        },
+        {
+          "title": "Untitled product",
+          "image": "assets/products/placeholder.png",
+          "description": "",
+          "brand": "",
+          "usage": [],
+          "price": 0,
+          "stock": "in",
+          "images": [],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
