@@ -1071,6 +1071,7 @@
           "price": 0,
           "stock": "in",
           "images": [
+            "assets/products/20251114_125508-mhytwhwc.png",
             "assets/products/img-20251102-wa0088-mhytwnq7.jpg"
           ],
           "variants": [
@@ -1107,10 +1108,22 @@
           "price": 34.452,
           "stock": "in",
           "images": [
-            "assets/products/placeholder.png"
+            "assets/products/img-20251102-wa0053-mi0dmf9z.png"
           ],
           "variants": [],
           "datasheet": "assets/datasheets/0916-gb-mi0djcpc.pdf"
+        },
+        {
+          "title": "Untitled product",
+          "image": "assets/products/placeholder.png",
+          "description": "",
+          "brand": "",
+          "usage": [],
+          "price": 0,
+          "stock": "in",
+          "images": [],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
