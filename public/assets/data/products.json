@@ -1133,6 +1133,38 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/kapci-k20-fast-cut-compound-mi0ega1c.pdf"
+        },
+        {
+          "title": "PEXCRAFT Foam Polishing Pad With Holder 150*50MM/M14*2",
+          "image": "assets/products/img-20251102-wa0059-mi0exdo6.png",
+          "description": "",
+          "brand": "PEXCRAFT",
+          "usage": [
+            "foam",
+            "polish",
+            "eponge",
+            "stickage"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/img-20251102-wa0089-mi0exg70.png"
+          ],
+          "variants": [
+            {
+              "label": "Medium Yellow Foam",
+              "price": 11.714
+            },
+            {
+              "label": "Soft Black Foam",
+              "price": 11.714
+            },
+            {
+              "label": "Hard Orange Foam",
+              "price": 11.714
+            }
+          ],
+          "datasheet": ""
         }
       ]
     }
