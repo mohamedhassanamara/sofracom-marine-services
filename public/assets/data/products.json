@@ -1165,6 +1165,36 @@
             }
           ],
           "datasheet": ""
+        },
+        {
+          "title": "PEXCRAFT Lambswool Polishing Bonnet 125mm",
+          "image": "assets/products/20251115_160924-mi0fl72f.png",
+          "description": "",
+          "brand": "PEXCRAFT",
+          "usage": [
+            "pexcraft",
+            "cotton",
+            "wool",
+            "disc",
+            "disque",
+            "stickage"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251115_160924-mi0flac8.png"
+          ],
+          "variants": [
+            {
+              "label": "125mm",
+              "price": 10.182
+            },
+            {
+              "label": "150mm",
+              "price": 11.675
+            }
+          ],
+          "datasheet": ""
         }
       ]
     }
