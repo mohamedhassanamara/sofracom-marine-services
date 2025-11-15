@@ -446,7 +446,9 @@
           ],
           "price": 0,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/20251114_115423-mhyu1t2z.png"
+          ],
           "variants": [
             {
               "label": "01KG",
@@ -981,7 +983,9 @@
           ],
           "price": 1.388,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/gp-tape-mhyol11t.jpg"
+          ],
           "variants": [
             {
               "label": "25mm X 25m",
@@ -1090,16 +1094,23 @@
           "datasheet": ""
         },
         {
-          "title": "Untitled product",
-          "image": "assets/products/placeholder.png",
-          "description": "",
-          "brand": "",
-          "usage": [],
-          "price": 0,
+          "title": "LECHLER 00916 Water-Borne Mordant Paste 250Ml",
+          "image": "assets/products/img-20251102-wa0053-mi0dmf9z.png",
+          "description": "White water-borne product containing abrasive extenders, carefully selected. It removes scratches and small defects from the painted surfaces.Ideal to remove impurities from the surface of the original coatings due to outside exposure, in contact with polluted environments. It is suitable, moreover, to remove small painting defects like dusts, sags (after sanding) and coarse sanding.Especially suitable for HS and UHS products.",
+          "brand": "LECHLER",
+          "usage": [
+            "paste",
+            "pate",
+            "916",
+            "1st cut"
+          ],
+          "price": 34.452,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/placeholder.png"
+          ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "assets/datasheets/0916-gb-mi0djcpc.pdf"
         }
       ]
     }
