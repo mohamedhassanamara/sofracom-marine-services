@@ -1137,7 +1137,7 @@
         {
           "title": "PEXCRAFT Foam Polishing Pad With Holder 150*50MM/M14*2",
           "image": "assets/products/img-20251102-wa0059-mi0exdo6.png",
-          "description": "",
+          "description": "This foam polishing pad with holder is designed for efficient cutting, polishing, and finishing on painted surfaces.\nIts 150×50 mm profile ensures smooth handling and optimal surface contact during work.\nEquipped with an M14×2 thread, it fits most standard rotary polishers securely.\nDurable and lightweight, it delivers consistent results for automotive and detailing applications.",
           "brand": "PEXCRAFT",
           "usage": [
             "foam",
@@ -1169,7 +1169,7 @@
         {
           "title": "PEXCRAFT Lambswool Polishing Bonnet 125mm",
           "image": "assets/products/20251115_160924-mi0fl72f.png",
-          "description": "",
+          "description": "The lambswool polishing bonnet is a premium-grade pad designed for high-efficiency polishing.\nIts natural wool fibers provide excellent cutting power while maintaining a smooth, swirl-free finish.\nIdeal for removing scratches, oxidation, and sanding marks on automotive paintwork.\nDurable, breathable, and gentle on surfaces, it ensures fast, professional-quality results.",
           "brand": "PEXCRAFT",
           "usage": [
             "pexcraft",
@@ -1194,6 +1194,18 @@
               "price": 11.675
             }
           ],
+          "datasheet": ""
+        },
+        {
+          "title": "Untitled product",
+          "image": "assets/products/placeholder.png",
+          "description": "",
+          "brand": "",
+          "usage": [],
+          "price": 0,
+          "stock": "in",
+          "images": [],
+          "variants": [],
           "datasheet": ""
         }
       ]
