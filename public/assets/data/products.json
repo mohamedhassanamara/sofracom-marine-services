@@ -460,6 +460,32 @@
             }
           ],
           "datasheet": "assets/datasheets/crystic-ecogel-s3-pa-english-mhys8xdo.pdf"
+        },
+        {
+          "title": "Methyl Acetate",
+          "image": "assets/products/chatgpt-image-nov-15-2025-05_37_02-pm-mi0jaacc.png",
+          "description": "Acetone is a fast-evaporating, highly effective organic solvent widely used in industry and maintenance.\nIt dissolves oils, resins, adhesives, and contaminants, making it ideal for surface cleaning and degreasing.\nIts rapid evaporation leaves no residue, ensuring clean and ready-to-coat surfaces.\nCommonly used in automotive, marine, paint, and chemical applications for reliable, efficient cleaning performance.",
+          "brand": "",
+          "usage": [
+            "acetone",
+            "acetate"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/chatgpt-image-nov-15-2025-05_37_02-pm-mi0jadjc.png"
+          ],
+          "variants": [
+            {
+              "label": "01L",
+              "price": 15
+            },
+            {
+              "label": "05L",
+              "price": 65
+            }
+          ],
+          "datasheet": ""
         }
       ]
     },
