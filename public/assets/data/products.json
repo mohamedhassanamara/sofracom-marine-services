@@ -1103,7 +1103,8 @@
             "paste",
             "pate",
             "916",
-            "1st cut"
+            "1st cut",
+            "stickage"
           ],
           "price": 34.452,
           "stock": "in",
@@ -1114,16 +1115,24 @@
           "datasheet": "assets/datasheets/0916-gb-mi0djcpc.pdf"
         },
         {
-          "title": "Untitled product",
+          "title": "KAPCI K20 Fast Cut Compound 1L",
           "image": "assets/products/placeholder.png",
-          "description": "",
-          "brand": "",
-          "usage": [],
-          "price": 0,
+          "description": "Kapci K20 Fast Cut Compound is a high-performance polishing paste designed for rapid defect removal.\nIt eliminates sanding scratches, oxidation, and surface imperfections with minimal effort.\nThe formula delivers a smooth, high-gloss finish while reducing polishing time.\nIdeal for automotive refinishing, it ensures consistent, professional-grade results on all paint systems.",
+          "brand": "KAPCI",
+          "usage": [
+            "kapci",
+            "fast cut",
+            "polish",
+            "pate",
+            "stickage"
+          ],
+          "price": 45.635,
           "stock": "in",
-          "images": [],
+          "images": [
+            "assets/products/img-20251102-wa0085-mi0ef6qw.png"
+          ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "assets/datasheets/kapci-k20-fast-cut-compound-mi0ega1c.pdf"
         }
       ]
     }
