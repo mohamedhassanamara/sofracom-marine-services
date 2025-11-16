@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOFRACOM Gallery Admin</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div>
+        <h1>Gallery Admin</h1>
+        <p>
+          Manage gallery entries saved in <code>assets/data/gallery.json</code>. Saving commits
+          and pushes automatically.
+        </p>
+      </div>
+      <div class="header-actions">
+        <button id="refreshBtn" type="button">Reload Data</button>
+        <button id="saveBtn" class="primary" type="button">Save &amp; Deploy</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="status" class="status" role="status" aria-live="polite"></section>
+
+      <section class="actions">
+        <button id="addEntryBtn" type="button">Add Entry</button>
+      </section>
+
+      <section id="entries" class="entries" aria-live="polite"></section>
+    </main>
+
+    <template id="entryTemplate">
+      <article class="entry">
+        <header class="entry-header">
+          <input type="text" class="entry-title" placeholder="Entry title" />
+          <div class="entry-header-actions">
+            <button class="move-entry" data-direction="up" type="button" title="Move up">↑</button>
+            <button class="move-entry" data-direction="down" type="button" title="Move down">↓</button>
+            <button class="delete-entry danger" type="button">Delete</button>
+          </div>
+        </header>
+        <div class="entry-body">
+          <div class="entry-grid">
+            <div class="entry-field">
+              <label>
+                Type
+                <select class="entry-type">
+                  <option value="image">Image</option>
+                  <option value="video">Video</option>
+                </select>
+              </label>
+              <label>
+                Source path or video link
+                <input type="text" class="entry-src" placeholder="assets/gallery/example.jpg or YouTube link" />
+              </label>
+              <label>
+                Date
+                <input type="date" class="entry-date" />
+              </label>
+              <label>
+                Tags (comma separated)
+                <input type="text" class="entry-tags" placeholder="antifouling, marina" />
+              </label>
+            </div>
+            <label class="entry-description-field">
+              Description
+              <textarea class="entry-description" rows="4"></textarea>
+            </label>
+          </div>
+          <div class="entry-preview">
+            <div class="preview-content"></div>
+          </div>
+          <div class="dropzone" data-bucket="gallery">
+            <input type="file" accept="image/*" class="dropzone-input" hidden />
+            <div class="dropzone-body">
+              <span class="dropzone-title">Drop an image here or click to upload</span>
+              <span class="dropzone-path">Uploads land in <code>assets/gallery</code></span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>

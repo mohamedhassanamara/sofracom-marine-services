@@ -198,6 +198,36 @@ body {
     background: linear-gradient(180deg, rgba(11, 32, 80, 0.35), rgba(11, 32, 80, 0.55));
 }
 
+.gallery-media {
+    position: relative;
+    overflow: hidden;
+    padding-top: 75%;
+    background: #e2e8f0;
+}
+
+.gallery-media__image, .gallery-media__iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 0;
+}
+
+.gallery-media__fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 61, 114, 0.1);
+    padding: 1rem;
+}
+
+.gallery-media__fallback a {
+    color: #0f3d72;
+}
+
 .parallax .content {
     position: relative;
 }

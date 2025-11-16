@@ -10,7 +10,8 @@
     "lint": "echo \"No lint configured\"",
     "test": "npm run lint",
     "admin": "node tools/product-admin/server.js",
-    "order-admin": "node tools/order-admin/server.js"
+    "order-admin": "node tools/order-admin/server.js",
+    "gallery-admin": "node tools/gallery-admin/server.js"
   },
   "private": true,
   "dependencies": {

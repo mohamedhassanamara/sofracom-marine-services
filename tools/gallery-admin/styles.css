@@ -1,0 +1,266 @@
+:root {
+  color-scheme: light;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #eef2fb;
+  color: #0b2050;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2fb 60%, #d9e4f8 100%);
+}
+
+header.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: #0b2050;
+  color: #fff;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+header.header h1 {
+  margin: 0 0 0.3rem;
+  font-size: 1.75rem;
+}
+
+header.header p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 36rem;
+}
+
+header.header code {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.25rem;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+main {
+  padding: 2rem;
+  max-width: 1100px;
+  margin: 0 auto 3rem;
+}
+
+button {
+  appearance: none;
+  border: 1px solid #0b2050;
+  border-radius: 0.6rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: #fff;
+  color: #0b2050;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+button:hover {
+  background: #0b2050;
+  color: #fff;
+}
+
+button.primary {
+  background: #24b4ff;
+  border-color: #24b4ff;
+  color: #fff;
+}
+
+button.primary:hover {
+  background: #0f3d72;
+  border-color: #0f3d72;
+}
+
+button.danger {
+  border-color: #d72638;
+  color: #d72638;
+}
+
+button.danger:hover {
+  background: #d72638;
+  color: #fff;
+}
+
+.status {
+  min-height: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.status.error {
+  color: #d72638;
+}
+
+.status.success {
+  color: #0f7a2e;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
+.entries {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.entry {
+  background: #fff;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  box-shadow: 0 18px 30px rgba(11, 32, 80, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.entry-title {
+  flex: 1;
+  min-width: 220px;
+  border: 1px solid rgba(11, 32, 80, 0.2);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+}
+
+.entry-header-actions {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.entry-header-actions button {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.75rem;
+  padding: 0;
+  font-size: 1.1rem;
+}
+
+.entry-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.entry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.entry-field label,
+.entry-description-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #0b2050;
+}
+
+.entry-field input,
+.entry-field select,
+.entry-description-field textarea {
+  border: 1px solid rgba(11, 32, 80, 0.2);
+  border-radius: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.entry-description-field textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.entry-preview {
+  border: 1px dashed rgba(11, 32, 80, 0.3);
+  border-radius: 1rem;
+  padding: 1rem;
+  background: #f9fafc;
+}
+
+.preview-content {
+  min-height: 140px;
+  border-radius: 0.75rem;
+  background: #0b2050;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.preview-content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dropzone {
+  border-radius: 1rem;
+  border: 2px dashed rgba(11, 32, 80, 0.4);
+  padding: 1rem;
+  cursor: pointer;
+  background: #fff;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.dropzone.dragover {
+  border-color: #24b4ff;
+  background: #f0f6ff;
+}
+
+.dropzone-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  color: #0b2050;
+}
+
+.dropzone-path code {
+  font-size: 0.85rem;
+  background: rgba(11, 32, 80, 0.08);
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.35rem;
+}
+
+@media (max-width: 768px) {
+  header.header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
