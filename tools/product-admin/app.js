@@ -10,12 +10,45 @@
   const saveBtn = document.getElementById('saveBtn');
   const refreshBtn = document.getElementById('refreshBtn');
   const addCategoryBtn = document.getElementById('addCategoryBtn');
+  const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
+  const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+  const jumpToTop = () =>
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const jumpToBottom = () => {
+    const body = document.body || document.documentElement;
+    const doc = document.documentElement;
+    const bottom = Math.max(
+      body.scrollHeight,
+      doc.scrollHeight,
+      body.offsetHeight,
+      doc.offsetHeight,
+      body.clientHeight,
+      doc.clientHeight
+    );
+    window.scrollTo({ top: bottom, behavior: 'smooth' });
+  };
+  scrollToBottomBtn?.addEventListener('click', jumpToBottom);
+  scrollToTopBtn?.addEventListener('click', jumpToTop);
   let activeCategoryIndex = 0;
+  let scrollTarget = null;
 
   function setStatus(message, type = '') {
     statusEl.textContent = message || '';
     statusEl.className = `status ${type}`;
   }
+
+  const normalizeAssetPath = value => {
+    const trimmed = (value || '').trim();
+    if (!trimmed) return '';
+    if (
+      trimmed.startsWith('http://') ||
+      trimmed.startsWith('https://') ||
+      trimmed.startsWith('data:')
+    ) {
+      return trimmed;
+    }
+    return `/${trimmed.replace(/^\/+/, '')}`;
+  };
 
   function readFileAsDataUrl(file) {
     return new Promise((resolve, reject) => {
@@ -83,13 +116,7 @@
 
     const applyPath = path => {
       const value = (path || '').trim();
-      const resolvedPath = value
-        ? value.startsWith('http://') ||
-          value.startsWith('https://') ||
-          value.startsWith('data:')
-          ? value
-          : `/${value.replace(/^\/+/, '')}`
-        : '';
+      const resolvedPath = normalizeAssetPath(value);
       if (resolvedPath) {
         preview.style.backgroundImage = `url("${resolvedPath}")`;
       } else {
@@ -234,30 +261,40 @@
     data.categories = data.categories.map(category => ({
       ...category,
       products: Array.isArray(category.products)
-        ? category.products.map(product => ({
-            ...product,
-            usage: sanitizeUsage(product.usage),
-            stock: ['out', 'in', 'on-order'].includes(product.stock)
-              ? product.stock
-              : 'in',
-            images:
-              Array.isArray(product.images) && product.images.length
-                ? product.images
-                : product.image
-                  ? [product.image]
-                  : [],
-            variants: Array.isArray(product.variants)
-              ? product.variants.map(variant => ({
-                  label: variant.label || '',
-                  price:
-                    Number.isFinite(Number(variant.price)) &&
-                    Number(variant.price) >= 0
-                      ? Number(variant.price)
-                      : null,
-                }))
-              : [],
-            datasheet: product.datasheet || '',
-          }))
+        ? category.products.map(product => {
+            const incomingImages = Array.isArray(product.images)
+              ? product.images
+                  .map(img => (typeof img === 'string' ? img.trim() : ''))
+                  .filter(Boolean)
+              : [];
+            const fallbackImage =
+              typeof product.image === 'string' ? product.image.trim() : '';
+            const dedupedImages = [...incomingImages];
+            if (fallbackImage && !dedupedImages.includes(fallbackImage)) {
+              dedupedImages.unshift(fallbackImage);
+            }
+            const normalizedImages = dedupedImages.filter(Boolean);
+            return {
+              ...product,
+              usage: sanitizeUsage(product.usage),
+              stock: ['out', 'in', 'on-order'].includes(product.stock)
+                ? product.stock
+                : 'in',
+              images: normalizedImages,
+              image: normalizedImages[0] || '',
+              variants: Array.isArray(product.variants)
+                ? product.variants.map(variant => ({
+                    label: variant.label || '',
+                    price:
+                      Number.isFinite(Number(variant.price)) &&
+                      Number(variant.price) >= 0
+                        ? Number(variant.price)
+                        : null,
+                  }))
+                : [],
+              datasheet: product.datasheet || '',
+            };
+          })
         : [],
     }));
     return data;
@@ -299,6 +336,7 @@
         .split(/\r?\n/)
         .map(line => line.trim())
         .filter(Boolean);
+      product.image = product.images[0] || '';
       return;
     }
 
@@ -328,10 +366,15 @@
       usage: [],
       price: 0,
       stock: 'in',
-      images: [],
+      images: ['assets/products/placeholder.png'],
       variants: [],
       datasheet: '',
     });
+    activeCategoryIndex = categoryIndex;
+    scrollTarget = {
+      categoryIndex,
+      productIndex: category.products.length - 1,
+    };
     render();
   }
 
@@ -571,17 +614,14 @@
 
         const titleInput = productFragment.querySelector('.product-title');
         const brandInput = productFragment.querySelector('.product-brand');
-        const imageInput = productFragment.querySelector('.product-image');
         const usageInput = productFragment.querySelector('.product-usage');
         const priceInput = productFragment.querySelector('.product-price');
         const descriptionInput = productFragment.querySelector(
           '.product-description'
         );
         const stockSelect = productFragment.querySelector('.product-stock');
-        const productDropzoneEl = productFragment.querySelector(
-          '.product-dropzone'
-        );
         const imagesInput = productFragment.querySelector('.product-images');
+        const imagesPreview = productFragment.querySelector('.image-preview-grid');
         const datasheetInput = productFragment.querySelector(
           '.product-datasheet'
         );
@@ -600,7 +640,6 @@
 
         titleInput.value = product.title || '';
         brandInput.value = product.brand || '';
-        imageInput.value = product.image || '';
         usageInput.value = sanitizeUsage(product.usage).join(', ');
         priceInput.value =
           product.price === null || product.price === undefined
@@ -614,28 +653,12 @@
         imagesInput.value = (product.images || []).join('\n');
         datasheetInput.value = product.datasheet || '';
 
-        const productDropzone = setupImageDropzone(productDropzoneEl, {
-          currentPath: product.image || '',
-          bucket: 'products',
-          onChange: newPath => {
-            state.categories[categoryIndex].products[productIndex].image =
-              newPath;
-            imageInput.value = newPath;
-          },
-        });
-
         titleInput.addEventListener('input', event =>
           handleProductInput(event, categoryIndex, productIndex, 'title')
         );
         brandInput.addEventListener('input', event =>
           handleProductInput(event, categoryIndex, productIndex, 'brand')
         );
-        imageInput.addEventListener('input', event =>
-          handleProductInput(event, categoryIndex, productIndex, 'image')
-        );
-        imageInput.addEventListener('input', event => {
-          productDropzone.update(event.target.value);
-        });
         usageInput.addEventListener('input', event => {
           handleProductInput(event, categoryIndex, productIndex, 'usage');
         });
@@ -672,6 +695,38 @@
           addVariantBtn
         );
 
+        const renderImagesPreview = () => {
+          if (!imagesPreview) return;
+          imagesPreview.innerHTML = '';
+          const paths = (product.images || [])
+            .map(path => (path || '').trim())
+            .filter(Boolean);
+          if (!paths.length) {
+            const emptyState = document.createElement('p');
+            emptyState.className = 'image-preview-empty';
+            emptyState.textContent = 'Add image paths to see previews.';
+            imagesPreview.appendChild(emptyState);
+            return;
+          }
+          paths.forEach(path => {
+            const resolvedSrc = normalizeAssetPath(path);
+            if (!resolvedSrc) return;
+            const card = document.createElement('div');
+            card.className = 'image-preview-card';
+            const img = document.createElement('img');
+            img.src = resolvedSrc;
+            img.alt = product.title
+              ? `${product.title} preview`
+              : 'Product image preview';
+            const caption = document.createElement('span');
+            caption.className = 'preview-path';
+            caption.textContent = path;
+            card.appendChild(img);
+            card.appendChild(caption);
+            imagesPreview.appendChild(card);
+          });
+        };
+
         const appendImagePath = path => {
           const current = (imagesInput.value || '')
             .split(/\r?\n/)
@@ -685,6 +740,7 @@
             productIndex,
             'images'
           );
+          renderImagesPreview();
         };
 
         const imagesDropzone = setupAssetDropzone(imagesDropzoneEl, {
@@ -701,6 +757,7 @@
           imagesDropzone?.applyPath(last || '');
         };
         syncImagesDropzone();
+        renderImagesPreview();
 
         const fileToInput = path => {
           datasheetInput.value = path;
@@ -721,6 +778,7 @@
         imagesInput.addEventListener('input', event => {
           handleProductInput(event, categoryIndex, productIndex, 'images');
           syncImagesDropzone();
+          renderImagesPreview();
         });
         datasheetInput.addEventListener('input', event => {
           handleProductInput(event, categoryIndex, productIndex, 'datasheet');
@@ -733,6 +791,14 @@
       categoriesContainer.appendChild(fragment);
     });
     highlightActiveCategory(activeIndex);
+    if (scrollTarget) {
+      const selector = `.product[data-category-index="${scrollTarget.categoryIndex}"][data-product-index="${scrollTarget.productIndex}"]`;
+      const target = categoriesContainer.querySelector(selector);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      scrollTarget = null;
+    }
   }
 
   async function loadData() {

@@ -402,6 +402,74 @@ textarea:focus {
   min-height: 80px;
 }
 
+.image-upload-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.image-text-column,
+.image-drop-column {
+  flex: 1;
+  min-width: 240px;
+}
+
+.image-drop-column {
+  max-width: 320px;
+}
+
+.image-drop-column .asset-dropzone-list {
+  margin-top: 0;
+}
+
+.image-drop-column .asset-dropzone-hint {
+  margin-bottom: 0;
+}
+
+.image-preview-grid {
+  margin-top: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 0.6rem;
+}
+
+.image-preview-card {
+  border-radius: 0.75rem;
+  border: 1px solid #d8e2f3;
+  background: #fff;
+  padding: 0.45rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 6px 10px rgba(11, 32, 80, 0.08);
+}
+
+.image-preview-card img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(11, 32, 80, 0.1);
+}
+
+.image-preview-card .preview-path {
+  font-size: 0.75rem;
+  color: rgba(11, 32, 80, 0.65);
+  word-break: break-word;
+}
+
+.image-preview-empty {
+  color: rgba(11, 32, 80, 0.55);
+  font-size: 0.85rem;
+  padding: 0.75rem;
+  border: 1px dashed rgba(11, 32, 80, 0.25);
+  border-radius: 0.75rem;
+  background: rgba(245, 247, 251, 0.7);
+}
+
 .variant-section {
   border: 1px dashed rgba(11, 32, 80, 0.25);
   border-radius: 0.85rem;
@@ -609,5 +677,44 @@ textarea:focus {
 
   main {
     padding: 1.25rem;
+  }
+}
+
+.scroll-arrow {
+  position: fixed;
+  bottom: 2rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(11, 32, 80, 0.4);
+  background: #fff;
+  color: #0b2050;
+  font-size: 1.4rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(11, 32, 80, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 10;
+}
+
+.scroll-arrow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 25px rgba(11, 32, 80, 0.35);
+}
+
+.scroll-bottom {
+  left: 1.5rem;
+}
+
+.scroll-top {
+  right: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .scroll-arrow {
+    bottom: 1rem;
   }
 }
