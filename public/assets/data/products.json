@@ -442,6 +442,32 @@
             }
           ],
           "datasheet": "assets/datasheets/crystic-ecogel-s3-pa-english-mhys8xdo.pdf"
+        },
+        {
+          "title": "Methyl Acetate",
+          "image": "assets/products/chatgpt-image-nov-15-2025-05_37_02-pm-mi0jaacc.png",
+          "description": "Acetone is a fast-evaporating, highly effective organic solvent widely used in industry and maintenance.\nIt dissolves oils, resins, adhesives, and contaminants, making it ideal for surface cleaning and degreasing.\nIts rapid evaporation leaves no residue, ensuring clean and ready-to-coat surfaces.\nCommonly used in automotive, marine, paint, and chemical applications for reliable, efficient cleaning performance.",
+          "brand": "",
+          "usage": [
+            "acetone",
+            "acetate"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/chatgpt-image-nov-15-2025-05_37_02-pm-mi0jadjc.png"
+          ],
+          "variants": [
+            {
+              "label": "01L",
+              "price": 15
+            },
+            {
+              "label": "05L",
+              "price": 65
+            }
+          ],
+          "datasheet": ""
         }
       ]
     },
@@ -1095,7 +1121,7 @@
         },
         {
           "title": "PEXCRAFT Foam Polishing Pad With Holder 150*50MM/M14*2",
-          "description": "",
+          "description": "This foam polishing pad with holder is designed for efficient cutting, polishing, and finishing on painted surfaces.\nIts 150×50 mm profile ensures smooth handling and optimal surface contact during work.\nEquipped with an M14×2 thread, it fits most standard rotary polishers securely.\nDurable and lightweight, it delivers consistent results for automotive and detailing applications.",
           "brand": "PEXCRAFT",
           "usage": [
             "foam",
@@ -1123,6 +1149,66 @@
               "price": 11.714
             }
           ],
+          "datasheet": ""
+        },
+        {
+          "title": "PEXCRAFT Lambswool Polishing Bonnet 125mm",
+          "image": "assets/products/20251115_160924-mi0fl72f.png",
+          "description": "The lambswool polishing bonnet is a premium-grade pad designed for high-efficiency polishing.\nIts natural wool fibers provide excellent cutting power while maintaining a smooth, swirl-free finish.\nIdeal for removing scratches, oxidation, and sanding marks on automotive paintwork.\nDurable, breathable, and gentle on surfaces, it ensures fast, professional-quality results.",
+          "brand": "PEXCRAFT",
+          "usage": [
+            "pexcraft",
+            "cotton",
+            "wool",
+            "disc",
+            "disque",
+            "stickage"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251115_160924-mi0flac8.png"
+          ],
+          "variants": [
+            {
+              "label": "125mm",
+              "price": 10.182
+            },
+            {
+              "label": "150mm",
+              "price": 11.675
+            }
+          ],
+          "datasheet": ""
+        },
+        {
+          "title": "APT Plastic Backing Pad With Velcro 5\"*M14",
+          "image": "assets/products/20251115_161208-mi0jwpaj.png",
+          "description": "This plastic backing pad features a 5-inch diameter and durable Velcro surface for quick pad attachment.\nDesigned with an M14 thread, it fits most rotary polishers used in automotive and detailing work.\nIts balanced, rigid construction ensures smooth operation and consistent polishing performance.\nIdeal for supporting foam, wool, and microfiber pads during cutting, polishing, and finishing tasks",
+          "brand": "APT",
+          "usage": [
+            "apt",
+            "plateau",
+            "pad"
+          ],
+          "price": 21.906,
+          "stock": "in",
+          "images": [
+            "assets/products/20251115_161208-mi0jwstr.png"
+          ],
+          "variants": [],
+          "datasheet": ""
+        },
+        {
+          "title": "Untitled product",
+          "image": "assets/products/placeholder.png",
+          "description": "",
+          "brand": "",
+          "usage": [],
+          "price": 0,
+          "stock": "in",
+          "images": [],
+          "variants": [],
           "datasheet": ""
         }
       ]
