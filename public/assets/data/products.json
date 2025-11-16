@@ -29,7 +29,8 @@
           ],
           "datasheet": "assets/datasheets/seaforce-active-gb-mhqeuljf.pdf",
           "price": 341.887,
-          "stock": "in"
+          "stock": "in",
+          "image": "assets/products/20251104_142605-mhkpnc7j.png"
         },
         {
           "title": "Jotun SeaForce Active 04L Blue / Bleu",
@@ -53,7 +54,8 @@
           ],
           "price": 655.272,
           "stock": "in",
-          "datasheet": "assets/datasheets/seaforce-active-gb-mhqiiomu.pdf"
+          "datasheet": "assets/datasheets/seaforce-active-gb-mhqiiomu.pdf",
+          "image": "assets/products/20251104_142934-mhkq1zha.png"
         },
         {
           "title": "JOTUN Safeguard universal es 15L(A)+03L(B)",
@@ -71,7 +73,8 @@
             "assets/products/20251104_162916-mhkrjjaq.png"
           ],
           "variants": [],
-          "datasheet": "assets/datasheets/safeguard-universal-es-gb-mhqii2j7.pdf"
+          "datasheet": "assets/datasheets/safeguard-universal-es-gb-mhqii2j7.pdf",
+          "image": "assets/products/20251104_162916-mhkrjjaq.png"
         },
         {
           "title": "Penguard Primer Red / Rouge 04L(A)+01L(B)",
@@ -89,7 +92,8 @@
             "assets/products/20251104_163524-mhktr74d.png"
           ],
           "variants": [],
-          "datasheet": "assets/datasheets/penguard-fc-gb-mhqiksvb.pdf"
+          "datasheet": "assets/datasheets/penguard-fc-gb-mhqiksvb.pdf",
+          "image": "assets/products/20251104_163524-mhktr74d.png"
         },
         {
           "title": "jotamastic 80 Grey / Gris ",
@@ -120,7 +124,8 @@
               "price": 752.261
             }
           ],
-          "datasheet": "assets/datasheets/jotamastic-80-gb-mhqil3cj.pdf"
+          "datasheet": "assets/datasheets/jotamastic-80-gb-mhqil3cj.pdf",
+          "image": "assets/products/20251104_163007-mhktrhqq.png"
         },
         {
           "title": "Thinner / Diluant N° 07 0.8L",
@@ -138,7 +143,8 @@
             "assets/products/20251104_164929-mhktsgsm.png"
           ],
           "variants": [],
-          "datasheet": "assets/datasheets/jotun-thinner-no.-7-gb-mhqinhe7.pdf"
+          "datasheet": "assets/datasheets/jotun-thinner-no.-7-gb-mhqinhe7.pdf",
+          "image": "assets/products/20251104_164929-mhktsgsm.png"
         },
         {
           "title": "Thinner / Diluant N° 17 0.8L",
@@ -165,7 +171,8 @@
               "price": 82.842
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/20251104_164917-mhktskts.png"
         },
         {
           "title": "HEMPEL'S Antifouling Olympic+ 72900/3017 05kg Blue/Bleu",
@@ -186,7 +193,8 @@
             "assets/products/20251104_181223-mhkujr6y.png"
           ],
           "variants": [],
-          "datasheet": "assets/datasheets/en-gb-mhqiphyv.pdf"
+          "datasheet": "assets/datasheets/en-gb-mhqiphyv.pdf",
+          "image": "assets/products/20251104_181223-mhkujr6y.png"
         },
         {
           "title": "HEMPEL'S Antifouling Olympic+ 72900/1999 05kg Black/noir",
@@ -207,7 +215,8 @@
             "assets/products/20251104_181235-mhkup44o.png"
           ],
           "variants": [],
-          "datasheet": "assets/datasheets/en-gb-mhqipu39.pdf"
+          "datasheet": "assets/datasheets/en-gb-mhqipu39.pdf",
+          "image": "assets/products/20251104_181235-mhkup44o.png"
         },
         {
           "title": "SEAJET 039 Mono-Component Black",
@@ -231,7 +240,8 @@
               "price": 1425
             }
           ],
-          "datasheet": "assets/datasheets/seajet_039_platinum_mono-component-tds-english-consumer-mhxns6pa.pdf"
+          "datasheet": "assets/datasheets/seajet_039_platinum_mono-component-tds-english-consumer-mhxns6pa.pdf",
+          "image": "assets/products/20251113_140442-2-mhxnqwac.png"
         }
       ]
     },
@@ -256,7 +266,8 @@
             "assets/products/20251027_154046-mhkvwi0x.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/20251027_154046-mhkvwi0x.png"
         },
         {
           "title": "Sikaflex 295 UV 400ml White/Blanc",
@@ -274,7 +285,8 @@
             "assets/products/20251027_153952-mhkvp45z.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/20251027_153952-mhkvp45z.png"
         },
         {
           "title": "JULIEN STRIAFORM 2K Epoxy Putty 01kg ",
@@ -303,7 +315,8 @@
               "price": 390.156
             }
           ],
-          "datasheet": "assets/datasheets/mastic-epoxy-striaform-mht38nm0.pdf"
+          "datasheet": "assets/datasheets/mastic-epoxy-striaform-mht38nm0.pdf",
+          "image": "assets/products/striaform-22-mht2r1sx.png"
         },
         {
           "title": "Sika Primer-290 DC 225ML",
@@ -322,7 +335,8 @@
             "assets/products/20251110_120330-mht5evx2.png"
           ],
           "variants": [],
-          "datasheet": "assets/datasheets/sika_primer-290_dc-mht5f9yj.pdf"
+          "datasheet": "assets/datasheets/sika_primer-290_dc-mht5f9yj.pdf",
+          "image": "assets/products/20251110_120322-mht5esn2.png"
         },
         {
           "title": "EPOKUKDO YD-114 Low Viscosity Epoxy Resin 2K 01L",
@@ -341,7 +355,8 @@
             "assets/products/20251111_140038-mhw5opvd.png"
           ],
           "variants": [],
-          "datasheet": "assets/datasheets/yd-114_datasheet_no_photo-mhw7if3d.pdf"
+          "datasheet": "assets/datasheets/yd-114_datasheet_no_photo-mhw7if3d.pdf",
+          "image": "assets/products/20251111_140038-mhw5opvd.png"
         },
         {
           "title": "TP220TICO Polyester Resin 01L",
@@ -368,7 +383,8 @@
               "price": 246.58
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/20251111_171059-mhw8zwyx.png"
         },
         {
           "title": "KAPCI Aluminium PE Putty 380 0.9Kg",
@@ -386,7 +402,8 @@
             "assets/products/20251113_143051-mhxon7dr.png"
           ],
           "variants": [],
-          "datasheet": "assets/datasheets/kapci-380-aluminium-pe-putty-mhxord4a.pdf"
+          "datasheet": "assets/datasheets/kapci-380-aluminium-pe-putty-mhxord4a.pdf",
+          "image": "assets/products/20251113_143051-mhxon7dr.png"
         },
         {
           "title": "KAPCI Polyester Putty 350 ",
@@ -414,7 +431,8 @@
               "price": 37.376
             }
           ],
-          "datasheet": "assets/datasheets/kapci-350-pe-putty-general-purpose-mhxpdp2q.pdf"
+          "datasheet": "assets/datasheets/kapci-350-pe-putty-general-purpose-mhxpdp2q.pdf",
+          "image": "assets/products/20251113_181252-mhxp9pwe.png"
         },
         {
           "title": "GC Ecogel S3PA V2 Ral 9016 White",
@@ -441,7 +459,8 @@
               "price": 770.214
             }
           ],
-          "datasheet": "assets/datasheets/crystic-ecogel-s3-pa-english-mhys8xdo.pdf"
+          "datasheet": "assets/datasheets/crystic-ecogel-s3-pa-english-mhys8xdo.pdf",
+          "image": "assets/products/20251114_115423-mhyu1t2z.png"
         },
         {
           "title": "Methyl Acetate",
@@ -455,6 +474,7 @@
           "price": 0,
           "stock": "in",
           "images": [
+            "assets/products/chatgpt-image-nov-15-2025-05_37_02-pm-mi0jaacc.png",
             "assets/products/chatgpt-image-nov-15-2025-05_37_02-pm-mi0jadjc.png"
           ],
           "variants": [
@@ -493,7 +513,8 @@
             "assets/products/img-20251102-wa0076-mhsup940.jpg"
           ],
           "variants": [],
-          "datasheet": "assets/datasheets/kodak-zinc-batteries-aa-mhsuussb.pdf"
+          "datasheet": "assets/datasheets/kodak-zinc-batteries-aa-mhsuussb.pdf",
+          "image": "assets/products/img-20251102-wa0076-mhsup940.jpg"
         },
         {
           "title": "Pack Of 4 Kodak Zinc Batteries AAA",
@@ -512,7 +533,8 @@
             "assets/products/img-20251102-wa0040-mhsvjyhi.jpg"
           ],
           "variants": [],
-          "datasheet": "assets/datasheets/kodak-zinc-batteries-aa-mhsuyufh.pdf"
+          "datasheet": "assets/datasheets/kodak-zinc-batteries-aa-mhsuyufh.pdf",
+          "image": "assets/products/img-20251102-wa0040-mhsvjyhi.jpg"
         },
         {
           "title": "9V KODAK Zinc Battery",
@@ -531,7 +553,8 @@
             "assets/products/img-20251102-wa0057-mhsvepow.jpg"
           ],
           "variants": [],
-          "datasheet": "assets/datasheets/super-heavy-duty-9v-ver-2.2-mhsvk769.pdf"
+          "datasheet": "assets/datasheets/super-heavy-duty-9v-ver-2.2-mhsvk769.pdf",
+          "image": "assets/products/img-20251102-wa0057-mhsvepow.jpg"
         },
         {
           "title": "CR2025 MAXELL 3V Battery ",
@@ -549,7 +572,8 @@
             "assets/products/img-20251102-wa0044-mhsvehha.jpg"
           ],
           "variants": [],
-          "datasheet": "assets/datasheets/cr2025_data_sheet_e-mhsvy50i.pdf"
+          "datasheet": "assets/datasheets/cr2025_data_sheet_e-mhsvy50i.pdf",
+          "image": "assets/products/img-20251102-wa0044-mhsvehha.jpg"
         },
         {
           "title": "REVLINE Hydraulic Oil HM/HLP 46",
@@ -573,7 +597,8 @@
               "price": 169.65
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/20251110_114405-mhxgyngd.png"
         }
       ]
     },
@@ -633,7 +658,8 @@
               "price": 9
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/pinceau-cristan-n30-mhhmgsae.jpg"
         },
         {
           "title": "Short Pile Paint Roller Pack Of 5",
@@ -650,7 +676,8 @@
             "assets/products/img-20251102-wa0036-mhqjeamb.jpg"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/img-20251102-wa0036-mhqjeamb.jpg"
         },
         {
           "title": "long Pile Paint Roller Pack Of 5",
@@ -668,7 +695,8 @@
             "assets/products/img-20251102-wa0035-mhqkjjou.jpg"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/img-20251102-wa0035-mhqkjjou.jpg"
         },
         {
           "title": "Long Roller Frame",
@@ -685,7 +713,8 @@
             "assets/products/img-20251102-wa0050-mhqkqz6f.jpg"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/img-20251102-wa0050-mhqkqz6f.jpg"
         },
         {
           "title": "20CM Short Pile Paint Roller Plus Frame",
@@ -703,7 +732,8 @@
             "assets/products/img-20251102-wa0058-mhsw40fp.jpg"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/img-20251102-wa0058-mhsw40fp.jpg"
         },
         {
           "title": "Wood Handle Filling Knife 50MM",
@@ -729,7 +759,8 @@
               "price": 2.242
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/img-20251102-wa0056-mhsxtls9.jpg"
         },
         {
           "title": "Body Filler Application Set 4pce",
@@ -747,7 +778,8 @@
             "assets/products/img-20251102-wa0078-mhsz9862.jpg"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/img-20251102-wa0078-mhsz9862.jpg"
         },
         {
           "title": "SDS Paint Mixer ( 80 X 600 x 10MM)",
@@ -764,7 +796,8 @@
             "assets/products/img-20251102-wa0080-mhszkdn9.jpg"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/img-20251102-wa0080-mhszkdn9.jpg"
         },
         {
           "title": "Technopole 6 In 1 Penetrating / Lubricant Oil 300ml",
@@ -782,7 +815,8 @@
             "assets/products/img-20251102-wa0090-mhszv052.jpg"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/img-20251102-wa0090-mhszv052.jpg"
         },
         {
           "title": "Technopole Degrippant / Penetrating Express Spray 300ml",
@@ -797,7 +831,8 @@
             "assets/products/img-20251102-wa0091-mht0g77i.jpg"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/img-20251102-wa0091-mht0g77i.jpg"
         },
         {
           "title": "SARATOGA Unloose Lubricant 300ml",
@@ -815,7 +850,8 @@
             "assets/products/laser-1-mht2j39t.webp"
           ],
           "variants": [],
-          "datasheet": "assets/datasheets/54123001-en-mht2jfyh.pdf"
+          "datasheet": "assets/datasheets/54123001-en-mht2jfyh.pdf",
+          "image": "assets/products/20251110_113411-mht2gwwd.png"
         },
         {
           "title": "DS Earmuff, Ear Protection Black/Yellow",
@@ -834,7 +870,8 @@
             "assets/products/img-20251102-wa0037-mht3ka2d.jpg"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/img-20251102-wa0037-mht3ka2d.jpg"
         },
         {
           "title": "CLIMAX Half Mask Ref. 324",
@@ -851,7 +888,8 @@
             "assets/products/img-20251102-wa0063-mht3sbov.jpg"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/img-20251102-wa0063-mht3sbov.jpg"
         },
         {
           "title": "SUN Nitrile Disposable Gloves, BlackXL",
@@ -869,7 +907,8 @@
             "assets/products/img-20251102-wa0075-mht46qor.jpg"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/img-20251102-wa0075-mht46qor.jpg"
         },
         {
           "title": "ACEM Screwdriver, Orange, PH",
@@ -906,7 +945,8 @@
               "price": 2.058
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/img-20251102-wa0064-mht4p7yw.jpg"
         },
         {
           "title": "15 Pack / Disposable Face Mask with Breathing Valve",
@@ -925,7 +965,8 @@
             "assets/products/20251113_173720-mhxobgoq.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/20251113_173709-mhxo6tvi.png"
         },
         {
           "title": "DELTAPLUS DT117 Disposable Suit",
@@ -957,7 +998,8 @@
               "price": 38.675
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/20251113_164339-mhxm0uaz.png"
         },
         {
           "title": "GP Tape 25mm X 25M Multi Surface Masking Tape",
@@ -988,7 +1030,8 @@
               "price": 2.978
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/gp-tape-mhyol11t.jpg"
         },
         {
           "title": "TT Electrical Tape ",
@@ -1014,7 +1057,8 @@
               "price": 3.484
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/img-20251102-wa0041-mhyozmf6.jpg"
         },
         {
           "title": "EUROSIL Packing Tape Clear/Brown",
@@ -1044,7 +1088,8 @@
               "price": 3.011
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/20251114_120122-mhyrsca7.png"
         },
         {
           "title": "TECHNOPOLE Multifonction Grease ",
@@ -1079,7 +1124,8 @@
               "price": 49.218
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/20251114_125508-mhytwhwc.png"
         },
         {
           "title": "LECHLER 00916 Water-Borne Mordant Paste 250Ml",
@@ -1098,7 +1144,8 @@
             "assets/products/img-20251102-wa0053-mi0dmf9z.png"
           ],
           "variants": [],
-          "datasheet": "assets/datasheets/0916-gb-mi0djcpc.pdf"
+          "datasheet": "assets/datasheets/0916-gb-mi0djcpc.pdf",
+          "image": "assets/products/img-20251102-wa0053-mi0dmf9z.png"
         },
         {
           "title": "KAPCI K20 Fast Cut Compound 1L",
@@ -1117,7 +1164,8 @@
             "assets/products/img-20251102-wa0085-mi0ef6qw.png"
           ],
           "variants": [],
-          "datasheet": "assets/datasheets/kapci-k20-fast-cut-compound-mi0ega1c.pdf"
+          "datasheet": "assets/datasheets/kapci-k20-fast-cut-compound-mi0ega1c.pdf",
+          "image": "assets/products/img-20251102-wa0085-mi0ef6qw.png"
         },
         {
           "title": "PEXCRAFT Foam Polishing Pad With Holder 150*50MM/M14*2",
@@ -1149,7 +1197,8 @@
               "price": 11.714
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/img-20251102-wa0059-mi0exdo6.png"
         },
         {
           "title": "PEXCRAFT Lambswool Polishing Bonnet 125mm",
@@ -1178,7 +1227,8 @@
               "price": 11.675
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/20251115_160924-mi0flac8.png"
         },
         {
           "title": "APT Plastic Backing Pad With Velcro 5\"*M14",
@@ -1195,18 +1245,44 @@
             "assets/products/20251115_161208-mi0jwpaj.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "image": "assets/products/20251115_161208-mi0jwpaj.png"
         },
         {
-          "title": "Untitled product",
-          "description": "",
-          "brand": "",
-          "usage": [],
+          "title": "APT Aluminum Oxyde Flap disc 115*22mm 4.5*7/8\"",
+          "description": "Upgrade your grinding and finishing performance with our premium Aluminum Oxide Flap Disc 115×22 mm (4.5″×7/8″), engineered for power and precision.\nIts durable, high-quality abrasive flaps deliver fast material removal while maintaining a smooth, consistent finish.\nPerfect for metal fabrication, welding cleanup, and general surface prep, it’s built to outlast and outperform standard discs.\nExperience cleaner cuts, longer life, and superior efficiency with every rotation—professional results made effortless.",
+          "brand": "APT",
+          "usage": [
+            "disc",
+            "lamel",
+            "flap",
+            "115*22"
+          ],
           "price": 0,
           "stock": "in",
-          "images": [],
-          "variants": [],
-          "datasheet": ""
+          "images": [
+            "assets/products/20251115_183413-mi1n2j4w.png"
+          ],
+          "variants": [
+            {
+              "label": "P-40",
+              "price": 3.618
+            },
+            {
+              "label": "P-60",
+              "price": 3.455
+            },
+            {
+              "label": "P-80",
+              "price": 3.455
+            },
+            {
+              "label": "P-120",
+              "price": 3.455
+            }
+          ],
+          "datasheet": "",
+          "image": "assets/products/20251115_183413-mi1n2j4w.png"
         }
       ]
     }
