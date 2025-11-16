@@ -8,6 +8,7 @@ const NAV_LINKS = [
     { href: '#about', key: 'nav.about', type: 'anchor' },
     { href: '#brands', key: 'nav.brands', type: 'anchor' },
     { href: '/products', key: 'nav.products', type: 'page' },
+    { href: '/gallery', key: 'nav.gallery', type: 'page' },
     { href: '#services', key: 'nav.services', type: 'anchor' },
     { href: '#contact', key: 'nav.contact', type: 'anchor' },
 ];
