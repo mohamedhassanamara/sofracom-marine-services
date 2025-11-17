@@ -711,11 +711,11 @@
           "price": 2.922,
           "stock": "in",
           "images": [
-            "assets/products/img-20251102-wa0050-mhqkqz6f.jpg"
+            "assets/products/img-20251102-wa0050-mhqkqz6f-mi3nup9i.png"
           ],
           "variants": [],
           "datasheet": "",
-          "image": "assets/products/img-20251102-wa0050-mhqkqz6f.jpg"
+          "image": "assets/products/img-20251102-wa0050-mhqkqz6f-mi3nup9i.png"
         },
         {
           "title": "CRISTAL 20CM Short Pile Paint Roller Plus Frame",
@@ -1287,7 +1287,7 @@
         },
         {
           "title": "TECHNOPOLE StarMétal / Cold Welding 85Gr",
-          "image": "assets/products/img-20251102-wa0061-mi1oy9ze.png",
+          "image": "assets/products/img-20251102-wa0061-mi1r8t8w.png",
           "description": "Boost your repair efficiency with StarMetal Cold Welding 85g, the ultimate solution for fast, reliable metal bonding.\nThis high-performance compound restores cracked, worn, or damaged parts with exceptional strength—no heat or special tools required.\nDesigned to bond, fill, and rebuild metal surfaces, it delivers a durable, long-lasting hold in minutes.\nPerfect for workshops and DIY users alike, StarMetal brings professional-grade results right to your hands.",
           "brand": "TECHNOPOLE",
           "usage": [
@@ -1298,7 +1298,6 @@
           "price": 9.954,
           "stock": "in",
           "images": [
-            "assets/products/img-20251102-wa0061-mi1oy9ze.png",
             "assets/products/img-20251102-wa0061-mi1r8t8w.png"
           ],
           "variants": [],
@@ -1411,7 +1410,8 @@
           "price": 0,
           "stock": "in",
           "images": [
-            "assets/products/20251110_124222-1-mi3nhcpw.png"
+            "assets/products/20251110_124222-1-mi3nhcpw.png",
+            "assets/products/20251110_124232-mi3nsafu.png"
           ],
           "variants": [
             {
