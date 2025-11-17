@@ -1319,7 +1319,8 @@
           "price": 0,
           "stock": "in",
           "images": [
-            "assets/products/snapchat-2057018395-mi3klhi6.png"
+            "assets/products/snapchat-2057018395-mi3klhi6.png",
+            "assets/products/snapchat-1953210948-mi3n9ylu.png"
           ],
           "variants": [
             {
@@ -1389,6 +1390,37 @@
             {
               "label": "150mm/1000G",
               "price": 1.544
+            }
+          ],
+          "datasheet": ""
+        },
+        {
+          "title": "EMA  Metal Cutting Disc 115/230MM",
+          "image": "assets/products/20251110_124222-1-mi3nhcpw.png",
+          "description": "EMA Metal Cutting Discs 230mm deliver exceptional cutting power, engineered for professionals who demand precision and speed. Their high-performance abrasive formula ensures clean, smooth cuts through steel, metal alloys, and tough materials with minimal effort. Built for durability, each disc maintains consistent performance even under intense workloads. Choose EMA for reliable, long-lasting cutting efficiency that boosts productivity on every job.",
+          "brand": "EMA",
+          "usage": [
+            "disc",
+            "acier",
+            "steel",
+            "230mm",
+            "3.2",
+            "22",
+            "115mm"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251110_124222-1-mi3nhcpw.png"
+          ],
+          "variants": [
+            {
+              "label": "115*3.2*22",
+              "price": 1.854
+            },
+            {
+              "label": "230*3.2*22",
+              "price": 4.515
             }
           ],
           "datasheet": ""
