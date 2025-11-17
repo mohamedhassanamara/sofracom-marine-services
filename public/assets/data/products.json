@@ -1424,6 +1424,24 @@
             }
           ],
           "datasheet": ""
+        },
+        {
+          "title": "Bosch 115mm Metal Cutting Discs - Stainless Steel Mild Steel Iron Ultra Thin",
+          "image": "assets/products/20251104_145422-mi3oa54y.png",
+          "description": "Bosch 115mm Ultra-Thin Metal Cutting Discs deliver outstanding precision and speed across stainless steel, mild steel, and iron. Their slim profile reduces friction for cooler, faster, and cleaner cuts every time. Engineered with Bosch’s high-performance abrasive technology, these discs offer exceptional durability and minimal burr formation. Choose Bosch for professional-grade cutting results that elevate efficiency and finish quality on every project.",
+          "brand": "BOSCH",
+          "usage": [
+            "inox",
+            "stainless steel",
+            "115mm"
+          ],
+          "price": 1.75,
+          "stock": "in",
+          "images": [
+            "assets/products/20251104_145422-mi3oa54y.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
