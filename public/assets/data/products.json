@@ -1045,8 +1045,8 @@
           "price": 0.58,
           "stock": "in",
           "images": [
-            "assets/products/img-20251102-wa0041-mhyozmf6.jpg",
-            "assets/products/img-20251102-wa0039-mhyozp4v.jpg"
+            "assets/products/img-20251102-wa0039-mhyozp4v.jpg",
+            "assets/products/img-20251102-wa0041-mhyozmf6.jpg"
           ],
           "variants": [
             {
@@ -1059,7 +1059,7 @@
             }
           ],
           "datasheet": "",
-          "image": "assets/products/img-20251102-wa0041-mhyozmf6.jpg"
+          "image": "assets/products/img-20251102-wa0039-mhyozp4v.jpg"
         },
         {
           "title": "EUROSIL Packing Tape Clear/Brown",
