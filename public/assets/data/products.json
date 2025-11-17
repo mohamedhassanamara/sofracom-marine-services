@@ -674,7 +674,8 @@
           "price": 11,
           "stock": "in",
           "images": [
-            "assets/products/img-20251102-wa0036-mhqjeamb.jpg"
+            "assets/products/img-20251102-wa0036-mhqjeamb.jpg",
+            "assets/products/img-20251102-wa0036-mhqjeamb-mi3jvo3n.png"
           ],
           "variants": [],
           "datasheet": "",
@@ -1303,6 +1304,96 @@
             "assets/products/img-20251102-wa0061-mi1r8t8w.png"
           ],
           "variants": [],
+          "datasheet": ""
+        },
+        {
+          "title": "ABRAPRO Adhesive Sanding Discs 125/150mm",
+          "image": "assets/products/placeholder.png",
+          "description": "Self-adhesive sanding discs offer fast, hassle-free attachment for smooth and efficient sanding on any surface. Their strong adhesive backing keeps each disc securely in place, reducing slippage and ensuring consistent results. Designed with durable, high-quality abrasives, they deliver superior cutting power and long-lasting performance. Ideal for woodworking, automotive, and DIY projects, these discs make every sanding task quicker, cleaner, and more professional.",
+          "brand": "ABRAPRO",
+          "usage": [
+            "disc",
+            "disque",
+            "ponçage",
+            "sanding",
+            "grit"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/placeholder.png",
+            "assets/products/snapchat-2057018395-mi3klhi6.png"
+          ],
+          "variants": [
+            {
+              "label": "125mm/60G",
+              "price": 0.842
+            },
+            {
+              "label": "125mm/80G",
+              "price": 0.842
+            },
+            {
+              "label": "125mm/120G",
+              "price": 0.842
+            },
+            {
+              "label": "125mm/150G",
+              "price": 0.842
+            },
+            {
+              "label": "125mm/180G",
+              "price": 0.842
+            },
+            {
+              "label": "125mm/220G",
+              "price": 0.842
+            },
+            {
+              "label": "150mm/40G",
+              "price": 1.322
+            },
+            {
+              "label": "150mm/60G",
+              "price": 0.989
+            },
+            {
+              "label": "150mm/80G",
+              "price": 0.989
+            },
+            {
+              "label": "150mm/120G",
+              "price": 0.989
+            },
+            {
+              "label": "150mm/150G",
+              "price": 0.989
+            },
+            {
+              "label": "150mm/180G",
+              "price": 0.989
+            },
+            {
+              "label": "150mm/220G",
+              "price": 0.989
+            },
+            {
+              "label": "150mm/240G",
+              "price": 0.989
+            },
+            {
+              "label": "150mm/320G",
+              "price": 1.082
+            },
+            {
+              "label": "150mm/600G",
+              "price": 1.544
+            },
+            {
+              "label": "150mm/1000G",
+              "price": 1.544
+            }
+          ],
           "datasheet": ""
         }
       ]
