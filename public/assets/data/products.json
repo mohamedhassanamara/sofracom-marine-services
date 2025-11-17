@@ -616,9 +616,10 @@
             "brush",
             "pinceau",
             "n30",
-            "cristal"
+            "cristal",
+            "n40"
           ],
-          "price": 2.3,
+          "price": 2.31,
           "stock": "in",
           "images": [
             "assets/products/pinceau-cristan-n30-mhhmgsae.jpg",
