@@ -1471,6 +1471,33 @@
             }
           ],
           "datasheet": ""
+        },
+        {
+          "title": "EMA Metal Longlife Sanding Disc 115/230X6.4X22.2 ",
+          "image": "assets/products/20251104_145358-mi4pw7rv.png",
+          "description": "Metal Longlife sanding disc for small or big angle grinder and bore 22.23 mm (for Steel, Ø 115/230mm)\nDISQUE EBARBAGE ACIER 230X6.4X22.2 EMA",
+          "brand": "EMA",
+          "usage": [
+            "ebarbage",
+            "metal"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251104_145358-mi4pw7rv.png",
+            "assets/products/sqsq-mi4px37w.png"
+          ],
+          "variants": [
+            {
+              "label": "115X6.4X22.2 ",
+              "price": 3.481
+            },
+            {
+              "label": "230X6.4X22.2 ",
+              "price": 9.028
+            }
+          ],
+          "datasheet": ""
         }
       ]
     }
