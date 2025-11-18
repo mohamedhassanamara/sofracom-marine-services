@@ -1596,6 +1596,49 @@
           ],
           "variants": [],
           "datasheet": ""
+        },
+        {
+          "title": "ABRAPRO Fibre Discs for Grinder ",
+          "image": "assets/products/20251115_183707-mi4v9wek.png",
+          "description": "ABRAPRO Fibre Discs deliver powerful grinding performance with superior abrasive strength for metal fabrication.\nTheir tough fibre backing ensures stability, long life, and consistent material removal under heavy workloads.\nDesigned to handle rust, welds, and surface imperfections, they provide a smooth, professional finish.\nIdeal for workshops and industry, ABRAPRO Fibre Discs offer reliable efficiency on every grinding task.\n\nLes disques fibre ABRAPRO offrent une performance de meulage puissante grâce à une abrasivité supérieure pour les travaux métalliques.\nLeur support en fibre robuste garantit stabilité, longue durée de vie et enlèvement de matière constant même sous forte charge.\nConçus pour éliminer la rouille, les soudures et les imperfections, ils assurent une finition lisse et professionnelle.\nIdéals pour les ateliers et l’industrie, les disques fibre ABRAPRO offrent une efficacité fiable pour chaque opération de meulage.",
+          "brand": "ABRAPRO",
+          "usage": [
+            "ABRAPRO",
+            "polissage",
+            "grind"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251115_183707-mi4v9wek.png"
+          ],
+          "variants": [
+            {
+              "label": "125X22 ACIER G16",
+              "price": 1.996
+            },
+            {
+              "label": "125X22 ACIER G24",
+              "price": 1.996
+            },
+            {
+              "label": "125X22 ACIER G36",
+              "price": 1.996
+            },
+            {
+              "label": "125X22 ACIER G40",
+              "price": 1.996
+            },
+            {
+              "label": "180X22 ACIER G16",
+              "price": 2.957
+            },
+            {
+              "label": "180X22 ACIER G24",
+              "price": 2.507
+            }
+          ],
+          "datasheet": ""
         }
       ]
     }
