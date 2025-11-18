@@ -1614,27 +1614,27 @@
           ],
           "variants": [
             {
-              "label": "125X22 ACIER G16",
+              "label": "125X22 G16",
               "price": 1.996
             },
             {
-              "label": "125X22 ACIER G24",
+              "label": "125X22 G24",
               "price": 1.996
             },
             {
-              "label": "125X22 ACIER G36",
+              "label": "125X22 G36",
               "price": 1.996
             },
             {
-              "label": "125X22 ACIER G40",
+              "label": "125X22R G40",
               "price": 1.996
             },
             {
-              "label": "180X22 ACIER G16",
+              "label": "180X22 G16",
               "price": 2.957
             },
             {
-              "label": "180X22 ACIER G24",
+              "label": "180X22 G24",
               "price": 2.507
             }
           ],
