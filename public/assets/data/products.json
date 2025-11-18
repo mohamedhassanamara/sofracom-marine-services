@@ -1575,6 +1575,27 @@
             }
           ],
           "datasheet": ""
+        },
+        {
+          "title": "BOSCH  Metal Cutting Disc 115MM",
+          "image": "assets/products/20251115_183437-mi4uugg1.png",
+          "description": "The BOSCH 115 mm Metal Cutting Disc delivers fast, precise cuts through steel and metal profiles with exceptional efficiency.\nEngineered with premium abrasive grains, it ensures clean, burr-free results and reduced material buildup.\nIts reinforced construction provides long lifespan and maximum safety during high-speed cutting.\nPerfect for professionals and DIY users, this disc guarantees reliable performance on every project.",
+          "brand": "BOSCH",
+          "usage": [
+            "disc",
+            "acier",
+            "steel",
+            "3.2",
+            "22",
+            "115mm"
+          ],
+          "price": 1.895,
+          "stock": "in",
+          "images": [
+            "assets/products/20251115_183437-mi4uugg1.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
