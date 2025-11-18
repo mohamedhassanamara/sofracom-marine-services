@@ -1444,21 +1444,32 @@
           "datasheet": ""
         },
         {
-          "title": "DS  Steel Twist-Knot Wheel 115mm M14 x 2 ",
+          "title": "DS  Steel Twist-Knot Wheel 115/125mm M14 x 2 ",
           "image": "assets/products/20251104_151639-mi4jnnrq.png",
-          "description": " Steel Twist-Knot Wheel 115mm M14 x 2 for Abrasive Grinding Paint Rust Removal descaling, deburring, Metal & Stone Working, Cleaning Use with Angle Grinders",
+          "description": " Steel Twist-Knot Wheel 115mm M14 x 2 for Abrasive Grinding Paint Rust Removal descaling, deburring, Metal & Stone Working, Cleaning Use with Angle Grinders\nBROSSE CIRC PLAT TORSADES 0.50MM 115/ M14 RF 714",
           "brand": "DS",
           "usage": [
             "Twist-Knot",
             "grinding",
-            "115mm"
+            "115mm",
+            "125mm"
           ],
-          "price": 12.477,
+          "price": null,
           "stock": "in",
           "images": [
-            "assets/products/20251104_151639-mi4jnnrq.png"
+            "assets/products/20251104_151639-mi4jnnrq.png",
+            "assets/products/20251104_151027-mi4oz4ri.png"
           ],
-          "variants": [],
+          "variants": [
+            {
+              "label": "115mm",
+              "price": 9.891
+            },
+            {
+              "label": "125mm",
+              "price": 10.816
+            }
+          ],
           "datasheet": ""
         }
       ]
