@@ -1498,6 +1498,23 @@
             }
           ],
           "datasheet": ""
+        },
+        {
+          "title": "DS Felt Flap Polishing Pad 115mm Polishing Pad for Angle Grinder",
+          "image": "assets/products/20251116_131452-mi4te54t.png",
+          "description": "DISQUE A LAMEL FEUTRE 115*22.2",
+          "brand": "DS",
+          "usage": [
+            "flap",
+            "polish"
+          ],
+          "price": 6.648,
+          "stock": "in",
+          "images": [
+            "assets/products/20251116_131452-mi4te54t.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
