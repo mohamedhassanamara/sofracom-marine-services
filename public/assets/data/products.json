@@ -1515,6 +1515,66 @@
           ],
           "variants": [],
           "datasheet": ""
+        },
+        {
+          "title": "DS Flap Wheel ",
+          "image": "assets/products/20251116_131709-mi4tka8y.png",
+          "description": "Flap wheel discs deliver powerful, consistent grinding and finishing performance on metal, wood, and plastics.\nTheir layered abrasive flaps ensure smooth material removal while maintaining a cool, even cut.\nDesigned for durability, they adapt to contours and hard-to-reach areas with ease.\nIdeal for professionals and workshops, flap wheel discs provide efficient, high-quality surface preparation every time.",
+          "brand": "DS",
+          "usage": [
+            "roue",
+            "lamel",
+            "flap",
+            "disc"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251116_131709-mi4tka8y.png"
+          ],
+          "variants": [
+            {
+              "label": "30X15X6MM G060",
+              "price": 2.26
+            },
+            {
+              "label": "30X15X6MM G080",
+              "price": 2.26
+            },
+            {
+              "label": "30X15X6MM G120",
+              "price": 2.26
+            },
+            {
+              "label": "50X10X6MM G40",
+              "price": 2.26
+            },
+            {
+              "label": "50X25X6MM G120",
+              "price": 3.643
+            },
+            {
+              "label": "50X30X6MM G40",
+              "price": 2.26
+            },
+            {
+              "label": "50X30X6MM G120",
+              "price": 2.26
+            },
+            {
+              "label": "50X30X6MM G80",
+              "price": 2.26
+            },
+            {
+              "label": "60X40X6MM G120",
+              "price": 3.08
+            },
+            {
+              "label": "80X50X6MM G60",
+              "price": 4.974
+            }
+          ],
+          "datasheet": ""
         }
       ]
     }
