@@ -1671,13 +1671,50 @@
             "nettoyage",
             "metal"
           ],
-          "price": 3.659,
+          "price": 3.984,
           "stock": "in",
           "images": [
             "assets/products/20251104_152315-mi60y47e.png",
             "assets/products/20251104_152339-mi60y8rc.png"
           ],
           "variants": [],
+          "datasheet": ""
+        },
+        {
+          "title": "DS Rotary Steel Wire Wheel Brush",
+          "image": "assets/products/20251104_152730-mi61amt2.png",
+          "description": "0.3 mm dia high tensile steel wire\nFor rust and paint removal, descaling, deburring and preparation of welding seams\nFor metal and stone working, cleaning, surface preparation and fabrication tasks\nFor use with power drills\n6 mm shank / max 4500rpm",
+          "brand": "DS",
+          "usage": [
+            "descaling",
+            "brush",
+            "wheel",
+            "brosse"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251104_152730-mi61amt2.png",
+            "assets/products/20251104_152106-mi61aio3.png"
+          ],
+          "variants": [
+            {
+              "label": "40/0.3 RF 249",
+              "price": 2.984
+            },
+            {
+              "label": "50/0.3 RF 249",
+              "price": 3.569
+            },
+            {
+              "label": "75/0.3 RF 249",
+              "price": 3.959
+            },
+            {
+              "label": "100/0.3 RF 249",
+              "price": 4.799
+            }
+          ],
           "datasheet": ""
         }
       ]
