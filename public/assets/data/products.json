@@ -1931,6 +1931,24 @@
           ],
           "variants": [],
           "datasheet": ""
+        },
+        {
+          "title": "SHASANG PVC Pipe Cutter",
+          "image": "assets/products/20251119_172857-mi680nyp.png",
+          "description": "",
+          "brand": "SHASANG",
+          "usage": [
+            "PVC",
+            "coupe tube PVC",
+            "pipe cutter"
+          ],
+          "price": 12.276,
+          "stock": "in",
+          "images": [
+            "assets/products/20251119_172857-mi680nyp.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
