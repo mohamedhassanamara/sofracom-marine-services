@@ -2032,6 +2032,24 @@
           ],
           "variants": [],
           "datasheet": ""
+        },
+        {
+          "title": "DS 7\" Combination Pliers",
+          "image": "assets/products/20251119_181328-mi69om1t.png",
+          "description": "The DS 7\" Combination Pliers deliver versatile performance for gripping, cutting, and bending wires and small components.\nCrafted with durable, hardened steel jaws, they ensure long-lasting strength and precise handling.\nErgonomic, insulated handles provide comfort, control, and safety during extended use.\nPerfect for electricians, technicians, and DIY users, these pliers combine reliability, efficiency, and professional-grade quality.",
+          "brand": "DS",
+          "usage": [
+            "Pince universel",
+            "plier"
+          ],
+          "price": 16.652,
+          "stock": "in",
+          "images": [
+            "assets/products/20251119_181328-mi69om1t.png",
+            "assets/products/20251119_181307-mi69op8x.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
