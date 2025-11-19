@@ -1716,6 +1716,25 @@
           ],
           "variants": [],
           "datasheet": ""
+        },
+        {
+          "title": "DS Universal Wire Brush",
+          "image": "assets/products/img-20251102-wa0083-mi63700a.png",
+          "description": "Universal Wire Brush for Heavy Duty Cleaning of Wood, Metal, Masonry and More, Paint & Grime Removal, Cleaning Rust, Grills, Tiles, Wood, Metal, Brick, Masonry",
+          "brand": "DS",
+          "usage": [
+            "brosse",
+            "metalique",
+            "wire",
+            "brush"
+          ],
+          "price": 4.988,
+          "stock": "in",
+          "images": [
+            "assets/products/img-20251102-wa0083-mi63700a.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
