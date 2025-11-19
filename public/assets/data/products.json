@@ -1803,6 +1803,26 @@
           ],
           "variants": [],
           "datasheet": ""
+        },
+        {
+          "title": "ACEM Trade Snap Off Knife 18mm",
+          "image": "assets/products/20251102_164403-mi65zfsm.png",
+          "description": "The ACEM Trade 18 mm Snap Off Knife offers sharp, reliable cutting performance for everyday professional use.\nIts segmented blade allows quick, safe snapping for a fresh edge whenever needed.\nBuilt with a sturdy ergonomic handle, it ensures comfort, control, and precision on every cut.\nIdeal for workshops, construction, and DIY tasks, this knife delivers durability and efficiency you can trust.",
+          "brand": "ACEM",
+          "usage": [
+            "porte lame",
+            "acem",
+            "cutter",
+            "knife"
+          ],
+          "price": 2.024,
+          "stock": "in",
+          "images": [
+            "assets/products/20251102_164403-mi65zfsm.png",
+            "assets/products/20251119_162412-mi65zzez.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
