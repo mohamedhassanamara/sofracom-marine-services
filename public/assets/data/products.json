@@ -2070,6 +2070,35 @@
           ],
           "variants": [],
           "datasheet": ""
+        },
+        {
+          "title": "SNZO Magnetic nut setter",
+          "image": "assets/products/20251104_145648-mi6afmnf.png",
+          "description": "Magnetic Nut Setter delivers fast, precise fastening of nuts and bolts with secure, hands-free hold.\nIts strong magnetic tip ensures alignment and prevents slipping during installation.\nDurable construction provides long-lasting performance for heavy-duty and repetitive tasks.\nPerfect for mechanics, builders, and DIY enthusiasts, this tool combines efficiency, convenience, and professional-grade reliability.",
+          "brand": "SNZO",
+          "usage": [
+            "magnetic",
+            "nut setter",
+            "embout",
+            "magnetique"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251104_145648-mi6afmnf.png",
+            "assets/products/20251104_145748-mi6afrmy.png"
+          ],
+          "variants": [
+            {
+              "label": "10mm",
+              "price": 3.567
+            },
+            {
+              "label": "13mm",
+              "price": 4.604
+            }
+          ],
+          "datasheet": ""
         }
       ]
     }
