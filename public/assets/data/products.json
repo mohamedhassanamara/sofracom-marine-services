@@ -1985,15 +1985,18 @@
           "datasheet": ""
         },
         {
-          "title": "Untitled product",
-          "image": "assets/products/placeholder.png",
-          "description": "",
-          "brand": "",
-          "usage": [],
-          "price": 0,
+          "title": "ACEM Ergo Side Cutting Plier, 180mm Length",
+          "image": "assets/products/20251119_182209-mi6a0dm3.png",
+          "description": "The ACEM Ergo Side Cutting Plier 180 mm delivers precise cutting of wires, pins, and small fasteners with minimal effort.\nIts sharp, hardened cutting edges ensure clean, accurate cuts and long-lasting durability.\nErgonomically designed handles provide superior comfort, grip, and reduced hand fatigue.\nIdeal for electricians, technicians, and DIY enthusiasts, this plier combines efficiency, safety, and professional-grade performance.",
+          "brand": "ACEM",
+          "usage": [
+            "pince coupante",
+            "plier"
+          ],
+          "price": 17.223,
           "stock": "in",
           "images": [
-            "assets/products/placeholder.png"
+            "assets/products/20251119_182209-mi6a0dm3.png"
           ],
           "variants": [],
           "datasheet": ""
