@@ -2116,6 +2116,29 @@
           ],
           "variants": [],
           "datasheet": ""
+        },
+        {
+          "title": "BOSCH Screwdriver Bit PH2 1/4\" x 49mm",
+          "image": "assets/products/20251104_145817-mi6axjt5.png",
+          "description": "The BOSCH PH2 Screwdriver Bit 1/4\" x 49mm delivers precise, high-performance fastening for a wide range of applications.\nCrafted from premium steel, it ensures long-lasting durability and reliable torque transfer.\nIts PH2 tip provides a perfect fit for Phillips screws, reducing cam-out and wear.\nIdeal for professionals and DIY enthusiasts, this bit combines accuracy, strength, and consistent efficiency in every use.",
+          "brand": "BOSCH",
+          "usage": [
+            "embout",
+            "bit",
+            "ph2"
+          ],
+          "price": 2.221,
+          "stock": "in",
+          "images": [
+            "assets/products/20251104_145817-mi6axjt5.png"
+          ],
+          "variants": [
+            {
+              "label": "25pcs",
+              "price": 50
+            }
+          ],
+          "datasheet": ""
         }
       ]
     }
