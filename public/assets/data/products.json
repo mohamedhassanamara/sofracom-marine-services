@@ -1696,6 +1696,26 @@
             }
           ],
           "datasheet": ""
+        },
+        {
+          "title": "DS 85/0.3 x M14 Wire Cup Brush",
+          "image": "assets/products/img-20251102-wa0077-mi630b0p.png",
+          "description": "Removes rust, paint, or corrosion from surfaces\nTough bristles for aggressive cleaning\nCompatible with power drills or angle grinders\nDurable construction for long-lasting use\nBROSSE CONIQUE 85/0.3 M14 RF 237 JN",
+          "brand": "DS",
+          "usage": [
+            "brossse",
+            "conique",
+            "wire cup",
+            "brush",
+            "M14"
+          ],
+          "price": 8.94,
+          "stock": "in",
+          "images": [
+            "assets/products/img-20251102-wa0077-mi630b0p.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
