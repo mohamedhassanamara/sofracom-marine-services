@@ -2053,6 +2053,23 @@
           ],
           "variants": [],
           "datasheet": ""
+        },
+        {
+          "title": "ATHLET 2 pc Mains Tester 04x100/0.5x3x40",
+          "image": "assets/products/20251119_183047-mi6aaxxh.png",
+          "description": "The Mains Tester provides quick, reliable detection of live, neutral, and earth connections in electrical circuits.\nCompact and easy to use, it ensures safe testing with clear visual and/or audible indicators.\nDurable construction offers long-lasting performance for daily electrical inspections.\nEssential for electricians, technicians, and DIY users, this tester combines safety, accuracy, and convenience in every use.",
+          "brand": "ATHLET",
+          "usage": [
+            "tournevis test",
+            "electrician scredriver"
+          ],
+          "price": 8.3,
+          "stock": "in",
+          "images": [
+            "assets/products/20251119_183047-mi6aaxxh.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
