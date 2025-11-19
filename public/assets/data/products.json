@@ -2139,6 +2139,25 @@
             }
           ],
           "datasheet": ""
+        },
+        {
+          "title": "DIAGER Pack (10) Screwdriver Bit PZ2 x 50mm",
+          "image": "assets/products/20251119_185541-mi6b4an9.png",
+          "description": "The DIAGER Pack of 10 PZ2 x 50mm Screwdriver Bits delivers reliable, high-precision performance for Pozidriv screws.\nMade from durable, high-quality steel, each bit ensures long-lasting strength and consistent torque transfer.\nThe 50mm length provides easy access to recessed screws while maintaining perfect control.\nIdeal for professionals and DIY users, this set offers efficiency, versatility, and dependable fastening every time.",
+          "brand": "DIAGER",
+          "usage": [
+            "PZ2",
+            "embout",
+            "bit",
+            "jeu"
+          ],
+          "price": 20.65,
+          "stock": "in",
+          "images": [
+            "assets/products/20251119_185541-mi6b4an9.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
