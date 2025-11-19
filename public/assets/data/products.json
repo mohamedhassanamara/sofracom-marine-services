@@ -1784,6 +1784,25 @@
             }
           ],
           "datasheet": ""
+        },
+        {
+          "title": "OMSA 10\"/300mm Hardpoint Tenon Saw",
+          "image": "assets/products/20251102_153457-mi64z16g.png",
+          "description": "The 10″ (300 mm) Hardpoint Tenon Saw delivers razor-sharp, precision cutting for joinery and fine woodworking.\nWith its hardened teeth, it maintains long-lasting sharpness for clean, effortless tenon and mortise cuts.\nIts sturdy, ergonomic handle ensures comfort and control even during extended use.\nPerfect for carpenters and artisans, this saw brings professional-grade accuracy to every woodworking project.",
+          "brand": "OMSA",
+          "usage": [
+            "Scie a dos",
+            "omsa",
+            "saw"
+          ],
+          "price": 23.384,
+          "stock": "in",
+          "images": [
+            "assets/products/20251102_153457-mi64z16g.png",
+            "assets/products/20251119_160020-mi64z8a4.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
