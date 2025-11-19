@@ -1444,24 +1444,80 @@
           "datasheet": ""
         },
         {
-          "title": "DS  Steel Twist-Knot Wheel 115mm M14 x 2 ",
+          "title": "DS  Steel Twist-Knot Wheel 115/125mm M14 x 2 ",
           "image": "assets/products/20251104_151639-mi4jnnrq.png",
-          "description": " Steel Twist-Knot Wheel 115mm M14 x 2 for Abrasive Grinding Paint Rust Removal descaling, deburring, Metal & Stone Working, Cleaning Use with Angle Grinders",
+          "description": " Steel Twist-Knot Wheel 115mm M14 x 2 for Abrasive Grinding Paint Rust Removal descaling, deburring, Metal & Stone Working, Cleaning Use with Angle Grinders\nBROSSE CIRC PLAT TORSADES 0.50MM 115/ M14 RF 714",
           "brand": "DS",
           "usage": [
             "Twist-Knot",
             "grinding",
-            "115mm"
+            "115mm",
+            "125mm"
           ],
-          "price": 12.477,
+          "price": null,
           "stock": "in",
           "images": [
-            "assets/products/20251104_151639-mi4jnnrq.png"
+            "assets/products/20251104_151639-mi4jnnrq.png",
+            "assets/products/20251104_151027-mi4oz4ri.png"
+          ],
+          "variants": [
+            {
+              "label": "115mm",
+              "price": 9.891
+            },
+            {
+              "label": "125mm",
+              "price": 10.816
+            }
+          ],
+          "datasheet": ""
+        },
+        {
+          "title": "EMA Metal Longlife Sanding Disc 115/230X6.4X22.2 ",
+          "image": "assets/products/20251104_145358-mi4pw7rv.png",
+          "description": "Metal Longlife sanding disc for small or big angle grinder and bore 22.23 mm (for Steel, Ø 115/230mm)\nDISQUE EBARBAGE ACIER 230X6.4X22.2 EMA",
+          "brand": "EMA",
+          "usage": [
+            "ebarbage",
+            "metal"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251104_145358-mi4pw7rv.png",
+            "assets/products/sqsq-mi4px37w.png"
+          ],
+          "variants": [
+            {
+              "label": "115X6.4X22.2 ",
+              "price": 3.481
+            },
+            {
+              "label": "230X6.4X22.2 ",
+              "price": 9.028
+            }
+          ],
+          "datasheet": ""
+        },
+        {
+          "title": "DS Felt Flap Polishing Pad 115mm Polishing Pad for Angle Grinder",
+          "image": "assets/products/20251116_131452-mi4te54t.png",
+          "description": "DISQUE A LAMEL FEUTRE 115*22.2",
+          "brand": "DS",
+          "usage": [
+            "flap",
+            "polish"
+          ],
+          "price": 6.648,
+          "stock": "in",
+          "images": [
+            "assets/products/20251116_131452-mi4te54t.png"
           ],
           "variants": [],
           "datasheet": ""
         },
         {
+<<<<<<< HEAD
           "title": "DS Mounted Cup Brushes Crimped Diameter 75 mm",
           "image": "assets/products/20251104_152339-mi5x9chv.jpg",
           "description": "Use for steel and metal\nFor removing burr, rust, slag, scale, surplus rubber, combustion residues and other forms of dirt in hard-to-reach areas and inner surfaces\nRange of applications: roughing, deburring, paint stripping, deslagging, descaling, matt sanding and cleaning",
@@ -1480,6 +1536,130 @@
           ],
           "variants": [],
           "datasheet": ""
+=======
+          "title": "DS Flap Wheel ",
+          "image": "assets/products/20251116_131709-mi4tka8y.png",
+          "description": "Flap wheel discs deliver powerful, consistent grinding and finishing performance on metal, wood, and plastics.\nTheir layered abrasive flaps ensure smooth material removal while maintaining a cool, even cut.\nDesigned for durability, they adapt to contours and hard-to-reach areas with ease.\nIdeal for professionals and workshops, flap wheel discs provide efficient, high-quality surface preparation every time.",
+          "brand": "DS",
+          "usage": [
+            "roue",
+            "lamel",
+            "flap",
+            "disc"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251116_131709-mi4tka8y.png"
+          ],
+          "variants": [
+            {
+              "label": "30X15X6MM G060",
+              "price": 2.26
+            },
+            {
+              "label": "30X15X6MM G080",
+              "price": 2.26
+            },
+            {
+              "label": "30X15X6MM G120",
+              "price": 2.26
+            },
+            {
+              "label": "50X10X6MM G40",
+              "price": 2.26
+            },
+            {
+              "label": "50X25X6MM G120",
+              "price": 3.643
+            },
+            {
+              "label": "50X30X6MM G40",
+              "price": 2.26
+            },
+            {
+              "label": "50X30X6MM G120",
+              "price": 2.26
+            },
+            {
+              "label": "50X30X6MM G80",
+              "price": 2.26
+            },
+            {
+              "label": "60X40X6MM G120",
+              "price": 3.08
+            },
+            {
+              "label": "80X50X6MM G60",
+              "price": 4.974
+            }
+          ],
+          "datasheet": ""
+        },
+        {
+          "title": "BOSCH  Metal Cutting Disc 115MM",
+          "image": "assets/products/20251115_183437-mi4uugg1.png",
+          "description": "The BOSCH 115 mm Metal Cutting Disc delivers fast, precise cuts through steel and metal profiles with exceptional efficiency.\nEngineered with premium abrasive grains, it ensures clean, burr-free results and reduced material buildup.\nIts reinforced construction provides long lifespan and maximum safety during high-speed cutting.\nPerfect for professionals and DIY users, this disc guarantees reliable performance on every project.",
+          "brand": "BOSCH",
+          "usage": [
+            "disc",
+            "acier",
+            "steel",
+            "3.2",
+            "22",
+            "115mm"
+          ],
+          "price": 1.895,
+          "stock": "in",
+          "images": [
+            "assets/products/20251115_183437-mi4uugg1.png"
+          ],
+          "variants": [],
+          "datasheet": ""
+        },
+        {
+          "title": "ABRAPRO Fibre Discs for Grinder ",
+          "image": "assets/products/20251115_183707-mi4v9wek.png",
+          "description": "ABRAPRO Fibre Discs deliver powerful grinding performance with superior abrasive strength for metal fabrication.\nTheir tough fibre backing ensures stability, long life, and consistent material removal under heavy workloads.\nDesigned to handle rust, welds, and surface imperfections, they provide a smooth, professional finish.\nIdeal for workshops and industry, ABRAPRO Fibre Discs offer reliable efficiency on every grinding task.\n\nLes disques fibre ABRAPRO offrent une performance de meulage puissante grâce à une abrasivité supérieure pour les travaux métalliques.\nLeur support en fibre robuste garantit stabilité, longue durée de vie et enlèvement de matière constant même sous forte charge.\nConçus pour éliminer la rouille, les soudures et les imperfections, ils assurent une finition lisse et professionnelle.\nIdéals pour les ateliers et l’industrie, les disques fibre ABRAPRO offrent une efficacité fiable pour chaque opération de meulage.",
+          "brand": "ABRAPRO",
+          "usage": [
+            "ABRAPRO",
+            "polissage",
+            "grind"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251115_183707-mi4v9wek.png"
+          ],
+          "variants": [
+            {
+              "label": "125X22 G16",
+              "price": 1.996
+            },
+            {
+              "label": "125X22 G24",
+              "price": 1.996
+            },
+            {
+              "label": "125X22 G36",
+              "price": 1.996
+            },
+            {
+              "label": "125X22R G40",
+              "price": 1.996
+            },
+            {
+              "label": "180X22 G16",
+              "price": 2.957
+            },
+            {
+              "label": "180X22 G24",
+              "price": 2.507
+            }
+          ],
+          "datasheet": ""
+>>>>>>> f88c2fec35589623e88dae15500d5392accbf69b
         }
       ]
     }
