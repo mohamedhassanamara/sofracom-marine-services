@@ -1534,7 +1534,9 @@
             "assets/products/20251104_152315-mi5xejo1.jpg"
           ],
           "variants": [],
-          "datasheet": ""},{
+          "datasheet": ""
+        },
+        {
           "title": "DS Flap Wheel ",
           "image": "assets/products/20251116_131709-mi4tka8y.png",
           "description": "Flap wheel discs deliver powerful, consistent grinding and finishing performance on metal, wood, and plastics.\nTheir layered abrasive flaps ensure smooth material removal while maintaining a cool, even cut.\nDesigned for durability, they adapt to contours and hard-to-reach areas with ease.\nIdeal for professionals and workshops, flap wheel discs provide efficient, high-quality surface preparation every time.",
@@ -1656,6 +1658,26 @@
               "price": 2.507
             }
           ],
+          "datasheet": ""
+        },
+        {
+          "title": "DS Mounted Cup Brushes Crimped Diameter 75 mm",
+          "image": "assets/products/20251104_152315-mi60y47e.png",
+          "description": "Use for steel and metal.\nFor removing burr, rust, slag, scale, surplus rubber, combustion residues and other forms of dirt in hard-to-reach areas and inner surfaces.\nRange of applications: roughing, deburring, paint stripping, deslagging, descaling, matt sanding and cleaning.",
+          "brand": "DS",
+          "usage": [
+            "brush",
+            "ebarbage",
+            "nettoyage",
+            "metal"
+          ],
+          "price": 3.659,
+          "stock": "in",
+          "images": [
+            "assets/products/20251104_152315-mi60y47e.png",
+            "assets/products/20251104_152339-mi60y8rc.png"
+          ],
+          "variants": [],
           "datasheet": ""
         }
       ]
