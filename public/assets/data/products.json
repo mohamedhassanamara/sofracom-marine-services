@@ -1755,6 +1755,35 @@
           ],
           "variants": [],
           "datasheet": ""
+        },
+        {
+          "title": "DS Sanding Blocks Wet and Dry Dual-use, Coarse and Fine Sanding Sponges 60/80/100/120/180/220 Grits",
+          "image": "assets/products/20251119_144156-mi64dzjy.png",
+          "description": "These dual-use wet and dry sanding blocks deliver versatile performance for smooth, controlled surface finishing.\nFeaturing coarse to fine grits (60/80/100/120/180/220), they adapt perfectly to cleaning, deburring, and polishing tasks.\nTheir flexible sponge design ensures comfortable handling and easy access to curves, corners, and detailed areas.\nDurable and washable, these sanding blocks provide long-lasting efficiency for professionals and DIY users alike.",
+          "brand": "DS",
+          "usage": [
+            "eponge",
+            "abrasive",
+            "sand",
+            "block"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251119_144156-mi64dzjy.png",
+            "assets/products/20251119_144148-mi64dwre.png"
+          ],
+          "variants": [
+            {
+              "label": "1pcs",
+              "price": 1.821
+            },
+            {
+              "label": "6pcs",
+              "price": 9.444
+            }
+          ],
+          "datasheet": ""
         }
       ]
     }
