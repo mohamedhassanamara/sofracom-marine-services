@@ -1983,6 +1983,38 @@
             }
           ],
           "datasheet": ""
+        },
+        {
+          "title": "Untitled product",
+          "image": "assets/products/placeholder.png",
+          "description": "",
+          "brand": "",
+          "usage": [],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/placeholder.png"
+          ],
+          "variants": [],
+          "datasheet": ""
+        },
+        {
+          "title": "ACEM Silver Box Joint Water Pump Plier 250mm",
+          "image": "assets/products/img-20251102-wa0071-mi699wzt.png",
+          "description": "Box Joint Water Pump Pliers offer versatile, strong gripping for pipes, nuts, and irregular shapes.\nTheir adjustable jaw design ensures a secure hold on a wide range of sizes for maximum efficiency.\nDurable construction provides long-lasting performance and reliable strength under heavy use.\nPerfect for plumbers, mechanics, and DIY enthusiasts, these pliers combine precision, comfort, and professional-grade durability.",
+          "brand": "ACEM",
+          "usage": [
+            "pince a gaz",
+            "water pump plier",
+            "channel-lock pliers"
+          ],
+          "price": 18.546,
+          "stock": "in",
+          "images": [
+            "assets/products/img-20251102-wa0071-mi699wzt.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
