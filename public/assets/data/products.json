@@ -1823,6 +1823,41 @@
           ],
           "variants": [],
           "datasheet": ""
+        },
+        {
+          "title": "TOTAL 10Pcs Knife Blades Set",
+          "image": "assets/products/img-20251102-wa0027-mi668q71.png",
+          "description": "The TOTAL 10-piece Knife Blades Set delivers sharp, durable replacement blades for precise cutting in various applications.\nCrafted from high-quality steel, each blade offers long-lasting edge retention and clean, smooth cuts.\nConveniently packaged for easy storage and quick access, they fit most standard utility knives.\nPerfect for professionals and DIY users, this set ensures reliability and efficiency on every project.",
+          "brand": "TOTAL",
+          "usage": [
+            "jeu",
+            "lames",
+            "cutter",
+            "blade",
+            "set"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/img-20251102-wa0027-mi668q71.png",
+            "assets/products/img-20251102-wa0028-mi668tw3.png",
+            "assets/products/img-20251102-wa0038-mi668wea.png"
+          ],
+          "variants": [
+            {
+              "label": "09X80MM",
+              "price": 2.334
+            },
+            {
+              "label": "18X100MM",
+              "price": 2.714
+            },
+            {
+              "label": "61X19MM",
+              "price": 3.288
+            }
+          ],
+          "datasheet": ""
         }
       ]
     }
