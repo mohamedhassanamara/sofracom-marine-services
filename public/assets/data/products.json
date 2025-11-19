@@ -1869,13 +1869,46 @@
             "wood",
             "bois",
             "scie",
-            "keyhole saw  drywall saw  woodworking hand saw  precision cutting saw  tapered blade saw",
+            "keyhole saw",
+            "drywall saw",
+            "woodworking hand saw",
+            "precision cutting saw",
+            "tapered blade",
+            "saw",
             "curve cutting saw"
           ],
           "price": 7.658,
           "stock": "in",
           "images": [
             "assets/products/img-20251102-wa0073-mi66nbsq.png"
+          ],
+          "variants": [
+            {
+              "label": "8\"/200mm",
+              "price": 7.658
+            },
+            {
+              "label": "10\"/250mm",
+              "price": 8.372
+            }
+          ],
+          "datasheet": ""
+        },
+        {
+          "title": "OMSA Metal Hacksaw Blade 300X12.7X0.6",
+          "image": "assets/products/img-20251102-wa0074-mi66ya1t.png",
+          "description": "The OMSA Metal Hacksaw Blade 300×12.7×0.6 delivers clean, accurate cuts through steel, aluminum, and other metals.\nEngineered from high-quality alloy steel, it offers excellent durability and long-lasting sharpness.\nIts precise tooth design ensures smooth cutting performance with reduced vibration and effort.\nPerfect for workshops and industrial use, this blade provides reliable efficiency for all metal-cutting tasks.",
+          "brand": "OMSA",
+          "usage": [
+            "OMSA hacksaw blade 300mm hacksaw blade",
+            "metal",
+            "cutting blade",
+            "12.7mm hacksaw blade"
+          ],
+          "price": 1.755,
+          "stock": "in",
+          "images": [
+            "assets/products/img-20251102-wa0074-mi66ya1t.png"
           ],
           "variants": [],
           "datasheet": ""
