@@ -1949,6 +1949,40 @@
           ],
           "variants": [],
           "datasheet": ""
+        },
+        {
+          "title": "SUMEX Screwdriver Insulated Slotted",
+          "image": "assets/products/img-20251102-wa0069-mi68k11b.png",
+          "description": "The SUMEX Insulated Slotted Screwdriver delivers safe, reliable performance for electrical and precision work.\nIts fully insulated shaft and handle provide protection up to high-voltage standards.\nCrafted with a durable, magnetized tip, it ensures secure fastening and long-lasting accuracy.\nPerfect for professionals and technicians, this screwdriver combines comfort, safety, and dependable quality.",
+          "brand": "SUMEX",
+          "usage": [
+            "sumex",
+            "tournevis",
+            "scredriver",
+            "electricien"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/img-20251102-wa0069-mi68k11b.png",
+            "assets/products/img-20251102-wa0070-mi68k3c2.png",
+            "assets/products/img-20251102-wa0072-mi68k5j4.png"
+          ],
+          "variants": [
+            {
+              "label": "4.0x100mm",
+              "price": 6.5
+            },
+            {
+              "label": "3.5x75mm",
+              "price": 4.5
+            },
+            {
+              "label": "PH2x100mm",
+              "price": 8200
+            }
+          ],
+          "datasheet": ""
         }
       ]
     }
