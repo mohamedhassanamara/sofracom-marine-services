@@ -1912,6 +1912,25 @@
           ],
           "variants": [],
           "datasheet": ""
+        },
+        {
+          "title": "DS PVC Pipe Cutter 1-8-5/8\" 42mm",
+          "image": "assets/products/ds-mi67eaqk.png",
+          "description": "The DS PVC Pipe Cutter 1–8-5/8\" (42 mm) delivers clean, precise cuts on PVC, CPVC, PEX, and plastic tubing.\nIts sharp, high-strength blade ensures smooth, effortless cutting with minimal deformation.\nDesigned with a durable ratcheting mechanism, it provides maximum control and efficiency on every squeeze.\nIdeal for plumbers, installers, and DIY users, this cutter offers reliability, speed, and professional-grade performance.",
+          "brand": "DS",
+          "usage": [
+            "ds",
+            "PVC",
+            "coupe tube PVC",
+            "pipe cutter"
+          ],
+          "price": 19,
+          "stock": "in",
+          "images": [
+            "assets/products/ds-mi67eaqk.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
