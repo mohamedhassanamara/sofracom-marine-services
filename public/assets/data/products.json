@@ -1858,6 +1858,27 @@
             }
           ],
           "datasheet": ""
+        },
+        {
+          "title": "APT 8\" Compass Saw",
+          "image": "assets/products/img-20251102-wa0073-mi66nbsq.png",
+          "description": "The APT 8\" Compass Saw delivers accurate, controlled cutting for curves, openings, and detailed woodworking tasks.\nIts sharp, tapered blade ensures smooth performance through wood, plastic, and drywall.\nDesigned with a comfortable, ergonomic handle, it provides excellent grip and stability during use.\nIdeal for professionals and DIY enthusiasts, this saw offers precision, durability, and reliable versatility.",
+          "brand": "APT",
+          "usage": [
+            "saw",
+            "wood",
+            "bois",
+            "scie",
+            "keyhole saw  drywall saw  woodworking hand saw  precision cutting saw  tapered blade saw",
+            "curve cutting saw"
+          ],
+          "price": 7.658,
+          "stock": "in",
+          "images": [
+            "assets/products/img-20251102-wa0073-mi66nbsq.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
