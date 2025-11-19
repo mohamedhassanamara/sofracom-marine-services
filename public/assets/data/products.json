@@ -1735,6 +1735,26 @@
           ],
           "variants": [],
           "datasheet": ""
+        },
+        {
+          "title": "KONAFLEX Felt Polishing Wheel 180x20x22.22 ",
+          "image": "assets/products/20251119_143918-mi63f6or.png",
+          "description": "Felt polishing wheel 180x20x22.22, 100% wool.",
+          "brand": "KONAFLEX",
+          "usage": [
+            "abrasives",
+            "polish",
+            "wheel",
+            "felta"
+          ],
+          "price": 30.321,
+          "stock": "in",
+          "images": [
+            "assets/products/20251119_143918-mi63f6or.png",
+            "assets/products/22-mi63o0mk.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
