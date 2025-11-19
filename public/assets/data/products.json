@@ -2134,6 +2134,10 @@
           ],
           "variants": [
             {
+              "label": "1pcs",
+              "price": 2.221
+            },
+            {
               "label": "25pcs",
               "price": 50
             }
