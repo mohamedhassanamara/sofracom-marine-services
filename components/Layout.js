@@ -31,7 +31,8 @@ export default function Layout({ children }) {
     const [productsIndex, setProductsIndex] = useState([]);
     const [categories, setCategories] = useState([]);
     const [showProductCategories, setShowProductCategories] = useState(false);
-    const searchRef = useRef(null);
+    const desktopSearchRef = useRef(null);
+    const mobileSearchRef = useRef(null);
 
     const router = useRouter();
     const ensurePath = value => {
@@ -68,6 +69,7 @@ export default function Layout({ children }) {
         if (!suggestion?.categorySlug || !suggestion?.id) return;
         setSearchTerm('');
         setSearchActive(false);
+        setMenuOpen(false);
         router.push(`/products/${suggestion.categorySlug}/${suggestion.id}`);
     };
 
@@ -177,13 +179,22 @@ export default function Layout({ children }) {
 
     useEffect(() => {
         const handleClickOutside = event => {
-            if (searchRef.current && !searchRef.current.contains(event.target)) {
+            const target = event.target;
+            const isInsideDesktop = desktopSearchRef.current?.contains(target);
+            const isInsideMobile = mobileSearchRef.current?.contains(target);
+            if (!isInsideDesktop && !isInsideMobile) {
                 setSearchActive(false);
             }
         };
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
+
+    useEffect(() => {
+        if (!menuOpen) {
+            setSearchActive(false);
+        }
+    }, [menuOpen]);
 
     const handleSearchKey = event => {
         if (event.key !== 'Enter') return;
@@ -198,6 +209,38 @@ export default function Layout({ children }) {
 
     const handleBackToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const renderSuggestions = () => {
+        if (!searchActive || filteredSuggestions.length === 0) return null;
+        return (
+            <div className="search-dropdown">
+                {filteredSuggestions.map(suggestion => (
+                    <button
+                        key={suggestion.id}
+                        type="button"
+                        className="search-suggestion"
+                        onClick={() => navigateToSuggestion(suggestion)}
+                    >
+                        {suggestion.image && (
+                            <img
+                                src={suggestion.image}
+                                alt={suggestion.title}
+                                className="search-suggestion-img"
+                            />
+                        )}
+                        <div className="flex flex-col text-left">
+                            <span className="font-semibold text-sm text-gray-900">
+                                {suggestion.title}
+                            </span>
+                            <span className="text-xs text-gray-500">
+                                {formatCurrency(suggestion.price)}
+                            </span>
+                        </div>
+                    </button>
+                ))}
+            </div>
+        );
     };
 
     return (
@@ -290,7 +333,7 @@ export default function Layout({ children }) {
                         })}
                     </nav>
                     <div className="flex items-center gap-3">
-                        <div className="relative" ref={searchRef}>
+                        <div className="relative hidden sm:block" ref={desktopSearchRef}>
                             <input
                                 id="siteSearch"
                                 type="text"
@@ -303,34 +346,7 @@ export default function Layout({ children }) {
                                 value={searchTerm}
                                 onChange={event => setSearchTerm(event.target.value)}
                             />
-                            {searchActive && filteredSuggestions.length > 0 && (
-                                <div className="search-dropdown">
-                                    {filteredSuggestions.map(suggestion => (
-                                        <button
-                                            key={suggestion.id}
-                                            type="button"
-                                            className="search-suggestion"
-                                            onClick={() => navigateToSuggestion(suggestion)}
-                                        >
-                                            {suggestion.image && (
-                                                <img
-                                                    src={suggestion.image}
-                                                    alt={suggestion.title}
-                                                    className="search-suggestion-img"
-                                                />
-                                            )}
-                                            <div className="flex flex-col text-left">
-                                                <span className="font-semibold text-sm text-gray-900">
-                                                    {suggestion.title}
-                                                </span>
-                                                <span className="text-xs text-gray-500">
-                                                    {formatCurrency(suggestion.price)}
-                                                </span>
-                                            </div>
-                                        </button>
-                                    ))}
-                                </div>
-                            )}
+                            {renderSuggestions()}
                         </div>
                         <select
                             id="lang"
@@ -359,6 +375,22 @@ export default function Layout({ children }) {
                         className="md:hidden bg-[rgba(11,32,80,0.92)] text-white px-4 py-3"
                     >
                         <div className="flex flex-col gap-3">
+                            <div className="relative" ref={mobileSearchRef}>
+                                <input
+                                    id="siteSearchMobile"
+                                    type="search"
+                                    placeholder="Search products…"
+                                    className="w-full px-3 py-2 rounded-md bg-white text-gray-900 placeholder-gray-500 border border-white/30 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                                    onKeyDown={handleSearchKey}
+                                    onFocus={() => setSearchActive(true)}
+                                    value={searchTerm}
+                                    onChange={event => {
+                                        setSearchActive(true);
+                                        setSearchTerm(event.target.value);
+                                    }}
+                                />
+                                {renderSuggestions()}
+                            </div>
                             {NAV_LINKS.map(link => {
                                 const href = resolveLinkHref(link);
                                 return (
