@@ -2232,6 +2232,34 @@
           ],
           "variants": [],
           "datasheet": ""
+        },
+        {
+          "title": "CUATROGASA Polyester Gloves With Green Nitrile Coating",
+          "image": "assets/products/20251119_144324-mi7ocike.png",
+          "description": "CUATROGASA Polyester Gloves with Green Nitrile Coating offer excellent grip, flexibility, and protection for industrial, mechanical, and general handling tasks. The breathable polyester liner ensures comfort during long working hours, while the nitrile coating provides superior resistance to oils, abrasives, and punctures. Designed for precision and control, they enhance safety without sacrificing dexterity. A reliable choice for professionals seeking durable and comfortable hand protection.\n\nLes gants en polyester CUATROGASA avec revêtement en nitrile vert offrent une excellente prise, flexibilité et protection pour les travaux industriels, mécaniques et de manutention. Leur support en polyester respirant assure un confort optimal même lors d’un usage prolongé, tandis que le revêtement nitrile garantit une résistance supérieure aux huiles, à l’abrasion et aux perforations. Conçus pour la précision et le contrôle, ils améliorent la sécurité sans compromettre la dextérité. Un choix fiable pour les professionnels à la recherche de gants durables et confortables.",
+          "brand": "CUATROGASA",
+          "usage": [
+            "paire",
+            "pair",
+            "gants",
+            "gloves"
+          ],
+          "price": null,
+          "stock": "in",
+          "images": [
+            "assets/products/20251119_144324-mi7ocike.png"
+          ],
+          "variants": [
+            {
+              "label": "L.9",
+              "price": 4.511
+            },
+            {
+              "label": "L.10",
+              "price": 4.511
+            }
+          ],
+          "datasheet": ""
         }
       ]
     }
