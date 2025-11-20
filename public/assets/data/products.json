@@ -2162,6 +2162,36 @@
           ],
           "variants": [],
           "datasheet": ""
+        },
+        {
+          "title": "CLIMAX 755/756 Gas And Particulate Filter",
+          "image": "assets/products/20251120_153724-mi7kl05h.png",
+          "description": "Reliable and high-performance, the CLIMAX 755/756 Gas and Particulate Filter offers advanced protection against harmful gases, vapors, and fine dust. Designed for the 755/756 respirator series, it ensures a secure screw-type connection and optimal breathing comfort. Certified to meet stringent safety standards, it delivers consistent filtration efficiency in industrial environments. A durable, trusted solution for professionals seeking dependable respiratory protection.",
+          "brand": "CLIMAX",
+          "usage": [
+            "Climax",
+            "filtre",
+            "filter",
+            "masque",
+            "mask"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251120_153724-mi7kl05h.png",
+            "assets/products/20251120_153657-mi7jrtz2.png"
+          ],
+          "variants": [
+            {
+              "label": "1 filter",
+              "price": 9.567
+            },
+            {
+              "label": "10 filters",
+              "price": 8.981
+            }
+          ],
+          "datasheet": "assets/datasheets/filtro-756-1-1-mi7l4z7s.pdf"
         }
       ]
     }
