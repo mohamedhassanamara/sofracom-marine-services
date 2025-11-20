@@ -92,6 +92,40 @@
               <textarea class="category-description large-textarea" rows="3"></textarea>
             </label>
           </div>
+          <div class="translation-card">
+            <div class="translation-header">
+              <strong>Translations</strong>
+              <span class="translation-hint">Localize name &amp; description</span>
+            </div>
+            <div class="translation-grid translation-grid-stack">
+              <details class="translation-lang" data-lang="fr" open>
+                <summary class="translation-summary">French (fr)</summary>
+                <div class="translation-content">
+                  <label>
+                    Name (FR)
+                    <input type="text" class="category-translation-name" data-lang="fr" />
+                  </label>
+                  <label>
+                    Description (FR)
+                    <textarea class="category-translation-description large-textarea" data-lang="fr" rows="2"></textarea>
+                  </label>
+                </div>
+              </details>
+              <details class="translation-lang" data-lang="ar">
+                <summary class="translation-summary">Arabic (ar)</summary>
+                <div class="translation-content">
+                  <label>
+                    Name (AR)
+                    <input type="text" class="category-translation-name" data-lang="ar" dir="rtl" />
+                  </label>
+                  <label>
+                    Description (AR)
+                    <textarea class="category-translation-description large-textarea" data-lang="ar" rows="2" dir="rtl"></textarea>
+                  </label>
+                </div>
+              </details>
+            </div>
+          </div>
         </div>
         <div class="products"></div>
       </article>
@@ -192,6 +226,40 @@
               <button type="button" class="add-variant">Add variant</button>
             </div>
             <div class="variant-list"></div>
+          </div>
+          <div class="translation-card">
+            <div class="translation-header">
+              <strong>Translations</strong>
+              <span class="translation-hint">Localized titles &amp; descriptions</span>
+            </div>
+            <div class="translation-grid translation-grid-stack">
+              <details class="translation-lang" data-lang="fr" open>
+                <summary class="translation-summary">French (fr)</summary>
+                <div class="translation-content">
+                  <label>
+                    Title (FR)
+                    <input type="text" class="product-translation-title" data-lang="fr" />
+                  </label>
+                  <label>
+                    Description (FR)
+                    <textarea class="product-translation-description large-textarea" data-lang="fr" rows="3"></textarea>
+                  </label>
+                </div>
+              </details>
+              <details class="translation-lang" data-lang="ar">
+                <summary class="translation-summary">Arabic (ar)</summary>
+                <div class="translation-content">
+                  <label>
+                    Title (AR)
+                    <input type="text" class="product-translation-title" data-lang="ar" dir="rtl" />
+                  </label>
+                  <label>
+                    Description (AR)
+                    <textarea class="product-translation-description large-textarea" data-lang="ar" rows="3" dir="rtl"></textarea>
+                  </label>
+                </div>
+              </details>
+            </div>
           </div>
         </div>
       </div>

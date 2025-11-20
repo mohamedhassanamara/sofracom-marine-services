@@ -1,11 +1,13 @@
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import useCart from '../../../hooks/useCart';
 import {
     getProductById,
     getProductPaths,
 } from '../../../lib/products';
+import { useLang } from '../../../contexts/LangContext';
+import { localizeCategory, localizeProduct } from '../../../lib/localize';
 
 const OUTPUT_CURRENCY = 'TND';
 const FR_NUMBER_FORMAT = new Intl.NumberFormat('fr-TN', {
@@ -50,6 +52,7 @@ export async function getStaticProps({ params }) {
 
 export default function ProductDetailPage({ product, category }) {
     const router = useRouter();
+    const { lang } = useLang();
     const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
     const [activeImageIndex, setActiveImageIndex] = useState(0);
     const [cartOpen, setCartOpen] = useState(false);
@@ -68,6 +71,14 @@ export default function ProductDetailPage({ product, category }) {
     const grandTotal = total + DELIVERY_FEE;
     const [onOrderNoticeVisible, setOnOrderNoticeVisible] = useState(false);
     const onOrderNoticeTimeout = useRef(null);
+    const localizedCategory = useMemo(
+        () => localizeCategory(category, lang),
+        [category, lang]
+    );
+    const localizedProduct = useMemo(
+        () => localizeProduct(product, lang, category),
+        [product, lang, category]
+    );
 
     useEffect(() => {
         return () => {
@@ -94,26 +105,29 @@ export default function ProductDetailPage({ product, category }) {
         setOnOrderNoticeVisible(false);
     };
 
-    const detailVariant = product.variants[selectedVariantIndex] ?? null;
-    const detailPrice = detailVariant?.price ?? product.price ?? 0;
+    const detailVariant =
+        localizedProduct.variants[selectedVariantIndex] ?? null;
+    const detailPrice = detailVariant?.price ?? localizedProduct.price ?? 0;
     const detailImage =
-        product.images[activeImageIndex] || product.image;
+        localizedProduct.images[activeImageIndex] || localizedProduct.image;
 
     const addToCart = () => {
-        if (product.stock === 'out') return;
+        if (localizedProduct.stock === 'out') return;
         const price = detailVariant?.price ?? detailPrice;
         const variantLabel = detailVariant?.label;
-        const itemId = variantLabel ? `${product.id}-${variantLabel}` : product.id;
+        const itemId = variantLabel
+            ? `${localizedProduct.id}-${variantLabel}`
+            : localizedProduct.id;
         addItem({
             id: itemId,
-            title: product.title,
+            title: localizedProduct.title,
             price,
             quantity: 1,
-            image: product.image,
-            category: product.categoryName,
-            brand: product.brand,
+            image: localizedProduct.image,
+            category: localizedProduct.categoryName,
+            brand: localizedProduct.brand,
             variantLabel,
-            stock: product.stock,
+            stock: localizedProduct.stock,
         });
         setCartOpen(true);
     };
@@ -214,7 +228,7 @@ export default function ProductDetailPage({ product, category }) {
         ? 'Order received but may have some delay until on-order items are present in the store.'
         : 'Order received successfully.';
 
-    const description = product.description || '';
+    const description = localizedProduct.description || '';
     const READ_MORE_LENGTH = 320;
     const [showFullDescription, setShowFullDescription] = useState(false);
     const isLongDescription = description.length > READ_MORE_LENGTH;
@@ -233,22 +247,24 @@ export default function ProductDetailPage({ product, category }) {
                         </Link>
                         <span>/</span>
                         <Link href={`/products/${category.slug}`} className="hover:underline">
-                            {category.name}
+                            {localizedCategory.name}
                         </Link>
                         <span>/</span>
-                        <span className="font-semibold text-gray-700">{product.title}</span>
+                        <span className="font-semibold text-gray-700">
+                            {localizedProduct.title}
+                        </span>
                     </div>
                 </div>
                 <div className="grid lg:grid-cols-[1.1fr,0.9fr] gap-10">
                     <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-6">
                         <img
                             src={detailImage}
-                            alt={product.title}
+                            alt={localizedProduct.title}
                             className="w-full h-96 object-contain rounded-2xl bg-gray-50"
                         />
-                        {product.images.length > 1 && (
+                        {localizedProduct.images.length > 1 && (
                             <div className="flex flex-wrap gap-3 mt-4">
-                                {product.images.map((src, index) => (
+                                {localizedProduct.images.map((src, index) => (
                                     <button
                                         key={src}
                                         type="button"
@@ -261,7 +277,7 @@ export default function ProductDetailPage({ product, category }) {
                                     >
                                         <img
                                             src={src}
-                                            alt={`${product.title}-${index}`}
+                                            alt={`${localizedProduct.title}-${index}`}
                                             className="w-full h-full object-cover rounded-2xl"
                                         />
                                     </button>
@@ -272,17 +288,19 @@ export default function ProductDetailPage({ product, category }) {
                     <div className="space-y-5">
                         <div>
                             <p className="text-xs text-gray-500 uppercase tracking-wide">
-                                {product.categoryName}
+                                {localizedProduct.categoryName}
                             </p>
                             <h1 className="text-3xl font-bold text-gray-900">
-                                {product.title}
+                                {localizedProduct.title}
                             </h1>
-                            <p className="text-sm text-gray-500 mt-1">{product.brand}</p>
+                            <p className="text-sm text-gray-500 mt-1">
+                                {localizedProduct.brand}
+                            </p>
                         </div>
                         <div className="flex flex-wrap gap-2">
-                            {product.usage.map(tag => (
+                            {localizedProduct.usage.map(tag => (
                                 <span
-                                    key={`${product.id}-tag-${tag}`}
+                                    key={`${localizedProduct.id}-tag-${tag}`}
                                     className="tag px-3 py-1 rounded-full text-xs"
                                 >
                                     {tag}
@@ -296,29 +314,29 @@ export default function ProductDetailPage({ product, category }) {
                                 </span>
                                 <span
                                     className={`stock-badge ${
-                                        product.stock === 'in'
+                                        localizedProduct.stock === 'in'
                                             ? 'stock-badge--in'
-                                            : product.stock === 'on-order'
+                                            : localizedProduct.stock === 'on-order'
                                                 ? 'stock-badge--order'
                                                 : 'stock-badge--out'
                                     }`}
                                 >
-                                    {product.stock === 'in'
+                                    {localizedProduct.stock === 'in'
                                         ? 'In stock'
-                                        : product.stock === 'on-order'
+                                        : localizedProduct.stock === 'on-order'
                                             ? 'On order'
                                             : 'Out of stock'}
                                 </span>
                             </div>
-                            {product.stock === 'on-order' && (
+                            {localizedProduct.stock === 'on-order' && (
                                 <p className="text-sm text-orange-400">
                                     This item is on order; delivery will take longer.
                                 </p>
                             )}
                         </div>
-                        {product.variants.length > 0 && (
+                        {localizedProduct.variants.length > 0 && (
                             <div className="flex flex-wrap gap-2">
-                                {product.variants.map((variant, index) => (
+                                {localizedProduct.variants.map((variant, index) => (
                                     <button
                                         key={`${variant.label}-${index}`}
                                         type="button"
@@ -351,10 +369,10 @@ export default function ProductDetailPage({ product, category }) {
                                 </button>
                             </div>
                         )}
-                        {product.datasheet && (
+                        {localizedProduct.datasheet && (
                             <div className="mt-2">
                                 <a
-                                    href={product.datasheet}
+                                    href={localizedProduct.datasheet}
                                     target="_blank"
                                     rel="noreferrer"
                                     className="datasheet-link"
@@ -367,7 +385,7 @@ export default function ProductDetailPage({ product, category }) {
                             type="button"
                             className="w-full rounded-2xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white shadow hover:bg-blue-700 transition"
                             onClick={addToCart}
-                            disabled={product.stock === 'out'}
+                            disabled={localizedProduct.stock === 'out'}
                         >
                             Add to cart
                         </button>

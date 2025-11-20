@@ -506,7 +506,18 @@ textarea:focus {
 
 .variant-row {
   display: flex;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(11, 32, 80, 0.08);
+  border-radius: 0.75rem;
+  background: #fff;
+}
+
+.variant-core {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
   align-items: center;
 }
 
@@ -521,6 +532,20 @@ textarea:focus {
   font-weight: 600;
   cursor: pointer;
   padding: 0;
+}
+
+.variant-translations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.variant-translation label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: #0b2050;
 }
 
 .image-dropzone {
@@ -659,6 +684,70 @@ textarea:focus {
   margin: 0;
   font-size: 0.75rem;
   color: rgba(11, 32, 80, 0.55);
+}
+
+.translation-card {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px dashed rgba(11, 32, 80, 0.18);
+  border-radius: 1rem;
+  background: #fdfefe;
+}
+
+.translation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  color: #0b2050;
+}
+
+.translation-hint {
+  font-size: 0.8rem;
+  color: #5f6b8f;
+}
+
+.translation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.translation-grid-stack {
+  grid-template-columns: 1fr;
+}
+
+.translation-lang {
+  background: #f6f8fd;
+  border: 1px solid #e5eaf5;
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+}
+
+.translation-lang summary.translation-summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #0b2050;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.translation-lang summary.translation-summary::marker {
+  display: none;
+}
+
+.translation-lang summary.translation-summary::-webkit-details-marker {
+  display: none;
+}
+
+.translation-lang .translation-content {
+  margin-top: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.5rem;
 }
 
 @media (max-width: 768px) {

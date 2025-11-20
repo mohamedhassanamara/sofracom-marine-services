@@ -1,8 +1,10 @@
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import useCart from '../../hooks/useCart';
 import { getCategories } from '../../lib/products';
+import { useLang } from '../../contexts/LangContext';
+import { localizeCategory } from '../../lib/localize';
 
 export function getStaticProps() {
     const categories = getCategories();
@@ -26,6 +28,7 @@ const formatPrice = value => {
 };
 
 export default function ProductsIndex({ categories = [] }) {
+    const { lang } = useLang();
     const [cartOpen, setCartOpen] = useState(false);
     const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
     const [checkoutStatus, setCheckoutStatus] = useState({ message: '', type: '' });
@@ -42,6 +45,10 @@ export default function ProductsIndex({ categories = [] }) {
     const { cart, addItem, updateQuantity, removeItem, total, count, hasOnOrderItem, resetCart } = useCart();
     const [onOrderNoticeVisible, setOnOrderNoticeVisible] = useState(false);
     const onOrderNoticeTimeout = useRef(null);
+    const localizedCategories = useMemo(
+        () => categories.map(category => localizeCategory(category, lang)),
+        [categories, lang]
+    );
     useEffect(() => {
         return () => {
             if (onOrderNoticeTimeout.current) {
@@ -179,7 +186,7 @@ export default function ProductsIndex({ categories = [] }) {
                     </p>
                 </div>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {categories.map(category => (
+                    {localizedCategories.map(category => (
                         <Link
                             key={category.slug}
                             href={`/products/${category.slug}`}

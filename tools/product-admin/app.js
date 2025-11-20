@@ -1,4 +1,5 @@
 (() => {
+  const LANGS = ['fr', 'ar'];
   let state = null;
   let isSaving = false;
 
@@ -256,11 +257,33 @@
     return [];
   }
 
+  function ensureTranslations(target, fieldDefaults) {
+    if (!target.translations || typeof target.translations !== 'object') {
+      target.translations = {};
+    }
+    LANGS.forEach(lang => {
+      target.translations[lang] = target.translations[lang] || {};
+      const langRef = target.translations[lang];
+      Object.entries(fieldDefaults).forEach(([field, defaultValue]) => {
+        if (langRef[field] === undefined || langRef[field] === null) {
+          langRef[field] = Array.isArray(defaultValue)
+            ? [...defaultValue]
+            : defaultValue;
+        }
+        if (Array.isArray(defaultValue)) {
+          langRef[field] = Array.isArray(langRef[field])
+            ? langRef[field].filter(Boolean)
+            : [];
+        }
+      });
+    });
+  }
+
   function ensureStateShape(data) {
     if (!data.categories) data.categories = [];
-    data.categories = data.categories.map(category => ({
-      ...category,
-      products: Array.isArray(category.products)
+    data.categories = data.categories.map(category => {
+      ensureTranslations(category, { name: '', description: '' });
+      const products = Array.isArray(category.products)
         ? category.products.map(product => {
             const incomingImages = Array.isArray(product.images)
               ? product.images
@@ -274,6 +297,21 @@
               dedupedImages.unshift(fallbackImage);
             }
             const normalizedImages = dedupedImages.filter(Boolean);
+            ensureTranslations(product, {
+              title: '',
+              description: '',
+              variants: [],
+            });
+            LANGS.forEach(lang => {
+              const ref = product.translations[lang];
+              ref.variants = Array.isArray(ref.variants) ? ref.variants : [];
+              while (ref.variants.length < product.variants.length) {
+                ref.variants.push({ label: '' });
+              }
+              if (ref.variants.length > product.variants.length) {
+                ref.variants = ref.variants.slice(0, product.variants.length);
+              }
+            });
             return {
               ...product,
               usage: sanitizeUsage(product.usage),
@@ -293,10 +331,16 @@
                   }))
                 : [],
               datasheet: product.datasheet || '',
+              translations: product.translations,
             };
           })
-        : [],
-    }));
+        : [];
+      return {
+        ...category,
+        translations: category.translations,
+        products,
+      };
+    });
     return data;
   }
 
@@ -310,6 +354,48 @@
         titleEl.textContent = event.target.value || 'Untitled category';
       }
     }
+  }
+
+  function handleCategoryTranslationInput(event, categoryIndex, lang, field) {
+    if (!state.categories[categoryIndex].translations) {
+      state.categories[categoryIndex].translations = {};
+    }
+    state.categories[categoryIndex].translations[lang] =
+      state.categories[categoryIndex].translations[lang] || {};
+    state.categories[categoryIndex].translations[lang][field] =
+      event.target.value;
+  }
+
+  function handleProductTranslationInput(
+    event,
+    categoryIndex,
+    productIndex,
+    lang,
+    field
+  ) {
+    const product = state.categories[categoryIndex].products[productIndex];
+    product.translations = product.translations || {};
+    product.translations[lang] = product.translations[lang] || {};
+    product.translations[lang][field] = event.target.value;
+  }
+
+  function handleVariantTranslationInput(
+    event,
+    categoryIndex,
+    productIndex,
+    variantIndex,
+    lang
+  ) {
+    const product = state.categories[categoryIndex].products[productIndex];
+    product.translations = product.translations || {};
+    product.translations[lang] = product.translations[lang] || {};
+    const translations =
+      product.translations[lang].variants ||
+      (product.translations[lang].variants = []);
+    while (translations.length <= variantIndex) {
+      translations.push({ label: '' });
+    }
+    translations[variantIndex].label = event.target.value;
   }
 
   function handleProductInput(event, categoryIndex, productIndex, field) {
@@ -369,6 +455,14 @@
       images: ['assets/products/placeholder.png'],
       variants: [],
       datasheet: '',
+      translations: LANGS.reduce((acc, lang) => {
+        acc[lang] = {
+          title: '',
+          description: '',
+          variants: [],
+        };
+        return acc;
+      }, {}),
     });
     activeCategoryIndex = categoryIndex;
     scrollTarget = {
@@ -394,6 +488,10 @@
       slug: 'new-category',
       image: 'assets/categories/placeholder.png',
       description: '',
+      translations: LANGS.reduce((acc, lang) => {
+        acc[lang] = { name: '', description: '' };
+        return acc;
+      }, {}),
       products: [],
     });
     activeCategoryIndex = state.categories.length - 1;
@@ -466,13 +564,17 @@
         const row = document.createElement('div');
         row.className = 'variant-row';
         row.innerHTML = `
-          <input type="text" class="variant-label" placeholder="Label" value="${variant.label || ''}" />
-          <input type="number" class="variant-price" min="0" step="0.01" placeholder="Price" value="${variant.price ?? ''}" />
-          <button type="button" class="remove-variant">Remove</button>
+          <div class="variant-core">
+            <input type="text" class="variant-label" placeholder="Label" value="${variant.label || ''}" />
+            <input type="number" class="variant-price" min="0" step="0.01" placeholder="Price" value="${variant.price ?? ''}" />
+            <button type="button" class="remove-variant">Remove</button>
+          </div>
+          <div class="variant-translations"></div>
         `;
         const labelInput = row.querySelector('.variant-label');
         const priceInput = row.querySelector('.variant-price');
         const removeBtn = row.querySelector('.remove-variant');
+        const translationsContainer = row.querySelector('.variant-translations');
         labelInput.addEventListener('input', event => {
           state.categories[categoryIndex].products[productIndex].variants[
             variantIndex
@@ -484,11 +586,43 @@
             variantIndex
           ].price = Number.isFinite(raw) ? raw : null;
         });
+        LANGS.forEach(lang => {
+          const langRow = document.createElement('div');
+          langRow.className = 'variant-translation';
+          const input = document.createElement('input');
+          input.type = 'text';
+          input.placeholder = `Label (${lang})`;
+          input.value =
+            state.categories[categoryIndex].products[productIndex]
+              .translations?.[lang]?.variants?.[variantIndex]?.label || '';
+          input.addEventListener('input', event =>
+            handleVariantTranslationInput(
+              event,
+              categoryIndex,
+              productIndex,
+              variantIndex,
+              lang
+            )
+          );
+          const label = document.createElement('label');
+          label.textContent = `${lang.toUpperCase()} label`;
+          label.appendChild(input);
+          langRow.appendChild(label);
+          translationsContainer.appendChild(langRow);
+        });
         removeBtn.addEventListener('click', () => {
           state.categories[categoryIndex].products[productIndex].variants.splice(
             variantIndex,
             1
           );
+          LANGS.forEach(lang => {
+            const list =
+              state.categories[categoryIndex].products[productIndex]
+                .translations?.[lang]?.variants;
+            if (Array.isArray(list)) {
+              list.splice(variantIndex, 1);
+            }
+          });
           renderList();
         });
         container.appendChild(row);
@@ -502,6 +636,15 @@
       state.categories[categoryIndex].products[productIndex].variants.push({
         label: '',
         price: null,
+      });
+      LANGS.forEach(lang => {
+        const ref =
+          state.categories[categoryIndex].products[productIndex].translations?.[
+            lang
+          ];
+        if (!ref) return;
+        ref.variants = Array.isArray(ref.variants) ? ref.variants : [];
+        ref.variants.push({ label: '' });
       });
       renderList();
     });
@@ -597,6 +740,44 @@
         handleCategoryInput(event, categoryIndex, 'description');
       });
 
+      LANGS.forEach(lang => {
+        const nameTransInput = fragment.querySelector(
+          `.category-translation-name[data-lang="${lang}"]`
+        );
+        const descTransInput = fragment.querySelector(
+          `.category-translation-description[data-lang="${lang}"]`
+        );
+        if (nameTransInput) {
+          nameTransInput.value =
+            category.translations?.[lang]?.name || '';
+          const parent = nameTransInput.closest('details');
+          if (parent && lang === 'fr') {
+            parent.open = true;
+          }
+          nameTransInput.addEventListener('input', event =>
+            handleCategoryTranslationInput(event, categoryIndex, lang, 'name')
+          );
+        }
+        if (descTransInput) {
+          descTransInput.value =
+            category.translations?.[lang]?.description || '';
+          resizeTextarea(descTransInput);
+          const parent = descTransInput.closest('details');
+          if (parent && lang === 'fr') {
+            parent.open = true;
+          }
+          descTransInput.addEventListener('input', event => {
+            resizeTextarea(event.target);
+            handleCategoryTranslationInput(
+              event,
+              categoryIndex,
+              lang,
+              'description'
+            );
+          });
+        }
+      });
+
       deleteCategoryBtn.addEventListener('click', () =>
         deleteCategory(categoryIndex)
       );
@@ -676,6 +857,52 @@
             productIndex,
             'description'
           );
+        });
+
+        LANGS.forEach(lang => {
+          const titleTrans = productFragment.querySelector(
+            `.product-translation-title[data-lang="${lang}"]`
+          );
+          const descTrans = productFragment.querySelector(
+            `.product-translation-description[data-lang="${lang}"]`
+          );
+
+          if (titleTrans) {
+            titleTrans.value =
+              product.translations?.[lang]?.title || '';
+            const parent = titleTrans.closest('details');
+            if (parent && lang === 'fr') {
+              parent.open = true;
+            }
+            titleTrans.addEventListener('input', event =>
+              handleProductTranslationInput(
+                event,
+                categoryIndex,
+                productIndex,
+                lang,
+                'title'
+              )
+            );
+          }
+          if (descTrans) {
+            descTrans.value =
+              product.translations?.[lang]?.description || '';
+            resizeTextarea(descTrans);
+            const parent = descTrans.closest('details');
+            if (parent && lang === 'fr') {
+              parent.open = true;
+            }
+            descTrans.addEventListener('input', event => {
+              resizeTextarea(event.target);
+              handleProductTranslationInput(
+                event,
+                categoryIndex,
+                productIndex,
+                lang,
+                'description'
+              );
+            });
+          }
         });
 
         deleteProductBtn.addEventListener('click', () =>
