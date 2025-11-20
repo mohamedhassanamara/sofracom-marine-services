@@ -2194,15 +2194,20 @@
           "datasheet": "assets/datasheets/filtro-756-1-1-mi7l4z7s.pdf"
         },
         {
-          "title": "Untitled product",
-          "image": "assets/products/placeholder.png",
-          "description": "",
-          "brand": "",
-          "usage": [],
-          "price": 0,
+          "title": "BAOKING  Electric Soldering Iron, 220V High Power Quick-Heated Welding Tool",
+          "image": "assets/products/img-20251102-wa0082-mi7mkkio.png",
+          "description": "Heat up your soldering workflow with the BAOKING 220 V high-power electric soldering iron. Thanks to its fast-heating core, you’re ready to weld in seconds — minimizing downtime and boosting efficiency. Its robust construction delivers reliable, long-lasting performance for electronics, repair work, and DIY projects. Whether you're a professional or hobbyist, this tool combines power and precision for superior soldering results.",
+          "brand": "BAOKING",
+          "usage": [
+            "solder",
+            "electric",
+            "soudure",
+            "soudeuse"
+          ],
+          "price": 24.19,
           "stock": "in",
           "images": [
-            "assets/products/placeholder.png"
+            "assets/products/img-20251102-wa0082-mi7mkkio.png"
           ],
           "variants": [],
           "datasheet": ""
