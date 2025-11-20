@@ -2299,6 +2299,39 @@
             }
           ],
           "datasheet": ""
+        },
+        {
+          "title": "DS 12Pcs Socket Set 1/2\", 1/4\", 3/8\"",
+          "image": "assets/products/snapchat-897043000-mi7pfhxa.png",
+          "description": "The DS 12-Piece Socket Set (1/2\" – 1/4\" – 3/8\") delivers versatile performance for mechanical, automotive, and general repair tasks. Precision-engineered sockets ensure a secure fit and smooth operation across multiple drive sizes. Made from durable, high-strength steel, the set offers long-lasting reliability under demanding use. Compact, organized, and ready for any job, it’s an essential toolkit for professionals and DIY users alike.\n\nFrançais\n\nLe coffret de douilles DS 12 pièces (1/2\" – 1/4\" – 3/8\") offre une performance polyvalente pour les travaux mécaniques, automobiles et de maintenance générale. Les douilles de précision garantissent un ajustement parfait et une utilisation fluide sur plusieurs tailles d'entraînement. Fabriqué en acier robuste et durable, l’ensemble assure une fiabilité longue durée même en usage intensif. Compact, organisé et prêt pour toutes les situations, c’est un outil indispensable pour les professionnels comme pour les bricoleurs.",
+          "brand": "DS",
+          "usage": [
+            "cliquet",
+            "socket",
+            "1/2\"",
+            "1/4\"",
+            "3/8\""
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/snapchat-897043000-mi7pfhxa.png"
+          ],
+          "variants": [
+            {
+              "label": "3/8\"",
+              "price": 55.8
+            },
+            {
+              "label": "1/4\"",
+              "price": 41.723
+            },
+            {
+              "label": "1/2\"",
+              "price": 70.627
+            }
+          ],
+          "datasheet": ""
         }
       ]
     }
