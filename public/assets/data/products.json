@@ -926,7 +926,8 @@
           "price": 2.058,
           "stock": "in",
           "images": [
-            "assets/products/img-20251102-wa0064-mht4p7yw.jpg"
+            "assets/products/img-20251102-wa0062-mi7nfzyk.png",
+            "assets/products/img-20251102-wa0064-mi7ng2la.png"
           ],
           "variants": [
             {
@@ -947,7 +948,7 @@
             }
           ],
           "datasheet": "",
-          "image": "assets/products/img-20251102-wa0064-mht4p7yw.jpg"
+          "image": "assets/products/img-20251102-wa0062-mi7nfzyk.png"
         },
         {
           "title": "15 Pack / Disposable Face Mask with Breathing Valve",
@@ -2209,6 +2210,25 @@
           "stock": "in",
           "images": [
             "assets/products/img-20251102-wa0082-mi7mkkio.png"
+          ],
+          "variants": [],
+          "datasheet": ""
+        },
+        {
+          "title": "SARTEX Claw Hammer",
+          "image": "assets/products/20251120_152647-mi7nz3ga.png",
+          "description": "The SARTEX Claw Hammer delivers strong, precise performance for construction, carpentry, and everyday tasks. Its hardened steel head provides powerful impact, while the curved claw makes nail removal fast and effortless. Designed with a comfortable, shock-absorbing handle, it ensures better control and reduced fatigue. A dependable, long-lasting tool for professionals and DIY users alike.\nLe marteau arrache-clous SARTEX offre une performance solide et précise pour les travaux de construction, de menuiserie et d’entretien. Sa tête en acier trempé garantit un impact puissant, tandis que sa griffe courbée permet d’extraire les clous rapidement et sans effort. Conçu avec une poignée confortable et amortissante, il assure un meilleur contrôle et moins de fatigue. Un outil fiable et durable, idéal pour les professionnels comme pour les bricoleurs.",
+          "brand": "SARTEX",
+          "usage": [
+            "marteau",
+            "hammer",
+            "claw",
+            "arrache clou"
+          ],
+          "price": 22.374,
+          "stock": "in",
+          "images": [
+            "assets/products/20251120_152647-mi7nz3ga.png"
           ],
           "variants": [],
           "datasheet": ""
