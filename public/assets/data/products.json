@@ -506,6 +506,24 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/pl-150-mi7pwcjb.pdf"
+        },
+        {
+          "title": "PATTEX Promax XL PU Foam 750ml",
+          "image": "assets/products/snapchat-494329941-mi7q6far.png",
+          "description": "Pattex Promax XL is a multi purpose PU foam\nthat cures to a durable semi-rigid structure under\ninfluence of air humidity. Product can be used for\nbonding, sealing and filling purposes. Seals joints\naround windows and doors.",
+          "brand": "PATTEX",
+          "usage": [
+            "PU",
+            "foam",
+            "mousse"
+          ],
+          "price": 22.963,
+          "stock": "in",
+          "images": [
+            "assets/products/snapchat-494329941-mi7q6far.png"
+          ],
+          "variants": [],
+          "datasheet": "assets/datasheets/pattex-promax-xl-pu-foam-en_ae-mi7q6l93.pdf"
         }
       ]
     },
