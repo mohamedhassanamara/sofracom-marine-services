@@ -30,7 +30,17 @@
           "datasheet": "assets/datasheets/seaforce-active-gb-mhqeuljf.pdf",
           "price": 341.887,
           "stock": "in",
-          "image": "assets/products/20251104_142605-mhkpnc7j.png"
+          "image": "assets/products/20251104_142605-mhkpnc7j.png",
+          "translations": {
+            "fr": {
+              "title": "Jotun SeaForce 2.5L Noir",
+              "description": "Antifouling acrylique monocomposant à hydrolyse, basé sur la technologie Hydractive. Offre une excellente protection contre les organismes marins grâce à un polissage autonome et une faible friction, réduisant la détérioration de la coque. À utiliser uniquement comme couche de finition en immersion. Convient aux apprêts et intermédiaires approuvés, sur aluminium et acier. Peut être appliqué à des températures de surface négatives."
+            },
+            "ar": {
+              "title": "Jotun SeaForce 2.5 لتر أسود",
+              "description": "مضاد تَرَسّبات أكريليك أحادي المكوّن يعمل بالتحلّل المائي بتقنية Hydractive. يوفّر حماية ممتازة ضد الكائنات البحرية بفضل خاصية الصقل الذاتي وانخفاض الاحتكاك، مما يقلّل تلف الهيكل. يستعمل فقط كطبقة نهائية تحت الماء. مناسب مع البرايمر والطبقات الرابطة المعتمدة، وعلى الألمنيوم والحديد. يمكن تطبيقه حتى في درجات حرارة سطحية تحت الصفر."
+            }
+          }
         },
         {
           "title": "Jotun SeaForce Active 04L Blue / Bleu",
@@ -55,7 +65,17 @@
           "price": 655.272,
           "stock": "in",
           "datasheet": "assets/datasheets/seaforce-active-gb-mhqiiomu.pdf",
-          "image": "assets/products/20251104_142934-mhkq1zha.png"
+          "image": "assets/products/20251104_142934-mhkq1zha.png",
+          "translations": {
+            "fr": {
+              "title": "Jotun SeaForce Active 04L Bleu",
+              "description": "Antifouling acrylique monocomposant à hydrolyse offrant une protection durable contre l’encrassement. Polissage autonome à faible friction, réduisant l’usure de la coque. À utiliser uniquement sous immersion. Compatible avec les apprêts et couches intermédiaires approuvés. Applicable sur substrats aluminium et acier, même à température négative."
+            },
+            "ar": {
+              "title": "Jotun SeaForce Active 04 لتر أزرق",
+              "description": "مضاد تَرَسّبات أكريليك أحادي المكوّن يتحلّل مائيًا ويوفّر حماية طويلة ضد الترسبات. يتميز بالصقل الذاتي وانخفاض الاحتكاك لتقليل تآكل الهيكل. يستخدم فقط تحت الماء. متوافق مع البرايمر والطبقات الرابطة المعتمدة. يمكن تطبيقه على الألمنيوم والحديد حتى في درجات الحرارة السلبية."
+            }
+          }
         },
         {
           "title": "JOTUN Safeguard universal es 15L(A)+03L(B)",
@@ -74,7 +94,17 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/safeguard-universal-es-gb-mhqii2j7.pdf",
-          "image": "assets/products/20251104_162916-mhkrjjaq.png"
+          "image": "assets/products/20251104_162916-mhkrjjaq.png",
+          "translations": {
+            "fr": {
+              "title": "JOTUN Safeguard Universal ES 15L(A)+03L(B)",
+              "description": "Revêtement époxy vinyle bi-composant polymérisé au polyamide. Conçu comme couche intermédiaire entre les primaires époxy et les systèmes antifouling. Peut servir de primaire ou d’accroche pour divers systèmes de finition. Utilisation possible en atmosphérique ou en immersion. Convient aux substrats aluminium, acier carbone, acier galvanisé et inox. Applicable à températures négatives."
+            },
+            "ar": {
+              "title": "JOTUN Safeguard Universal ES ‏15 لتر (A) + 3 لتر (B)",
+              "description": "طلاء إيبوكسي فينيل ثنائي المكوّن معالج بالبولياميد. مصمم كطبقة رابطة بين البرايمر الإيبوكسي وأنظمة مضاد الترسّبات. يمكن استخدامه كبرايمر أو كطبقة تثبيت لطبقات التشطيب. مناسب للاستعمال في الجو أو تحت الماء. متوافق مع الألمنيوم والحديد والفولاذ المجلفن والفولاذ المقاوم للصدأ. قابل للتطبيق في درجات حرارة تحت الصفر."
+            }
+          }
         },
         {
           "title": "Penguard Primer Red / Rouge 04L(A)+01L(B)",
@@ -93,7 +123,17 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/penguard-fc-gb-mhqiksvb.pdf",
-          "image": "assets/products/20251104_163524-mhktr74d.png"
+          "image": "assets/products/20251104_163524-mhktr74d.png",
+          "translations": {
+            "fr": {
+              "title": "Penguard Primer Rouge 04L(A)+01L(B)",
+              "description": "Primaire époxy bi-composant à polymérisation polyamide, offrant une finition semi-brillante et une bonne tenue de brillance. Peut servir de primaire, de finition ou de système monocouche en atmosphérique. Peut aussi être utilisé comme couche finale en immersion."
+            },
+            "ar": {
+              "title": "Penguard Primer أحمر 4 لتر (A) + 1 لتر (B)",
+              "description": "برايمر إيبوكسي ثنائي المكوّن معالج بالبولياميد، بلمسة شبه لامعة وثبات جيّد للّمعان. يمكن استخدامه كبرايمر أو كطبقة نهائية أو كنظام طبقة واحدة في الجو. كما يمكن استخدامه كطبقة نهائية تحت الماء."
+            }
+          }
         },
         {
           "title": "jotamastic 80 Grey / Gris ",
@@ -125,7 +165,17 @@
             }
           ],
           "datasheet": "assets/datasheets/jotamastic-80-gb-mhqil3cj.pdf",
-          "image": "assets/products/20251104_163007-mhktrhqq.png"
+          "image": "assets/products/20251104_163007-mhktrhqq.png",
+          "translations": {
+            "fr": {
+              "title": "Jotamastic 80 Gris",
+              "description": "Mastic époxy bi-composant à durcissement polyamine, haute teneur en solides et tolérant aux surfaces. Idéal pour les zones à préparation limitée. Utilisable comme primaire, intermédiaire ou finition en atmosphérique. Adapté à l’acier carbone préparé et aux anciennes peintures. Applicable à température négative."
+            },
+            "ar": {
+              "title": "Jotamastic 80 رمادي",
+              "description": "ماستيك إيبوكسي ثنائي المكوّن معالج بالبوليامين، عالي الصلابة ومناسب للأسطح غير المحضّرة جيدًا. يمكن استخدامه كبرايمر أو طبقة وسطى أو طبقة نهائية في الجو. مناسب للحديد المُحضّر والدهانات القديمة. قابل للتطبيق حتى تحت الصفر."
+            }
+          }
         },
         {
           "title": "Thinner / Diluant N° 07 0.8L",
@@ -144,7 +194,17 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/jotun-thinner-no.-7-gb-mhqinhe7.pdf",
-          "image": "assets/products/20251104_164929-mhktsgsm.png"
+          "image": "assets/products/20251104_164929-mhktsgsm.png",
+          "translations": {
+            "fr": {
+              "title": "Diluant N°07 – 0,8L",
+              "description": "Diluant conçu pour améliorer l’application des peintures acryliques, vinyles et antifouling Jotun. Peut également être utilisé pour nettoyer les outils et pompes avant et après peinture."
+            },
+            "ar": {
+              "title": "مخفّف رقم 07 – 0.8 لتر",
+              "description": "مخفّف مصمّم لتحسين تطبيق دهانات جوتن الأكريليك والفينيل ومضادات الترسّبات. يُستخدم أيضًا لتنظيف الأدوات والمضخّات قبل وبعد الطلاء."
+            }
+          }
         },
         {
           "title": "Thinner / Diluant N° 17 0.8L",
@@ -172,7 +232,17 @@
             }
           ],
           "datasheet": "",
-          "image": "assets/products/20251104_164917-mhktskts.png"
+          "image": "assets/products/20251104_164917-mhktskts.png",
+          "translations": {
+            "fr": {
+              "title": "Diluant N°17 – 0,8L",
+              "description": "Diluant destiné à améliorer l’application des peintures Jotun, y compris les systèmes acryliques, vinyles et antifouling. Convient également au nettoyage des outils."
+            },
+            "ar": {
+              "title": "مخفّف رقم 17 – 0.8 لتر",
+              "description": "مخفّف مخصص لتحسين تطبيق دهانات جوتن بما فيها الدهانات الأكريليك والفينيل ومضادات الترسّبات. مناسب أيضًا لتنظيف الأدوات."
+            }
+          }
         },
         {
           "title": "HEMPEL'S Antifouling Olympic+ 72900/3017 05kg Blue/Bleu",
@@ -194,7 +264,17 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/en-gb-mhqiphyv.pdf",
-          "image": "assets/products/20251104_181223-mhkujr6y.png"
+          "image": "assets/products/20251104_181223-mhkujr6y.png",
+          "translations": {
+            "fr": {
+              "title": "HEMPEL Antifouling Olympic+ 72900/3017 – 05kg Bleu",
+              "description": "Antifouling auto-polissant haute performance. Sa technologie de résine et de biocides assure une protection fiable. Les microfibres renforcent la résistance mécanique pour éviter fissures et décollements. Convient aux carènes neuves ou en maintenance. Recommandé pour les navires à faible vitesse. Jusqu’à 36 mois de protection."
+            },
+            "ar": {
+              "title": "HEMPEL Olympic+ 72900/3017 مضاد ترسّبات – 5 كغ أزرق",
+              "description": "مضاد ترسّبات ذاتي الصقل عالي الأداء. تقنيّة الراتنج والمواد الحيوية توفّر حماية ثابتة. الألياف الدقيقة تزيد القوة الميكانيكية لمنع التشقق والتقشّر. مناسب للقوارب الجديدة أو الصيانة. مخصّص للقوارب بطيئة الملاحة. حماية تصل إلى 36 شهرًا."
+            }
+          }
         },
         {
           "title": "HEMPEL'S Antifouling Olympic+ 72900/1999 05kg Black/noir",
@@ -216,7 +296,17 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/en-gb-mhqipu39.pdf",
-          "image": "assets/products/20251104_181235-mhkup44o.png"
+          "image": "assets/products/20251104_181235-mhkup44o.png",
+          "translations": {
+            "fr": {
+              "title": "HEMPEL'S Antifouling Olympic+ 72900/1999 05kg Black/noir",
+              "description": "Hempel's Antifouling Olympic+ 72900 is a high solid, self-polishingantifouling. The robust rosin technology combined with a good biocidepackage ensures predictable antifouling protection. The use ofmicrofiber technology ensures superior mechanical strength to avoidcracking and peeling and reduces maintenance costs during repair.\nHempel's Antifouling Olympic+ 72900 can be used for bothnewbuildings and maintenance of underwater hull and boottop.Recommended for slow steaming vessels. For drydocking intervals upto 36 months."
+            },
+            "ar": {
+              "title": "HEMPEL'S Antifouling Olympic+ 72900/1999 05kg Black/noir",
+              "description": "Hempel's Antifouling Olympic+ 72900 is a high solid, self-polishingantifouling. The robust rosin technology combined with a good biocidepackage ensures predictable antifouling protection. The use ofmicrofiber technology ensures superior mechanical strength to avoidcracking and peeling and reduces maintenance costs during repair.\nHempel's Antifouling Olympic+ 72900 can be used for bothnewbuildings and maintenance of underwater hull and boottop.Recommended for slow steaming vessels. For drydocking intervals upto 36 months."
+            }
+          }
         },
         {
           "title": "SEAJET 039 Mono-Component Black",
@@ -241,9 +331,29 @@
             }
           ],
           "datasheet": "assets/datasheets/seajet_039_platinum_mono-component-tds-english-consumer-mhxns6pa.pdf",
-          "image": "assets/products/20251113_140442-2-mhxnqwac.png"
+          "image": "assets/products/20251113_140442-2-mhxnqwac.png",
+          "translations": {
+            "fr": {
+              "title": "SEAJET 039 Mono-Component Noir",
+              "description": "Antifouling SPC haute performance basé sur la dernière technologie de résine japonaise. Convient à toutes les zones d’encrassement et s’adapte à tous supports sauf l’aluminium."
+            },
+            "ar": {
+              "title": "SEAJET 039 أحادي المكوّن أسود",
+              "description": "مضاد ترسّبات SPC عالي الأداء يعتمد على أحدث تقنيات الراتنج اليابانية. مناسب لكل مستويات الترسبات، ويصلح لكل الأسطح ما عدا الألمنيوم."
+            }
+          }
         }
-      ]
+      ],
+      "translations": {
+        "fr": {
+          "name": "Antifouling & Revêtements",
+          "description": "Peintures de carène, primaires, érodables et finitions adaptées aux eaux locales."
+        },
+        "ar": {
+          "name": "مضاد الترسّبات وطلاءات الحماية",
+          "description": "دهانات قاع القارب، البرايمر، الدهانات القابلة للتآكل وطبقات التشطيب المناسبة للمياه المحلية."
+        }
+      }
     },
     {
       "name": "Sealants & Adhesives",
@@ -267,7 +377,17 @@
           ],
           "variants": [],
           "datasheet": "",
-          "image": "assets/products/20251027_154046-mhkvwi0x.png"
+          "image": "assets/products/20251027_154046-mhkvwi0x.png",
+          "translations": {
+            "fr": {
+              "title": "Sikaflex 291i 400ml Blanc / Noir",
+              "description": "Sikaflex®-291i est un mastic polyuréthane monocomposant spécialement développé pour le secteur maritime, polymérisant à l’humidité ambiante. Conforme aux exigences IMO. Haute élasticité, faible odeur, non corrosif, peut être peint. Forte adhérence sur de nombreux supports marins. Sans solvant, très faible COV."
+            },
+            "ar": {
+              "title": "Sikaflex 291i ‏400 مل أبيض / أسود",
+              "description": "Sikaflex®-291i هو سيليكون بوليورتان أحادي المكوّن مخصّص للاستعمال البحري، يجفّ بالرطوبة. معتمد حسب IMO. مرن جدًا، قليل الرائحة، غير قابل للتآكل ويمكن طلاؤه. يلتصق جيدًا بالأسطح البحرية المختلفة. بدون مذيبات وبنسبة COV منخفضة."
+            }
+          }
         },
         {
           "title": "Sikaflex 295 UV 400ml White/Blanc",
@@ -286,7 +406,17 @@
           ],
           "variants": [],
           "datasheet": "",
-          "image": "assets/products/20251027_153952-mhkvp45z.png"
+          "image": "assets/products/20251027_153952-mhkvp45z.png",
+          "translations": {
+            "fr": {
+              "title": "Sikaflex 295 UV 400ml Blanc",
+              "description": "Mastic polyuréthane monocomposant pour collage et étanchéité des vitrages organiques en environnement marin. Excellente résistance aux UV et au vieillissement. Conforme IMO et approuvé OEM."
+            },
+            "ar": {
+              "title": "Sikaflex 295 UV ‏400 مل أبيض",
+              "description": "مادة لاصقة بوليورتان أحادية المكوّن لِلصق وعزل الزجاج العضوي في ظروف بحرية. مقاومة ممتازة للأشعة فوق البنفسجية وللتقادم. مطابقة لمعايير IMO ومعتمدة من OEM."
+            }
+          }
         },
         {
           "title": "JULIEN STRIAFORM 2K Epoxy Putty 01kg ",
@@ -316,7 +446,17 @@
             }
           ],
           "datasheet": "assets/datasheets/mastic-epoxy-striaform-mht38nm0.pdf",
-          "image": "assets/products/striaform-22-mht2r1sx.png"
+          "image": "assets/products/striaform-22-mht2r1sx.png",
+          "translations": {
+            "fr": {
+              "title": "JULIEN STRIAFORM Mastic Époxy 2K – 1kg",
+              "description": "Mastic époxy 2K thixotrope."
+            },
+            "ar": {
+              "title": "JULIEN STRIAFORM معجون إيبوكسي 2K – ‏1 كغ",
+              "description": "معجون إيبوكسي ثنائي المكوّن بتركيبة تكسوتروبية."
+            }
+          }
         },
         {
           "title": "Sika Primer-290 DC 225ML",
@@ -336,7 +476,17 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/sika_primer-290_dc-mht5f9yj.pdf",
-          "image": "assets/products/20251110_120322-mht5esn2.png"
+          "image": "assets/products/20251110_120322-mht5esn2.png",
+          "translations": {
+            "fr": {
+              "title": "Sika Primer-290 DC 225ml",
+              "description": "Apprêt améliorant l’adhérence sur le teck, l’acajou, le pin Oregon et le polyester. Destiné aux professionnels expérimentés. Des tests doivent être réalisés sur les substrats sensibles."
+            },
+            "ar": {
+              "title": "Sika Primer-290 DC ‏225 مل",
+              "description": "برايمر لتحسين الالتصاق على خشب التيك، الماهوغوني، صنوبر أوريغون والبوليستر. مخصّص للمستخدمين المحترفين. يجب اختبار المنتج على الأسطح الحساسة قبل الاستعمال."
+            }
+          }
         },
         {
           "title": "EPOKUKDO YD-114 Low Viscosity Epoxy Resin 2K 01L",
@@ -356,7 +506,17 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/yd-114_datasheet_no_photo-mhw7if3d.pdf",
-          "image": "assets/products/20251111_140038-mhw5opvd.png"
+          "image": "assets/products/20251111_140038-mhw5opvd.png",
+          "translations": {
+            "fr": {
+              "title": "EPOKUKDO YD-114 Résine Époxy 2K – 1L",
+              "description": "Résine époxy liquide Bisphénol-A diluée, adaptée aux systèmes sans solvant ou faible COV. Excellentes propriétés mécaniques, résistance chimique et faible odeur. Utilisation : revêtements, sols, injection, adhésifs et systèmes haute teneur en solides."
+            },
+            "ar": {
+              "title": "EPOKUKDO YD-114 ريزين إيبوكسي 2K – ‏1 لتر",
+              "description": "ريزين إيبوكسي سائل بنظام Bisphenol-A مخفّف، مناسب للأنظمة بدون مذيبات أو منخفضة الانبعاثات. يتميّز بخصائص ميكانيكية ممتازة، ومقاومة كيميائية ورائحة منخفضة. للاستخدام في الطلاءات، الأرضيات، الحقن والمواد اللاصقة."
+            }
+          }
         },
         {
           "title": "TP220TICO Polyester Resin 01L",
@@ -384,7 +544,17 @@
             }
           ],
           "datasheet": "",
-          "image": "assets/products/20251111_171059-mhw8zwyx.png"
+          "image": "assets/products/20251111_171059-mhw8zwyx.png",
+          "translations": {
+            "fr": {
+              "title": "TP220TICO Résine Polyester 1L",
+              "description": "Résine polyester orthophtalique thixotrope, pré-accélérée et à faible réactivité. Conçue pour applications non critiques, compatible moulage manuel et projection."
+            },
+            "ar": {
+              "title": "TP220TICO ريزين بوليستر ‏1 لتر",
+              "description": "ريزين بوليستر أورثوفثاليك تكسوتروبي، مُسرَّع وجاهز للاستعمال، منخفض التفاعل. مخصّص للتطبيقات البسيطة، مناسب للقولبة اليدوية والرش."
+            }
+          }
         },
         {
           "title": "KAPCI Aluminium PE Putty 380 0.9Kg",
@@ -403,7 +573,17 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/kapci-380-aluminium-pe-putty-mhxord4a.pdf",
-          "image": "assets/products/20251113_143051-mhxon7dr.png"
+          "image": "assets/products/20251113_143051-mhxon7dr.png",
+          "translations": {
+            "fr": {
+              "title": "KAPCI Mastic PE Aluminium 380 – 0,9kg",
+              "description": ""
+            },
+            "ar": {
+              "title": "KAPCI معجون ألومنيوم PE 380 – ‏0.9 كغ",
+              "description": ""
+            }
+          }
         },
         {
           "title": "KAPCI Polyester Putty 350 ",
@@ -432,7 +612,17 @@
             }
           ],
           "datasheet": "assets/datasheets/kapci-350-pe-putty-general-purpose-mhxpdp2q.pdf",
-          "image": "assets/products/20251113_181252-mhxp9pwe.png"
+          "image": "assets/products/20251113_181252-mhxp9pwe.png",
+          "translations": {
+            "fr": {
+              "title": "KAPCI Mastic Polyester 350",
+              "description": "Mastic polyester polyvalent."
+            },
+            "ar": {
+              "title": "KAPCI معجون بوليستر 350",
+              "description": "معجون بوليستر متعدد الاستخدام."
+            }
+          }
         },
         {
           "title": "GC Ecogel S3PA V2 Ral 9016 White",
@@ -460,7 +650,17 @@
             }
           ],
           "datasheet": "assets/datasheets/crystic-ecogel-s3-pa-english-mhys8xdo.pdf",
-          "image": "assets/products/20251114_115423-mhyu1t2z.png"
+          "image": "assets/products/20251114_115423-mhyu1t2z.png",
+          "translations": {
+            "fr": {
+              "title": "GC Ecogel S3PA V2 RAL 9016 Blanc",
+              "description": "Gelcoat isophtalique haute performance, pré-accéléré pour application au pistolet. Faible COV, haute résistance à l'hydrolyse, brillance élevée et tenue durable."
+            },
+            "ar": {
+              "title": "GC Ecogel S3PA V2 ‏RAL 9016 أبيض",
+              "description": "جيلكوت أيزوفتاليك عالي الأداء، مُسرّع وجاهز للرش. انبعاثات منخفضة، مقاومة قوية للتحلّل المائي، لمعان عالي وثبات ممتاز."
+            }
+          }
         },
         {
           "title": "Methyl Acetate",
@@ -487,7 +687,17 @@
               "price": 65
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Acétate de Méthyle",
+              "description": "Solvant organique à évaporation rapide pour le nettoyage, le dégraissage et la préparation des surfaces. Dissout huiles, colles et résidus sans laisser de trace."
+            },
+            "ar": {
+              "title": "أسيتات الميثيل",
+              "description": "مذيب سريع التبخّر للتنظيف وإزالة الدهون وتحضير الأسطح. يذيب الزيوت والمواد اللاصقة دون أن يترك بقايا."
+            }
+          }
         },
         {
           "title": "PATTEX PL 150",
@@ -505,7 +715,17 @@
             "assets/products/snapchat-1780413442-mi7pwlzw.png"
           ],
           "variants": [],
-          "datasheet": "assets/datasheets/pl-150-mi7pwcjb.pdf"
+          "datasheet": "assets/datasheets/pl-150-mi7pwcjb.pdf",
+          "translations": {
+            "fr": {
+              "title": "PATTEX PL 150",
+              "description": "Adhésif de construction intérieur/extérieur, assurant une fixation durable. Résistant aux UV, intempéries et vibrations. Convient aux matériaux absorbants et non absorbants."
+            },
+            "ar": {
+              "title": "PATTEX PL 150",
+              "description": "لاصق بناء للاستعمال الداخلي والخارجي، يوفّر تثبيتًا قويًا ودائمًا. مقاوم للأشعة، العوامل الجوية والاهتزازات. مناسب للمواد الماصة وغير الماصة."
+            }
+          }
         },
         {
           "title": "PATTEX Promax XL PU Foam 750ml",
@@ -523,7 +743,17 @@
             "assets/products/snapchat-494329941-mi7q6far.png"
           ],
           "variants": [],
-          "datasheet": "assets/datasheets/pattex-promax-xl-pu-foam-en_ae-mi7q6l93.pdf"
+          "datasheet": "assets/datasheets/pattex-promax-xl-pu-foam-en_ae-mi7q6l93.pdf",
+          "translations": {
+            "fr": {
+              "title": "PATTEX Promax XL Mousse PU 750ml",
+              "description": "Mousse polyuréthane multi-usage formant une structure semi-rigide. Idéale pour collage, étanchéité et remplissage. Étanchéité autour fenêtres et portes."
+            },
+            "ar": {
+              "title": "PATTEX Promax XL رغوة PU ‏750 مل",
+              "description": "رغوة بوليورتان متعددة الاستعمالات تتصلّب لتصبح شبه صلبة. تُستخدم في اللصق والعزل والملء، ممتازة حول النوافذ والأبواب."
+            }
+          }
         },
         {
           "title": "SIKA Boom PU Foam 750ml",
@@ -541,9 +771,29 @@
             "assets/products/snapchat-436358883-mi7q9ov7.png"
           ],
           "variants": [],
-          "datasheet": "assets/datasheets/sika_boom_-mi7q9t92.pdf"
+          "datasheet": "assets/datasheets/sika_boom_-mi7q9t92.pdf",
+          "translations": {
+            "fr": {
+              "title": "SIKA Boom Mousse PU 750ml",
+              "description": "Mousse polyuréthane monocomposant en bombe, s’expansant au contact de l'humidité. Cellules fermées, application facile avec embout fourni."
+            },
+            "ar": {
+              "title": "SIKA Boom رغوة PU ‏750 مل",
+              "description": "رغوة بوليورتان أحادية المكوّن تتوسع مع الرطوبة. تشكّل رغوة خلوية مغلقة، سهلة التطبيق عبر الأنبوب المرفق."
+            }
+          }
         }
-      ]
+      ],
+      "translations": {
+        "fr": {
+          "name": "Mastics & Adhésifs",
+          "description": "Mastics marins pour accastillage, teck, panneaux et vitrages."
+        },
+        "ar": {
+          "name": "مواد السدّ و اللصق",
+          "description": "سيليكون ومستلزمات لاصقة بحرية للأجهزة، الخشب، الفتحات والزجاج."
+        }
+      }
     },
     {
       "name": "Oils, Filters & Batteries",
@@ -568,7 +818,17 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/kodak-zinc-batteries-aa-mhsuussb.pdf",
-          "image": "assets/products/img-20251102-wa0076-mhsup940.jpg"
+          "image": "assets/products/img-20251102-wa0076-mhsup940.jpg",
+          "translations": {
+            "fr": {
+              "title": "Pack de 4 Piles Kodak Zinc AA",
+              "description": "Piles AA en zinc.\nUsage unique."
+            },
+            "ar": {
+              "title": "علبة 4 بطاريات Kodak Zinc AA",
+              "description": "بطاريات AA من الزنك.\nللاستعمال مرّة واحدة."
+            }
+          }
         },
         {
           "title": "Pack Of 4 Kodak Zinc Batteries AAA",
@@ -588,7 +848,17 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/kodak-zinc-batteries-aa-mhsuyufh.pdf",
-          "image": "assets/products/img-20251102-wa0040-mhsvjyhi.jpg"
+          "image": "assets/products/img-20251102-wa0040-mhsvjyhi.jpg",
+          "translations": {
+            "fr": {
+              "title": "Pack de 4 Piles Kodak Zinc AAA",
+              "description": "Piles AAA en zinc.\nUsage unique."
+            },
+            "ar": {
+              "title": "علبة 4 بطاريات Kodak Zinc AAA",
+              "description": "بطاريات AAA من الزنك.\nللاستعمال مرّة واحدة."
+            }
+          }
         },
         {
           "title": "9V KODAK Zinc Battery",
@@ -608,7 +878,17 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/super-heavy-duty-9v-ver-2.2-mhsvk769.pdf",
-          "image": "assets/products/img-20251102-wa0057-mhsvepow.jpg"
+          "image": "assets/products/img-20251102-wa0057-mhsvepow.jpg",
+          "translations": {
+            "fr": {
+              "title": "Pile 9V Kodak Zinc",
+              "description": "Pile 9V en zinc.\nUsage unique."
+            },
+            "ar": {
+              "title": "بطارية 9V Kodak Zinc",
+              "description": "بطارية 9V من الزنك.\nللاستعمال مرّة واحدة."
+            }
+          }
         },
         {
           "title": "CR2025 MAXELL 3V Battery ",
@@ -627,7 +907,17 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/cr2025_data_sheet_e-mhsvy50i.pdf",
-          "image": "assets/products/img-20251102-wa0044-mhsvehha.jpg"
+          "image": "assets/products/img-20251102-wa0044-mhsvehha.jpg",
+          "translations": {
+            "fr": {
+              "title": "Pile MAXELL CR2025 3V",
+              "description": "Pile lithium 3V.\nConvient aux clés de voiture, montres et appareils domestiques/médicaux/sportifs."
+            },
+            "ar": {
+              "title": "بطارية MAXELL CR2025 ‏3V",
+              "description": "بطارية ليثيوم 3V.\nمناسبة لمفاتيح السيارة، الساعات، والأجهزة المنزلية أو الطبية أو الرياضية."
+            }
+          }
         },
         {
           "title": "REVLINE Hydraulic Oil HM/HLP 46",
@@ -652,9 +942,29 @@
             }
           ],
           "datasheet": "",
-          "image": "assets/products/20251110_114405-mhxgyngd.png"
+          "image": "assets/products/20251110_114405-mhxgyngd.png",
+          "translations": {
+            "fr": {
+              "title": "REVLINE Huile Hydraulique HM/HLP 46",
+              "description": "Huiles hydrauliques HM/HLP pour systèmes hydrostatiques, formulées à partir d’huiles minérales de haute qualité avec additifs anti-usure, anticorrosion et antioxydants."
+            },
+            "ar": {
+              "title": "REVLINE زيت هيدروليكي HM/HLP 46",
+              "description": "زيوت هيدروليكية HM/HLP للأنظمة الهيدروستاتية، مصنوعة من زيوت معدنية عالية الجودة مع إضافات مضادة للتآكل والأكسدة."
+            }
+          }
         }
-      ]
+      ],
+      "translations": {
+        "fr": {
+          "name": "Huiles, Filtres & Batteries",
+          "description": "Huiles moteur, filtres et alimentation électrique fiable à bord."
+        },
+        "ar": {
+          "name": "زيوت، فلاتر و بطّاريات",
+          "description": "زيوت محرّكات، فلاتر، و طاقة كهربائية موثوقة على متن القارب."
+        }
+      }
     },
     {
       "name": "Hardware Tools",
@@ -714,7 +1024,17 @@
             }
           ],
           "datasheet": "",
-          "image": "assets/products/pinceau-cristan-n30-mhhmgsae.jpg"
+          "image": "assets/products/pinceau-cristan-n30-mhhmgsae.jpg",
+          "translations": {
+            "fr": {
+              "title": "CRISTAL Pinceau Jetable",
+              "description": "Idéal pour la peinture, le nettoyage de pièces et les retouches.\nCompatible avec colle, peinture, résine, acétone et solvants."
+            },
+            "ar": {
+              "title": "CRISTAL فرشاة طلاء للاستعمال الواحد",
+              "description": "مثالية للطلاء، تنظيف القطع وأعمال اللمسات.\nمتوافقة مع الغراء، الدهان، الرزين، الأسيتون والمذيبات."
+            }
+          }
         },
         {
           "title": "CRISTAL Short Pile Paint Roller Pack Of 5",
@@ -732,7 +1052,17 @@
           ],
           "variants": [],
           "datasheet": "",
-          "image": "assets/products/img-20251102-wa0036-mhqjeamb-mi3jvo3n.png"
+          "image": "assets/products/img-20251102-wa0036-mhqjeamb-mi3jvo3n.png",
+          "translations": {
+            "fr": {
+              "title": "CRISTAL Rouleau Poils Courts – Pack de 5",
+              "description": "Largeur 100 mm, diamètre 7 mm.\nConvient à l’intérieur, au bois et au métal.\nCompatible peintures à l’huile."
+            },
+            "ar": {
+              "title": "CRISTAL رول وبر قصير – 5 قطع",
+              "description": "عرض 100 مم، قطر 7 مم.\nمناسب للداخل، الخشب والمعدن.\nيعمل مع الدهانات الزيتية."
+            }
+          }
         },
         {
           "title": "CRISTAL long Pile Paint Roller Pack Of 5",
@@ -751,7 +1081,17 @@
           ],
           "variants": [],
           "datasheet": "",
-          "image": "assets/products/img-20251102-wa0035-mhqkjjou.jpg"
+          "image": "assets/products/img-20251102-wa0035-mhqkjjou.jpg",
+          "translations": {
+            "fr": {
+              "title": "CRISTAL Rouleau Poils Longs – Pack de 5",
+              "description": "Largeur 100 mm, diamètre 7 mm.\nConvient à l’intérieur, extérieur et bois.\nCompatible peintures à l’eau et à l’huile."
+            },
+            "ar": {
+              "title": "CRISTAL رول وبر طويل – 5 قطع",
+              "description": "عرض 100 مم، قطر 7 مم.\nمناسب للداخل، الخارج والخشب.\nيعمل مع الدهانات الزيتية والمائية."
+            }
+          }
         },
         {
           "title": "CRISTAL Long Roller Frame",
@@ -769,7 +1109,17 @@
           ],
           "variants": [],
           "datasheet": "",
-          "image": "assets/products/img-20251102-wa0050-mhqkqz6f-mi3nup9i.png"
+          "image": "assets/products/img-20251102-wa0050-mhqkqz6f-mi3nup9i.png",
+          "translations": {
+            "fr": {
+              "title": "CRISTAL Monture Longue pour Rouleau",
+              "description": "Monture longue CRISTAL.\nFil de 7 mm, longueur 410 mm.\nPoignée en plastique."
+            },
+            "ar": {
+              "title": "CRISTAL مقبض طويل لرول الطلاء",
+              "description": "مقبض طويل من CRISTAL.\nسلك قطر 7 مم وطول 410 مم.\nمقبض بلاستيك."
+            }
+          }
         },
         {
           "title": "CRISTAL 20CM Short Pile Paint Roller Plus Frame",
@@ -788,7 +1138,17 @@
           ],
           "variants": [],
           "datasheet": "",
-          "image": "assets/products/img-20251102-wa0058-mhsw40fp.jpg"
+          "image": "assets/products/img-20251102-wa0058-mhsw40fp.jpg",
+          "translations": {
+            "fr": {
+              "title": "CRISTAL Rouleau 20cm Poils Courts + Monture",
+              "description": "Convient à l’intérieur, extérieur et bois.\nCompatible peintures à l’eau et à l’huile."
+            },
+            "ar": {
+              "title": "CRISTAL رول 20 سم وبر قصير مع المقبض",
+              "description": "مناسب للداخل، الخارج والخشب.\nيعمل مع الدهانات الزيتية والمائية."
+            }
+          }
         },
         {
           "title": "Wood Handle Filling Knife 50MM",
@@ -815,7 +1175,17 @@
             }
           ],
           "datasheet": "",
-          "image": "assets/products/img-20251102-wa0056-mhsxtls9.jpg"
+          "image": "assets/products/img-20251102-wa0056-mhsxtls9.jpg",
+          "translations": {
+            "fr": {
+              "title": "Spatule Manche Bois 50mm",
+              "description": "Acier avec manche en bois."
+            },
+            "ar": {
+              "title": "مالج مقبض خشبي 50 مم",
+              "description": "مصنوع من الفولاذ مع مقبض خشبي."
+            }
+          }
         },
         {
           "title": "ACEM Body Filler Application Set 4pce",
@@ -834,7 +1204,17 @@
           ],
           "variants": [],
           "datasheet": "",
-          "image": "assets/products/img-20251102-wa0078-mhsz9862.jpg"
+          "image": "assets/products/img-20251102-wa0078-mhsz9862.jpg",
+          "translations": {
+            "fr": {
+              "title": "ACEM Set Spatules 4 Pièces",
+              "description": "Lames en acier ressort avec poignées composites.\nTailles 50, 80, 100 et 120 mm."
+            },
+            "ar": {
+              "title": "ACEM طقم ملاج 4 قطع",
+              "description": "شفرات فولاذية مرنة مع مقابض مركّبة.\nالمقاسات: 50، 80، 100 و120 مم."
+            }
+          }
         },
         {
           "title": "APT SDS Paint Mixer ( 80 X 600 x 10MM)",
@@ -852,7 +1232,17 @@
           ],
           "variants": [],
           "datasheet": "",
-          "image": "assets/products/img-20251102-wa0080-mhszkdn9.jpg"
+          "image": "assets/products/img-20251102-wa0080-mhszkdn9.jpg",
+          "translations": {
+            "fr": {
+              "title": "APT Malaxeur SDS (80 × 600 × 10mm)",
+              "description": "Double hélice de mélange.\nIdéal avec perceuses équipées d’un mandrin SDS."
+            },
+            "ar": {
+              "title": "APT خلاط دهان SDS (80 × 600 × 10 مم)",
+              "description": "تصميم شفرتين للخلط.\nمناسب للاستعمال مع مثقاب بقاعده SDS."
+            }
+          }
         },
         {
           "title": "Technopole 6 In 1 Penetrating / Lubricant Oil 300ml",
@@ -871,7 +1261,17 @@
           ],
           "variants": [],
           "datasheet": "",
-          "image": "assets/products/img-20251102-wa0090-mhszv052.jpg"
+          "image": "assets/products/img-20251102-wa0090-mhszv052.jpg",
+          "translations": {
+            "fr": {
+              "title": "Technopole Huile 6 en 1 – 300ml",
+              "description": "Pénétration rapide, protection antirouille, utilisations multiples.\nÉquipé d’un tube de précision."
+            },
+            "ar": {
+              "title": "Technopole زيت 6 في 1 – ‏300 مل",
+              "description": "اختراق سريع وحماية من الصدأ واستعمالات متعددة.\nمزوّد بأنبوب دقيق."
+            }
+          }
         },
         {
           "title": "Technopole Degrippant / Penetrating Express Spray 300ml",
@@ -887,7 +1287,17 @@
           ],
           "variants": [],
           "datasheet": "",
-          "image": "assets/products/img-20251102-wa0091-mht0g77i.jpg"
+          "image": "assets/products/img-20251102-wa0091-mht0g77i.jpg",
+          "translations": {
+            "fr": {
+              "title": "Technopole Dégrippant / Spray Pénétrant Express 300ml",
+              "description": "Spray de maintenance pénétrant très puissant 300 ml.\nQualité excellente."
+            },
+            "ar": {
+              "title": "Technopole مزيل صدأ / بخاخ اختراق سريع 300 مل",
+              "description": "بخاخ صيانة قوي جدًا للتفكيك 300 مل.\nجودة ممتازة."
+            }
+          }
         },
         {
           "title": "SARATOGA Unloose Lubricant 300ml",
@@ -906,7 +1316,17 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/54123001-en-mht2jfyh.pdf",
-          "image": "assets/products/20251110_113411-mht2gwwd.png"
+          "image": "assets/products/20251110_113411-mht2gwwd.png",
+          "translations": {
+            "fr": {
+              "title": "SARATOGA Lubrifiant Dégrippant 300ml",
+              "description": "Fluide puissant dissolvant la rouille et les incrustations. Dégrippe rapidement boulons, charnières et pièces mécaniques. N’endommage ni métal, ni peinture, ni caoutchouc. Chasse l’humidité, lubrifie et protège de la corrosion. Utilisable dans toutes les positions."
+            },
+            "ar": {
+              "title": "SARATOGA مزيل صدأ و مُزلّق – ‏300 مل",
+              "description": "سائل قوي يذيب الصدأ والأوساخ ويُفكّ البراغي والمفاصل بسرعة. لا يضرّ المعدن أو الطلاء أو المطاط. يطرد الرطوبة، يزيت ويحمي من التآكل. يمكن استعماله في أي وضعية."
+            }
+          }
         },
         {
           "title": "DS Earmuff, Ear Protection Black/Yellow",
@@ -926,7 +1346,17 @@
           ],
           "variants": [],
           "datasheet": "",
-          "image": "assets/products/img-20251102-wa0037-mht3ka2d.jpg"
+          "image": "assets/products/img-20251102-wa0037-mht3ka2d.jpg",
+          "translations": {
+            "fr": {
+              "title": "DS Casque Anti-Bruit Noir/Jaune",
+              "description": "Protection auditive confortable et efficace. Réutilisable et légère."
+            },
+            "ar": {
+              "title": "DS عازل صوت للأذنين أسود/أصفر",
+              "description": "حماية سمعية مريحة وفعّالة. قابلة لإعادة الاستخدام وخفيفة الوزن."
+            }
+          }
         },
         {
           "title": "CLIMAX Half Mask Ref. 324",
@@ -944,7 +1374,17 @@
           ],
           "variants": [],
           "datasheet": "",
-          "image": "assets/products/img-20251102-wa0063-mht3sbov.jpg"
+          "image": "assets/products/img-20251102-wa0063-mht3sbov.jpg",
+          "translations": {
+            "fr": {
+              "title": "CLIMAX Demi-Masque Réf. 324",
+              "description": "Demi-masque professionnel contre les gaz, vapeurs et particules solides et liquides."
+            },
+            "ar": {
+              "title": "CLIMAX قناع نصف وجه رقم 324",
+              "description": "قناع نصف وجه للاستعمال المهني ضد الغازات والأبخرة والجزيئات الصلبة والسائلة."
+            }
+          }
         },
         {
           "title": "SUN Nitrile Disposable Gloves, BlackXL",
@@ -963,7 +1403,17 @@
           ],
           "variants": [],
           "datasheet": "",
-          "image": "assets/products/img-20251102-wa0075-mht46qor.jpg"
+          "image": "assets/products/img-20251102-wa0075-mht46qor.jpg",
+          "translations": {
+            "fr": {
+              "title": "SUN Gants Jetables en Nitrile, Noir XL",
+              "description": "Gants ultra-résistants à surface rugueuse.\nRésistent aux huiles, acides, détergents et à la plupart des produits chimiques.\nFabriqué en Chine."
+            },
+            "ar": {
+              "title": "SUN قفازات نيتريل للاستعمال الواحد، أسود XL",
+              "description": "قفازات قوية بسطح خشن.\nمقاومة للزيوت والأحماض والمنظفات ومعظم المواد الكيميائية.\nصنع في الصين."
+            }
+          }
         },
         {
           "title": "ACEM Screwdriver, Orange, PH",
@@ -1002,7 +1452,17 @@
             }
           ],
           "datasheet": "",
-          "image": "assets/products/img-20251102-wa0062-mi7nfzyk.png"
+          "image": "assets/products/img-20251102-wa0062-mi7nfzyk.png",
+          "translations": {
+            "fr": {
+              "title": "ACEM Tournevis PH, Orange",
+              "description": "Tournevis PH1.\nAcier chrome-vanadium durable.\nPointe magnétique."
+            },
+            "ar": {
+              "title": "ACEM مفك براغي PH، برتقالي",
+              "description": "مفك PH1.\nمصنوع من فولاذ كروم-فاناديوم متين.\nرأس مغناطيسي."
+            }
+          }
         },
         {
           "title": "15 Pack / Disposable Face Mask with Breathing Valve",
@@ -1022,7 +1482,17 @@
           ],
           "variants": [],
           "datasheet": "",
-          "image": "assets/products/20251113_173709-mhxo6tvi.png"
+          "image": "assets/products/20251113_173709-mhxo6tvi.png",
+          "translations": {
+            "fr": {
+              "title": "Lot de 15 Masques Jetables avec Valve Respiratoire",
+              "description": "Masque jetable anti-poussière non toxique avec filtre.\nVision dégagée ; design profil bas permettant de mieux voir vos mouvements.\nCompatible avec lunettes ou lunettes de protection."
+            },
+            "ar": {
+              "title": "علبة 15 كمامة للاستعمال الواحد مع صمام تنفّس",
+              "description": "كمامة مضادة للغبار غير سامة مع فلتر.\nرؤية واضحة وتصميم منخفض يسمح برؤية مسارك.\nيمكن ارتداؤها بسهولة مع النظارات أو نظارات السلامة."
+            }
+          }
         },
         {
           "title": "DELTAPLUS DT117 Disposable Suit",
@@ -1055,7 +1525,17 @@
             }
           ],
           "datasheet": "",
-          "image": "assets/products/20251113_164339-mhxm0uaz.png"
+          "image": "assets/products/20251113_164339-mhxm0uaz.png",
+          "translations": {
+            "fr": {
+              "title": "DELTAPLUS DT117 Combinaison Jetable",
+              "description": "Combinaison jetable antistatique offrant une protection contre les particules sèches et les produits chimiques.\nBonne tenue et protection renforcée."
+            },
+            "ar": {
+              "title": "DELTAPLUS DT117 بدلة واقية للاستعمال الواحد",
+              "description": "بدلة واقية مضادة للكهرباء الساكنة، مقاومة للجزيئات الجافة والمواد الكيميائية.\nتوفر حماية محسّنة ومقاسًا مريحًا."
+            }
+          }
         },
         {
           "title": "GP Tape 25mm X 25M Multi Surface Masking Tape",
@@ -1087,7 +1567,17 @@
             }
           ],
           "datasheet": "",
-          "image": "assets/products/gp-tape-mhyol11t.jpg"
+          "image": "assets/products/gp-tape-mhyol11t.jpg",
+          "translations": {
+            "fr": {
+              "title": "GP Tape Ruban de Masquage Multi-Surfaces 25mm x 25m",
+              "description": "Ruban de masquage multi-surfaces pour peinture.\nIdéal pour des lignes nettes et finitions précises."
+            },
+            "ar": {
+              "title": "GP Tape شريط لاصق للطلاء متعدد الأسطح 25 مم × 25 م",
+              "description": "شريط لاصق متعدد الاستعمالات للدهان.\nممتاز للحصول على خطوط واضحة وتشطيب دقيق."
+            }
+          }
         },
         {
           "title": "TT Electrical Tape ",
@@ -1114,7 +1604,17 @@
             }
           ],
           "datasheet": "",
-          "image": "assets/products/img-20251102-wa0039-mhyozp4v.jpg"
+          "image": "assets/products/img-20251102-wa0039-mhyozp4v.jpg",
+          "translations": {
+            "fr": {
+              "title": "TT Ruban Isolant Électrique",
+              "description": "Ruban isolant durable en PVC, disponible en plusieurs couleurs et tailles.\nTrès facile à utiliser pour tous les travaux d’isolation électrique."
+            },
+            "ar": {
+              "title": "TT شريط لاصق كهربائي",
+              "description": "شريط عازل متين مصنوع من PVC، متوفر بألوان وأحجام مختلفة.\nسهل الاستخدام جدًا لأعمال العزل الكهربائي."
+            }
+          }
         },
         {
           "title": "EUROSIL Packing Tape Clear/Brown",
@@ -1145,7 +1645,17 @@
             }
           ],
           "datasheet": "",
-          "image": "assets/products/20251114_120122-mhyrsca7.png"
+          "image": "assets/products/20251114_120122-mhyrsca7.png",
+          "translations": {
+            "fr": {
+              "title": "EUROSIL Ruban d’Emballage Transparent / Havane",
+              "description": "Ruban d’emballage résistant avec forte adhérence."
+            },
+            "ar": {
+              "title": "EUROSIL شريط تعبئة شفاف / بني",
+              "description": "شريط تغليف متين ذو التصاق قوي."
+            }
+          }
         },
         {
           "title": "TECHNOPOLE Multifonction Grease ",
@@ -1181,7 +1691,17 @@
             }
           ],
           "datasheet": "",
-          "image": "assets/products/20251114_125508-mhytwhwc.png"
+          "image": "assets/products/20251114_125508-mhytwhwc.png",
+          "translations": {
+            "fr": {
+              "title": "TECHNOPOLE Graisse Multifonction",
+              "description": "Graisse au lithium polyvalente et haute performance pour applications automobiles et industrielles.\nExcellente résistance à l’humidité, à la chaleur et aux fortes charges.\nRéduit la friction et protège les pièces métalliques en mouvement.\nIdéale pour roulements, charnières et machines."
+            },
+            "ar": {
+              "title": "TECHNOPOLE شحم متعدد الاستعمالات",
+              "description": "شحم ليثيوم عالي الأداء للاستعمالات الصناعية والميكانيكية.\nمقاوم للرطوبة والحرارة والحمولات الثقيلة.\nيقلل الاحتكاك ويحمي الأجزاء المعدنية المتحركة.\nمثالي للرولمانات والمفصلات والآلات."
+            }
+          }
         },
         {
           "title": "LECHLER 00916 Water-Borne Mordant Paste 250Ml",
@@ -1201,7 +1721,17 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/0916-gb-mi0djcpc.pdf",
-          "image": "assets/products/img-20251102-wa0053-mi0dmf9z.png"
+          "image": "assets/products/img-20251102-wa0053-mi0dmf9z.png",
+          "translations": {
+            "fr": {
+              "title": "LECHLER 00916 Pâte Mordante à l’Eau 250 ml",
+              "description": "Produit blanc à base d’eau contenant des charges abrasives soigneusement sélectionnées. Élimine les rayures et petits défauts des surfaces peintes. Idéal pour retirer les impuretés dues à l’exposition extérieure ou aux environnements pollués. Convient pour corriger les défauts de peinture tels que poussières, coulures (après ponçage) et traces de ponçage grossier. Particulièrement adapté aux produits HS et UHS."
+            },
+            "ar": {
+              "title": "LECHLER 00916 معجون صنفرة مائي 250 مل",
+              "description": "منتج أبيض أساسه الماء يحتوي على مواد كاشطة مختارة بعناية. يزيل الخدوش والعيوب الصغيرة من الأسطح المطلية. مثالي لإزالة الشوائب الناتجة عن التعرض الخارجي أو البيئات الملوّثة. مناسب لإصلاح عيوب الطلاء مثل الغبار، السيلان (بعد الصنفرة) وآثار الصنفرة الخشنة. مناسب بشكل خاص لمنتجات HS وUHS."
+            }
+          }
         },
         {
           "title": "KAPCI K20 Fast Cut Compound 1L",
@@ -1221,7 +1751,17 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/kapci-k20-fast-cut-compound-mi0ega1c.pdf",
-          "image": "assets/products/img-20251102-wa0085-mi0ef6qw.png"
+          "image": "assets/products/img-20251102-wa0085-mi0ef6qw.png",
+          "translations": {
+            "fr": {
+              "title": "KAPCI K20 Pâte de Polissage Fast Cut 1L",
+              "description": "Pâte de polissage haute performance conçue pour éliminer rapidement les défauts. Supprime les rayures de ponçage, l’oxydation et les imperfections avec un effort minimal. Formule offrant une finition lisse et brillante tout en réduisant le temps de polissage. Idéale pour la réparation automobile, assurant un résultat professionnel sur tous les systèmes de peinture."
+            },
+            "ar": {
+              "title": "KAPCI K20 معجون تلميع سريع 1 لتر",
+              "description": "معجون تلميع عالي الأداء لإزالة العيوب بسرعة. يزيل خدوش الصنفرة، الأكسدة والعيوب السطحية بسهولة. تركيبته تمنح لمعانًا عاليًا وتقلّل وقت التلميع. مثالي لدهانات السيارات ويوفّر نتائج احترافية على جميع أنظمة الطلاء."
+            }
+          }
         },
         {
           "title": "PEXCRAFT Foam Polishing Pad With Holder 150*50MM/M14*2",
@@ -1254,7 +1794,17 @@
             }
           ],
           "datasheet": "",
-          "image": "assets/products/img-20251102-wa0059-mi0exdo6.png"
+          "image": "assets/products/img-20251102-wa0059-mi0exdo6.png",
+          "translations": {
+            "fr": {
+              "title": "PEXCRAFT Tampon de Polissage en Mousse avec Support 150×50 mm / M14×2",
+              "description": "Tampon en mousse conçu pour un polissage, une coupe et une finition efficaces des surfaces peintes. Son format 150×50 mm assure une manipulation fluide et un contact optimal. Filetage M14×2 compatible avec la plupart des polisseuses rotatives. Durable et léger, idéal pour les applications automobiles et de detailing."
+            },
+            "ar": {
+              "title": "PEXCRAFT إسفنجة تلميع مع حامل 150×50 مم / M14×2",
+              "description": "إسفنجة تلميع مصممة للقطع والتلميع والتشطيب بكفاءة على الأسطح المطلية. أبعادها 150×50 مم توفر تحكمًا سلسًا وتماسكًا ممتازًا مع السطح. مزوّدة ببرغي M14×2 يناسب أغلب آلات التلميع الدوّارة. متينة وخفيفة ومثالية لتفاصيل السيارات."
+            }
+          }
         },
         {
           "title": "PEXCRAFT Lambswool Polishing Bonnet 125mm",
@@ -1284,7 +1834,17 @@
             }
           ],
           "datasheet": "",
-          "image": "assets/products/20251115_160924-mi0flac8.png"
+          "image": "assets/products/20251115_160924-mi0flac8.png",
+          "translations": {
+            "fr": {
+              "title": "PEXCRAFT Bonnet de Polissage en Laine 125 mm",
+              "description": "Bonnet de polissage en laine naturelle haute qualité pour un polissage performant. Offre un excellent pouvoir de coupe tout en garantissant une finition lisse sans hologrammes. Idéal pour éliminer les rayures, l’oxydation et les marques de ponçage. Durable, respirant et doux pour les surfaces."
+            },
+            "ar": {
+              "title": "PEXCRAFT غطاء تلميع من صوف الخروف 125 مم",
+              "description": "غطاء تلميع عالي الجودة مصنوع من صوف طبيعي، يوفر قدرة ممتازة على إزالة العيوب مع ترك تشطيب ناعم خالٍ من العلامات. مثالي لإزالة الخدوش والأكسدة وآثار الصنفرة. متين ومرن ولطيف على الأسطح."
+            }
+          }
         },
         {
           "title": "APT Plastic Backing Pad With Velcro 5\"*M14",
@@ -1302,7 +1862,17 @@
           ],
           "variants": [],
           "datasheet": "",
-          "image": "assets/products/20251115_161208-mi0jwpaj.png"
+          "image": "assets/products/20251115_161208-mi0jwpaj.png",
+          "translations": {
+            "fr": {
+              "title": "APT Plateau de Support Plastique avec Velcro 5\" / M14",
+              "description": "Plateau en plastique de 5 pouces avec surface Velcro pour un changement rapide des tampons. Filetage M14 compatible avec la plupart des polisseuses rotatives. Construction équilibrée et rigide assurant une performance lisse et constante. Convient pour tampons mousse, laine et microfibre."
+            },
+            "ar": {
+              "title": "APT قاعدة تلميع بلاستيكية مع فِلكرو 5 بوصة / M14",
+              "description": "قاعدة بلاستيكية 5 بوصة بسطح فِلكرو لتغيير الإسفنج بسرعة. مزودة بخيط M14 مناسب لمعظم آلات التلميع الدوّارة. تصميم متوازن وصلب لضمان أداء سلس وثابت. مناسبة لإسفنجات التلميع والصوف والمايكروفايبر."
+            }
+          }
         },
         {
           "title": "APT Aluminum Oxyde Flap disc 115*22mm 4.5*7/8\"",
@@ -1338,7 +1908,17 @@
             }
           ],
           "datasheet": "",
-          "image": "assets/products/20251115_183413-mi1n2j4w.png"
+          "image": "assets/products/20251115_183413-mi1n2j4w.png",
+          "translations": {
+            "fr": {
+              "title": "APT Disque à Lamelles Oxyde d’Aluminium 115×22 mm (4.5\"×7/8\")",
+              "description": "Disque à lamelles haut de gamme 115×22 mm pour ponçage puissant et précis. Les lamelles abrasives durables assurent un enlèvement rapide de matière tout en offrant une finition régulière. Idéal pour la métallurgie, le nettoyage de soudure et la préparation de surface. Longue durée de vie et efficacité supérieure."
+            },
+            "ar": {
+              "title": "APT قرص صنفرة شرائح أكسيد الألمنيوم 115×22 مم (4.5\"×7/8\")",
+              "description": "قرص شرائح عالي الجودة 115×22 مم يوفر صنفرة قوية ودقيقة. شفراته الكاشطة المتينة تزيل المادة بسرعة وتحافظ على تشطيب متجانس. مثالي لأعمال الحديد وتنظيف اللحام وتجهيز السطح. يدوم طويلاً ويوفر أداءً احترافيًا."
+            }
+          }
         },
         {
           "title": "TECHNOPOLE StarMétal / Cold Welding 85Gr",
@@ -1356,7 +1936,17 @@
             "assets/products/img-20251102-wa0061-mi1r8t8w.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "TECHNOPOLE StarMétal / Soudure à Froid 85 g",
+              "description": "Soudure à froid haute performance pour réparer, coller et reconstruire les pièces métalliques. Restaure les pièces fissurées ou usées sans chaleur ni outils spéciaux. Offre une adhérence durable en quelques minutes. Idéal pour ateliers et usages domestiques."
+            },
+            "ar": {
+              "title": "TECHNOPOLE StarMétal / لحام بارد 85 غ",
+              "description": "مركب لحام بارد عالي الأداء لإصلاح ولصق وإعادة بناء القطع المعدنية. يصلح الأجزاء المتشققة أو المتضررة بدون حرارة أو أدوات خاصة. يوفر تماسكًا قويًا خلال دقائق. مثالي للورش والأعمال المنزلية."
+            }
+          }
         },
         {
           "title": "ABRAPRO Adhesive Sanding Discs 125/150mm",
@@ -1446,7 +2036,17 @@
               "price": 1.544
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "ABRAPRO Disques Abrasifs Autocollants 125/150 mm",
+              "description": "Les disques de ponçage autocollants permettent une fixation rapide et simple pour un ponçage fluide et efficace sur toutes les surfaces. Leur dos adhésif puissant maintient chaque disque bien en place, limitant le glissement et garantissant un résultat régulier. Conçus avec des abrasifs durables de haute qualité, ils offrent un fort pouvoir de coupe et une longue durée de vie. Idéals pour le bois, la carrosserie automobile et les projets de bricolage, ils rendent chaque opération de ponçage plus rapide, plus propre et plus professionnelle."
+            },
+            "ar": {
+              "title": "ABRAPRO أقراص صنفرة لاصقة 125/150 مم",
+              "description": "أقراص الصنفرة ذاتية اللصق توفّر تركيبًا سريعًا وسهلاً لعملية صنفرة ناعمة وفعّالة على مختلف الأسطح. الظهر اللاصق القوي يحافظ على القرص ثابتًا في مكانه ويقلّل الانزلاق للحصول على تشطيب متجانس. مصنوعة من مواد كاشطة عالية الجودة ومتينة، توفّر قدرة قطع ممتازة وعمر خدمة طويل. مثالية لأعمال الخشب، هياكل السيارات ومشاريع الـDIY، وتجعل الصنفرة أسرع وأنظف وأكثر احترافية."
+            }
+          }
         },
         {
           "title": "EMA  Metal Cutting Disc 115/230MM",
@@ -1478,7 +2078,17 @@
               "price": 4.515
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "EMA Disque à Tronçonner Métal 115/230 mm",
+              "description": "Les disques à tronçonner métal EMA 115/230 mm offrent une puissance de coupe exceptionnelle, conçus pour les professionnels exigeant précision et rapidité. Leur formule abrasive haute performance assure des coupes nettes et régulières dans l’acier, les alliages métalliques et les matériaux difficiles. Leur grande durabilité garantit des performances constantes même sous forte sollicitation. Une solution fiable pour une efficacité de coupe durable sur tous vos chantiers."
+            },
+            "ar": {
+              "title": "EMA قرص قطع معدن 115/230 مم",
+              "description": "أقراص قطع المعادن EMA بقياس 115/230 مم توفّر قوة قطع عالية للمحترفين الذين يحتاجون للدقة والسرعة. التركيبة الكاشطة عالية الأداء تمنح قطعًا نظيفًا وسلسًا في الفولاذ والسبائك والمواد الصلبة الأخرى. مصمّمة لتحمّل العمل الشاق مع أداء ثابت وعمر طويل. خيار موثوق لكفاءة عالية في القطع في كل الأعمال."
+            }
+          }
         },
         {
           "title": "Bosch 115mm Metal Cutting Discs - Stainless Steel Mild Steel Iron Ultra Thin",
@@ -1496,7 +2106,17 @@
             "assets/products/20251104_145422-mi3oa54y.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Bosch 115mm Metal Cutting Discs - Stainless Steel Mild Steel Iron Ultra Thin",
+              "description": "Bosch 115mm Ultra-Thin Metal Cutting Discs deliver outstanding precision and speed across stainless steel, mild steel, and iron. Their slim profile reduces friction for cooler, faster, and cleaner cuts every time. Engineered with Bosch’s high-performance abrasive technology, these discs offer exceptional durability and minimal burr formation. Choose Bosch for professional-grade cutting results that elevate efficiency and finish quality on every project."
+            },
+            "ar": {
+              "title": "Bosch 115mm Metal Cutting Discs - Stainless Steel Mild Steel Iron Ultra Thin",
+              "description": "Bosch 115mm Ultra-Thin Metal Cutting Discs deliver outstanding precision and speed across stainless steel, mild steel, and iron. Their slim profile reduces friction for cooler, faster, and cleaner cuts every time. Engineered with Bosch’s high-performance abrasive technology, these discs offer exceptional durability and minimal burr formation. Choose Bosch for professional-grade cutting results that elevate efficiency and finish quality on every project."
+            }
+          }
         },
         {
           "title": "DS  Steel Twist-Knot Wheel 115/125mm M14 x 2 ",
@@ -1525,7 +2145,17 @@
               "price": 10.816
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "DS Brosse Acier Torsadée 115/125 mm M14 x 2",
+              "description": "Brosse circulaire en acier à fils torsadés 115/125 mm M14 x 2 pour le meulage abrasif, l’élimination de peinture, de rouille, de calamine et de bavures. Adaptée aux travaux sur métal et pierre, nettoyage intensif et décapage. À utiliser avec meuleuse angulaire."
+            },
+            "ar": {
+              "title": "DS فرشاة سلك فولاذي ملتوي 115/125 مم M14 x 2",
+              "description": "فرشاة دائرية من سلك فولاذي ملتوي بقياس 115/125 مم M14 x 2 مخصّصة للجَلخ وإزالة الطلاء والصدأ والقشور والبُروز. مناسبة للعمل على المعدن والحجر وأعمال التنظيف القوي. للاستخدام مع الصاروخ (الصنفرة الزاوية)."
+            }
+          }
         },
         {
           "title": "EMA Metal Longlife Sanding Disc 115/230X6.4X22.2 ",
@@ -1552,7 +2182,17 @@
               "price": 9.028
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "EMA Disque de Meulage Longlife Métal 115/230×6.4×22.2",
+              "description": "Disque d’ébarbage métal longue durée pour meuleuses d’angle petites ou grandes, alésage 22,23 mm (acier, Ø 115/230 mm). Idéal pour l’ébarbage, le chanfreinage et la mise en forme de pièces métalliques. Offre une grande longévité et un enlèvement de matière efficace."
+            },
+            "ar": {
+              "title": "EMA قرص جلخ معدن طويل العمر 115/230×6.4×22.2",
+              "description": "قرص جلخ معدني طويل العمر للاستخدام مع الصاروخ الصغير أو الكبير، بقطر داخلي 22.23 مم (للفولاذ، 115/230 مم). مثالي لإزالة الزوايد والتشطيب وتشكيل القطع المعدنية. يقدّم عمر خدمة طويل وقدرة عالية على إزالة المادة."
+            }
+          }
         },
         {
           "title": "DS Felt Flap Polishing Pad 115mm Polishing Pad for Angle Grinder",
@@ -1569,7 +2209,17 @@
             "assets/products/20251116_131452-mi4te54t.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "DS Disque de Polissage Feutre à Lamelles 115 mm pour Meuleuse",
+              "description": "Disque à lamelles en feutre 115×22,2 mm pour le polissage fin avec meuleuse d’angle. Idéal pour la finition brillante et le lustrage de surfaces métalliques ou peintes."
+            },
+            "ar": {
+              "title": "DS قرص تلميع لاميل من اللباد 115 مم للصاروخ",
+              "description": "قرص لاميل من اللباد بقياس 115×22.2 مم مخصّص للتلميع الناعم بالصاروخ الزاوي. مثالي للحصول على لمعان وتشطيب نهائي على الأسطح المعدنية أو المطلية."
+            }
+          }
         },
         {
           "title": "DS Mounted Cup Brushes Crimped Diameter 75 mm",
@@ -1589,7 +2239,17 @@
             "assets/products/20251104_152315-mi63s8el.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "DS Brosses Boisseau Serties sur Tige Ø 75 mm",
+              "description": "À utiliser sur acier et métal.\nPermet d’enlever bavures, rouille, laitier, calamine, caoutchouc résiduel, traces de combustion et autres saletés dans les zones difficiles d’accès et les surfaces intérieures.\nApplications : dégrossissage, ébavurage, décapage de peinture, enlèvement de laitier, décalaminage, ponçage mat et nettoyage."
+            },
+            "ar": {
+              "title": "DS فرش كأس سلكية على محور قطر 75 مم",
+              "description": "مخصّصة للاستعمال على الحديد والمعادن.\nتُستخدم لإزالة الزوايد والصدأ وبقايا اللحام والقشور وبقايا المطاط وآثار الحرق والأوساخ في الأماكن الضيقة والأسطح الداخلية.\nمجالات الاستخدام: إزالة الخشونة، تنظيف الحواف، نزع الطلاء، إزالة بقايا اللحام والقشور، صنفرة خفيفة وتنظيف الأسطح."
+            }
+          }
         },
         {
           "title": "DS Flap Wheel ",
@@ -1649,7 +2309,17 @@
               "price": 4.974
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "DS Roue à Lamelles (Flap Wheel)",
+              "description": "Les roues à lamelles offrent un meulage puissant et régulier pour le métal, le bois et les plastiques. Les lamelles abrasives superposées assurent un enlèvement de matière homogène tout en gardant une coupe froide. Robustes et flexibles, elles s’adaptent facilement aux formes et zones difficiles d’accès. Idéales pour ateliers et professionnels, elles garantissent une préparation de surface rapide et de haute qualité."
+            },
+            "ar": {
+              "title": "DS عجلة لاميل (Flap Wheel)",
+              "description": "عجلات اللاميل توفّر جَلخًا قويًا ومتّسقًا على المعادن والخشب والبلاستيك. طبقات الورق الكاشط المتعدّدة تمنح إزالة مادة سلسة مع بقاء القطع باردًا نسبيًا. متينة ومرنة، تتكيّف مع الأشكال غير المنتظمة والأماكن الصعبة. مثالية للورش والمحترفين لتحضير الأسطح بسرعة وبجودة عالية."
+            }
+          }
         },
         {
           "title": "BOSCH  Metal Cutting Disc 115MM",
@@ -1670,7 +2340,17 @@
             "assets/products/20251115_183437-mi4uugg1.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "BOSCH Disque à Tronçonner Métal 115 mm",
+              "description": "Le disque à tronçonner métal BOSCH 115 mm offre des coupes rapides et précises dans l’acier et les profilés métalliques. Sa formulation abrasive premium garantit des résultats propres, avec peu de bavures et moins d’encrassement. Sa structure renforcée assure une longue durée de vie et une sécurité maximale à grande vitesse. Parfait pour les professionnels comme pour les bricoleurs."
+            },
+            "ar": {
+              "title": "BOSCH قرص قطع معدن 115 مم",
+              "description": "قرص قطع المعادن من BOSCH بقياس 115 مم يوفّر قطعًا سريعًا ودقيقًا في الفولاذ والبروفيلات المعدنية. الحبيبات الكاشطة عالية الجودة تعطي نتائج نظيفة مع زوايد قليلة وتراكم أقل للمادة. تصميمه المعزّز يضمن عمرًا طويلًا وأمانًا عاليًا عند السرعات المرتفعة. ممتاز للمحترفين ولمستخدمي الـDIY."
+            }
+          }
         },
         {
           "title": "ABRAPRO Fibre Discs for Grinder ",
@@ -1713,7 +2393,17 @@
               "price": 2.507
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "ABRAPRO Disques Fibre pour Meuleuse",
+              "description": "Les disques fibre ABRAPRO offrent une performance de meulage puissante grâce à une abrasivité supérieure pour les travaux métalliques.\nLeur support en fibre robuste garantit stabilité, longue durée de vie et enlèvement de matière constant même sous forte charge.\nConçus pour éliminer rouille, soudures et imperfections, ils assurent une finition lisse et professionnelle.\nIdéals pour ateliers et industrie, ils apportent une efficacité fiable à chaque opération de meulage."
+            },
+            "ar": {
+              "title": "ABRAPRO أقراص فايبر للصنفرة على الصاروخ",
+              "description": "أقراص الفايبر من ABRAPRO توفّر أداء جَلخ قوي بفضل قدرتها الكاشطة العالية لأعمال المعادن.\nالظهر الليفي المتين يمنح ثباتًا وعمرًا طويلًا وإزالة مادة متواصلة حتى مع الضغط العالي.\nمصمّمة لإزالة الصدأ وبقايا اللحام والعيوب السطحية، وتترك تشطيبًا ناعمًا واحترافيًا.\nمثالية للورش والصناعة، وتوفّر كفاءة موثوقة في كل عملية صنفرة."
+            }
+          }
         },
         {
           "title": "DS Rotary Steel Wire Wheel Brush",
@@ -1750,7 +2440,17 @@
               "price": 4.799
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "DS Brosse Metallique Rotative en Fil d’Acier",
+              "description": "Fil d’acier haute résistance de 0,3 mm de diamètre.\nPour enlever la rouille, la peinture, le tartre, les bavures et pour préparer les soudures.\nConvient aux travaux sur métal et pierre, au nettoyage, à la préparation de surface et aux tâches de fabrication.\nUtilisation avec perceuse électrique.\nTige 6 mm / max 4500 tr/min."
+            },
+            "ar": {
+              "title": "DS فرشاة سلكية دوّارة من الفولاذ",
+              "description": "سلك فولاذي عالي المتانة بقطر 0.3 مم.\nلإزالة الصدأ والطلاء، وإزالة القشور والبرايات، وتحضير لحامات المعادن.\nمناسبة لأعمال المعدن والحجر، والتنظيف، وتحضير الأسطح وأعمال التصنيع.\nتُستخدم مع المثقاب الكهربائي.\nساق 6 مم / أقصى سرعة 4500 دورة/دقيقة."
+            }
+          }
         },
         {
           "title": "DS 85/0.3 x M14 Wire Cup Brush",
@@ -1770,7 +2470,17 @@
             "assets/products/img-20251102-wa0077-mi630b0p.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "DS Brosse Coupelle 85/0.3 x M14",
+              "description": "Élimine la rouille, la peinture ou la corrosion des surfaces.\nPoils robustes pour un nettoyage agressif.\nCompatible avec perceuses et meuleuses angulaires.\nConstruction durable pour une longue durée de vie.\nBROSSE CONIQUE 85/0.3 M14 RF 237 JN."
+            },
+            "ar": {
+              "title": "DS فرشاة كوب سلكية 85/0.3 x M14",
+              "description": "تزيل الصدأ والطلاء أو التآكل من الأسطح.\nشعيرات قوية للتنظيف القوي.\nمتوافقة مع المثاقب أو الصاروخ الزاوي.\nمتينة وتدوم طويلًا.\nBROSSE CONIQUE 85/0.3 M14 RF 237 JN."
+            }
+          }
         },
         {
           "title": "DS Universal Wire Brush",
@@ -1789,7 +2499,17 @@
             "assets/products/img-20251102-wa0083-mi63700a.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "DS Brosse Métallique Universelle",
+              "description": "Brosse métallique universelle pour nettoyage intensif du bois, métal, maçonnerie et plus.\nÉlimination de peinture, graisse, rouille, grilles, carrelages, bois, métal, brique et surfaces de maçonnerie."
+            },
+            "ar": {
+              "title": "DS فرشاة سلكية متعددة الاستخدام",
+              "description": "فرشاة معدنية شاملة للتنظيف القوي للخشب، المعدن، البناء وغيرها.\nلإزالة الطلاء، الأوساخ، الصدأ، الشوايات، البلاط، الخشب، المعدن والطوب."
+            }
+          }
         },
         {
           "title": "KONAFLEX Felt Polishing Wheel 180x20x22.22 ",
@@ -1809,7 +2529,17 @@
             "assets/products/22-mi63o0mk.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "KONAFLEX Felt Polishing Wheel 180x20x22.22 ",
+              "description": "Felt polishing wheel 180x20x22.22, 100% wool."
+            },
+            "ar": {
+              "title": "KONAFLEX Felt Polishing Wheel 180x20x22.22 ",
+              "description": "Felt polishing wheel 180x20x22.22, 100% wool."
+            }
+          }
         },
         {
           "title": "DS Sanding Blocks Wet and Dry Dual-use, Coarse and Fine Sanding Sponges 60/80/100/120/180/220 Grits",
@@ -1838,7 +2568,17 @@
               "price": 9.444
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "DS Blocs de Ponçage Humide et Sec – Éponges Abrasives 60/80/100/120/180/220",
+              "description": "Blocs de ponçage utilisables à sec ou à l’eau pour une finition contrôlée et polyvalente.\nDisponibles en grains grossiers à fins (60/80/100/120/180/220), parfaits pour le nettoyage, l’ébavurage et le polissage.\nLeur design en éponge flexible offre une prise confortable et un accès facile aux courbes et recoins.\nDurables et lavables, ils conviennent aussi bien aux professionnels qu’aux bricoleurs."
+            },
+            "ar": {
+              "title": "DS إسفنجات صنفرة جافة ومبللة – درجات 60/80/100/120/180/220",
+              "description": "إسفنجات صنفرة صالحة للاستخدام جافة أو مبللة لتشطيب متحكم ومتعدد الاستخدامات.\nبدرجات من الخشن إلى الناعم (60/80/100/120/180/220)، مثالية للتنظيف، وإزالة الحواف، والتلميع.\nتصميمها الإسفنجي المرن يسهل إمساكها والوصول إلى المنحنيات والزوايا.\nمتينة وقابلة للغسل، مناسبة للمحترفين ولمستخدمي الـDIY."
+            }
+          }
         },
         {
           "title": "OMSA 10\"/300mm Hardpoint Tenon Saw",
@@ -1857,7 +2597,17 @@
             "assets/products/20251119_160020-mi64z8a4.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "OMSA Scie à Tenons Hardpoint 10\"/300 mm",
+              "description": "La scie à tenons 10″ (300 mm) offre une coupe précise et nette pour l’assemblage et la menuiserie fine.\nSes dents trempées conservent longtemps leur tranchant pour des coupes propres et sans effort.\nSa poignée solide et ergonomique garantit confort et contrôle.\nIdéale pour menuisiers et artisans recherchant précision et performance."
+            },
+            "ar": {
+              "title": "OMSA منشار تينون 10\"/300 مم أسنان مقسّاة",
+              "description": "منشار تينون 10″ (300 مم) يوفّر قطعًا دقيقًا وحادًا لأعمال النجارة الدقيقة.\nأسنانه المقسّاة تبقى حادة لفترة طويلة لقطع نظيف بسهولة.\nمقبضه قوي ومريح يقدّم سيطرة ممتازة.\nمثالي للنجارين والحرفيين الذين يحتاجون للدقة."
+            }
+          }
         },
         {
           "title": "ACEM Trade Snap Off Knife 18mm",
@@ -1877,7 +2627,17 @@
             "assets/products/20251119_162412-mi65zzez.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "ACEM Couteau à Lame Cassable 18 mm",
+              "description": "Le couteau ACEM 18 mm offre une coupe nette et fiable pour les usages quotidiens.\nSa lame segmentée permet de casser rapidement pour obtenir un tranchant neuf.\nPoignée ergonomique robuste pour confort, précision et contrôle.\nIdéal pour ateliers, chantiers et bricolage."
+            },
+            "ar": {
+              "title": "ACEM سكين بشفرة قابلة للكسر 18 مم",
+              "description": "سكين ACEM بقياس 18 مم يمنح قطعًا حادًا وموثوقًا للاستخدام اليومي.\nشفرته المجزأة تسمح بكسر طرفها بسهولة للحصول على حد جديد.\nمقبضه قوي ومريح يمنح تحكمًا ودقة.\nمثالي للورش، مواقع العمل، وأعمال الـDIY."
+            }
+          }
         },
         {
           "title": "TOTAL 10Pcs Knife Blades Set",
@@ -1912,7 +2672,17 @@
               "price": 3.288
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "TOTAL Set de 10 Lames de Cutter",
+              "description": "Le set de 10 lames TOTAL offre des lames de rechange tranchantes et durables pour des coupes précises.\nFabriquées en acier de haute qualité, elles conservent longtemps leur tranchant.\nConditionnées pour un accès rapide et un rangement facile.\nCompatibles avec la plupart des cutters standard."
+            },
+            "ar": {
+              "title": "TOTAL مجموعة 10 شفرات للكتر",
+              "description": "مجموعة TOTAL المكوّنة من 10 شفرات توفّر شفرات حادة ومتينة لقطع دقيق في مختلف الاستخدامات.\nمصنوعة من فولاذ عالي الجودة يحافظ على حدّه لفترة طويلة.\nمعبأة بطريقة تسهّل التخزين والوصول السريع.\nمتوافقة مع أغلب أنواع الكتر العادية."
+            }
+          }
         },
         {
           "title": "APT 8\" Compass Saw",
@@ -1947,7 +2717,17 @@
               "price": 8.372
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "APT Scie Compass 8\"",
+              "description": "La scie compass APT 8\" assure des coupes précises et contrôlées pour les courbes, ouvertures et travaux détaillés.\nSa lame effilée et tranchante traverse le bois, le plastique et le placo avec facilité.\nSa poignée ergonomique offre confort et stabilité.\nParfaite pour professionnels et bricoleurs recherchant précision et durabilité."
+            },
+            "ar": {
+              "title": "APT منشار كومباس 8\"",
+              "description": "منشار APT كومباس 8\" يوفّر قطعًا دقيقًا ومتحكمًا للمنحنيات والفتحات والأعمال الخشبية الدقيقة.\nنصلٌ حاد ومسنّن يقطع الخشب والبلاستيك والجبس بسهولة.\nمقبض مريح يمنح ثباتًا أثناء الاستخدام.\nمثالي للمحترفين والهواة."
+            }
+          }
         },
         {
           "title": "OMSA Metal Hacksaw Blade 300X12.7X0.6",
@@ -1966,7 +2746,17 @@
             "assets/products/img-20251102-wa0074-mi66ya1t.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "OMSA Lame de Scie à Métaux 300X12.7X0.6",
+              "description": "La lame de scie à métaux OMSA 300×12.7×0.6 offre des coupes propres et précises sur l’acier, l’aluminium et autres métaux.\nFabriquée en acier allié de haute qualité, elle garantit une excellente durabilité et un tranchant longue durée.\nSon profil de dents précis assure une coupe fluide avec moins de vibrations et d’efforts.\nIdéale pour ateliers et usage industriel, cette lame assure efficacité et fiabilité dans toutes les tâches de découpe métal."
+            },
+            "ar": {
+              "title": "OMSA شفرة منشار معادن 300X12.7X0.6",
+              "description": "توفر شفرة منشار المعادن OMSA 300×12.7×0.6 قطعًا نظيفًا ودقيقًا عبر الفولاذ والألمنيوم والمعادن الأخرى.\nمصنوعة من فولاذ سبيكي عالي الجودة لضمان المتانة وطول بقاء الحد.\nتصميم الأسنان الدقيق يضمن قطعًا سلسًا مع اهتزاز أقل وجهد منخفض.\nمثالية للورش والاستخدام الصناعي، وتوفر كفاءة عالية في جميع مهام قطع المعادن."
+            }
+          }
         },
         {
           "title": "DS PVC Pipe Cutter 1-8-5/8\" 42mm",
@@ -1985,7 +2775,17 @@
             "assets/products/ds-mi67eaqk.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "DS Coupe-Tube PVC 1-8-5/8\" 42 mm",
+              "description": "Le coupe-tube PVC DS 1–8-5/8\" (42 mm) offre des coupes nettes et précises sur PVC, CPVC, PEX et tubes plastiques.\nSa lame tranchante et résistante assure une coupe fluide sans déformation.\nSon mécanisme à cliquet robuste garantit un contrôle optimal et une efficacité maximale.\nIdéal pour plombiers, installateurs et bricoleurs, cet outil offre rapidité, fiabilité et performance professionnelle."
+            },
+            "ar": {
+              "title": "DS قاطع أنابيب PVC مقاس 1-8-5/8\" 42 مم",
+              "description": "يوفر قاطع أنابيب PVC من DS مقاس 1–8-5/8\" (42 مم) قطعًا نظيفًا ودقيقًا لأنابيب PVC وCPVC وPEX والأنابيب البلاستيكية.\nشفرة قوية وحادة توفر قطعًا سلسًا بدون تشوه.\nآلية الترس المتدرجة المتينة تمنح تحكمًا عاليًا وكفاءة في كل ضغطة.\nمثالي للسباكين والفنيين ومستخدمي الـDIY، ويقدم أداءً احترافيًا سريعًا وموثوقًا."
+            }
+          }
         },
         {
           "title": "SHASANG PVC Pipe Cutter",
@@ -2003,7 +2803,17 @@
             "assets/products/20251119_172857-mi680nyp.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "SHASANG Coupe-Tube PVC",
+              "description": "Coupe-tube PVC solide et précis, conçu pour couper facilement les tuyaux PVC et plastiques.\nLame résistante assurant une coupe nette et sans effort.\nOutil fiable adapté aux travaux d’installation, plomberie et bricolage."
+            },
+            "ar": {
+              "title": "SHASANG قاطع أنابيب PVC",
+              "description": "قاطع أنابيب PVC قوي ودقيق، مصمم لقطع أنابيب PVC والبلاستيك بسهولة.\nشفرة متينة تضمن قطعًا نظيفًا بدون جهد.\nأداة موثوقة مناسبة لأعمال التركيب والسباكة والـDIY."
+            }
+          }
         },
         {
           "title": "SUMEX Screwdriver Insulated Slotted",
@@ -2037,7 +2847,17 @@
               "price": 8.2
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "SUMEX Tournevis Plat Isolé",
+              "description": "Le tournevis plat isolé SUMEX offre une performance sûre et fiable pour les travaux électriques et de précision.\nSon manche et axe entièrement isolés garantissent une protection conforme aux normes haute tension.\nSa pointe magnétisée durable assure un vissage précis et sécurisé.\nParfait pour professionnels et techniciens, il combine sécurité, confort et qualité."
+            },
+            "ar": {
+              "title": "SUMEX مفك براغي معزول مسطح",
+              "description": "يوفر مفك البراغي المسطح المعزول من SUMEX أداءً آمنًا وموثوقًا لأعمال الكهرباء والدقة.\nساقه ومقبضه المعزولان بالكامل يقدمان حماية وفق معايير الجهد العالي.\nرأسه الممغنط والمتين يضمن تثبيتًا دقيقًا وطويل الأمد.\nمثالي للمهنيين والفنيين، ويجمع بين الأمان والراحة والجودة."
+            }
+          }
         },
         {
           "title": "ACEM Ergo Side Cutting Plier, 180mm Length",
@@ -2054,7 +2874,17 @@
             "assets/products/20251119_182209-mi6a0dm3.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "ACEM Pince Coupante Latérale Ergo 180 mm",
+              "description": "La pince coupante latérale ACEM 180 mm permet de couper fils, goupilles et petites fixations avec précision et sans effort.\nSes tranchants trempés assurent une coupe nette et durable.\nPoignées ergonomiques pour un confort optimal et moins de fatigue.\nIdéale pour électriciens, techniciens et bricoleurs recherchant performance et sécurité."
+            },
+            "ar": {
+              "title": "ACEM كماشة قطع جانبية Ergo بطول 180 مم",
+              "description": "تقدّم كماشة القطع الجانبية ACEM مقاس 180 مم قطعًا دقيقًا للأسلاك والدبابيس والمثبتات الصغيرة بأقل جهد.\nحوافها الصلبة تضمن قطعًا نظيفًا وطويل الأمد.\nمقابض مريحة تقلل إجهاد اليد وتوفر تحكمًا ممتازًا.\nمثالية للكهربائيين والفنيين ومستخدمي الـDIY."
+            }
+          }
         },
         {
           "title": "ACEM Silver Box Joint Water Pump Plier 250mm",
@@ -2072,7 +2902,17 @@
             "assets/products/img-20251102-wa0071-mi699wzt.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "ACEM Pince Multiprise Silver Box Joint 250 mm",
+              "description": "La pince multiprise Box Joint offre une prise solide et polyvalente pour tuyaux, écrous et formes irrégulières.\nSa mâchoire réglable assure une tenue sûre sur différentes tailles.\nStructure résistante pour une durabilité accrue même en usage intensif.\nIdéale pour plombiers, mécaniciens et bricoleurs recherchant précision et robustesse."
+            },
+            "ar": {
+              "title": "ACEM كماشة مضخة مياه Silver Box Joint بطول 250 مم",
+              "description": "توفر كماشة مضخة المياه Box Joint قبضة قوية ومتعددة الاستخدام لأنابيب وصواميل والأشكال غير المنتظمة.\nفك قابل للضبط ليتناسب مع مختلف الأحجام.\nهيكل متين يضمن أداءً طويل الأمد حتى مع الاستخدام الشاق.\nمثالية للسباكين والميكانيكيين والـDIY."
+            }
+          }
         },
         {
           "title": "DS Carpenter Pincer 9\" with Handle",
@@ -2089,7 +2929,17 @@
             "assets/products/img-20251102-wa0054-mi69f3l2.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "DS Tenaille de Charpentier 9\" avec Manche",
+              "description": "La tenaille de charpentier DS 9\" assure coupe, tirage et maintien précis pour les travaux de menuiserie et construction.\nSes mâchoires trempées offrent une coupe nette des clous, fils et petites fixations.\nPoignée ergonomique pour confort et contrôle.\nParfaite pour artisans et bricoleurs recherchant durabilité et efficacité."
+            },
+            "ar": {
+              "title": "DS كماشة نجار 9\" مع مقبض",
+              "description": "توفر كماشة النجار DS مقاس 9\" قطعًا وسحبًا وإمساكًا دقيقًا لأعمال النجارة والبناء.\nفكوكها الصلبة تتيح قطع المسامير والأسلاك والمثبتات الصغيرة بسهولة.\nمقبض مريح يوفر تحكمًا ممتازًا.\nمثالية للحرفيين والنجارين والـDIY."
+            }
+          }
         },
         {
           "title": "DS 7\" Combination Pliers",
@@ -2107,7 +2957,17 @@
             "assets/products/20251119_181307-mi69op8x.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "DS Pince Universelle 7\"",
+              "description": "La pince universelle DS 7\" assure préhension, coupe et pliage de fils et petites pièces.\nSes mâchoires en acier trempé garantissent force, durabilité et précision.\nPoignées isolées et ergonomiques pour sécurité et confort prolongé.\nParfaite pour électriciens, techniciens et utilisateurs professionnels."
+            },
+            "ar": {
+              "title": "DS كماشة شاملة 7\"",
+              "description": "توفر كماشة DS الشاملة مقاس 7\" إمساكًا وقطعًا وثنيًا للأسلاك والقطع الصغيرة.\nفكوك فولاذية صلبة لضمان القوة والمتانة والدقة.\nمقابض معزولة ومريحة للاستخدام الطويل بأمان.\nمثالية للكهربائيين والفنيين والمهنيين."
+            }
+          }
         },
         {
           "title": "ATHLET 2 pc Mains Tester 04x100/0.5x3x40",
@@ -2124,7 +2984,17 @@
             "assets/products/20251119_183047-mi6aaxxh.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "ATHLET 2 pc Mains Tester 04x100/0.5x3x40",
+              "description": "The Mains Tester provides quick, reliable detection of live, neutral, and earth connections in electrical circuits.\nCompact and easy to use, it ensures safe testing with clear visual and/or audible indicators.\nDurable construction offers long-lasting performance for daily electrical inspections.\nEssential for electricians, technicians, and DIY users, this tester combines safety, accuracy, and convenience in every use."
+            },
+            "ar": {
+              "title": "ATHLET 2 pc Mains Tester 04x100/0.5x3x40",
+              "description": "The Mains Tester provides quick, reliable detection of live, neutral, and earth connections in electrical circuits.\nCompact and easy to use, it ensures safe testing with clear visual and/or audible indicators.\nDurable construction offers long-lasting performance for daily electrical inspections.\nEssential for electricians, technicians, and DIY users, this tester combines safety, accuracy, and convenience in every use."
+            }
+          }
         },
         {
           "title": "SNZO Magnetic nut setter",
@@ -2153,7 +3023,17 @@
               "price": 4.604
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "SNZO Magnetic nut setter",
+              "description": "Magnetic Nut Setter delivers fast, precise fastening of nuts and bolts with secure, hands-free hold.\nIts strong magnetic tip ensures alignment and prevents slipping during installation.\nDurable construction provides long-lasting performance for heavy-duty and repetitive tasks.\nPerfect for mechanics, builders, and DIY enthusiasts, this tool combines efficiency, convenience, and professional-grade reliability."
+            },
+            "ar": {
+              "title": "SNZO Magnetic nut setter",
+              "description": "Magnetic Nut Setter delivers fast, precise fastening of nuts and bolts with secure, hands-free hold.\nIts strong magnetic tip ensures alignment and prevents slipping during installation.\nDurable construction provides long-lasting performance for heavy-duty and repetitive tasks.\nPerfect for mechanics, builders, and DIY enthusiasts, this tool combines efficiency, convenience, and professional-grade reliability."
+            }
+          }
         },
         {
           "title": "TOTAL 9Pcs Screwdriver Bits Set",
@@ -2170,7 +3050,17 @@
             "assets/products/20251104_145437-mi6arjnk.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "TOTAL 9Pcs Screwdriver Bits Set",
+              "description": "The TOTAL 9 Pcs Screwdriver Bits Set provides versatile, reliable solutions for a wide range of fastening tasks.\nCrafted from high-quality steel, each bit ensures durability, strength, and long-lasting precision.\nConveniently organized for quick access, the set fits most standard screwdrivers and power tools.\nIdeal for professionals and DIY users, this set delivers efficiency, versatility, and dependable performance on every project."
+            },
+            "ar": {
+              "title": "TOTAL 9Pcs Screwdriver Bits Set",
+              "description": "The TOTAL 9 Pcs Screwdriver Bits Set provides versatile, reliable solutions for a wide range of fastening tasks.\nCrafted from high-quality steel, each bit ensures durability, strength, and long-lasting precision.\nConveniently organized for quick access, the set fits most standard screwdrivers and power tools.\nIdeal for professionals and DIY users, this set delivers efficiency, versatility, and dependable performance on every project."
+            }
+          }
         },
         {
           "title": "BOSCH Screwdriver Bit PH2 1/4\" x 49mm",
@@ -2197,7 +3087,17 @@
               "price": 50
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "BOSCH Screwdriver Bit PH2 1/4\" x 49mm",
+              "description": "The BOSCH PH2 Screwdriver Bit 1/4\" x 49mm delivers precise, high-performance fastening for a wide range of applications.\nCrafted from premium steel, it ensures long-lasting durability and reliable torque transfer.\nIts PH2 tip provides a perfect fit for Phillips screws, reducing cam-out and wear.\nIdeal for professionals and DIY enthusiasts, this bit combines accuracy, strength, and consistent efficiency in every use."
+            },
+            "ar": {
+              "title": "BOSCH Screwdriver Bit PH2 1/4\" x 49mm",
+              "description": "The BOSCH PH2 Screwdriver Bit 1/4\" x 49mm delivers precise, high-performance fastening for a wide range of applications.\nCrafted from premium steel, it ensures long-lasting durability and reliable torque transfer.\nIts PH2 tip provides a perfect fit for Phillips screws, reducing cam-out and wear.\nIdeal for professionals and DIY enthusiasts, this bit combines accuracy, strength, and consistent efficiency in every use."
+            }
+          }
         },
         {
           "title": "DIAGER Pack (10) Screwdriver Bit PZ2 x 50mm",
@@ -2216,7 +3116,17 @@
             "assets/products/20251119_185541-mi6b4an9.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "DIAGER Pack (10) Screwdriver Bit PZ2 x 50mm",
+              "description": "The DIAGER Pack of 10 PZ2 x 50mm Screwdriver Bits delivers reliable, high-precision performance for Pozidriv screws.\nMade from durable, high-quality steel, each bit ensures long-lasting strength and consistent torque transfer.\nThe 50mm length provides easy access to recessed screws while maintaining perfect control.\nIdeal for professionals and DIY users, this set offers efficiency, versatility, and dependable fastening every time."
+            },
+            "ar": {
+              "title": "DIAGER Pack (10) Screwdriver Bit PZ2 x 50mm",
+              "description": "The DIAGER Pack of 10 PZ2 x 50mm Screwdriver Bits delivers reliable, high-precision performance for Pozidriv screws.\nMade from durable, high-quality steel, each bit ensures long-lasting strength and consistent torque transfer.\nThe 50mm length provides easy access to recessed screws while maintaining perfect control.\nIdeal for professionals and DIY users, this set offers efficiency, versatility, and dependable fastening every time."
+            }
+          }
         },
         {
           "title": "CLIMAX 755/756 Gas And Particulate Filter",
@@ -2247,7 +3157,17 @@
               "price": 8.981
             }
           ],
-          "datasheet": "assets/datasheets/filtro-756-1-1-mi7l4z7s.pdf"
+          "datasheet": "assets/datasheets/filtro-756-1-1-mi7l4z7s.pdf",
+          "translations": {
+            "fr": {
+              "title": "CLIMAX 755/756 Gas And Particulate Filter",
+              "description": "Reliable and high-performance, the CLIMAX 755/756 Gas and Particulate Filter offers advanced protection against harmful gases, vapors, and fine dust. Designed for the 755/756 respirator series, it ensures a secure screw-type connection and optimal breathing comfort. Certified to meet stringent safety standards, it delivers consistent filtration efficiency in industrial environments. A durable, trusted solution for professionals seeking dependable respiratory protection."
+            },
+            "ar": {
+              "title": "CLIMAX 755/756 Gas And Particulate Filter",
+              "description": "Reliable and high-performance, the CLIMAX 755/756 Gas and Particulate Filter offers advanced protection against harmful gases, vapors, and fine dust. Designed for the 755/756 respirator series, it ensures a secure screw-type connection and optimal breathing comfort. Certified to meet stringent safety standards, it delivers consistent filtration efficiency in industrial environments. A durable, trusted solution for professionals seeking dependable respiratory protection."
+            }
+          }
         },
         {
           "title": "BAOKING  Electric Soldering Iron, 220V High Power Quick-Heated Welding Tool",
@@ -2266,7 +3186,17 @@
             "assets/products/img-20251102-wa0082-mi7mkkio.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "BAOKING  Electric Soldering Iron, 220V High Power Quick-Heated Welding Tool",
+              "description": "Heat up your soldering workflow with the BAOKING 220 V high-power electric soldering iron. Thanks to its fast-heating core, you’re ready to weld in seconds — minimizing downtime and boosting efficiency. Its robust construction delivers reliable, long-lasting performance for electronics, repair work, and DIY projects. Whether you're a professional or hobbyist, this tool combines power and precision for superior soldering results."
+            },
+            "ar": {
+              "title": "BAOKING  Electric Soldering Iron, 220V High Power Quick-Heated Welding Tool",
+              "description": "Heat up your soldering workflow with the BAOKING 220 V high-power electric soldering iron. Thanks to its fast-heating core, you’re ready to weld in seconds — minimizing downtime and boosting efficiency. Its robust construction delivers reliable, long-lasting performance for electronics, repair work, and DIY projects. Whether you're a professional or hobbyist, this tool combines power and precision for superior soldering results."
+            }
+          }
         },
         {
           "title": "SARTEX Claw Hammer",
@@ -2285,7 +3215,17 @@
             "assets/products/20251120_152647-mi7nz3ga.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "SARTEX Claw Hammer",
+              "description": "The SARTEX Claw Hammer delivers strong, precise performance for construction, carpentry, and everyday tasks. Its hardened steel head provides powerful impact, while the curved claw makes nail removal fast and effortless. Designed with a comfortable, shock-absorbing handle, it ensures better control and reduced fatigue. A dependable, long-lasting tool for professionals and DIY users alike.\nLe marteau arrache-clous SARTEX offre une performance solide et précise pour les travaux de construction, de menuiserie et d’entretien. Sa tête en acier trempé garantit un impact puissant, tandis que sa griffe courbée permet d’extraire les clous rapidement et sans effort. Conçu avec une poignée confortable et amortissante, il assure un meilleur contrôle et moins de fatigue. Un outil fiable et durable, idéal pour les professionnels comme pour les bricoleurs."
+            },
+            "ar": {
+              "title": "SARTEX Claw Hammer",
+              "description": "The SARTEX Claw Hammer delivers strong, precise performance for construction, carpentry, and everyday tasks. Its hardened steel head provides powerful impact, while the curved claw makes nail removal fast and effortless. Designed with a comfortable, shock-absorbing handle, it ensures better control and reduced fatigue. A dependable, long-lasting tool for professionals and DIY users alike.\nLe marteau arrache-clous SARTEX offre une performance solide et précise pour les travaux de construction, de menuiserie et d’entretien. Sa tête en acier trempé garantit un impact puissant, tandis que sa griffe courbée permet d’extraire les clous rapidement et sans effort. Conçu avec une poignée confortable et amortissante, il assure un meilleur contrôle et moins de fatigue. Un outil fiable et durable, idéal pour les professionnels comme pour les bricoleurs."
+            }
+          }
         },
         {
           "title": "CUATROGASA Polyester Gloves With Green Nitrile Coating",
@@ -2316,7 +3256,17 @@
               "price": 4.511
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "CUATROGASA Polyester Gloves With Green Nitrile Coating",
+              "description": "CUATROGASA Polyester Gloves with Green Nitrile Coating offer excellent grip, flexibility, and protection for industrial, mechanical, and general handling tasks. The breathable polyester liner ensures comfort during long working hours, while the nitrile coating provides superior resistance to oils, abrasives, and punctures. Designed for precision and control, they enhance safety without sacrificing dexterity. A reliable choice for professionals seeking durable and comfortable hand protection.\n\nLes gants en polyester CUATROGASA avec revêtement en nitrile vert offrent une excellente prise, flexibilité et protection pour les travaux industriels, mécaniques et de manutention. Leur support en polyester respirant assure un confort optimal même lors d’un usage prolongé, tandis que le revêtement nitrile garantit une résistance supérieure aux huiles, à l’abrasion et aux perforations. Conçus pour la précision et le contrôle, ils améliorent la sécurité sans compromettre la dextérité. Un choix fiable pour les professionnels à la recherche de gants durables et confortables."
+            },
+            "ar": {
+              "title": "CUATROGASA Polyester Gloves With Green Nitrile Coating",
+              "description": "CUATROGASA Polyester Gloves with Green Nitrile Coating offer excellent grip, flexibility, and protection for industrial, mechanical, and general handling tasks. The breathable polyester liner ensures comfort during long working hours, while the nitrile coating provides superior resistance to oils, abrasives, and punctures. Designed for precision and control, they enhance safety without sacrificing dexterity. A reliable choice for professionals seeking durable and comfortable hand protection.\n\nLes gants en polyester CUATROGASA avec revêtement en nitrile vert offrent une excellente prise, flexibilité et protection pour les travaux industriels, mécaniques et de manutention. Leur support en polyester respirant assure un confort optimal même lors d’un usage prolongé, tandis que le revêtement nitrile garantit une résistance supérieure aux huiles, à l’abrasion et aux perforations. Conçus pour la précision et le contrôle, ils améliorent la sécurité sans compromettre la dextérité. Un choix fiable pour les professionnels à la recherche de gants durables et confortables."
+            }
+          }
         },
         {
           "title": "CUATROGASA 100% Natural Latex Flocklined Gloves",
@@ -2352,7 +3302,17 @@
               "price": 3.562
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "CUATROGASA 100% Natural Latex Flocklined Gloves",
+              "description": "CUATROGASA 100% Natural Latex Flocklined Gloves provide superior comfort, protection, and durability for cleaning, maintenance, and industrial applications. Made from high-quality natural latex, they offer excellent elasticity and resistance to chemicals and detergents. The soft cotton flock lining enhances comfort and absorbs perspiration for extended use. A dependable choice for users who need strong grip, flexibility, and reliable hand protection.\n\nLes gants CUATROGASA en latex naturel 100 % avec doublure floquée offrent un confort, une protection et une durabilité supérieurs pour les travaux de nettoyage, d’entretien et d’usage industriel. Fabriqués en latex naturel de haute qualité, ils garantissent une excellente élasticité et une bonne résistance aux produits chimiques et détergents. Leur doublure intérieure en coton floqué améliore le confort et absorbe la transpiration lors d’un usage prolongé. Un choix sûr pour ceux qui recherchent une bonne prise, une grande flexibilité et une protection fiable des mains."
+            },
+            "ar": {
+              "title": "CUATROGASA 100% Natural Latex Flocklined Gloves",
+              "description": "CUATROGASA 100% Natural Latex Flocklined Gloves provide superior comfort, protection, and durability for cleaning, maintenance, and industrial applications. Made from high-quality natural latex, they offer excellent elasticity and resistance to chemicals and detergents. The soft cotton flock lining enhances comfort and absorbs perspiration for extended use. A dependable choice for users who need strong grip, flexibility, and reliable hand protection.\n\nLes gants CUATROGASA en latex naturel 100 % avec doublure floquée offrent un confort, une protection et une durabilité supérieurs pour les travaux de nettoyage, d’entretien et d’usage industriel. Fabriqués en latex naturel de haute qualité, ils garantissent une excellente élasticité et une bonne résistance aux produits chimiques et détergents. Leur doublure intérieure en coton floqué améliore le confort et absorbe la transpiration lors d’un usage prolongé. Un choix sûr pour ceux qui recherchent une bonne prise, une grande flexibilité et une protection fiable des mains."
+            }
+          }
         },
         {
           "title": "DS 12Pcs Socket Set 1/2\", 1/4\", 3/8\"",
@@ -2385,7 +3345,17 @@
               "price": 70.627
             }
           ],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "DS 12Pcs Socket Set 1/2\", 1/4\", 3/8\"",
+              "description": "The DS 12-Piece Socket Set (1/2\" – 1/4\" – 3/8\") delivers versatile performance for mechanical, automotive, and general repair tasks. Precision-engineered sockets ensure a secure fit and smooth operation across multiple drive sizes. Made from durable, high-strength steel, the set offers long-lasting reliability under demanding use. Compact, organized, and ready for any job, it’s an essential toolkit for professionals and DIY users alike.\n\nFrançais\n\nLe coffret de douilles DS 12 pièces (1/2\" – 1/4\" – 3/8\") offre une performance polyvalente pour les travaux mécaniques, automobiles et de maintenance générale. Les douilles de précision garantissent un ajustement parfait et une utilisation fluide sur plusieurs tailles d'entraînement. Fabriqué en acier robuste et durable, l’ensemble assure une fiabilité longue durée même en usage intensif. Compact, organisé et prêt pour toutes les situations, c’est un outil indispensable pour les professionnels comme pour les bricoleurs."
+            },
+            "ar": {
+              "title": "DS 12Pcs Socket Set 1/2\", 1/4\", 3/8\"",
+              "description": "The DS 12-Piece Socket Set (1/2\" – 1/4\" – 3/8\") delivers versatile performance for mechanical, automotive, and general repair tasks. Precision-engineered sockets ensure a secure fit and smooth operation across multiple drive sizes. Made from durable, high-strength steel, the set offers long-lasting reliability under demanding use. Compact, organized, and ready for any job, it’s an essential toolkit for professionals and DIY users alike.\n\nFrançais\n\nLe coffret de douilles DS 12 pièces (1/2\" – 1/4\" – 3/8\") offre une performance polyvalente pour les travaux mécaniques, automobiles et de maintenance générale. Les douilles de précision garantissent un ajustement parfait et une utilisation fluide sur plusieurs tailles d'entraînement. Fabriqué en acier robuste et durable, l’ensemble assure une fiabilité longue durée même en usage intensif. Compact, organisé et prêt pour toutes les situations, c’est un outil indispensable pour les professionnels comme pour les bricoleurs."
+            }
+          }
         },
         {
           "title": "DS Ratchet Handle 1/2\"",
@@ -2403,9 +3373,29 @@
             "assets/products/20251120_183124-mi7ppcx5.png"
           ],
           "variants": [],
-          "datasheet": ""
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "DS Ratchet Handle 1/2\"",
+              "description": "The DS 1/2\" Ratchet Handle delivers strong, smooth, and reliable performance for mechanical and automotive work. Its precision gear mechanism ensures efficient tightening and loosening with minimal effort. The ergonomic, non-slip handle provides excellent grip and comfort during prolonged use. A durable and dependable tool designed for professionals and serious DIY users.\n\nFrançais\n\nLa clé à cliquet DS 1/2\" offre une performance robuste, fluide et fiable pour les travaux mécaniques et automobiles. Son mécanisme de cliquet précis garantit un serrage et un desserrage efficaces avec un minimum d’effort. La poignée ergonomique antidérapante procure une excellente prise en main et un confort optimal lors d’un usage prolongé. Un outil durable et fiable, conçu pour les professionnels et les bricoleurs exigeants."
+            },
+            "ar": {
+              "title": "DS Ratchet Handle 1/2\"",
+              "description": "The DS 1/2\" Ratchet Handle delivers strong, smooth, and reliable performance for mechanical and automotive work. Its precision gear mechanism ensures efficient tightening and loosening with minimal effort. The ergonomic, non-slip handle provides excellent grip and comfort during prolonged use. A durable and dependable tool designed for professionals and serious DIY users.\n\nFrançais\n\nLa clé à cliquet DS 1/2\" offre une performance robuste, fluide et fiable pour les travaux mécaniques et automobiles. Son mécanisme de cliquet précis garantit un serrage et un desserrage efficaces avec un minimum d’effort. La poignée ergonomique antidérapante procure une excellente prise en main et un confort optimal lors d’un usage prolongé. Un outil durable et fiable, conçu pour les professionnels et les bricoleurs exigeants."
+            }
+          }
         }
-      ]
+      ],
+      "translations": {
+        "fr": {
+          "name": "Outils & Quincaillerie",
+          "description": "Outils indispensables utilisés quotidiennement par les plaisanciers."
+        },
+        "ar": {
+          "name": "عدة و مستلزمات",
+          "description": "أدوات أساسية يستعملها أصحاب القوارب يوميًا."
+        }
+      }
     }
   ]
 }

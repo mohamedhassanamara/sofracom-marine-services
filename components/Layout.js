@@ -54,17 +54,27 @@ export default function Layout({ children }) {
         const term = searchTerm.trim().toLowerCase();
         if (!term) return [];
         return productsIndex
+            .map(product => {
+                const localizedTitle =
+                    product.translations?.[lang]?.title || product.title;
+                const localizedDescription =
+                    product.translations?.[lang]?.description ||
+                    product.description ||
+                    '';
+                return {
+                    ...product,
+                    localizedTitle,
+                    localizedDescription,
+                };
+            })
             .filter(product => {
                 const imageText = (product.image || '').toLowerCase();
                 const priceText = formatCurrency(product.price).toLowerCase();
-                return (
-                    product.title.toLowerCase().includes(term) ||
-                    imageText.includes(term) ||
-                    priceText.includes(term)
-                );
+                const haystack = `${product.localizedTitle} ${product.localizedDescription} ${imageText} ${priceText}`.toLowerCase();
+                return haystack.includes(term);
             })
             .slice(0, 6);
-    }, [productsIndex, searchTerm]);
+    }, [productsIndex, searchTerm, lang]);
     const navigateToSuggestion = suggestion => {
         if (!suggestion?.categorySlug || !suggestion?.id) return;
         setSearchTerm('');
@@ -162,10 +172,12 @@ export default function Layout({ children }) {
                         const id = `${categorySlug}-${productSlug || 'item'}`;
                         entries.push({
                             title: product.title || '',
+                            description: product.description || '',
                             price: Number(product.price) || 0,
                             image: ensurePath(product.image || product.images?.[0] || ''),
                             id,
                             categorySlug,
+                            translations: product.translations || {},
                         });
                     });
                 });
@@ -225,13 +237,13 @@ export default function Layout({ children }) {
                         {suggestion.image && (
                             <img
                                 src={suggestion.image}
-                                alt={suggestion.title}
+                                alt={suggestion.localizedTitle || suggestion.title}
                                 className="search-suggestion-img"
                             />
                         )}
                         <div className="flex flex-col text-left">
                             <span className="font-semibold text-sm text-gray-900">
-                                {suggestion.title}
+                                {suggestion.localizedTitle || suggestion.title}
                             </span>
                             <span className="text-xs text-gray-500">
                                 {formatCurrency(suggestion.price)}

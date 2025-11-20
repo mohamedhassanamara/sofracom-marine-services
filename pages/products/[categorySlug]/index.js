@@ -6,6 +6,8 @@ import {
     getCategoryBySlug,
     getCategories,
 } from '../../../lib/products';
+import { useLang } from '../../../contexts/LangContext';
+import { localizeCategory } from '../../../lib/localize';
 
 const OUTPUT_CURRENCY = 'TND';
 const FR_NUMBER_FORMAT = new Intl.NumberFormat('fr-TN', {
@@ -184,6 +186,7 @@ const STOCK_LABEL = {
 };
 
 export default function CategoryPage({ category }) {
+    const { lang } = useLang();
     const [brandFilter, setBrandFilter] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
     const [cartOpen, setCartOpen] = useState(false);
@@ -203,6 +206,11 @@ export default function CategoryPage({ category }) {
     const grandTotal = total + DELIVERY_FEE;
     const [onOrderNoticeVisible, setOnOrderNoticeVisible] = useState(false);
     const onOrderNoticeTimeout = useRef(null);
+    const localizedCategory = useMemo(
+        () => localizeCategory(category, lang),
+        [category, lang]
+    );
+    const localizedProducts = localizedCategory.products || [];
 
     useEffect(() => {
         return () => {
@@ -231,24 +239,26 @@ export default function CategoryPage({ category }) {
 
     const availableBrands = useMemo(() => {
         const brands = Array.from(
-            new Set(category.products.map(product => product.brand).filter(Boolean))
+            new Set(
+                localizedProducts.map(product => product.brand).filter(Boolean)
+            )
         );
         return brands.sort();
-    }, [category.products]);
+    }, [localizedProducts]);
 
     const filteredProducts = useMemo(() => {
         const normalizedTerm = searchTerm.trim().toLowerCase();
-        return category.products.filter(product => {
+        return localizedProducts.filter(product => {
             if (brandFilter && product.brand !== brandFilter) return false;
             if (!normalizedTerm) return true;
             const haystack = `${product.title} ${product.description} ${product.brand}`.toLowerCase();
             return haystack.includes(normalizedTerm);
         });
-    }, [category.products, brandFilter, searchTerm]);
+    }, [localizedProducts, brandFilter, searchTerm]);
 
     const renderedProducts = filteredProducts.length
         ? filteredProducts
-        : category.products;
+        : localizedProducts;
 
     const addToCart = (product, variant) => {
         if (!product) return;
@@ -372,7 +382,9 @@ export default function CategoryPage({ category }) {
                             Catalog
                         </Link>
                         <span className="mx-1">/</span>
-                        <span className="text-gray-700 font-medium">{category.name}</span>
+                        <span className="text-gray-700 font-medium">
+                            {localizedCategory.name}
+                        </span>
                     </nav>
                     <div className="flex items-center gap-3 flex-wrap">
                         <select
