@@ -2332,6 +2332,24 @@
             }
           ],
           "datasheet": ""
+        },
+        {
+          "title": "DS Ratchet Handle 1/2\"",
+          "image": "assets/products/20251120_183124-mi7ppcx5.png",
+          "description": "The DS 1/2\" Ratchet Handle delivers strong, smooth, and reliable performance for mechanical and automotive work. Its precision gear mechanism ensures efficient tightening and loosening with minimal effort. The ergonomic, non-slip handle provides excellent grip and comfort during prolonged use. A durable and dependable tool designed for professionals and serious DIY users.\n\nFrançais\n\nLa clé à cliquet DS 1/2\" offre une performance robuste, fluide et fiable pour les travaux mécaniques et automobiles. Son mécanisme de cliquet précis garantit un serrage et un desserrage efficaces avec un minimum d’effort. La poignée ergonomique antidérapante procure une excellente prise en main et un confort optimal lors d’un usage prolongé. Un outil durable et fiable, conçu pour les professionnels et les bricoleurs exigeants.",
+          "brand": "DS",
+          "usage": [
+            "Cliquet",
+            "ratchet",
+            "1/2\""
+          ],
+          "price": 36.65,
+          "stock": "in",
+          "images": [
+            "assets/products/20251120_183124-mi7ppcx5.png"
+          ],
+          "variants": [],
+          "datasheet": ""
         }
       ]
     }
