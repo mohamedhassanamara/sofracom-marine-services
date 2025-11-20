@@ -2242,7 +2242,10 @@
             "paire",
             "pair",
             "gants",
-            "gloves"
+            "gloves",
+            "nitril",
+            "luvas",
+            "guanti"
           ],
           "price": null,
           "stock": "in",
@@ -2257,6 +2260,41 @@
             {
               "label": "L.10",
               "price": 4.511
+            }
+          ],
+          "datasheet": ""
+        },
+        {
+          "title": "CUATROGASA 100% Natural Latex Flocklined Gloves",
+          "image": "assets/products/20251107_093838-mi7ok8at.png",
+          "description": "CUATROGASA 100% Natural Latex Flocklined Gloves provide superior comfort, protection, and durability for cleaning, maintenance, and industrial applications. Made from high-quality natural latex, they offer excellent elasticity and resistance to chemicals and detergents. The soft cotton flock lining enhances comfort and absorbs perspiration for extended use. A dependable choice for users who need strong grip, flexibility, and reliable hand protection.\n\nLes gants CUATROGASA en latex naturel 100 % avec doublure floquée offrent un confort, une protection et une durabilité supérieurs pour les travaux de nettoyage, d’entretien et d’usage industriel. Fabriqués en latex naturel de haute qualité, ils garantissent une excellente élasticité et une bonne résistance aux produits chimiques et détergents. Leur doublure intérieure en coton floqué améliore le confort et absorbe la transpiration lors d’un usage prolongé. Un choix sûr pour ceux qui recherchent une bonne prise, une grande flexibilité et une protection fiable des mains.",
+          "brand": "CUATROGASA",
+          "usage": [
+            "paire",
+            "pair",
+            "gants",
+            "gloves",
+            "latex",
+            "luvas",
+            "guanti"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251107_093838-mi7ok8at.png"
+          ],
+          "variants": [
+            {
+              "label": "S",
+              "price": 3.562
+            },
+            {
+              "label": "M",
+              "price": 3.562
+            },
+            {
+              "label": "L",
+              "price": 3.562
             }
           ],
           "datasheet": ""
