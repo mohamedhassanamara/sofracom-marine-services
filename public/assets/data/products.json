@@ -488,6 +488,24 @@
             }
           ],
           "datasheet": ""
+        },
+        {
+          "title": "PATTEX PL 150",
+          "image": "assets/products/snapchat-1780413442-mi7pwlzw.png",
+          "description": "PL 150 (Construction Adhesive) is suitable for interior and\nexterior applications for bonding and mounting. It ensures a\npermanent bond, and is UV, weather and vibration resistant.\nCan be used for all absorbent and non-absorbent materials,\nsuch as Bricks, Ceramics, Concrete, Hardboard Drywall,\nPlywood, Stone, MDF, Wood, Metal, Rigid PVC, Polystyrene,\n(etc. except PE, PPTE, and Acrylic glass), painted/coated\nsurface and mirrors. Not suitable for bonding with constant exposure to moisture.",
+          "brand": "PATTEX",
+          "usage": [
+            "silicone",
+            "pl150",
+            "pattex"
+          ],
+          "price": 17.522,
+          "stock": "in",
+          "images": [
+            "assets/products/snapchat-1780413442-mi7pwlzw.png"
+          ],
+          "variants": [],
+          "datasheet": "assets/datasheets/pl-150-mi7pwcjb.pdf"
         }
       ]
     },
