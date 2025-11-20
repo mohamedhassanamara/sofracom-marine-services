@@ -524,6 +524,24 @@
           ],
           "variants": [],
           "datasheet": "assets/datasheets/pattex-promax-xl-pu-foam-en_ae-mi7q6l93.pdf"
+        },
+        {
+          "title": "SIKA Boom PU Foam 750ml",
+          "image": "assets/products/snapchat-436358883-mi7q9ov7.png",
+          "description": "Sika Boom® is a pre-pressurized, portable, onecomponent, polyurethane foam system applied in a\nbead form. Sika Boom® expands and cures slowly to a\nsemi-rigid, closed cell foam upon reaction with moisture,\nsuch as ambient humidity. It is designed for easy\ndispensing through a straw adapter that is included with\neach can.",
+          "brand": "SIKA",
+          "usage": [
+            "PU",
+            "foam",
+            "mousse"
+          ],
+          "price": 21.518,
+          "stock": "in",
+          "images": [
+            "assets/products/snapchat-436358883-mi7q9ov7.png"
+          ],
+          "variants": [],
+          "datasheet": "assets/datasheets/sika_boom_-mi7q9t92.pdf"
         }
       ]
     },
