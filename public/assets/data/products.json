@@ -414,6 +414,37 @@
               ]
             }
           }
+        },
+        {
+          "title": "ASTRAL Rust Remover 01L",
+          "image": "assets/products/20251121_134555-mi8ve35i.png",
+          "description": "ASTRAL Rust Remover 01 L delivers powerful action to dissolve rust and restore metal surfaces to their original clean state. Its fast-acting formula penetrates deeply, removing oxidation, stains, and corrosion with minimal effort. Suitable for tools, machinery, automotive parts, and household metals, it ensures a smooth, ready-to-protect finish. A reliable 1-liter solution for efficient maintenance and long-lasting metal care.",
+          "brand": "AKZONOBEL",
+          "usage": [
+            "rust",
+            "remover",
+            "désoxydant",
+            "passivant"
+          ],
+          "price": 12.5,
+          "stock": "in",
+          "images": [
+            "assets/products/20251121_134555-mi8ve35i.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "ASTRAL Désoxydant Passivant",
+              "description": "Le désoxydant ASTRAL 01 L offre une action puissante pour éliminer la rouille et redonner aux surfaces métalliques leur aspect d’origine. Sa formule à action rapide pénètre en profondeur, supprimant l’oxydation, les taches et la corrosion avec un minimum d’effort. Adapté aux outils, machines, pièces automobiles et métaux domestiques, il garantit une surface propre et prête à être protégée. Une solution de 1 litre fiable pour un entretien efficace et une protection durable des métaux.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
