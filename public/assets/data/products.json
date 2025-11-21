@@ -4386,28 +4386,158 @@
           }
         },
         {
-          "title": "Untitled product",
-          "image": "assets/products/placeholder.png",
-          "description": "",
-          "brand": "",
-          "usage": [],
+          "title": "VYS 50 Pcs Self Tapping Screws, M4 x 20mm Multi Purpose Screws, 304 Stainless Steel, Phillips Flathead Screws for Wood, Drywall and Furniture",
+          "image": "assets/products/20251120_153242-mi8rv2a1.png",
+          "description": "The VYS 50-Pcs Self-Tapping Screws set offers versatile fastening for wood, drywall, furniture assembly, and general home or workshop projects. Made from premium 304 stainless steel, these screws provide excellent corrosion resistance and long-lasting durability. The Phillips flathead design ensures easy driving and a flush, professional finish on all surfaces. A reliable multi-purpose solution ideal for builders, craftsmen, and DIY users.",
+          "brand": "VYS",
+          "usage": [
+            "vis",
+            "inox",
+            "screw",
+            "tapping",
+            "4x20",
+            "inoxydable"
+          ],
           "price": 0,
           "stock": "in",
           "images": [
-            "assets/products/placeholder.png"
+            "assets/products/20251120_153242-mi8rv2a1.png"
           ],
-          "variants": [],
+          "variants": [
+            {
+              "label": "3x20",
+              "price": 2.1
+            },
+            {
+              "label": "3.5x16",
+              "price": 4.85
+            },
+            {
+              "label": "4x20",
+              "price": 3
+            },
+            {
+              "label": "4x25",
+              "price": 3.5
+            },
+            {
+              "label": "4x30",
+              "price": 4
+            },
+            {
+              "label": "4x40",
+              "price": 4.85
+            },
+            {
+              "label": "4.5x20",
+              "price": 5.8
+            },
+            {
+              "label": "5x30",
+              "price": 5.8
+            },
+            {
+              "label": "5x50",
+              "price": 11
+            },
+            {
+              "label": "5x70",
+              "price": 14.45
+            },
+            {
+              "label": "5x80",
+              "price": 18.5
+            },
+            {
+              "label": "5.5x25",
+              "price": 7.2
+            }
+          ],
           "datasheet": "",
           "translations": {
             "fr": {
-              "title": "",
-              "description": "",
-              "variants": []
+              "title": "VYS Vis Autoforeuses 50 pièces, M4 x 20 mm Vis Polyvalentes, Acier Inoxydable 304, Vis à Tête Fraisée Phillips pour Bois, Placo et Meubles",
+              "description": "Le lot de 50 vis autoforeuses VYS offre une fixation polyvalente pour le bois, le placo, le mobilier et les projets domestiques ou d’atelier. Fabriquées en acier inoxydable 304 de haute qualité, ces vis assurent une excellente résistance à la corrosion et une durabilité remarquable. Leur tête fraisée cruciforme facilite le vissage et garantit une finition propre et affleurante. Une solution multi-usage fiable, idéale pour les artisans, les professionnels et les bricoleurs.",
+              "variants": [
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                }
+              ]
             },
             "ar": {
               "title": "",
               "description": "",
-              "variants": []
+              "variants": [
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                },
+                {
+                  "label": ""
+                }
+              ]
             }
           }
         }
