@@ -1581,12 +1581,12 @@
           "price": 8.767,
           "stock": "in",
           "images": [
-            "assets/products/20251110_113411-mht2gwwd.png",
-            "assets/products/laser-1-mht2j39t.webp"
+            "assets/products/laser-1-mht2j39t.webp",
+            "assets/products/20251110_113411-mht2gwwd.png"
           ],
           "variants": [],
           "datasheet": "assets/datasheets/54123001-en-mht2jfyh.pdf",
-          "image": "assets/products/20251110_113411-mht2gwwd.png",
+          "image": "assets/products/laser-1-mht2j39t.webp",
           "translations": {
             "fr": {
               "title": "SARATOGA Lubrifiant Dégrippant 300ml",
