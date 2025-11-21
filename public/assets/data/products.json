@@ -4540,6 +4540,36 @@
               ]
             }
           }
+        },
+        {
+          "title": "ASTRAL Paint Remover 01L",
+          "image": "assets/products/20251121_134511-mi8v0lvs.png",
+          "description": "ASTRAL Paint Stripper 01 L delivers fast and effective removal of old paint, varnish, and tough coatings on wood, metal, and masonry surfaces. Its powerful formula penetrates deeply, softening layers for easy scraping and clean results. Ideal for renovation and restoration projects, it works efficiently without excessive effort. A compact 1-liter solution offering strong performance and professional-grade stripping power.",
+          "brand": "ASTRAL",
+          "usage": [
+            "remover",
+            "décapant",
+            "paint stripper"
+          ],
+          "price": 22.5,
+          "stock": "in",
+          "images": [
+            "assets/products/20251121_134511-mi8v0lvs.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "ASTRAL Décapant 01L",
+              "description": "Le décapant ASTRAL 01 L assure un retrait rapide et efficace des anciennes peintures, vernis et revêtements tenaces sur le bois, le métal et la maçonnerie. Sa formule puissante pénètre en profondeur, ramollissant les couches pour un grattage facile et un résultat propre. Idéal pour les travaux de rénovation et de restauration, il agit efficacement sans nécessiter d’effort excessif. Un format de 1 litre compact offrant une performance élevée et une puissance de décapage de qualité professionnelle.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
