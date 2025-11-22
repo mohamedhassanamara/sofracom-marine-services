@@ -1373,7 +1373,8 @@
           "price": 11,
           "stock": "in",
           "images": [
-            "assets/products/img-20251102-wa0036-mhqjeamb-mi3jvo3n.png"
+            "assets/products/img-20251102-wa0036-mhqjeamb-mi3jvo3n.png",
+            "assets/products/20251122_173620-miaiod3m.png"
           ],
           "variants": [],
           "datasheet": "",
@@ -1404,11 +1405,12 @@
           "price": 9.5,
           "stock": "in",
           "images": [
-            "assets/products/img-20251102-wa0035-mhqkjjou.jpg"
+            "assets/products/20251122_173555-miaimv96.png",
+            "assets/products/20251122_173610-miaimyzf.png"
           ],
           "variants": [],
           "datasheet": "",
-          "image": "assets/products/img-20251102-wa0035-mhqkjjou.jpg",
+          "image": "assets/products/20251122_173555-miaimv96.png",
           "translations": {
             "fr": {
               "title": "CRISTAL Rouleau Poils Longs – Pack de 5",
