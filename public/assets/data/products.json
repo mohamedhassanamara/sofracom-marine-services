@@ -4752,7 +4752,33 @@
           "images": [
             "assets/products/20251122_155316-miafflbj.png"
           ],
-          "variants": [],
+          "variants": [
+            {
+              "label": "06X25",
+              "price": 8.1,
+              "stock": "in"
+            },
+            {
+              "label": "08X16",
+              "price": 2.8,
+              "stock": "in"
+            },
+            {
+              "label": "12X125",
+              "price": 4.7,
+              "stock": "in"
+            },
+            {
+              "label": "10X300",
+              "price": 18.95,
+              "stock": "in"
+            },
+            {
+              "label": "12X125",
+              "price": 11.3,
+              "stock": "in"
+            }
+          ],
           "datasheet": "",
           "translations": {
             "fr": {
