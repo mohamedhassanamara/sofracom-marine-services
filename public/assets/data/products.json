@@ -1258,7 +1258,7 @@
             {
               "label": "N20",
               "price": 2,
-              "stock": "out"
+              "stock": "in"
             },
             {
               "label": "N30",
