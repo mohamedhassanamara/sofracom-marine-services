@@ -512,17 +512,62 @@ textarea:focus {
   border: 1px solid rgba(11, 32, 80, 0.08);
   border-radius: 0.75rem;
   background: #fff;
+  position: relative;
+}
+
+.variant-row + .variant-row {
+  margin-top: 0.5rem;
+}
+
+.variant-row::before {
+  content: 'Variant';
+  position: absolute;
+  top: -0.65rem;
+  left: 1rem;
+  background: #f5f7fb;
+  padding: 0 0.35rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(11, 32, 80, 0.65);
 }
 
 .variant-core {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 0.75rem;
   align-items: center;
 }
 
 .variant-row input {
   flex: 1;
+}
+
+.variant-stock-field {
+  font-size: 0.75rem;
+  color: #0b2050;
+}
+
+.variant-stock-field label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-weight: 600;
+}
+
+.variant-stock-field select {
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid rgba(11, 32, 80, 0.15);
+  background: #fff;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.variant-stock-field select:focus {
+  outline: none;
+  border-color: rgba(36, 180, 255, 0.9);
+  box-shadow: 0 0 0 2px rgba(36, 180, 255, 0.2);
 }
 
 .variant-row button.remove-variant {
@@ -534,19 +579,6 @@ textarea:focus {
   padding: 0;
 }
 
-.variant-translations {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 0.75rem;
-}
-
-.variant-translation label {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  font-size: 0.8rem;
-  color: #0b2050;
-}
 
 .image-dropzone {
   display: flex;

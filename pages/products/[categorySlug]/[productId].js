@@ -6,6 +6,7 @@ import {
     getProductById,
     getProductPaths,
 } from '../../../lib/products';
+import { STOCK_LABEL, getStockBadgeClass } from '../../../lib/stock';
 import { useLang } from '../../../contexts/LangContext';
 import { localizeCategory, localizeProduct } from '../../../lib/localize';
 
@@ -110,9 +111,11 @@ export default function ProductDetailPage({ product, category }) {
     const detailPrice = detailVariant?.price ?? localizedProduct.price ?? 0;
     const detailImage =
         localizedProduct.images[activeImageIndex] || localizedProduct.image;
+    const effectiveStock =
+        detailVariant?.stock ?? localizedProduct.stock ?? 'in';
 
     const addToCart = () => {
-        if (localizedProduct.stock === 'out') return;
+        if (effectiveStock === 'out') return;
         const price = detailVariant?.price ?? detailPrice;
         const variantLabel = detailVariant?.label;
         const itemId = variantLabel
@@ -127,7 +130,7 @@ export default function ProductDetailPage({ product, category }) {
             category: localizedProduct.categoryName,
             brand: localizedProduct.brand,
             variantLabel,
-            stock: localizedProduct.stock,
+            stock: effectiveStock,
         });
         setCartOpen(true);
     };
@@ -313,22 +316,12 @@ export default function ProductDetailPage({ product, category }) {
                                     {formatPrice(detailPrice)}
                                 </span>
                                 <span
-                                    className={`stock-badge ${
-                                        localizedProduct.stock === 'in'
-                                            ? 'stock-badge--in'
-                                            : localizedProduct.stock === 'on-order'
-                                                ? 'stock-badge--order'
-                                                : 'stock-badge--out'
-                                    }`}
+                                    className={`stock-badge ${getStockBadgeClass(effectiveStock)}`}
                                 >
-                                    {localizedProduct.stock === 'in'
-                                        ? 'In stock'
-                                        : localizedProduct.stock === 'on-order'
-                                            ? 'On order'
-                                            : 'Out of stock'}
+                                    {STOCK_LABEL[effectiveStock] || 'Unknown'}
                                 </span>
                             </div>
-                            {localizedProduct.stock === 'on-order' && (
+                            {effectiveStock === 'on-order' && (
                                 <p className="text-sm text-orange-400">
                                     This item is on order; delivery will take longer.
                                 </p>
@@ -385,7 +378,7 @@ export default function ProductDetailPage({ product, category }) {
                             type="button"
                             className="w-full rounded-2xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white shadow hover:bg-blue-700 transition"
                             onClick={addToCart}
-                            disabled={localizedProduct.stock === 'out'}
+                            disabled={effectiveStock === 'out'}
                         >
                             Add to cart
                         </button>

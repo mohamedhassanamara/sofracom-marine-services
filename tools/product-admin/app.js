@@ -1,5 +1,14 @@
 (() => {
   const LANGS = ['fr', 'ar'];
+  const STOCK_STATES = ['in', 'on-order', 'out'];
+  const DEFAULT_STOCK = 'in';
+  const normalizeStock = rawValue => {
+    if (!rawValue || typeof rawValue !== 'string') {
+      return DEFAULT_STOCK;
+    }
+    const normalized = rawValue.toLowerCase();
+    return STOCK_STATES.includes(normalized) ? normalized : DEFAULT_STOCK;
+  };
   let state = null;
   let isSaving = false;
 
@@ -302,22 +311,11 @@
               description: '',
               variants: [],
             });
-            LANGS.forEach(lang => {
-              const ref = product.translations[lang];
-              ref.variants = Array.isArray(ref.variants) ? ref.variants : [];
-              while (ref.variants.length < product.variants.length) {
-                ref.variants.push({ label: '' });
-              }
-              if (ref.variants.length > product.variants.length) {
-                ref.variants = ref.variants.slice(0, product.variants.length);
-              }
-            });
+            const normalizedProductStock = normalizeStock(product.stock);
             return {
               ...product,
               usage: sanitizeUsage(product.usage),
-              stock: ['out', 'in', 'on-order'].includes(product.stock)
-                ? product.stock
-                : 'in',
+              stock: normalizedProductStock,
               images: normalizedImages,
               image: normalizedImages[0] || '',
               variants: Array.isArray(product.variants)
@@ -328,6 +326,9 @@
                       Number(variant.price) >= 0
                         ? Number(variant.price)
                         : null,
+                    stock: normalizeStock(
+                      variant.stock ?? normalizedProductStock
+                    ),
                   }))
                 : [],
               datasheet: product.datasheet || '',
@@ -379,25 +380,6 @@
     product.translations[lang][field] = event.target.value;
   }
 
-  function handleVariantTranslationInput(
-    event,
-    categoryIndex,
-    productIndex,
-    variantIndex,
-    lang
-  ) {
-    const product = state.categories[categoryIndex].products[productIndex];
-    product.translations = product.translations || {};
-    product.translations[lang] = product.translations[lang] || {};
-    const translations =
-      product.translations[lang].variants ||
-      (product.translations[lang].variants = []);
-    while (translations.length <= variantIndex) {
-      translations.push({ label: '' });
-    }
-    translations[variantIndex].label = event.target.value;
-  }
-
   function handleProductInput(event, categoryIndex, productIndex, field) {
     const value = event.target.value;
     const product = state.categories[categoryIndex].products[productIndex];
@@ -413,7 +395,7 @@
     }
 
     if (field === 'stock') {
-      product.stock = event.target.value;
+      product.stock = normalizeStock(event.target.value);
       return;
     }
 
@@ -567,14 +549,23 @@
           <div class="variant-core">
             <input type="text" class="variant-label" placeholder="Label" value="${variant.label || ''}" />
             <input type="number" class="variant-price" min="0" step="0.01" placeholder="Price" value="${variant.price ?? ''}" />
+            <div class="variant-stock-field">
+              <label>
+                Stock
+                <select class="variant-stock">
+                  <option value="in">In stock</option>
+                  <option value="on-order">On order</option>
+                  <option value="out">Out of stock</option>
+                </select>
+              </label>
+            </div>
             <button type="button" class="remove-variant">Remove</button>
           </div>
-          <div class="variant-translations"></div>
         `;
         const labelInput = row.querySelector('.variant-label');
         const priceInput = row.querySelector('.variant-price');
         const removeBtn = row.querySelector('.remove-variant');
-        const translationsContainer = row.querySelector('.variant-translations');
+        const stockSelect = row.querySelector('.variant-stock');
         labelInput.addEventListener('input', event => {
           state.categories[categoryIndex].products[productIndex].variants[
             variantIndex
@@ -586,43 +577,19 @@
             variantIndex
           ].price = Number.isFinite(raw) ? raw : null;
         });
-        LANGS.forEach(lang => {
-          const langRow = document.createElement('div');
-          langRow.className = 'variant-translation';
-          const input = document.createElement('input');
-          input.type = 'text';
-          input.placeholder = `Label (${lang})`;
-          input.value =
-            state.categories[categoryIndex].products[productIndex]
-              .translations?.[lang]?.variants?.[variantIndex]?.label || '';
-          input.addEventListener('input', event =>
-            handleVariantTranslationInput(
-              event,
-              categoryIndex,
-              productIndex,
-              variantIndex,
-              lang
-            )
-          );
-          const label = document.createElement('label');
-          label.textContent = `${lang.toUpperCase()} label`;
-          label.appendChild(input);
-          langRow.appendChild(label);
-          translationsContainer.appendChild(langRow);
-        });
+        if (stockSelect) {
+          stockSelect.value = normalizeStock(variant.stock);
+          stockSelect.addEventListener('change', event => {
+            state.categories[categoryIndex].products[productIndex].variants[
+              variantIndex
+            ].stock = normalizeStock(event.target.value);
+          });
+        }
         removeBtn.addEventListener('click', () => {
           state.categories[categoryIndex].products[productIndex].variants.splice(
             variantIndex,
             1
           );
-          LANGS.forEach(lang => {
-            const list =
-              state.categories[categoryIndex].products[productIndex]
-                .translations?.[lang]?.variants;
-            if (Array.isArray(list)) {
-              list.splice(variantIndex, 1);
-            }
-          });
           renderList();
         });
         container.appendChild(row);
@@ -631,21 +598,18 @@
 
     renderList();
     addBtn?.addEventListener('click', () => {
-      state.categories[categoryIndex].products[productIndex].variants =
-        state.categories[categoryIndex].products[productIndex].variants || [];
-      state.categories[categoryIndex].products[productIndex].variants.push({
+      const variantList =
+        state.categories[categoryIndex].products[productIndex].variants ||
+        [];
+      variantList.push({
         label: '',
         price: null,
+        stock: normalizeStock(
+          state.categories[categoryIndex].products[productIndex].stock
+        ),
       });
-      LANGS.forEach(lang => {
-        const ref =
-          state.categories[categoryIndex].products[productIndex].translations?.[
-            lang
-          ];
-        if (!ref) return;
-        ref.variants = Array.isArray(ref.variants) ? ref.variants : [];
-        ref.variants.push({ label: '' });
-      });
+      state.categories[categoryIndex].products[productIndex].variants =
+        variantList;
       renderList();
     });
   }

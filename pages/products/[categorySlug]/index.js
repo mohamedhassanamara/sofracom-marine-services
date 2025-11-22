@@ -6,6 +6,7 @@ import {
     getCategoryBySlug,
     getCategories,
 } from '../../../lib/products';
+import { STOCK_LABEL, getStockBadgeClass } from '../../../lib/stock';
 import { useLang } from '../../../contexts/LangContext';
 import { localizeCategory } from '../../../lib/localize';
 
@@ -33,18 +34,20 @@ function ProductCard({ product, categorySlug, onAdd }) {
     const variants = Array.isArray(product.variants) ? product.variants : [];
     const selectedVariant = variants[variantIndex] || null;
     const priceLabel = formatPrice(selectedVariant?.price ?? product.price ?? 0);
+    const effectiveStock = selectedVariant?.stock ?? product.stock ?? 'in';
 
     const handleVariantChange = event => {
         setVariantIndex(Number(event.target.value));
     };
 
     const handleAdd = () => {
+        if (effectiveStock === 'out') return;
         onAdd(product, selectedVariant);
     };
 
     return (
         <article
-            className={`product-card ${product.stock === 'out' ? 'product-out' : ''}`}
+            className={`product-card ${effectiveStock === 'out' ? 'product-out' : ''}`}
             data-tilt
         >
             <Link
@@ -114,15 +117,9 @@ function ProductCard({ product, categorySlug, onAdd }) {
                 <div className="product-price-row">
                     <span className="product-price">{priceLabel}</span>
                     <span
-                        className={`stock-badge ${
-                            product.stock === 'in'
-                                ? 'stock-badge--in'
-                                : product.stock === 'on-order'
-                                    ? 'stock-badge--order'
-                                    : 'stock-badge--out'
-                        }`}
+                        className={`stock-badge ${getStockBadgeClass(effectiveStock)}`}
                     >
-                        {STOCK_LABEL[product.stock] || 'Unknown'}
+                        {STOCK_LABEL[effectiveStock] || 'Unknown'}
                     </span>
                 </div>
                 <div className="flex gap-2 flex-wrap">
@@ -146,7 +143,7 @@ function ProductCard({ product, categorySlug, onAdd }) {
                         type="button"
                         className="cart-submit px-4 py-2 text-sm"
                         onClick={handleAdd}
-                        disabled={product.stock === 'out'}
+                        disabled={effectiveStock === 'out'}
                     >
                         Add to cart
                     </button>
@@ -179,11 +176,6 @@ export async function getStaticProps({ params }) {
     };
 }
 
-const STOCK_LABEL = {
-    'in': 'In stock',
-    'out': 'Out of stock',
-    'on-order': 'On order',
-};
 
 export default function CategoryPage({ category }) {
     const { lang } = useLang();
@@ -262,6 +254,8 @@ export default function CategoryPage({ category }) {
 
     const addToCart = (product, variant) => {
         if (!product) return;
+        const stockStatus = variant?.stock ?? product.stock ?? 'in';
+        if (stockStatus === 'out') return;
         const price = variant?.price ?? product.price ?? 0;
         const variantLabel = variant?.label;
         const itemId = variantLabel ? `${product.id}-${variantLabel}` : product.id;
@@ -274,7 +268,7 @@ export default function CategoryPage({ category }) {
             category: product.categoryName,
             brand: product.brand,
             variantLabel,
-            stock: product.stock,
+            stock: stockStatus,
         });
         setCartOpen(true);
     };
