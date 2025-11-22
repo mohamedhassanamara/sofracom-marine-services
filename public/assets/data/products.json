@@ -24,7 +24,8 @@
           "variants": [
             {
               "label": "2.5L",
-              "price": 341.887
+              "price": 341.887,
+              "stock": "in"
             }
           ],
           "datasheet": "assets/datasheets/seaforce-active-gb-mhqeuljf.pdf",
@@ -69,7 +70,8 @@
           "variants": [
             {
               "label": "04L",
-              "price": 655.272
+              "price": 655.272,
+              "stock": "in"
             }
           ],
           "price": 655.272,
@@ -181,11 +183,13 @@
           "variants": [
             {
               "label": "5L",
-              "price": 210
+              "price": 210,
+              "stock": "in"
             },
             {
               "label": "18.3L",
-              "price": 752.261
+              "price": 752.261,
+              "stock": "in"
             }
           ],
           "datasheet": "assets/datasheets/jotamastic-80-gb-mhqil3cj.pdf",
@@ -266,11 +270,13 @@
           "variants": [
             {
               "label": "0.8L",
-              "price": 16.779
+              "price": 16.779,
+              "stock": "in"
             },
             {
               "label": "4.5L",
-              "price": 82.842
+              "price": 82.842,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -389,7 +395,8 @@
           "variants": [
             {
               "label": "05L",
-              "price": 1425
+              "price": 1425,
+              "stock": "on-order"
             }
           ],
           "datasheet": "assets/datasheets/seajet_039_platinum_mono-component-tds-english-consumer-mhxns6pa.pdf",
@@ -575,11 +582,13 @@
           "variants": [
             {
               "label": "01kg",
-              "price": 85.211
+              "price": 85.211,
+              "stock": "in"
             },
             {
               "label": "05kg",
-              "price": 390.156
+              "price": 390.156,
+              "stock": "in"
             }
           ],
           "datasheet": "assets/datasheets/mastic-epoxy-striaform-mht38nm0.pdf",
@@ -693,11 +702,13 @@
           "variants": [
             {
               "label": "01KG",
-              "price": 15.221
+              "price": 15.221,
+              "stock": "in"
             },
             {
               "label": "18kg",
-              "price": 246.58
+              "price": 246.58,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -779,11 +790,13 @@
           "variants": [
             {
               "label": "0.9kg",
-              "price": 21.906
+              "price": 21.906,
+              "stock": "in"
             },
             {
               "label": "1.9kg",
-              "price": 37.376
+              "price": 37.376,
+              "stock": "in"
             }
           ],
           "datasheet": "assets/datasheets/kapci-350-pe-putty-general-purpose-mhxpdp2q.pdf",
@@ -833,11 +846,13 @@
           "variants": [
             {
               "label": "01KG",
-              "price": 31.808
+              "price": 31.808,
+              "stock": "in"
             },
             {
               "label": "25KG",
-              "price": 770.214
+              "price": 770.214,
+              "stock": "in"
             }
           ],
           "datasheet": "assets/datasheets/crystic-ecogel-s3-pa-english-mhys8xdo.pdf",
@@ -887,11 +902,13 @@
           "variants": [
             {
               "label": "01L",
-              "price": 15
+              "price": 15,
+              "stock": "in"
             },
             {
               "label": "05L",
-              "price": 65
+              "price": 65,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -1175,7 +1192,8 @@
           "variants": [
             {
               "label": "20L",
-              "price": 169.65
+              "price": 169.65,
+              "stock": "on-order"
             }
           ],
           "datasheet": "",
@@ -1239,35 +1257,43 @@
           "variants": [
             {
               "label": "N20",
-              "price": 2
+              "price": 2,
+              "stock": "out"
             },
             {
               "label": "N30",
-              "price": 2.3
+              "price": 2.3,
+              "stock": "in"
             },
             {
               "label": "N40",
-              "price": 3.5
+              "price": 3.5,
+              "stock": "in"
             },
             {
               "label": "N50",
-              "price": 4.2
+              "price": 4.2,
+              "stock": "in"
             },
             {
               "label": "N60",
-              "price": 5.5
+              "price": 5.5,
+              "stock": "in"
             },
             {
               "label": "N70",
-              "price": 7
+              "price": 7,
+              "stock": "in"
             },
             {
               "label": "N80",
-              "price": 8.5
+              "price": 8.5,
+              "stock": "in"
             },
             {
               "label": "N100",
-              "price": 9
+              "price": 9,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -1474,11 +1500,13 @@
           "variants": [
             {
               "label": "70mm",
-              "price": 2.012
+              "price": 2.012,
+              "stock": "in"
             },
             {
               "label": "100mm",
-              "price": 2.242
+              "price": 2.242,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -1775,19 +1803,23 @@
           "variants": [
             {
               "label": "PH2 X 150",
-              "price": 3.335
+              "price": 3.335,
+              "stock": "in"
             },
             {
               "label": "PH3 X 150",
-              "price": 4.067
+              "price": 4.067,
+              "stock": "in"
             },
             {
               "label": "PH0 X 100",
-              "price": 1.804
+              "price": 1.804,
+              "stock": "in"
             },
             {
               "label": "PH1X100",
-              "price": 2.058
+              "price": 2.058,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -1882,15 +1914,18 @@
           "variants": [
             {
               "label": "XL",
-              "price": 38.675
+              "price": 38.675,
+              "stock": "in"
             },
             {
               "label": "XXL",
-              "price": 38.675
+              "price": 38.675,
+              "stock": "in"
             },
             {
               "label": "L",
-              "price": 38.675
+              "price": 38.675,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -1946,15 +1981,18 @@
           "variants": [
             {
               "label": "25mm X 25m",
-              "price": 1.388
+              "price": 1.388,
+              "stock": "in"
             },
             {
               "label": "45mm X 25m",
-              "price": 2.456
+              "price": 2.456,
+              "stock": "in"
             },
             {
               "label": "25mm X 50m",
-              "price": 2.978
+              "price": 2.978,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -2009,11 +2047,13 @@
           "variants": [
             {
               "label": "12mm X 30m",
-              "price": 0.58
+              "price": 0.58,
+              "stock": "in"
             },
             {
               "label": "75 mm X 30m",
-              "price": 3.484
+              "price": 3.484,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -2066,11 +2106,13 @@
           "variants": [
             {
               "label": "45mm x 48m",
-              "price": 1.514
+              "price": 1.514,
+              "stock": "in"
             },
             {
               "label": "45mm x 90m",
-              "price": 3.011
+              "price": 3.011,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -2120,19 +2162,23 @@
           "variants": [
             {
               "label": "100gr Tube",
-              "price": 3.521
+              "price": 3.521,
+              "stock": "in"
             },
             {
               "label": "400 gr",
-              "price": 7.605
+              "price": 7.605,
+              "stock": "in"
             },
             {
               "label": "800gr",
-              "price": 10.859
+              "price": 10.859,
+              "stock": "in"
             },
             {
               "label": "04kg",
-              "price": 49.218
+              "price": 49.218,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -2259,15 +2305,18 @@
           "variants": [
             {
               "label": "Medium Yellow Foam",
-              "price": 11.714
+              "price": 11.714,
+              "stock": "in"
             },
             {
               "label": "Soft Black Foam",
-              "price": 11.714
+              "price": 11.714,
+              "stock": "in"
             },
             {
               "label": "Hard Orange Foam",
-              "price": 11.714
+              "price": 11.714,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -2325,11 +2374,13 @@
           "variants": [
             {
               "label": "125mm",
-              "price": 10.182
+              "price": 10.182,
+              "stock": "in"
             },
             {
               "label": "150mm",
-              "price": 11.675
+              "price": 11.675,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -2409,19 +2460,23 @@
           "variants": [
             {
               "label": "P-40",
-              "price": 3.618
+              "price": 3.618,
+              "stock": "in"
             },
             {
               "label": "P-60",
-              "price": 3.455
+              "price": 3.455,
+              "stock": "in"
             },
             {
               "label": "P-80",
-              "price": 3.455
+              "price": 3.455,
+              "stock": "in"
             },
             {
               "label": "P-120",
-              "price": 3.455
+              "price": 3.455,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -2516,71 +2571,88 @@
           "variants": [
             {
               "label": "125mm/60G",
-              "price": 0.842
+              "price": 0.842,
+              "stock": "in"
             },
             {
               "label": "125mm/80G",
-              "price": 0.842
+              "price": 0.842,
+              "stock": "in"
             },
             {
               "label": "125mm/120G",
-              "price": 0.842
+              "price": 0.842,
+              "stock": "in"
             },
             {
               "label": "125mm/150G",
-              "price": 0.842
+              "price": 0.842,
+              "stock": "in"
             },
             {
               "label": "125mm/180G",
-              "price": 0.842
+              "price": 0.842,
+              "stock": "in"
             },
             {
               "label": "125mm/220G",
-              "price": 0.842
+              "price": 0.842,
+              "stock": "in"
             },
             {
               "label": "150mm/40G",
-              "price": 1.322
+              "price": 1.322,
+              "stock": "in"
             },
             {
               "label": "150mm/60G",
-              "price": 0.989
+              "price": 0.989,
+              "stock": "in"
             },
             {
               "label": "150mm/80G",
-              "price": 0.989
+              "price": 0.989,
+              "stock": "in"
             },
             {
               "label": "150mm/120G",
-              "price": 0.989
+              "price": 0.989,
+              "stock": "in"
             },
             {
               "label": "150mm/150G",
-              "price": 0.989
+              "price": 0.989,
+              "stock": "in"
             },
             {
               "label": "150mm/180G",
-              "price": 0.989
+              "price": 0.989,
+              "stock": "in"
             },
             {
               "label": "150mm/220G",
-              "price": 0.989
+              "price": 0.989,
+              "stock": "in"
             },
             {
               "label": "150mm/240G",
-              "price": 0.989
+              "price": 0.989,
+              "stock": "in"
             },
             {
               "label": "150mm/320G",
-              "price": 1.082
+              "price": 1.082,
+              "stock": "in"
             },
             {
               "label": "150mm/600G",
-              "price": 1.544
+              "price": 1.544,
+              "stock": "in"
             },
             {
               "label": "150mm/1000G",
-              "price": 1.544
+              "price": 1.544,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -2724,11 +2796,13 @@
           "variants": [
             {
               "label": "115*3.2*22",
-              "price": 1.854
+              "price": 1.854,
+              "stock": "in"
             },
             {
               "label": "230*3.2*22",
-              "price": 4.515
+              "price": 4.515,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -2809,11 +2883,13 @@
           "variants": [
             {
               "label": "115mm",
-              "price": 9.891
+              "price": 9.891,
+              "stock": "in"
             },
             {
               "label": "125mm",
-              "price": 10.816
+              "price": 10.816,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -2862,11 +2938,13 @@
           "variants": [
             {
               "label": "115X6.4X22.2 ",
-              "price": 3.481
+              "price": 3.481,
+              "stock": "in"
             },
             {
               "label": "230X6.4X22.2 ",
-              "price": 9.028
+              "price": 9.028,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -2977,43 +3055,53 @@
           "variants": [
             {
               "label": "30X15X6MM G060",
-              "price": 2.26
+              "price": 2.26,
+              "stock": "in"
             },
             {
               "label": "30X15X6MM G080",
-              "price": 2.26
+              "price": 2.26,
+              "stock": "in"
             },
             {
               "label": "30X15X6MM G120",
-              "price": 2.26
+              "price": 2.26,
+              "stock": "in"
             },
             {
               "label": "50X10X6MM G40",
-              "price": 2.26
+              "price": 2.26,
+              "stock": "in"
             },
             {
               "label": "50X25X6MM G120",
-              "price": 3.643
+              "price": 3.643,
+              "stock": "in"
             },
             {
               "label": "50X30X6MM G40",
-              "price": 2.26
+              "price": 2.26,
+              "stock": "in"
             },
             {
               "label": "50X30X6MM G120",
-              "price": 2.26
+              "price": 2.26,
+              "stock": "in"
             },
             {
               "label": "50X30X6MM G80",
-              "price": 2.26
+              "price": 2.26,
+              "stock": "in"
             },
             {
               "label": "60X40X6MM G120",
-              "price": 3.08
+              "price": 3.08,
+              "stock": "in"
             },
             {
               "label": "80X50X6MM G60",
-              "price": 4.974
+              "price": 4.974,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -3143,27 +3231,33 @@
           "variants": [
             {
               "label": "125X22 G16",
-              "price": 1.996
+              "price": 1.996,
+              "stock": "in"
             },
             {
               "label": "125X22 G24",
-              "price": 1.996
+              "price": 1.996,
+              "stock": "in"
             },
             {
               "label": "125X22 G36",
-              "price": 1.996
+              "price": 1.996,
+              "stock": "in"
             },
             {
               "label": "125X22R G40",
-              "price": 1.996
+              "price": 1.996,
+              "stock": "in"
             },
             {
               "label": "180X22 G16",
-              "price": 2.957
+              "price": 2.957,
+              "stock": "in"
             },
             {
               "label": "180X22 G24",
-              "price": 2.507
+              "price": 2.507,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -3238,19 +3332,23 @@
           "variants": [
             {
               "label": "40/0.3 RF 249",
-              "price": 2.984
+              "price": 2.984,
+              "stock": "in"
             },
             {
               "label": "50/0.3 RF 249",
-              "price": 3.569
+              "price": 3.569,
+              "stock": "in"
             },
             {
               "label": "75/0.3 RF 249",
-              "price": 3.959
+              "price": 3.959,
+              "stock": "in"
             },
             {
               "label": "100/0.3 RF 249",
-              "price": 4.799
+              "price": 4.799,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -3408,11 +3506,13 @@
           "variants": [
             {
               "label": "1pcs",
-              "price": 1.821
+              "price": 1.821,
+              "stock": "in"
             },
             {
               "label": "6pcs",
-              "price": 9.444
+              "price": 9.444,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -3528,15 +3628,18 @@
           "variants": [
             {
               "label": "09X80MM",
-              "price": 2.334
+              "price": 2.334,
+              "stock": "in"
             },
             {
               "label": "18X100MM",
-              "price": 2.714
+              "price": 2.714,
+              "stock": "in"
             },
             {
               "label": "61X19MM",
-              "price": 3.288
+              "price": 3.288,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -3599,11 +3702,13 @@
           "variants": [
             {
               "label": "8\"/200mm",
-              "price": 7.658
+              "price": 7.658,
+              "stock": "in"
             },
             {
               "label": "10\"/250mm",
-              "price": 8.372
+              "price": 8.372,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -3747,15 +3852,18 @@
           "variants": [
             {
               "label": "4.0x100mm",
-              "price": 6.5
+              "price": 6.5,
+              "stock": "in"
             },
             {
               "label": "3.5x75mm",
-              "price": 4.5
+              "price": 4.5,
+              "stock": "in"
             },
             {
               "label": "PH2x100mm",
-              "price": 8.2
+              "price": 8.2,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -3959,11 +4067,13 @@
           "variants": [
             {
               "label": "10mm",
-              "price": 3.567
+              "price": 3.567,
+              "stock": "in"
             },
             {
               "label": "13mm",
-              "price": 4.604
+              "price": 4.604,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -4041,11 +4151,13 @@
           "variants": [
             {
               "label": "1pcs",
-              "price": 2.221
+              "price": 2.221,
+              "stock": "in"
             },
             {
               "label": "25pcs",
-              "price": 50
+              "price": 50,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -4129,11 +4241,13 @@
           "variants": [
             {
               "label": "1 filter",
-              "price": 9.567
+              "price": 9.567,
+              "stock": "in"
             },
             {
               "label": "10 filters",
-              "price": 8.981
+              "price": 8.981,
+              "stock": "in"
             }
           ],
           "datasheet": "assets/datasheets/filtro-756-1-1-mi7l4z7s.pdf",
@@ -4248,11 +4362,13 @@
           "variants": [
             {
               "label": "L.9",
-              "price": 4.511
+              "price": 4.511,
+              "stock": "in"
             },
             {
               "label": "L.10",
-              "price": 4.511
+              "price": 4.511,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -4306,15 +4422,18 @@
           "variants": [
             {
               "label": "S",
-              "price": 3.562
+              "price": 3.562,
+              "stock": "in"
             },
             {
               "label": "M",
-              "price": 3.562
+              "price": 3.562,
+              "stock": "in"
             },
             {
               "label": "L",
-              "price": 3.562
+              "price": 3.562,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -4371,15 +4490,18 @@
           "variants": [
             {
               "label": "3/8\"",
-              "price": 55.8
+              "price": 55.8,
+              "stock": "in"
             },
             {
               "label": "1/4\"",
-              "price": 41.723
+              "price": 41.723,
+              "stock": "in"
             },
             {
               "label": "1/2\"",
-              "price": 70.627
+              "price": 70.627,
+              "stock": "in"
             }
           ],
           "datasheet": "",
@@ -4467,51 +4589,63 @@
           "variants": [
             {
               "label": "3x20",
-              "price": 2.1
+              "price": 2.1,
+              "stock": "in"
             },
             {
               "label": "3.5x16",
-              "price": 4.85
+              "price": 4.85,
+              "stock": "in"
             },
             {
               "label": "4x20",
-              "price": 3
+              "price": 3,
+              "stock": "in"
             },
             {
               "label": "4x25",
-              "price": 3.5
+              "price": 3.5,
+              "stock": "in"
             },
             {
               "label": "4x30",
-              "price": 4
+              "price": 4,
+              "stock": "in"
             },
             {
               "label": "4x40",
-              "price": 4.85
+              "price": 4.85,
+              "stock": "in"
             },
             {
               "label": "4.5x20",
-              "price": 5.8
+              "price": 5.8,
+              "stock": "in"
             },
             {
               "label": "5x30",
-              "price": 5.8
+              "price": 5.8,
+              "stock": "in"
             },
             {
               "label": "5x50",
-              "price": 11
+              "price": 11,
+              "stock": "in"
             },
             {
               "label": "5x70",
-              "price": 14.45
+              "price": 14.45,
+              "stock": "in"
             },
             {
               "label": "5x80",
-              "price": 18.5
+              "price": 18.5,
+              "stock": "in"
             },
             {
               "label": "5.5x25",
-              "price": 7.2
+              "price": 7.2,
+              "stock": "in"
             }
           ],
           "datasheet": "",
