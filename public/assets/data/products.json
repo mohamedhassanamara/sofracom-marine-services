@@ -4794,6 +4794,89 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "BOSCH Hand Sanding Sheets C344 230x280mm Wet and Dry Applications",
+          "image": "assets/products/20251124_094142-mid0a1va.png",
+          "description": "Some sanding sheets you always want to keep at hand in your car body repair shop. Like the PRO C344. Whether you need to sand putty or remove paint defects before polishing, it will help you get the job done.\n\nWe made the PRO C344 wet and dry Hand Sanding Sheet to help car repair professionals, painters, and carpenters get the great finish they need. The sheets feature strong silicon carbide grains for long-lasting performance. Plus, we use a latex paper backing to make sure they are flexible and waterproof. This means they are suitable for wet and dry sanding: you can be sure they won't break and scratch the surface.",
+          "brand": "bosch",
+          "usage": [
+            "bosch",
+            "abrasive",
+            "papier",
+            "c344",
+            "230x280mm"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251124_094142-mid0a1va.png"
+          ],
+          "variants": [
+            {
+              "label": "P120",
+              "price": 1,
+              "stock": "in"
+            },
+            {
+              "label": "P150",
+              "price": 1,
+              "stock": "in"
+            },
+            {
+              "label": "P180",
+              "price": 1,
+              "stock": "in"
+            },
+            {
+              "label": "P220",
+              "price": 1,
+              "stock": "in"
+            },
+            {
+              "label": "P240",
+              "price": 1,
+              "stock": "in"
+            },
+            {
+              "label": "P280",
+              "price": 1,
+              "stock": "out"
+            },
+            {
+              "label": "P320",
+              "price": 1,
+              "stock": "in"
+            },
+            {
+              "label": "P400",
+              "price": 1,
+              "stock": "in"
+            },
+            {
+              "label": "P1000",
+              "price": 1.5,
+              "stock": "in"
+            },
+            {
+              "label": "P1500",
+              "price": 1.5,
+              "stock": "in"
+            }
+          ],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Feuilles de ponçage manuelles BOSCH C344 230x280 mm pour applications à sec et à l’eau",
+              "description": "Nous avons conçu la feuille de ponçage manuelle PRO C344 pour un usage à sec et à l’eau afin d’aider les professionnels de la réparation automobile, les peintres et les menuisiers à obtenir une finition impeccable. Les feuilles sont dotées de grains en carbure de silicium particulièrement résistants, garantissant une performance durable. De plus, nous utilisons un support en papier latex pour assurer leur flexibilité et leur étanchéité. Cela les rend adaptées au ponçage à sec et à l’eau : vous pouvez être sûr qu’elles ne se casseront pas et n’endommageront pas la surface.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
