@@ -4909,7 +4909,7 @@
           }
         },
         {
-          "title": "APT Combination Wrench Hardened and Tempered with Bright Satin finishing",
+          "title": "APT Combination Wrench Hardened and Tempered with Bright Satin finishing (11mm)",
           "image": "assets/products/20251128_092347-miilsexw.png",
           "description": "The APT Combination Wrench is engineered for strength, durability, and professional performance. Hardened and tempered for maximum resistance, it withstands heavy-duty use while maintaining precision. Its bright satin finish reduces glare and offers enhanced corrosion protection for long-lasting reliability. A must-have hand tool delivering secure grip, smooth operation, and dependable tightening in any workshop or job site.",
           "brand": "APT",
@@ -4985,6 +4985,108 @@
             "fr": {
               "title": "Clé mixte a finition satinée brillante APT",
               "description": "La clé mixte APT est conçue pour offrir solidité, durabilité et performance professionnelle. Trempée et durcie pour une résistance maximale, elle supporte les usages intensifs tout en conservant une grande précision. Sa finition satinée brillante réduit l’éblouissement et améliore la protection contre la corrosion pour une fiabilité durable. Un outil essentiel offrant une prise sûre, une utilisation fluide et un serrage efficace sur tout chantier ou atelier.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
+        },
+        {
+          "title": "APT L Type Wrench ( 6pt/12pt ) 14mm",
+          "image": "assets/products/20251128_092402-miiqvu0a.png",
+          "description": "The APT L-Type Wrench (6pt/12pt) delivers strong torque, precise fit, and dependable performance for tightening and loosening fasteners in hard-to-reach areas. Its dual-end design—available in 6-point or 12-point configurations—ensures excellent grip and versatility across different bolt types. Made from high-strength steel, it provides durability and long service life under demanding use. A practical, efficient tool for mechanics, technicians, and DIY users.",
+          "brand": "APT",
+          "usage": [
+            "spanner",
+            "clé a pipe",
+            "l type",
+            "wrench"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251128_092402-miiqvu0a.png"
+          ],
+          "variants": [
+            {
+              "label": "06mm",
+              "price": 5.89,
+              "stock": "in"
+            },
+            {
+              "label": "07mm",
+              "price": 6.094,
+              "stock": "in"
+            },
+            {
+              "label": "08mm",
+              "price": 6.28,
+              "stock": "in"
+            },
+            {
+              "label": "09mm",
+              "price": 6.868,
+              "stock": "in"
+            },
+            {
+              "label": "10mm",
+              "price": 7.01,
+              "stock": "in"
+            },
+            {
+              "label": "11mm",
+              "price": 7.319,
+              "stock": "in"
+            },
+            {
+              "label": "12mm",
+              "price": 7.508,
+              "stock": "in"
+            },
+            {
+              "label": "13mm",
+              "price": 8.13,
+              "stock": "in"
+            },
+            {
+              "label": "14mm",
+              "price": 9.071,
+              "stock": "in"
+            },
+            {
+              "label": "15mm",
+              "price": 10.72,
+              "stock": "in"
+            },
+            {
+              "label": "17mm",
+              "price": 12.499,
+              "stock": "in"
+            },
+            {
+              "label": "19mm",
+              "price": 15.731,
+              "stock": "in"
+            },
+            {
+              "label": "22mm",
+              "price": 21.679,
+              "stock": "in"
+            },
+            {
+              "label": "24mm",
+              "price": 24.321,
+              "stock": "in"
+            }
+          ],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Clé a pipe 14mm APT",
+              "description": "La clé en L APT (6 pans/12 pans) offre un couple élevé, un ajustement précis et une performance fiable pour le serrage et le desserrage des fixations dans les zones difficiles d’accès. Son design à double extrémité — disponible en version 6 pans ou 12 pans — garantit une excellente prise et une grande polyvalence selon le type de boulon. Fabriquée en acier haute résistance, elle assure durabilité et longévité même en usage intensif. Un outil pratique et efficace pour les mécaniciens, techniciens et bricoleurs.",
               "variants": []
             },
             "ar": {
