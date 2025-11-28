@@ -4907,6 +4907,92 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "APT Combination Wrench Hardened and Tempered with Bright Satin finishing",
+          "image": "assets/products/20251128_092347-miilsexw.png",
+          "description": "The APT Combination Wrench is engineered for strength, durability, and professional performance. Hardened and tempered for maximum resistance, it withstands heavy-duty use while maintaining precision. Its bright satin finish reduces glare and offers enhanced corrosion protection for long-lasting reliability. A must-have hand tool delivering secure grip, smooth operation, and dependable tightening in any workshop or job site.",
+          "brand": "APT",
+          "usage": [
+            "wrench",
+            "spanner",
+            "clé mixte"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251128_092347-miilsexw.png"
+          ],
+          "variants": [
+            {
+              "label": "06mm",
+              "price": 4.354,
+              "stock": "in"
+            },
+            {
+              "label": "07mm",
+              "price": 4.354,
+              "stock": "in"
+            },
+            {
+              "label": "08mm",
+              "price": 5.578,
+              "stock": "in"
+            },
+            {
+              "label": "09mm",
+              "price": 5.864,
+              "stock": "in"
+            },
+            {
+              "label": "10mm",
+              "price": 5.96,
+              "stock": "in"
+            },
+            {
+              "label": "11mm",
+              "price": 6.011,
+              "stock": "in"
+            },
+            {
+              "label": "13mm",
+              "price": 6.21,
+              "stock": "in"
+            },
+            {
+              "label": "15mm",
+              "price": 6.433,
+              "stock": "in"
+            },
+            {
+              "label": "17mm",
+              "price": 7.395,
+              "stock": "in"
+            },
+            {
+              "label": "19mm",
+              "price": 10.248,
+              "stock": "in"
+            },
+            {
+              "label": "27mm",
+              "price": 14.422,
+              "stock": "in"
+            }
+          ],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Clé mixte a finition satinée brillante APT",
+              "description": "La clé mixte APT est conçue pour offrir solidité, durabilité et performance professionnelle. Trempée et durcie pour une résistance maximale, elle supporte les usages intensifs tout en conservant une grande précision. Sa finition satinée brillante réduit l’éblouissement et améliore la protection contre la corrosion pour une fiabilité durable. Un outil essentiel offrant une prise sûre, une utilisation fluide et un serrage efficace sur tout chantier ou atelier.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
