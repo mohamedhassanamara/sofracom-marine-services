@@ -5178,6 +5178,87 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "DS Hex Key Wrench Carbon Steel L-Shape Long/short Arm ",
+          "image": "assets/products/20251128_104421-miitlu1p.png",
+          "description": "The DS Hex Key Wrench is crafted from durable carbon steel, offering strong torque and long-lasting performance for mechanical, assembly, and maintenance tasks. Its L-shape design—available in long or short arm versions—provides excellent leverage and easy access to tight spaces. Precision-machined tips ensure a secure fit in hex fasteners, reducing wear and slippage. A reliable, essential tool for technicians, mechanics, and DIY users.",
+          "brand": "DS",
+          "usage": [
+            "Clé male",
+            "hex key",
+            "wrench"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251128_104421-miitlu1p.png"
+          ],
+          "variants": [
+            {
+              "label": "02.5mm short",
+              "price": 0.582,
+              "stock": "in"
+            },
+            {
+              "label": "03mm short",
+              "price": 0.672,
+              "stock": "in"
+            },
+            {
+              "label": "03.5mm short",
+              "price": 0.717,
+              "stock": "in"
+            },
+            {
+              "label": "04mm short",
+              "price": 0.794,
+              "stock": "in"
+            },
+            {
+              "label": "04mm long",
+              "price": 0.939,
+              "stock": "in"
+            },
+            {
+              "label": "05mm short",
+              "price": 0.921,
+              "stock": "in"
+            },
+            {
+              "label": "05mm long",
+              "price": 1.158,
+              "stock": "in"
+            },
+            {
+              "label": "06mm",
+              "price": 0.972,
+              "stock": "in"
+            },
+            {
+              "label": "08mm long",
+              "price": 3.045,
+              "stock": "in"
+            },
+            {
+              "label": "10mm short",
+              "price": 3.398,
+              "stock": "in"
+            }
+          ],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Clé hexagonale DS en acier carbone, forme en L, bras long/court, six pans",
+              "description": "La clé six pans DS est fabriquée en acier carbone robuste, offrant un couple élevé et une performance durable pour les travaux mécaniques, d’assemblage et de maintenance. Son design en forme de L — disponible en version bras long ou court — assure un excellent effet de levier et un accès facile aux zones étroites. Les embouts usinés avec précision garantissent un ajustement sûr dans les vis hexagonales, réduisant l’usure et le glissement. Un outil fiable et indispensable pour les techniciens, mécaniciens et bricoleurs.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
