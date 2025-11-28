@@ -5095,6 +5095,59 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "APT Combination Ratchet Wrench Hardened & Tempered with Bright Satin Finishing 17mm",
+          "image": "assets/products/20251128_095543-miisnfst.png",
+          "description": "The APT Combination Ratchet Wrench delivers fast, effortless fastening with its smooth ratcheting mechanism and precision-engineered open-end design. Hardened and tempered for superior strength, it withstands heavy-duty professional use without losing accuracy. Its bright satin finish reduces glare and provides excellent corrosion resistance for long-lasting reliability. A premium, high-performance tool ideal for mechanics, technicians, and demanding DIY users.",
+          "brand": "APT",
+          "usage": [
+            "cliquet",
+            "ratchet",
+            "clé",
+            "17mm",
+            "wrench"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251128_095543-miisnfst.png"
+          ],
+          "variants": [
+            {
+              "label": "10mm",
+              "price": 9.128,
+              "stock": "in"
+            },
+            {
+              "label": "13mm",
+              "price": 10.95,
+              "stock": "in"
+            },
+            {
+              "label": "17mm",
+              "price": 13.986,
+              "stock": "in"
+            },
+            {
+              "label": "19mm",
+              "price": 15.452,
+              "stock": "in"
+            }
+          ],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "CLE MIXTE A CLIQUET CRV 17X225MM APT",
+              "description": "La clé mixte à cliquet APT offre un serrage rapide et sans effort grâce à son mécanisme de cliquet fluide et à son extrémité ouverte de précision. Trempée et durcie pour une résistance maximale, elle supporte les usages professionnels intensifs tout en conservant une grande précision. Sa finition satinée brillante réduit l’éblouissement et assure une excellente résistance à la corrosion pour une fiabilité durable. Un outil haut de gamme, idéal pour les mécaniciens, techniciens et bricoleurs exigeants.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
