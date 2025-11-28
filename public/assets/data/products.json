@@ -5148,6 +5148,36 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "APT 8PC Double Open End Wrench Set 6x7/8x9/10x11/12x13/14x15/16x17/18x19/20x22",
+          "image": "assets/products/snapchat-929383395-miit9co0.png",
+          "description": "The APT 8-Piece Double Open-End Wrench Set provides reliable performance and versatile sizing for professional and workshop use. Each wrench features dual heads—ranging from 6x7 mm to 20x22 mm—offering excellent coverage for common fastening tasks. Crafted from strong, hardened steel, the set ensures durability, precise fit, and long-lasting strength. A well-organized, essential toolkit for mechanics, technicians, and DIY users who demand quality and efficiency.",
+          "brand": "APT",
+          "usage": [
+            "jeu de clés mixte",
+            "set",
+            "wrench"
+          ],
+          "price": 39.4,
+          "stock": "in",
+          "images": [
+            "assets/products/snapchat-929383395-miit9co0.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "JEU 8 CLES A FOURCHE 6-22 CRV APT",
+              "description": "Le coffret de clés à fourche doubles APT 8 pièces offre une performance fiable et un large choix de tailles pour un usage professionnel ou en atelier. Chaque clé possède deux extrémités — de 6x7 mm à 20x22 mm — couvrant parfaitement les besoins courants de serrage et de maintenance. Fabriqué en acier trempé et robuste, l’ensemble garantit durabilité, ajustement précis et longue durée de vie. Un kit indispensable pour les mécaniciens, techniciens et bricoleurs recherchant qualité et efficacité.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
