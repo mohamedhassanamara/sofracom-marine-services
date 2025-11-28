@@ -4877,6 +4877,36 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "DS 02L Sprayer",
+          "image": "assets/products/20251128_083041-miilg25v.png",
+          "description": "The DS 02L Sprayer is a compact and efficient tool designed for applying liquids with precision and ease. Its 2-liter capacity makes it perfect for cleaning products, gardening treatments, automotive care, and general maintenance. The adjustable nozzle allows fine misting or targeted spraying, ensuring versatility for multiple tasks. Durable and easy to handle, it offers reliable performance for both professional and household use.",
+          "brand": "DS",
+          "usage": [
+            "Spray bottle",
+            "pulverisateur",
+            "DS"
+          ],
+          "price": 9.28,
+          "stock": "in",
+          "images": [
+            "assets/products/20251128_083041-miilg25v.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Pulverisateur 02L DS",
+              "description": "Le pulvérisateur DS 02L est un outil compact et efficace conçu pour appliquer des liquides avec précision et facilité. Sa capacité de 2 litres le rend idéal pour les produits de nettoyage, les traitements de jardin, l’entretien automobile et les travaux de maintenance. Sa buse réglable permet une pulvérisation fine ou ciblée, offrant une grande polyvalence pour diverses applications. Robuste et facile à manipuler, il assure une performance fiable pour un usage professionnel comme domestique.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
