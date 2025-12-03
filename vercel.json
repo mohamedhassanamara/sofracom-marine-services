@@ -1,7 +1,7 @@
 {
     "functions": {
-        "pages/api/*.js": {
-            "excludeFiles": "public/assets/**"
+        "pages/api/**/*.js": {
+            "maxDuration": 10
         }
     }
 }
