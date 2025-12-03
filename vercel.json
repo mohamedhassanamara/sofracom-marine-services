@@ -1,6 +1,6 @@
 {
     "functions": {
-        "pages/api/**/*.js": {
+        "api/**/*.js": {
             "excludeFiles": "public/assets/**"
         }
     }
