@@ -5473,6 +5473,36 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "DS Universal Joint 1/2F / 1/2M",
+          "image": "assets/products/20251203_161154-miq6xc1h.png",
+          "description": "Hardened and tempered Chrome Vanadium steel with a fully polished mirror finish\nScrew type universal joint\nFitted with spring-ball socket retainer",
+          "brand": "DS",
+          "usage": [
+            "Universal joint",
+            "1/2F",
+            "1/2M"
+          ],
+          "price": 17.5,
+          "stock": "in",
+          "images": [
+            "assets/products/20251203_161154-miq6xc1h.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Cardon Universel DS 1/2\"F × 1/2\"M",
+              "description": "Acier chrome-vanadium trempé et revenu avec une finition miroir entièrement polie\nCardon universel de type vissé\nÉquipé d’un dispositif de retenue à bille ressort pour douilles",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
