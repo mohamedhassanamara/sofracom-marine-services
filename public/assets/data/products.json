@@ -5282,8 +5282,52 @@
           "datasheet": "",
           "translations": {
             "fr": {
-              "title": "Ensemble De 2 Bacs A Peinture TOTAL",
+              "title": "Ensemble De 2 Bacs A Peinture 305x150mm / 435x300mm TOTAL",
               "description": "Le kit de 2 bacs à peinture TOTAL offre une solution pratique et propre pour tous types de travaux de peinture. Avec deux dimensions — 305×150 mm et 435×300 mm — il convient aussi bien aux petites retouches qu’aux applications au rouleau plus larges. Fabriqués dans un matériau durable et facile à nettoyer, ces bacs assurent une bonne répartition et un chargement uniforme de la peinture. Un ensemble polyvalent et fiable, idéal pour les professionnels comme pour les bricoleurs.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
+        },
+        {
+          "title": "DS 9 Pcs HEX Key Set Short & Long  1.5mm, 2.0mm, 2.5mm, 3.0mm, 4.0mm, 5.0mm, 6.0mm, 8.0mm, 10.0mm",
+          "image": "assets/products/20251128_125138-miq3grd0.png",
+          "description": "he DS 9-Pcs Hex Key Set includes both short and long keys, offering maximum versatility for assembly, repair, and maintenance tasks. Covering sizes from 1.5 mm to 10 mm, each key is precisely machined to ensure a perfect fit and strong torque on hex fasteners. Made from durable, high-quality steel, the set guarantees long-lasting performance and resistance to wear. A practical, essential toolkit for mechanics, technicians, and DIY users who need reliable fastening tools.",
+          "brand": "DS",
+          "usage": [
+            "HEX",
+            "Key",
+            "set",
+            "6pans",
+            "coudée"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251128_125138-miq3grd0.png",
+            "assets/products/20251128_125155-miq3ipyn.png"
+          ],
+          "variants": [
+            {
+              "label": "Short Set",
+              "price": 10.437,
+              "stock": "in"
+            },
+            {
+              "label": "Spherical End Long Set",
+              "price": 16.365,
+              "stock": "in"
+            }
+          ],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Jeu Clés Male Coudée 6 Pans Courte/Long 1.5mm, 2.0mm, 2.5mm, 3.0mm, 4.0mm, 5.0mm, 6.0mm, 8.0mm, 10.0mm DS",
+              "description": "Le jeu de clés hexagonales DS 9 pièces comprend des clés courtes et longues, offrant une polyvalence optimale pour les travaux d’assemblage, de réparation et de maintenance. Couvrant des tailles de 1,5 mm à 10 mm, chaque clé est usinée avec précision pour garantir un ajustement parfait et un couple élevé sur les vis hexagonales. Fabriqué en acier de haute qualité, l’ensemble assure une performance durable et une excellente résistance à l’usure. Un kit pratique et indispensable pour les mécaniciens, techniciens et bricoleurs recherchant des outils de serrage fiables.",
               "variants": []
             },
             "ar": {
