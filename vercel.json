@@ -1,28 +1,13 @@
 {
     "functions": {
-        "api/create-order.js": {
-            "excludeFiles": [
-                "public/assets/products/**",
-                "public/assets/datasheets/**",
-                "public/assets/categories/**",
-                "public/assets/gallery/**"
-            ]
-        },
-        "api/create-quote.js": {
-            "excludeFiles": [
-                "public/assets/products/**",
-                "public/assets/datasheets/**",
-                "public/assets/categories/**",
-                "public/assets/gallery/**"
-            ]
-        },
-        "api/firebase-service.js": {
-            "excludeFiles": [
-                "public/assets/products/**",
-                "public/assets/datasheets/**",
-                "public/assets/categories/**",
-                "public/assets/gallery/**"
-            ]
-        }
+    "api/create-order.js": {
+        "excludeFiles": "public/assets/**"
+    },
+    "api/create-quote.js": {
+        "excludeFiles": "public/assets/**"
+    },
+    "api/firebase-service.js": {
+        "excludeFiles": "public/assets/**"
     }
+}
 }
