@@ -5368,6 +5368,70 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "DS TORX Short Series Key T6,T8,T10, T15, T20, T27, T30",
+          "image": "assets/products/20251128_104421-miq5l1wt.png",
+          "description": "The DS TORX Short Series Key is designed for precision, durability, and easy access in tight spaces. Made from high-quality steel, it provides strong torque and excellent resistance to wear during intensive use. Its short-arm design ensures better control and stability when working with Torx fasteners. A compact and reliable tool ideal for mechanics, technicians, and DIY users.",
+          "brand": "DS",
+          "usage": [
+            "torx"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251128_104421-miq5l1wt.png"
+          ],
+          "variants": [
+            {
+              "label": "T7",
+              "price": 0.655,
+              "stock": "in"
+            },
+            {
+              "label": "T8",
+              "price": 0.724,
+              "stock": "in"
+            },
+            {
+              "label": "T10",
+              "price": 0.91,
+              "stock": "in"
+            },
+            {
+              "label": "T15",
+              "price": 1.183,
+              "stock": "in"
+            },
+            {
+              "label": "T20",
+              "price": 1.255,
+              "stock": "in"
+            },
+            {
+              "label": "T27",
+              "price": 1.988,
+              "stock": "in"
+            },
+            {
+              "label": "T30",
+              "price": 2.711,
+              "stock": "in"
+            }
+          ],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Clé Torx série courte T6,T8,T10, T15, T20, T27, T30",
+              "description": "La clé TORX courte DS est conçue pour offrir précision, durabilité et un accès facile dans les espaces restreints. Fabriquée en acier de haute qualité, elle garantit un couple élevé et une excellente résistance à l’usure même en usage intensif. Son design à bras court assure un meilleur contrôle et une grande stabilité lors du serrage des vis Torx. Un outil compact et fiable, idéal pour les mécaniciens, techniciens et bricoleurs.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
