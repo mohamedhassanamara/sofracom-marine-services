@@ -5259,6 +5259,39 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "TOTAL 2 Pcs Paint Tray Set 305x150mm / 435x300mm",
+          "image": "assets/products/20251203_143635-miq2dkyk.png",
+          "description": "he TOTAL 2-Pcs Paint Tray Set provides practical, mess-free convenience for painting projects of any size. Featuring two tray dimensions—305×150 mm and 435×300 mm—it accommodates both small touch-ups and larger roller applications. Made from durable, easy-to-clean material, each tray ensures smooth paint loading and even coverage. A versatile, reliable set ideal for professionals and DIY painters alike.",
+          "brand": "TOTAL",
+          "usage": [
+            "tray",
+            "set",
+            "paint",
+            "bacs",
+            "peinture"
+          ],
+          "price": 15.654,
+          "stock": "in",
+          "images": [
+            "assets/products/20251203_143635-miq2dkyk.png",
+            "assets/products/20251203_143653-miq2dpl1.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Ensemble De 2 Bacs A Peinture TOTAL",
+              "description": "Le kit de 2 bacs à peinture TOTAL offre une solution pratique et propre pour tous types de travaux de peinture. Avec deux dimensions — 305×150 mm et 435×300 mm — il convient aussi bien aux petites retouches qu’aux applications au rouleau plus larges. Fabriqués dans un matériau durable et facile à nettoyer, ces bacs assurent une bonne répartition et un chargement uniforme de la peinture. Un ensemble polyvalent et fiable, idéal pour les professionnels comme pour les bricoleurs.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
