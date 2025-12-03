@@ -5503,6 +5503,51 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "APT 6&12 Pcs Router Bits 08MM Shank",
+          "image": "assets/products/20251203_170120-miq8e3vu.png",
+          "description": "The APT 6 Pcs Router Bits Set offers precision, durability, and versatility for all your woodworking projects. Crafted from high-quality materials, each bit delivers clean, smooth, and accurate cuts. Suitable for edging, trimming, and shaping, this set is designed for both professionals and DIY users. Packaged in a convenient storage box, it ensures easy organization and long-lasting performance.",
+          "brand": "APT",
+          "usage": [
+            "Fraise",
+            "bits",
+            "défonceuse",
+            "coffret"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251203_170120-miq8e3vu.png",
+            "assets/products/20251203_170139-miq8e8za.png",
+            "assets/products/20251203_170214-miq8eti2.png",
+            "assets/products/20251203_170120-miq8vqh3.png"
+          ],
+          "variants": [
+            {
+              "label": "6 pcs",
+              "price": 50.23,
+              "stock": "in"
+            },
+            {
+              "label": "12 PCS",
+              "price": 94.955,
+              "stock": "in"
+            }
+          ],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Coffret De Fraises De Défonceuse APT 6&12 Pièces Manche 08mm",
+              "description": "Le coffret de fraises de défonceuse APT 6 pièces offre précision, durabilité et polyvalence pour tous vos travaux de menuiserie. Fabriquée avec des matériaux de haute qualité, chaque fraise assure des coupes nettes, propres et précises. Idéal pour le chant, la finition et le façonnage, cet ensemble convient aussi bien aux professionnels qu’aux bricoleurs. Livré dans un boîtier pratique, il garantit une organisation facile et une performance durable.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
