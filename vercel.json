@@ -1,13 +1,7 @@
 {
     "functions": {
-    "api/create-order.js": {
-        "excludeFiles": "public/assets/**"
-    },
-    "api/create-quote.js": {
-        "excludeFiles": "public/assets/**"
-    },
-    "api/firebase-service.js": {
-        "excludeFiles": "public/assets/**"
+        "pages/api/**/*.js": {
+            "excludeFiles": "public/assets/**"
+        }
     }
-}
 }
