@@ -5432,6 +5432,47 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "DS Female to Male Socket Converter  1/2F 3/4M & 1/2F 3/8M",
+          "image": "assets/products/20251203_161135-miq641m2.png",
+          "description": "",
+          "brand": "DS",
+          "usage": [
+            "Adaptater",
+            "Socket",
+            "Converter"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251203_161135-miq641m2.png"
+          ],
+          "variants": [
+            {
+              "label": "1/2F 3/4M",
+              "price": 14.656,
+              "stock": "in"
+            },
+            {
+              "label": "1/2F 3/8M ",
+              "price": 6.399,
+              "stock": "in"
+            }
+          ],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "ADAPTATEUR 1/2F 3/4M & 1/2F 3/8M DS",
+              "description": "",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
