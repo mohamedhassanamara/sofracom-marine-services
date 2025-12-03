@@ -5294,7 +5294,7 @@
           }
         },
         {
-          "title": "DS 9 Pcs HEX Key Set Short & Long Arm 1.5mm, 2.0mm, 2.5mm, 3.0mm, 4.0mm, 5.0mm, 6.0mm, 8.0mm, 10.0mm",
+          "title": "DS 9 Pcs HEX Key Set Short & Long Arm Chrome Vanadium Steel1.5mm, 2.0mm, 2.5mm, 3.0mm, 4.0mm, 5.0mm, 6.0mm, 8.0mm, 10.0mm",
           "image": "assets/products/20251128_125138-miq3grd0.png",
           "description": "he DS 9-Pcs Hex Key Set includes both short and long keys, offering maximum versatility for assembly, repair, and maintenance tasks. Covering sizes from 1.5 mm to 10 mm, each key is precisely machined to ensure a perfect fit and strong torque on hex fasteners. Made from durable, high-quality steel, the set guarantees long-lasting performance and resistance to wear. A practical, essential toolkit for mechanics, technicians, and DIY users who need reliable fastening tools.",
           "brand": "DS",
@@ -5328,6 +5328,38 @@
             "fr": {
               "title": "Jeu Clés Male Coudée 6 Pans Courte/Long 1.5mm, 2.0mm, 2.5mm, 3.0mm, 4.0mm, 5.0mm, 6.0mm, 8.0mm, 10.0mm DS",
               "description": "Le jeu de clés hexagonales DS 9 pièces comprend des clés courtes et longues, offrant une polyvalence optimale pour les travaux d’assemblage, de réparation et de maintenance. Couvrant des tailles de 1,5 mm à 10 mm, chaque clé est usinée avec précision pour garantir un ajustement parfait et un couple élevé sur les vis hexagonales. Fabriqué en acier de haute qualité, l’ensemble assure une performance durable et une excellente résistance à l’usure. Un kit pratique et indispensable pour les mécaniciens, techniciens et bricoleurs recherchant des outils de serrage fiables.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
+        },
+        {
+          "title": "DS Torx Hex Key 9-Piece T10-T50 Short Arm Chrome Vanadium Steel",
+          "image": "assets/products/20251128_125211-miq3ykam.png",
+          "description": "The DS 9-Piece Torx Hex Key Set (T10–T50) delivers precise, secure engagement for Torx fasteners in automotive, mechanical, and equipment maintenance tasks. Built from premium chrome vanadium steel, each key offers high strength, durability, and resistance to wear. The short-arm design provides excellent control and access in tight spaces, ensuring efficient tightening and loosening. A compact, reliable set ideal for professionals and DIY users who demand dependable performance.",
+          "brand": "DS",
+          "usage": [
+            "Torx",
+            "T10-T50",
+            "jeu",
+            "set",
+            "hex"
+          ],
+          "price": 14.177,
+          "stock": "in",
+          "images": [
+            "assets/products/20251128_125211-miq3ykam.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Jeu de Clés Torx Coudée T10-T50 Chrome DS",
+              "description": "Le jeu de clés Torx DS 9 pièces (T10–T50) offre un engagement précis et sûr pour les vis Torx dans les travaux automobiles, mécaniques et de maintenance d’équipements. Fabriquée en acier chrome-vanadium de haute qualité, chaque clé garantit une grande solidité, une durabilité élevée et une excellente résistance à l’usure. Le design à bras court assure un contrôle optimal et un accès facilité dans les espaces restreints. Un ensemble compact et fiable, idéal pour les professionnels comme pour les bricoleurs exigeants.",
               "variants": []
             },
             "ar": {
