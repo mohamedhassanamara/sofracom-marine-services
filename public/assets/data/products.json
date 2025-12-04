@@ -1248,6 +1248,38 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "OCEANA 01L ATF-1",
+          "image": "assets/products/20251204_131712-mirli6xm.png",
+          "description": "",
+          "brand": "OCEANA",
+          "usage": [
+            "transmission",
+            "OCEANA",
+            "fluide",
+            "direction"
+          ],
+          "price": 19.9,
+          "stock": "in",
+          "images": [
+            "assets/products/20251204_131712-mirli6xm.png",
+            "assets/products/20251204_131724-mirmue6x.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "OCEANA ATF-1 Fluide De Transmission Et De Direction 01L",
+              "description": "",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
