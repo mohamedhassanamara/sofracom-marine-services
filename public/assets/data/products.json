@@ -1218,6 +1218,36 @@
               ]
             }
           }
+        },
+        {
+          "title": "LIQUI MOLY 01L Anti-Bacterial Diesel Additive",
+          "image": "assets/products/20251204_131741-miri3ir8.png",
+          "description": "Highly active biocide with wide action spectrum\nagainst bacteria, yeasts and moulds. Use biocides\nsafely. Always read the label and product\ninformation before use.",
+          "brand": "LIQUI MOLY",
+          "usage": [
+            "anti-bacterial",
+            "antibactérien",
+            "additive"
+          ],
+          "price": 140.211,
+          "stock": "in",
+          "images": [
+            "assets/products/20251204_131741-miri3ir8.png"
+          ],
+          "variants": [],
+          "datasheet": "assets/datasheets/2368-miri92aq.pdf",
+          "translations": {
+            "fr": {
+              "title": "Additif Diesel Antibactérien LIQUI MOLY 01L.",
+              "description": "Biocide hautement actif avec un large spectre d’action contre les bactéries, les levures et les moisissures.\nUtilisez les biocides en toute sécurité. Lisez toujours l’étiquette et les informations sur le produit avant utilisation.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
@@ -2206,7 +2236,7 @@
             },
             "ar": {
               "title": "TECHNOPOLE شحم متعدد الاستعمالات",
-              "description": "شحم ليثيوم عالي الأداء للاستعمالات الصناعية والميكانيكية.\nمقاوم للرطوبة والحرارة والحمولات الثقيلة.\nيقلل الاحتكاك ويحمي الأجزاء المعدنية المتحركة.\nمثالي للرولمانات والمفصلات والآلات.",
+              "description": "شحم ليثيوم عالي الأداء للاستعمالات الصناعية والميكانيكية.\nمقاوم للرطوبة والحرارة والحمولات الثقيلة.\nيقلل الاحتكاك ويحمي الأجزاء المعدنية ا��متحركة.\nمثالي للرولمانات والمفصلات والآلات.",
               "variants": [
                 {
                   "label": ""
