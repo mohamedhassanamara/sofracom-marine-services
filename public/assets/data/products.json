@@ -387,18 +387,12 @@
             "noir",
             "black"
           ],
-          "price": 0,
+          "price": 1425,
           "stock": "on-order",
           "images": [
             "assets/products/20251113_140442-2-mhxnqwac.png"
           ],
-          "variants": [
-            {
-              "label": "05L",
-              "price": 1425,
-              "stock": "on-order"
-            }
-          ],
+          "variants": [],
           "datasheet": "assets/datasheets/seajet_039_platinum_mono-component-tds-english-consumer-mhxns6pa.pdf",
           "image": "assets/products/20251113_140442-2-mhxnqwac.png",
           "translations": {
