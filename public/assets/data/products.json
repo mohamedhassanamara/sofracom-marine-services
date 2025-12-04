@@ -476,6 +476,35 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "EURO MASTER 400ml EU-063 Zinc Spray",
+          "image": "assets/products/20251204_175734-mirotu7n.png",
+          "description": "It is a galvanic paint providing cathodic protection to the iron-based surfaces and containing 96% pure zinc particles in dry film. It is ideal for repairing damaged or hot-dip applied galvanized materials. DANGER: H222 Extremely flammable aerosol. H229 Pressurised container: May burst if heated. H280 Contains gas under pressure; may explode if heated. H304 May be fatal if swallowed and enters airways. H315 Causes skin irritation. H319 Causes serious eye irritation. H336 May cause drowsiness or dizziness. P102 Keep out of reach of children. P210 Keep away from heat/sparks/open flames/hot surfaces. — No smoking. P211 Do not spray on an open flame or other ignition source. P251 Pressurized container: Do not pierce or burn, even after use. P261 Avoid breathing dust/fume/gas/mist/ vapours/ spray. P271 Use only outdoors or in a well-ventilated area. P280 Wear protective gloves/protective clothing/eye protection/face protection. P301 + P310",
+          "brand": "EURO MASTER",
+          "usage": [
+            "Euromaster",
+            "zinc"
+          ],
+          "price": 12.337,
+          "stock": "in",
+          "images": [
+            "assets/products/20251204_175734-mirotu7n.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Pompe de 400ml de Zinc",
+              "description": "C’est une peinture galvanique offrant une protection cathodique aux surfaces à base de fer et contenant 96 % de particules de zinc pur dans le film sec. Elle est idéale pour réparer les matériaux galvanisés endommagés ou galvanisés à chaud.\nDANGER : H222 Aérosol extrêmement inflammable. H229 Récipient sous pression : peut éclater sous l’effet de la chaleur. H280 Contient un gaz sous pression ; peut exploser sous l’effet de la chaleur. H304 Peut être mortel en cas d’ingestion et de pénétration dans les voies respiratoires. H315 Provoque une irritation cutanée. H319 Provoque une sévère irritation des yeux. H336 Peut provoquer somnolence ou vertiges.\nP102 Tenir hors de portée des enfants. P210 Tenir à l’écart de la chaleur/des étincelles/des flammes nues/des surfaces chaudes — Ne pas fumer. P211 Ne pas vaporiser sur une flamme nue ou toute autre source d’ignition. P251 Récipient sous pression : ne pas perforer ni brûler, même après usage. P261 Éviter de respirer les poussières/fumées/gaz/brouillards/vapeurs/aérosols. P271 Utiliser seulement en plein air ou dans un endroit bien ventilé. P280 Porter des gants de protection/des vêtements de protection/une protection oculaire/une protection du visage.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
