@@ -26,12 +26,16 @@ const formatPrice = value => {
 };
 
 function ProductCard({ product, categorySlug, onAdd }) {
-    const [variantIndex, setVariantIndex] = useState(0);
+    const variants = Array.isArray(product.variants) ? product.variants : [];
+    const selectDefaultVariant = () => {
+        const inStockIndex = variants.findIndex(variant => variant.stock === 'in');
+        return inStockIndex >= 0 ? inStockIndex : 0;
+    };
+    const [variantIndex, setVariantIndex] = useState(selectDefaultVariant);
     const [showFull, setShowFull] = useState(false);
     const description = product.description || '';
     const isLongDescription = description.length > 140;
     const previewDescription = description.slice(0, 140);
-    const variants = Array.isArray(product.variants) ? product.variants : [];
     const selectedVariant = variants[variantIndex] || null;
     const priceLabel = formatPrice(selectedVariant?.price ?? product.price ?? 0);
     const effectiveStock = selectedVariant?.stock ?? product.stock ?? 'in';

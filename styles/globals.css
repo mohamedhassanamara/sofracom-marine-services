@@ -599,12 +599,16 @@ footer.site-footer a {
     width: 100%;
     border: 1px solid rgba(15, 32, 80, 0.25);
     border-radius: 0.65rem;
-    padding: 0.55rem 0.75rem;
+    padding: 0.55rem 1rem 0.55rem 0.75rem;
     font-size: 0.95rem;
     font-family: inherit;
     background: #fff;
     color: #0b1f3a;
     appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 7'%3e%3cpath d='M1 1l5 5 5-5' fill='none' stroke='%23343c50' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 0.8rem 0.5rem;
 }
 
 .product-actions a:hover,
