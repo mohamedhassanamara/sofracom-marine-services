@@ -5752,6 +5752,38 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "BOSCH GBH 220 Professional Rotary Hammer with SDS plus",
+          "image": "assets/products/o339316v54_gbh_220_full_execution_1619p16150b-miyt1hxb.webp",
+          "description": "Compact rotary hammer offers professional Bosch hammer performance within reach\nPowerful 720 W motor and 2.0 J of impact energy for effective hammer drilling in concrete (up to 22-mm diameter)\nThree-mode rotary hammer for hammer drilling, drilling, and chiselling – ensuring versatility and convincing results",
+          "brand": "BOSCH",
+          "usage": [
+            "BOSCH",
+            "marteau perforateur",
+            "rotary hammer",
+            "sds plus",
+            "GBH 220"
+          ],
+          "price": 354.217,
+          "stock": "in",
+          "images": [
+            "assets/products/o339316v54_gbh_220_full_execution_1619p16150b-miyt1hxb.webp"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Marteau Perforateur  BOSCH GBM 400 Professional ",
+              "description": "Marteau perforateur compact offrant des performances professionnelles Bosch à portée de main\nMoteur puissant de 720 W et énergie d’impact de 2,0 J pour un perçage efficace du béton (jusqu’à 22 mm de diamètre)\nMarteau perforateur à trois modes pour le perforage, le perçage et le burinage – garantissant polyvalence et résultats convaincants",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ]
     }
