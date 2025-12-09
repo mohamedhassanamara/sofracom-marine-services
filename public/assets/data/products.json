@@ -5792,7 +5792,8 @@
           "brand": "BOSCH",
           "usage": [
             "BOSCH",
-            "perceuse à percussion"
+            "perceuse à percussion",
+            "drill"
           ],
           "price": 273.929,
           "stock": "in",
@@ -5836,6 +5837,38 @@
             "fr": {
               "title": "Ponceuse vibrante BOSCH GSS 140  Professional",
               "description": "Taux d’enlèvement de matière élevé grâce au puissant moteur 220 W\nMoins de fatigue, même en cas de ponçage en hauteur grâce aux différentes possibilités de préhension\nMoins de fourmillements dans les mains grâce à un taux de vibrations très bas (jusqu’à 3,4 m/s2)\nUn choix judicieux pour poncer du bois ou dérivés et du plâtre",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
+        },
+        {
+          "title": "BOSCH 115MM Angle Grinder GWS 700 Professional",
+          "image": "assets/products/20251209_171409-miyug50u.png",
+          "description": "Professional small angle grinder with a small grip size of 176 mm offers best ergonomics for low fatigue work\nFlat gear head offers good working progress even in narrow spaces\nCompact 700 W motor delivers best power-to-grip ratio for continuous use",
+          "brand": "BOSCH",
+          "usage": [
+            "BOSCH",
+            "angle grinder",
+            "115mm",
+            "meuleuse angulaire",
+            "GWS 700"
+          ],
+          "price": 134.099,
+          "stock": "in",
+          "images": [
+            "assets/products/20251209_171409-miyug50u.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Meuleuse angulaire 115MM BOSCH GWS 700 Professional",
+              "description": "Meuleuse angulaire professionnelle de 115 mm avec poignée fine de 176 mm de diamètre pour une ergonomie et un travail sans fatigue\nTête d’engrenage plate pour une progression de travail rapide même dans les endroits difficiles d’accès\nMoteur compact de 700 W avec très bon rapport diamètre de poignée/performance pour un usage intensif",
               "variants": []
             },
             "ar": {
