@@ -5784,6 +5784,35 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "BOSCH GSB 16 RE Professional Drill",
+          "image": "assets/products/o387549v54_gsb_16_re_hd_sos_060114e500_30_60_70-miyto7ho.webp",
+          "description": "750 W for fast work progress\nCompact design for optimal handling\nRobust metal housing for long service life",
+          "brand": "BOSCH",
+          "usage": [
+            "BOSCH",
+            "perceuse à percussion"
+          ],
+          "price": 273.929,
+          "stock": "in",
+          "images": [
+            "assets/products/o387549v54_gsb_16_re_hd_sos_060114e500_30_60_70-miyto7ho.webp"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Perceuse à percussion BOSCH GSB 16 RE Professional",
+              "description": "750 W pour une progression de travail rapide\nConception compacte pour une prise en main optimale\nCarter en métal robuste pour une grande longévité",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ]
     }
