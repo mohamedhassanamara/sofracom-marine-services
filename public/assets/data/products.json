@@ -5721,6 +5721,37 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "BOSCH Drill GSB 570W",
+          "image": "assets/products/20251209_171158-miysvfgk.png",
+          "description": "Robust motor for an efficient and powerful performance\nCompact and ergonomic tool for easy drilling - even in tight spaces\nHigh speed for efficient drilling and screw-driving in metal, plastic, and wood",
+          "brand": "BOSCH",
+          "usage": [
+            "BOSCH",
+            "drill",
+            "perceuse",
+            "GSB 570W"
+          ],
+          "price": 134.358,
+          "stock": "in",
+          "images": [
+            "assets/products/20251209_171158-miysvfgk.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Perceuse GSB 570W 13MM BOSH",
+              "description": "Moteur robuste pour des performances puissantes et efficaces\nOutil compact et ergonomique pour un perçage facile — même dans les espaces restreints\nVitesse élevée pour un perçage et un vissage efficaces dans le métal, le plastique et le bois",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ]
     }
