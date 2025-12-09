@@ -5662,7 +5662,38 @@
           "description": ""
         }
       },
-      "products": []
+      "products": [
+        {
+          "title": "FEMI Mitresaw With Upper Table 305S ",
+          "image": "assets/products/circulaire-miyr92lk.jpg",
+          "description": "Very sturdy and robust structure: great reliability and cutting precision\nMovement of the turning table entirely on bearings\nHead return system protected with anti-fall spring\nSheet metal frontal blade protection\nSilent 1400W induction motor\nCutting angle adjustable from 0° to 45° right and left\nBlade with Widia inserts\n\nAdjustable bar stop-rod for mass-produced cuts\nKey set\nSupplementary protection and wood pusher\nhttps://www.femi.it/en/femi/linea-taglio-legno-e-alluminio/troncatrici-circolari-legno-e-alluminio/305s/",
+          "brand": "FEMI",
+          "usage": [
+            "Scie a angle",
+            "mitresaw",
+            "FEMI"
+          ],
+          "price": 2477.057,
+          "stock": "in",
+          "images": [
+            "assets/products/circulaire-miyr92lk.jpg"
+          ],
+          "variants": [],
+          "datasheet": "assets/datasheets/6.90.14.75-troncatrici-280-280s-305s-3054w-revd-miyr99mu.pdf",
+          "translations": {
+            "fr": {
+              "title": "Scie A Angle 305 S Allum FEMI",
+              "description": "Structure très solide et robuste : grande fiabilité et précision de coupe\nRotation de la table entièrement sur roulements\nSystème de retour de tête protégé par un ressort anti-chute\nProtection frontale de la lame en tôle\nMoteur à induction silencieux de 1400 W\nAngle de coupe réglable de 0° à 45° à droite et à gauche\nLame équipée d’inserts en Widia\n\nButée réglable pour coupes en série\nJeu de clés\nProtection supplémentaire et poussoir en bois\nhttps://www.femi.it/en/femi/linea-taglio-legno-e-alluminio/troncatrici-circolari-legno-e-alluminio/305s/",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
+        }
+      ]
     }
   ]
 }
