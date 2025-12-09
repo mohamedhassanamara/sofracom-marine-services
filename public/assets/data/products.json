@@ -5692,6 +5692,35 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "FEMI TR1030 DB/A Radial Mitresaw With Dual Tilt",
+          "image": "assets/products/tr1030db-a-miyro3ei.jpg",
+          "description": "2000 Watt belt drive motor\nSturdy alu die cast side extensions bars with integrated unlock lever\nTelescopic cuts ideal for very large panel\nTurning table with automatic locking device at 0°-15°-22.30°-30°-45° angle adjustment\nPre-arranged cutting angle at 33°\nDouble inclination for compound and combined cuts from 0° up to 45° right and left\nLaser and light devices included in the handle\nRight and left support bases with scale indication\nSturdy alu die cast vertical clamp \nVertical and frontal clamp\nDust bag collector\nKeys set\nMotor brushes set\nhttps://www.femi.it/en/job-line/linea-lavorazione-legno/troncatrici-circolari-legno/tr1030-db-a/",
+          "brand": "FEMI",
+          "usage": [
+            "scie a angle",
+            "FEMI"
+          ],
+          "price": 1381.029,
+          "stock": "in",
+          "images": [
+            "assets/products/tr1030db-a-miyro3ei.jpg"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "SCIE A ANGLE RADIALE TR 1030 DB/A FEMI",
+              "description": "Moteur de 2000 Watts à entraînement par courroie\nBarres d’extension latérales en aluminium moulé robuste avec levier de déverrouillage intégré\nCoupes télescopiques idéales pour les panneaux de très grande taille\nTable tournante avec dispositif de verrouillage automatique aux angles 0°–15°–22,30°–30°–45°\nAngle de coupe pré-réglé à 33°\nDouble inclinaison pour coupes composées et combinées de 0° jusqu’à 45° à droite et à gauche\nLaser et éclairage intégrés dans la poignée\nSupports droit et gauche avec indication graduée\nPresse verticale robuste en aluminium moulé\nPresse verticale et frontale\nSac collecteur de poussières\nJeu de clés\nJeu de charbons moteur\nhttps://www.femi.it/en/job-line/linea-lavorazione-legno/troncatrici-circolari-legno/tr1030-db-a/",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ]
     }
