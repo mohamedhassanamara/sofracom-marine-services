@@ -5878,6 +5878,70 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "BOSCH 115MM Angle Grinder GWS 9-125 Professional",
+          "image": "assets/products/20251209_184140-miyvh25w.png",
+          "description": "Fast work progress with the strong 900 W motor of the small angle grinder\nPerfect working results in a variety of materials thanks to the speed selection\nSmall grip size and ergonomic design for optimal tool control",
+          "brand": "BOSCH",
+          "usage": [
+            "BOSCH",
+            "angle grinder",
+            "115mm",
+            "meuleuse angulaire",
+            "GWS 9-125"
+          ],
+          "price": 324.22,
+          "stock": "in",
+          "images": [
+            "assets/products/20251209_184140-miyvh25w.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Meuleuse angulaire 115MM BOSCH GWS 9-125 S Professional",
+              "description": "Parfaite maîtrise de l’outil grâce à la faible circonférence et à la conception ergonomique\nMeuleuse angulaire 125 mm avec puissant moteur de 900 W pour une progression de travail rapide\nPrésélection de vitesse pour des résultats parfaits dans une grande variété de matériaux",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
+        },
+        {
+          "title": "BOSCH 115MM Angle Grinder GWS 750-115 Professional",
+          "image": "assets/products/meuleuse-angulaire-115mm-bosch-gws-750-115-professional-miyvkxgf.png",
+          "description": "Fast work progress with the strong 750 W motor of the small angle grinder\nPerfect working results in a variety of materials thanks to the speed selection\nSmall grip size and ergonomic design for optimal tool control",
+          "brand": "BOSCH",
+          "usage": [
+            "BOSCH",
+            "angle grinder",
+            "115mm",
+            "meuleuse angulaire",
+            "GWS 750-115"
+          ],
+          "price": 238.947,
+          "stock": "in",
+          "images": [
+            "assets/products/meuleuse-angulaire-115mm-bosch-gws-750-115-professional-miyvkxgf.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Meuleuse angulaire 115MM BOSCH GWS 750-115 Professional",
+              "description": "Parfaite maîtrise de l’outil grâce à la faible circonférence et à la conception ergonomique\nMeuleuse angulaire 125 mm avec puissant moteur de 900 W pour une progression de travail rapide\nPrésélection de vitesse pour des résultats parfaits dans une grande variété de matériaux",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ]
     }
