@@ -5646,6 +5646,23 @@
           "description": "أدوات أساسية يستعملها أصحاب القوارب يوميًا."
         }
       }
+    },
+    {
+      "name": "Power Tools",
+      "slug": "new-category",
+      "image": "assets/categories/chatgpt-image-nov-13-2025-02_31_01-pm-miyqfiy6.png",
+      "description": "",
+      "translations": {
+        "fr": {
+          "name": "Electroportatifs",
+          "description": ""
+        },
+        "ar": {
+          "name": "",
+          "description": ""
+        }
+      },
+      "products": []
     }
   ]
 }
