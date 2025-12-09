@@ -5813,6 +5813,37 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "BOSCH Orbital Sander GSS 140 Professional",
+          "image": "assets/products/20251209_171444-miyu0pso.png",
+          "description": "High material removal rate thanks to powerful 220W motor\nLess fatigue, even when sanding overhead, with multi-grip options\nReduced hand numbness thanks to very low vibration value up to 3.4 m/s2\nThe preferred choice for sanding wood, wood materials, and plaster",
+          "brand": "BOSCH",
+          "usage": [
+            "BOSCH",
+            "ponceuse vibrante",
+            "orbital sander",
+            "GSS 140"
+          ],
+          "price": 143.283,
+          "stock": "in",
+          "images": [
+            "assets/products/20251209_171444-miyu0pso.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Ponceuse vibrante BOSCH GSS 140  Professional",
+              "description": "Taux d’enlèvement de matière élevé grâce au puissant moteur 220 W\nMoins de fatigue, même en cas de ponçage en hauteur grâce aux différentes possibilités de préhension\nMoins de fourmillements dans les mains grâce à un taux de vibrations très bas (jusqu’à 3,4 m/s2)\nUn choix judicieux pour poncer du bois ou dérivés et du plâtre",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ]
     }
