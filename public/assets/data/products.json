@@ -5974,6 +5974,37 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "BOSCH Laser Measure 0.15m-20m GLM professional",
+          "image": "assets/products/20251209_171300-mj08b4i5.png",
+          "description": "One button for everything – intuitive and easy measuring\nCompact – easily fits into any pocket\n",
+          "brand": "BOSCH",
+          "usage": [
+            "BOSCH",
+            "laser measure",
+            "télémètre",
+            "GLM20"
+          ],
+          "price": 123.408,
+          "stock": "in",
+          "images": [
+            "assets/products/20251209_171300-mj08b4i5.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Télémètre Laser 0.15m-20m GLM professional BOSCH",
+              "description": "Un seul bouton pour tout : utilisation intuitive et simple\nCompact : tient dans chaque poche de pantalon",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ]
     }
