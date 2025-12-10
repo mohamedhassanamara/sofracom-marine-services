@@ -4132,7 +4132,7 @@
             },
             "ar": {
               "title": "DS كماشة شاملة 7\"",
-              "description": "توفر كماشة DS الشاملة مقاس 7\" إمساكًا وقطعًا وثنيًا للأسلاك والقطع الصغيرة.\nفكوك فولاذية صلبة لضمان القوة والمتانة والدقة.\nمقابض معزولة ومريحة للاستخدام الطويل بأمان.\nمثالية للكهربائيين والفنيين والمهنيين.",
+              "description": "توفر كماشة DS الش��ملة مقاس 7\" إمساكًا وقطعًا وثنيًا للأسلاك والقطع الصغيرة.\nفكوك فولاذية صلبة لضمان القوة والمتانة والدقة.\nمقابض معزولة ومريحة للاستخدام الطويل بأمان.\nمثالية للكهربائيين والفنيين والمهنيين.",
               "variants": []
             }
           }
@@ -5997,6 +5997,37 @@
             "fr": {
               "title": "Télémètre Laser 0.15m-20m GLM professional BOSCH",
               "description": "Un seul bouton pour tout : utilisation intuitive et simple\nCompact : tient dans chaque poche de pantalon",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
+        },
+        {
+          "title": "BOSCH Planer GHO 700 Professional ",
+          "image": "assets/products/20251210_173938-mj08omwb.png",
+          "description": "Smooth and flat finish enabled by consistent depth control mechanism and precisely machined flat aluminium base\nControlled planing due to compact design and optimised centre of gravity for steady planing\nEliminates wood chip blockage via improved airflow design and providing flexibility to discard wood chips from either right or left side",
+          "brand": "BOSCH",
+          "usage": [
+            "BOSCH",
+            "planer",
+            "rabot",
+            "GHO 700"
+          ],
+          "price": 403.707,
+          "stock": "in",
+          "images": [
+            "assets/products/20251210_173938-mj08omwb.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Rabot GHO 700 Professional BOSCH",
+              "description": "Génère des surfaces planes et lisses grâce au mécanisme de profondeur de passe précis et à la semelle en aluminium à grande précision d’usinage\nMaîtrise parfaite et résultats homogènes grâce à la forme compacte et à la position optimisée du centre de gravité\nPlus de risque de blocage par des copeaux de bois grâce à la circulation d’air améliorée et éjection possible des copeaux du côté gauche ou du côté droit pour une flexibilité maximale",
               "variants": []
             },
             "ar": {
