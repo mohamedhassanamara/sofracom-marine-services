@@ -505,6 +505,38 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "INTERNATIONAL Gray Trilux Prop-O-Drev",
+          "image": "assets/products/20251210_155234-mj05v3hw.png",
+          "description": "Trilux Prop­O­Drev . is a hard antifouling that is specially formulated for use on outdrives, outboard legs, propellers and sterngear. \n* Aerosol spray is ideal for painting awkward shapes and difficult to reach areas. \n* Quick and easy application saves you time and effort. \n* Suitable for use on aluminium and stainless steel.",
+          "brand": "INTERNATIONAL",
+          "usage": [
+            "INTERNATIONAL",
+            "Trilux Prop-O-Drev",
+            "antifouling",
+            "spray",
+            "gray"
+          ],
+          "price": 95.232,
+          "stock": "in",
+          "images": [
+            "assets/products/20251210_155234-mj05v3hw.png"
+          ],
+          "variants": [],
+          "datasheet": "assets/datasheets/trilux_prop_o_drev_fre_a4_20110802-mj06462u.pdf",
+          "translations": {
+            "fr": {
+              "title": "Trilux Prop-O-Drev Gris",
+              "description": "Trilux Prop-O-Drev . est un antifouling à matrice dure particulièrement adapté pour une utilisation sur embases, hors-bords, hélices et arbres.\n* L'aérosol est idéal pour peindre les surfaces de formes complexes ou les zones difficilement accessibles.\n* Application simple et facile permettant gain de temps et d'effort.\n* Utilisable sur aluminium et acier inoxydable. ",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
