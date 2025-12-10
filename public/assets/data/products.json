@@ -6067,6 +6067,39 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "CROWN CT13394 Rotary Sander 240W, 24000MIN, Sanding Plate 125mm",
+          "image": "assets/products/20251210_175719-mj0a43im.png",
+          "description": "The CROWN CT13394 Rotary Sander delivers efficient sanding performance with its 240W motor and rapid 24,000 min⁻¹ speed. Equipped with a 125 mm sanding plate, it ensures smooth, consistent finishes on wood, metal, and painted surfaces. Lightweight and easy to handle, it reduces fatigue during prolonged use. Ideal for both DIY enthusiasts and professionals seeking reliable, high-quality surface preparation.",
+          "brand": "",
+          "usage": [
+            "ponceuse",
+            "rotary sander",
+            "240w",
+            "CT13394",
+            "125mm"
+          ],
+          "price": 154.6,
+          "stock": "in",
+          "images": [
+            "assets/products/20251210_175719-mj0a43im.png",
+            "assets/products/20251210_175756-mj0a472w.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "PONCEUSE EXENTRIQUE ELECTR 125MM 240W CROWN",
+              "description": "La ponceuse rotative CROWN CT13394 offre une performance de ponçage efficace grâce à son moteur de 240 W et sa vitesse élevée de 24 000 min⁻¹. Dotée d’un plateau de ponçage de 125 mm, elle garantit des finitions lisses et régulières sur le bois, le métal et les surfaces peintes. Légère et maniable, elle réduit la fatigue lors d’une utilisation prolongée. Idéale pour les bricoleurs comme pour les professionnels recherchant une préparation de surface fiable et de haute qualité.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ]
     }
