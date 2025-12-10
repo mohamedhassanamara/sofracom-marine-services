@@ -6036,6 +6036,37 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "BOSCH Jigsaw GST 650 Professional ",
+          "image": "assets/products/20251210_175601-mj09k3qt.png",
+          "description": "Faster and more precise cutting experience with powerful 450 W motor\nAdjustable speed for different materials with the pre-selection speed wheel\nExcellent cutting experience with the ergonomic handle design using soft rubber\nEasy cutting in solid wood, metal, and other materials with this powerful corded jigsaw",
+          "brand": "BOSCH",
+          "usage": [
+            "BOSCH",
+            "Scie Sauteuse",
+            "jigsaw",
+            "GST 680"
+          ],
+          "price": 136.283,
+          "stock": "in",
+          "images": [
+            "assets/products/20251210_175601-mj09k3qt.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Scie Sauteuse GST 680 Professional BOSCH",
+              "description": "Coupes plus rapides et encore plus précises grâce au moteur de 450 W\nVitesse adaptable à la nature du matériau grâce à la molette de présélection de vitesse\nExcellent confort d’utilisation grâce à la poignée ergonomique softgrip\nPuissante scie sauteuse filaire conçue pour des coupes faciles dans le bois massif, le métal et d’autres matériaux",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ]
     }
