@@ -5682,7 +5682,8 @@
           "stock": "in",
           "images": [
             "assets/products/20251210_175909-mj2susf0.png",
-            "assets/products/20251212_124147-mj2swr64.png"
+            "assets/products/20251212_124147-mj2swr64.png",
+            "assets/products/20251212_124206-mj2u5slm.png"
           ],
           "variants": [],
           "datasheet": "",
@@ -5690,6 +5691,40 @@
             "fr": {
               "title": "Lampe à Souder Piezo Réf. G8200",
               "description": "Une lampe à souder ergonomique et simple d’utilisation !\n\nLa lampe à souder multi usages Galaxy By Express Réf. G8200 est un produit conçu pour la brasure cuivre et brasure étain. Elle représente à ce jour le meilleur rapport qualité/Prix du moment.\n\nCette lampe à souder possède une grande autonomie (> 1h15 mn) ainsi qu’une poignée ergonomique pour une meilleure prise en main de la lampe à souder par le professionnel. Elle dispose de plus d’un allumage automatique piezo.\n\nEn optant pour cet appareil Galaxy By Express, vous êtes assuré d’avoir un produit de qualité, d’une grande fiabilité et à un prix canon !",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
+        },
+        {
+          "title": "IDEALGAS Camping Lamp With Disposable Cartridges",
+          "image": "assets/products/20251212_125540-mj2tvue0.png",
+          "description": "The IDEALGAS Camping Lamp with Disposable Cartridges provides bright, reliable illumination for all your outdoor adventures. Designed for convenience, it operates using easy-to-replace gas cartridges, ensuring continuous lighting whenever needed. Its durable build and stable flame make it perfect for camping, hiking, fishing, or emergency use. Compact and portable, it delivers safe and efficient lighting wherever your journey takes you.",
+          "brand": "IDEALGAS",
+          "usage": [
+            "IDEALGAS",
+            "camping stove",
+            "réchaud"
+          ],
+          "price": 81.932,
+          "stock": "in",
+          "images": [
+            "assets/products/20251212_125540-mj2tvue0.png",
+            "assets/products/20251212_125557-mj2tyxio.png",
+            "assets/products/20251212_125853-mj2u4us5.png",
+            "assets/products/20251212_125908-mj2u88c6.png",
+            "assets/products/20251212_125916-mj2u8swb.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Réchaud De Camping a Cartouches Jetables IDEALGAS",
+              "description": "La lampe de camping IDEALGAS avec cartouches jetables offre un éclairage puissant et fiable pour toutes vos activités en plein air. Conçue pour la simplicité, elle fonctionne avec des cartouches de gaz faciles à remplacer, garantissant un éclairage continu à tout moment. Sa construction robuste et sa flamme stable en font un choix idéal pour le camping, la randonnée, la pêche ou les situations d'urgence. Compacte et portable, elle assure un éclairage sûr et efficace où que vous alliez.",
               "variants": []
             },
             "ar": {
