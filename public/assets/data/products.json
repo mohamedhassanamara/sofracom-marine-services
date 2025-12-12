@@ -5666,6 +5666,38 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "EXPRESS Multifunction Lamp Cat. No. G8200",
+          "image": "assets/products/20251210_175909-mj2susf0.png",
+          "description": "The multifunction blowlamp Cat. No. G8200, designed for copper brazing and tin brazing, represents what is more practical and easier to use in the brazing torch category.\n\nThis blowlamp has a great autonomy (> 1h15 mn) as well as an ergonomic handle giving the professional a better grip on the blowlamp.\n\nBy choosing this product Galaxy By Express from the Express brand, you are guaranteed to have a quality and high reliability product.",
+          "brand": "EXPRESS",
+          "usage": [
+            "EXPRESS",
+            "Lampe",
+            "lamp",
+            "G8200"
+          ],
+          "price": 60.13,
+          "stock": "in",
+          "images": [
+            "assets/products/20251210_175909-mj2susf0.png",
+            "assets/products/20251212_124147-mj2swr64.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Lampe à Souder Piezo Réf. G8200",
+              "description": "Une lampe à souder ergonomique et simple d’utilisation !\n\nLa lampe à souder multi usages Galaxy By Express Réf. G8200 est un produit conçu pour la brasure cuivre et brasure étain. Elle représente à ce jour le meilleur rapport qualité/Prix du moment.\n\nCette lampe à souder possède une grande autonomie (> 1h15 mn) ainsi qu’une poignée ergonomique pour une meilleure prise en main de la lampe à souder par le professionnel. Elle dispose de plus d’un allumage automatique piezo.\n\nEn optant pour cet appareil Galaxy By Express, vous êtes assuré d’avoir un produit de qualité, d’une grande fiabilité et à un prix canon !",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
