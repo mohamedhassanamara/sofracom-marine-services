@@ -6134,6 +6134,39 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "APT Circular Saw 1200W 185mm",
+          "image": "assets/products/20251210_180204-mj2rnbfb.png",
+          "description": "The APT Circular Saw 1200W delivers powerful cutting performance for wood, boards, and construction materials with ease and precision. Its 185mm blade ensures deep, clean cuts, making it ideal for both professional and DIY applications. Designed with ergonomic handling and optimal balance, it offers superior control and comfort during long tasks. A dependable tool built for accuracy, efficiency, and everyday durability.",
+          "brand": "APT",
+          "usage": [
+            "scie circulaire",
+            "circular saw",
+            "APT",
+            "1200w",
+            "185mm"
+          ],
+          "price": 215.036,
+          "stock": "in",
+          "images": [
+            "assets/products/20251210_180204-mj2rnbfb.png",
+            "assets/products/20251210_180215-2-mj2rrah7.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Scie Circulaire 1200W 185mm APT",
+              "description": "La scie circulaire APT 1200W offre une puissance de coupe élevée pour travailler le bois, les panneaux et les matériaux de construction avec précision et facilité. Sa lame de 185 mm garantit des coupes profondes et nettes, idéale pour les usages professionnels comme pour le bricolage. Conçue avec une ergonomie soignée et un excellent équilibre, elle assure contrôle et confort même lors des travaux prolongés. Un outil fiable, précis et performant pour une utilisation quotidienne.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ]
     }
