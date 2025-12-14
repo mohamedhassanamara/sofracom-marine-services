@@ -580,6 +580,49 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "SELEMIX 01Kg 7-120 2K Acrylic Paint",
+          "image": "assets/products/cb8e77f1-ce57-4670-bb5d-66a81f156791-mj5ige9b.png",
+          "description": "SELEMIX 7-120 2K Acrylic Paint (01 Kg) delivers a premium, durable finish for automotive and industrial applications. Its two-component acrylic formula ensures excellent adhesion, fast drying, and long-lasting color and gloss retention. Designed for professional use, it provides a smooth, high-quality surface with strong resistance to weathering and chemicals. An ideal coating solution for precise, reliable, and long-term results.",
+          "brand": "SELEMIX",
+          "usage": [
+            "SELEMIX",
+            "acrylique",
+            "acrylic",
+            "2K",
+            "7-120"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/cb8e77f1-ce57-4670-bb5d-66a81f156791-mj5ige9b.png"
+          ],
+          "variants": [
+            {
+              "label": "White",
+              "price": 65,
+              "stock": "in"
+            },
+            {
+              "label": "Colored",
+              "price": 85,
+              "stock": "in"
+            }
+          ],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "01 Kg Peinture Acrylique 7-120 2k SELEMIX",
+              "description": "La peinture acrylique 2K SELEMIX 7-120 (01 kg) offre une finition haut de gamme et durable pour les applications automobiles et industrielles. Sa formulation bi-composant garantit une excellente adhérence, un séchage rapide et une conservation durable de la couleur et de la brillance. Conçue pour un usage professionnel, elle assure une surface lisse et de haute qualité avec une forte résistance aux intempéries et aux produits chimiques. Une solution de revêtement idéale pour des résultats précis, fiables et durables.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
@@ -4145,7 +4188,7 @@
             },
             "ar": {
               "title": "DS كماشة نجار 9\" مع مقبض",
-              "description": "توفر كماشة النجار DS مقاس 9\" قطعًا وسحبًا وإمساكًا دقيقًا لأعمال ��لنجارة والبناء.\nفكوكها الصلبة تتيح قطع المسامير والأسلاك والمثبتات الصغيرة بسهولة.\nمقبض مريح يوفر تحكمًا ممتازًا.\nمثالية للحرفيين والنجارين والـDIY.",
+              "description": "توفر كماشة النجار DS مقاس 9\" قطعًا وسحبًا وإمساكًا دقيقًا لأعمال النجارة والبناء.\nفكوكها الصلبة تتيح قطع المسامير والأسلاك والمثبتات الصغيرة بسهولة.\nمقبض مريح يوفر تحكمًا ممتازًا.\nمثالية للحرفيين والنجارين والـDIY.",
               "variants": []
             }
           }
