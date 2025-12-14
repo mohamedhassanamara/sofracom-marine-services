@@ -709,6 +709,49 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "ENVIPAINT 1/2L Polyurethane Hardener",
+          "image": "assets/products/20251214_112912-mj5m7hzj.png",
+          "description": "ENVIPAINT Polyurethane Hardener 1/2 L is a high-quality curing agent designed to enhance the performance and durability of polyurethane coatings. It ensures proper cross-linking, improving adhesion, hardness, and resistance to chemicals and weathering. Easy to mix and apply, it delivers consistent, professional results in automotive and industrial applications. An essential component for achieving strong, long-lasting polyurethane finishes.",
+          "brand": "ENVIPAINT",
+          "usage": [
+            "ENVIPAINT",
+            "Polyurethane",
+            "Hardener",
+            "polyuréthane",
+            "durcisseur"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251214_112912-mj5m7hzj.png"
+          ],
+          "variants": [
+            {
+              "label": "1/4L",
+              "price": 8.68,
+              "stock": "in"
+            },
+            {
+              "label": "1/2L",
+              "price": 15.667,
+              "stock": "in"
+            }
+          ],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Durcisseur Polyuréthane ENVIPAINT ",
+              "description": "Le durcisseur polyuréthane ENVIPAINT 1/2 L est un agent de polymérisation de haute qualité conçu pour améliorer les performances et la durabilité des revêtements polyuréthane. Il assure une réticulation optimale, renforçant l’adhérence, la dureté et la résistance aux produits chimiques et aux intempéries. Facile à mélanger et à appliquer, il garantit des résultats professionnels constants dans les applications automobiles et industrielles. Un composant essentiel pour obtenir des finitions polyuréthane solides et durables.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
