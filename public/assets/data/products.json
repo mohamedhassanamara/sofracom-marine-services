@@ -567,7 +567,7 @@
               "stock": "in"
             }
           ],
-          "datasheet": "",
+          "datasheet": "assets/datasheets/7-510-mj5kip4v.pdf",
           "translations": {
             "fr": {
               "title": "01Kg Peinture Polyuréthane 7-510 2k  SELEMIX",
@@ -610,11 +610,54 @@
               "stock": "in"
             }
           ],
-          "datasheet": "",
+          "datasheet": "assets/datasheets/7-120-mj5khued.pdf",
           "translations": {
             "fr": {
               "title": "01 Kg Peinture Acrylique 7-120 2k SELEMIX",
               "description": "La peinture acrylique 2K SELEMIX 7-120 (01 kg) offre une finition haut de gamme et durable pour les applications automobiles et industrielles. Sa formulation bi-composant garantit une excellente adhérence, un séchage rapide et une conservation durable de la couleur et de la brillance. Conçue pour un usage professionnel, elle assure une surface lisse et de haute qualité avec une forte résistance aux intempéries et aux produits chimiques. Une solution de revêtement idéale pour des résultats précis, fiables et durables.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
+        },
+        {
+          "title": "SELEMIX 01Kg 7-410 2K Epoxy Paint",
+          "image": "assets/products/7095553c-4eb5-477f-866b-5cc96a91cfbf-mj5j7fnr.png",
+          "description": "SELEMIX 7-410 2K Epoxy Paint (01 Kg) provides exceptional protection and durability for industrial and heavy-duty applications. Its two-component epoxy formulation ensures excellent adhesion, high chemical resistance, and superior corrosion protection. Designed for professional use, it delivers a smooth, robust coating ideal for metal surfaces and demanding environments. A reliable solution for long-lasting performance and high-quality finishes.",
+          "brand": "SELEMIX",
+          "usage": [
+            "SELEMIX",
+            "époxy",
+            "epoxy",
+            "2K",
+            "7-410"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/7095553c-4eb5-477f-866b-5cc96a91cfbf-mj5j7fnr.png"
+          ],
+          "variants": [
+            {
+              "label": "White",
+              "price": 45,
+              "stock": "in"
+            },
+            {
+              "label": "Colored",
+              "price": 55,
+              "stock": "in"
+            }
+          ],
+          "datasheet": "assets/datasheets/showpdf-mj5kgmmd.pdf",
+          "translations": {
+            "fr": {
+              "title": "01 Kg Peinture Epoxy 7-410 2k SELEMIX",
+              "description": "La peinture époxy 2K SELEMIX 7-410 (01 kg) offre une protection exceptionnelle et une durabilité élevée pour les applications industrielles et intensives. Sa formulation bi-composant garantit une excellente adhérence, une forte résistance chimique et une protection supérieure contre la corrosion. Conçue pour un usage professionnel, elle assure un revêtement lisse et robuste, idéal pour les surfaces métalliques et les environnements exigeants. Une solution fiable pour une performance durable et des finitions de haute qualité.",
               "variants": []
             },
             "ar": {
