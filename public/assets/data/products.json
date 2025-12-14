@@ -795,6 +795,38 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "ENVIPAINT 1/2L Polyurethane Primer Hardener",
+          "image": "assets/products/20251214_121141-mj5mujfm.png",
+          "description": "ENVIPAINT Polyurethane Primer Hardener 1/2 L is a specialized curing agent designed to optimize the performance of polyurethane primer systems. It ensures proper cross-linking, improving adhesion, hardness, and surface uniformity before topcoat application. Easy to mix and apply, it delivers consistent, professional results in automotive and industrial coating processes. An essential component for achieving strong, durable, and high-quality primer finishes.",
+          "brand": "ENVIPAINT",
+          "usage": [
+            "ENVIPAINT",
+            "Polyurethane",
+            "Hardener",
+            "polyuréthane",
+            "durcisseur"
+          ],
+          "price": 14.913,
+          "stock": "in",
+          "images": [
+            "assets/products/20251214_121141-mj5mujfm.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Durcisseur pour Apprêt Polyuréthane ENVIPAINT 1/2 L",
+              "description": "Le durcisseur pour apprêt polyuréthane ENVIPAINT 1/2 L est un agent de polymérisation spécialement conçu pour optimiser les performances des systèmes d’apprêt polyuréthane. Il assure une réticulation efficace, améliorant l’adhérence, la dureté et l’uniformité de la surface avant l’application de la couche de finition. Facile à mélanger et à appliquer, il garantit des résultats professionnels constants dans les applications automobiles et industrielles. Un composant essentiel pour obtenir des apprêts solides, durables et de haute qualité.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
