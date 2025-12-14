@@ -970,6 +970,54 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "SOTACH 2K Polyurethane Varnish, Glossy & Mat",
+          "image": "assets/products/20251120_152857-mj5px1ro.png",
+          "description": "Designation: This is a 2-component finishing varnish (Polyurethane or Acrylic), high-performance for interior and exterior use.\nUse: This is a highly filling varnish, suitable for protection and decoration of furniture, furnishings, store fittings, office furniture…\n\nProperties:\n\nFast drying\n\nSmooth, hard, and durable finish\n\nExcellent physical and chemical resistance\n\nEasy application\n\nCharacteristics:\n\nFinish: MAT or GLOSS depending on customer choice\n\nMixing density: 0.93\n\nDelivery viscosity: 60 sec CAFN No. 4 at 20°C\n\nNumber of components: 2\n\nMixing ratio: 75/25\n\nTheoretical yield: 9 to 11 m²/kg\n\nDrying time at 20°C:\n\nDust-free: 30 min\n\nTouch dry: 2 h\n\nHard: 4 h\n\nRecoatable: 6 h\n\nApplication: Only on a Polyurethane or Acrylic base\n\nSpray gun: dilute with PU/AC thinner by 15–25%.\nPreparation of the SOTACH 2K varnish:\n\nPU/AC primer: 750 parts\n\nHardener: 250 parts\n\nPU/AC thinner: 250 parts\n\nPot life: 2 hours\n\nStorage: 12 months in a closed container at 20°C\n\nPackaging: 0.750 kg + 0.250 kg hardener, 3 kg + 1 kg hardener, and 18 kg + 6 kg hardener",
+          "brand": "SOTACH",
+          "usage": [
+            "SOTACH",
+            "2K Polyurethane",
+            "Varnish",
+            "Glossy",
+            "Mat",
+            "Mate",
+            "Brillant",
+            "Vernis",
+            "PU"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251120_152857-mj5px1ro.png",
+            "assets/products/20251120_152948-mj5px6h0.png"
+          ],
+          "variants": [
+            {
+              "label": "Glossy",
+              "price": 34.124,
+              "stock": "in"
+            },
+            {
+              "label": "Mat",
+              "price": 28.639,
+              "stock": "in"
+            }
+          ],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Vernis Polyuréthanne 2k SOTACH",
+              "description": "Désignation: C’est un vernis pour finition à 2 composants (Polyuréthanne ou Acrylique), de haute performance en intérieur et en extérieur. \nDestination : C’est un vernis très garnissant, peut être utilisé pour la protection et la décoration du meuble et Ameublement, Agencement de magasin, Mobilier de bureau…\n\nPropriétés :\n\nSéchage rapide.\nBel aspect tendu, dur et résistant.\nExcellente résistance physique et chimique.\nApplication facile.\nCaractéristiques :\n\nAspect : MAT ou BRILLANT suivant choix du client\nDensité de mélange : 0.93\nViscosité de livraison : 60 sec CAFN N° 4 à 20° C.\nNombre de composantes : 2\nRapport de mélange : 75/25\nRendement théorique 9 à 11 m2/ kg\nTemps de séchage à 20°C\nhors poussière : 30 min\nsec : 2 H\ndur : 4 H\nRecouvrable : 6 H\nApplication : Sur un fond Polyuréthane ou Acrylique seulement.\n\nPistolet pneumatique : diluer au diluant (PU/ AC) de 15 à 25 %.\nLa préparation du vernis (2K) SOTACH doit être comme suit :\nAPPRET PU/AC : 750 parts.\nDurcisseur : 250 parts.\nDiluant PU/AC 250 parts.\nVie en pot : 2 heures.\nStockage : 12 mois en bidon fermé à 20° C.\n\nConditionnement : 0,750Kg + 0.250 Kg Durcisseur, 3Kg +1Kg Durcisseur et 18kg + 6Kg Durcisseur",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
@@ -1777,7 +1825,7 @@
         },
         "ar": {
           "name": "زيوت، فلاتر و بطّاريات",
-          "description": "زيوت محرّك��ت، فلاتر، و طاقة كهربائية موثوقة على متن القارب."
+          "description": "زيوت محرّكات، فلاتر، و طاقة كهربائية موثوقة على متن القارب."
         }
       }
     },
@@ -5800,7 +5848,7 @@
           "translations": {
             "fr": {
               "title": "Clé hexagonale DS en acier carbone, forme en L, bras long/court, six pans",
-              "description": "La clé six pans DS est fabriquée en acier carbone robuste, offrant un couple élevé et une performance durable pour les travaux mécaniques, d’assemblage et de maintenance. Son design en forme de L — disponible en version bras long ou court — assure un excellent effet de levier et un acc��s facile aux zones étroites. Les embouts usinés avec précision garantissent un ajustement sûr dans les vis hexagonales, réduisant l’usure et le glissement. Un outil fiable et indispensable pour les techniciens, mécaniciens et bricoleurs.",
+              "description": "La clé six pans DS est fabriquée en acier carbone robuste, offrant un couple élevé et une performance durable pour les travaux mécaniques, d’assemblage et de maintenance. Son design en forme de L — disponible en version bras long ou court — assure un excellent effet de levier et un accès facile aux zones étroites. Les embouts usinés avec précision garantissent un ajustement sûr dans les vis hexagonales, réduisant l’usure et le glissement. Un outil fiable et indispensable pour les techniciens, mécaniciens et bricoleurs.",
               "variants": []
             },
             "ar": {
