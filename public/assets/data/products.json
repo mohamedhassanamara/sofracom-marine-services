@@ -827,6 +827,49 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "ENVIPAINT Acrylic Thinner",
+          "image": "assets/products/20251214_121251-mj5n9mle.png",
+          "description": "ENVIPAINT Acrylic Thinner is specially formulated to ensure optimal viscosity and smooth application of acrylic paint systems. It improves flow, leveling, and sprayability, delivering a uniform, high-quality finish. Suitable for professional automotive and industrial use, it helps reduce defects and enhances overall coating performance. An essential thinner for achieving clean, precise, and professional acrylic results.",
+          "brand": "ENVIPAINT",
+          "usage": [
+            "ENVIPAINT",
+            "diluant",
+            "thinner",
+            "acrylic",
+            "acrylique"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251214_121251-mj5n9mle.png"
+          ],
+          "variants": [
+            {
+              "label": "1/2L",
+              "price": 7.488,
+              "stock": "in"
+            },
+            {
+              "label": "01L",
+              "price": 13.955,
+              "stock": "in"
+            }
+          ],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Diluant Acrylique ENVIPAINT",
+              "description": "Le diluant acrylique ENVIPAINT est spécialement formulé pour garantir une viscosité optimale et une application fluide des peintures acryliques. Il améliore l’étalement, la mise à niveau et la pulvérisation, assurant une finition uniforme et de haute qualité. Adapté à un usage professionnel automobile et industriel, il aide à réduire les défauts et à améliorer les performances du revêtement. Un diluant essentiel pour des résultats acryliques nets, précis et professionnels.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
