@@ -870,6 +870,38 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "ENVIPAINT 2K Polyurethane Primer ( Primer + Hardener)",
+          "image": "assets/products/20251214_123854-mj5nmorx.png",
+          "description": "ENVIPAINT 2K Polyurethane Primer (Primer + Hardener) delivers excellent adhesion and surface preparation for high-quality finishing systems. Its two-component formulation ensures strong bonding, uniform coverage, and enhanced durability on metal and other substrates. Designed for professional automotive and industrial applications, it provides a smooth, stable base for topcoats. A reliable primer system for long-lasting protection and superior finish results.",
+          "brand": "ENVIPAINT",
+          "usage": [
+            "ENVIPAINT",
+            "Polyurethane primer",
+            "Hardener",
+            "apprêt polyuréthane",
+            "durcisseur"
+          ],
+          "price": 36.414,
+          "stock": "in",
+          "images": [
+            "assets/products/20251214_123854-mj5nmorx.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Apprêt Polyuréthane 2K ENVIPAINT (Apprêt + Durcisseur)",
+              "description": "L’apprêt polyuréthane 2K ENVIPAINT (apprêt + durcisseur) assure une excellente adhérence et une préparation optimale des surfaces avant finition. Sa formulation bi-composant garantit un fort pouvoir d’accrochage, une couverture uniforme et une durabilité renforcée sur le métal et autres supports. Conçu pour les applications professionnelles automobiles et industrielles, il offre une base lisse et stable pour les couches de finition. Un système d’apprêt fiable pour une protection durable et des résultats de finition supérieurs.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
