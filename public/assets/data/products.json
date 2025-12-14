@@ -537,6 +537,49 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "SELEMIX 01Kg 7-510 2K Polyurethane Paint",
+          "image": "assets/products/74f0561d-c158-4638-86a0-f71a190bb5fc-mj5i8sfq.png",
+          "description": "SELEMIX 7-510 2K Polyurethane Paint (01 Kg) delivers a high-quality, durable finish for professional industrial and automotive applications. Its two-component formulation provides excellent adhesion, chemical resistance, and long-lasting color stability. Designed for easy application, it ensures a smooth, glossy surface with superior protection. A reliable coating solution for demanding environments and premium finishing results.",
+          "brand": "SELEMIX",
+          "usage": [
+            "SELEMIX",
+            "polyuréthane",
+            "Polyurethane",
+            "2K",
+            "7-510"
+          ],
+          "price": null,
+          "stock": "in",
+          "images": [
+            "assets/products/74f0561d-c158-4638-86a0-f71a190bb5fc-mj5i8sfq.png"
+          ],
+          "variants": [
+            {
+              "label": "White",
+              "price": 45,
+              "stock": "in"
+            },
+            {
+              "label": "colored",
+              "price": 55,
+              "stock": "in"
+            }
+          ],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "01Kg Peinture Polyuréthane 7-510 2k  SELEMIX",
+              "description": "La peinture polyuréthane 2K SELEMIX 7-510 (01 kg) offre une finition de haute qualité, durable et professionnelle pour les applications industrielles et automobiles. Sa formulation bi-composant garantit une excellente adhérence, une forte résistance chimique et une stabilité durable des couleurs. Conçue pour une application facile, elle assure une surface lisse et brillante avec une protection optimale. Une solution de revêtement fiable pour les environnements exigeants et les finitions haut de gamme.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
@@ -4102,7 +4145,7 @@
             },
             "ar": {
               "title": "DS كماشة نجار 9\" مع مقبض",
-              "description": "توفر كماشة النجار DS مقاس 9\" قطعًا وسحبًا وإمساكًا دقيقًا لأعمال النجارة والبناء.\nفكوكها الصلبة تتيح قطع المسامير والأسلاك والمثبتات الصغيرة بسهولة.\nمقبض مريح يوفر تحكمًا ممتازًا.\nمثالية للحرفيين والنجارين والـDIY.",
+              "description": "توفر كماشة النجار DS مقاس 9\" قطعًا وسحبًا وإمساكًا دقيقًا لأعمال ��لنجارة والبناء.\nفكوكها الصلبة تتيح قطع المسامير والأسلاك والمثبتات الصغيرة بسهولة.\nمقبض مريح يوفر تحكمًا ممتازًا.\nمثالية للحرفيين والنجارين والـDIY.",
               "variants": []
             }
           }
