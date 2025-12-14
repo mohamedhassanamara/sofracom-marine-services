@@ -752,6 +752,49 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "ENVIPAINT  Acrylic Hardener",
+          "image": "assets/products/durc-mj5mcixb.png",
+          "description": "ENVIPAINT Acrylic Hardener is a high-performance curing agent designed to optimize the strength and durability of acrylic paint systems. It ensures proper cross-linking, delivering excellent adhesion, fast curing, and long-lasting gloss retention. Suitable for professional automotive and industrial applications, it provides consistent and reliable results. An essential component for achieving high-quality, durable acrylic finishes.",
+          "brand": "ENVIPAINT",
+          "usage": [
+            "ENVIPAINT",
+            "Acrylic",
+            "Hardener",
+            "acrylique",
+            "durcisseur"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/durc-mj5mcixb.png"
+          ],
+          "variants": [
+            {
+              "label": "1/4L",
+              "price": 16.884,
+              "stock": "in"
+            },
+            {
+              "label": "1/25L",
+              "price": 28.466,
+              "stock": "in"
+            }
+          ],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Durcisseur Acrylique ENVIPAINT",
+              "description": "Le durcisseur acrylique ENVIPAINT est un agent de polymérisation haute performance conçu pour optimiser la solidité et la durabilité des systèmes de peinture acrylique. Il assure une réticulation efficace, offrant une excellente adhérence, un durcissement rapide et une conservation durable de la brillance. Adapté aux applications professionnelles automobiles et industrielles, il garantit des résultats fiables et constants. Un composant essentiel pour obtenir des finitions acryliques de haute qualité et durables.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
