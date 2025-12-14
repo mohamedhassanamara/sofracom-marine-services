@@ -666,6 +666,49 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "ENVIPAINT 1/2L Epoxy Hardener",
+          "image": "assets/products/20251214_112657-mj5lsh9n.png",
+          "description": "ENVIPAINT Epoxy Hardener 1/2 L is a high-performance curing agent designed to ensure optimal cross-linking and durability of epoxy coatings. It enhances adhesion, chemical resistance, and mechanical strength for long-lasting, professional finishes. Easy to mix and apply, it guarantees consistent results in industrial and automotive applications. An essential component for achieving strong, reliable epoxy systems.",
+          "brand": "ENVIPAINT",
+          "usage": [
+            "ENVIPAINT",
+            "hardener",
+            "durcisseur",
+            "époxy",
+            "epoxy"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20251214_112657-mj5lsh9n.png"
+          ],
+          "variants": [
+            {
+              "label": "1/2L",
+              "price": 16.348,
+              "stock": "in"
+            },
+            {
+              "label": "01L",
+              "price": 29.844,
+              "stock": "in"
+            }
+          ],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Durcisseur Epoxy ENVIPAINT 1/2 L",
+              "description": "Le durcisseur époxy ENVIPAINT 1/2 L est un agent de polymérisation haute performance conçu pour assurer une réticulation optimale et une grande durabilité des revêtements époxy. Il améliore l’adhérence, la résistance chimique et la solidité mécanique pour des finitions professionnelles durables. Facile à mélanger et à appliquer, il garantit des résultats constants dans les applications industrielles et automobiles. Un composant essentiel pour obtenir des systèmes époxy solides et fiables.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
