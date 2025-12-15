@@ -1595,6 +1595,39 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "ROBERLO Aircolor Isofast FX2 1K Medium Gray Primer",
+          "image": "assets/products/20251215_111819-mj71x06p.png",
+          "description": "One-component insulating sealant for bodywork repair. Its main features are its fast drying and excellent adhesion to the different materials used in bodywork.\nISOFAST is a primer which, due to its fast drying and fine spray, is ideal for the fast repair of small surfaces. ISOFAST can be recoated with any bodywork clear coat.\nISOFAST is a product that is economically advantageous for small jobs since, due to its aerosol presentation, it requires neither preparation nor cleaning of tools.",
+          "brand": "ROBERLO",
+          "usage": [
+            "ROBERLO",
+            "aerosol",
+            "isofast",
+            "FX2",
+            "Primer",
+            "Primaire"
+          ],
+          "price": 26.181,
+          "stock": "in",
+          "images": [
+            "assets/products/20251215_111819-mj71x06p.png"
+          ],
+          "variants": [],
+          "datasheet": "assets/datasheets/61445-aircolor-isofast-fx2-3-en-mj71z8ps.pdf",
+          "translations": {
+            "fr": {
+              "title": "Apprêt Isolant Monocomposant Gris Moyen ROBERLO",
+              "description": "Apprêt isolant monocomposant pour la réparation des carrosseries. Ses principales caractéristiques sont son temps de séchage rapide et son excellente adhérence aux différents matériaux utilisés dans la carrosserie.\nISOFAST est un apprêt qui, grâce à son séchage rapide et à sa pulvérisation fine, est idéal pour la réparation rapide de petites surfaces. ISOFAST peut être recouvert de n’importe quel émail pour carrosserie.\nISOFAST est un produit économiquement avantageux pour les petits travaux car, grâce à sa présentation en aérosol, il ne nécessite ni préparation ni nettoyage de l’outillage.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
@@ -1604,7 +1637,7 @@
         },
         "ar": {
           "name": "مواد السدّ و اللصق",
-          "description": "سيليكون ومستلزمات لاصقة بحرية للأجهزة، الخشب، الفتحات والزجاج."
+          "description": "سيليكون ومستلزمات لاصقة بح��ية للأجهزة، الخشب، الفتحات والزجاج."
         }
       }
     },
