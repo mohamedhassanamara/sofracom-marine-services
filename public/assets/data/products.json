@@ -1564,6 +1564,37 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "EXTRACOLOR 0.9Kg Soundproof Putty",
+          "image": "assets/products/20251215_111735-mj70u441.png",
+          "description": "EXTRACOLOR 0.9 Kg Soundproof Putty is an effective solution for reducing noise and vibrations in construction and renovation projects. Its dense, flexible formulation absorbs sound and helps seal gaps, joints, and cavities on various surfaces. Easy to apply and shape, it ensures reliable acoustic insulation with long-lasting performance. An ideal product for improving comfort and sound control in residential and commercial spaces.",
+          "brand": "EXTRACOLOR",
+          "usage": [
+            "EXTRACOLOR",
+            "insonore",
+            "mastic",
+            "soundproof"
+          ],
+          "price": 10.26,
+          "stock": "in",
+          "images": [
+            "assets/products/20251215_111735-mj70u441.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Mastic Insonore 0.9Kg EXTRACOLOR",
+              "description": "Le mastic insonorE EXTRACOLOR 0,9 kg est une solution efficace pour réduire les bruits et les vibrations dans les travaux de construction et de rénovation. Sa formulation dense et flexible absorbe le son et permet de colmater les joints, fissures et cavités sur différents supports. Facile à appliquer et à modeler, il assure une isolation acoustique fiable et durable. Un produit idéal pour améliorer le confort et le contrôle sonore dans les espaces résidentiels et commerciaux.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
