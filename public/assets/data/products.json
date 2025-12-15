@@ -1628,6 +1628,34 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "QUICKLINE QP-3000 Aerosol Primer 400ml",
+          "image": "assets/products/images-1-mj72cfzm.jpg",
+          "description": "A one-pack aerosol primer that’s ideal for spot priming “rub-throughs” that have occurred during sanding. QP-3000 can be directly over-coated with colour without the need to sand.\n\nPacksize: 0.4L",
+          "brand": "QUICKLINE",
+          "usage": [
+            "QUICKLINE"
+          ],
+          "price": 27.56,
+          "stock": "in",
+          "images": [
+            "assets/products/images-1-mj72cfzm.jpg"
+          ],
+          "variants": [],
+          "datasheet": "assets/datasheets/qp-3000_v_quickline-1k-primer-aerosol-mj72duu3.pdf",
+          "translations": {
+            "fr": {
+              "title": "Pompe Aerosol Primaire 1K 400ml QUICKLINE",
+              "description": "Apprêt en aérosol mono-composant, idéal pour les retouches localisées des zones mises à nu (« rub-throughs ») lors du ponçage. Le QP-3000 peut être directement recouvert par la couche de couleur sans nécessiter de ponçage préalable.\nConditionnement : 0,4 L",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
@@ -1637,7 +1665,7 @@
         },
         "ar": {
           "name": "مواد السدّ و اللصق",
-          "description": "سيليكون ومستلزمات لاصقة بح��ية للأجهزة، الخشب، الفتحات والزجاج."
+          "description": "سيليكون ومستلزمات لاصقة بحرية للأجهزة، الخشب، الفتحات والزجاج."
         }
       }
     },
