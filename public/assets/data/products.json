@@ -1656,6 +1656,37 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "UPOL Plast X Plastic Filler 600ml, fills Scuffs And Scratches On Plastics",
+          "image": "assets/products/20251215_112405-mj73nhsf.png",
+          "description": "PLAST X Highly Flexible Body Filler for Plastics\nA high adhesion and flexible polyester filler specifically designed for scuffs and scratches on plastic parts that require ultimate flexibility (e.g. bumpers).\n\nExcellent feather edge properties\nHigh adhesion and flexibility on most plastic components\n",
+          "brand": "UPOL",
+          "usage": [
+            "UPOL",
+            "plastic filler",
+            "mastic flexible pour plastique"
+          ],
+          "price": 74.821,
+          "stock": "in",
+          "images": [
+            "assets/products/20251215_112405-mj73nhsf.png",
+            "assets/products/20251215_112417-mj73nllb.png"
+          ],
+          "variants": [],
+          "datasheet": "assets/datasheets/plas-6-tds-fr-mj73oawi.pdf",
+          "translations": {
+            "fr": {
+              "title": "PLASTX Mastic Flexible pour Plastiques",
+              "description": "PLASTX Mastic Flexible pour Plastiques\nMastic flexible pour les réparations sur plastiques (pare-chocs par exemple).\n\nExcellent pour travailler sur les bords\nHaute adhérence et flexibilité sur la plupart des composants en plastique\nPeut être utilisé avec de la trame d’aluminium pour réparer les trous",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
