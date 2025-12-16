@@ -6337,6 +6337,37 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "DS 5MX19MM Pro Measuring Tape With Thicker Blade",
+          "image": "assets/products/20251216_152557-mj8qs5pa.png",
+          "description": "The DS 5 m × 19 mm Pro Measuring Tape is designed for accuracy, durability, and professional use. Its thicker blade provides increased rigidity, allowing longer stand-out and precise measurements without bending. Clear, easy-to-read markings ensure fast and reliable readings on any job site. A robust, dependable measuring tool ideal for construction, carpentry, and DIY projects.",
+          "brand": "DS",
+          "usage": [
+            "DS",
+            "metre a ruban",
+            "measuring tape",
+            "5MX19MM"
+          ],
+          "price": 13.855,
+          "stock": "in",
+          "images": [
+            "assets/products/20251216_152557-mj8qs5pa.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Mètre A Ruban Pro 5MX19MM DS",
+              "description": "Le mètre ruban professionnel DS 5 m × 19 mm est conçu pour offrir précision, durabilité et performance sur les chantiers. Sa lame plus épaisse garantit une rigidité renforcée, permettant une plus grande portée sans pliage et des mesures précises. Les marquages clairs et faciles à lire assurent une lecture rapide et fiable. Un outil de mesure robuste et fiable, idéal pour la construction, la menuiserie et le bricolage.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
