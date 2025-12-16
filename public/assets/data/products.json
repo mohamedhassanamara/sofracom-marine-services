@@ -6984,6 +6984,41 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "APT Hvlp Gravity Feed Spray Gun 1.4Mm Set-Up H827",
+          "image": "assets/products/20251216_173732-mj8uaqzt.png",
+          "description": "The APT HVLP Gravity Feed Spray Gun H827 with 1.4 mm set-up delivers precise, efficient paint application with reduced overspray. Its HVLP technology ensures high transfer efficiency and smooth, professional finishes. Designed for excellent control and comfort, it is ideal for automotive, marine, and industrial coating work. A reliable spray gun for consistent, high-quality results.",
+          "brand": "APT",
+          "usage": [
+            "APT",
+            "HVLP",
+            "spray gun",
+            "pistolet de peinture",
+            "1.4mm",
+            "H827"
+          ],
+          "price": 65.411,
+          "stock": "in",
+          "images": [
+            "assets/products/20251216_173732-mj8uaqzt.png",
+            "assets/products/20251216_173753-mj8ufj1v.png",
+            "assets/products/20251216_173603-mj8ufmhu.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Pistolet à Peinture à Gravité HVLP APT H827 avec Buse de 1,4 mm",
+              "description": "Le pistolet à peinture à gravité HVLP APT H827 avec buse de 1,4 mm offre une application précise et efficace avec une réduction significative du brouillard de peinture. Sa technologie HVLP garantit un excellent rendement de transfert et des finitions lisses et professionnelles. Conçu pour un contrôle optimal et un grand confort d’utilisation, il est idéal pour les travaux de peinture automobile, marine et industrielle. Un pistolet fiable pour des résultats constants et de haute qualité.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ]
     }
