@@ -6900,6 +6900,37 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "BOSCH Armature For Drill GSB 570",
+          "image": "assets/products/20251216_164416-mj8s2fu6.png",
+          "description": "The BOSCH Armature for Drill GSB 570 is a genuine replacement part designed to restore optimal motor performance. Manufactured to precise specifications, it ensures smooth rotation, efficient power transfer, and long service life. Ideal for repairs and maintenance, it helps extend the lifespan of your drill. A reliable component for professional and workshop use.",
+          "brand": "BOSCH",
+          "usage": [
+            "BOSCH",
+            "induit",
+            "armature",
+            "GSB570"
+          ],
+          "price": 29.17,
+          "stock": "in",
+          "images": [
+            "assets/products/20251216_164416-mj8s2fu6.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Induit BOSCH pour Perceuse GSB 570",
+              "description": "L’induit BOSCH pour perceuse GSB 570 est une pièce de rechange d’origine conçue pour rétablir les performances optimales du moteur. Fabriqué selon des spécifications précises, il garantit une rotation fluide, un transfert de puissance efficace et une longue durée de vie. Idéal pour la réparation et la maintenance, il contribue à prolonger la durée de vie de votre perceuse. Un composant fiable pour un usage professionnel et en atelier.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ]
     }
