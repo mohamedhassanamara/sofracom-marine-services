@@ -6413,14 +6413,14 @@
       }
     },
     {
-      "name": "Power Tools",
+      "name": "Power Tools & Parts",
       "slug": "new-category",
       "image": "assets/categories/chatgpt-image-nov-13-2025-02_31_01-pm-miyqfiy6.png",
-      "description": "",
+      "description": "Power Tools & Parts delivering reliable performance, durability, and precision for professional and DIY applications.",
       "translations": {
         "fr": {
-          "name": "Electroportatifs",
-          "description": ""
+          "name": "Electroportatifs et Pièces de Rechange",
+          "description": "Outils électriques et pièces détachées offrant performance fiable, durabilité et précision pour un usage professionnel et bricolage."
         },
         "ar": {
           "name": "",
