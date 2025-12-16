@@ -6368,6 +6368,37 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "DS 3MX16MM Pro Measuring Tape With Thicker Blade",
+          "image": "assets/products/20251216_152758-mj8qyyqa.png",
+          "description": "The DS 3 m × 16 mm Pro Measuring Tape is designed for accuracy, durability, and professional use. Its thicker blade provides increased rigidity, allowing longer stand-out and precise measurements without bending. Clear, easy-to-read markings ensure fast and reliable readings on any job site. A robust, dependable measuring tool ideal for construction, carpentry, and DIY projects.",
+          "brand": "DS",
+          "usage": [
+            "DS",
+            "metre a ruban",
+            "measuring tape",
+            "3MX16MM"
+          ],
+          "price": 10.031,
+          "stock": "in",
+          "images": [
+            "assets/products/20251216_152758-mj8qyyqa.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Mètre A Ruban Pro 3MX16MM DS",
+              "description": "Le mètre ruban professionnel DS 3 m × 16 mm est conçu pour offrir précision, durabilité et performance sur les chantiers. Sa lame plus épaisse garantit une rigidité renforcée, permettant une plus grande portée sans pliage et des mesures précises. Les marquages clairs et faciles à lire assurent une lecture rapide et fiable. Un outil de mesure robuste et fiable, idéal pour la construction, la menuiserie et le bricolage.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
