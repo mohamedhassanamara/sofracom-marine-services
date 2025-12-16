@@ -6949,7 +6949,43 @@
           "description": ""
         }
       },
-      "products": []
+      "products": [
+        {
+          "title": "APT Suction Feed Spray Gun 1.7mm 4001S ",
+          "image": "assets/products/20251216_173033-mj8tyzxk.png",
+          "description": "The APT Suction Feed Spray Gun 4001S with 1.7 mm nozzle is designed for smooth, consistent paint application. Its suction feed system ensures reliable material flow, making it ideal for primers, base coats, and general spraying tasks. Built for durability and precise control, it delivers professional-quality finishes with minimal overspray. A dependable choice for workshops, marine, automotive, and industrial painting applications.",
+          "brand": "APT",
+          "usage": [
+            "APT",
+            "Suction Feed",
+            "Spray Gun",
+            "pistolet de peinture",
+            "1.7mm",
+            "4001S"
+          ],
+          "price": 80.011,
+          "stock": "in",
+          "images": [
+            "assets/products/20251216_173033-mj8tyzxk.png",
+            "assets/products/20251216_173421-mj8tz3v6.png",
+            "assets/products/20251216_173500-mj8u32c9.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Pistolet De Peinture 4001S-1.7 APT",
+              "description": "Le pistolet à peinture à aspiration APT 4001S avec buse de 1,7 mm est conçu pour une application régulière et homogène de la peinture. Son système d’alimentation par aspiration garantit un débit constant, idéal pour les apprêts, couches de base et travaux de pulvérisation générale. Robuste et précis, il assure des finitions de qualité professionnelle avec peu de brouillard. Un choix fiable pour les applications de peinture en atelier, marine, automobile et industrielle.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
+        }
+      ]
     }
   ]
 }
