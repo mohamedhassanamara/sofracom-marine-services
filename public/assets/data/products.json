@@ -6933,6 +6933,23 @@
           }
         }
       ]
+    },
+    {
+      "name": "Pneumatic",
+      "slug": "new-category",
+      "image": "assets/categories/chatgpt-image-dec-16-2025-05_52_57-pm-mj8tn7i4.png",
+      "description": "Powered by compressed air, delivering reliable and efficient performance trusted by boaters and yachting professionals in demanding marine environments.",
+      "translations": {
+        "fr": {
+          "name": "Pneumatique",
+          "description": "Fonctionnant à l’air comprimé, offrant une performance fiable et efficace, plébiscitée par les plaisanciers et professionnels du yachting dans les environnements marins exigeants."
+        },
+        "ar": {
+          "name": "",
+          "description": ""
+        }
+      },
+      "products": []
     }
   ]
 }
