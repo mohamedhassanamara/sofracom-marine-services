@@ -6414,7 +6414,7 @@
     },
     {
       "name": "Power Tools & Parts",
-      "slug": "new-category",
+      "slug": "powertools&parts",
       "image": "assets/categories/chatgpt-image-nov-13-2025-02_31_01-pm-miyqfiy6.png",
       "description": "Power Tools & Parts delivering reliable performance, durability, and precision for professional and DIY applications.",
       "translations": {
@@ -6936,7 +6936,7 @@
     },
     {
       "name": "Pneumatic",
-      "slug": "new-category",
+      "slug": "pneumatic",
       "image": "assets/categories/chatgpt-image-dec-16-2025-05_52_57-pm-mj8tn7i4.png",
       "description": "Powered by compressed air, delivering reliable and efficient performance trusted by boaters and yachting professionals in demanding marine environments.",
       "translations": {
