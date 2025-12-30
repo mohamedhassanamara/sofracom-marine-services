@@ -208,11 +208,13 @@ export default function Layout({ children }) {
         }
     }, [menuOpen]);
 
-    const handleSearchKey = event => {
-        if (event.key !== 'Enter') return;
+    const handleSearchSubmit = event => {
         event.preventDefault();
-        if (!filteredSuggestions.length) return;
-        navigateToSuggestion(filteredSuggestions[0]);
+        const term = searchTerm.trim();
+        if (!term) return;
+        setSearchActive(false);
+        setMenuOpen(false);
+        router.push(`/search?q=${encodeURIComponent(term)}`);
     };
 
     const handleLangChange = event => {
@@ -345,21 +347,27 @@ export default function Layout({ children }) {
                         })}
                     </nav>
                     <div className="flex items-center gap-3">
-                        <div className="relative hidden sm:block" ref={desktopSearchRef}>
+                        <form
+                            className="relative hidden sm:block"
+                            ref={desktopSearchRef}
+                            onSubmit={handleSearchSubmit}
+                        >
                             <input
                                 id="siteSearch"
-                                type="text"
+                                type="search"
                                 placeholder="Search products…"
                                 className={`hidden sm:block px-3 py-1.5 rounded-md bg-white bg-opacity-15 placeholder-black text-black border border-white border-opacity-20 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all duration-200 ${
                                     searchActive ? 'md:w-64' : 'md:w-44'
                                 }`}
-                                onKeyDown={handleSearchKey}
                                 onFocus={() => setSearchActive(true)}
                                 value={searchTerm}
                                 onChange={event => setSearchTerm(event.target.value)}
                             />
+                            <button type="submit" className="sr-only">
+                                Search
+                            </button>
                             {renderSuggestions()}
-                        </div>
+                        </form>
                         <select
                             id="lang"
                             className="px-3 py-1.5 rounded-md bg-white bg-opacity-15 text-black border border-white border-opacity-20 focus:outline-none focus:ring-2 focus:ring-blue-200"
@@ -387,13 +395,16 @@ export default function Layout({ children }) {
                         className="md:hidden bg-[rgba(11,32,80,0.92)] text-white px-4 py-3"
                     >
                         <div className="flex flex-col gap-3">
-                            <div className="relative" ref={mobileSearchRef}>
+                            <form
+                                className="relative"
+                                ref={mobileSearchRef}
+                                onSubmit={handleSearchSubmit}
+                            >
                                 <input
                                     id="siteSearchMobile"
                                     type="search"
                                     placeholder="Search products…"
                                     className="w-full px-3 py-2 rounded-md bg-white text-gray-900 placeholder-gray-500 border border-white/30 focus:outline-none focus:ring-2 focus:ring-blue-200"
-                                    onKeyDown={handleSearchKey}
                                     onFocus={() => setSearchActive(true)}
                                     value={searchTerm}
                                     onChange={event => {
@@ -401,8 +412,11 @@ export default function Layout({ children }) {
                                         setSearchTerm(event.target.value);
                                     }}
                                 />
+                                <button type="submit" className="sr-only">
+                                    Search
+                                </button>
                                 {renderSuggestions()}
-                            </div>
+                            </form>
                             {NAV_LINKS.map(link => {
                                 const href = resolveLinkHref(link);
                                 return (
