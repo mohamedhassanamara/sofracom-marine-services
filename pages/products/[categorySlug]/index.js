@@ -9,6 +9,7 @@ import {
 import { STOCK_LABEL, getStockBadgeClass } from '../../../lib/stock';
 import { useLang } from '../../../contexts/LangContext';
 import { localizeCategory } from '../../../lib/localize';
+import { useAuth } from '../../../contexts/AuthContext';
 
 const OUTPUT_CURRENCY = 'TND';
 const FR_NUMBER_FORMAT = new Intl.NumberFormat('fr-TN', {
@@ -183,6 +184,7 @@ export async function getStaticProps({ params }) {
 
 export default function CategoryPage({ category }) {
     const { lang } = useLang();
+    const { profile, token, isAuthenticated } = useAuth();
     const [brandFilter, setBrandFilter] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
     const [cartOpen, setCartOpen] = useState(false);
@@ -193,6 +195,7 @@ export default function CategoryPage({ category }) {
         phone: '',
         address: '',
         notes: '',
+        addressId: '',
     });
     const router = useRouter();
     const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
@@ -207,6 +210,30 @@ export default function CategoryPage({ category }) {
         [category, lang]
     );
     const localizedProducts = localizedCategory.products || [];
+    const savedAddresses = useMemo(
+        () => (Array.isArray(profile?.addresses) ? profile.addresses : []),
+        [profile]
+    );
+    useEffect(() => {
+        if (!profile) return;
+        setCheckoutForm(form => {
+            const next = { ...form };
+            if (!next.name && profile.name) {
+                next.name = profile.name;
+            }
+            if (!next.phone && profile.phone) {
+                next.phone = profile.phone;
+            }
+            if (!next.address && profile.defaultAddressId) {
+                const defaultEntry = savedAddresses.find(addr => addr.id === profile.defaultAddressId);
+                if (defaultEntry) {
+                    next.address = defaultEntry.address;
+                    next.addressId = defaultEntry.id;
+                }
+            }
+            return next;
+        });
+    }, [profile, savedAddresses]);
 
     useEffect(() => {
         return () => {
@@ -279,7 +306,21 @@ export default function CategoryPage({ category }) {
 
     const handleCheckoutInput = event => {
         const { name, value } = event.target;
-        setCheckoutForm(form => ({ ...form, [name]: value }));
+        setCheckoutForm(form => ({
+            ...form,
+            [name]: value,
+            ...(name === 'address' ? { addressId: '' } : {}),
+        }));
+    };
+
+    const handleAddressSelect = event => {
+        const value = event.target.value;
+        const targetAddress = savedAddresses.find(addr => addr.id === value);
+        setCheckoutForm(form => ({
+            ...form,
+            addressId: value,
+            address: targetAddress ? targetAddress.address : form.address,
+        }));
     };
 
     const handleCheckoutSubmit = async event => {
@@ -293,6 +334,11 @@ export default function CategoryPage({ category }) {
                 message: 'Name, phone, and address are required.',
                 type: 'error',
             });
+            return;
+        }
+        if (!isAuthenticated) {
+            setCheckoutStatus({ message: 'Sign in to proceed to checkout.', type: 'error' });
+            router.push('/account');
             return;
         }
         setCheckoutSubmitting(true);
@@ -315,9 +361,13 @@ export default function CategoryPage({ category }) {
         };
         try {
             const hadOnOrderItems = hasOnOrderItem;
+            const headers = { 'Content-Type': 'application/json' };
+            if (token) {
+                headers.Authorization = `Bearer ${token}`;
+            }
             const response = await fetch('/api/create-order', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers,
                 body: JSON.stringify(payload),
             });
             const result = await response.json();
@@ -351,6 +401,11 @@ export default function CategoryPage({ category }) {
     const closeCart = () => setCartOpen(false);
     const openCheckoutModal = () => {
         if (!cart.length) return;
+        if (!isAuthenticated) {
+            setCheckoutStatus({ message: 'Sign in to proceed to checkout.', type: 'error' });
+            router.push('/account');
+            return;
+        }
         setOrderConfirmationVisible(false);
         setCheckoutStatus({ message: '', type: '' });
         setCheckoutModalOpen(true);
@@ -639,6 +694,24 @@ export default function CategoryPage({ category }) {
                                         required
                                     />
                                 </label>
+                                {savedAddresses.length > 0 && (
+                                    <label>
+                                        <span>Saved address</span>
+                                        <select
+                                            name="addressId"
+                                            value={checkoutForm.addressId}
+                                            onChange={handleAddressSelect}
+                                            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-blue-300 focus:outline-none"
+                                        >
+                                            <option value="">Enter new address</option>
+                                            {savedAddresses.map(address => (
+                                                <option key={address.id} value={address.id}>
+                                                    {address.label || address.address}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </label>
+                                )}
                                 <label>
                                     <span>Delivery address</span>
                                     <textarea

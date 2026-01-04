@@ -5,6 +5,7 @@ import useCart from '../../hooks/useCart';
 import { getCategories } from '../../lib/products';
 import { useLang } from '../../contexts/LangContext';
 import { localizeCategory } from '../../lib/localize';
+import { useAuth } from '../../contexts/AuthContext';
 
 export function getStaticProps() {
     const categories = getCategories();
@@ -29,6 +30,7 @@ const formatPrice = value => {
 
 export default function ProductsIndex({ categories = [] }) {
     const { lang } = useLang();
+    const { profile, token, isAuthenticated } = useAuth();
     const [cartOpen, setCartOpen] = useState(false);
     const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
     const [checkoutStatus, setCheckoutStatus] = useState({ message: '', type: '' });
@@ -38,6 +40,7 @@ export default function ProductsIndex({ categories = [] }) {
         phone: '',
         address: '',
         notes: '',
+        addressId: '',
     });
     const router = useRouter();
     const [orderConfirmationVisible, setOrderConfirmationVisible] = useState(false);
@@ -49,6 +52,30 @@ export default function ProductsIndex({ categories = [] }) {
         () => categories.map(category => localizeCategory(category, lang)),
         [categories, lang]
     );
+    const savedAddresses = useMemo(
+        () => (Array.isArray(profile?.addresses) ? profile.addresses : []),
+        [profile]
+    );
+    useEffect(() => {
+        if (!profile) return;
+        setCheckoutForm(form => {
+            const next = { ...form };
+            if (!next.name && profile.name) {
+                next.name = profile.name;
+            }
+            if (!next.phone && profile.phone) {
+                next.phone = profile.phone;
+            }
+            if (!next.address && profile.defaultAddressId) {
+                const defaultEntry = savedAddresses.find(addr => addr.id === profile.defaultAddressId);
+                if (defaultEntry) {
+                    next.address = defaultEntry.address;
+                    next.addressId = defaultEntry.id;
+                }
+            }
+            return next;
+        });
+    }, [profile, savedAddresses]);
     useEffect(() => {
         return () => {
             if (onOrderNoticeTimeout.current) {
@@ -83,6 +110,11 @@ export default function ProductsIndex({ categories = [] }) {
 
     const openCheckoutModal = () => {
         if (!cart.length) return;
+        if (!isAuthenticated) {
+            setCheckoutStatus({ message: 'Sign in to proceed to checkout.', type: 'error' });
+            router.push('/account');
+            return;
+        }
         setCheckoutStatus({ message: '', type: '' });
         setOrderConfirmationVisible(false);
         setCheckoutModalOpen(true);
@@ -96,7 +128,21 @@ export default function ProductsIndex({ categories = [] }) {
 
     const handleCheckoutInput = event => {
         const { name, value } = event.target;
-        setCheckoutForm(form => ({ ...form, [name]: value }));
+        setCheckoutForm(form => ({
+            ...form,
+            [name]: value,
+            ...(name === 'address' ? { addressId: '' } : {}),
+        }));
+    };
+
+    const handleAddressSelect = event => {
+        const value = event.target.value;
+        const targetAddress = savedAddresses.find(addr => addr.id === value);
+        setCheckoutForm(form => ({
+            ...form,
+            addressId: value,
+            address: targetAddress ? targetAddress.address : form.address,
+        }));
     };
 
     const handleCheckoutSubmit = async event => {
@@ -110,6 +156,11 @@ export default function ProductsIndex({ categories = [] }) {
                 message: 'Name, phone, and address are required.',
                 type: 'error',
             });
+            return;
+        }
+        if (!isAuthenticated) {
+            setCheckoutStatus({ message: 'Sign in to proceed to checkout.', type: 'error' });
+            router.push('/account');
             return;
         }
         setCheckoutSubmitting(true);
@@ -132,9 +183,13 @@ export default function ProductsIndex({ categories = [] }) {
         };
         try {
             const hadOnOrderItems = hasOnOrderItem;
+            const headers = { 'Content-Type': 'application/json' };
+            if (token) {
+                headers.Authorization = `Bearer ${token}`;
+            }
             const response = await fetch('/api/create-order', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers,
                 body: JSON.stringify(payload),
             });
             const result = await response.json();
@@ -374,6 +429,24 @@ export default function ProductsIndex({ categories = [] }) {
                                         required
                                     />
                                 </label>
+                                {savedAddresses.length > 0 && (
+                                    <label>
+                                        <span>Saved address</span>
+                                        <select
+                                            name="addressId"
+                                            value={checkoutForm.addressId}
+                                            onChange={handleAddressSelect}
+                                            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-blue-300 focus:outline-none"
+                                        >
+                                            <option value="">Enter new address</option>
+                                            {savedAddresses.map(address => (
+                                                <option key={address.id} value={address.id}>
+                                                    {address.label || address.address}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </label>
+                                )}
                                 <label>
                                     <span>Delivery address</span>
                                     <textarea

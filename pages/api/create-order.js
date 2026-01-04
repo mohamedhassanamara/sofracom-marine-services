@@ -1,5 +1,6 @@
 const { randomUUID } = require('crypto');
 const { getFirebaseApp } = require('./firebase-service');
+const { authenticateRequest } = require('../../lib/serverAuth');
 
 /* ---------- utils ---------- */
 async function readJson(req) {
@@ -55,6 +56,14 @@ module.exports = async function handler(req, res) {
         return;
     }
 
+    let auth;
+    try {
+        auth = await authenticateRequest(req);
+    } catch (err) {
+        res.status(err.status || 401).json({ ok: false, error: err.message });
+        return;
+    }
+
     let payload;
     try {
         payload = await readJson(req);
@@ -78,8 +87,12 @@ module.exports = async function handler(req, res) {
         customer_name: payload.customer.name.trim(),
         customer_phone: payload.customer.phone.trim(),
         customer_address: payload.customer.address.trim(),
+        customer_address_id: payload.customer.addressId || null,
         customer_notes: (payload.customer.notes || '').trim(),
+        customer_uid: auth.uid,
+        customer_email: auth.email || '',
         items: payload.items,
+        delivery_fee: Number.isFinite(payload.delivery_fee) ? payload.delivery_fee : 0,
         total: Number.isFinite(payload.total) ? payload.total : 0,
         currency: payload.currency || 'TND',
         status: 'new',
@@ -88,6 +101,17 @@ module.exports = async function handler(req, res) {
     try {
         const firestore = getFirebaseApp().firestore();
         await firestore.collection('orders').doc(orderId).set(order);
+        const profileRef = firestore.collection('profiles').doc(auth.uid);
+        await profileRef.collection('orders').doc(orderId).set(order);
+        await profileRef.set(
+            {
+                name: order.customer_name,
+                phone: order.customer_phone,
+                ...(order.customer_address ? { last_address: order.customer_address } : {}),
+                updated_at: timestamp,
+            },
+            { merge: true }
+        );
 
         try {
             const messaging = getFirebaseApp().messaging();
