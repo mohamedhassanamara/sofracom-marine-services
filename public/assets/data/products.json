@@ -6399,6 +6399,37 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "ROBI Standard Welding Gauntlet, Single Pair, Size 10/Large, Red (Pack of 2)",
+          "image": "assets/products/20260110_150643-mk8f0tic.png",
+          "description": "The ROBI Standard Welding Gauntlet offers reliable hand and forearm protection for welding and heavy-duty work. Made from durable, heat-resistant material, it shields against sparks, heat, and mechanical hazards. The long gauntlet design ensures extended coverage and comfort during prolonged use. Supplied as a single pair, size 10/Large, in a highly visible red finish.",
+          "brand": "ROBI",
+          "usage": [
+            "gants",
+            "gloves",
+            "soudage",
+            "welding"
+          ],
+          "price": 19.11,
+          "stock": "in",
+          "images": [
+            "assets/products/20260110_150643-mk8f0tic.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Gant de Soudage Standard ROBI",
+              "description": "Le gant de soudage standard ROBI offre une protection fiable des mains et des avant-bras pour les travaux de soudage et les tâches intensives. Fabriqué dans un matériau résistant à la chaleur, il protège efficacement contre les étincelles, la chaleur et les risques mécaniques. Son design long type manchette assure une couverture étendue et un confort optimal lors d’une utilisation prolongée. Livré en une paire, taille 10/Large, avec une finition rouge très visible.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
