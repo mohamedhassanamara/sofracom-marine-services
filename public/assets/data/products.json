@@ -6962,6 +6962,51 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "SNDWAY Laser Measure 0.15m-50m/100Meters",
+          "image": "assets/products/20260110_151425-mk8fm08c.png",
+          "description": "The SNDWAY Laser Measure offers fast, accurate distance measurements from 0.15 m up to 50 m or 100 m, depending on the model. Designed for precision and ease of use, it provides clear digital readings for construction, renovation, and professional surveying tasks. Compact and lightweight, it ensures convenient handling on job sites. A reliable measuring tool delivering efficiency and accuracy every time.",
+          "brand": "SNDWAY",
+          "usage": [
+            "laser",
+            "measure",
+            "mètre",
+            "Télémètre"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20260110_151425-mk8fm08c.png",
+            "assets/products/20260110_151419-mk8fm6r1.png",
+            "assets/products/20260110_151508-mk8fmslp.png",
+            "assets/products/20260110_151512-mk8foy22.png"
+          ],
+          "variants": [
+            {
+              "label": "50ml",
+              "price": 73.729,
+              "stock": "in"
+            },
+            {
+              "label": "100ml",
+              "price": 98.084,
+              "stock": "in"
+            }
+          ],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Télémètre Laser SNDWAY permet des mesures rapides et précises de 0,15 m jusqu’à 50 m ou 100 m",
+              "description": "Le télémètre laser SNDWAY permet des mesures rapides et précises de 0,15 m jusqu’à 50 m ou 100 m selon le modèle. Conçu pour la précision et la simplicité d’utilisation, il offre des lectures numériques claires pour les travaux de construction, de rénovation et de métrage professionnel. Compact et léger, il garantit une prise en main pratique sur les chantiers. Un outil de mesure fiable assurant efficacité et exactitude à chaque utilisation.\n\n",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ]
     },
