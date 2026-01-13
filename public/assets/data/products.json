@@ -1018,6 +1018,36 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "JOTUN White Tankguard storage 2K 10L A & 05L B",
+          "image": "assets/products/20260112_173316-mkcu5amp.png",
+          "description": "Tankguard Storage is a two-component tank lining with excellent chemical resistance. Clean petroleum product and crude-oil tanks coated with Tankguard Storage can return to service within 48 hours. Tankguard Storage can be used as internal lining for offshore, onshore and buried tanks as well as pipes for storage of chemicals, wastewater, process water, concrete bunds, and fire service lines amongst others.\n\nKey features\nExcellent chemical resistance \nResistant against crude oil at temperatures up to 120°C \n48-hour return to service possible for some products",
+          "brand": "JOTUN",
+          "usage": [
+            "JOTUN",
+            "tank"
+          ],
+          "price": 887.592,
+          "stock": "on-order",
+          "images": [
+            "assets/products/20260112_173316-mkcu5amp.png",
+            "assets/products/20260112_173224-mkcu5i4n.png"
+          ],
+          "variants": [],
+          "datasheet": "assets/datasheets/tds-735-tankguard-storage-fra-fr-mkcv1tmy.pdf",
+          "translations": {
+            "fr": {
+              "title": "JOTUN Tankguard Storage blanc 2K 10 L composant A + 5 L composant B",
+              "description": "Revêtement époxy phénolique/novolac bicomposant. Developpé pour la protection interne de réservoirs avec\nune excellente resistance aux produits chimiques. Peut être utilisé comme primaire et/ou finition ou en système\nmonocouche en environnement atmosphérique. Approprié pour les surfaces correctement préparées en acier\ncarbone, en acier galvanisé, en acier inoxydable et en béton.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
