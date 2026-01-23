@@ -1719,7 +1719,7 @@
           }
         },
         {
-          "title": "Fiber Glass Fabric \"TISSU ROVING 500\"",
+          "title": "Fiber Glass Fabric \"TISSU ROVING 500\", 1 m2",
           "image": "assets/products/20260123_115735-mkqtkp3d.png",
           "description": "Among reinforcements, Fiberglass Fabrics - also known as Fiberglass Cloth - continue to be the most commonly used reinforcement in the composites industry today. Generally, they are the least expensive among reinforcements and offer ease in handling. And when combined with resin, deliver composite parts with excellent strength, low weight, and great cosmetics.\n\nAll Fiberglass Fabrics are woven for fiber orientation, and each fabric features its own unique weight, strength, and fabric characteristics, which should be considered before starting any project.",
           "brand": "",
@@ -1738,8 +1738,37 @@
           "datasheet": "",
           "translations": {
             "fr": {
-              "title": "Fibre de Verre \"TISSU ROVING 500\"",
+              "title": "Fibre de Verre \"TISSU ROVING 500\", 1 m2",
               "description": "Parmi les matériaux de renfort, les tissus en fibre de verre – également appelés toiles de fibre de verre – restent aujourd’hui les renforts les plus couramment utilisés dans l’industrie des composites. Ils sont généralement les moins coûteux et offrent une grande facilité de mise en œuvre. Associés à une résine, ils permettent d’obtenir des pièces composites présentant une excellente résistance, un faible poids et un très bel aspect de finition.\n\nTous les tissus en fibre de verre sont tissés selon une orientation spécifique des fibres, et chaque tissu possède son propre grammage, sa résistance et ses caractéristiques textiles, qui doivent être prises en compte avant de démarrer tout projet.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
+        },
+        {
+          "title": "Fiberglass Mat, 1 m2",
+          "image": "assets/products/20260123_121124-mkqtsjlx.jpg",
+          "description": "Fiberglass Mat is one of the most popular forms of reinforcement for non-structural applications. It's inexpensive, easy to use, and can quickly build thickness into parts, molds, or even a repair. It features randomly oriented strands throughout that effectively hide print-through of heavier fabrics and create an equal stiffness in all directions for molds and parts.\n\nNote: All Fiberglass Mat is made to be used with resin to create hard, composite parts. However, it is NOT compatible with epoxy resin. Mat has a light binder that holds it together. During lay-up, it requires styrene to break down that binder and allow for complete resin saturation. Epoxy does not contain styrene and therefore cannot be effectively used with the mat. Use polyester or vinyl ester resin with these applications.",
+          "brand": "",
+          "usage": [
+            "fiberglass",
+            "fibre de verre"
+          ],
+          "price": 15.995,
+          "stock": "in",
+          "images": [
+            "assets/products/20260123_121124-mkqtsjlx.jpg"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Mat de Fibre de Verre, 1 m2",
+              "description": "Le mat de fibre de verre est l’une des formes de renfort les plus utilisées pour les applications non structurelles. Il est économique, facile à utiliser et permet d’augmenter rapidement l’épaisseur des pièces, des moules ou lors de réparations. Il est composé de fibres disposées de manière aléatoire, ce qui masque efficacement l’empreinte des tissus plus lourds et assure une rigidité uniforme dans toutes les directions pour les moules et les pièces.\n\nRemarque : Le mat de fibre de verre est conçu pour être utilisé avec une résine afin de créer des pièces composites rigides. Toutefois, il n’est pas compatible avec les résines époxy. Le mat contient un liant léger qui maintient les fibres ensemble. Lors de la stratification, la présence de styrène est nécessaire pour dissoudre ce liant et permettre une imprégnation complète de la résine. Les résines époxy ne contiennent pas de styrène et ne peuvent donc pas être utilisées efficacement avec le mat. Pour ces applications, il est recommandé d’utiliser des résines polyester ou vinylester.",
               "variants": []
             },
             "ar": {
