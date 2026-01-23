@@ -1717,6 +1717,37 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "Fiber Glass Fabric \"TISSU ROVING 500\"",
+          "image": "assets/products/20260123_115735-mkqtkp3d.png",
+          "description": "Among reinforcements, Fiberglass Fabrics - also known as Fiberglass Cloth - continue to be the most commonly used reinforcement in the composites industry today. Generally, they are the least expensive among reinforcements and offer ease in handling. And when combined with resin, deliver composite parts with excellent strength, low weight, and great cosmetics.\n\nAll Fiberglass Fabrics are woven for fiber orientation, and each fabric features its own unique weight, strength, and fabric characteristics, which should be considered before starting any project.",
+          "brand": "",
+          "usage": [
+            "fiberglass",
+            "fibre de verre",
+            "mat",
+            "tissu"
+          ],
+          "price": 18.224,
+          "stock": "in",
+          "images": [
+            "assets/products/20260123_115735-mkqtkp3d.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Fibre de Verre \"TISSU ROVING 500\"",
+              "description": "Parmi les matériaux de renfort, les tissus en fibre de verre – également appelés toiles de fibre de verre – restent aujourd’hui les renforts les plus couramment utilisés dans l’industrie des composites. Ils sont généralement les moins coûteux et offrent une grande facilité de mise en œuvre. Associés à une résine, ils permettent d’obtenir des pièces composites présentant une excellente résistance, un faible poids et un très bel aspect de finition.\n\nTous les tissus en fibre de verre sont tissés selon une orientation spécifique des fibres, et chaque tissu possède son propre grammage, sa résistance et ses caractéristiques textiles, qui doivent être prises en compte avant de démarrer tout projet.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
