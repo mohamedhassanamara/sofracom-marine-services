@@ -4021,7 +4021,7 @@
             },
             "ar": {
               "title": "BOSCH قرص قطع معدن 115 مم",
-              "description": "قرص قطع المعادن من BOSCH بقياس 115 مم يوفّر قطعًا سريعًا ودقيقًا في الفولاذ والبروفيلات المعدنية. الحبيبات الكاشطة عالية الجودة تعطي نتائج نظيفة مع زوايد قليلة وتراكم أقل للمادة. تصميمه المعزّز يضمن عمرًا طويلًا وأمانًا عاليًا عند السرعات المرتفعة. ممتاز للمحترفين ولمستخدمي الـDIY.",
+              "description": "قرص قطع المعادن من BOSCH بقياس 115 مم يوفّر قطعًا سريعًا ودقيقًا في الفو��اذ والبروفيلات المعدنية. الحبيبات الكاشطة عالية الجودة تعطي نتائج نظيفة مع زوايد قليلة وتراكم أقل للمادة. تصميمه المعزّز يضمن عمرًا طويلًا وأمانًا عاليًا عند السرعات المرتفعة. ممتاز للمحترفين ولمستخدمي الـDIY.",
               "variants": []
             }
           }
@@ -6512,6 +6512,36 @@
             "fr": {
               "title": "Gant de Soudage Standard ROBI",
               "description": "Le gant de soudage standard ROBI offre une protection fiable des mains et des avant-bras pour les travaux de soudage et les tâches intensives. Fabriqué dans un matériau résistant à la chaleur, il protège efficacement contre les étincelles, la chaleur et les risques mécaniques. Son design long type manchette assure une couverture étendue et un confort optimal lors d’une utilisation prolongée. Livré en une paire, taille 10/Large, avec une finition rouge très visible.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
+        },
+        {
+          "title": "DS Digital Vernier Caliper 150mm Stainless Steel Precision Micrometer Electronic Gauge Measuring Tool, LCD Screen, Metric/Imperial/Fraction - Splash Resistant",
+          "image": "assets/products/20260115_142901-mkqv7lgc.png",
+          "description": "The DS Digital Vernier Caliper 150 mm delivers precise and reliable measurements for professional and workshop applications. Made from stainless steel, it ensures durability and long-term accuracy, while the large LCD screen provides clear, easy-to-read results. Supporting metric, imperial, and fractional units, it offers versatile measurement options with splash-resistant protection. A high-precision electronic measuring tool designed for efficiency and accuracy.",
+          "brand": "DS",
+          "usage": [
+            "caliper",
+            "pied a coulisse",
+            "digital"
+          ],
+          "price": 81.655,
+          "stock": "in",
+          "images": [
+            "assets/products/20260115_142901-mkqv7lgc.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Pied à Coulisse Numérique DS 150 mm",
+              "description": "Le pied à coulisse numérique DS 150 mm offre des mesures précises et fiables pour les applications professionnelles et en atelier. Fabriqué en acier inoxydable, il garantit durabilité et précision à long terme, tandis que son grand écran LCD assure une lecture claire et facile. Compatible avec les unités métriques, impériales et fractionnaires, il propose une grande polyvalence et une protection résistante aux éclaboussures. Un outil de mesure électronique de haute précision, conçu pour l’efficacité et l’exactitude.",
               "variants": []
             },
             "ar": {
