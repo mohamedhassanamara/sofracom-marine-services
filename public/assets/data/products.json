@@ -6550,6 +6550,37 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "DS Vernier Caliper 150mm",
+          "image": "assets/products/20260123_133815-mkqvdd4m.png",
+          "description": "The DS Vernier Caliper 150 mm is a precision measuring tool designed for accurate internal, external, and depth measurements. Built for durability and consistent performance, it ensures reliable readings in workshop and industrial environments. Its clear scale allows easy measurement with dependable accuracy. An essential tool for technicians, mechanics, and quality control tasks.",
+          "brand": "DS",
+          "usage": [
+            "DS",
+            "caliper",
+            "pied à coulisse",
+            "150mm"
+          ],
+          "price": 58.689,
+          "stock": "in",
+          "images": [
+            "assets/products/20260123_133815-mkqvdd4m.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Pied à Coulisse DS 150 mm",
+              "description": "Le pied à coulisse DS 150 mm est un outil de mesure de précision conçu pour les mesures intérieures, extérieures et de profondeur. Conçu pour offrir durabilité et performance constante, il garantit des relevés fiables en atelier et en milieu industriel. Son échelle lisible permet des mesures faciles et précises. Un outil indispensable pour les techniciens, mécaniciens et le contrôle qualité.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
