@@ -1077,7 +1077,7 @@
             "Flexible"
           ],
           "price": 44.167,
-          "stock": "in",
+          "stock": "out",
           "images": [
             "assets/products/20251027_154046-mhkvwi0x.png"
           ],
@@ -1108,7 +1108,7 @@
             "sika"
           ],
           "price": 60.036,
-          "stock": "in",
+          "stock": "out",
           "images": [
             "assets/products/20251027_153952-mhkvp45z.png"
           ],
@@ -1230,7 +1230,7 @@
             "yd-114"
           ],
           "price": 45.347,
-          "stock": "in",
+          "stock": "out",
           "images": [
             "assets/products/20251111_140038-mhw5opvd.png"
           ],
