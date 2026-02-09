@@ -2,6 +2,11 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 import { onIdTokenChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut as firebaseSignOut } from 'firebase/auth';
 import { getFirebaseClientAuth } from '../lib/firebaseClient';
 
+const AUTH_RETRY_DELAY = 150;
+const MAX_AUTH_ATTEMPTS = 8;
+
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+
 const AuthContext = createContext({
     user: null,
     token: null,
@@ -72,6 +77,19 @@ export function AuthProvider({ children }) {
         return next;
     }, [auth]);
 
+    const ensureAuthReady = useCallback(async () => {
+        for (let attempt = 0; attempt < MAX_AUTH_ATTEMPTS; attempt += 1) {
+            const currentAuth = ensureAuth();
+            if (currentAuth) {
+                return currentAuth;
+            }
+            if (attempt < MAX_AUTH_ATTEMPTS - 1) {
+                await wait(AUTH_RETRY_DELAY);
+            }
+        }
+        throw new Error('Authentication is initializing');
+    }, [ensureAuth]);
+
     const updateProfile = useCallback(
         async (payload, overrideToken) => {
             const activeToken = overrideToken || token;
@@ -107,10 +125,7 @@ export function AuthProvider({ children }) {
 
     const signIn = useCallback(
         async (email, password) => {
-            const currentAuth = ensureAuth();
-            if (!currentAuth) {
-                throw new Error('Authentication is initializing');
-            }
+            const currentAuth = await ensureAuthReady();
             try {
                 const credential = await signInWithEmailAndPassword(currentAuth, email, password);
                 setAuthError('');
@@ -120,15 +135,12 @@ export function AuthProvider({ children }) {
                 throw err;
             }
         },
-        [ensureAuth]
+        [ensureAuthReady]
     );
 
     const signUp = useCallback(
         async ({ email, password, name, phone }) => {
-            const currentAuth = ensureAuth();
-            if (!currentAuth) {
-                throw new Error('Authentication is initializing');
-            }
+            const currentAuth = await ensureAuthReady();
             try {
                 const credential = await createUserWithEmailAndPassword(currentAuth, email, password);
                 const idToken = await credential.user.getIdToken();
@@ -144,7 +156,7 @@ export function AuthProvider({ children }) {
                 throw err;
             }
         },
-        [auth, updateProfile, fetchProfileData]
+        [ensureAuthReady, updateProfile, fetchProfileData]
     );
 
     const signOut = useCallback(async () => {

@@ -80,6 +80,21 @@ module.exports = async function handler(req, res) {
 
     const orderId = randomUUID();
     const timestamp = new Date().toISOString();
+    const normalizedItems = (Array.isArray(payload.items) ? payload.items : []).map(item => {
+        const base = item && typeof item === 'object' ? item : {};
+        return {
+            ...base,
+            product_id: base.product_id || base.id || '',
+            product_url: typeof base.product_url === 'string' ? base.product_url : '',
+        };
+    });
+    const productIds = Array.from(
+        new Set(
+            normalizedItems
+                .map(item => item.product_id || item.id)
+                .filter(Boolean)
+        )
+    );
 
     const order = {
         id: orderId,
@@ -91,7 +106,8 @@ module.exports = async function handler(req, res) {
         customer_notes: (payload.customer.notes || '').trim(),
         customer_uid: auth.uid,
         customer_email: auth.email || '',
-        items: payload.items,
+        items: normalizedItems,
+        product_ids: productIds,
         delivery_fee: Number.isFinite(payload.delivery_fee) ? payload.delivery_fee : 0,
         total: Number.isFinite(payload.total) ? payload.total : 0,
         currency: payload.currency || 'TND',

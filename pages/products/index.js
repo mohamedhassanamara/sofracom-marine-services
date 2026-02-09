@@ -29,7 +29,7 @@ const formatPrice = value => {
 };
 
 export default function ProductsIndex({ categories = [] }) {
-    const { lang } = useLang();
+    const { lang, t } = useLang();
     const { profile, token, isAuthenticated } = useAuth();
     const [cartOpen, setCartOpen] = useState(false);
     const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
@@ -111,7 +111,7 @@ export default function ProductsIndex({ categories = [] }) {
     const openCheckoutModal = () => {
         if (!cart.length) return;
         if (!isAuthenticated) {
-            setCheckoutStatus({ message: 'Sign in to proceed to checkout.', type: 'error' });
+            setCheckoutStatus({ message: t('checkout.signInRequired'), type: 'error' });
             router.push('/account');
             return;
         }
@@ -148,23 +148,23 @@ export default function ProductsIndex({ categories = [] }) {
     const handleCheckoutSubmit = async event => {
         event.preventDefault();
         if (!cart.length) {
-            setCheckoutStatus({ message: 'Cart is empty', type: 'error' });
+            setCheckoutStatus({ message: t('checkout.cartEmpty'), type: 'error' });
             return;
         }
         if (!checkoutForm.name || !checkoutForm.phone || !checkoutForm.address) {
             setCheckoutStatus({
-                message: 'Name, phone, and address are required.',
+                message: t('checkout.missingInfo'),
                 type: 'error',
             });
             return;
         }
         if (!isAuthenticated) {
-            setCheckoutStatus({ message: 'Sign in to proceed to checkout.', type: 'error' });
+            setCheckoutStatus({ message: t('checkout.signInRequired'), type: 'error' });
             router.push('/account');
             return;
         }
         setCheckoutSubmitting(true);
-        setCheckoutStatus({ message: 'Sending order…', type: '' });
+        setCheckoutStatus({ message: t('checkout.sending'), type: '' });
         const currentGrandTotal = total + DELIVERY_FEE;
         const payload = {
             customer: checkoutForm,
@@ -176,11 +176,20 @@ export default function ProductsIndex({ categories = [] }) {
                 image: item.image,
                 category: item.category,
                 variantLabel: item.variantLabel,
+                product_id: item.productId || item.id,
+                product_url: item.productUrl || '',
             })),
             total: currentGrandTotal,
             delivery_fee: DELIVERY_FEE,
             currency: 'TND',
         };
+        payload.product_ids = Array.from(
+            new Set(
+                payload.items
+                    .map(item => item.product_id || item.id)
+                    .filter(Boolean)
+            )
+        );
         try {
             const hadOnOrderItems = hasOnOrderItem;
             const headers = { 'Content-Type': 'application/json' };
@@ -222,22 +231,22 @@ export default function ProductsIndex({ categories = [] }) {
     };
 
     const confirmationTitle = orderHadOnOrderItems
-        ? 'Order received – delays expected'
-        : 'Order received';
+        ? t('order.confirmation.delayedTitle')
+        : t('order.confirmation.successTitle');
     const confirmationSubtitle = orderHadOnOrderItems
-        ? 'Order received but may have some delay until on-order items are present in the store.'
-        : 'Order received successfully.';
+        ? t('order.confirmation.delayedSubtitle')
+        : t('order.confirmation.successSubtitle');
 
     return (
         <>
             <main className="max-w-7xl mx-auto px-6 py-12">
                 <div className="text-center mb-10">
-                    <p className="text-sm text-gray-500 uppercase tracking-wide">SOFRACOM Catalog</p>
+                    <p className="text-sm text-gray-500 uppercase tracking-wide">{t('products.catalogBadge')}</p>
                     <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
-                        Explore categories & products
+                        {t('products.catalogHeading')}
                     </h1>
                     <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
-                        Browse the latest antifouling systems, sealants, oils, batteries, and hardware supplied from Monastir.
+                        {t('products.catalogCopy')}
                     </p>
                 </div>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -255,7 +264,7 @@ export default function ProductsIndex({ categories = [] }) {
                             </div>
                             <div className="flex items-center justify-between text-xs uppercase tracking-wide">
                                 <span>{category.products.length} products</span>
-                                <span className="tag px-3 py-1 rounded-full text-xs bg-blue-100 text-blue-700">View</span>
+                                <span className="tag px-3 py-1 rounded-full text-xs bg-blue-100 text-blue-700">{t('products.card.viewAction')}</span>
                             </div>
                         </Link>
                     ))}
@@ -266,7 +275,7 @@ export default function ProductsIndex({ categories = [] }) {
                 <span className="cart-icon" aria-hidden="true">
                     🛒
                 </span>
-                <span>Cart</span>
+                <span>{t('cart.fabLabel')}</span>
                 <span className="px-2 py-1 rounded-full bg-white/15 text-sm font-semibold">
                     {count}
                 </span>
@@ -283,8 +292,8 @@ export default function ProductsIndex({ categories = [] }) {
             >
                 <div className="cart-header">
                     <div>
-                        <h3 className="text-lg font-semibold text-gray-900">Your order</h3>
-                        <p className="text-sm text-gray-500">Review items then confirm your details.</p>
+                        <h3 className="text-lg font-semibold text-gray-900">{t('cart.title')}</h3>
+                        <p className="text-sm text-gray-500">{t('cart.subtitle')}</p>
                     </div>
                     <button
                         id="cartClose"
@@ -299,9 +308,9 @@ export default function ProductsIndex({ categories = [] }) {
                 {onOrderNoticeVisible && (
                     <div className="cart-onorder-popup" role="alert">
                         <div>
-                            <strong>On-demand items</strong>
+                            <strong>{t('cart.onOrderTitle')}</strong>
                             <p className="text-sm">
-                                Some items will take longer to arrive—expect a delay until they reach the store.
+                                {t('cart.onOrderDescription')}
                             </p>
                         </div>
                         <button
@@ -347,27 +356,27 @@ export default function ProductsIndex({ categories = [] }) {
                                             onClick={() => removeItem(item.id)}
                                             className="text-xs text-red-500 ml-3"
                                         >
-                                            Remove
+                                            {t('account.remove')}
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         ))
                     ) : (
-                        <p className="empty-cart">Your cart is empty.</p>
+                        <p className="empty-cart">{t('cart.empty')}</p>
                     )}
                 </div>
                 <div className="cart-summary">
                     <div className="cart-summary-row">
-                        <span>Items total</span>
+                        <span>{t('cart.summary.items')}</span>
                         <span>{formatPrice(total)}</span>
                     </div>
                     <div className="cart-summary-row">
-                        <span>Delivery fee</span>
+                        <span>{t('cart.summary.delivery')}</span>
                         <span>{formatPrice(DELIVERY_FEE)}</span>
                     </div>
                     <div className="cart-summary-row cart-summary-total">
-                        <span>Grand total</span>
+                        <span>{t('cart.summary.grand')}</span>
                         <span>{formatPrice(total + DELIVERY_FEE)}</span>
                     </div>
                     <button
@@ -376,7 +385,7 @@ export default function ProductsIndex({ categories = [] }) {
                         onClick={openCheckoutModal}
                         disabled={!cart.length}
                     >
-                        Checkout
+                        {t('checkout.action')}
                     </button>
                 </div>
             </aside>
@@ -389,7 +398,7 @@ export default function ProductsIndex({ categories = [] }) {
                 >
                     <div className="checkout-modal" onClick={event => event.stopPropagation()}>
                         <header className="checkout-modal-header">
-                            <h3 className="checkout-modal-title">Checkout</h3>
+                            <h3 className="checkout-modal-title">{t('checkout.title')}</h3>
                             <button
                                 type="button"
                                 className="checkout-modal-close"
@@ -404,13 +413,13 @@ export default function ProductsIndex({ categories = [] }) {
                                 <p className="text-base font-semibold text-gray-900">{confirmationTitle}</p>
                                 <p className="text-sm text-gray-600 mt-1">{confirmationSubtitle}</p>
                                 <button type="button" className="cart-submit" onClick={goHome}>
-                                    Go to home
+                                    {t('buttons.goHome')}
                                 </button>
                             </div>
                         ) : (
                             <form id="checkoutForm" className="cart-form" onSubmit={handleCheckoutSubmit} noValidate>
                                 <label>
-                                    <span>Full name</span>
+                                    <span>{t('account.name')}</span>
                                     <input
                                         type="text"
                                         name="name"
@@ -420,7 +429,7 @@ export default function ProductsIndex({ categories = [] }) {
                                     />
                                 </label>
                                 <label>
-                                    <span>Phone</span>
+                                    <span>{t('account.phoneNumber')}</span>
                                     <input
                                         type="tel"
                                         name="phone"
@@ -431,14 +440,14 @@ export default function ProductsIndex({ categories = [] }) {
                                 </label>
                                 {savedAddresses.length > 0 && (
                                     <label>
-                                        <span>Saved address</span>
+                                        <span>{t('checkout.savedAddressLabel')}</span>
                                         <select
                                             name="addressId"
                                             value={checkoutForm.addressId}
                                             onChange={handleAddressSelect}
                                             className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-blue-300 focus:outline-none"
                                         >
-                                            <option value="">Enter new address</option>
+                                            <option value="">{t('checkout.enterNewAddress')}</option>
                                             {savedAddresses.map(address => (
                                                 <option key={address.id} value={address.id}>
                                                     {address.label || address.address}
@@ -448,7 +457,7 @@ export default function ProductsIndex({ categories = [] }) {
                                     </label>
                                 )}
                                 <label>
-                                    <span>Delivery address</span>
+                                    <span>{t('checkout.deliveryAddressLabel')}</span>
                                     <textarea
                                         name="address"
                                         rows="2"
@@ -458,7 +467,7 @@ export default function ProductsIndex({ categories = [] }) {
                                     />
                                 </label>
                                 <label>
-                                    <span>Notes (optional)</span>
+                                    <span>{t('checkout.notesLabel')}</span>
                                     <textarea
                                         name="notes"
                                         rows="2"
@@ -472,7 +481,7 @@ export default function ProductsIndex({ categories = [] }) {
                                     </p>
                                 )}
                                 <button type="submit" className="cart-submit" disabled={checkoutSubmitting}>
-                                    {checkoutSubmitting ? 'Sending…' : 'Order'}
+                                    {checkoutSubmitting ? t('checkout.sending') : t('checkout.orderButton')}
                                 </button>
                             </form>
                         )}

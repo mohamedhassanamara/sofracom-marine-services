@@ -8,7 +8,10 @@ import {
 } from '../../../lib/products';
 import { STOCK_LABEL, getStockBadgeClass } from '../../../lib/stock';
 import { useLang } from '../../../contexts/LangContext';
+import { useAuth } from '../../../contexts/AuthContext';
 import { localizeCategory, localizeProduct } from '../../../lib/localize';
+import { useReviews } from '../../../hooks/useReviews';
+import ReviewSummary from '../../../components/ReviewSummary';
 
 const OUTPUT_CURRENCY = 'TND';
 const FR_NUMBER_FORMAT = new Intl.NumberFormat('fr-TN', {
@@ -23,6 +26,28 @@ const formatPrice = value => {
         return `${value || 0} ${OUTPUT_CURRENCY}`;
     }
     return FR_NUMBER_FORMAT.format(value);
+};
+
+const DATE_LOCALES = {
+    en: 'en-US',
+    fr: 'fr-FR',
+    ar: 'ar-TN',
+};
+
+const formatDate = (value, locale = DATE_LOCALES.en) => {
+    if (!value) return '-';
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) {
+        return String(value);
+    }
+    return new Intl.DateTimeFormat(locale, {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true,
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+    }).format(date);
 };
 
 export async function getStaticPaths() {
@@ -53,7 +78,7 @@ export async function getStaticProps({ params }) {
 
 export default function ProductDetailPage({ product, category }) {
     const router = useRouter();
-    const { lang } = useLang();
+    const { lang, t } = useLang();
     const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
     const [activeImageIndex, setActiveImageIndex] = useState(0);
     const [cartOpen, setCartOpen] = useState(false);
@@ -80,6 +105,15 @@ export default function ProductDetailPage({ product, category }) {
         () => localizeProduct(product, lang, category),
         [product, lang, category]
     );
+    const { user, token, isAuthenticated } = useAuth();
+    const { summary, reviews, loading: reviewsLoading, error: reviewsError, viewer, refresh: refreshReviews } = useReviews(localizedProduct.id, {
+        limit: 5,
+        token,
+    });
+    const [reviewForm, setReviewForm] = useState({ rating: 5, comment: '' });
+    const [reviewStatus, setReviewStatus] = useState({ message: '', type: '' });
+    const [reviewSubmitting, setReviewSubmitting] = useState(false);
+
 
     useEffect(() => {
         return () => {
@@ -88,6 +122,18 @@ export default function ProductDetailPage({ product, category }) {
             }
         };
     }, []);
+
+    useEffect(() => {
+        if (!viewer?.hasReviewed) {
+            return;
+        }
+        const existingReview = viewer.review || reviews.find(review => review.customer_uid === user?.uid);
+        if (!existingReview) return;
+        setReviewForm({
+            rating: Number(existingReview.rating) || 5,
+            comment: existingReview.comment || '',
+        });
+    }, [reviews, user?.uid, viewer?.hasReviewed, viewer?.review]);
 
     const showOnOrderNotice = () => {
         if (onOrderNoticeTimeout.current) {
@@ -104,6 +150,53 @@ export default function ProductDetailPage({ product, category }) {
             clearTimeout(onOrderNoticeTimeout.current);
         }
         setOnOrderNoticeVisible(false);
+    };
+
+    const canSubmitReview = Boolean(isAuthenticated && viewer?.canReview);
+    const hasExistingReview = Boolean(viewer?.hasReviewed);
+    const reviewCount = Number(summary.count) || 0;
+    const reviewCta = hasExistingReview ? t('review.updateReview') : t('review.submitReview');
+
+    const handleReviewSubmit = async event => {
+        event.preventDefault();
+        if (!isAuthenticated) {
+            setReviewStatus({ message: t('review.signInToReview'), type: 'error' });
+            return;
+        }
+        if (!viewer?.canReview) {
+            setReviewStatus({ message: t('review.mustPurchase'), type: 'error' });
+            return;
+        }
+        if (!reviewForm.comment.trim()) {
+            setReviewStatus({ message: t('review.commentRequired'), type: 'error' });
+            return;
+        }
+        setReviewSubmitting(true);
+        setReviewStatus({ message: t('review.submitting'), type: 'info' });
+        try {
+            const response = await fetch('/api/reviews', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: token ? `Bearer ${token}` : '',
+                },
+                body: JSON.stringify({
+                    productId: localizedProduct.id,
+                    rating: reviewForm.rating,
+                    comment: reviewForm.comment.trim(),
+                }),
+            });
+            const payload = await response.json();
+            if (!response.ok || !payload.ok) {
+                throw new Error(payload.error || 'Unable to submit review');
+            }
+            setReviewStatus({ message: t('review.thankYou'), type: 'success' });
+            await refreshReviews();
+        } catch (error) {
+            setReviewStatus({ message: error.message || t('review.submitFailed'), type: 'error' });
+        } finally {
+            setReviewSubmitting(false);
+        }
     };
 
     const detailVariant =
@@ -131,6 +224,8 @@ export default function ProductDetailPage({ product, category }) {
             brand: localizedProduct.brand,
             variantLabel,
             stock: effectiveStock,
+            productId: localizedProduct.id,
+            productUrl: `/products/${category.slug}/${localizedProduct.id}`,
         });
         setCartOpen(true);
     };
@@ -143,18 +238,26 @@ export default function ProductDetailPage({ product, category }) {
     const handleCheckoutSubmit = async event => {
         event.preventDefault();
         if (!cart.length) {
-            setCheckoutStatus({ message: 'Cart is empty', type: 'error' });
+            setCheckoutStatus({ message: t('checkout.cartEmpty'), type: 'error' });
             return;
         }
         if (!checkoutForm.name || !checkoutForm.phone || !checkoutForm.address) {
             setCheckoutStatus({
-                message: 'Name, phone, and address are required.',
+                message: t('checkout.missingInfo'),
                 type: 'error',
             });
             return;
         }
+        if (!isAuthenticated) {
+            setCheckoutStatus({
+                message: t('checkout.signInRequired'),
+                type: 'error',
+            });
+            router.push('/account');
+            return;
+        }
         setCheckoutSubmitting(true);
-        setCheckoutStatus({ message: 'Sending order…', type: '' });
+        setCheckoutStatus({ message: t('checkout.sending'), type: '' });
         const currentGrandTotal = total + DELIVERY_FEE;
         const payload = {
             customer: checkoutForm,
@@ -166,16 +269,26 @@ export default function ProductDetailPage({ product, category }) {
                 image: item.image,
                 category: item.category,
                 variantLabel: item.variantLabel,
+                product_id: item.productId || item.id,
+                product_url: item.productUrl || '',
             })),
             total: currentGrandTotal,
             delivery_fee: DELIVERY_FEE,
             currency: OUTPUT_CURRENCY,
         };
+        const productIds = payload.items
+            .map(item => item.product_id || item.id)
+            .filter(Boolean);
+        payload.product_ids = Array.from(new Set(productIds));
         try {
             const hadOnOrderItems = hasOnOrderItem;
+            const headers = { 'Content-Type': 'application/json' };
+            if (token) {
+                headers.Authorization = `Bearer ${token}`;
+            }
             const response = await fetch('/api/create-order', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers,
                 body: JSON.stringify(payload),
             });
             const result = await response.json();
@@ -241,12 +354,12 @@ export default function ProductDetailPage({ product, category }) {
         <>
             <main className="max-w-6xl mx-auto px-6 py-12">
                 <div className="flex flex-col gap-4 mb-6">
-                    <p className="text-sm text-gray-500 uppercase tracking-wide">
-                        Product detail
-                    </p>
+                        <p className="text-sm text-gray-500 uppercase tracking-wide">
+                            {t('product.detailLabel')}
+                        </p>
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                         <Link href="/products" className="hover:underline">
-                            Catalog
+                            {t('product.detailBreadcrumbCatalog')}
                         </Link>
                         <span>/</span>
                         <Link href={`/products/${category.slug}`} className="hover:underline">
@@ -321,9 +434,17 @@ export default function ProductDetailPage({ product, category }) {
                                     {STOCK_LABEL[effectiveStock] || 'Unknown'}
                                 </span>
                             </div>
+                            <div className="mt-2 flex items-center justify-between">
+                                <ReviewSummary average={summary.average} count={reviewCount} fontSize={14} />
+                                <span className="text-xs text-gray-500">
+                                    {reviewCount
+                                        ? `${reviewCount} ${t('review.reviewsLabel')}`
+                                        : t('review.noReviews')}
+                                </span>
+                            </div>
                             {effectiveStock === 'on-order' && (
                                 <p className="text-sm text-orange-400">
-                                    This item is on order; delivery will take longer.
+                                    {t('product.detailOnOrder')}
                                 </p>
                             )}
                         </div>
@@ -358,20 +479,20 @@ export default function ProductDetailPage({ product, category }) {
                                     className="text-blue-600 hover:underline text-sm font-semibold"
                                     onClick={() => setShowFullDescription(prev => !prev)}
                                 >
-                                    {showFullDescription ? 'Show less' : 'Read more'}
+                                    {showFullDescription ? t('product.detailShowLess') : t('product.detailReadMore')}
                                 </button>
                             </div>
                         )}
                         {localizedProduct.datasheet && (
                             <div className="mt-2">
-                                <a
-                                    href={localizedProduct.datasheet}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="datasheet-link"
-                                >
-                                    Download datasheet
-                                </a>
+                                    <a
+                                        href={localizedProduct.datasheet}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="datasheet-link"
+                                    >
+                                        {t('product.datasheet')}
+                                    </a>
                             </div>
                         )}
                         <button
@@ -380,8 +501,134 @@ export default function ProductDetailPage({ product, category }) {
                             onClick={addToCart}
                             disabled={effectiveStock === 'out'}
                         >
-                            Add to cart
+                            {t('product.addToCart')}
                         </button>
+                        <section id="reviews" className="mt-10 space-y-6 bg-white rounded-3xl border border-gray-100 p-6 shadow-sm">
+                            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                                <div>
+                                    <p className="text-xs uppercase tracking-wide text-gray-500">
+                                        {t('review.sectionTitle')}
+                                    </p>
+                                    <h2 className="text-2xl font-semibold text-gray-900">
+                                        {t('review.sectionSubtitle')}
+                                    </h2>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <ReviewSummary
+                                        average={summary.average}
+                                        count={reviewCount}
+                                        fontSize={16}
+                                    />
+                                    <span className="text-xs text-gray-500">
+                                        {reviewCount
+                                            ? `${reviewCount} ${t('review.reviewsLabel')}`
+                                            : t('review.noReviews')}
+                                    </span>
+                                </div>
+                            </div>
+                                <div className="border-t border-gray-100 pt-4 space-y-4">
+                                    {reviews.length ? (
+                                        reviews.map(review => (
+                                            <article
+                                                key={review.id}
+                                                className="rounded-2xl border border-gray-100 bg-gray-50 p-4"
+                                        >
+                                            <div className="flex items-center justify-between gap-3 text-xs uppercase tracking-wide text-gray-500">
+                                                <ReviewSummary
+                                                    average={Number(review.rating) || 0}
+                                                    count={0}
+                                                    fontSize={14}
+                                                    showCount={false}
+                                                />
+                                                <span>{formatDate(review.created_at, DATE_LOCALES[lang] || DATE_LOCALES.en)}</span>
+                                            </div>
+                                            <p className="mt-2 text-sm text-gray-700">{review.comment}</p>
+                                            <p className="mt-2 text-xs text-gray-500">
+                                                {review.customer_name}
+                                            </p>
+                                            </article>
+                                        ))
+                                    ) : (
+                                        <p className="text-sm text-gray-500">{t('review.noReviews')}</p>
+                                    )}
+                                </div>
+                                {reviewsError && (
+                                    <p className="quote-status error" role="alert">
+                                        {reviewsError}
+                                    </p>
+                                )}
+                            {canSubmitReview && (
+                                <div className="border-t border-gray-100 pt-4">
+                                    <p className="text-sm font-semibold text-gray-900">
+                                        {t('review.writeTitle')}
+                                    </p>
+                                    <p className="text-xs text-gray-500">
+                                        {t('review.youPurchased')}
+                                    </p>
+                                    <form className="mt-3 space-y-3" onSubmit={handleReviewSubmit}>
+                                        <div className="space-y-1 text-sm font-semibold text-gray-700">
+                                            <span>{t('review.ratingLabel')}</span>
+                                            <div className="flex gap-1">
+                                                {[1, 2, 3, 4, 5].map(value => (
+                                                    <button
+                                                        key={`rating-${value}`}
+                                                        type="button"
+                                                        onClick={() =>
+                                                            setReviewForm(form => ({
+                                                                ...form,
+                                                                rating: value,
+                                                            }))
+                                                        }
+                                                        className={`rounded-full px-2 py-1 text-lg ${
+                                                            reviewForm.rating >= value
+                                                                ? 'text-amber-400'
+                                                                : 'text-gray-300'
+                                                        }`}
+                                                        aria-label={`${value} star`}
+                                                    >
+                                                        ★
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <label className="block text-sm font-semibold text-gray-700">
+                                            <span>{t('review.commentLabel')}</span>
+                                            <textarea
+                                                rows="3"
+                                                value={reviewForm.comment}
+                                                onChange={event =>
+                                                    setReviewForm(form => ({
+                                                        ...form,
+                                                        comment: event.target.value,
+                                                    }))
+                                                }
+                                                className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm focus:border-blue-300 focus:outline-none"
+                                                placeholder={t('review.commentPlaceholder')}
+                                                required
+                                            />
+                                        </label>
+                                        <button
+                                            type="submit"
+                                            className="inline-flex w-full items-center justify-center rounded-full bg-blue-900 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-blue-800 disabled:opacity-60"
+                                            disabled={reviewSubmitting}
+                                        >
+                                            {reviewSubmitting
+                                                ? t('review.submitting')
+                                                : reviewCta}
+                                        </button>
+                                        {reviewStatus.message && (
+                                            <p
+                                                className={`quote-status ${reviewStatus.type}`.trim()}
+                                                role="status"
+                                                aria-live="polite"
+                                            >
+                                                {reviewStatus.message}
+                                            </p>
+                                        )}
+                                    </form>
+                                </div>
+                            )}
+                        </section>
                     </div>
                 </div>
             </main>
@@ -389,7 +636,7 @@ export default function ProductDetailPage({ product, category }) {
                 <span className="cart-icon" aria-hidden="true">
                     🛒
                 </span>
-                <span>Cart</span>
+                <span>{t('cart.fabLabel')}</span>
                 <span className="px-2 py-1 rounded-full bg-white/15 text-sm font-semibold">
                     {count}
                 </span>
@@ -406,9 +653,9 @@ export default function ProductDetailPage({ product, category }) {
             >
                 <div className="cart-header">
                     <div>
-                        <h3 className="text-lg font-semibold text-gray-900">Your order</h3>
+                        <h3 className="text-lg font-semibold text-gray-900">{t('cart.title')}</h3>
                         <p className="text-sm text-gray-500">
-                            Review items then confirm your details.
+                            {t('cart.subtitle')}
                         </p>
                     </div>
                     <button
@@ -424,9 +671,9 @@ export default function ProductDetailPage({ product, category }) {
                 {onOrderNoticeVisible && (
                     <div className="cart-onorder-popup" role="alert">
                         <div>
-                            <strong>On-demand items</strong>
+                            <strong>{t('cart.onOrderTitle')}</strong>
                             <p className="text-sm">
-                                Some items will take longer to arrive—expect a delay until they reach the store.
+                                {t('cart.onOrderDescription')}
                             </p>
                         </div>
                         <button
@@ -484,27 +731,27 @@ export default function ProductDetailPage({ product, category }) {
                                             onClick={() => removeCart(item.id)}
                                             className="text-xs text-red-500 ml-3"
                                         >
-                                            Remove
+                                            {t('account.remove')}
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         ))
                     ) : (
-                        <p className="empty-cart">Your cart is empty.</p>
+                        <p className="empty-cart">{t('cart.empty')}</p>
                     )}
                 </div>
                 <div className="cart-summary">
                     <div className="cart-summary-row">
-                        <span>Items total</span>
+                        <span>{t('cart.summary.items')}</span>
                         <span>{formatPrice(total)}</span>
                     </div>
                     <div className="cart-summary-row">
-                        <span>Delivery fee</span>
+                        <span>{t('cart.summary.delivery')}</span>
                         <span>{formatPrice(DELIVERY_FEE)}</span>
                     </div>
                     <div className="cart-summary-row cart-summary-total">
-                        <span>Grand total</span>
+                        <span>{t('cart.summary.grand')}</span>
                         <span>{formatPrice(grandTotal)}</span>
                     </div>
                     <button
@@ -513,7 +760,7 @@ export default function ProductDetailPage({ product, category }) {
                         onClick={openCheckoutModal}
                         disabled={!cart.length}
                     >
-                        Checkout
+                        {t('checkout.action')}
                     </button>
                 </div>
             </aside>
@@ -526,7 +773,7 @@ export default function ProductDetailPage({ product, category }) {
                 >
                     <div className="checkout-modal" onClick={event => event.stopPropagation()}>
                         <header className="checkout-modal-header">
-                            <h3 className="checkout-modal-title">Checkout</h3>
+                            <h3 className="checkout-modal-title">{t('checkout.title')}</h3>
                             <button
                                 type="button"
                                 className="checkout-modal-close"
@@ -549,7 +796,7 @@ export default function ProductDetailPage({ product, category }) {
                                     className="cart-submit"
                                     onClick={goHome}
                                 >
-                                    Go to home
+                                    {t('buttons.goHome')}
                                 </button>
                             </div>
                         ) : (
@@ -560,7 +807,7 @@ export default function ProductDetailPage({ product, category }) {
                                 noValidate
                             >
                                 <label>
-                                    <span>Full name</span>
+                                    <span>{t('account.name')}</span>
                                     <input
                                         type="text"
                                         name="name"
@@ -570,7 +817,7 @@ export default function ProductDetailPage({ product, category }) {
                                     />
                                 </label>
                                 <label>
-                                    <span>Phone</span>
+                                    <span>{t('account.phoneNumber')}</span>
                                     <input
                                         type="tel"
                                         name="phone"
@@ -580,7 +827,7 @@ export default function ProductDetailPage({ product, category }) {
                                     />
                                 </label>
                                 <label>
-                                    <span>Delivery address</span>
+                                    <span>{t('checkout.deliveryAddressLabel')}</span>
                                     <textarea
                                         name="address"
                                         rows="2"
@@ -590,7 +837,7 @@ export default function ProductDetailPage({ product, category }) {
                                     />
                                 </label>
                                 <label>
-                                    <span>Notes (optional)</span>
+                                    <span>{t('checkout.notesLabel')}</span>
                                     <textarea
                                         name="notes"
                                         rows="2"
@@ -608,7 +855,7 @@ export default function ProductDetailPage({ product, category }) {
                                     className="cart-submit"
                                     disabled={checkoutSubmitting}
                                 >
-                                    {checkoutSubmitting ? 'Sending…' : 'Order'}
+                                    {checkoutSubmitting ? t('checkout.sending') : t('checkout.orderButton')}
                                 </button>
                             </form>
                         )}

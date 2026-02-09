@@ -390,7 +390,8 @@ export default function Layout({ children }) {
                         <Link
                             href="/account"
                             className="hidden md:inline-flex items-center justify-center rounded-full border border-white/40 bg-white/10 px-3 py-1.5 text-sm font-semibold text-white transition hover:border-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-200"
-                            aria-label="Open account panel"
+                            aria-label={t('account.yourProfile')}
+                            title={t('account.yourProfile')}
                         >
                             <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-sm font-semibold">
                                 {avatarInitials}
@@ -404,7 +405,7 @@ export default function Layout({ children }) {
                                 }}
                                 className="hidden md:inline-flex text-sm font-semibold text-white underline-offset-2 hover:underline"
                             >
-                                Sign out
+                                {t('account.signOut')}
                             </button>
                         )}
                         <button
@@ -466,7 +467,7 @@ export default function Layout({ children }) {
                             className="block font-medium text-sm hover:text-blue-200"
                             onClick={() => setMenuOpen(false)}
                         >
-                            Account
+                            {t('account.label')}
                         </Link>
                         {user && (
                             <button
@@ -477,7 +478,7 @@ export default function Layout({ children }) {
                                 }}
                                 className="block text-left font-medium text-sm hover:text-blue-200"
                             >
-                                Sign out
+                                {t('account.signOut')}
                             </button>
                         )}
                     </div>

@@ -9,6 +9,8 @@ import {
 import { STOCK_LABEL, getStockBadgeClass } from '../../../lib/stock';
 import { useLang } from '../../../contexts/LangContext';
 import { localizeCategory } from '../../../lib/localize';
+import ReviewSummary from '../../../components/ReviewSummary';
+import { useReviews } from '../../../hooks/useReviews';
 import { useAuth } from '../../../contexts/AuthContext';
 
 const OUTPUT_CURRENCY = 'TND';
@@ -40,6 +42,8 @@ function ProductCard({ product, categorySlug, onAdd }) {
     const selectedVariant = variants[variantIndex] || null;
     const priceLabel = formatPrice(selectedVariant?.price ?? product.price ?? 0);
     const effectiveStock = selectedVariant?.stock ?? product.stock ?? 'in';
+    const { t } = useLang();
+    const { summary } = useReviews(product.id, { summaryOnly: true });
 
     const handleVariantChange = event => {
         setVariantIndex(Number(event.target.value));
@@ -85,7 +89,7 @@ function ProductCard({ product, categorySlug, onAdd }) {
                             className="product-readmore"
                             onClick={() => setShowFull(prev => !prev)}
                         >
-                            {showFull ? 'Show less' : 'Read more'}
+                            {showFull ? t('product.detailShowLess') : t('product.detailReadMore')}
                         </button>
                     )}
                 </p>
@@ -96,7 +100,7 @@ function ProductCard({ product, categorySlug, onAdd }) {
                         rel="noreferrer"
                         className="product-datasheet-link"
                     >
-                        Download datasheet
+                        {t('product.datasheet')}
                     </a>
                 )}
                 {variants.length > 0 && (
@@ -127,6 +131,13 @@ function ProductCard({ product, categorySlug, onAdd }) {
                         {STOCK_LABEL[effectiveStock] || 'Unknown'}
                     </span>
                 </div>
+                <div className="mt-2 flex items-center gap-2">
+                    {summary.count > 0 ? (
+                        <ReviewSummary average={summary.average} count={summary.count} fontSize={12} />
+                    ) : (
+                        <p className="text-xs text-gray-500">{t('review.noReviews')}</p>
+                    )}
+                </div>
                 <div className="flex gap-2 flex-wrap">
                     {product.usage.map(tag => (
                         <span
@@ -142,7 +153,7 @@ function ProductCard({ product, categorySlug, onAdd }) {
                         href={`/products/${categorySlug}/${product.id}`}
                         className="product-detail-btn"
                     >
-                        View details
+                        {t('products.card.viewAction')}
                     </Link>
                     <button
                         type="button"
@@ -150,7 +161,7 @@ function ProductCard({ product, categorySlug, onAdd }) {
                         onClick={handleAdd}
                         disabled={effectiveStock === 'out'}
                     >
-                        Add to cart
+                        {t('product.addToCart')}
                     </button>
                 </div>
             </div>
@@ -183,7 +194,7 @@ export async function getStaticProps({ params }) {
 
 
 export default function CategoryPage({ category }) {
-    const { lang } = useLang();
+    const { lang, t } = useLang();
     const { profile, token, isAuthenticated } = useAuth();
     const [brandFilter, setBrandFilter] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
@@ -300,6 +311,8 @@ export default function CategoryPage({ category }) {
             brand: product.brand,
             variantLabel,
             stock: stockStatus,
+            productId: product.id,
+            productUrl: `/products/${category.slug}/${product.id}`,
         });
         setCartOpen(true);
     };
@@ -326,23 +339,23 @@ export default function CategoryPage({ category }) {
     const handleCheckoutSubmit = async event => {
         event.preventDefault();
         if (!cart.length) {
-            setCheckoutStatus({ message: 'Cart is empty', type: 'error' });
+            setCheckoutStatus({ message: t('checkout.cartEmpty'), type: 'error' });
             return;
         }
         if (!checkoutForm.name || !checkoutForm.phone || !checkoutForm.address) {
             setCheckoutStatus({
-                message: 'Name, phone, and address are required.',
+                message: t('checkout.missingInfo'),
                 type: 'error',
             });
             return;
         }
         if (!isAuthenticated) {
-            setCheckoutStatus({ message: 'Sign in to proceed to checkout.', type: 'error' });
+            setCheckoutStatus({ message: t('checkout.signInRequired'), type: 'error' });
             router.push('/account');
             return;
         }
         setCheckoutSubmitting(true);
-        setCheckoutStatus({ message: 'Sending order…', type: '' });
+        setCheckoutStatus({ message: t('checkout.sending'), type: '' });
         const currentGrandTotal = total + DELIVERY_FEE;
         const payload = {
             customer: checkoutForm,
@@ -354,11 +367,20 @@ export default function CategoryPage({ category }) {
                 image: item.image,
                 category: item.category,
                 variantLabel: item.variantLabel,
+                product_id: item.productId || item.id,
+                product_url: item.productUrl || '',
             })),
             total: currentGrandTotal,
             delivery_fee: DELIVERY_FEE,
             currency: OUTPUT_CURRENCY,
         };
+        payload.product_ids = Array.from(
+            new Set(
+                payload.items
+                    .map(item => item.product_id || item.id)
+                    .filter(Boolean)
+            )
+        );
         try {
             const hadOnOrderItems = hasOnOrderItem;
             const headers = { 'Content-Type': 'application/json' };
@@ -402,7 +424,7 @@ export default function CategoryPage({ category }) {
     const openCheckoutModal = () => {
         if (!cart.length) return;
         if (!isAuthenticated) {
-            setCheckoutStatus({ message: 'Sign in to proceed to checkout.', type: 'error' });
+            setCheckoutStatus({ message: t('checkout.signInRequired'), type: 'error' });
             router.push('/account');
             return;
         }
@@ -420,11 +442,11 @@ export default function CategoryPage({ category }) {
         router.push('/');
     };
     const confirmationTitle = orderHadOnOrderItems
-        ? 'Order received – delays expected'
-        : 'Order received';
+        ? t('order.confirmation.delayedTitle')
+        : t('order.confirmation.successTitle');
     const confirmationSubtitle = orderHadOnOrderItems
-        ? 'Order received but may have some delay until on-order items are present in the store.'
-        : 'Order received successfully.';
+        ? t('order.confirmation.delayedSubtitle')
+        : t('order.confirmation.successSubtitle');
 
     return (
         <>
@@ -432,7 +454,7 @@ export default function CategoryPage({ category }) {
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
                     <nav className="text-sm text-gray-500" id="breadcrumb">
                         <Link href="/products" className="hover:underline">
-                            Catalog
+                            {t('product.detailBreadcrumbCatalog')}
                         </Link>
                         <span className="mx-1">/</span>
                         <span className="text-gray-700 font-medium">
@@ -445,7 +467,7 @@ export default function CategoryPage({ category }) {
                             value={brandFilter}
                             onChange={event => setBrandFilter(event.target.value)}
                         >
-                            <option value="">All brands</option>
+                            <option value="">{t('products.filters.allBrands')}</option>
                             {availableBrands.map(brand => (
                                 <option key={brand} value={brand}>
                                     {brand}
@@ -456,7 +478,7 @@ export default function CategoryPage({ category }) {
                             type="search"
                             value={searchTerm}
                             onChange={event => setSearchTerm(event.target.value)}
-                            placeholder="Search products..."
+                            placeholder={t('products.searchPlaceholder')}
                             className="px-3 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200"
                         />
                         <button
@@ -467,7 +489,7 @@ export default function CategoryPage({ category }) {
                                 setSearchTerm('');
                             }}
                         >
-                            Reset filters
+                            {t('products.filters.reset')}
                         </button>
                     </div>
                 </div>
@@ -486,7 +508,7 @@ export default function CategoryPage({ category }) {
                 <span className="cart-icon" aria-hidden="true">
                     🛒
                 </span>
-                <span>Cart</span>
+                <span>{t('cart.fabLabel')}</span>
                 <span className="px-2 py-1 rounded-full bg-white/15 text-sm font-semibold">
                     {count}
                 </span>
@@ -504,10 +526,10 @@ export default function CategoryPage({ category }) {
                 <div className="cart-header">
                     <div>
                         <h3 className="text-lg font-semibold text-gray-900">
-                            Your order
+                            {t('cart.title')}
                         </h3>
                         <p className="text-sm text-gray-500">
-                            Review items then confirm your details.
+                            {t('cart.subtitle')}
                         </p>
                     </div>
                     <button
@@ -523,9 +545,9 @@ export default function CategoryPage({ category }) {
                 {onOrderNoticeVisible && (
                     <div className="cart-onorder-popup" role="alert">
                         <div>
-                            <strong>On-demand items</strong>
+                            <strong>{t('cart.onOrderTitle')}</strong>
                             <p className="text-sm">
-                                Some items will take longer to arrive—expect a delay until they reach the store.
+                                {t('cart.onOrderDescription')}
                             </p>
                         </div>
                         <button
@@ -599,27 +621,27 @@ export default function CategoryPage({ category }) {
                                             onClick={() => removeItem(item.id)}
                                             className="text-xs text-red-500 ml-3"
                                         >
-                                            Remove
+                                            {t('account.remove')}
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         ))
                     ) : (
-                        <p className="empty-cart">Your cart is empty.</p>
+                        <p className="empty-cart">{t('cart.empty')}</p>
                     )}
                 </div>
                 <div className="cart-summary">
                     <div className="cart-summary-row">
-                        <span>Items total</span>
+                        <span>{t('cart.summary.items')}</span>
                         <span>{formatPrice(total)}</span>
                     </div>
                     <div className="cart-summary-row">
-                        <span>Delivery fee</span>
+                        <span>{t('cart.summary.delivery')}</span>
                         <span>{formatPrice(DELIVERY_FEE)}</span>
                     </div>
                     <div className="cart-summary-row cart-summary-total">
-                        <span>Grand total</span>
+                        <span>{t('cart.summary.grand')}</span>
                         <span>{formatPrice(grandTotal)}</span>
                     </div>
                     <button
@@ -628,7 +650,7 @@ export default function CategoryPage({ category }) {
                         onClick={openCheckoutModal}
                         disabled={!cart.length}
                     >
-                        Checkout
+                        {t('checkout.action')}
                     </button>
                 </div>
             </aside>
@@ -641,7 +663,7 @@ export default function CategoryPage({ category }) {
                 >
                     <div className="checkout-modal" onClick={event => event.stopPropagation()}>
                         <header className="checkout-modal-header">
-                            <h3 className="checkout-modal-title">Checkout</h3>
+                            <h3 className="checkout-modal-title">{t('checkout.title')}</h3>
                             <button
                                 type="button"
                                 className="checkout-modal-close"
@@ -664,7 +686,7 @@ export default function CategoryPage({ category }) {
                                     className="cart-submit"
                                     onClick={goHome}
                                 >
-                                    Go to home
+                                    {t('buttons.goHome')}
                                 </button>
                             </div>
                         ) : (
@@ -675,7 +697,7 @@ export default function CategoryPage({ category }) {
                                 noValidate
                             >
                                 <label>
-                                    <span>Full name</span>
+                                    <span>{t('account.name')}</span>
                                     <input
                                         type="text"
                                         name="name"
@@ -685,7 +707,7 @@ export default function CategoryPage({ category }) {
                                     />
                                 </label>
                                 <label>
-                                    <span>Phone</span>
+                                    <span>{t('account.phoneNumber')}</span>
                                     <input
                                         type="tel"
                                         name="phone"
@@ -696,14 +718,14 @@ export default function CategoryPage({ category }) {
                                 </label>
                                 {savedAddresses.length > 0 && (
                                     <label>
-                                        <span>Saved address</span>
+                                        <span>{t('checkout.savedAddressLabel')}</span>
                                         <select
                                             name="addressId"
                                             value={checkoutForm.addressId}
                                             onChange={handleAddressSelect}
                                             className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-blue-300 focus:outline-none"
                                         >
-                                            <option value="">Enter new address</option>
+                                            <option value="">{t('checkout.enterNewAddress')}</option>
                                             {savedAddresses.map(address => (
                                                 <option key={address.id} value={address.id}>
                                                     {address.label || address.address}
@@ -713,7 +735,7 @@ export default function CategoryPage({ category }) {
                                     </label>
                                 )}
                                 <label>
-                                    <span>Delivery address</span>
+                                    <span>{t('checkout.deliveryAddressLabel')}</span>
                                     <textarea
                                         name="address"
                                         rows="2"
@@ -723,7 +745,7 @@ export default function CategoryPage({ category }) {
                                     />
                                 </label>
                                 <label>
-                                    <span>Notes (optional)</span>
+                                    <span>{t('checkout.notesLabel')}</span>
                                     <textarea
                                         name="notes"
                                         rows="2"
@@ -741,7 +763,7 @@ export default function CategoryPage({ category }) {
                                     className="cart-submit"
                                     disabled={checkoutSubmitting}
                                 >
-                                    {checkoutSubmitting ? 'Sending…' : 'Order'}
+                                    {checkoutSubmitting ? t('checkout.sending') : t('checkout.orderButton')}
                                 </button>
                             </form>
                         )}
