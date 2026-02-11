@@ -1048,6 +1048,36 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "HEMPEL 20L 2k Brown Hempadur Tiecoat 49183. Mix Ratio: 49187 17.5Ltr / 98191 2.5Ltr",
+          "image": "assets/products/20260211_175933-mlial9a8.jpg",
+          "description": "Hempadur Tiecoat 49183 is an anticorrosive two-component epoxy. Recommended use,\nFor atmospheric and immersion service used as a \"tiecoat\" between epoxy and physically drying coatings. For immersion service it can also replace a second anti-corrosive primer coat for the underwater coating system and at the same time act as \"tiecoat\" for antifouling.\nService temperature:\n- Maximum, dry exposure only: 80°C [176°F].\n- Maximum, in sea water: 40°C [104°F].\nFeatures\n- Good anticorrosive properties.\n- Acts as \"tiecoat\" between primer and physically drying coats.\n",
+          "brand": "HEMPEL",
+          "usage": [
+            "HEMPEL",
+            "Hempadur",
+            "49183"
+          ],
+          "price": 882.72,
+          "stock": "in",
+          "images": [
+            "assets/products/20260211_175933-mlial9a8.jpg"
+          ],
+          "variants": [],
+          "datasheet": "assets/datasheets/en-gb-mliap29r.pdf",
+          "translations": {
+            "fr": {
+              "title": "HEMPEL Hempadur Tiecoat 49183",
+              "description": "Hempadur Tiecoat 49183 est une époxy anticorrosion bi-composant.\n\nUtilisation recommandée :\nPour des applications en atmosphère et en immersion, utilisée comme « couche d’accrochage » (tiecoat) entre une époxy et des revêtements à séchage physique. En immersion, elle peut également remplacer une seconde couche primaire anticorrosion dans les systèmes de protection sous-marine, tout en servant de couche d’accrochage pour l’antifouling.\n\nTempérature de service :\n\nMaximum, en exposition sèche uniquement : 80°C [176°F]\n\nMaximum, en eau de mer : 40°C [104°F]\n\nCaractéristiques :\n\nBonnes propriétés anticorrosion\n\nSert de couche d’accrochage entre le primaire et les couches à séchage physique",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
@@ -1590,7 +1620,7 @@
             },
             "ar": {
               "title": "SIKA Boom رغوة PU ‏750 مل",
-              "description": "رغوة بوليورتان أحادية المكوّن تتوسع مع الرطوبة. تشكّل رغوة خلوية مغلقة، سهلة التطبيق عبر الأنبوب المرفق.",
+              "description": "رغوة بوليورتان أحادية المكوّن تتوسع مع الرطوبة. تشكّل رغوة خلوية م��لقة، سهلة التطبيق عبر الأنبوب المرفق.",
               "variants": []
             }
           }
