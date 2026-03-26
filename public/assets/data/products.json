@@ -1018,66 +1018,6 @@
               "variants": []
             }
           }
-        },
-        {
-          "title": "JOTUN White Tankguard storage 2K 10L A & 05L B",
-          "image": "assets/products/20260112_173316-mkcu5amp.png",
-          "description": "Tankguard Storage is a two-component tank lining with excellent chemical resistance. Clean petroleum product and crude-oil tanks coated with Tankguard Storage can return to service within 48 hours. Tankguard Storage can be used as internal lining for offshore, onshore and buried tanks as well as pipes for storage of chemicals, wastewater, process water, concrete bunds, and fire service lines amongst others.\n\nKey features\nExcellent chemical resistance \nResistant against crude oil at temperatures up to 120°C \n48-hour return to service possible for some products",
-          "brand": "JOTUN",
-          "usage": [
-            "JOTUN",
-            "tank"
-          ],
-          "price": 887.592,
-          "stock": "on-order",
-          "images": [
-            "assets/products/20260112_173316-mkcu5amp.png",
-            "assets/products/20260112_173224-mkcu5i4n.png"
-          ],
-          "variants": [],
-          "datasheet": "assets/datasheets/tds-735-tankguard-storage-fra-fr-mkcv1tmy.pdf",
-          "translations": {
-            "fr": {
-              "title": "JOTUN Tankguard Storage blanc 2K 10 L composant A + 5 L composant B",
-              "description": "Revêtement époxy phénolique/novolac bicomposant. Developpé pour la protection interne de réservoirs avec\nune excellente resistance aux produits chimiques. Peut être utilisé comme primaire et/ou finition ou en système\nmonocouche en environnement atmosphérique. Approprié pour les surfaces correctement préparées en acier\ncarbone, en acier galvanisé, en acier inoxydable et en béton.",
-              "variants": []
-            },
-            "ar": {
-              "title": "",
-              "description": "",
-              "variants": []
-            }
-          }
-        },
-        {
-          "title": "HEMPEL 20L 2k Brown Hempadur Tiecoat 49183. Mix Ratio: 49187 17.5Ltr / 98191 2.5Ltr",
-          "image": "assets/products/20260211_175933-mlial9a8.jpg",
-          "description": "Hempadur Tiecoat 49183 is an anticorrosive two-component epoxy. Recommended use,\nFor atmospheric and immersion service used as a \"tiecoat\" between epoxy and physically drying coatings. For immersion service it can also replace a second anti-corrosive primer coat for the underwater coating system and at the same time act as \"tiecoat\" for antifouling.\nService temperature:\n- Maximum, dry exposure only: 80°C [176°F].\n- Maximum, in sea water: 40°C [104°F].\nFeatures\n- Good anticorrosive properties.\n- Acts as \"tiecoat\" between primer and physically drying coats.\n",
-          "brand": "HEMPEL",
-          "usage": [
-            "HEMPEL",
-            "Hempadur",
-            "49183"
-          ],
-          "price": 882.72,
-          "stock": "in",
-          "images": [
-            "assets/products/20260211_175933-mlial9a8.jpg"
-          ],
-          "variants": [],
-          "datasheet": "assets/datasheets/en-gb-mliap29r.pdf",
-          "translations": {
-            "fr": {
-              "title": "HEMPEL Hempadur Tiecoat 49183",
-              "description": "Hempadur Tiecoat 49183 est une époxy anticorrosion bi-composant.\n\nUtilisation recommandée :\nPour des applications en atmosphère et en immersion, utilisée comme « couche d’accrochage » (tiecoat) entre une époxy et des revêtements à séchage physique. En immersion, elle peut également remplacer une seconde couche primaire anticorrosion dans les systèmes de protection sous-marine, tout en servant de couche d’accrochage pour l’antifouling.\n\nTempérature de service :\n\nMaximum, en exposition sèche uniquement : 80°C [176°F]\n\nMaximum, en eau de mer : 40°C [104°F]\n\nCaractéristiques :\n\nBonnes propriétés anticorrosion\n\nSert de couche d’accrochage entre le primaire et les couches à séchage physique",
-              "variants": []
-            },
-            "ar": {
-              "title": "",
-              "description": "",
-              "variants": []
-            }
-          }
         }
       ],
       "translations": {
@@ -1627,7 +1567,7 @@
             },
             "ar": {
               "title": "SIKA Boom رغوة PU ‏750 مل",
-              "description": "رغوة بوليورتان أحادية المكوّن تتوسع مع الرطوبة. تشكّل رغوة خلوية م��لقة، سهلة التطبيق عبر الأنبوب المرفق.",
+              "description": "رغوة بوليورتان أحادية المكوّن تتوسع مع الرطوبة. تشكّل رغوة خلوية مغلقة، سهلة التطبيق عبر الأنبوب المرفق.",
               "variants": []
             }
           }
@@ -1756,56 +1696,25 @@
           }
         },
         {
-          "title": "Fiber Glass Fabric \"TISSU ROVING 500\", 1 m2",
-          "image": "assets/products/20260123_115735-mkqtkp3d.png",
-          "description": "Among reinforcements, Fiberglass Fabrics - also known as Fiberglass Cloth - continue to be the most commonly used reinforcement in the composites industry today. Generally, they are the least expensive among reinforcements and offer ease in handling. And when combined with resin, deliver composite parts with excellent strength, low weight, and great cosmetics.\n\nAll Fiberglass Fabrics are woven for fiber orientation, and each fabric features its own unique weight, strength, and fabric characteristics, which should be considered before starting any project.",
-          "brand": "",
+          "title": "Sikaflex 292i 300ml white/Blanc/Black/Noir",
+          "image": "assets/products/20260326_113125-mn7cmx40.png",
+          "description": "Sikaflex®-292i is a non-sag 1-component polyurethane adhesive of thixotropic, paste-like\nconsistency which cures on exposure to atmospheric moisture. It exhibits excellent adhesive properties and a good mechanical\nstrength.\nSikaflex®-292i meets the low spread of flame\nrequirements set out by the International\nMaritime Organisation (IMO).\n",
+          "brand": "SIKA",
           "usage": [
-            "fiberglass",
-            "fibre de verre",
-            "mat",
-            "tissu"
+            "Sikaflex",
+            "292i"
           ],
-          "price": 18.224,
+          "price": 57.264,
           "stock": "in",
           "images": [
-            "assets/products/20260123_115735-mkqtkp3d.png"
+            "assets/products/20260326_113125-mn7cmx40.png"
           ],
           "variants": [],
-          "datasheet": "",
+          "datasheet": "assets/datasheets/sikaflex_-292i-mn7cq2cv.pdf",
           "translations": {
             "fr": {
-              "title": "Fibre de Verre \"TISSU ROVING 500\", 1 m2",
-              "description": "Parmi les matériaux de renfort, les tissus en fibre de verre – également appelés toiles de fibre de verre – restent aujourd’hui les renforts les plus couramment utilisés dans l’industrie des composites. Ils sont généralement les moins coûteux et offrent une grande facilité de mise en œuvre. Associés à une résine, ils permettent d’obtenir des pièces composites présentant une excellente résistance, un faible poids et un très bel aspect de finition.\n\nTous les tissus en fibre de verre sont tissés selon une orientation spécifique des fibres, et chaque tissu possède son propre grammage, sa résistance et ses caractéristiques textiles, qui doivent être prises en compte avant de démarrer tout projet.",
-              "variants": []
-            },
-            "ar": {
-              "title": "",
-              "description": "",
-              "variants": []
-            }
-          }
-        },
-        {
-          "title": "Fiberglass Mat, 1 m2",
-          "image": "assets/products/20260123_121124-mkqtsjlx.jpg",
-          "description": "Fiberglass Mat is one of the most popular forms of reinforcement for non-structural applications. It's inexpensive, easy to use, and can quickly build thickness into parts, molds, or even a repair. It features randomly oriented strands throughout that effectively hide print-through of heavier fabrics and create an equal stiffness in all directions for molds and parts.\n\nNote: All Fiberglass Mat is made to be used with resin to create hard, composite parts. However, it is NOT compatible with epoxy resin. Mat has a light binder that holds it together. During lay-up, it requires styrene to break down that binder and allow for complete resin saturation. Epoxy does not contain styrene and therefore cannot be effectively used with the mat. Use polyester or vinyl ester resin with these applications.",
-          "brand": "",
-          "usage": [
-            "fiberglass",
-            "fibre de verre"
-          ],
-          "price": 15.995,
-          "stock": "in",
-          "images": [
-            "assets/products/20260123_121124-mkqtsjlx.jpg"
-          ],
-          "variants": [],
-          "datasheet": "",
-          "translations": {
-            "fr": {
-              "title": "Mat de Fibre de Verre, 1 m2",
-              "description": "Le mat de fibre de verre est l’une des formes de renfort les plus utilisées pour les applications non structurelles. Il est économique, facile à utiliser et permet d’augmenter rapidement l’épaisseur des pièces, des moules ou lors de réparations. Il est composé de fibres disposées de manière aléatoire, ce qui masque efficacement l’empreinte des tissus plus lourds et assure une rigidité uniforme dans toutes les directions pour les moules et les pièces.\n\nRemarque : Le mat de fibre de verre est conçu pour être utilisé avec une résine afin de créer des pièces composites rigides. Toutefois, il n’est pas compatible avec les résines époxy. Le mat contient un liant léger qui maintient les fibres ensemble. Lors de la stratification, la présence de styrène est nécessaire pour dissoudre ce liant et permettre une imprégnation complète de la résine. Les résines époxy ne contiennent pas de styrène et ne peuvent donc pas être utilisées efficacement avec le mat. Pour ces applications, il est recommandé d’utiliser des résines polyester ou vinylester.",
+              "title": "Sikaflex 292i 300ml white/Blanc/Black/Noir",
+              "description": "Sikaflex®-292i est une colle polyuréthane monocomposante, de consistance pâteuse, qui\ndurcit sous l'action de l'humidité de l'air.\nSikaflex®-292i possède de très bonnes propriétés d'adhérence et une résistance élevée\naux sollicitations mécaniques.\nSikaflex®-292i remplit les exigences de l'Organisation maritime internationale (IMO).",
               "variants": []
             },
             "ar": {
@@ -4058,7 +3967,7 @@
             },
             "ar": {
               "title": "BOSCH قرص قطع معدن 115 مم",
-              "description": "قرص قطع المعادن من BOSCH بقياس 115 مم يوفّر قطعًا سريعًا ودقيقًا في الفو��اذ والبروفيلات المعدنية. الحبيبات الكاشطة عالية الجودة تعطي نتائج نظيفة مع زوايد قليلة وتراكم أقل للمادة. تصميمه المعزّز يضمن عمرًا طويلًا وأمانًا عاليًا عند السرعات المرتفعة. ممتاز للمحترفين ولمستخدمي الـDIY.",
+              "description": "قرص قطع المعادن من BOSCH بقياس 115 مم يوفّر قطعًا سريعًا ودقيقًا في الفولاذ والبروفيلات المعدنية. الحبيبات الكاشطة عالية الجودة تعطي نتائج نظيفة مع زوايد قليلة وتراكم أقل للمادة. تصميمه المعزّز يضمن عمرًا طويلًا وأمانًا عاليًا عند السرعات المرتفعة. ممتاز للمحترفين ولمستخدمي الـDIY.",
               "variants": []
             }
           }
@@ -6526,129 +6435,6 @@
               "variants": []
             }
           }
-        },
-        {
-          "title": "ROBI Standard Welding Gauntlet, Single Pair, Size 10/Large, Red (Pack of 2)",
-          "image": "assets/products/20260110_150643-mk8f0tic.png",
-          "description": "The ROBI Standard Welding Gauntlet offers reliable hand and forearm protection for welding and heavy-duty work. Made from durable, heat-resistant material, it shields against sparks, heat, and mechanical hazards. The long gauntlet design ensures extended coverage and comfort during prolonged use. Supplied as a single pair, size 10/Large, in a highly visible red finish.",
-          "brand": "ROBI",
-          "usage": [
-            "gants",
-            "gloves",
-            "soudage",
-            "welding"
-          ],
-          "price": 19.11,
-          "stock": "in",
-          "images": [
-            "assets/products/20260110_150643-mk8f0tic.png"
-          ],
-          "variants": [],
-          "datasheet": "",
-          "translations": {
-            "fr": {
-              "title": "Gant de Soudage Standard ROBI",
-              "description": "Le gant de soudage standard ROBI offre une protection fiable des mains et des avant-bras pour les travaux de soudage et les tâches intensives. Fabriqué dans un matériau résistant à la chaleur, il protège efficacement contre les étincelles, la chaleur et les risques mécaniques. Son design long type manchette assure une couverture étendue et un confort optimal lors d’une utilisation prolongée. Livré en une paire, taille 10/Large, avec une finition rouge très visible.",
-              "variants": []
-            },
-            "ar": {
-              "title": "",
-              "description": "",
-              "variants": []
-            }
-          }
-        },
-        {
-          "title": "DS Digital Vernier Caliper 150mm Stainless Steel Precision Micrometer Electronic Gauge Measuring Tool, LCD Screen, Metric/Imperial/Fraction - Splash Resistant",
-          "image": "assets/products/20260115_142901-mkqv7lgc.png",
-          "description": "The DS Digital Vernier Caliper 150 mm delivers precise and reliable measurements for professional and workshop applications. Made from stainless steel, it ensures durability and long-term accuracy, while the large LCD screen provides clear, easy-to-read results. Supporting metric, imperial, and fractional units, it offers versatile measurement options with splash-resistant protection. A high-precision electronic measuring tool designed for efficiency and accuracy.",
-          "brand": "DS",
-          "usage": [
-            "caliper",
-            "pied a coulisse",
-            "digital"
-          ],
-          "price": 81.655,
-          "stock": "in",
-          "images": [
-            "assets/products/20260115_142901-mkqv7lgc.png"
-          ],
-          "variants": [],
-          "datasheet": "",
-          "translations": {
-            "fr": {
-              "title": "Pied à Coulisse Numérique DS 150 mm",
-              "description": "Le pied à coulisse numérique DS 150 mm offre des mesures précises et fiables pour les applications professionnelles et en atelier. Fabriqué en acier inoxydable, il garantit durabilité et précision à long terme, tandis que son grand écran LCD assure une lecture claire et facile. Compatible avec les unités métriques, impériales et fractionnaires, il propose une grande polyvalence et une protection résistante aux éclaboussures. Un outil de mesure électronique de haute précision, conçu pour l’efficacité et l’exactitude.",
-              "variants": []
-            },
-            "ar": {
-              "title": "",
-              "description": "",
-              "variants": []
-            }
-          }
-        },
-        {
-          "title": "DS Vernier Caliper 150mm",
-          "image": "assets/products/20260123_133815-mkqvdd4m.png",
-          "description": "The DS Vernier Caliper 150 mm is a precision measuring tool designed for accurate internal, external, and depth measurements. Built for durability and consistent performance, it ensures reliable readings in workshop and industrial environments. Its clear scale allows easy measurement with dependable accuracy. An essential tool for technicians, mechanics, and quality control tasks.",
-          "brand": "DS",
-          "usage": [
-            "DS",
-            "caliper",
-            "pied à coulisse",
-            "150mm"
-          ],
-          "price": 58.689,
-          "stock": "in",
-          "images": [
-            "assets/products/20260123_133815-mkqvdd4m.png"
-          ],
-          "variants": [],
-          "datasheet": "",
-          "translations": {
-            "fr": {
-              "title": "Pied à Coulisse DS 150 mm",
-              "description": "Le pied à coulisse DS 150 mm est un outil de mesure de précision conçu pour les mesures intérieures, extérieures et de profondeur. Conçu pour offrir durabilité et performance constante, il garantit des relevés fiables en atelier et en milieu industriel. Son échelle lisible permet des mesures faciles et précises. Un outil indispensable pour les techniciens, mécaniciens et le contrôle qualité.",
-              "variants": []
-            },
-            "ar": {
-              "title": "",
-              "description": "",
-              "variants": []
-            }
-          }
-        },
-        {
-          "title": "DS 20Pcs Tap and Die Set 3x0.5 4x0.7 55x0.8 6x1.0 7x1.0 8x1.25 10x1.5 12x1.75 1/8 NPT-27  Die Stock, Adj. Tap Wrench  1/8\"-1/2\"-3MM-12MM",
-          "image": "assets/products/20260115_143034-mkwsjp8o.png",
-          "description": "The DS 20-Pcs Tap and Die Set is a complete threading solution for precision cutting and repair of internal and external threads. Covering metric sizes from M3 to M12 plus 1/8\" NPT, it’s ideal for mechanical, automotive, and workshop use. Made for durability and accuracy, it includes die stock and an adjustable tap wrench for controlled, smooth operation. A reliable set built to handle everyday threading jobs with confidence.",
-          "brand": "DS",
-          "usage": [
-            "tap",
-            "die set",
-            "tarauds",
-            "filières"
-          ],
-          "price": 45.448,
-          "stock": "in",
-          "images": [
-            "assets/products/20260115_143034-mkwsjp8o.png"
-          ],
-          "variants": [],
-          "datasheet": "",
-          "translations": {
-            "fr": {
-              "title": "Jeus de 20 Tarauds et Filières 3x0.5 4x0.7 55x0.8 6x1.0 7x1.0 8x1.25 10x1.5 12x1.75 1/8 NPT-27  Die Stock, Adj. Tap Wrench  1/8\"-1/2\"-3MM-12MM",
-              "description": "Le coffret DS de 20 tarauds et filières offre une solution complète pour le taraudage et le filetage précis, en réparation comme en fabrication. Il couvre les dimensions métriques de M3 à M12 ainsi que le 1/8\" NPT, idéal pour les travaux mécaniques et automobiles. Conçu pour la précision et la durabilité, il comprend un porte-filière et un tourne-à-gauche réglable pour un contrôle optimal. Un ensemble fiable pour des filetages nets et professionnels.",
-              "variants": []
-            },
-            "ar": {
-              "title": "",
-              "description": "",
-              "variants": []
-            }
-          }
         }
       ],
       "translations": {
@@ -7173,51 +6959,6 @@
             "fr": {
               "title": "Induit BOSCH pour Perceuse GSB 570",
               "description": "L’induit BOSCH pour perceuse GSB 570 est une pièce de rechange d’origine conçue pour rétablir les performances optimales du moteur. Fabriqué selon des spécifications précises, il garantit une rotation fluide, un transfert de puissance efficace et une longue durée de vie. Idéal pour la réparation et la maintenance, il contribue à prolonger la durée de vie de votre perceuse. Un composant fiable pour un usage professionnel et en atelier.",
-              "variants": []
-            },
-            "ar": {
-              "title": "",
-              "description": "",
-              "variants": []
-            }
-          }
-        },
-        {
-          "title": "SNDWAY Laser Measure 0.15m-50m/100Meters",
-          "image": "assets/products/20260110_151425-mk8fm08c.png",
-          "description": "The SNDWAY Laser Measure offers fast, accurate distance measurements from 0.15 m up to 50 m or 100 m, depending on the model. Designed for precision and ease of use, it provides clear digital readings for construction, renovation, and professional surveying tasks. Compact and lightweight, it ensures convenient handling on job sites. A reliable measuring tool delivering efficiency and accuracy every time.",
-          "brand": "SNDWAY",
-          "usage": [
-            "laser",
-            "measure",
-            "mètre",
-            "Télémètre"
-          ],
-          "price": 0,
-          "stock": "in",
-          "images": [
-            "assets/products/20260110_151425-mk8fm08c.png",
-            "assets/products/20260110_151419-mk8fm6r1.png",
-            "assets/products/20260110_151508-mk8fmslp.png",
-            "assets/products/20260110_151512-mk8foy22.png"
-          ],
-          "variants": [
-            {
-              "label": "50ml",
-              "price": 73.729,
-              "stock": "in"
-            },
-            {
-              "label": "100ml",
-              "price": 98.084,
-              "stock": "in"
-            }
-          ],
-          "datasheet": "",
-          "translations": {
-            "fr": {
-              "title": "Télémètre Laser SNDWAY permet des mesures rapides et précises de 0,15 m jusqu’à 50 m ou 100 m",
-              "description": "Le télémètre laser SNDWAY permet des mesures rapides et précises de 0,15 m jusqu’à 50 m ou 100 m selon le modèle. Conçu pour la précision et la simplicité d’utilisation, il offre des lectures numériques claires pour les travaux de construction, de rénovation et de métrage professionnel. Compact et léger, il garantit une prise en main pratique sur les chantiers. Un outil de mesure fiable assurant efficacité et exactitude à chaque utilisation.\n\n",
               "variants": []
             },
             "ar": {
