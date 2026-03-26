@@ -1694,6 +1694,35 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "Sikaflex 292i 300ml white/Blanc/Black/Noir",
+          "image": "assets/products/20260326_113125-mn7cmx40.png",
+          "description": "Sikaflex®-292i is a non-sag 1-component polyurethane adhesive of thixotropic, paste-like\nconsistency which cures on exposure to atmospheric moisture. It exhibits excellent adhesive properties and a good mechanical\nstrength.\nSikaflex®-292i meets the low spread of flame\nrequirements set out by the International\nMaritime Organisation (IMO).\n",
+          "brand": "SIKA",
+          "usage": [
+            "Sikaflex",
+            "292i"
+          ],
+          "price": 57.264,
+          "stock": "in",
+          "images": [
+            "assets/products/20260326_113125-mn7cmx40.png"
+          ],
+          "variants": [],
+          "datasheet": "assets/datasheets/sikaflex_-292i-mn7cq2cv.pdf",
+          "translations": {
+            "fr": {
+              "title": "Sikaflex 292i 300ml white/Blanc/Black/Noir",
+              "description": "Sikaflex®-292i est une colle polyuréthane monocomposante, de consistance pâteuse, qui\ndurcit sous l'action de l'humidité de l'air.\nSikaflex®-292i possède de très bonnes propriétés d'adhérence et une résistance élevée\naux sollicitations mécaniques.\nSikaflex®-292i remplit les exigences de l'Organisation maritime internationale (IMO).",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
