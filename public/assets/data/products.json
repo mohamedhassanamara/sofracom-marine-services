@@ -1018,36 +1018,6 @@
               "variants": []
             }
           }
-        },
-        {
-          "title": "JOTUN White Tankguard storage 2K 10L A & 05L B",
-          "image": "assets/products/20260112_173316-mkcu5amp.png",
-          "description": "Tankguard Storage is a two-component tank lining with excellent chemical resistance. Clean petroleum product and crude-oil tanks coated with Tankguard Storage can return to service within 48 hours. Tankguard Storage can be used as internal lining for offshore, onshore and buried tanks as well as pipes for storage of chemicals, wastewater, process water, concrete bunds, and fire service lines amongst others.\n\nKey features\nExcellent chemical resistance \nResistant against crude oil at temperatures up to 120°C \n48-hour return to service possible for some products",
-          "brand": "JOTUN",
-          "usage": [
-            "JOTUN",
-            "tank"
-          ],
-          "price": 887.592,
-          "stock": "on-order",
-          "images": [
-            "assets/products/20260112_173316-mkcu5amp.png",
-            "assets/products/20260112_173224-mkcu5i4n.png"
-          ],
-          "variants": [],
-          "datasheet": "assets/datasheets/tds-735-tankguard-storage-fra-fr-mkcv1tmy.pdf",
-          "translations": {
-            "fr": {
-              "title": "JOTUN Tankguard Storage blanc 2K 10 L composant A + 5 L composant B",
-              "description": "Revêtement époxy phénolique/novolac bicomposant. Developpé pour la protection interne de réservoirs avec\nune excellente resistance aux produits chimiques. Peut être utilisé comme primaire et/ou finition ou en système\nmonocouche en environnement atmosphérique. Approprié pour les surfaces correctement préparées en acier\ncarbone, en acier galvanisé, en acier inoxydable et en béton.",
-              "variants": []
-            },
-            "ar": {
-              "title": "",
-              "description": "",
-              "variants": []
-            }
-          }
         }
       ],
       "translations": {
@@ -1068,7 +1038,7 @@
       "description": "Marine sealants for deck hardware, teak, hatches, and glazing.",
       "products": [
         {
-          "title": "Sikaflex 291i 400ml white/Blanc/Black/Noir",
+          "title": "Sikaflex 291i 300ml white/Blanc/Black/Noir",
           "description": "Sikaflex®-291i is a non-sag 1-component polyurethane sealant specifically developed for\nthe marine market, which cures on exposure\nto atmospheric moisture.\nSikaflex®-291i meets in addition the low\nspread of flame requirements set out by the\nInternational Maritime Organisation (IMO).\n▪ Wheelmark approved\n▪ 1-component formulation\n▪ Highly elastic\n▪ Low odour\n▪ Non-corrosive\n▪ Can be painted\nBonds well to a wide variety of marine substrates\n▪\n▪ Solvent free\n▪ Very low VOC\n▪ Low isocyanate conten",
           "brand": "SIKA",
           "usage": [
@@ -1076,14 +1046,21 @@
             "General bonding",
             "Flexible"
           ],
-          "price": 44.167,
-          "stock": "in",
+          "price": 55.568,
+          "stock": "out",
           "images": [
+            "assets/products/20260326_113104-mn7cj9ie.png",
             "assets/products/20251027_154046-mhkvwi0x.png"
           ],
-          "variants": [],
+          "variants": [
+            {
+              "label": "Sikaflex 291i Black 300ml ",
+              "price": 55.568,
+              "stock": "in"
+            }
+          ],
           "datasheet": "",
-          "image": "assets/products/20251027_154046-mhkvwi0x.png",
+          "image": "assets/products/20260326_113104-mn7cj9ie.png",
           "translations": {
             "fr": {
               "title": "Sikaflex 291i 400ml Blanc / Noir",
@@ -1108,7 +1085,7 @@
             "sika"
           ],
           "price": 60.036,
-          "stock": "in",
+          "stock": "out",
           "images": [
             "assets/products/20251027_153952-mhkvp45z.png"
           ],
@@ -1230,7 +1207,7 @@
             "yd-114"
           ],
           "price": 45.347,
-          "stock": "in",
+          "stock": "out",
           "images": [
             "assets/products/20251111_140038-mhw5opvd.png"
           ],
@@ -1719,27 +1696,25 @@
           }
         },
         {
-          "title": "Fiber Glass Fabric \"TISSU ROVING 500\"",
-          "image": "assets/products/20260123_115735-mkqtkp3d.png",
-          "description": "Among reinforcements, Fiberglass Fabrics - also known as Fiberglass Cloth - continue to be the most commonly used reinforcement in the composites industry today. Generally, they are the least expensive among reinforcements and offer ease in handling. And when combined with resin, deliver composite parts with excellent strength, low weight, and great cosmetics.\n\nAll Fiberglass Fabrics are woven for fiber orientation, and each fabric features its own unique weight, strength, and fabric characteristics, which should be considered before starting any project.",
-          "brand": "",
+          "title": "Sikaflex 292i 300ml white/Blanc/Black/Noir",
+          "image": "assets/products/20260326_113125-mn7cmx40.png",
+          "description": "Sikaflex®-292i is a non-sag 1-component polyurethane adhesive of thixotropic, paste-like\nconsistency which cures on exposure to atmospheric moisture. It exhibits excellent adhesive properties and a good mechanical\nstrength.\nSikaflex®-292i meets the low spread of flame\nrequirements set out by the International\nMaritime Organisation (IMO).\n",
+          "brand": "SIKA",
           "usage": [
-            "fiberglass",
-            "fibre de verre",
-            "mat",
-            "tissu"
+            "Sikaflex",
+            "292i"
           ],
-          "price": 18.224,
+          "price": 57.264,
           "stock": "in",
           "images": [
-            "assets/products/20260123_115735-mkqtkp3d.png"
+            "assets/products/20260326_113125-mn7cmx40.png"
           ],
           "variants": [],
-          "datasheet": "",
+          "datasheet": "assets/datasheets/sikaflex_-292i-mn7cq2cv.pdf",
           "translations": {
             "fr": {
-              "title": "Fibre de Verre \"TISSU ROVING 500\"",
-              "description": "Parmi les matériaux de renfort, les tissus en fibre de verre – également appelés toiles de fibre de verre – restent aujourd’hui les renforts les plus couramment utilisés dans l’industrie des composites. Ils sont généralement les moins coûteux et offrent une grande facilité de mise en œuvre. Associés à une résine, ils permettent d’obtenir des pièces composites présentant une excellente résistance, un faible poids et un très bel aspect de finition.\n\nTous les tissus en fibre de verre sont tissés selon une orientation spécifique des fibres, et chaque tissu possède son propre grammage, sa résistance et ses caractéristiques textiles, qui doivent être prises en compte avant de démarrer tout projet.",
+              "title": "Sikaflex 292i 300ml white/Blanc/Black/Noir",
+              "description": "Sikaflex®-292i est une colle polyuréthane monocomposante, de consistance pâteuse, qui\ndurcit sous l'action de l'humidité de l'air.\nSikaflex®-292i possède de très bonnes propriétés d'adhérence et une résistance élevée\naux sollicitations mécaniques.\nSikaflex®-292i remplit les exigences de l'Organisation maritime internationale (IMO).",
               "variants": []
             },
             "ar": {
@@ -6460,37 +6435,6 @@
               "variants": []
             }
           }
-        },
-        {
-          "title": "ROBI Standard Welding Gauntlet, Single Pair, Size 10/Large, Red (Pack of 2)",
-          "image": "assets/products/20260110_150643-mk8f0tic.png",
-          "description": "The ROBI Standard Welding Gauntlet offers reliable hand and forearm protection for welding and heavy-duty work. Made from durable, heat-resistant material, it shields against sparks, heat, and mechanical hazards. The long gauntlet design ensures extended coverage and comfort during prolonged use. Supplied as a single pair, size 10/Large, in a highly visible red finish.",
-          "brand": "ROBI",
-          "usage": [
-            "gants",
-            "gloves",
-            "soudage",
-            "welding"
-          ],
-          "price": 19.11,
-          "stock": "in",
-          "images": [
-            "assets/products/20260110_150643-mk8f0tic.png"
-          ],
-          "variants": [],
-          "datasheet": "",
-          "translations": {
-            "fr": {
-              "title": "Gant de Soudage Standard ROBI",
-              "description": "Le gant de soudage standard ROBI offre une protection fiable des mains et des avant-bras pour les travaux de soudage et les tâches intensives. Fabriqué dans un matériau résistant à la chaleur, il protège efficacement contre les étincelles, la chaleur et les risques mécaniques. Son design long type manchette assure une couverture étendue et un confort optimal lors d’une utilisation prolongée. Livré en une paire, taille 10/Large, avec une finition rouge très visible.",
-              "variants": []
-            },
-            "ar": {
-              "title": "",
-              "description": "",
-              "variants": []
-            }
-          }
         }
       ],
       "translations": {
@@ -7015,51 +6959,6 @@
             "fr": {
               "title": "Induit BOSCH pour Perceuse GSB 570",
               "description": "L’induit BOSCH pour perceuse GSB 570 est une pièce de rechange d’origine conçue pour rétablir les performances optimales du moteur. Fabriqué selon des spécifications précises, il garantit une rotation fluide, un transfert de puissance efficace et une longue durée de vie. Idéal pour la réparation et la maintenance, il contribue à prolonger la durée de vie de votre perceuse. Un composant fiable pour un usage professionnel et en atelier.",
-              "variants": []
-            },
-            "ar": {
-              "title": "",
-              "description": "",
-              "variants": []
-            }
-          }
-        },
-        {
-          "title": "SNDWAY Laser Measure 0.15m-50m/100Meters",
-          "image": "assets/products/20260110_151425-mk8fm08c.png",
-          "description": "The SNDWAY Laser Measure offers fast, accurate distance measurements from 0.15 m up to 50 m or 100 m, depending on the model. Designed for precision and ease of use, it provides clear digital readings for construction, renovation, and professional surveying tasks. Compact and lightweight, it ensures convenient handling on job sites. A reliable measuring tool delivering efficiency and accuracy every time.",
-          "brand": "SNDWAY",
-          "usage": [
-            "laser",
-            "measure",
-            "mètre",
-            "Télémètre"
-          ],
-          "price": 0,
-          "stock": "in",
-          "images": [
-            "assets/products/20260110_151425-mk8fm08c.png",
-            "assets/products/20260110_151419-mk8fm6r1.png",
-            "assets/products/20260110_151508-mk8fmslp.png",
-            "assets/products/20260110_151512-mk8foy22.png"
-          ],
-          "variants": [
-            {
-              "label": "50ml",
-              "price": 73.729,
-              "stock": "in"
-            },
-            {
-              "label": "100ml",
-              "price": 98.084,
-              "stock": "in"
-            }
-          ],
-          "datasheet": "",
-          "translations": {
-            "fr": {
-              "title": "Télémètre Laser SNDWAY permet des mesures rapides et précises de 0,15 m jusqu’à 50 m ou 100 m",
-              "description": "Le télémètre laser SNDWAY permet des mesures rapides et précises de 0,15 m jusqu’à 50 m ou 100 m selon le modèle. Conçu pour la précision et la simplicité d’utilisation, il offre des lectures numériques claires pour les travaux de construction, de rénovation et de métrage professionnel. Compact et léger, il garantit une prise en main pratique sur les chantiers. Un outil de mesure fiable assurant efficacité et exactitude à chaque utilisation.\n\n",
               "variants": []
             },
             "ar": {
