@@ -1038,7 +1038,7 @@
       "description": "Marine sealants for deck hardware, teak, hatches, and glazing.",
       "products": [
         {
-          "title": "Sikaflex 291i 400ml white/Blanc/Black/Noir",
+          "title": "Sikaflex 291i 300ml white/Blanc/Black/Noir",
           "description": "Sikaflex®-291i is a non-sag 1-component polyurethane sealant specifically developed for\nthe marine market, which cures on exposure\nto atmospheric moisture.\nSikaflex®-291i meets in addition the low\nspread of flame requirements set out by the\nInternational Maritime Organisation (IMO).\n▪ Wheelmark approved\n▪ 1-component formulation\n▪ Highly elastic\n▪ Low odour\n▪ Non-corrosive\n▪ Can be painted\nBonds well to a wide variety of marine substrates\n▪\n▪ Solvent free\n▪ Very low VOC\n▪ Low isocyanate conten",
           "brand": "SIKA",
           "usage": [
@@ -1046,7 +1046,7 @@
             "General bonding",
             "Flexible"
           ],
-          "price": 44.167,
+          "price": 55.568,
           "stock": "out",
           "images": [
             "assets/products/20260326_113104-mn7cj9ie.png",
@@ -1054,8 +1054,8 @@
           ],
           "variants": [
             {
-              "label": "Sikaflex 291i Black 300ml ",
-              "price": 55.568,
+              "label": "Sikaflex 291i Black 400ml ",
+              "price": 44.167,
               "stock": "in"
             }
           ],
