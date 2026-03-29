@@ -183,9 +183,10 @@ export async function getStaticProps({ params }) {
 
 
 export default function CategoryPage({ category }) {
-    const { lang } = useLang();
+    const { lang, t } = useLang();
     const [brandFilter, setBrandFilter] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
+    const [sortOption, setSortOption] = useState('alpha-asc');
     const [cartOpen, setCartOpen] = useState(false);
     const [checkoutStatus, setCheckoutStatus] = useState({ message: '', type: '' });
     const [checkoutSubmitting, setCheckoutSubmitting] = useState(false);
@@ -207,10 +208,7 @@ export default function CategoryPage({ category }) {
         () => localizeCategory(category, lang),
         [category, lang]
     );
-    const localizedProducts = useMemo(
-        () => sortByAlphabet(localizedCategory.products || [], product => product.title, lang),
-        [localizedCategory.products, lang]
-    );
+    const localizedProducts = localizedCategory.products || [];
 
     useEffect(() => {
         return () => {
@@ -246,19 +244,35 @@ export default function CategoryPage({ category }) {
         return sortByAlphabet(brands, brand => brand, lang);
     }, [localizedProducts, lang]);
 
-    const filteredProducts = useMemo(() => {
+    const renderedProducts = useMemo(() => {
         const normalizedTerm = searchTerm.trim().toLowerCase();
-        return localizedProducts.filter(product => {
+        const filtered = localizedProducts.filter(product => {
             if (brandFilter && product.brand !== brandFilter) return false;
             if (!normalizedTerm) return true;
             const haystack = `${product.title} ${product.description} ${product.brand}`.toLowerCase();
             return haystack.includes(normalizedTerm);
         });
-    }, [localizedProducts, brandFilter, searchTerm]);
 
-    const renderedProducts = filteredProducts.length
-        ? filteredProducts
-        : localizedProducts;
+        const baseList = filtered.length ? filtered : localizedProducts;
+
+        if (sortOption === 'alpha-desc') {
+            return sortByAlphabet(baseList, product => product.title, lang).reverse();
+        }
+
+        if (sortOption === 'price-asc') {
+            return [...baseList].sort(
+                (a, b) => (Number(a.price) || 0) - (Number(b.price) || 0)
+            );
+        }
+
+        if (sortOption === 'price-desc') {
+            return [...baseList].sort(
+                (a, b) => (Number(b.price) || 0) - (Number(a.price) || 0)
+            );
+        }
+
+        return sortByAlphabet(baseList, product => product.title, lang);
+    }, [localizedProducts, brandFilter, searchTerm, sortOption, lang]);
 
     const addToCart = (product, variant) => {
         if (!product) return;
@@ -394,7 +408,7 @@ export default function CategoryPage({ category }) {
                             value={brandFilter}
                             onChange={event => setBrandFilter(event.target.value)}
                         >
-                            <option value="">All brands</option>
+                            <option value="">{t('products.controls.allBrands')}</option>
                             {availableBrands.map(brand => (
                                 <option key={brand} value={brand}>
                                     {brand}
@@ -405,18 +419,29 @@ export default function CategoryPage({ category }) {
                             type="search"
                             value={searchTerm}
                             onChange={event => setSearchTerm(event.target.value)}
-                            placeholder="Search products..."
+                            placeholder={t('products.controls.searchPlaceholder')}
                             className="px-3 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200"
                         />
+                        <select
+                            className="px-3 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200"
+                            value={sortOption}
+                            onChange={event => setSortOption(event.target.value)}
+                        >
+                            <option value="alpha-asc">{t('products.controls.sortNameAsc')}</option>
+                            <option value="alpha-desc">{t('products.controls.sortNameDesc')}</option>
+                            <option value="price-asc">{t('products.controls.sortPriceAsc')}</option>
+                            <option value="price-desc">{t('products.controls.sortPriceDesc')}</option>
+                        </select>
                         <button
                             type="button"
                             className="px-3 py-2 rounded-lg border hover:bg-gray-100"
                             onClick={() => {
                                 setBrandFilter('');
                                 setSearchTerm('');
+                                setSortOption('alpha-asc');
                             }}
                         >
-                            Reset filters
+                            {t('products.controls.reset')}
                         </button>
                     </div>
                 </div>
