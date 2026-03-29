@@ -6,6 +6,7 @@ import {
     getCategoryBySlug,
     getCategories,
 } from '../../../lib/products';
+import { sortByAlphabet } from '../../../lib/sort';
 import { STOCK_LABEL, getStockBadgeClass } from '../../../lib/stock';
 import { useLang } from '../../../contexts/LangContext';
 import { localizeCategory } from '../../../lib/localize';
@@ -206,7 +207,10 @@ export default function CategoryPage({ category }) {
         () => localizeCategory(category, lang),
         [category, lang]
     );
-    const localizedProducts = localizedCategory.products || [];
+    const localizedProducts = useMemo(
+        () => sortByAlphabet(localizedCategory.products || [], product => product.title, lang),
+        [localizedCategory.products, lang]
+    );
 
     useEffect(() => {
         return () => {
@@ -239,8 +243,8 @@ export default function CategoryPage({ category }) {
                 localizedProducts.map(product => product.brand).filter(Boolean)
             )
         );
-        return brands.sort();
-    }, [localizedProducts]);
+        return sortByAlphabet(brands, brand => brand, lang);
+    }, [localizedProducts, lang]);
 
     const filteredProducts = useMemo(() => {
         const normalizedTerm = searchTerm.trim().toLowerCase();

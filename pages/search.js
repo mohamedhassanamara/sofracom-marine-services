@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import { getCategories } from '../lib/products';
+import { sortByAlphabet } from '../lib/sort';
 import { useLang } from '../contexts/LangContext';
 import { localizeCategory } from '../lib/localize';
 import { STOCK_LABEL, getStockBadgeClass } from '../lib/stock';
@@ -39,7 +40,12 @@ export default function SearchPage({ categories = [] }) {
     }, [queryValue]);
 
     const localizedCategories = useMemo(
-        () => categories.map(category => localizeCategory(category, lang)),
+        () =>
+            sortByAlphabet(
+                categories.map(category => localizeCategory(category, lang)),
+                category => category.name,
+                lang
+            ),
         [categories, lang]
     );
 
@@ -58,7 +64,7 @@ export default function SearchPage({ categories = [] }) {
     const normalizedTerm = searchTerm.trim().toLowerCase();
     const searchResults = useMemo(() => {
         if (!normalizedTerm) return [];
-        return productIndex.filter(product => {
+        const matchedProducts = productIndex.filter(product => {
             const usageText = Array.isArray(product.usage)
                 ? product.usage.join(' ')
                 : '';
@@ -66,7 +72,9 @@ export default function SearchPage({ categories = [] }) {
             const haystack = `${product.title} ${product.description} ${product.brand} ${product.categoryName} ${usageText} ${priceText}`.toLowerCase();
             return haystack.includes(normalizedTerm);
         });
-    }, [normalizedTerm, productIndex]);
+
+        return sortByAlphabet(matchedProducts, product => product.title, lang);
+    }, [normalizedTerm, productIndex, lang]);
 
     const handleSubmit = event => {
         event.preventDefault();

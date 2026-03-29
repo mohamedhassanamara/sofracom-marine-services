@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import useCart from '../../hooks/useCart';
 import { getCategories } from '../../lib/products';
+import { sortByAlphabet } from '../../lib/sort';
 import { useLang } from '../../contexts/LangContext';
 import { localizeCategory } from '../../lib/localize';
 
@@ -48,6 +49,10 @@ export default function ProductsIndex({ categories = [] }) {
     const localizedCategories = useMemo(
         () => categories.map(category => localizeCategory(category, lang)),
         [categories, lang]
+    );
+    const sortedCategories = useMemo(
+        () => sortByAlphabet(localizedCategories, category => category.name, lang),
+        [localizedCategories, lang]
     );
     useEffect(() => {
         return () => {
@@ -186,7 +191,7 @@ export default function ProductsIndex({ categories = [] }) {
                     </p>
                 </div>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {localizedCategories.map(category => (
+                    {sortedCategories.map(category => (
                         <Link
                             key={category.slug}
                             href={`/products/${category.slug}`}
