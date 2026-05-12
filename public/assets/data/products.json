@@ -1050,6 +1050,37 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "SEAJET PELLERCLEAN CLEAR COAT",
+          "image": "assets/products/20260417_133349-mp2seypy.png",
+          "description": "Seajet Pellerclean Clear Coat is a protective underwater coating designed to prevent fouling on propellers and metal underwater parts. It creates a smooth, clear barrier that reduces marine growth and improves performance and efficiency. Easy to apply, it helps maintain cleaner surfaces for longer periods, reducing maintenance needs and fuel consumption.",
+          "brand": "SEAJET",
+          "usage": [
+            "PELLER",
+            "SEAJET",
+            "PROPELLER"
+          ],
+          "price": 894.166,
+          "stock": "in",
+          "images": [
+            "assets/products/20260417_133349-mp2seypy.png",
+            "assets/products/20260417_133210-mp2sf51l.png"
+          ],
+          "variants": [],
+          "datasheet": "assets/datasheets/seajet_pellerclean_clear_coat-tds-english-consumer-mp2sc5ky.pdf",
+          "translations": {
+            "fr": {
+              "title": "SEAJET PELLERCLEAN CLEAR COAT",
+              "description": "Seajet Pellerclean Clear Coat est un revêtement protecteur sous-marin conçu pour empêcher l’encrassement des hélices et des pièces métalliques immergées. Il forme une couche transparente et lisse qui limite la croissance marine et améliore les performances et l’efficacité. Facile à appliquer, il permet de garder les surfaces propres plus longtemps et de réduire l’entretien ainsi que la consommation de carburant.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
@@ -3910,7 +3941,7 @@
             },
             "ar": {
               "title": "DS فرش كأس سلكية على محور قطر 75 مم",
-              "description": "مخصّصة للاستعمال على الحديد والمعادن.\nتُستخدم لإزالة الزوايد والصدأ وبقايا اللحام والقشور وبقايا المطاط وآثار الحرق والأوساخ في الأماكن الضيقة والأسطح الداخلية.\nمجالات الاستخدام: إزالة الخشونة، تنظيف الحواف، نزع الطلاء، إزالة بقايا اللحام والقشور، صنفرة خفيفة وتنظيف الأسطح.",
+              "description": "مخصّصة للاستعمال على الحديد والمعادن.\nتُستخدم لإزالة الزوايد والصدأ وبقايا اللحام والقشور وبقايا المطاط وآثار الحرق و��لأوساخ في الأماكن الضيقة والأسطح الداخلية.\nمجالات الاستخدام: إزالة الخشونة، تنظيف الحواف، نزع الطلاء، إزالة بقايا اللحام والقشور، صنفرة خفيفة وتنظيف الأسطح.",
               "variants": []
             }
           }
