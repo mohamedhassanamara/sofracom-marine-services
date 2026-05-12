@@ -1018,6 +1018,38 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "HEMPEL'S 01L 0808 Thinner",
+          "image": "assets/products/fcfaf6ec-daf4-4b1f-9f91-f90a3884105a-mp2qv165.png",
+          "description": "HEMPEL'S 01L 0808 Thinner is a high-quality solvent specially formulated for thinning compatible Hempel marine and protective coatings. It improves paint application, flow, and leveling while ensuring optimal drying performance. Suitable for cleaning spray equipment, brushes, and tools, it helps maintain professional finishing results. Widely used in marine, industrial, and maintenance applications, HEMPEL'S 0808 Thinner delivers reliable performance and consistent coating quality.",
+          "brand": "HEMPEL",
+          "usage": [
+            "Thinner",
+            "diluant",
+            "808",
+            "HEMPEL",
+            "antifouling"
+          ],
+          "price": 14.918,
+          "stock": "in",
+          "images": [
+            "assets/products/fcfaf6ec-daf4-4b1f-9f91-f90a3884105a-mp2qv165.png"
+          ],
+          "variants": [],
+          "datasheet": "assets/datasheets/thinner-808en-us-mp2qvhnm.pdf",
+          "translations": {
+            "fr": {
+              "title": "01L Diluant HEMPEL 0808 ",
+              "description": "HEMPEL'S 01L 0808 Thinner est un solvant de haute qualité spécialement formulé pour diluer les peintures marines et les revêtements de protection compatibles Hempel. Il améliore l’application, l’étalement et le nivellement de la peinture tout en garantissant un séchage optimal. Convient également au nettoyage des équipements de pulvérisation, pinceaux et outils, il contribue à obtenir une finition professionnelle. Largement utilisé dans les secteurs maritime, industriel et de maintenance, le diluant HEMPEL'S 0808 assure des performances fiables et une qualité de revêtement constante.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
