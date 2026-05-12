@@ -1815,6 +1815,34 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "BELZONA 1111 / 01KG",
+          "image": "assets/products/20260303_102353-mp2rlb5x.png",
+          "description": "Belzona 1111 (Super Metal) is a two-component, solvent-free epoxy repair composite designed for rebuilding, resurfacing, and repairing metal components. It is reinforced for high mechanical strength and excellent resistance to corrosion, chemicals, and wear. Commonly used on pumps, shafts, pipes, tanks, and machinery, it can be machined and painted after curing. Belzona 1111 bonds strongly to metals and is widely applied in marine, industrial, and maintenance environments for durable metal restoration and emergency repairs.",
+          "brand": "BELZONA",
+          "usage": [
+            "BELZONA"
+          ],
+          "price": 390.111,
+          "stock": "in",
+          "images": [
+            "assets/products/20260303_102353-mp2rlb5x.png"
+          ],
+          "variants": [],
+          "datasheet": "assets/datasheets/uk1111ps_10132-mp2rlhnh.pdf",
+          "translations": {
+            "fr": {
+              "title": "BELZONA 1111 / 01KG",
+              "description": "Belzona 1111 (Super Metal) est un composite de réparation bi-composant à base de résine époxy sans solvant, renforcé d’un alliage métallique haute résistance. Il est spécialement conçu pour la réparation, le rechargement et le resurfaçage des pièces métalliques endommagées. Offrant une excellente résistance à la corrosion, aux produits chimiques et à l’usure, il est largement utilisé sur les pompes, arbres, tuyauteries, réservoirs et équipements industriels. Après polymérisation, le produit peut être usiné, percé et peint pour une finition durable et professionnelle.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
