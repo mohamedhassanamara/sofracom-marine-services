@@ -6628,6 +6628,36 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "CLIMAX 12 Pack / Disposable Face Mask with Breathing Valve",
+          "image": "assets/products/20260513_184151-mp4cz9x9.png",
+          "description": "CLIMAX 12 Pack Disposable Face Mask with Breathing Valve provides high-efficiency respiratory protection against dust, particles, and airborne contaminants. Designed with a foldable ergonomic shape and exhalation valve, it ensures comfortable breathing and reduced heat buildup during extended use. Its adjustable fit and lightweight construction offer excellent comfort and secure sealing for professional and industrial environments. Ideal for construction, sanding, painting, and maintenance work, these FFP3-rated masks deliver reliable safety and everyday convenience.",
+          "brand": "CLIMAX",
+          "usage": [
+            "mask",
+            "dispasable"
+          ],
+          "price": 37.224,
+          "stock": "in",
+          "images": [
+            "assets/products/20260513_184151-mp4cz9x9.png",
+            "assets/products/20260513_185037-mp4dtt2v.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "CLIMAX 12 Masques Jetables ",
+              "description": "Le pack de 12 masques jetables CLIMAX avec valve respiratoire offre une protection respiratoire efficace contre les poussières, particules et contaminants en suspension dans l’air. Grâce à leur conception ergonomique pliable et leur valve d’expiration, ils assurent une respiration plus confortable et réduisent l’accumulation de chaleur pendant une utilisation prolongée. Leur structure légère et leur ajustement sécurisé garantissent un excellent confort dans les environnements professionnels et industriels. Idéals pour les travaux de construction, ponçage, peinture et maintenance, ces masques assurent sécurité, praticité et performance au quotidien.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
