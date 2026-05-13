@@ -1081,6 +1081,48 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "LUXTRAL Cellulosic Thinner",
+          "image": "assets/products/20260513_181007-mp4btet7.png",
+          "description": "Luxtral Cellulosic Thinner is a fast-evaporating solvent specially formulated for thinning nitrocellulose and cellulosic paints. It improves paint flow, spray application, and surface finish while ensuring quick drying and smooth leveling. It is also suitable for cleaning spray guns, brushes, and painting tools used in industrial and automotive applications.",
+          "brand": "LUXTRAL",
+          "usage": [
+            "Thinner",
+            "diluant",
+            "cellulosic",
+            "cellulosique"
+          ],
+          "price": 7.081,
+          "stock": "in",
+          "images": [
+            "assets/products/20260513_181007-mp4btet7.png"
+          ],
+          "variants": [
+            {
+              "label": "0.8L",
+              "price": 7.081,
+              "stock": "in"
+            },
+            {
+              "label": "4L",
+              "price": 32.062,
+              "stock": "in"
+            }
+          ],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "LUXTRAL Diluant Cellulosique ",
+              "description": "Le Diluant Cellulosique Luxtral est un solvant à évaporation rapide spécialement conçu pour la dilution des peintures nitrocellulosiques et cellulosiques. Il améliore l’application, la fluidité et la finition de la peinture tout en assurant un séchage rapide et un excellent nivellement. Il convient également au nettoyage des pistolets de pulvérisation, pinceaux et outils de peinture utilisés dans les applications industrielles et automobiles.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
