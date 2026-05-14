@@ -1916,6 +1916,34 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "Sikaflex-290 DC PRO 300ml",
+          "image": "assets/products/2715200-mp5pd34f.webp",
+          "description": "Sikaflex®-290 DC PRO is a 1-component polyurethane based joint sealing compound, specifically formulated for caulking joints in traditional timber marine decking. It exhibits excellent weathering resistance and is therefore\nwell suited for highly exposed open joints\nwithin the maritime environment. The sealing\ncompound cures to form a flexible elastomer\nwhich allows a fast and easy sanding process.\nSikaflex®-290 DC PRO meets the requirements set out by the International Maritime\nOrganisation (IMO).\n",
+          "brand": "SIKA",
+          "usage": [
+            "Sikaflex 290"
+          ],
+          "price": 65.214,
+          "stock": "in",
+          "images": [
+            "assets/products/2715200-mp5pd34f.webp"
+          ],
+          "variants": [],
+          "datasheet": "assets/datasheets/sikaflex_-290_dcpro-mp5pcuhq.pdf",
+          "translations": {
+            "fr": {
+              "title": "Sikaflex-290 DC PRO 300ml",
+              "description": "Le Sikaflex®-290 DC PRO est un mastic polyuréthane monocomposant spécialement formulé pour les joints de calfatage des ponts\ntraditionnels en bois. Il démontre une excellente résistante aux conditions climatiques et\nest adapté pour la réalisation des joints particulièrement exposés en milieu maritime. Le\nSikaflex®-290 DC PRO polymérise sous l’action\nde l’humidité de l’air pour former un élastomère souple permettant un ponçage rapide\net facile.\nLe Sikaflex®-290 DC PRO répond aux normes\nimposées par l’Organisation Internationale\nMaritime (IMO). ",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ],
       "translations": {
