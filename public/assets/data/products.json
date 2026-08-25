@@ -6879,7 +6879,7 @@
             "GSS 140"
           ],
           "price": 143.283,
-          "stock": "in",
+          "stock": "out",
           "images": [
             "assets/products/20251209_171444-miyu0pso.png"
           ],
@@ -7210,6 +7210,37 @@
             "fr": {
               "title": "Induit BOSCH pour Perceuse GSB 570",
               "description": "L’induit BOSCH pour perceuse GSB 570 est une pièce de rechange d’origine conçue pour rétablir les performances optimales du moteur. Fabriqué selon des spécifications précises, il garantit une rotation fluide, un transfert de puissance efficace et une longue durée de vie. Idéal pour la réparation et la maintenance, il contribue à prolonger la durée de vie de votre perceuse. Un composant fiable pour un usage professionnel et en atelier.",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
+        },
+        {
+          "title": "BOSCH Random Orbit Sander PRO GEX 125",
+          "image": "assets/products/20260825_160928-mt8tqsjs.png",
+          "description": "Superior random orbital sander for comfortable, highly efficient sanding\nLess hand fatigue and numbness ensured by low tool vibration of 3.8 m/s2\nEffortless sander control and guidance thanks to well-balanced design\nHigh material removal rate with 290-watt motor power\nOptimal for sanding wood, paint, plaster, and metal surfaces",
+          "brand": "BOSCH",
+          "usage": [
+            "BOSCH",
+            "sander",
+            "ponceuse",
+            "GEX125"
+          ],
+          "price": 425.994,
+          "stock": "in",
+          "images": [
+            "assets/products/20260825_160928-mt8tqsjs.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Ponceuse excentrique bosch PRO GEX 125",
+              "description": "Ponceuse excentrique à grand confort d’utilisation pour ponçages hautement performants\nMoins de fatigue et de fourmillement dans les mains grâce au faible taux de vibration de 3,8 m/s2\nPonceuse maniable et guidable sans effort grâce à son bon équilibrage\nCapacité d’enlèvement élevée grâce au moteur de 290 W\nPonceuse idéale pour poncer du bois, de la peinture, du plâtre et des surfaces métalliques",
               "variants": []
             },
             "ar": {
