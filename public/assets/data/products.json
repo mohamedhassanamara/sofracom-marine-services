@@ -7267,12 +7267,12 @@
           ],
           "variants": [
             {
-              "label": "2000",
+              "label": "2000GPH",
               "price": 165,
               "stock": "in"
             },
             {
-              "label": "3700",
+              "label": "3700GPH",
               "price": 1465,
               "stock": "in"
             }
