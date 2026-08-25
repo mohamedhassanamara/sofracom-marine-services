@@ -7249,6 +7249,47 @@
               "variants": []
             }
           }
+        },
+        {
+          "title": "BILGE PUMP",
+          "image": "assets/products/20260825_162932-mt8tyfqg.png",
+          "description": "Flow Rate: 3,700 gallons per hour (GPH) or about 233 liters per minuteVoltage Options: Available in 12V DC (Model 14A) drawing 15.5 amps or 24V DC (Model 16A) drawing fewer ampsHose Size: Fits a 1-1/2 inch (38mm) inner diameter discharge hoseRecommended Fuse: 25-amp fuse for the 12V versionFeaturesHeavy-Duty Build: Designed for both commercial and pleasure boats.Compact Design: Features a quick-release strainer base for easy cleaning.Discharge Head: Works effectively up to a maximum recommended head height of 4 meters (13 feet",
+          "brand": "",
+          "usage": [
+            "Bilge",
+            "pump",
+            "pompe de cale"
+          ],
+          "price": 0,
+          "stock": "in",
+          "images": [
+            "assets/products/20260825_162932-mt8tyfqg.png"
+          ],
+          "variants": [
+            {
+              "label": "2000",
+              "price": 165,
+              "stock": "in"
+            },
+            {
+              "label": "3700",
+              "price": 1465,
+              "stock": "in"
+            }
+          ],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Pompe de Cale",
+              "description": "Débit : 3 700 gallons par heure (GPH), soit environ 233 litres par minute.\n\nOptions de tension : Disponible en 12 V CC (modèle 14A), consommant 15,5 A, ou en 24 V CC (modèle 16A), avec une consommation d’ampérage plus faible.\n\nDiamètre du tuyau : Compatible avec un tuyau de refoulement de 1-1/2 pouce (38 mm) de diamètre intérieur.\n\nFusible recommandé : Fusible de 25 A pour la version 12 V.\n\nCaractéristiques\n\nConstruction robuste : Conçue pour les bateaux professionnels et de plaisance.\n\nConception compacte : Équipée d’une base de crépine à démontage rapide pour faciliter le nettoyage.\n\nHauteur de refoulement : Fonctionne efficacement jusqu’à une hauteur de refoulement maximale recommandée de 4 mètres (13 pieds).",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
         }
       ]
     },
