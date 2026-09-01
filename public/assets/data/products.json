@@ -1180,7 +1180,7 @@
           }
         },
         {
-          "title": "Sikaflex 295 UV 400ml White/Blanc",
+          "title": "Sikaflex 295 UV 400ml White/Blanc/Black/Noir",
           "description": "Sikaflex®-295 UV is a 1-component polyurethane adhesive of paste-like consistency that\ncures on exposure to atmospheric moisture. It\nis suitable for interior and exterior sealing applications and to bond organic glass in the\nMarine business.\nSikaflex®-295 UV meets the requirements set\nout by the International Maritime Organization (IMO).\n▪ Excellent application properties\n▪ Resistant to ageing and weathering\n▪ Suitable for organic glasses\n▪ Approved for the OEM market\n▪ Wheelmark approved",
           "brand": "SIKA",
           "usage": [
@@ -1189,7 +1189,7 @@
             "Elastic",
             "sika"
           ],
-          "price": 60.036,
+          "price": 69.293,
           "stock": "out",
           "images": [
             "assets/products/20251027_153952-mhkvp45z.png"
@@ -1199,7 +1199,7 @@
           "image": "assets/products/20251027_153952-mhkvp45z.png",
           "translations": {
             "fr": {
-              "title": "Sikaflex 295 UV 400ml Blanc",
+              "title": "Sikaflex 295 UV 400ml Blanc/Noir",
               "description": "Mastic polyuréthane monocomposant pour collage et étanchéité des vitrages organiques en environnement marin. Excellente résistance aux UV et au vieillissement. Conforme IMO et approuvé OEM.",
               "variants": []
             },
@@ -1936,6 +1936,37 @@
             "fr": {
               "title": "Sikaflex-290 DC PRO 300ml",
               "description": "Le Sikaflex®-290 DC PRO est un mastic polyuréthane monocomposant spécialement formulé pour les joints de calfatage des ponts\ntraditionnels en bois. Il démontre une excellente résistante aux conditions climatiques et\nest adapté pour la réalisation des joints particulièrement exposés en milieu maritime. Le\nSikaflex®-290 DC PRO polymérise sous l’action\nde l’humidité de l’air pour former un élastomère souple permettant un ponçage rapide\net facile.\nLe Sikaflex®-290 DC PRO répond aux normes\nimposées par l’Organisation Internationale\nMaritime (IMO). ",
+              "variants": []
+            },
+            "ar": {
+              "title": "",
+              "description": "",
+              "variants": []
+            }
+          }
+        },
+        {
+          "title": "Sika® MultiPrimer Marine 250Ml",
+          "image": "assets/products/20260901_122024-mtillav4.png",
+          "description": "Non-pigmented, solvent-based primer for different substrates in Marine application\nSika® MultiPrimer Marine is a solvent-based colorless to slightly yellow primer, which reacts with moisture and forms a thin layer. This layer acts as a link between substrates and adhesives.\nSika® MultiPrimer Marine is specifically formulated for the treatment of bond faces prior to application of Sika’s 1-component Polyurethanes.  ",
+          "brand": "SIKA",
+          "usage": [
+            "SIKA",
+            "Primer",
+            "Primaire",
+            "Marine"
+          ],
+          "price": 109.273,
+          "stock": "in",
+          "images": [
+            "assets/products/20260901_122024-mtillav4.png"
+          ],
+          "variants": [],
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Sika® MultiPrimer Marine 250Ml",
+              "description": "Primaire transparent, contenant des solvants, améliorant l'adhérence pour de nombreux supports dans le secteur maritime\nSika® MultiPrimer Marine est un primaire transparent contenant des solvants, légèrement jaunâtre, qui réagit à l'humidité et forme une couche mince. La couche agit comme un promoteur d'adhérence entre la colle et le matériau. Sika® MultiPrimer Marine est utilisé comme promoteur d'adhérence avant le collage avec des colles et mastics d'étanchéité polyuréthanes Sika monocomposantes.  \n\nExcellente adhésion à de nombreux substrats\nApplication facile\nExcellente durabilité",
               "variants": []
             },
             "ar": {
