@@ -236,7 +236,18 @@
           "images": [
             "assets/products/20251104_164929-mhktsgsm.png"
           ],
-          "variants": [],
+          "variants": [
+            {
+              "label": "0.8L",
+              "price": 18.77,
+              "stock": "in"
+            },
+            {
+              "label": "4.5L",
+              "price": 82.842,
+              "stock": "in"
+            }
+          ],
           "datasheet": "assets/datasheets/jotun-thinner-no.-7-gb-mhqinhe7.pdf",
           "image": "assets/products/20251104_164929-mhktsgsm.png",
           "translations": {
@@ -1642,7 +1653,7 @@
             },
             "ar": {
               "title": "PATTEX Promax XL رغوة PU ‏750 مل",
-              "description": "رغوة بوليورتان متعددة الاستعمالات تتصلّب لتصبح شبه صلبة. تُستخدم في اللصق والعزل والملء، ممتازة حول النوافذ والأبو����ب.",
+              "description": "رغوة بوليورتان متعددة الاستعمالات تتصلّب لتصبح شبه صلبة. تُستخدم في اللصق والعزل والملء، ممتازة حول النوافذ والأبو��ب.",
               "variants": []
             }
           }
