@@ -7,7 +7,7 @@
       "description": "Bottom paints, primers, érodable, topcoats for local waters, erodable",
       "products": [
         {
-          "title": "Jotun SeaForce 2.5L Black / Noir",
+          "title": "Jotun SeaForce Active 2.5L Black / Noir",
           "images": [
             "assets/products/20251104_142605-mhkpnc7j.png",
             "assets/products/20251104_142934-mhkq1zha.png"
@@ -25,6 +25,11 @@
             {
               "label": "2.5L",
               "price": 341.887,
+              "stock": "in"
+            },
+            {
+              "label": "20L",
+              "price": 2498.405,
               "stock": "in"
             }
           ],
@@ -1653,7 +1658,7 @@
             },
             "ar": {
               "title": "PATTEX Promax XL رغوة PU ‏750 مل",
-              "description": "رغوة بوليورتان متعددة الاستعمالات تتصلّب لتصبح شبه صلبة. تُستخدم في اللصق والعزل والملء، ممتازة حول النوافذ والأبو��ب.",
+              "description": "رغوة بوليورتان متعددة الاستعمالات تتص��ّب لتصبح شبه صلبة. تُستخدم في اللصق والعزل والملء، ممتازة حول النوافذ والأبو��ب.",
               "variants": []
             }
           }
