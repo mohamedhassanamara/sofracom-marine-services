@@ -4,8 +4,12 @@ Production rollout of the `with-users` branch (website) and the enrolment versio
 (`sofracom_admin_pp`). Follow the steps **in order**; each has a check and a rollback. Nothing in
 this file has been run against production.
 
-- Firebase project: `sofracom`. The repo's `.firebaserc` defaults to the `demo-sofracom`
-  emulator project, so **every production `firebase` command below passes `--project sofracom`**.
+- Firebase project: `sofracom` (alias `prod` in `.firebaserc`). The default project is the
+  `demo-sofracom` emulator project, so **every production `firebase`/`gcloud`/`gsutil` command
+  below names the project explicitly (`--project sofracom`)**. Never rely on
+  `gcloud config set project` or `firebase use`.
+- Node scripts (`set-admin-claim`, `migrate-statuses`) pick the project from the service-account
+  credentials and print `PRODUCTION` or `EMULATOR` before doing anything; check that line.
 - Tools: firebase-tools (needs Java 21+), `gcloud`, Flutter, `git-filter-repo` (last section).
 - Website: `https://sofracom-marine-services.vercel.app`.
 
@@ -159,12 +163,12 @@ it in the website order timeline (`/account/orders/<id>` for the customer, `/adm
 
 Exports need the Blaze plan and a bucket in a compatible location.
 ```bash
-gcloud config set project sofracom
-gcloud firestore databases describe --database='(default)' --format='value(locationId)'
-gsutil mb -l <that location or its multi-region> gs://sofracom-firestore-backups   # once
-gcloud firestore export gs://sofracom-firestore-backups/$(date +%Y%m%d-%H%M)-pre-rules
+gcloud firestore databases describe --database='(default)' --project sofracom --format='value(locationId)'
+gsutil mb -p sofracom -l <that location or its multi-region> gs://sofracom-firestore-backups   # once
+gcloud firestore export gs://sofracom-firestore-backups/$(date +%Y%m%d-%H%M)-pre-rules --project sofracom
 ```
-**Check:** `gcloud firestore operations list` shows the export `SUCCESSFUL`; note the folder name.
+**Check:** `gcloud firestore operations list --project sofracom` shows the export `SUCCESSFUL`;
+note the folder name.
 **Rollback:** n/a (read-only).
 
 ---
@@ -200,7 +204,8 @@ From this moment, unauthenticated reads/writes are refused: the **old** app stop
 - Enrolled phones still load orders/quotes; a customer sees only their own orders on `/account`.
 
 **Rollback:** console → Firestore → Rules → paste the contents of `rules.backup.txt` → **Publish**
-(or `cp rules.backup.txt /tmp/firestore.rules` and deploy it with a temporary `firebase.json`).
+(or `cp rules.backup.txt /tmp/firestore.rules` and deploy it with a temporary `firebase.json`,
+always with `--project sofracom`).
 Leaving the new indexes in place is harmless.
 
 ---
@@ -246,7 +251,7 @@ Each changed document keeps its previous value in `legacyStatus` and gets a seed
   })();'
   ```
 - Full restore from step 5 (overwrites documents changed since the export):
-  `gcloud firestore import gs://sofracom-firestore-backups/<folder>`
+  `gcloud firestore import gs://sofracom-firestore-backups/<folder> --project sofracom`
 
 ---
 
