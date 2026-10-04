@@ -7,11 +7,12 @@ import { GUEST, PRODUCT_A, api, createUser, db, resetEmulators, startServer, sto
 
 const TOOL = 'http://127.0.0.1:5299';
 let tool;
+let token; // the per-session token the tool injects into its pages
 
 async function ops(path, body) {
     const response = await fetch(`${TOOL}${path}`, {
         method: body === undefined ? 'GET' : 'POST',
-        headers: body === undefined ? {} : { 'Content-Type': 'application/json' },
+        headers: body === undefined ? {} : { 'Content-Type': 'application/json', 'X-Admin-Token': token },
         body: body === undefined ? undefined : JSON.stringify(body),
     });
     return { status: response.status, body: await response.json() };
@@ -27,7 +28,10 @@ before(async () => {
     });
     for (let attempt = 0; attempt < 60; attempt += 1) {
         try {
-            if ((await fetch(`${TOOL}/api/ops/target`)).ok) return;
+            if ((await fetch(`${TOOL}/api/ops/target`)).ok) {
+                token = (await (await fetch(`${TOOL}/ops`)).text()).match(/name="admin-token" content="(\w+)"/)[1];
+                return;
+            }
         } catch {
             // starting
         }
@@ -45,6 +49,11 @@ test('the tool says it is pointed at the emulator', async () => {
     const target = await ops('/api/ops/target');
     assert.equal(target.body.mode, 'emulator');
     assert.equal(target.body.projectId, 'demo-sofracom');
+});
+
+test('Firebase writes from the tool require its session token', async () => {
+    const response = await fetch(`${TOOL}/api/ops/devices/code`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+    assert.equal(response.status, 403);
 });
 
 test('Devices: add a device, the phone enrols, the tool lists and revokes it', async () => {

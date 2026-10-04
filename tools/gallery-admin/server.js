@@ -1,12 +1,16 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const { spawnSync } = require('child_process');
+const { HOST, createGuard } = require('../shared/guard');
+const publisher = require('../shared/publish');
 
-const HOST = process.env.HOST || '127.0.0.1';
 const PORT = Number(process.env.PORT || 5174);
+const guard = createGuard({ port: PORT });
 
-const repoRoot = path.resolve(__dirname, '../..');
+// ADMIN_REPO_ROOT points the gallery file and git at another checkout (used by tests).
+const repoRoot = process.env.ADMIN_REPO_ROOT
+  ? path.resolve(process.env.ADMIN_REPO_ROOT)
+  : path.resolve(__dirname, '../..');
 const dataPath = path.join(repoRoot, 'public', 'assets', 'data', 'gallery.json');
 const envPath = path.join(repoRoot, '.env');
 let envLoaded = false;
@@ -15,7 +19,11 @@ const staticFiles = new Map([
   ['/', path.join(__dirname, 'index.html')],
   ['/app.js', path.join(__dirname, 'app.js')],
   ['/styles.css', path.join(__dirname, 'styles.css')],
+  ['/shared/admin-client.js', path.join(__dirname, '..', 'shared', 'admin-client.js')],
 ]);
+
+// What "Publish" may commit: the gallery and its images, nothing else.
+const PUBLISH_SCOPE = ['public/assets/data/gallery.json', 'public/assets/gallery'];
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -58,17 +66,14 @@ function sendFile(res, filePath) {
       res.end(err.code === 'ENOENT' ? 'Not found' : 'Failed to load asset');
       return;
     }
-    const contentType = MIME_TYPES[path.extname(filePath)] || 'application/octet-stream';
-    res.writeHead(200, { 'Content-Type': contentType });
-    res.end(data);
+    const ext = path.extname(filePath);
+    res.writeHead(200, { 'Content-Type': MIME_TYPES[ext] || 'application/octet-stream' });
+    res.end(ext === '.html' ? guard.injectToken(data.toString('utf-8')) : data);
   });
 }
 
 function sendJson(res, status, payload) {
-  res.writeHead(status, {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-  });
+  res.writeHead(status, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
   res.end(JSON.stringify(payload));
 }
 
@@ -98,108 +103,17 @@ function handleStatic(req, res, pathname) {
 
 function getCredentials() {
   loadEnvFile();
-  const token =
-    process.env.GALLERY_ADMIN_GITHUB_TOKEN ||
-    process.env.PRODUCT_ADMIN_GITHUB_TOKEN ||
-    process.env.GITHUB_TOKEN ||
-    '';
-  if (!token) return { token: '', username: '' };
-  const username =
-    process.env.GALLERY_ADMIN_GITHUB_USERNAME ||
-    process.env.PRODUCT_ADMIN_GITHUB_USERNAME ||
-    process.env.GITHUB_USERNAME ||
-    'x-access-token';
-  return { token, username };
-}
-
-function normalizeRemoteUrl(remoteUrl) {
-  const trimmed = remoteUrl.trim();
-  if (!trimmed) {
-    throw new Error('Unable to determine git remote URL');
-  }
-  if (trimmed.startsWith('https://')) {
-    return trimmed;
-  }
-  if (trimmed.startsWith('git@')) {
-    const match = trimmed.match(/^git@([^:]+):(.+)$/);
-    if (!match) {
-      throw new Error(`Unsupported SSH remote format: ${trimmed}`);
-    }
-    return `https://${match[1]}/${match[2]}`;
-  }
-  throw new Error(`Unsupported remote URL format: ${trimmed}`);
-}
-
-function injectToken(remoteUrl, username, token) {
-  const encodedUser = encodeURIComponent(username);
-  const encodedToken = encodeURIComponent(token);
-  return remoteUrl.replace(/^https:\/\//, `https://${encodedUser}:${encodedToken}@`);
-}
-
-function runGitCommands() {
-  const gitEnv = {
-    cwd: repoRoot,
-    encoding: 'utf-8',
-    env: {
-      ...process.env,
-      GIT_TERMINAL_PROMPT: '0',
-    },
-  };
-
-  const add = spawnSync('git', ['add', path.relative(repoRoot, dataPath)], gitEnv);
-  if (add.status !== 0) {
-    throw new Error(add.stderr || 'git add failed');
-  }
-
-  const diff = spawnSync('git', ['diff', '--cached', '--quiet'], gitEnv);
-  if (diff.status === 0) {
-    return {
-      committed: false,
-      pushed: false,
-      message: 'gallery.json updated but no staged diff detected',
-    };
-  }
-  if (diff.status !== 1) {
-    throw new Error(diff.stderr || 'git diff check failed');
-  }
-
-  const message = `Update gallery via admin tool (${new Date().toISOString()})`;
-  const commit = spawnSync('git', ['commit', '-m', message], gitEnv);
-  if (commit.status !== 0) {
-    throw new Error(commit.stderr || 'git commit failed');
-  }
-
-  const { token, username } = getCredentials();
-  if (!token) {
-    throw new Error(
-      'Missing GALLERY_ADMIN_GITHUB_TOKEN or PRODUCT_ADMIN_GITHUB_TOKEN environment variable required for push'
-    );
-  }
-
-  const remoteResult = spawnSync('git', ['remote', 'get-url', '--push', 'origin'], gitEnv);
-  if (remoteResult.status !== 0) {
-    throw new Error(
-      remoteResult.stderr || 'Failed to read git remote push URL'
-    );
-  }
-  const remoteUrl = normalizeRemoteUrl(remoteResult.stdout);
-  const authedRemote = injectToken(remoteUrl, username, token);
-
-  const branchResult = spawnSync('git', ['rev-parse', '--abbrev-ref', 'HEAD'], gitEnv);
-  if (branchResult.status !== 0) {
-    throw new Error(branchResult.stderr || 'Failed to determine current branch');
-  }
-  const branch = branchResult.stdout.trim();
-
-  const push = spawnSync('git', ['push', authedRemote, branch], gitEnv);
-  if (push.status !== 0) {
-    throw new Error(push.stderr || 'git push failed');
-  }
-
   return {
-    committed: true,
-    pushed: true,
-    message: 'Changes committed and pushed successfully',
+    token:
+      process.env.GALLERY_ADMIN_GITHUB_TOKEN ||
+      process.env.PRODUCT_ADMIN_GITHUB_TOKEN ||
+      process.env.GITHUB_TOKEN ||
+      '',
+    username:
+      process.env.GALLERY_ADMIN_GITHUB_USERNAME ||
+      process.env.PRODUCT_ADMIN_GITHUB_USERNAME ||
+      process.env.GITHUB_USERNAME ||
+      'x-access-token',
   };
 }
 
@@ -297,19 +211,12 @@ async function handleUpload(req, res) {
     const absolutePath = path.join(baseDir, finalName);
     fs.writeFileSync(absolutePath, buffer);
 
+    // Not staged: the file is committed only if it is still there when the user publishes.
     const publicRoot = path.join(repoRoot, 'public');
-    const relativePath = path.relative(repoRoot, absolutePath).split(path.sep).join('/');
     const publicRelativePath = path
       .relative(publicRoot, absolutePath)
       .split(path.sep)
       .join('/');
-
-    const gitEnv = { cwd: repoRoot, encoding: 'utf-8' };
-    const addResult = spawnSync('git', ['add', relativePath], gitEnv);
-    if (addResult.status !== 0) {
-      fs.unlinkSync(absolutePath);
-      throw new Error(addResult.stderr || 'Failed to stage uploaded image');
-    }
 
     sendJson(res, 200, { ok: true, path: publicRelativePath });
   } catch (err) {
@@ -359,13 +266,9 @@ const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
   const { pathname } = url;
 
-  if (req.method === 'OPTIONS') {
-    res.writeHead(204, {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
-    });
-    res.end();
+  const denied = guard.check(req);
+  if (denied) {
+    sendJson(res, denied.status, { ok: false, error: denied.error });
     return;
   }
 
@@ -389,8 +292,7 @@ const server = http.createServer(async (req, res) => {
       validatePayload(payload);
       const formatted = JSON.stringify(payload, null, 2);
       fs.writeFileSync(dataPath, `${formatted}\n`, 'utf-8');
-      const gitResult = runGitCommands();
-      sendJson(res, 200, { ok: true, git: gitResult });
+      sendJson(res, 200, { ok: true });
     } catch (err) {
       const status = err.statusCode || 500;
       sendJson(res, status, { ok: false, error: err.message });
@@ -403,10 +305,38 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  if (pathname === '/api/publish/preview' && req.method === 'GET') {
+    try {
+      const result = publisher.preview({ repoRoot, scope: PUBLISH_SCOPE, credentials: getCredentials() });
+      sendJson(res, 200, { ok: true, ...result });
+    } catch (err) {
+      sendJson(res, err.statusCode || 500, { ok: false, error: err.message });
+    }
+    return;
+  }
+
+  if (pathname === '/api/publish' && req.method === 'POST') {
+    try {
+      const payload = await parseBody(req);
+      const result = publisher.publish({
+        repoRoot,
+        scope: PUBLISH_SCOPE,
+        credentials: getCredentials(),
+        confirmed: payload.files,
+        message: `Update gallery via admin tool (${new Date().toISOString()})`,
+      });
+      sendJson(res, 200, { ok: true, ...result });
+    } catch (err) {
+      sendJson(res, err.statusCode || 500, { ok: false, error: err.message });
+    }
+    return;
+  }
+
   res.writeHead(404, { 'Content-Type': 'text/plain' });
   res.end('Not found');
 });
 
 server.listen(PORT, HOST, () => {
   console.log(`Gallery admin running on http://${HOST}:${PORT}`);
+  console.log(`Session token (already in the page it serves): ${guard.token}`);
 });

@@ -37,7 +37,7 @@
   }
 
   async function api(path, body) {
-    const response = await fetch(path, {
+    const response = await AdminClient.fetch(path, {
       method: body === undefined ? 'GET' : 'POST',
       headers: body === undefined ? {} : { 'Content-Type': 'application/json' },
       body: body === undefined ? undefined : JSON.stringify(body),

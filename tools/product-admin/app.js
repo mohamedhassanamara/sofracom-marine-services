@@ -18,6 +18,7 @@
   const categoryNav = document.getElementById('categoryNav');
   const statusEl = document.getElementById('status');
   const saveBtn = document.getElementById('saveBtn');
+  const publishBtn = document.getElementById('publishBtn');
   const refreshBtn = document.getElementById('refreshBtn');
   const addCategoryBtn = document.getElementById('addCategoryBtn');
   const scrollToBottomBtn = document.getElementById('scrollToBottomBtn');
@@ -79,7 +80,7 @@
     }
 
     const dataUrl = await readFileAsDataUrl(file);
-    const response = await fetch('/api/upload', {
+    const response = await AdminClient.fetch('/api/upload', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -103,7 +104,7 @@
     }
 
     const dataUrl = await readFileAsDataUrl(file);
-    const response = await fetch('/api/upload', {
+    const response = await AdminClient.fetch('/api/upload', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -1017,19 +1018,20 @@
     }
   }
 
+  // Writes products.json locally. Nothing is committed until Publish. Resolves to true on success.
   async function saveData() {
-    if (isSaving) return;
-    if (!state) return;
+    if (isSaving) return false;
+    if (!state) return false;
 
     isSaving = true;
     saveBtn.disabled = true;
     saveBtn.textContent = 'Saving…';
-    setStatus('Saving changes and pushing to origin…');
+    setStatus('Saving changes…');
 
     const payload = JSON.parse(JSON.stringify(state));
 
     try {
-      const response = await fetch('/api/products', {
+      const response = await AdminClient.fetch('/api/products', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -1042,20 +1044,27 @@
         throw new Error(result.error || 'Save failed');
       }
 
-      const gitMessage =
-        (result.git && result.git.message) || 'Changes saved successfully';
-      setStatus(gitMessage, 'success');
+      setStatus('Saved locally. Use Publish to put it on the live site.', 'success');
+      return true;
     } catch (error) {
       console.error(error);
       setStatus(error.message || 'Unable to save changes', 'error');
+      return false;
     } finally {
       isSaving = false;
       saveBtn.disabled = false;
-      saveBtn.textContent = 'Save & Deploy';
+      saveBtn.textContent = 'Save';
     }
   }
 
+  async function publishData() {
+    if (!(await saveData())) return;
+    const result = await AdminClient.openPublish({ what: 'catalog changes' });
+    if (result) setStatus(result.message, 'success');
+  }
+
   saveBtn.addEventListener('click', saveData);
+  publishBtn.addEventListener('click', publishData);
   refreshBtn.addEventListener('click', loadData);
   addCategoryBtn.addEventListener('click', addCategory);
 

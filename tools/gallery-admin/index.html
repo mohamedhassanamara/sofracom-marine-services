@@ -11,13 +11,14 @@
       <div>
         <h1>Gallery Admin</h1>
         <p>
-          Manage gallery entries saved in <code>assets/data/gallery.json</code>. Saving commits
-          and pushes automatically.
+          Manage gallery entries saved in <code>assets/data/gallery.json</code>. Save writes the
+          file locally; Publish commits it to main and redeploys the site.
         </p>
       </div>
       <div class="header-actions">
         <button id="refreshBtn" type="button">Reload Data</button>
-        <button id="saveBtn" class="primary" type="button">Save &amp; Deploy</button>
+        <button id="saveBtn" type="button">Save</button>
+        <button id="publishBtn" class="primary" type="button">Publish…</button>
       </div>
     </header>
 
@@ -83,6 +84,7 @@
       </article>
     </template>
 
+    <script src="/shared/admin-client.js" defer></script>
     <script src="/app.js" defer></script>
   </body>
 </html>

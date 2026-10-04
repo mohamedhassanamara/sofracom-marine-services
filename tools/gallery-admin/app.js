@@ -6,6 +6,7 @@
   const entriesEl = document.getElementById('entries');
   const entryTemplate = document.getElementById('entryTemplate');
   const saveBtn = document.getElementById('saveBtn');
+  const publishBtn = document.getElementById('publishBtn');
   const refreshBtn = document.getElementById('refreshBtn');
   const addEntryBtn = document.getElementById('addEntryBtn');
 
@@ -98,7 +99,7 @@
       throw new Error('Only image files are allowed');
     }
     const dataUrl = await readFileAsDataUrl(file);
-    const response = await fetch('/api/upload', {
+    const response = await AdminClient.fetch('/api/upload', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -254,8 +255,9 @@
     }
   };
 
+  // Writes gallery.json locally. Nothing is committed until Publish. Resolves to true on success.
   const saveData = async () => {
-    if (isSaving) return;
+    if (isSaving) return false;
     isSaving = true;
     saveBtn.disabled = true;
     saveBtn.textContent = 'Saving…';
@@ -272,7 +274,7 @@
           date: entry.date,
         })),
       };
-      const response = await fetch('/api/gallery', {
+      const response = await AdminClient.fetch('/api/gallery', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -281,15 +283,23 @@
       if (!response.ok || !result.ok) {
         throw new Error(result.error || 'Unable to save gallery');
       }
-      setStatus('Gallery saved and pushed', 'success');
+      setStatus('Saved locally. Use Publish to put it on the live site.', 'success');
+      return true;
     } catch (error) {
       console.error(error);
       setStatus(error.message || 'Save failed', 'error');
+      return false;
     } finally {
       isSaving = false;
       saveBtn.disabled = false;
-      saveBtn.textContent = 'Save & Deploy';
+      saveBtn.textContent = 'Save';
     }
+  };
+
+  const publishData = async () => {
+    if (!(await saveData())) return;
+    const result = await AdminClient.openPublish({ what: 'gallery changes' });
+    if (result) setStatus(result.message, 'success');
   };
 
   addEntryBtn?.addEventListener('click', () => {
@@ -299,6 +309,7 @@
 
   refreshBtn?.addEventListener('click', loadData);
   saveBtn?.addEventListener('click', saveData);
+  publishBtn?.addEventListener('click', publishData);
 
   loadData();
 })();
