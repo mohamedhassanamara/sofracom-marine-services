@@ -6,11 +6,11 @@ import { DELIVERY_FEE, formatPrice } from '../../lib/constants';
 import CheckoutModal from './CheckoutModal';
 import { imageAt } from '../../lib/images';
 
-// Floating cart button, cart drawer and checkout modal used on the catalog pages.
+// Cart drawer and checkout modal, mounted once by Layout (the header's cart button opens it).
 export default function CartWidget() {
     const { t } = useLang();
     const router = useRouter();
-    const { cart, loaded, count, total, updateQuantity, removeItem, isOpen, openCart, closeCart } = useCart();
+    const { cart, loaded, total, updateQuantity, removeItem, isOpen, openCart, closeCart } = useCart();
     const [checkoutOpen, setCheckoutOpen] = useState(false);
     const [onOrderNoticeVisible, setOnOrderNoticeVisible] = useState(false);
     const onOrderNoticeTimeout = useRef(null);
@@ -69,15 +69,6 @@ export default function CartWidget() {
 
     return (
         <>
-            <button id="cartFab" className="cart-fab" type="button" onClick={openCart}>
-                <span className="cart-icon" aria-hidden="true">
-                    🛒
-                </span>
-                <span>{t('cart.fab')}</span>
-                <span className="px-2 py-1 rounded-full bg-white/15 text-sm font-semibold">
-                    {count}
-                </span>
-            </button>
             <div
                 id="cartOverlay"
                 className={`cart-overlay ${isOpen ? 'active' : ''}`}

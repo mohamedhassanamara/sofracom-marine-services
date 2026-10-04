@@ -6,7 +6,7 @@ import Seo from '../Seo';
 
 export function AuthCard({ title, subtitle, children }) {
     return (
-        <main className="auth-page">
+        <div className="auth-page">
             <Seo title={title} noindex />
             <div className="ui-card auth-card">
                 <p className="account-eyebrow">SOFRACOM</p>
@@ -14,7 +14,7 @@ export function AuthCard({ title, subtitle, children }) {
                 {subtitle && <p className="ui-muted mt-1">{subtitle}</p>}
                 <div className="mt-6">{children}</div>
             </div>
-        </main>
+        </div>
     );
 }
 

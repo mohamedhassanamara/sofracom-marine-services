@@ -422,6 +422,11 @@ footer.site-footer a {
     box-shadow: theme('boxShadow.lg');
 }
 
+.cart-drawer:not(.open) {
+    visibility: hidden;
+    transition: transform var(--dur-base) var(--ease-standard), visibility 0s linear var(--dur-base);
+}
+
 .cart-drawer.open {
     transform: translateX(0);
 }

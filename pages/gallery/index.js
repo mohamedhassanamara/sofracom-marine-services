@@ -124,7 +124,7 @@ export default function GalleryPage({ entries = [] }) {
     }, [entries, filter]);
 
     return (
-        <main className="max-w-6xl mx-auto px-6 py-12 space-y-8">
+        <div className="max-w-6xl mx-auto px-6 py-12 space-y-8">
             <Seo title={t('seo.gallery.title')} description={t('seo.gallery.description')} path="/gallery" />
             <section className="text-center space-y-3">
                 <p className="text-sm uppercase tracking-[0.3em] text-slate-500">
@@ -166,6 +166,6 @@ export default function GalleryPage({ entries = [] }) {
                     </p>
                 )}
             </section>
-        </main>
+        </div>
     );
 }

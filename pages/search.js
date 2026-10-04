@@ -91,7 +91,7 @@ export default function SearchPage({ categories = [] }) {
     };
 
     return (
-        <main className="max-w-7xl mx-auto px-6 py-12">
+        <div className="max-w-7xl mx-auto px-6 py-12">
             <Seo title={t('seo.search.title')} path="/search" noindex />
             <div className="mb-8 text-center">
                 <p className="text-sm text-slate-500 uppercase tracking-wide">
@@ -213,6 +213,6 @@ export default function SearchPage({ categories = [] }) {
                     No matches yet. Try another keyword or brand.
                 </div>
             ) : null}
-        </main>
+        </div>
     );
 }

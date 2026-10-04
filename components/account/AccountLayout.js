@@ -20,9 +20,9 @@ export default function AccountLayout({ title, eyebrow, actions, badges = {}, ch
 
     if (loading || !user) {
         return (
-            <main className="account-shell">
+            <div className="account-shell">
                 <p className="ui-muted">{t('account.loading')}</p>
-            </main>
+            </div>
         );
     }
 
@@ -35,7 +35,7 @@ export default function AccountLayout({ title, eyebrow, actions, badges = {}, ch
     };
 
     return (
-        <main className="account-shell">
+        <div className="account-shell">
             <Seo title={title} noindex />
             <nav className="account-nav" aria-label={t('account.navLabel')}>
                 {NAV.map(item => (
@@ -60,6 +60,6 @@ export default function AccountLayout({ title, eyebrow, actions, badges = {}, ch
                 </header>
                 {children}
             </section>
-        </main>
+        </div>
     );
 }

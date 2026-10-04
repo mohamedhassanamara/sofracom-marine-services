@@ -57,7 +57,7 @@ export default function ProductCard({ product, stats, onQuickAdd, priority = fal
                 <RatingSummary stats={stats} />
                 <div className="mt-auto flex flex-col gap-3 pt-2">
                     <div className="flex flex-wrap items-baseline justify-between gap-x-2">
-                        <Price value={min} from={varies} size="lg" />
+                        <Price value={min} from={varies} size="md" className="sm:text-lg" />
                         {hasChoices && <span className="text-xs text-slate-600">{t('ui.variants', { count: variants.length })}</span>}
                     </div>
                     {onQuickAdd &&

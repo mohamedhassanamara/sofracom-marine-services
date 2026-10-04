@@ -72,11 +72,12 @@ export function CartProvider({ children }) {
         });
     }, []);
 
-    // Adds one unit of a (localized) product/variant and opens the drawer.
+    // Adds a (localized) product/variant; opens the drawer unless `open: false`.
+    // Returns false when it can't be added (out of stock).
     const addProduct = useCallback(
-        (product, variant, variantIndex) => {
+        (product, variant, variantIndex, { quantity = 1, open = true } = {}) => {
             const stock = variant?.stock ?? product.stock ?? 'in';
-            if (stock === 'out') return;
+            if (stock === 'out') return false;
             const variantLabel = variant?.label;
             addItem({
                 id: variantLabel ? `${product.id}-${variantLabel}` : product.id,
@@ -85,14 +86,15 @@ export function CartProvider({ children }) {
                 variantLabel,
                 title: product.title,
                 price: variant?.price ?? product.price ?? 0,
-                quantity: 1,
+                quantity: Math.max(1, Math.trunc(quantity) || 1),
                 image: product.image,
                 category: product.categoryName,
                 categorySlug: product.categorySlug,
                 brand: product.brand,
                 stock,
             });
-            setIsOpen(true);
+            if (open) setIsOpen(true);
+            return true;
         },
         [addItem]
     );
