@@ -1,0 +1,259 @@
+:root {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #0b1f3a;
+  background: #f5f7fb;
+}
+
+body {
+  margin: 0;
+}
+
+.target-banner {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 0.7rem 2rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: #fff;
+}
+
+.target-production {
+  background: #b91c1c;
+}
+
+.target-emulator {
+  background: #15803d;
+}
+
+.target-unknown {
+  background: #6b7280;
+}
+
+.ops-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.25rem 2rem;
+  background: #0b2050;
+  color: #fff;
+}
+
+.ops-header h1 {
+  margin: 0 0 0.35rem;
+  font-size: 1.6rem;
+}
+
+.ops-header p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.ops-link {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  white-space: nowrap;
+}
+
+.ops-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem 2rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ops-tabs button,
+.btn {
+  border-radius: 999px;
+  border: 1px solid rgba(11, 32, 80, 0.2);
+  background: #fff;
+  color: #0b2050;
+  padding: 0.5rem 1.1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.ops-tabs button.active,
+.btn-primary {
+  background: #0b2050;
+  border-color: #0b2050;
+  color: #fff;
+}
+
+.btn-danger {
+  color: #b91c1c;
+  border-color: rgba(185, 28, 28, 0.35);
+}
+
+.btn-small {
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8rem;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ops-panel {
+  max-width: 1200px;
+  margin: 1rem auto 3rem;
+  padding: 0 2rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 1rem;
+  border: 1px solid rgba(15, 61, 114, 0.08);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: end;
+  margin-bottom: 1rem;
+}
+
+label.field {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+  border: 1px solid rgba(11, 32, 80, 0.2);
+  border-radius: 0.5rem;
+  padding: 0.45rem 0.6rem;
+  background: #fff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+th,
+td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.6rem 0.5rem;
+  border-bottom: 1px solid rgba(15, 61, 114, 0.08);
+}
+
+th {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+}
+
+.muted {
+  color: #64748b;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: #e6f0ff;
+  color: #0f3d72;
+}
+
+.badge-good {
+  background: rgba(15, 122, 46, 0.12);
+  color: #0f7a2e;
+}
+
+.badge-bad {
+  background: rgba(215, 38, 56, 0.1);
+  color: #b91c1c;
+}
+
+.badge-wait {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.code {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 0.35em;
+  text-align: center;
+  margin: 1rem 0 0.25rem;
+}
+
+.notice {
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  margin-top: 0.75rem;
+}
+
+.notice-warn {
+  background: #fff7ed;
+  color: #92400e;
+}
+
+.notice-good {
+  background: rgba(16, 185, 129, 0.1);
+  color: #047857;
+}
+
+.notice-bad {
+  background: rgba(239, 68, 68, 0.08);
+  color: #b91c1c;
+}
+
+.editor {
+  display: grid;
+  gap: 0.4rem;
+  min-width: 12rem;
+}
+
+details summary {
+  cursor: pointer;
+  color: #0f3d72;
+  font-weight: 600;
+}
+
+.toast {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  background: #0b2050;
+  color: #fff;
+  padding: 0.75rem 1.1rem;
+  border-radius: 0.75rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s, transform 0.2s;
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.error {
+  background: #b91c1c;
+}

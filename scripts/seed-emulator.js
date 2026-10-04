@@ -5,7 +5,8 @@
 // Accounts (emulator only, password for both: emulator-pass-123):
 //   buyer@example.test  - verified customer with a saved address, a delivered order
 //                         (ready to review), an order in progress and a quote
-//   staff@example.test  - has the admin claim, can use /admin
+//   staff@example.test  - a plain second customer account (staff work happens in the
+//                         local admin tool: npm run admin:emulated → /ops)
 const { getAuth, getDb, usingEmulators } = require('../lib/firebase/admin');
 const catalog = require('../public/assets/data/products.json');
 
@@ -16,7 +17,7 @@ if (!usingEmulators() || !process.env.FIRESTORE_EMULATOR_HOST) {
     process.exit(1);
 }
 
-async function upsertUser({ email, name, admin = false }) {
+async function upsertUser({ email, name }) {
     const auth = getAuth();
     try {
         const existing = await auth.getUserByEmail(email);
@@ -25,7 +26,6 @@ async function upsertUser({ email, name, admin = false }) {
         // not there yet
     }
     const user = await auth.createUser({ email, password: PASSWORD, displayName: name, emailVerified: true });
-    if (admin) await auth.setCustomUserClaims(user.uid, { admin: true });
     return user;
 }
 
@@ -90,7 +90,7 @@ function orderFor(user, address, picks, status, daysAgo) {
 async function main() {
     const db = getDb();
     const buyer = await upsertUser({ email: 'buyer@example.test', name: 'Mohamed Hassan' });
-    const staff = await upsertUser({ email: 'staff@example.test', name: 'SOFRACOM Staff', admin: true });
+    const staff = await upsertUser({ email: 'staff@example.test', name: 'SOFRACOM Staff' });
 
     const now = new Date().toISOString();
     const address = { label: 'Boat', fullName: 'Mohamed Hassan', phone: '+216 50 000 000', line: 'Marina Monastir, pontoon B', city: 'Monastir', notes: '' };
@@ -126,7 +126,7 @@ async function main() {
 
     console.log('Seeded emulator data:');
     console.log(`  buyer@example.test / ${PASSWORD}  (delivered order ${delivered.id.slice(0, 8)}, ready to review)`);
-    console.log(`  staff@example.test / ${PASSWORD}  (admin)`);
+    console.log(`  staff@example.test / ${PASSWORD}  (plain account; staff tools: npm run admin:emulated → /ops)`);
     process.exit(0);
 }
 

@@ -15,10 +15,10 @@
     "test:i18n": "node --test tests/i18n.test.mjs",
     "test:rules": "firebase emulators:exec --project demo-sofracom --only firestore \"node --test tests/rules/*.test.mjs\"",
     "test:api": "firebase emulators:exec --project demo-sofracom --only firestore,auth \"node --test --test-concurrency=1 tests/api/*.test.mjs\"",
-    "admin": "node tools/product-admin/server.js",
-    "order-admin": "node tools/order-admin/server.js",
+    "admin": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON tools/product-admin/server.js",
     "gallery-admin": "node tools/gallery-admin/server.js",
-    "test:unit": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/i18n.test.mjs tests/unit/*.test.mjs"
+    "test:unit": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/i18n.test.mjs tests/unit/*.test.mjs",
+    "admin:emulated": "FIRESTORE_EMULATOR_HOST=127.0.0.1:8080 FIREBASE_AUTH_EMULATOR_HOST=127.0.0.1:9099 GCLOUD_PROJECT=demo-sofracom node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON tools/product-admin/server.js"
   },
   "private": true,
   "dependencies": {

@@ -8,8 +8,19 @@ this file has been run against production.
   `demo-sofracom` emulator project, so **every production `firebase`/`gcloud`/`gsutil` command
   below names the project explicitly (`--project sofracom`)**. Never rely on
   `gcloud config set project` or `firebase use`.
-- Node scripts (`set-admin-claim`, `migrate-statuses`) pick the project from the service-account
-  credentials and print `PRODUCTION` or `EMULATOR` before doing anything; check that line.
+- Node scripts (`migrate-statuses`) and the local admin tool pick the project from the
+  service-account credentials and show `PRODUCTION` or `EMULATOR` before doing anything; check it.
+
+### The local admin tool (staff work happens here, never on the website)
+There is no admin page on the public website. Orders, quotes, reviews, customers and staff phones
+are managed with the local tool, which uses the Admin SDK and the git-ignored service-account key
+on your computer and is never deployed:
+```bash
+npm run admin            # PRODUCTION (red "PRODUCTION · sofracom" banner)
+npm run admin:emulated   # emulators (green "EMULATOR · demo-sofracom" banner)
+# open http://127.0.0.1:5173/ops   (the product catalog editor stays at http://127.0.0.1:5173/)
+```
+Always read the banner before changing anything.
 - Tools: firebase-tools (needs Java 21+), `gcloud`, Flutter, `git-filter-repo` (last section).
 - Website: `https://sofracom-marine-services.vercel.app`.
 
@@ -67,21 +78,16 @@ app is still installed and the old rules are still open, so it keeps working, bu
 - the old app can only set legacy statuses. An order it marks **"Treated"** shows as *delivered*
   on the website but does **not** unlock reviews (eligibility needs the exact value `delivered`).
   Step 8's migration converts `treated → delivered`, which fixes them. To unlock reviews before
-  that, open `/admin` → Orders, filter **Delivered**, and for each order marked from the old app
-  choose **Delivered** with a short note (e.g. "confirmed") and press Update. The note is
-  required because the status already *displays* as delivered.
-
-Make the staff website accounts admins (each person first signs up on the site):
-```bash
-# website repo, with the NEW key in place (step 1); prints "on PRODUCTION"
-node scripts/set-admin-claim.js staff@yourdomain.tn
-```
+  that, open the local tool (`npm run admin` → `/ops`, red PRODUCTION banner) → Orders, filter
+  **Delivered**, and for each order marked from the old app choose **Delivered** with a short
+  note (e.g. "confirmed") and press Update. The note is required because the status already
+  *displays* as delivered.
 
 **Check:**
 - Place a small guest order on the live site; it appears in the old app (as `pending`).
-- Sign up / sign in works, `/account` loads, `/admin` opens for a staff account (sign out and
-  back in after setting the claim).
-- Vercel logs show no `Missing Firebase credentials` errors.
+- Sign up / sign in works with an email and with a phone number, and `/account` loads.
+- `https://sofracom-marine-services.vercel.app/admin` returns **404** (there is no web admin).
+- Vercel logs show no `Missing Firebase credentials` / `server/credentials` errors.
 
 **Rollback:** Vercel → Deployments → previous production deployment → **Instant Rollback**.
 Orders created meanwhile keep their new-style fields; the old site ignores them.
@@ -144,18 +150,19 @@ The new application id installs **next to** the old app. On every staff phone: i
 
 ## 4. Enrol each staff phone
 
-1. Website → `/admin` → **Devices** → **Generate code** (valid 15 min, single use; generating a new
-   code replaces the previous one).
-2. On the phone, open SOFRACOM Admin, enter the code and a device name (e.g. "Shop counter").
-3. The phone opens the Orders tab; the device appears in `/admin` → Devices as **Active**.
+1. On your computer: `npm run admin` (check the red **PRODUCTION · sofracom** banner), open
+   `http://127.0.0.1:5173/ops` → **Devices** → **Add device**. A 6-digit code appears with a
+   15-minute countdown (single use; adding again replaces the previous code).
+2. On the phone, open SOFRACOM Admin, type the code and a device name (e.g. "Shop counter").
+3. The phone opens the Orders tab; the tool shows "Code used" and lists the device as **Active**.
 
-Five wrong codes in a row burn the outstanding code; `/admin` then shows
+Five wrong codes in a row burn the outstanding code; the tool then shows
 "Code expired or invalidated… Generate a new one" and the event is logged (`deviceEvents`,
 plus a `[devices]` warning in Vercel logs).
 
 **Check (each phone):** orders and quotes load; change a test order's status with a note and see
-it in the website order timeline (`/account/orders/<id>` for the customer, `/admin` details).
-**Rollback:** `/admin` → Devices → Revoke.
+it in the customer's order timeline (`/account/orders/<id>`) and in the tool's order details.
+**Rollback:** local tool → Devices → Revoke.
 
 ---
 
@@ -196,7 +203,7 @@ From this moment, unauthenticated reads/writes are refused: the **old** app stop
 
 **Check:**
 - Console → Firestore → Indexes: all composite indexes **Enabled** (building can take minutes;
-  `/account/orders`, review eligibility and `/admin` review lists need them).
+  `/account/orders`, review eligibility and the local tool's lists need them).
 - Anonymous read is now denied (expect `PERMISSION_DENIED`, 403):
   ```bash
   curl -s "https://firestore.googleapis.com/v1/projects/sofracom/databases/(default)/documents/orders?pageSize=1"
@@ -264,8 +271,10 @@ Each changed document keeps its previous value in `legacyStatus` and gets a seed
       shows each step (with notes).
 - [ ] The customer can then review the product once; the product page shows the rating and the
       category card shows stars.
-- [ ] `/admin` → Reviews → Hide removes it from the product page and the stats.
-- [ ] `/admin` → Devices → revoke a spare/test phone. Its status changes are refused at once;
+- [ ] Local tool → Reviews → Hide removes it from the product page and the stats.
+- [ ] Local tool → Customers: find a phone customer by number; "Set temporary password" works and
+      the customer is asked to choose a new password at sign-in.
+- [ ] Local tool → Devices → revoke a spare/test phone. Its status changes are refused at once;
       the next time the app is opened (or its live list is refused by the rules) it returns to the
       enrolment screen with "This phone was removed…". Re-enrol it with a new code.
 - [ ] Anonymous Firestore read is denied (curl in step 6).
