@@ -1,10 +1,11 @@
-import { apiRoute, readJson, HttpError } from '../../../lib/server/http';
-import { requireAdmin } from '../../../lib/server/auth';
-import { rateLimit, MINUTE } from '../../../lib/server/rateLimit';
-import { COLLECTIONS, changeStatus, listForStaff } from '../../../lib/server/statusUpdates';
+import { apiRoute, readJson, HttpError } from '../../../lib/server/http.js';
+import { requireDevice } from '../../../lib/server/auth.js';
+import { rateLimit, MINUTE } from '../../../lib/server/rateLimit.js';
+import { COLLECTIONS, changeStatus } from '../../../lib/server/statusUpdates.js';
 
-// Staff-only: list orders or quotes, and change their status (appends to history).
-// Requires the `admin: true` custom claim on the caller's Firebase token.
+// Staff phone app only: change an order/quote status (appends to statusHistory).
+// Accepts ONLY enrolled, active device tokens; website accounts are refused even
+// with an admin claim. Staff on a computer use the local admin tool instead.
 const resolveCollection = req => {
     const collection = String(req.query.collection || '');
     if (!COLLECTIONS[collection]) throw new HttpError(404, 'Not found');
@@ -12,19 +13,12 @@ const resolveCollection = req => {
 };
 
 export default apiRoute({
-    GET: async (req, res) => {
-        const collection = resolveCollection(req);
-        await requireAdmin(req);
-        const items = await listForStaff(collection, { status: req.query.status, limit: req.query.limit });
-        res.status(200).json({ ok: true, items });
-    },
-
     PATCH: async (req, res) => {
         const collection = resolveCollection(req);
-        const staff = await requireAdmin(req);
-        rateLimit(`admin:${staff.uid}`, { limit: 120, windowMs: MINUTE });
+        const device = await requireDevice(req);
+        rateLimit(`device:${device.deviceId}`, { limit: 120, windowMs: MINUTE });
         const payload = await readJson(req, 10_000);
-        const item = await changeStatus(collection, payload, staff);
+        const item = await changeStatus(collection, payload, device);
         res.status(200).json({ ok: true, item });
     },
 });

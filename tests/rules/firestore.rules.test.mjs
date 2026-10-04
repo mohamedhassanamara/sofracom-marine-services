@@ -55,10 +55,11 @@ beforeEach(async () => {
 
 const alice = () => env.authenticatedContext('alice', { email: 'alice@example.test', email_verified: true }).firestore();
 const carol = () => env.authenticatedContext('carol').firestore();
+// A website account that somehow carries an admin claim: must get no staff access.
 const staff = () => env.authenticatedContext('staff', { admin: true }).firestore();
 const guest = () => env.unauthenticatedContext().firestore();
 const device = deviceId =>
-    env.authenticatedContext(`device_${deviceId}`, { admin: true, device: true, deviceId }).firestore();
+    env.authenticatedContext(`device_${deviceId}`, { device: true, deviceId }).firestore();
 
 describe('users', () => {
     test('a user can read their own profile and addresses', async () => {
@@ -117,11 +118,19 @@ describe('orders and quotes', () => {
         await assertFails(updateDoc(doc(alice(), 'quotes/q-alice'), { status: 'accepted' }));
     });
 
-    test('staff with the admin claim can read everything but still not write', async () => {
-        await assertSucceeds(getDocs(collection(staff(), 'orders')));
-        await assertSucceeds(getDocs(collection(staff(), 'quotes')));
-        await assertSucceeds(getDoc(doc(staff(), 'users/alice')));
+    test('a website account with an admin claim gets no staff access', async () => {
+        await assertFails(getDocs(collection(staff(), 'orders')));
+        await assertFails(getDocs(collection(staff(), 'quotes')));
+        await assertFails(getDoc(doc(staff(), 'orders/o-bob')));
+        await assertFails(getDoc(doc(staff(), 'users/alice')));
         await assertFails(updateDoc(doc(staff(), 'orders/o-bob'), { status: 'delivered' }));
+    });
+
+    test('a forged device token without an active device record gets nothing', async () => {
+        const forged = env.authenticatedContext('device_phone2', { device: true, deviceId: 'phone2' }).firestore();
+        await assertFails(getDocs(collection(forged, 'orders')));
+        const noId = env.authenticatedContext('device_x', { device: true }).firestore();
+        await assertFails(getDocs(collection(noId, 'orders')));
     });
 });
 
@@ -138,7 +147,8 @@ describe('reviews and stats', () => {
         await assertFails(getDoc(doc(guest(), 'reviews/p1_carol')));
         await assertFails(getDoc(doc(alice(), 'reviews/p1_carol')));
         await assertSucceeds(getDoc(doc(carol(), 'reviews/p1_carol')));
-        await assertSucceeds(getDoc(doc(staff(), 'reviews/p1_carol')));
+        await assertSucceeds(getDoc(doc(device('phone1'), 'reviews/p1_carol')));
+        await assertFails(getDoc(doc(staff(), 'reviews/p1_carol')));
         await assertFails(getDocs(query(collection(guest(), 'reviews'), where('productId', '==', 'p1'))));
     });
 
@@ -147,7 +157,7 @@ describe('reviews and stats', () => {
         await assertFails(updateDoc(doc(carol(), 'reviews/p1_carol'), { status: 'published' }));
         await assertFails(deleteDoc(doc(carol(), 'reviews/p1_carol')));
         await assertFails(setDoc(doc(alice(), 'productStats/p1'), { count: 100, avg: 5 }));
-        await assertFails(updateDoc(doc(staff(), 'productStats/p1'), { avg: 1 }));
+        await assertFails(updateDoc(doc(device('phone1'), 'productStats/p1'), { avg: 1 }));
     });
 });
 

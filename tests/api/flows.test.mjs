@@ -8,7 +8,9 @@ import {
     PRODUCT_A,
     PRODUCT_B,
     api,
+    createDevice,
     createUser,
+    lib,
     db,
     resetEmulators,
     startServer,
@@ -22,11 +24,12 @@ let staff;
 before(async () => {
     await resetEmulators();
     await startServer();
-    staff = await createUser({ name: 'Staff Member', isAdmin: true });
+    staff = await createDevice('Shop phone');
 });
 
 after(() => stopServer());
 
+// Status changes come from the staff phone app (device token).
 const setStatus = (id, status, user = staff, collection = 'orders') =>
     api(`/api/admin/${collection}`, { method: 'PATCH', body: { id, status }, user });
 
@@ -174,11 +177,14 @@ describe('accounts, addresses and order tracking', () => {
 });
 
 describe('staff status management', () => {
-    test('only admins can list or change statuses, and changes append to history', async () => {
+    test('only an enrolled phone can change statuses, and changes append to history', async () => {
         const customer = await createUser();
+        const webAdmin = await createUser({ name: 'Website account with admin claim', isAdmin: true });
         const order = await api('/api/create-order', { method: 'POST', user: customer, body: { customer: GUEST, items: [line(PRODUCT_A)] } });
-        assert.equal((await api('/api/admin/orders', { user: customer })).status, 403);
         assert.equal((await setStatus(order.body.orderId, 'delivered', customer)).status, 403);
+        const refused = await setStatus(order.body.orderId, 'delivered', webAdmin);
+        assert.equal(refused.status, 403, 'an admin claim on a website account is not enough');
+        assert.equal(refused.body.code, 'auth/device-required');
 
         for (const status of ['confirmed', 'preparing', 'out_for_delivery', 'delivered']) {
             const response = await setStatus(order.body.orderId, status);
@@ -191,6 +197,18 @@ describe('staff status management', () => {
             ['pending', 'confirmed', 'preparing', 'out_for_delivery', 'delivered']
         );
         assert.equal((await setStatus(order.body.orderId, 'shipped')).status, 400);
+    });
+
+    test('the website has no admin pages or admin listing routes', async () => {
+        const webAdmin = await createUser({ isAdmin: true });
+        const page = await fetch(new URL('/admin', (await import('./helpers.mjs')).BASE));
+        assert.equal(page.status, 404);
+        for (const path of ['/api/admin/orders', '/api/admin/quotes']) {
+            assert.equal((await api(path, { user: webAdmin })).status, 405, `${path} GET is gone`);
+        }
+        for (const path of ['/api/admin/devices', '/api/admin/users', '/api/admin/reviews']) {
+            assert.equal((await api(path, { method: 'PATCH', user: webAdmin, body: {} })).status, 404, path);
+        }
     });
 });
 
@@ -281,15 +299,16 @@ describe('verified-buyer reviews', () => {
         assert.equal(unknown.status, 404);
     });
 
-    test('hiding a review removes it from the page and the stats; customers cannot moderate', async () => {
+    test('hiding a review removes it from the page and the stats; the website has no moderation route', async () => {
         const id = `${PRODUCT_B}_${buyer.uid}`;
-        assert.equal((await api('/api/admin/reviews', { method: 'PATCH', user: buyer, body: { id, status: 'hidden' } })).status, 403);
-        const hidden = await api('/api/admin/reviews', { method: 'PATCH', user: staff, body: { id, status: 'hidden' } });
-        assert.equal(hidden.status, 200);
+        assert.equal((await api('/api/admin/reviews', { method: 'PATCH', user: buyer, body: { id, status: 'hidden' } })).status, 404);
+        // Moderation happens in the local admin tool, through the shared function.
+        const { setReviewStatus } = await lib('reviewModeration');
+        await setReviewStatus(id, 'hidden', { uid: 'local-admin:test' });
         const list = await api(`/api/reviews?productId=${PRODUCT_B}&fresh=2`);
         assert.equal(list.body.reviews.length, 0);
         assert.equal(list.body.stats.count, 0);
-        await api('/api/admin/reviews', { method: 'PATCH', user: staff, body: { id, status: 'published' } });
+        await setReviewStatus(id, 'published', { uid: 'local-admin:test' });
         const back = await api(`/api/reviews?productId=${PRODUCT_B}&fresh=3`);
         assert.equal(back.body.stats.count, 1);
     });

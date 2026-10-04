@@ -16,7 +16,7 @@ const NAV = [
 export default function AccountLayout({ title, eyebrow, actions, badges = {}, children }) {
     const { t } = useLang();
     const router = useRouter();
-    const { user, loading, isAdmin, signOut } = useRequireAuth();
+    const { user, loading, signOut } = useRequireAuth();
 
     if (loading || !user) {
         return (
@@ -49,7 +49,6 @@ export default function AccountLayout({ title, eyebrow, actions, badges = {}, ch
                         )}
                     </Link>
                 ))}
-                {isAdmin && <Link href="/admin">{t('account.nav.admin')}</Link>}
                 <button type="button" onClick={handleSignOut}>
                     {t('account.nav.signOut')}
                 </button>

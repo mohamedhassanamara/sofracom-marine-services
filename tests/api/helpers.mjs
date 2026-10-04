@@ -124,3 +124,33 @@ export const PRODUCT_B = (() => {
 })();
 
 export const GUEST = { name: 'Guest Buyer', phone: '+21612345678', address: 'Marina Monastir, quay 3' };
+
+// Shared server functions (what the local admin tool calls), loaded the same way.
+export const lib = name => import(new URL(`../../lib/server/${name}.js`, import.meta.url).href);
+
+let deviceCounter = 0;
+
+// Enrols a staff phone exactly like production: the local tool generates the code
+// (shared generateCode), the app redeems it at /api/devices/enroll, then signs in
+// with the custom token. Returns { token, deviceId }.
+export async function createDevice(name = 'Test phone') {
+    const { generateCode } = await lib('devices');
+    const { code } = await generateCode({ uid: 'local-admin:test' });
+    deviceCounter += 1;
+    const enrolled = await api('/api/devices/enroll', {
+        method: 'POST',
+        body: { code, deviceName: name },
+        headers: { 'X-Forwarded-For': `198.18.0.${deviceCounter}` },
+    });
+    if (enrolled.status !== 200) throw new Error(`enrol failed: ${JSON.stringify(enrolled.body)}`);
+    const response = await fetch(
+        `http://${AUTH_HOST}/identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=demo-key`,
+        {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: enrolled.body.token, returnSecureToken: true }),
+        }
+    );
+    const body = await response.json();
+    return { token: body.idToken, deviceId: enrolled.body.deviceId };
+}

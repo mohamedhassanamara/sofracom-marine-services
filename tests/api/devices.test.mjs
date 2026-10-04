@@ -1,10 +1,12 @@
-// Staff-app device enrolment: single-use codes, brute-force burn, custom tokens with
-// the admin claim, and revocation that blocks the API immediately.
+// Staff-phone enrolment. Codes are generated, listed and revoked by the LOCAL admin
+// tool through the shared lib/server/devices.js functions; the website only redeems
+// codes (/api/devices/enroll), answers heartbeats and accepts device status changes.
 import { after, before, beforeEach, describe, test } from 'node:test';
 import assert from 'node:assert/strict';
-import { GUEST, PRODUCT_A, api, createUser, db, resetEmulators, startServer, stopServer } from './helpers.mjs';
+import { GUEST, PRODUCT_A, api, createUser, db, lib, resetEmulators, startServer, stopServer } from './helpers.mjs';
 
 const AUTH_HOST = process.env.FIREBASE_AUTH_EMULATOR_HOST;
+const STAFF = { uid: 'local-admin:test' };
 
 // Exchanges a custom token for an ID token, as the app's signInWithCustomToken does.
 async function signInWithCustomToken(token) {
@@ -21,15 +23,14 @@ async function signInWithCustomToken(token) {
     return { token: body.idToken };
 }
 
-let staff;
+let devices;
 let ip = 0;
 const fromIp = () => ({ 'X-Forwarded-For': `198.51.100.${(ip += 1)}` });
 
 const newCode = async () => {
-    const response = await api('/api/admin/devices', { method: 'POST', user: staff, body: {} });
-    assert.equal(response.status, 200, JSON.stringify(response.body));
-    assert.match(response.body.code, /^\d{6}$/);
-    return response.body.code;
+    const { code } = await devices.generateCode(STAFF);
+    assert.match(code, /^\d{6}$/);
+    return code;
 };
 
 const enroll = (code, deviceName = 'Shop phone') =>
@@ -38,7 +39,7 @@ const enroll = (code, deviceName = 'Shop phone') =>
 before(async () => {
     await resetEmulators();
     await startServer();
-    staff = await createUser({ name: 'Staff Member', isAdmin: true });
+    devices = await lib('devices');
 });
 
 after(() => stopServer());
@@ -49,11 +50,12 @@ describe('enrolment codes', () => {
         await db().collection('enrollState').doc('global').set({ failedAttempts: 0 });
     });
 
-    test('only admins can generate codes or list devices', async () => {
-        const customer = await createUser();
-        assert.equal((await api('/api/admin/devices', { method: 'POST', user: customer, body: {} })).status, 403);
-        assert.equal((await api('/api/admin/devices', { user: customer })).status, 403);
-        assert.equal((await api('/api/admin/devices', { method: 'POST', body: {} })).status, 401);
+    test('the website cannot generate codes, list or revoke devices', async () => {
+        const webAdmin = await createUser({ isAdmin: true });
+        for (const method of ['GET', 'POST', 'DELETE', 'PATCH']) {
+            const response = await api('/api/admin/devices', { method, user: webAdmin, body: method === 'GET' || method === 'DELETE' ? undefined : {} });
+            assert.ok([404, 405].includes(response.status), `${method} /api/admin/devices -> ${response.status}`);
+        }
     });
 
     test('a code enrols one device and is then used up', async () => {
@@ -68,6 +70,7 @@ describe('enrolment codes', () => {
         const reuse = await enroll(code, 'Second phone');
         assert.equal(reuse.status, 400);
         assert.equal(reuse.body.code, 'device/invalid-code');
+        assert.equal((await devices.latestCodeStatus()).status, 'used');
     });
 
     test('codes are stored hashed, never in clear text', async () => {
@@ -84,8 +87,7 @@ describe('enrolment codes', () => {
         const active = await db().collection('enrollCodes').where('status', '==', 'active').get();
         await active.docs[0].ref.update({ expiresAt: new Date(Date.now() - 1000).toISOString() });
         assert.equal((await enroll(code)).body.code, 'device/invalid-code');
-        const status = await api('/api/admin/devices', { user: staff });
-        assert.equal(status.body.code.status, 'expired');
+        assert.equal((await devices.latestCodeStatus()).status, 'expired');
     });
 
     test('generating a new code replaces the previous one', async () => {
@@ -101,14 +103,13 @@ describe('enrolment codes', () => {
         for (let attempt = 0; attempt < 5; attempt += 1) {
             assert.equal((await enroll(wrong)).status, 400);
         }
-        const blocked = await enroll(code);
-        assert.equal(blocked.status, 400, 'the real code no longer works');
-        const status = await api('/api/admin/devices', { user: staff });
-        assert.equal(status.body.code.status, 'burned');
-        assert.equal(status.body.code.closedReason, 'too-many-failed-attempts');
+        assert.equal((await enroll(code)).status, 400, 'the real code no longer works');
+        const status = await devices.latestCodeStatus();
+        assert.equal(status.status, 'burned');
+        assert.equal(status.closedReason, 'too-many-failed-attempts');
         const events = await db().collection('deviceEvents').where('type', '==', 'codes-burned').get();
         assert.ok(events.size >= 1);
-        // An admin recovers by generating a new code.
+        // Recovery: generate a new code in the local tool.
         assert.equal((await enroll(await newCode())).status, 200);
     });
 
@@ -120,7 +121,7 @@ describe('enrolment codes', () => {
 });
 
 describe('enrolled devices', () => {
-    test('a device token works for staff APIs until the device is revoked', async () => {
+    test('a device token can change statuses until the device is revoked', async () => {
         const enrolled = await enroll(await newCode(), 'Workshop tablet');
         const device = await signInWithCustomToken(enrolled.body.token);
 
@@ -129,8 +130,6 @@ describe('enrolled devices', () => {
         assert.equal(heartbeat.body.device.name, 'Workshop tablet');
 
         const order = await api('/api/create-order', { method: 'POST', body: { customer: GUEST, items: [{ productId: PRODUCT_A, variantIndex: 0, quantity: 1 }] } });
-        const list = await api('/api/admin/orders', { user: device });
-        assert.equal(list.status, 200);
         const change = await api('/api/admin/orders', {
             method: 'PATCH',
             user: device,
@@ -140,15 +139,18 @@ describe('enrolled devices', () => {
         const saved = (await db().collection('orders').doc(order.body.orderId).get()).data();
         assert.equal(saved.statusHistory.at(-1).by, `device_${enrolled.body.deviceId}`);
 
-        const listed = await api('/api/admin/devices', { user: staff });
-        assert.ok(listed.body.devices.some(item => item.id === enrolled.body.deviceId && item.active));
+        const listed = await devices.listDevices();
+        assert.ok(listed.some(item => item.id === enrolled.body.deviceId && item.active));
 
-        const revoked = await api(`/api/admin/devices?id=${enrolled.body.deviceId}`, { method: 'DELETE', user: staff });
-        assert.equal(revoked.status, 200);
-        assert.equal(revoked.body.device.active, false);
+        const revoked = await devices.revokeDevice(enrolled.body.deviceId, STAFF);
+        assert.equal(revoked.active, false);
 
         // The ID token issued before revocation is rejected straight away.
-        const afterRevoke = await api('/api/admin/orders', { user: device });
+        const afterRevoke = await api('/api/admin/orders', {
+            method: 'PATCH',
+            user: device,
+            body: { id: order.body.orderId, status: 'preparing' },
+        });
         assert.equal(afterRevoke.status, 403);
         assert.equal(afterRevoke.body.code, 'device/revoked');
         const beat = await api('/api/devices/heartbeat', { method: 'POST', user: device, body: {} });
@@ -156,9 +158,8 @@ describe('enrolled devices', () => {
         assert.equal(beat.body.code, 'device/revoked');
     });
 
-    test('revoking an unknown device returns 404', async () => {
-        const missing = await api('/api/admin/devices?id=does-not-exist', { method: 'DELETE', user: staff });
-        assert.equal(missing.status, 404);
+    test('revoking an unknown device fails cleanly', async () => {
+        await assert.rejects(devices.revokeDevice('does-not-exist', STAFF), err => err.status === 404);
     });
 
     test('heartbeat is only for devices', async () => {

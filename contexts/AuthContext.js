@@ -20,7 +20,6 @@ const LINKED_KEY = 'sofracom.linked.v1';
 export function AuthProvider({ children }) {
     const { lang, setLang } = useLang();
     const [user, setUser] = useState(null);
-    const [claims, setClaims] = useState({});
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const firebaseRef = useRef(null);
@@ -73,13 +72,10 @@ export function AuthProvider({ children }) {
                 unsubscribe = fb.onIdTokenChanged(auth, async currentUser => {
                     setUser(currentUser);
                     if (!currentUser) {
-                        setClaims({});
                         setProfile(null);
                         setLoading(false);
                         return;
                     }
-                    const token = await currentUser.getIdTokenResult();
-                    setClaims(token.claims || {});
                     // Pages can render as soon as we know who is signed in; linking guest
                     // history and loading the profile continue in the background.
                     setLoading(false);
@@ -205,7 +201,6 @@ export function AuthProvider({ children }) {
             email: publicEmail(user?.email),
             profile,
             loading,
-            isAdmin: claims.admin === true,
             changePassword,
             signIn,
             signUp,
@@ -217,7 +212,7 @@ export function AuthProvider({ children }) {
             reloadProfile: () => loadProfile(user),
             setProfile,
         }),
-        [user, profile, loading, claims, signIn, signUp, signInWithGoogle, signOut, resetPassword, resendVerification, refreshUser, loadProfile, changePassword]
+        [user, profile, loading, signIn, signUp, signInWithGoogle, signOut, resetPassword, resendVerification, refreshUser, loadProfile, changePassword]
     );
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
