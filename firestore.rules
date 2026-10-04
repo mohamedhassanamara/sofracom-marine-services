@@ -1,0 +1,65 @@
+rules_version = '2';
+
+// All writes go through the Next.js API routes (Admin SDK), which bypass these rules.
+// Clients may only read: their own profile, addresses, orders and quotes; published
+// reviews; and product rating stats. The enrolled staff phone app can read orders,
+// quotes and reviews. Everything else (devices, enrollCodes, identityIndex, logs) is
+// server-only.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    // Staff = the enrolled staff phone app: a custom token with device == true whose
+    // devices/{id} doc is active. Website accounts never get staff access, whatever
+    // their custom claims. (The local admin tool uses the Admin SDK, not these rules.)
+    function isStaffDevice() {
+      return signedIn()
+        && request.auth.token.get('device', false) == true
+        && request.auth.token.get('deviceId', '') is string
+        && exists(/databases/$(database)/documents/devices/$(request.auth.token.deviceId))
+        && get(/databases/$(database)/documents/devices/$(request.auth.token.deviceId)).data.active == true;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    match /users/{uid} {
+      allow read: if isOwner(uid) || isStaffDevice();
+      allow write: if false;
+
+      match /addresses/{addressId} {
+        allow read: if isOwner(uid) || isStaffDevice();
+        allow write: if false;
+      }
+    }
+
+    match /orders/{orderId} {
+      allow read: if isStaffDevice() || (signedIn() && resource.data.uid == request.auth.uid);
+      allow write: if false;
+    }
+
+    match /quotes/{quoteId} {
+      allow read: if isStaffDevice() || (signedIn() && resource.data.uid == request.auth.uid);
+      allow write: if false;
+    }
+
+    match /reviews/{reviewId} {
+      allow read: if resource.data.status == 'published'
+        || isStaffDevice()
+        || (signedIn() && resource.data.uid == request.auth.uid);
+      allow write: if false;
+    }
+
+    match /productStats/{productId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

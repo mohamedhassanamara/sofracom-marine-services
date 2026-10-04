@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOFRACOM Operations</title>
+    <link rel="stylesheet" href="/ops.css" />
+  </head>
+  <body>
+    <div id="targetBanner" class="target-banner target-unknown" role="status">Checking Firebase target…</div>
+    <header class="ops-header">
+      <div>
+        <h1>SOFRACOM Operations</h1>
+        <p>Orders, quotes, reviews, customers and staff phones. Changes are written directly to Firebase.</p>
+      </div>
+      <a class="ops-link" href="/">← Product catalog</a>
+    </header>
+    <nav class="ops-tabs" role="tablist">
+      <button type="button" data-tab="orders" class="active">Orders</button>
+      <button type="button" data-tab="quotes">Quotes</button>
+      <button type="button" data-tab="reviews">Reviews</button>
+      <button type="button" data-tab="users">Customers</button>
+      <button type="button" data-tab="devices">Devices</button>
+    </nav>
+    <main id="panel" class="ops-panel"></main>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="/ops.js"></script>
+  </body>
+</html>

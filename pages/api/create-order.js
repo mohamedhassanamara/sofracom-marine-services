@@ -1,120 +1,127 @@
-const { randomUUID } = require('crypto');
-const { getFirebaseApp } = require('./firebase-service');
+import { randomUUID } from 'crypto';
+import { getDb, getFirebaseApp, usingEmulators } from '../../lib/firebase/admin';
+import { apiRoute, clientIp, readJson, HttpError } from '../../lib/server/http';
+import { rateLimit, MINUTE } from '../../lib/server/rateLimit';
+import { cleanEmail, cleanString } from '../../lib/server/validate';
+import { getUser } from '../../lib/server/auth';
+import { addAddress, addressesRef, cleanAddress, ensureUserDoc, formatAddress, userRef } from '../../lib/server/users';
+import { priceCart } from '../../lib/server/catalog';
+import { formatPrice } from '../../lib/constants';
+import { shortId } from '../../lib/status';
 
-/* ---------- utils ---------- */
-async function readJson(req) {
-    if (req.body && typeof req.body === 'object') return req.body;
-
-    return new Promise((resolve, reject) => {
-        let data = '';
-        req.on('data', chunk => {
-            data += chunk.toString();
-            if (data.length > 1_000_000) {
-                reject(new Error('Payload too large'));
-                req.destroy();
-            }
-        });
-        req.on('end', () => {
-            try { resolve(data ? JSON.parse(data) : {}); }
-            catch { reject(new Error('Invalid JSON payload')); }
-        });
-        req.on('error', reject);
-    });
-}
-
-function validatePayload(payload) {
-    const errors = [];
-    if (!payload || typeof payload !== 'object') return ['Missing request body'];
-
-    const items = Array.isArray(payload.items) ? payload.items : [];
-    if (!items.length) errors.push('Cart is empty');
-
-    const customer = payload.customer || {};
-    if (!customer.name || String(customer.name).trim().length < 2) errors.push('Name is required');
-    if (!customer.phone || String(customer.phone).trim().length < 6) errors.push('Phone is required');
-    if (!customer.address || String(customer.address).trim().length < 6) errors.push('Address is required');
-
-    return errors;
-}
-
-/* ---------- handler ---------- */
-module.exports = async function handler(req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-    if (req.method === 'OPTIONS') {
-        res.status(204).end();
-        return;
-    }
-
-    if (req.method !== 'POST') {
-        res.setHeader('Allow', 'POST, OPTIONS');
-        res.status(405).json({ ok: false, error: 'Method not allowed' });
-        return;
-    }
-
-    let payload;
-    try {
-        payload = await readJson(req);
-    } catch (err) {
-        res.status(400).json({ ok: false, error: err.message });
-        return;
-    }
-
-    const errors = validatePayload(payload);
-    if (errors.length) {
-        res.status(400).json({ ok: false, error: errors.join(', ') });
-        return;
-    }
-
-    const orderId = randomUUID();
-    const timestamp = new Date().toISOString();
-
-    const order = {
-        id: orderId,
-        created_at: timestamp,
-        customer_name: payload.customer.name.trim(),
-        customer_phone: payload.customer.phone.trim(),
-        customer_address: payload.customer.address.trim(),
-        customer_notes: (payload.customer.notes || '').trim(),
-        items: payload.items,
-        total: Number.isFinite(payload.total) ? payload.total : 0,
-        currency: payload.currency || 'TND',
-        status: 'new',
+function readGuestCustomer(customer) {
+    return {
+        name: cleanString(customer.name, { field: 'Name', min: 2, max: 120, required: true }),
+        phone: cleanString(customer.phone, { field: 'Phone', min: 6, max: 40, required: true }),
+        address: cleanString(customer.address, { field: 'Address', min: 6, max: 500, required: true }),
+        addressId: null,
     };
+}
 
-    try {
-        const firestore = getFirebaseApp().firestore();
-        await firestore.collection('orders').doc(orderId).set(order);
-
-        try {
-            const messaging = getFirebaseApp().messaging();
-            const summary = Number.isFinite(order.total)
-                ? new Intl.NumberFormat('fr-TN', { style: 'currency', currency: order.currency || 'TND' }).format(order.total)
-                : `${order.total || 0} ${order.currency || 'TND'}`;
-
-            await messaging.send({
-                topic: 'sofracom-orders',
-                notification: {
-                    title: `New order from ${order.customer_name}`,
-                    body: `${order.items.length} item(s) · ${summary}`,
-                },
-                data: {
-                    orderId,
-                    customerName: order.customer_name,
-                    total: String(order.total ?? 0),
-                    currency: order.currency || 'TND',
-                },
-            });
-        } catch (err) {
-            console.warn('[order] FCM notify failed', err);
-        }
-
-        res.status(200).json({ ok: true, orderId, persisted: true });
-    } catch (err) {
-        console.error('[order] persistence failed', err);
-        res.status(500).json({ ok: false, error: err.message || 'Unable to store order' });
+// Signed-in customers either pick a saved address (read from their own
+// users/{uid}/addresses, never from the request) or enter a new one, optionally saved.
+async function readMemberCustomer(user, payload, customer) {
+    if (payload.addressId) {
+        const id = cleanString(payload.addressId, { field: 'Address id', max: 64, required: true });
+        const snapshot = await addressesRef(user.uid).doc(id).get();
+        if (!snapshot.exists) throw new HttpError(400, 'Saved address not found', 'address/not-found');
+        const address = snapshot.data();
+        return { name: address.fullName, phone: address.phone, address: formatAddress(address), addressId: id };
     }
-};
+    if (payload.newAddress) {
+        const address = cleanAddress(payload.newAddress);
+        let addressId = null;
+        if (payload.saveAddress === true) {
+            await ensureUserDoc(user);
+            try {
+                addressId = await addAddress(user.uid, address);
+            } catch (err) {
+                // A full address book must not block the order itself.
+                if (err.code !== 'address/limit') throw err;
+            }
+        }
+        return { name: address.fullName, phone: address.phone, address: formatAddress(address), addressId };
+    }
+    return readGuestCustomer(customer);
+}
+
+async function notifyTeam(order) {
+    // There is no messaging emulator; skip push notifications in local/test runs.
+    if (usingEmulators()) return;
+    try {
+        await getFirebaseApp().messaging().send({
+            topic: 'sofracom-orders',
+            // No customer details in the push itself; the app loads them from Firestore.
+            notification: {
+                title: `New order #${shortId(order.id)}`,
+                body: `${order.items.length} item(s) · ${formatPrice(order.total)}`,
+            },
+            data: { orderId: order.id },
+        });
+    } catch (err) {
+        console.warn('[order] FCM notify failed', err.message);
+    }
+}
+
+export default apiRoute(
+    {
+        POST: async (req, res) => {
+            rateLimit(`order:${clientIp(req)}`, { limit: 10, windowMs: 10 * MINUTE });
+            const payload = await readJson(req);
+            if (!payload || typeof payload !== 'object') throw new HttpError(400, 'Missing request body');
+
+            const user = await getUser(req);
+            const rawCustomer = payload.customer && typeof payload.customer === 'object' ? payload.customer : {};
+            // Prices, titles and stock come from the catalog, never from the request.
+            const priced = priceCart(payload.items);
+            const customer = user
+                ? await readMemberCustomer(user, payload, rawCustomer)
+                : readGuestCustomer(rawCustomer);
+            const notes = cleanString(rawCustomer.notes, { field: 'Notes', max: 1000 });
+            // Identity comes from the verified token; guests may leave an email to link later.
+            // Phone accounts have no login email, so fall back to their profile contact email.
+            const profileEmail = user && !user.email ? (await userRef(user.uid).get()).data()?.email : null;
+            const email = user ? user.email || profileEmail || null : cleanEmail(rawCustomer.email) || null;
+
+            const orderId = randomUUID();
+            const now = new Date().toISOString();
+            const order = {
+                id: orderId,
+                created_at: now,
+                customer_name: customer.name,
+                customer_phone: customer.phone,
+                customer_address: customer.address,
+                customer_address_id: customer.addressId,
+                customer_notes: notes,
+                customer_email: email || '',
+                uid: user ? user.uid : null,
+                email,
+                // `id` and `price` keep the line shape older readers (order-admin, mobile app) expect.
+                items: priced.items.map(({ stock, ...line }) => ({
+                    ...line,
+                    id: line.variantLabel ? `${line.productId}-${line.variantLabel}` : line.productId,
+                    price: line.unitPrice,
+                })),
+                productIds: priced.productIds,
+                subtotal: priced.subtotal,
+                delivery_fee: priced.deliveryFee,
+                total: priced.total,
+                currency: priced.currency,
+                status: 'pending',
+                statusHistory: [{ status: 'pending', at: now }],
+            };
+
+            await getDb().collection('orders').doc(orderId).set(order);
+            await notifyTeam(order);
+
+            res.status(200).json({
+                ok: true,
+                orderId,
+                persisted: true,
+                total: order.total,
+                hasOnOrderItem: priced.hasOnOrderItem,
+            });
+        },
+    },
+    { cors: true }
+);

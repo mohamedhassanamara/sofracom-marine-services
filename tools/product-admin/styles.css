@@ -839,3 +839,18 @@ textarea:focus {
     bottom: 1rem;
   }
 }
+
+.header-link {
+  align-self: center;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.header-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+}

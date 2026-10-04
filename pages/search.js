@@ -5,6 +5,8 @@ import { getCategories } from '../lib/products';
 import { sortByAlphabet } from '../lib/sort';
 import { useLang } from '../contexts/LangContext';
 import { localizeCategory } from '../lib/localize';
+import { CardRating } from '../components/reviews/Stars';
+import useProductStats from '../hooks/useProductStats';
 import { STOCK_LABEL, getStockBadgeClass } from '../lib/stock';
 
 export function getStaticProps() {
@@ -32,6 +34,7 @@ const formatPrice = value => {
 export default function SearchPage({ categories = [] }) {
     const router = useRouter();
     const { lang } = useLang();
+    const productStats = useProductStats();
     const queryValue = typeof router.query.q === 'string' ? router.query.q : '';
     const [searchTerm, setSearchTerm] = useState(queryValue);
 
@@ -161,6 +164,7 @@ export default function SearchPage({ categories = [] }) {
                                         {product.brand}
                                     </span>
                                 </div>
+                                <CardRating stats={productStats[product.id]} />
                                 <p className="text-sm text-gray-600">
                                     {product.description}
                                 </p>

@@ -3,6 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
 const os = require('os');
+const { pathToFileURL } = require('url');
+const { ensureProductIds } = require('../../lib/productIds');
 
 const HOST = process.env.HOST || '127.0.0.1';
 const PORT = Number(process.env.PORT || 5173);
@@ -34,7 +36,23 @@ const staticFiles = new Map([
   ['/', path.join(__dirname, 'index.html')],
   ['/app.js', path.join(__dirname, 'app.js')],
   ['/styles.css', path.join(__dirname, 'styles.css')],
+  ['/ops', path.join(__dirname, 'ops.html')],
+  ['/ops.js', path.join(__dirname, 'ops.js')],
+  ['/ops.css', path.join(__dirname, 'ops.css')],
 ]);
+
+// Orders, quotes, reviews, customers and staff devices (Firebase Admin SDK).
+// Loaded on first use so product editing works even without Firebase credentials.
+let opsModule = null;
+const loadOps = () => {
+  if (!opsModule) {
+    opsModule = import(pathToFileURL(path.join(__dirname, 'ops-api.mjs')).href).catch(err => {
+      opsModule = null;
+      throw err;
+    });
+  }
+  return opsModule;
+};
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -422,6 +440,17 @@ const server = http.createServer(async (req, res) => {
 
   if (handleStatic(req, res, pathname)) return;
 
+  if (pathname.startsWith('/api/ops/')) {
+    try {
+      const ops = await loadOps();
+      if (await ops.handleOps(req, res, url)) return;
+    } catch (err) {
+      console.error('[ops] failed to load', err);
+      sendJson(res, 500, { ok: false, error: `Firebase setup failed: ${err.message}`, code: 'server/credentials' });
+      return;
+    }
+  }
+
   if (pathname === '/api/products' && req.method === 'GET') {
     try {
       const content = fs.readFileSync(dataPath, 'utf-8');
@@ -436,6 +465,14 @@ const server = http.createServer(async (req, res) => {
     try {
       const payload = await parseBody(req);
       validatePayload(payload);
+      // Stable ids key reviews, ratings and orders; never let a save drop or duplicate them.
+      ensureProductIds(payload);
+      payload.categories = payload.categories.map(category => ({
+        ...category,
+        products: (category.products || []).map(({ id, legacyId, ...rest }) =>
+          legacyId ? { id, legacyId, ...rest } : { id, ...rest }
+        ),
+      }));
       const formatted = JSON.stringify(payload, null, 2);
       fs.writeFileSync(dataPath, `${formatted}\n`, 'utf-8');
       const gitResult = runGitCommands();
@@ -456,6 +493,10 @@ const server = http.createServer(async (req, res) => {
   res.end('Not found');
 });
 
+// Firebase credentials (FIREBASE_*) may live in .env next to the GitHub token.
+loadEnvFile();
+
 server.listen(PORT, HOST, () => {
-  console.log(`Product admin running on http://${HOST}:${PORT}`);
+  const target = process.env.FIRESTORE_EMULATOR_HOST ? 'EMULATOR (demo-sofracom)' : 'PRODUCTION';
+  console.log(`Product admin running on http://${HOST}:${PORT}  ·  operations: http://${HOST}:${PORT}/ops  ·  Firebase target: ${target}`);
 });

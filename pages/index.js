@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLang } from '../contexts/LangContext';
+import { useAuth } from '../contexts/AuthContext';
+import { apiRequest } from '../lib/apiClient';
 
 const BRAND_LOGOS = [
     { name: 'AKZONOBEL', src: '/assets/akzonobel.png' },
@@ -96,6 +98,18 @@ export default function HomePage() {
         details: '',
     });
     const [formStatus, setFormStatus] = useState({ message: '', type: '' });
+    const { user, email: accountEmail, profile } = useAuth();
+
+    // Signed-in visitors get their details prefilled; empty fields only.
+    useEffect(() => {
+        if (!user) return;
+        setQuoteForm(form => ({
+            ...form,
+            name: form.name || profile?.name || user.displayName || '',
+            email: form.email || accountEmail || profile?.email || '',
+            phone: form.phone || profile?.phone || '',
+        }));
+    }, [user, profile]);
     const [submitting, setSubmitting] = useState(false);
 
     const handleFaqToggle = index => {
@@ -120,15 +134,11 @@ export default function HomePage() {
         setSubmitting(true);
         setFormStatus({ message: 'Sending quote…', type: '' });
         try {
-            const response = await fetch('/api/create-quote', {
+            await apiRequest('/api/create-quote', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(quoteForm),
+                body: quoteForm,
+                user,
             });
-            const payload = await response.json();
-            if (!response.ok || !payload.ok) {
-                throw new Error(payload.error || 'Unable to send quote');
-            }
             setFormStatus({
                 message: 'Quote received! We will reply within a day.',
                 type: 'success',

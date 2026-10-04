@@ -1,104 +1,60 @@
-const { randomUUID } = require('crypto');
-const { getFirebaseApp } = require('./firebase-service');
+import { randomUUID } from 'crypto';
+import { getDb, getFirebaseApp, usingEmulators } from '../../lib/firebase/admin';
+import { apiRoute, clientIp, readJson, HttpError } from '../../lib/server/http';
+import { rateLimit, MINUTE } from '../../lib/server/rateLimit';
+import { cleanEmail, cleanString } from '../../lib/server/validate';
+import { getUser } from '../../lib/server/auth';
+import { shortId } from '../../lib/status';
 
-async function readJson(req) {
-    if (req.body && typeof req.body === 'object') return req.body;
-
-    return new Promise((resolve, reject) => {
-        let data = '';
-        req.on('data', chunk => {
-            data += chunk.toString();
-            if (data.length > 500_000) {
-                reject(new Error('Payload too large'));
-                req.destroy();
-            }
+async function notifyTeam(quote) {
+    // There is no messaging emulator; skip push notifications in local/test runs.
+    if (usingEmulators()) return;
+    try {
+        // No customer details in the push itself; the app loads them from Firestore.
+        await getFirebaseApp().messaging().send({
+            topic: 'sofracom-quotes',
+            notification: {
+                title: `New quote request #${shortId(quote.id)}`,
+                body: quote.subject ? quote.subject.slice(0, 80) : 'Project request received',
+            },
+            data: { quoteId: quote.id },
         });
-        req.on('end', () => {
-            try { resolve(data ? JSON.parse(data) : {}); }
-            catch { reject(new Error('Invalid JSON payload')); }
-        });
-        req.on('error', reject);
-    });
+    } catch (err) {
+        console.warn('[quote] FCM notify failed', err.message);
+    }
 }
 
-function validateQuote(payload) {
-    const errors = [];
-    if (!payload || typeof payload !== 'object') return ['Missing request body'];
-    if (!payload.name || String(payload.name).trim().length < 2) errors.push('Name is required');
-    if (!payload.email || String(payload.email).trim().length < 5 || !payload.email.includes('@')) errors.push('Valid email is required');
-    if (!payload.details || String(payload.details).trim().length < 10) errors.push('Tell us more about your project');
-    return errors;
-}
+export default apiRoute(
+    {
+        POST: async (req, res) => {
+            rateLimit(`quote:${clientIp(req)}`, { limit: 5, windowMs: 10 * MINUTE });
+            const payload = await readJson(req, 50_000);
+            if (!payload || typeof payload !== 'object') throw new HttpError(400, 'Missing request body');
 
-module.exports = async function handler(req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+            const user = await getUser(req);
+            const quoteId = randomUUID();
+            const now = new Date().toISOString();
+            const quote = {
+                id: quoteId,
+                created_at: now,
+                customer_name: cleanString(payload.name, { field: 'Name', min: 2, max: 120, required: true }),
+                customer_email: cleanEmail(payload.email, { required: true }),
+                customer_phone: cleanString(payload.phone, { field: 'Phone', max: 40 }),
+                subject: cleanString(payload.subject, { field: 'Subject', max: 200 }),
+                details: cleanString(payload.details, { field: 'Details', min: 10, max: 5000, required: true }),
+                project_type: cleanString(payload.project_type, { field: 'Project type', max: 60 }) || 'general',
+                uid: user ? user.uid : null,
+                status: 'received',
+                statusHistory: [{ status: 'received', at: now }],
+            };
 
-    if (req.method === 'OPTIONS') {
-        res.status(204).end();
-        return;
-    }
+            // Linking key: the verified account email, or the email the guest typed.
+            quote.email = user?.email || quote.customer_email;
+            await getDb().collection('quotes').doc(quoteId).set(quote);
+            await notifyTeam(quote);
 
-    if (req.method !== 'POST') {
-        res.setHeader('Allow', 'POST, OPTIONS');
-        res.status(405).json({ ok: false, error: 'Method not allowed' });
-        return;
-    }
-
-    let payload;
-    try {
-        payload = await readJson(req);
-    } catch (err) {
-        res.status(400).json({ ok: false, error: err.message });
-        return;
-    }
-
-    const errors = validateQuote(payload);
-    if (errors.length) {
-        res.status(400).json({ ok: false, error: errors.join(', ') });
-        return;
-    }
-
-    const quoteId = randomUUID();
-    const timestamp = new Date().toISOString();
-    const quote = {
-        id: quoteId,
-        created_at: timestamp,
-        customer_name: payload.name.trim(),
-        customer_email: payload.email.trim(),
-        customer_phone: (payload.phone || '').trim(),
-        subject: (payload.subject || '').trim(),
-        details: payload.details.trim(),
-        project_type: payload.project_type || 'general',
-        status: 'new',
-    };
-
-    try {
-        const firestore = getFirebaseApp().firestore();
-        await firestore.collection('quotes').doc(quoteId).set(quote);
-        try {
-            const messaging = getFirebaseApp().messaging();
-            const bodyText = quote.details.length > 100 ? `${quote.details.slice(0, 100)}…` : quote.details;
-            await messaging.send({
-                topic: 'sofracom-quotes',
-                notification: {
-                    title: `New quote from ${quote.customer_name}`,
-                    body: bodyText || 'Project request received',
-                },
-                data: {
-                    quoteId,
-                    customerName: quote.customer_name,
-                    subject: quote.subject || 'Project request',
-                },
-            });
-        } catch (err) {
-            console.warn('[quote] FCM notify failed', err);
-        }
-        res.status(200).json({ ok: true, quoteId });
-    } catch (err) {
-        console.error('[quote] persistence failed', err);
-        res.status(500).json({ ok: false, error: err.message || 'Unable to store quote' });
-    }
-};
+            res.status(200).json({ ok: true, quoteId });
+        },
+    },
+    { cors: true }
+);
