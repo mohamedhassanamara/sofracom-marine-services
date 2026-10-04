@@ -5,6 +5,7 @@ import { useLang } from '../../contexts/LangContext';
 import useRequireAuth from '../../hooks/useRequireAuth';
 import { StatusBadge, useFormatDate } from '../../components/account/Status';
 import AdminReviews from '../../components/admin/AdminReviews';
+import AdminDevices from '../../components/admin/AdminDevices';
 import { apiRequest, errorMessage } from '../../lib/apiClient';
 import { formatPrice } from '../../lib/constants';
 import { ORDER_STATUSES, QUOTE_STATUSES, historyFor, normalizeOrderStatus, normalizeQuoteStatus, shortId } from '../../lib/status';
@@ -249,7 +250,7 @@ export default function AdminPage() {
             ) : (
                 <>
                     <div className="admin-tabs mb-5" role="tablist">
-                        {['orders', 'quotes', 'reviews'].map(key => (
+                        {['orders', 'quotes', 'reviews', 'devices'].map(key => (
                             <button
                                 key={key}
                                 type="button"
@@ -262,7 +263,9 @@ export default function AdminPage() {
                             </button>
                         ))}
                     </div>
-                    {tab === 'reviews' ? <AdminReviews /> : <RecordsTable key={tab} tab={tab} />}
+                    {tab === 'reviews' && <AdminReviews />}
+                    {tab === 'devices' && <AdminDevices />}
+                    {TABS[tab] && <RecordsTable key={tab} tab={tab} />}
                 </>
             )}
         </main>
