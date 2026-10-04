@@ -13,8 +13,8 @@
     "lint": "echo \"No lint configured\"",
     "test": "npm run test:i18n && npm run test:rules && npm run test:api",
     "test:i18n": "node --test tests/i18n.test.mjs",
-    "test:rules": "firebase emulators:exec --project demo-sofracom --only firestore \"node --test tests/rules\"",
-    "test:api": "firebase emulators:exec --project demo-sofracom --only firestore,auth \"node --test --test-concurrency=1 tests/api\"",
+    "test:rules": "firebase emulators:exec --project demo-sofracom --only firestore \"node --test tests/rules/*.test.mjs\"",
+    "test:api": "firebase emulators:exec --project demo-sofracom --only firestore,auth \"node --test --test-concurrency=1 tests/api/*.test.mjs\"",
     "admin": "node tools/product-admin/server.js",
     "order-admin": "node tools/order-admin/server.js",
     "gallery-admin": "node tools/gallery-admin/server.js"
