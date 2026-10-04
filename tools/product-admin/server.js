@@ -5,6 +5,9 @@ const { pathToFileURL } = require('url');
 const { ensureProductIds } = require('../../lib/productIds');
 const { HOST, createGuard } = require('../shared/guard');
 const publisher = require('../shared/publish');
+const images = require('../shared/images');
+
+const RESIZABLE = /^image\/(jpeg|png|webp|avif|tiff|heic|heif)$/;
 
 const PORT = Number(process.env.PORT || 5173);
 const guard = createGuard({ port: PORT });
@@ -131,24 +134,6 @@ function handleStatic(req, res, pathname) {
     return true;
   }
 
-  const siteFileTargets = new Set([
-    '/index.html',
-    '/products.html',
-    '/script.js',
-    '/styles.css',
-    '/favicon.ico',
-    '/hero.jpeg',
-    '/logo.jpeg',
-    '/modern_logo.svg',
-    '/monastir1.jpeg',
-    '/monastir2.jpeg',
-  ]);
-
-  if (siteFileTargets.has(pathname)) {
-    const requested = path.join(repoRoot, pathname);
-    sendFile(res, requested);
-    return true;
-  }
 
   return false;
 }
@@ -262,15 +247,25 @@ async function handleUpload(req, res) {
     }
 
     const baseDir = ensureAssetsSubdir(bucket);
-    const extension = inferExtension(filename, mime);
     const baseName = sanitizeBasename(path.basename(filename, path.extname(filename)));
+    const publicRoot = path.join(repoRoot, 'public');
+
+    // Photos are stored only as resized WebP (400/800/1600, ≤200 KB); the -800 path goes in the JSON.
+    if (config.type === 'image' && RESIZABLE.test(mime)) {
+      const stem = images.uniqueStem(baseDir, baseName || bucket);
+      const { main } = await images.writeResponsive(buffer, baseDir, stem);
+      const publicPath = path.relative(publicRoot, main).split(path.sep).join('/');
+      sendJson(res, 200, { ok: true, path: publicPath });
+      return;
+    }
+
+    const extension = inferExtension(filename, mime);
     const uniqueSuffix = Date.now().toString(36);
     const finalName = `${baseName || bucket}-${uniqueSuffix}${extension}`;
     const absolutePath = path.join(baseDir, finalName);
     fs.writeFileSync(absolutePath, buffer);
 
     // Not staged: the file is committed only if it is still there when the user publishes.
-    const publicRoot = path.join(repoRoot, 'public');
     const publicRelativePath = path.relative(publicRoot, absolutePath).split(path.sep).join('/');
     sendJson(res, 200, { ok: true, path: publicRelativePath });
   } catch (err) {
