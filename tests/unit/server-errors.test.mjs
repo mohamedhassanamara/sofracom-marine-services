@@ -3,26 +3,48 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
+import { createPrivateKey, generateKeyPairSync } from 'node:crypto';
 import { HttpError, apiRoute, classifyServerError } from '../../lib/server/http.js';
 
 const require = createRequire(import.meta.url);
-const { normalizePrivateKey } = require('../../lib/firebase/admin.js');
+const { normalizePrivateKey, privateKeyProblem } = require('../../lib/firebase/admin.js');
 
-const PEM = '-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBg\nkqhkiG9w0BAQE\n-----END PRIVATE KEY-----\n';
+// A real key, generated per run, in the PKCS#8 PEM format service accounts use.
+const PEM = generateKeyPairSync('rsa', { modulusLength: 2048 }).privateKey.export({ type: 'pkcs8', format: 'pem' });
 
-test('private keys are normalised from every common env format', () => {
+test('private keys are rebuilt into a usable PEM from every mangled env format', () => {
+    const escaped = PEM.replace(/\n/g, '\\n');
     const variants = {
         'real newlines': PEM,
-        'literal \\n': PEM.replace(/\n/g, '\\n'),
+        'literal \\n': escaped,
+        'double-escaped \\\\n': PEM.replace(/\n/g, '\\\\n'),
         'JSON-quoted': JSON.stringify(PEM),
-        'single-quoted': `'${PEM.replace(/\n/g, '\\n')}'`,
+        'single-quoted': `'${escaped}'`,
+        'JSON fragment with trailing comma': `"private_key": "${escaped}",`,
         'CRLF': PEM.replace(/\n/g, '\r\n'),
-        'surrounding spaces': `  ${PEM.replace(/\n/g, '\\n')}  `,
+        'newlines turned into spaces': PEM.replace(/\n/g, ' '),
+        'surrounding spaces': `  ${escaped}  `,
     };
     for (const [name, value] of Object.entries(variants)) {
-        assert.equal(normalizePrivateKey(value), PEM, name);
+        const normalized = normalizePrivateKey(value);
+        assert.equal(privateKeyProblem(normalized), null, name);
+        assert.equal(
+            createPrivateKey(normalized).export({ type: 'pkcs8', format: 'pem' }),
+            PEM,
+            `${name}: same key material`
+        );
     }
     assert.equal(normalizePrivateKey(undefined), '');
+});
+
+test('an unusable key is reported clearly, without key material', () => {
+    const body = PEM.split('\n').slice(1, -2).join('');
+    const truncated = `-----BEGIN PRIVATE KEY-----\n${body.slice(0, 200)}\n-----END PRIVATE KEY-----\n`;
+    const problem = privateKeyProblem(normalizePrivateKey(truncated));
+    assert.ok(problem, 'truncated key is rejected');
+    assert.match(problem, /body length 200/);
+    assert.equal(problem.includes(body.slice(0, 20)), false, 'no key material in the message');
+    assert.equal(privateKeyProblem('not a key'), 'missing BEGIN/END PRIVATE KEY markers');
 });
 
 test('server failures are classified into stable codes', () => {
@@ -31,6 +53,7 @@ test('server failures are classified into stable codes', () => {
         [{ message: '16 UNAUTHENTICATED: Request had invalid authentication credentials.', code: 16 }, 'server/credentials'],
         [{ message: 'Getting metadata from plugin failed with error: invalid_grant: Invalid JWT Signature.' }, 'server/credentials'],
         [{ message: 'Missing Firebase credentials. Provide FIREBASE_PROJECT_ID/…' }, 'server/credentials'],
+        [{ code: 2, details: 'Getting metadata from plugin failed with error: error:1E08010C:DECODER routines::unsupported' }, 'server/credentials'],
         [{ code: 7, details: 'Missing or insufficient permissions.' }, 'server/permission-denied'],
         [{ code: 14, message: '14 UNAVAILABLE: No connection established' }, 'server/unavailable'],
         [new Error('something else'), 'server/error'],
