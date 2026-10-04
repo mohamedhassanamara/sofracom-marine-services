@@ -15,10 +15,9 @@
     "test:i18n": "node --test tests/i18n.test.mjs",
     "test:rules": "firebase emulators:exec --project demo-sofracom --only firestore \"node --test tests/rules/*.test.mjs\"",
     "test:api": "firebase emulators:exec --project demo-sofracom --only firestore,auth \"node --test --test-concurrency=1 tests/api/*.test.mjs\"",
-    "admin": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON tools/product-admin/server.js",
-    "gallery-admin": "node tools/gallery-admin/server.js",
+    "admin": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON tools/admin/server.mjs",
     "test:unit": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test tests/i18n.test.mjs tests/unit/*.test.mjs",
-    "admin:emulated": "FIRESTORE_EMULATOR_HOST=127.0.0.1:8080 FIREBASE_AUTH_EMULATOR_HOST=127.0.0.1:9099 GCLOUD_PROJECT=demo-sofracom node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON tools/product-admin/server.js"
+    "admin:emulated": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON tools/admin/server.mjs --emulator"
   },
   "private": true,
   "dependencies": {
@@ -33,9 +32,11 @@
   },
   "devDependencies": {
     "@firebase/rules-unit-testing": "^5.0.2",
+    "@vitejs/plugin-react": "^6.1.1",
     "autoprefixer": "^10.6.1",
     "postcss": "^8.5.28",
     "sharp": "^0.35.5",
-    "tailwindcss": "3.4"
+    "tailwindcss": "3.4",
+    "vite": "^8.3.2"
   }
 }

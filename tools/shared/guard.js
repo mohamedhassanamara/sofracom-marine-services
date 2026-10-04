@@ -40,7 +40,7 @@ function createGuard({ port }) {
     return null;
   }
 
-  // Pages get the token in a <meta> tag that tools/shared/admin-client.js reads.
+  // Pages get the token in a <meta> tag that the admin app (tools/admin/src/api.js) reads.
   const injectToken = html =>
     html.replace('</head>', `    <meta name="admin-token" content="${token}" />\n  </head>`);
 

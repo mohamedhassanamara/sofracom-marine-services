@@ -6,7 +6,7 @@
 //   buyer@example.test  - verified customer with a saved address, a delivered order
 //                         (ready to review), an order in progress and a quote
 //   staff@example.test  - a plain second customer account (staff work happens in the
-//                         local admin tool: npm run admin:emulated → /ops)
+//                         local admin app: npm run admin:emulated → http://127.0.0.1:5180)
 const { getAuth, getDb, usingEmulators } = require('../lib/firebase/admin');
 const catalog = require('../public/assets/data/products.json');
 
@@ -126,7 +126,7 @@ async function main() {
 
     console.log('Seeded emulator data:');
     console.log(`  buyer@example.test / ${PASSWORD}  (delivered order ${delivered.id.slice(0, 8)}, ready to review)`);
-    console.log(`  staff@example.test / ${PASSWORD}  (plain account; staff tools: npm run admin:emulated → /ops)`);
+    console.log(`  staff@example.test / ${PASSWORD}  (plain account; staff work: npm run admin:emulated → http://127.0.0.1:5180)`);
     process.exit(0);
 }
 

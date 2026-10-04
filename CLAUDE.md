@@ -16,10 +16,9 @@ npm test               # i18n completeness + Firestore rules tests + API tests (
 npm run test:i18n      # every key present in en/fr/ar with matching {placeholders}
 npm run test:rules     # tests/rules/*.test.mjs via firebase emulators:exec
 npm run test:api       # tests/api/*.test.mjs: spawns `next dev` on :3199 against the emulators
-npm run admin          # local admin tool → http://127.0.0.1:5173 (catalog) and /ops (orders, quotes,
-                       #   reviews, customers, staff phones) against PRODUCTION Firebase
-npm run admin:emulated # same tool against the emulators
-npm run gallery-admin  # gallery admin console  → http://127.0.0.1:5174
+npm run admin          # local admin app → http://127.0.0.1:5180 (asks: emulator or production;
+                       #   or pass -- --emulator / -- --production)
+npm run admin:emulated # same app against the emulators
 ```
 
 - Run a single test file: `node --test tests/i18n.test.mjs`, or for emulator suites `firebase emulators:exec --project demo-sofracom --only firestore,auth "node --test tests/api/flows.test.mjs"`. Filter by name with `--test-name-pattern="reviews"`.
@@ -42,7 +41,7 @@ npm run gallery-admin  # gallery admin console  → http://127.0.0.1:5174
 
 ### Catalog is JSON in the repo
 - `public/assets/data/products.json` → `{ categories: [{ name, slug, image, description, translations, products: [...] }] }`. Each product has a **stable `id` (`p_` + 8 chars)** and `legacyId` (the old title-derived id) plus `title, brand, images[], image, description, usage[], variants[{label, price, stock}], price, stock, datasheet, translations`.
-- Product URLs are `/products/<categorySlug>/<id>`. `next.config.js` redirects every `legacyId` URL. Never change an `id`: reviews, ratings and orders are keyed by it. `lib/productIds.js` (CommonJS, shared with the admin tool) generates ids; product-admin assigns them on create/save.
+- Product URLs are `/products/<categorySlug>/<id>`. `next.config.js` redirects every `legacyId` URL. Never change an `id`: reviews, ratings and orders are keyed by it. `lib/productIds.js` (CommonJS, shared with the admin tool) generates ids; the admin app assigns them on create/save.
 - `lib/products.js` imports the JSON (so serverless functions bundle it) and normalizes it. All catalog pages are static (`fallback: false`): catalog edits need a redeploy, but reviews/ratings load client-side.
 
 ### Firebase: who reads and writes what
@@ -58,8 +57,8 @@ npm run gallery-admin  # gallery admin console  → http://127.0.0.1:5174
 - Statuses live in `lib/status.js`: orders `pending → confirmed → preparing → out_for_delivery → delivered | cancelled`; quotes `received → in_review → quoted → accepted|declined → completed`. `normalize*Status` maps legacy values (`new, waiting, in_progress, treated, declined`).
 - `users/{uid}` (`name, phone, email, lang, defaultAddressId`) and `users/{uid}/addresses/{id}`.
 - `reviews/{productId}_{uid}` (one per user per product, `status: published|hidden`) and `productStats/{productId}` (`count, sum, avg, dist`), updated in the same transaction as every review change. Eligibility = an order with `uid`, `status == 'delivered'` and `productIds array-contains`. Composite indexes are in `firestore.indexes.json`.
-- **There is no admin UI on the website.** Staff work happens in the local tool (`tools/product-admin`, `/ops`, `ops-api.mjs`), which imports the same shared functions (`lib/server/{statusUpdates,devices,reviewModeration,adminUsers}.js`) with the Admin SDK. Those modules use explicit `.js` import extensions and must not import the catalog JSON, so plain Node can load them.
-- Staff-app devices (Flutter app in `../../IdeaProjects/sofracom_admin_pp`): the local tool's Devices tab issues a single-use 6-digit code (`enrollCodes/{sha256}`, 15 min, newest only, 5 wrong attempts burn it); `POST /api/devices/enroll` returns a custom token `{device, deviceId}`. `devices/{id}.active` is checked by `requireDevice` and by `isStaffDevice()` in the rules (website accounts never get staff access, whatever their claims); revoking also revokes refresh tokens. The app reads orders/quotes live via Firestore but changes statuses only through `PATCH /api/admin/{orders,quotes}` (device tokens only). Production rollout steps: `DEPLOY.md`.
+- **There is no admin UI on the website.** Staff work happens in the local admin app (`tools/admin`), which imports the same shared functions (`lib/server/{statusUpdates,staffDesk,devices,reviewModeration,adminUsers}.js`) with the Admin SDK. Those modules use explicit `.js` import extensions and must not import the catalog JSON, so plain Node can load them.
+- Staff-app devices (Flutter app in `../../IdeaProjects/sofracom_admin_pp`): the admin app's Staff phones page issues a single-use 6-digit code (`enrollCodes/{sha256}`, 15 min, newest only, 5 wrong attempts burn it); `POST /api/devices/enroll` returns a custom token `{device, deviceId}`. `devices/{id}.active` is checked by `requireDevice` and by `isStaffDevice()` in the rules (website accounts never get staff access, whatever their claims); revoking also revokes refresh tokens. The app reads orders/quotes live via Firestore but changes statuses only through `PATCH /api/admin/{orders,quotes}` (device tokens only). Production rollout steps: `DEPLOY.md`.
 - Guest orders/quotes get attached to an account by `POST /api/account/link`, only when the token's email is verified (called by `AuthContext` once per session).
 
 ### Pages added by the redesign
@@ -71,5 +70,5 @@ npm run gallery-admin  # gallery admin console  → http://127.0.0.1:5174
 - `contexts/AuthContext.js`: optional accounts (email/password, Google, reset, verification). Signing in/out never touches the cart.
 - `contexts/CartContext.js`: one cart for the whole site in `localStorage` (`sofracom.cart.v1`); `components/cart/CartDrawer` + `/checkout` are the only cart UI; `useAddToCart` adds with a toast. Old cart lines without `productId` are resolved server-side via `legacyId`.
 
-### Local admin tools (`tools/*`)
-Standalone Node `http` servers with vanilla JS UIs; they read `.env`. They listen on 127.0.0.1 only and `tools/shared/guard.js` rejects any foreign Host/Origin and any write without the per-session token (printed in the terminal, injected into the pages, sent by `tools/shared/admin-client.js`). **product-admin** and **gallery-admin**: Save (Cmd+S) only writes the JSON; uploads are written but not staged. **Publish…** (`tools/shared/publish.js`) shows the exact file list, then commits only the tool's own JSON + asset folders and pushes to `main`; it refuses unless `main` is checked out and nothing unrelated is staged (the "Update products via admin tool" commits; pull before editing `products.json`). `ADMIN_REPO_ROOT` points a tool at another checkout (tests). `/ops` (operations) writes to Firebase through the shared server functions; the top banner shows PRODUCTION (red) or EMULATOR (green).
+### Local admin app (`tools/admin`)
+Vite + React SPA served by `tools/admin/server.mjs` (Vite in middleware mode: one process, one port, 127.0.0.1 only), never deployed. It reuses the site's UI kit, tokens, i18n and `lib/*` (aliases `next/link`/`next/router` → `src/shims`; a Vite plugin compiles the site's JSX-in-`.js`, another wraps the two CommonJS libs). `tools/shared/guard.js` rejects foreign Host/Origin and writes without the per-session token (in the page `<meta>`, sent by `src/api.js`). API in `tools/admin/api/` (orders/quotes search + paging, status, internal notes, quote replies via `lib/server/staffDesk.js`; reviews; customers; staff phones; catalog/gallery files with validation and version check; uploads → WebP; publish/rollback). Catalog and gallery edits are saved to the JSON files; **Publish** (`api/publish.mjs` + `tools/shared/publish.js`) commits only `products.json`, `gallery.json` and `public/assets/{products,categories,datasheets,gallery}` and pushes `HEAD:main` (refuses unless `main` is checked out and nothing unrelated is staged); **Rollback** reverts the last publish commit. `VERCEL_TOKEN` + `VERCEL_PROJECT_ID` (+ `VERCEL_TEAM_ID`) show the build status. `ADMIN_REPO_ROOT` points the data/git at another checkout (tests), `ADMIN_PORT` changes the port.

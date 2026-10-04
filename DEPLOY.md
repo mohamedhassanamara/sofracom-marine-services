@@ -18,7 +18,7 @@ on your computer and is never deployed:
 ```bash
 npm run admin            # PRODUCTION (red "PRODUCTION · sofracom" banner)
 npm run admin:emulated   # emulators (green "EMULATOR · demo-sofracom" banner)
-# open http://127.0.0.1:5173/ops   (the product catalog editor stays at http://127.0.0.1:5173/)
+# open http://127.0.0.1:5180   (answer "p" for production; orders, catalog and staff phones are all there)
 ```
 Always read the banner before changing anything.
 - Tools: firebase-tools (needs Java 21+), `gcloud`, Flutter, `git-filter-repo` (last section).
@@ -78,7 +78,7 @@ app is still installed and the old rules are still open, so it keeps working, bu
 - the old app can only set legacy statuses. An order it marks **"Treated"** shows as *delivered*
   on the website but does **not** unlock reviews (eligibility needs the exact value `delivered`).
   Step 8's migration converts `treated → delivered`, which fixes them. To unlock reviews before
-  that, open the local tool (`npm run admin` → `/ops`, red PRODUCTION banner) → Orders, filter
+  that, open the local admin app (`npm run admin` → production, red PRODUCTION pill) → Orders, filter
   **Delivered**, and for each order marked from the old app choose **Delivered** with a short
   note (e.g. "confirmed") and press Update. The note is required because the status already
   *displays* as delivered.
@@ -151,7 +151,7 @@ The new application id installs **next to** the old app. On every staff phone: i
 ## 4. Enrol each staff phone
 
 1. On your computer: `npm run admin` (check the red **PRODUCTION · sofracom** banner), open
-   `http://127.0.0.1:5173/ops` → **Devices** → **Add device**. A 6-digit code appears with a
+   `http://127.0.0.1:5180` → **Staff phones** → **Create a code**. A 6-digit code appears with a
    15-minute countdown (single use; adding again replaces the previous code).
 2. On the phone, open SOFRACOM Admin, type the code and a device name (e.g. "Shop counter").
 3. The phone opens the Orders tab; the tool shows "Code used" and lists the device as **Active**.
