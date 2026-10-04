@@ -10,6 +10,9 @@ import { useLang } from '../../../contexts/LangContext';
 import { localizeCategory, localizeProduct } from '../../../lib/localize';
 import { formatPrice } from '../../../lib/constants';
 import CartWidget from '../../../components/cart/CartWidget';
+import ProductReviews from '../../../components/reviews/ProductReviews';
+import { CardRating } from '../../../components/reviews/Stars';
+import useProductStats from '../../../hooks/useProductStats';
 
 export async function getStaticPaths() {
     const paths = getProductPaths().map(path => ({
@@ -42,6 +45,7 @@ export default function ProductDetailPage({ product, category }) {
     const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
     const [activeImageIndex, setActiveImageIndex] = useState(0);
     const { addProduct } = useCart();
+    const productStats = useProductStats();
     const localizedCategory = useMemo(
         () => localizeCategory(category, lang),
         [category, lang]
@@ -132,6 +136,11 @@ export default function ProductDetailPage({ product, category }) {
                             <p className="text-sm text-gray-500 mt-1">
                                 {localizedProduct.brand}
                             </p>
+                            {productStats[product.id] && (
+                                <a href="#reviews" className="inline-block mt-1">
+                                    <CardRating stats={productStats[product.id]} />
+                                </a>
+                            )}
                         </div>
                         <div className="flex flex-wrap gap-2">
                             {localizedProduct.usage.map(tag => (
@@ -217,6 +226,7 @@ export default function ProductDetailPage({ product, category }) {
                         </button>
                     </div>
                 </div>
+                <ProductReviews productId={product.id} productTitle={localizedProduct.title} />
             </main>
             <CartWidget />
         </>

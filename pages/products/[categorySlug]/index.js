@@ -11,8 +11,10 @@ import { useLang } from '../../../contexts/LangContext';
 import { localizeCategory } from '../../../lib/localize';
 import { formatPrice } from '../../../lib/constants';
 import CartWidget from '../../../components/cart/CartWidget';
+import { CardRating } from '../../../components/reviews/Stars';
+import useProductStats from '../../../hooks/useProductStats';
 
-function ProductCard({ product, categorySlug, onAdd }) {
+function ProductCard({ product, categorySlug, onAdd, rating }) {
     const variants = Array.isArray(product.variants) ? product.variants : [];
     const selectDefaultVariant = () => {
         const inStockIndex = variants.findIndex(variant => variant.stock === 'in');
@@ -61,6 +63,7 @@ function ProductCard({ product, categorySlug, onAdd }) {
                         {product.brand}
                     </span>
                 </div>
+                <CardRating stats={rating} />
                 <p className="product-description">
                     {showFull || !isLongDescription
                         ? description
@@ -174,6 +177,7 @@ export default function CategoryPage({ category }) {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortOption, setSortOption] = useState('alpha-asc');
     const { addProduct } = useCart();
+    const productStats = useProductStats();
     const localizedCategory = useMemo(
         () => localizeCategory(category, lang),
         [category, lang]
@@ -282,6 +286,7 @@ export default function CategoryPage({ category }) {
                             product={product}
                             categorySlug={category.slug}
                             onAdd={addProduct}
+                            rating={productStats[product.id]}
                         />
                     ))}
                 </div>
