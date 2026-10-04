@@ -1,13 +1,14 @@
 import { cx } from './cx';
 import { Icon, Package } from './icons';
 
-export function EmptyState({ icon = Package, title, description, action, className }) {
+export function EmptyState({ icon = Package, title, description, action, className, headingLevel = 2 }) {
+    const Heading = `h${headingLevel}`;
     return (
         <div className={cx('flex flex-col items-center rounded-lg border border-dashed border-slate-300 bg-white px-6 py-12 text-center', className)}>
             <span className="flex h-12 w-12 items-center justify-center rounded-full bg-navy-50 text-navy-700">
                 <Icon as={icon} size={24} />
             </span>
-            <h3 className="mt-4 text-lg font-semibold text-slate-900">{title}</h3>
+            <Heading className="mt-4 text-lg font-semibold text-slate-900">{title}</Heading>
             {description && <p className="mt-1 max-w-md text-slate-600">{description}</p>}
             {action && <div className="mt-6">{action}</div>}
         </div>

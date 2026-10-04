@@ -6,8 +6,8 @@ import { useAuth } from '../../../contexts/AuthContext';
 import AccountLayout from '../../../components/account/AccountLayout';
 import { StatusBadge, StatusTimeline, useFormatDate } from '../../../components/account/Status';
 import { getMine } from '../../../lib/accountData';
-import { formatPrice } from '../../../lib/constants';
-import { normalizeOrderStatus, shortId } from '../../../lib/status';
+import useFormat from '../../../hooks/useFormat';
+import { normalizeOrderStatus, displayRef } from '../../../lib/status';
 import { imageAt } from '../../../lib/images';
 
 // Older orders stored only `price`; newer ones also store unitPrice/lineTotal/subtotal.
@@ -16,6 +16,7 @@ const lineTotal = item => Number(item.lineTotal) || linePrice(item) * (Number(it
 
 export default function OrderDetailPage() {
     const { t } = useLang();
+    const format = useFormat();
     const { user } = useAuth();
     const router = useRouter();
     const formatDate = useFormatDate();
@@ -28,7 +29,7 @@ export default function OrderDetailPage() {
             .catch(() => setOrder(null));
     }, [user, router.query.id]);
 
-    const title = order ? t('orders.number', { id: shortId(order.id) }) : t('orders.title');
+    const title = order ? t('orders.number', { id: displayRef(order) }) : t('orders.title');
 
     if (order === undefined || order === null) {
         return (
@@ -93,11 +94,11 @@ export default function OrderDetailPage() {
                                                 {item.variantLabel ? `${item.variantLabel} · ` : ''}
                                                 {t('orders.qtyTimesPrice', {
                                                     quantity: item.quantity,
-                                                    price: formatPrice(linePrice(item)),
+                                                    price: format.price(linePrice(item)),
                                                 })}
                                             </p>
                                         </div>
-                                        <p className="font-semibold text-slate-900">{formatPrice(lineTotal(item))}</p>
+                                        <p className="font-semibold text-slate-900">{format.price(lineTotal(item))}</p>
                                     </div>
                                 );
                             })}
@@ -105,15 +106,15 @@ export default function OrderDetailPage() {
                         <div className="order-totals mt-5">
                             <div>
                                 <span>{t('cart.itemsTotal')}</span>
-                                <span>{formatPrice(subtotal)}</span>
+                                <span>{format.price(subtotal)}</span>
                             </div>
                             <div>
                                 <span>{t('cart.deliveryFee')}</span>
-                                <span>{formatPrice(deliveryFee)}</span>
+                                <span>{format.price(deliveryFee)}</span>
                             </div>
                             <div className="order-totals__grand">
                                 <span>{t('cart.grandTotal')}</span>
-                                <span>{formatPrice(total)}</span>
+                                <span>{format.price(total)}</span>
                             </div>
                         </div>
                     </section>

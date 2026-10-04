@@ -5,12 +5,13 @@ import { useAuth } from '../../../contexts/AuthContext';
 import AccountLayout from '../../../components/account/AccountLayout';
 import { StatusBadge, useFormatDate } from '../../../components/account/Status';
 import { listMine } from '../../../lib/accountData';
-import { formatPrice } from '../../../lib/constants';
-import { normalizeOrderStatus, shortId } from '../../../lib/status';
+import useFormat from '../../../hooks/useFormat';
+import { normalizeOrderStatus, displayRef } from '../../../lib/status';
 import { imageAt } from '../../../lib/images';
 
 export default function OrdersPage() {
     const { t } = useLang();
+    const format = useFormat();
     const { user } = useAuth();
     const formatDate = useFormatDate();
     const [orders, setOrders] = useState(null);
@@ -54,7 +55,7 @@ export default function OrdersPage() {
                                         ))}
                                     </div>
                                     <div>
-                                        <p className="record-card__title">{t('orders.number', { id: shortId(order.id) })}</p>
+                                        <p className="record-card__title">{t('orders.number', { id: displayRef(order) })}</p>
                                         <p className="record-card__meta">
                                             {formatDate(order.created_at)} · {t('orders.itemCount', { count })}
                                         </p>
@@ -62,7 +63,7 @@ export default function OrdersPage() {
                                 </div>
                                 <div className="flex items-center gap-3 flex-wrap">
                                     {delivered && <span className="ui-pill">{t('orders.rateItems')}</span>}
-                                    <span className="font-bold text-slate-900">{formatPrice(Number(order.total))}</span>
+                                    <span className="font-bold text-slate-900">{format.price(Number(order.total))}</span>
                                     <StatusBadge kind="order" status={order.status} />
                                 </div>
                             </Link>

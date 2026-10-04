@@ -10,7 +10,7 @@ import Price from '../ui/Price';
 // Catalog search with suggestions (ARIA combobox): ↓/↑ move through suggestions, Enter
 // opens the highlighted product (or the results page), Escape closes. Prices are the same
 // "from" price as the product cards and the cart.
-export default function SearchBox({ className, onNavigate, variant = 'dark' }) {
+export default function SearchBox({ className, onNavigate, variant = 'dark', label }) {
     const { t, lang } = useLang();
     const router = useRouter();
     const { index, load } = useCatalogIndex();
@@ -80,7 +80,7 @@ export default function SearchBox({ className, onNavigate, variant = 'dark' }) {
         <form
             ref={wrapper}
             role="search"
-            aria-label={t('search.label')}
+            aria-label={label || t('search.label')}
             className={cx('relative', className)}
             onSubmit={event => {
                 event.preventDefault();

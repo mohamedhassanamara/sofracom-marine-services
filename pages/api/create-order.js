@@ -7,7 +7,7 @@ import { getUser } from '../../lib/server/auth';
 import { addAddress, addressesRef, cleanAddress, ensureUserDoc, formatAddress, userRef } from '../../lib/server/users';
 import { priceCart } from '../../lib/server/catalog';
 import { formatPrice } from '../../lib/constants';
-import { shortId } from '../../lib/status';
+import { reserveRef } from '../../lib/server/refs';
 
 function readGuestCustomer(customer) {
     return {
@@ -53,7 +53,7 @@ async function notifyTeam(order) {
             topic: 'sofracom-orders',
             // No customer details in the push itself; the app loads them from Firestore.
             notification: {
-                title: `New order #${shortId(order.id)}`,
+                title: `New order ${order.ref}`,
                 body: `${order.items.length} item(s) · ${formatPrice(order.total, 'fr')}`,
             },
             data: { orderId: order.id },
@@ -85,8 +85,11 @@ export default apiRoute(
 
             const orderId = randomUUID();
             const now = new Date().toISOString();
+            const db = getDb();
+            const ref = await reserveRef(db, 'order', orderId);
             const order = {
                 id: orderId,
+                ref,
                 created_at: now,
                 customer_name: customer.name,
                 customer_phone: customer.phone,
@@ -111,12 +114,13 @@ export default apiRoute(
                 statusHistory: [{ status: 'pending', at: now }],
             };
 
-            await getDb().collection('orders').doc(orderId).set(order);
+            await db.collection('orders').doc(orderId).set(order);
             await notifyTeam(order);
 
             res.status(200).json({
                 ok: true,
                 orderId,
+                ref,
                 persisted: true,
                 total: order.total,
                 hasOnOrderItem: priced.hasOnOrderItem,

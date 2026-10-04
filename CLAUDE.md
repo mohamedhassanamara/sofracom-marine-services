@@ -52,6 +52,8 @@ npm run gallery-admin  # gallery admin console  → http://127.0.0.1:5174
 - Error `code`s map to `errors.<code>` translation keys in the browser (`lib/apiClient.js` `errorMessage`).
 
 ### Data model (Firestore)
+- References: every order/quote gets a short `ref` (`SOF-XXXXX` / `SOQ-XXXXX`, `lib/server/refs.js`), reserved in `refs/{REF}` → `{kind, docId}`. Older docs: `node scripts/backfill-refs.mjs [--apply]`. Show refs with `displayRef(doc)` (`lib/status.js`).
+- `POST /api/track` (guest tracking: ref + phone → status history + items, no personal data) is capped by `lib/server/durableRateLimit.js` (Firestore `rateLimits/{hash}`, per IP and per ref; enable a TTL policy on `expireAt`).
 - `orders/{id}`: legacy snake_case fields (`customer_name`, `customer_address`, `items[]`, `total`, `delivery_fee`, …) kept for the staff phone app, plus `uid|null`, `email` (lowercased), `productIds[]`, `subtotal`, `status`, `statusHistory[{status, at, note?, by?}]`. `quotes/{id}` follows the same pattern.
 - Statuses live in `lib/status.js`: orders `pending → confirmed → preparing → out_for_delivery → delivered | cancelled`; quotes `received → in_review → quoted → accepted|declined → completed`. `normalize*Status` maps legacy values (`new, waiting, in_progress, treated, declined`).
 - `users/{uid}` (`name, phone, email, lang, defaultAddressId`) and `users/{uid}/addresses/{id}`.
@@ -60,10 +62,13 @@ npm run gallery-admin  # gallery admin console  → http://127.0.0.1:5174
 - Staff-app devices (Flutter app in `../../IdeaProjects/sofracom_admin_pp`): the local tool's Devices tab issues a single-use 6-digit code (`enrollCodes/{sha256}`, 15 min, newest only, 5 wrong attempts burn it); `POST /api/devices/enroll` returns a custom token `{device, deviceId}`. `devices/{id}.active` is checked by `requireDevice` and by `isStaffDevice()` in the rules (website accounts never get staff access, whatever their claims); revoking also revokes refresh tokens. The app reads orders/quotes live via Firestore but changes statuses only through `PATCH /api/admin/{orders,quotes}` (device tokens only). Production rollout steps: `DEPLOY.md`.
 - Guest orders/quotes get attached to an account by `POST /api/account/link`, only when the token's email is verified (called by `AuthContext` once per session).
 
+### Pages added by the redesign
+`/checkout` (full page; guest or saved addresses; confirmation with the ref, kept in sessionStorage under `?placed=REF`), `/track`, `/quote` (`?service=` / `?product=` pre-fill; options in `lib/quote.js`; quotes store `service, boat_type, boat_length_m, product_id, product_title`), `/search` (client-side on `/api/catalog-index`), `/404`, `/styleguide`. The cart is `components/cart/CartDrawer.js`, mounted by Layout.
+
 ### Client state
 - `contexts/LangContext.js` + `lib/i18n/{en,fr,ar}.js`: `t(key, {vars})` with `{placeholder}` interpolation; missing keys fall back to English. Every new key must exist in all three files (`npm run test:i18n`). Catalog content uses `translations[lang]` via `lib/localize.js`.
 - `contexts/AuthContext.js`: optional accounts (email/password, Google, reset, verification). Signing in/out never touches the cart.
-- `contexts/CartContext.js`: one cart for the whole site in `localStorage` (`sofracom.cart.v1`); `components/cart/CartWidget` + `CheckoutModal` are the only cart UI. Old cart lines without `productId` are resolved server-side via `legacyId`.
+- `contexts/CartContext.js`: one cart for the whole site in `localStorage` (`sofracom.cart.v1`); `components/cart/CartDrawer` + `/checkout` are the only cart UI; `useAddToCart` adds with a toast. Old cart lines without `productId` are resolved server-side via `legacyId`.
 
 ### Local admin tools (`tools/*`)
 Standalone Node `http` servers with vanilla JS UIs; they read `.env`. They listen on 127.0.0.1 only and `tools/shared/guard.js` rejects any foreign Host/Origin and any write without the per-session token (printed in the terminal, injected into the pages, sent by `tools/shared/admin-client.js`). **product-admin** and **gallery-admin**: Save (Cmd+S) only writes the JSON; uploads are written but not staged. **Publish…** (`tools/shared/publish.js`) shows the exact file list, then commits only the tool's own JSON + asset folders and pushes to `main`; it refuses unless `main` is checked out and nothing unrelated is staged (the "Update products via admin tool" commits; pull before editing `products.json`). `ADMIN_REPO_ROOT` points a tool at another checkout (tests). `/ops` (operations) writes to Firebase through the shared server functions; the top banner shows PRODUCTION (red) or EMULATOR (green).

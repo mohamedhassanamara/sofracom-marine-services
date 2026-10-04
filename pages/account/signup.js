@@ -25,6 +25,18 @@ export default function SignupPage() {
         if (router.isReady && !loading && user && !submitting.current) router.replace(next);
     }, [router, loading, user, next]);
 
+    // Pre-filled from the order confirmation (?name=…&email=… or &phone=…), empty fields only.
+    useEffect(() => {
+        if (!router.isReady) return;
+        const { name, email, phone } = router.query;
+        const identifier = typeof email === 'string' && email ? email : typeof phone === 'string' ? phone : '';
+        setForm(current => ({
+            ...current,
+            name: current.name || (typeof name === 'string' ? name.slice(0, 120) : ''),
+            identifier: current.identifier || identifier.slice(0, 200),
+        }));
+    }, [router.isReady, router.query]);
+
     const update = field => event => setForm({ ...form, [field]: event.target.value });
     const parsedIdentifier = parseIdentifier(form.identifier);
     const detected = parsedIdentifier.type;

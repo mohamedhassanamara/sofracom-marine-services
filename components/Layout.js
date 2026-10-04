@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useAuth } from '../contexts/AuthContext';
 import SiteHeader from './layout/SiteHeader';
 import SiteFooter from './layout/SiteFooter';
-import CartWidget from './cart/CartWidget';
+import CartDrawer from './cart/CartDrawer';
 
 // Every page: header (with the cart button), one <main>, footer, and the cart drawer.
 export default function Layout({ children }) {
@@ -48,7 +48,7 @@ export default function Layout({ children }) {
                 {children}
             </main>
             <SiteFooter />
-            <CartWidget />
+            <CartDrawer />
         </div>
     );
 }

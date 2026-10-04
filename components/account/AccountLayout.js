@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import { useLang } from '../../contexts/LangContext';
 import useRequireAuth from '../../hooks/useRequireAuth';
 import Seo from '../Seo';
+import { cx } from '../ui/cx';
+import { Icon, LogOut } from '../ui/icons';
 
 const NAV = [
     { href: '/account', key: 'account.nav.profile', exact: true },
@@ -20,8 +22,8 @@ export default function AccountLayout({ title, eyebrow, actions, badges = {}, ch
 
     if (loading || !user) {
         return (
-            <div className="account-shell">
-                <p className="ui-muted">{t('account.loading')}</p>
+            <div className="mx-auto max-w-container px-4 py-10 sm:px-6">
+                <p className="text-slate-600">{t('account.loading')}</p>
             </div>
         );
     }
@@ -34,27 +36,45 @@ export default function AccountLayout({ title, eyebrow, actions, badges = {}, ch
         router.push('/');
     };
 
+    const linkClass = active =>
+        cx(
+            'flex min-h-[2.75rem] shrink-0 items-center justify-between gap-2 whitespace-nowrap rounded-md px-3 text-sm font-semibold transition-colors duration-fast',
+            active ? 'bg-navy-900 text-white' : 'text-slate-700 hover:bg-slate-100'
+        );
+
     return (
-        <div className="account-shell">
+        <div className="mx-auto grid max-w-container gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[14rem_1fr] lg:gap-10">
             <Seo title={title} noindex />
-            <nav className="account-nav" aria-label={t('account.navLabel')}>
-                {NAV.map(item => (
-                    <Link key={item.href} href={item.href} className={isActive(item) ? 'active' : ''}>
-                        {t(item.key)}
-                        {item.badge && badges[item.badge] > 0 && (
-                            <span className="account-nav__badge">{badges[item.badge]}</span>
-                        )}
-                    </Link>
-                ))}
-                <button type="button" onClick={handleSignOut}>
-                    {t('account.nav.signOut')}
-                </button>
+            <nav aria-label={t('account.navLabel')} className="-mx-4 overflow-x-auto px-4 lg:mx-0 lg:overflow-visible lg:px-0">
+                <ul className="flex gap-1 lg:sticky lg:top-32 lg:flex-col">
+                    {NAV.map(item => {
+                        const active = isActive(item);
+                        return (
+                            <li key={item.href}>
+                                <Link href={item.href} aria-current={active ? 'page' : undefined} className={linkClass(active)}>
+                                    {t(item.key)}
+                                    {item.badge && badges[item.badge] > 0 && (
+                                        <span className={cx('rounded-full px-2 text-xs', active ? 'bg-white text-navy-900' : 'bg-accent-400 text-navy-950')}>{badges[item.badge]}</span>
+                                    )}
+                                </Link>
+                            </li>
+                        );
+                    })}
+                    <li className="lg:mt-2 lg:border-t lg:border-slate-200 lg:pt-2">
+                        <button type="button" onClick={handleSignOut} className={cx(linkClass(false), 'w-full')}>
+                            <span className="flex items-center gap-2">
+                                <Icon as={LogOut} size={16} flip />
+                                {t('account.nav.signOut')}
+                            </span>
+                        </button>
+                    </li>
+                </ul>
             </nav>
-            <section>
-                <header className="account-header">
+            <section className="min-w-0">
+                <header className="mb-6 flex flex-wrap items-end justify-between gap-4">
                     <div>
-                        {eyebrow && <p className="account-eyebrow">{eyebrow}</p>}
-                        <h1>{title}</h1>
+                        {eyebrow && <p className="text-sm font-semibold uppercase tracking-wide text-accent-700">{eyebrow}</p>}
+                        <h1 className="text-2xl font-bold text-navy-900 sm:text-3xl">{title}</h1>
                     </div>
                     {actions}
                 </header>

@@ -6,12 +6,12 @@ import Seo from '../Seo';
 
 export function AuthCard({ title, subtitle, children }) {
     return (
-        <div className="auth-page">
+        <div className="flex min-h-[70vh] items-start justify-center px-4 py-10 sm:items-center sm:py-16">
             <Seo title={title} noindex />
-            <div className="ui-card auth-card">
-                <p className="account-eyebrow">SOFRACOM</p>
-                <h1 className="mt-1">{title}</h1>
-                {subtitle && <p className="ui-muted mt-1">{subtitle}</p>}
+            <div className="w-full max-w-md rounded-xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+                <p className="text-sm font-semibold uppercase tracking-wide text-accent-700">SOFRACOM</p>
+                <h1 className="mt-1 text-2xl font-bold text-navy-900">{title}</h1>
+                {subtitle && <p className="mt-2 text-slate-600">{subtitle}</p>}
                 <div className="mt-6">{children}</div>
             </div>
         </div>
@@ -38,7 +38,7 @@ export function GoogleButton({ onSignedIn, onError }) {
     };
 
     return (
-        <button type="button" className="ui-btn google-btn" onClick={handleClick} disabled={busy}>
+        <button type="button" className="ui-btn ui-btn--secondary ui-btn--block google-btn" onClick={handleClick} disabled={busy}>
             <svg viewBox="0 0 48 48" aria-hidden="true">
                 <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z" />
                 <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z" />

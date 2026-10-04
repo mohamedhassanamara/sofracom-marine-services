@@ -4,7 +4,9 @@ import { apiRoute, clientIp, readJson, HttpError } from '../../lib/server/http';
 import { rateLimit, MINUTE } from '../../lib/server/rateLimit';
 import { cleanEmail, cleanString } from '../../lib/server/validate';
 import { getUser } from '../../lib/server/auth';
-import { shortId } from '../../lib/status';
+import { reserveRef } from '../../lib/server/refs';
+import { findProduct } from '../../lib/server/catalog';
+import { BOAT_TYPES, QUOTE_SERVICES } from '../../lib/quote';
 
 async function notifyTeam(quote) {
     // There is no messaging emulator; skip push notifications in local/test runs.
@@ -14,7 +16,7 @@ async function notifyTeam(quote) {
         await getFirebaseApp().messaging().send({
             topic: 'sofracom-quotes',
             notification: {
-                title: `New quote request #${shortId(quote.id)}`,
+                title: `New quote request ${quote.ref}`,
                 body: quote.subject ? quote.subject.slice(0, 80) : 'Project request received',
             },
             data: { quoteId: quote.id },
@@ -34,6 +36,12 @@ export default apiRoute(
             const user = await getUser(req);
             const quoteId = randomUUID();
             const now = new Date().toISOString();
+            const service = QUOTE_SERVICES.includes(payload.service) ? payload.service : null;
+            const boatType = BOAT_TYPES.includes(payload.boatType) ? payload.boatType : null;
+            const boatLength = Number(payload.boatLength);
+            // Only a product that exists in the catalog; its title is taken from there.
+            const productId = cleanString(payload.productId, { field: 'Product', max: 64 });
+            const product = productId ? findProduct(productId)?.product || null : null;
             const quote = {
                 id: quoteId,
                 created_at: now,
@@ -42,7 +50,12 @@ export default apiRoute(
                 customer_phone: cleanString(payload.phone, { field: 'Phone', max: 40 }),
                 subject: cleanString(payload.subject, { field: 'Subject', max: 200 }),
                 details: cleanString(payload.details, { field: 'Details', min: 10, max: 5000, required: true }),
-                project_type: cleanString(payload.project_type, { field: 'Project type', max: 60 }) || 'general',
+                project_type: service || cleanString(payload.project_type, { field: 'Project type', max: 60 }) || 'general',
+                service,
+                boat_type: boatType,
+                boat_length_m: Number.isFinite(boatLength) && boatLength > 0 && boatLength < 200 ? Math.round(boatLength * 10) / 10 : null,
+                product_id: product ? product.id : null,
+                product_title: product ? product.title : null,
                 uid: user ? user.uid : null,
                 status: 'received',
                 statusHistory: [{ status: 'received', at: now }],
@@ -50,10 +63,12 @@ export default apiRoute(
 
             // Linking key: the verified account email, or the email the guest typed.
             quote.email = user?.email || quote.customer_email;
-            await getDb().collection('quotes').doc(quoteId).set(quote);
+            const db = getDb();
+            quote.ref = await reserveRef(db, 'quote', quoteId);
+            await db.collection('quotes').doc(quoteId).set(quote);
             await notifyTeam(quote);
 
-            res.status(200).json({ ok: true, quoteId });
+            res.status(200).json({ ok: true, quoteId, ref: quote.ref });
         },
     },
     { cors: true }

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useLang } from '../../contexts/LangContext';
 import { useAuth } from '../../contexts/AuthContext';
@@ -101,9 +101,14 @@ export default function ProductReviews({ productId, productTitle }) {
         loadMine();
     }, [loadMine]);
 
-    // Deep link from "Rate your items": /products/...#write-review opens the form.
+    // Deep link from "Rate your items": /products/...#write-review opens the form once.
+    // The hash is then dropped, so publishing (which reloads `mine`) doesn't reopen it.
+    const autoOpened = useRef(false);
     useEffect(() => {
-        if (mine?.eligible && router.asPath.endsWith('#write-review')) setFormOpen(true);
+        if (autoOpened.current || !mine?.eligible || !router.asPath.endsWith('#write-review')) return;
+        autoOpened.current = true;
+        setFormOpen(true);
+        window.history.replaceState(window.history.state, '', window.location.pathname + window.location.search);
     }, [mine, router.asPath]);
 
     const afterChange = (result, message) => {

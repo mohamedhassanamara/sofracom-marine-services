@@ -9,6 +9,7 @@ import { Stars } from '../../components/reviews/Stars';
 import ReviewForm from '../../components/reviews/ReviewForm';
 import { apiRequest, errorMessage } from '../../lib/apiClient';
 import { imageAt } from '../../lib/images';
+import { Badge } from '../../components/ui';
 
 const productHref = item => (item.categorySlug ? `/products/${item.categorySlug}/${item.productId}` : null);
 
@@ -120,7 +121,7 @@ export default function AccountReviewsPage() {
                                             <Stars value={review.rating} size="sm" />
                                             <span className="review-item__date">{formatDate(review.updatedAt)}</span>
                                             {review.status === 'hidden' && (
-                                                <span className="status-badge status-badge--stopped">{t('reviews.hidden')}</span>
+                                                <Badge tone="danger" size="sm">{t('reviews.hidden')}</Badge>
                                             )}
                                         </div>
                                         {review.comment && (

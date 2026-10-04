@@ -6,7 +6,7 @@ import { useAuth } from '../../../contexts/AuthContext';
 import AccountLayout from '../../../components/account/AccountLayout';
 import { StatusBadge, StatusTimeline, useFormatDate } from '../../../components/account/Status';
 import { getMine } from '../../../lib/accountData';
-import { shortId } from '../../../lib/status';
+import { displayRef } from '../../../lib/status';
 
 export default function QuoteDetailPage() {
     const { t } = useLang();
@@ -41,7 +41,7 @@ export default function QuoteDetailPage() {
 
     return (
         <AccountLayout
-            title={quote.subject || t('quotes.untitled', { id: shortId(quote.id) })}
+            title={quote.subject || t('quotes.untitled', { id: displayRef(quote) })}
             eyebrow={formatDate(quote.created_at, true)}
             actions={<StatusBadge kind="quote" status={quote.status} />}
         >
@@ -66,7 +66,7 @@ export default function QuoteDetailPage() {
                         )}
                         <div>
                             <dt className="ui-muted">{t('quotes.reference')}</dt>
-                            <dd className="text-slate-900">{shortId(quote.id)}</dd>
+                            <dd className="text-slate-900">{displayRef(quote)}</dd>
                         </div>
                     </dl>
                 </section>

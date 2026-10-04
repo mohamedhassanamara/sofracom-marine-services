@@ -1,56 +1,54 @@
 import { useLang } from '../../contexts/LangContext';
+import { Field, Input, Textarea } from '../ui';
 
 export const EMPTY_ADDRESS = { label: '', fullName: '', phone: '', line: '', city: '', notes: '' };
 
-// Returns a translation key for the first problem, or null when the address is usable.
-export const addressError = address => {
-    if ((address.fullName || '').trim().length < 2) return 'address.errorName';
-    if ((address.phone || '').trim().length < 6) return 'address.errorPhone';
-    if ((address.line || '').trim().length < 4) return 'address.errorLine';
-    if ((address.city || '').trim().length < 2) return 'address.errorCity';
-    return null;
+const digits = value => String(value || '').replace(/\D/g, '');
+
+// Every problem as { field: translationKey } (empty when the address is usable).
+export const addressErrors = address => {
+    const errors = {};
+    if ((address.fullName || '').trim().length < 2) errors.fullName = 'address.errorName';
+    if (digits(address.phone).length < 8) errors.phone = 'address.errorPhone';
+    if ((address.line || '').trim().length < 4) errors.line = 'address.errorLine';
+    if ((address.city || '').trim().length < 2) errors.city = 'address.errorCity';
+    return errors;
 };
 
-// Controlled address fields, shared by the addresses page and checkout.
-export default function AddressFields({ value, onChange, showLabel = true }) {
+// The first problem's translation key, or null (kept for callers that show one message).
+export const addressError = address => Object.values(addressErrors(address))[0] || null;
+
+// Controlled address fields, shared by the addresses page and checkout. `errors` maps a
+// field to a translation key; `idPrefix` keeps ids unique when two forms are on a page.
+export default function AddressFields({ value, onChange, showLabel = true, errors = {}, idPrefix = 'address' }) {
     const { t } = useLang();
     const update = field => event => onChange({ ...value, [field]: event.target.value });
+    const error = field => (errors[field] ? t(errors[field]) : undefined);
 
     return (
-        <div className="ui-form">
+        <div className="grid gap-4">
             {showLabel && (
-                <label className="ui-field">
-                    <span>{t('address.label')}</span>
-                    <input
-                        value={value.label}
-                        onChange={update('label')}
-                        maxLength={40}
-                        placeholder={t('address.labelPlaceholder')}
-                    />
-                </label>
+                <Field id={`${idPrefix}-label`} label={t('address.label')} optional>
+                    <Input value={value.label} onChange={update('label')} maxLength={40} placeholder={t('address.labelPlaceholder')} />
+                </Field>
             )}
-            <div className="ui-form-row ui-form-row--2">
-                <label className="ui-field">
-                    <span>{t('address.fullName')}</span>
-                    <input autoComplete="name" value={value.fullName} onChange={update('fullName')} maxLength={120} required />
-                </label>
-                <label className="ui-field">
-                    <span>{t('address.phone')}</span>
-                    <input type="tel" autoComplete="tel" value={value.phone} onChange={update('phone')} maxLength={40} required />
-                </label>
+            <div className="grid gap-4 sm:grid-cols-2">
+                <Field id={`${idPrefix}-fullName`} label={t('address.fullName')} required error={error('fullName')}>
+                    <Input autoComplete="name" value={value.fullName} onChange={update('fullName')} maxLength={120} />
+                </Field>
+                <Field id={`${idPrefix}-phone`} label={t('address.phone')} required error={error('phone')}>
+                    <Input type="tel" inputMode="tel" autoComplete="tel" dir="ltr" value={value.phone} onChange={update('phone')} maxLength={40} />
+                </Field>
             </div>
-            <label className="ui-field">
-                <span>{t('address.line')}</span>
-                <input autoComplete="street-address" value={value.line} onChange={update('line')} maxLength={300} required />
-            </label>
-            <label className="ui-field">
-                <span>{t('address.city')}</span>
-                <input autoComplete="address-level2" value={value.city} onChange={update('city')} maxLength={80} required />
-            </label>
-            <label className="ui-field">
-                <span>{t('address.notes')}</span>
-                <textarea rows="2" value={value.notes} onChange={update('notes')} maxLength={300} />
-            </label>
+            <Field id={`${idPrefix}-line`} label={t('address.line')} required error={error('line')}>
+                <Input autoComplete="street-address" value={value.line} onChange={update('line')} maxLength={300} />
+            </Field>
+            <Field id={`${idPrefix}-city`} label={t('address.city')} required error={error('city')}>
+                <Input autoComplete="address-level2" value={value.city} onChange={update('city')} maxLength={80} />
+            </Field>
+            <Field id={`${idPrefix}-notes`} label={t('address.notes')}>
+                <Textarea rows={2} value={value.notes} onChange={update('notes')} maxLength={300} />
+            </Field>
         </div>
     );
 }
