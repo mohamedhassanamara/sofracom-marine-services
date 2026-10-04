@@ -12,18 +12,18 @@ There is no build pipeline; edits become live once the HTML/CSS/JS is saved. For
 Use four-space indentation in HTML and CSS to match existing files, and prefer semantic HTML5 elements. Tailwind utility classes are loaded from CDN; cluster related utilities together (layout → spacing → color) to keep markup readable. Name CSS classes in lowercase kebab-case and reserve inline styles for one-off overrides. JavaScript should stay vanilla ES6+, with const/let, arrow functions, and early returns; place reusable helpers at the top of `script.js` and avoid polluting `window`.
 
 ## Testing Guidelines
-Until automated tests exist, validate changes manually in Chromium- and WebKit-based browsers, checking navigation anchors, scroll animations, and language toggles. When you add automated coverage, prefer lightweight tooling such as Playwright for UI smoke checks and eslint-style linters for static validation. Document new test commands in `package.json` and update this guide accordingly.
+`npm test` runs three suites: `test:i18n` (every UI string exists in EN/FR/AR), `test:rules` (Firestore security rules on the emulator) and `test:api` (spawns `next dev` against the Auth/Firestore emulators and calls the API directly). firebase-tools needs Java 21+. For manual QA run `npm run emulators`, `npm run seed:emulator` and `npm run dev:emulated`, then check Chromium and WebKit in all three languages (Arabic is right-to-left).
 
 ## Commit & Pull Request Guidelines
 Commit messages follow an imperative style (`add products grid`, `fix navbar blur`) as seen in `git log`. Keep the subject under 72 characters and expand with bullet points in the body if context is required. Pull requests should include: a concise summary of changes, before/after screenshots for visual tweaks, reproduction steps for bug fixes, and links to relevant issues or stakeholder notes.
 
 ## Order & Checkout Flow
-`products.html` exposes a cart + checkout form. Submissions hit `api/create-order.js`, which validates payloads and writes them to Firebase Firestore using the Admin SDK.
+The cart (`contexts/CartContext.js`, localStorage) and checkout (`components/cart/`) post to `pages/api/create-order.js`, which prices every line from the catalog and writes `orders` with the Firebase Admin SDK. Accounts are optional: signed-in customers get `uid` attached from their verified ID token, can reuse saved addresses and track orders under `/account`; guests may leave an email so the order links to an account later.
 
-- Place the Firebase service account JSON in the project root (for local dev) and set `FIREBASE_SERVICE_ACCOUNT_PATH` to its relative path, or provide environment credentials via `FIREBASE_PROJECT_ID`, `FIREBASE_CLIENT_EMAIL`, and `FIREBASE_PRIVATE_KEY`. Mirror the same secrets in Vercel project settings.
-- Firestore collection: `orders` documents expect `{id, created_at, customer_name, customer_phone, customer_address, customer_notes, items[], total, currency, status}`; feel free to add indexes or triggers (Cloud Functions, email notifications) as needed.
-- Keep service account files out of version control—add the filename to `.gitignore` and rotate keys when sharing access.
-- Test the full flow with `vercel dev` so the serverless endpoint runs locally alongside the static site. Remember to reset `localStorage` to clear the cart during QA.
+- Order/quote statuses and their history are defined in `lib/status.js`; staff change them on `/admin` (requires the `admin` custom claim, set with `node scripts/set-admin-claim.js <email>`).
+- Only customers with a delivered order can review a product (`reviews`, `productStats`).
+- All Firestore writes happen server-side; `firestore.rules` only allows reading your own data and published reviews.
+- Place the Firebase service account JSON in the project root (local dev) or set `FIREBASE_PROJECT_ID`, `FIREBASE_CLIENT_EMAIL` and `FIREBASE_PRIVATE_KEY`; the browser needs `NEXT_PUBLIC_FIREBASE_API_KEY`, `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN` and `NEXT_PUBLIC_FIREBASE_PROJECT_ID`. Mirror them in Vercel. Keep service account files out of version control.
 
 ## Security & Asset Hygiene
 Do not commit secrets or API keys—store environment-specific values in deployment platforms instead. Optimize imagery before adding it to `assets/` (target <500 KB) and prefer SVG for logos. Remove unused media to keep load times low and avoid shipping confidential materials.
