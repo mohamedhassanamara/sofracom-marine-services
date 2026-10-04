@@ -4,7 +4,8 @@ import { useRouter } from 'next/router';
 import { useLang } from '../../contexts/LangContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { AuthCard, GoogleButton } from '../../components/account/AuthCard';
-import { safeNext } from '../../hooks/useRequireAuth';
+import { afterAuthPath } from '../../lib/redirect';
+import { parseIdentifier } from '../../lib/identity';
 import { errorMessage } from '../../lib/apiClient';
 
 const MIN_PASSWORD = 8;
@@ -13,23 +14,29 @@ export default function SignupPage() {
     const { t } = useLang();
     const { user, loading, signUp } = useAuth();
     const router = useRouter();
-    const next = safeNext(router.query.next) || '/account';
-    const [form, setForm] = useState({ name: '', email: '', password: '' });
+    const next = afterAuthPath(router.query.next);
+    const [form, setForm] = useState({ name: '', identifier: '', password: '' });
     const [error, setError] = useState('');
     const [busy, setBusy] = useState(false);
-    const signingUp = useRef(false);
+    const submitting = useRef(false);
 
-    // Already signed in (e.g. via Google): go straight on.
+    // Already signed in: go where they were heading (or /account).
     useEffect(() => {
-        if (!loading && user && !signingUp.current) router.replace(next);
-    }, [loading, user, next, router]);
+        if (router.isReady && !loading && user && !submitting.current) router.replace(next);
+    }, [router, loading, user, next]);
 
     const update = field => event => setForm({ ...form, [field]: event.target.value });
+    const parsedIdentifier = parseIdentifier(form.identifier);
+    const detected = parsedIdentifier.type;
 
     const handleSubmit = async event => {
         event.preventDefault();
-        if (form.name.trim().length < 2 || !form.email.trim() || !form.password) {
+        if (form.name.trim().length < 2 || !form.identifier.trim() || !form.password) {
             setError(t('auth.errorRequired'));
+            return;
+        }
+        if (detected === 'invalid') {
+            setError(t(`errors.identity/invalid-${parsedIdentifier.reason}`));
             return;
         }
         if (form.password.length < MIN_PASSWORD) {
@@ -38,12 +45,12 @@ export default function SignupPage() {
         }
         setBusy(true);
         setError('');
-        signingUp.current = true;
+        submitting.current = true;
         try {
             await signUp(form);
-            router.replace(`/account/verify?next=${encodeURIComponent(next)}`);
+            router.replace(next);
         } catch (err) {
-            signingUp.current = false;
+            submitting.current = false;
             setError(errorMessage(t, err));
             setBusy(false);
         }
@@ -62,8 +69,22 @@ export default function SignupPage() {
                         <input autoComplete="name" value={form.name} onChange={update('name')} maxLength={120} required />
                     </label>
                     <label className="ui-field">
-                        <span>{t('auth.email')}</span>
-                        <input type="email" autoComplete="email" value={form.email} onChange={update('email')} required />
+                        <span>{t('auth.identifier')}</span>
+                        <input
+                            autoComplete="username"
+                            inputMode="email"
+                            dir="ltr"
+                            value={form.identifier}
+                            onChange={update('identifier')}
+                            required
+                        />
+                        <span className="ui-field-hint">
+                            {detected === 'phone'
+                                ? t('auth.detectedPhone')
+                                : detected === 'email'
+                                  ? t('auth.detectedEmail')
+                                  : t('auth.identifierHint')}
+                        </span>
                     </label>
                     <label className="ui-field">
                         <span>{t('auth.password')}</span>

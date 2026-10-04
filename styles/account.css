@@ -484,8 +484,9 @@ a.record-card:hover {
     color: #334155;
 }
 
-.cart-form .address-option {
-    display: flex; /* .cart-form label is a grid; keep the radio beside its text */
+.cart-form .address-option,
+.cart-form .ui-check {
+    display: flex; /* .cart-form label is a grid; keep radios/checkboxes beside their text */
 }
 
 .address-option input {

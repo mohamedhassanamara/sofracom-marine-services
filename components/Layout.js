@@ -3,6 +3,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useLang } from '../contexts/LangContext';
 import { useAuth } from '../contexts/AuthContext';
+import { authLink } from '../lib/redirect';
+import { formatPhone } from '../lib/identity';
 
 const NAV_LINKS = [
     { href: '#home', key: 'nav.home', type: 'anchor' },
@@ -24,8 +26,8 @@ const resolveLinkHref = link => {
 
 export default function Layout({ children }) {
     const { lang, setLang, t } = useLang();
-    const { user, profile, loading: authLoading } = useAuth();
-    const accountName = profile?.name || user?.displayName || user?.email || '';
+    const { user, email, profile, loading: authLoading } = useAuth();
+    const accountName = profile?.name || user?.displayName || email || formatPhone(profile?.phone) || '';
     const [isNavSolid, setIsNavSolid] = useState(false);
     const [showToTop, setShowToTop] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
@@ -85,6 +87,15 @@ export default function Layout({ children }) {
         setMenuOpen(false);
         router.push(`/products/${suggestion.categorySlug}/${suggestion.id}`);
     };
+
+    // A temporary password set by staff must be replaced right after signing in.
+    useEffect(() => {
+        // Not on the sign-in pages: they redirect first, so `next` is the real destination.
+        const exempt = ['/account/change-password', '/account/login', '/account/signup', '/account/reset'];
+        if (profile?.mustChangePassword && !exempt.includes(router.pathname)) {
+            router.replace(`/account/change-password?next=${encodeURIComponent(router.asPath)}`);
+        }
+    }, [profile, router]);
 
     useEffect(() => {
         let ticking = false;
@@ -374,7 +385,7 @@ export default function Layout({ children }) {
                         </form>
                         {!authLoading && (
                             <Link
-                                href={user ? '/account' : '/account/login'}
+                                href={user ? '/account' : authLink('login', router.asPath)}
                                 className="header-account hidden md:inline-flex"
                                 title={user ? accountName : undefined}
                             >
@@ -450,7 +461,7 @@ export default function Layout({ children }) {
                             })}
                             {!authLoading && (
                                 <Link
-                                    href={user ? '/account' : '/account/login'}
+                                    href={user ? '/account' : authLink('login', router.asPath)}
                                     className="block font-semibold text-blue-200 hover:text-white"
                                     onClick={() => setMenuOpen(false)}
                                 >

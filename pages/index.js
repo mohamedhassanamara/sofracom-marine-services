@@ -98,7 +98,7 @@ export default function HomePage() {
         details: '',
     });
     const [formStatus, setFormStatus] = useState({ message: '', type: '' });
-    const { user, profile } = useAuth();
+    const { user, email: accountEmail, profile } = useAuth();
 
     // Signed-in visitors get their details prefilled; empty fields only.
     useEffect(() => {
@@ -106,7 +106,7 @@ export default function HomePage() {
         setQuoteForm(form => ({
             ...form,
             name: form.name || profile?.name || user.displayName || '',
-            email: form.email || user.email || '',
+            email: form.email || accountEmail || profile?.email || '',
             phone: form.phone || profile?.phone || '',
         }));
     }, [user, profile]);

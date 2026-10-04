@@ -4,7 +4,7 @@ import { apiRoute, clientIp, readJson, HttpError } from '../../lib/server/http';
 import { rateLimit, MINUTE } from '../../lib/server/rateLimit';
 import { cleanEmail, cleanString } from '../../lib/server/validate';
 import { getUser } from '../../lib/server/auth';
-import { addAddress, addressesRef, cleanAddress, ensureUserDoc, formatAddress } from '../../lib/server/users';
+import { addAddress, addressesRef, cleanAddress, ensureUserDoc, formatAddress, userRef } from '../../lib/server/users';
 import { priceCart } from '../../lib/server/catalog';
 import { formatPrice } from '../../lib/constants';
 import { shortId } from '../../lib/status';
@@ -79,7 +79,9 @@ export default apiRoute(
                 : readGuestCustomer(rawCustomer);
             const notes = cleanString(rawCustomer.notes, { field: 'Notes', max: 1000 });
             // Identity comes from the verified token; guests may leave an email to link later.
-            const email = user ? user.email : cleanEmail(rawCustomer.email) || null;
+            // Phone accounts have no login email, so fall back to their profile contact email.
+            const profileEmail = user && !user.email ? (await userRef(user.uid).get()).data()?.email : null;
+            const email = user ? user.email || profileEmail || null : cleanEmail(rawCustomer.email) || null;
 
             const orderId = randomUUID();
             const now = new Date().toISOString();

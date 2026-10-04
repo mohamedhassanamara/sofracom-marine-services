@@ -12,8 +12,7 @@ const NAV = [
     { href: '/account/reviews', key: 'account.nav.reviews', badge: 'toReview' },
 ];
 
-// Shell for every /account page: requires sign-in, shows the section nav and a
-// reminder to verify the email address (needed to link guest orders).
+// Shell for every /account page: requires sign-in and shows the section nav.
 export default function AccountLayout({ title, eyebrow, actions, badges = {}, children }) {
     const { t } = useLang();
     const router = useRouter();
@@ -56,14 +55,6 @@ export default function AccountLayout({ title, eyebrow, actions, badges = {}, ch
                 </button>
             </nav>
             <section>
-                {!user.emailVerified && (
-                    <div className="ui-alert ui-alert--warning mb-5">
-                        {t('account.verifyBanner')}{' '}
-                        <Link href={`/account/verify?next=${encodeURIComponent(router.asPath)}`} className="ui-link">
-                            {t('account.verifyBannerLink')}
-                        </Link>
-                    </div>
-                )}
                 <header className="account-header">
                     <div>
                         {eyebrow && <p className="account-eyebrow">{eyebrow}</p>}

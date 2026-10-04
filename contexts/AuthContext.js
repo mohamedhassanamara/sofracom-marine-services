@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useLang } from './LangContext';
-import { apiRequest } from '../lib/apiClient';
+import { ApiError, apiRequest } from '../lib/apiClient';
+import { parseIdentifier, publicEmail } from '../lib/identity';
 
 // Optional customer accounts (Firebase Auth). Firebase is loaded lazily in the
 // browser so pages render without it; guests never need to sign in.
@@ -105,31 +106,31 @@ export function AuthProvider({ children }) {
             ? undefined
             : { url: `${window.location.origin}/account`, handleCodeInApp: false };
 
+    // `identifier` is an email address or a phone number (phone accounts sign in with
+    // their synthetic auth email, which is derived here and never displayed).
     const signIn = useCallback(
-        async (email, password) => {
+        async (identifier, password) => {
+            const parsed = parseIdentifier(identifier);
+            if (parsed.type === 'invalid') throw new ApiError('Invalid identifier', { code: `identity/invalid-${parsed.reason}` });
             const { auth, fb } = await getFirebase();
-            const credential = await fb.signInWithEmailAndPassword(auth, email.trim(), password);
+            const credential = await fb.signInWithEmailAndPassword(auth, parsed.authEmail, password);
             return credential.user;
         },
         [getFirebase]
     );
 
+    // Accounts are created by the server, which enforces one account per phone/email.
+    // No verification email: it is optional, from the profile page.
     const signUp = useCallback(
-        async ({ name, email, password }) => {
-            const { auth, fb } = await getFirebase();
-            auth.languageCode = lang;
-            const credential = await fb.createUserWithEmailAndPassword(auth, email.trim(), password);
-            await fb.updateProfile(credential.user, { displayName: name.trim() });
-            await apiRequest('/api/account/profile', {
-                method: 'PUT',
-                body: { name: name.trim(), lang },
-                user: credential.user,
+        async ({ name, identifier, password }) => {
+            const parsed = parseIdentifier(identifier);
+            if (parsed.type === 'invalid') throw new ApiError('Invalid identifier', { code: `identity/invalid-${parsed.reason}` });
+            await apiRequest('/api/account/register', {
+                method: 'POST',
+                body: { name: name.trim(), identifier, password, lang },
             });
-            try {
-                await fb.sendEmailVerification(credential.user, actionSettings());
-            } catch (error) {
-                console.warn('[auth] verification email failed', error);
-            }
+            const { auth, fb } = await getFirebase();
+            const credential = await fb.signInWithEmailAndPassword(auth, parsed.authEmail, password);
             await loadProfile(credential.user);
             return credential.user;
         },
@@ -149,21 +150,40 @@ export function AuthProvider({ children }) {
         await fb.signOut(auth);
     }, [getFirebase]);
 
+    // Email accounts get Firebase's reset link. Phone accounts have no mailbox: the
+    // reset page tells them to contact the shop, and staff set a temporary password.
     const resetPassword = useCallback(
-        async email => {
+        async identifier => {
+            const parsed = parseIdentifier(identifier);
+            if (parsed.type === 'phone') throw new ApiError('Phone account', { code: 'identity/phone-reset' });
+            if (parsed.type === 'invalid') throw new ApiError('Invalid identifier', { code: `identity/invalid-${parsed.reason}` });
             const { auth, fb } = await getFirebase();
             auth.languageCode = lang;
-            await fb.sendPasswordResetEmail(auth, email.trim(), actionSettings());
+            await fb.sendPasswordResetEmail(auth, parsed.email, actionSettings());
         },
         [getFirebase, lang]
     );
 
     const resendVerification = useCallback(async () => {
         const { auth, fb } = await getFirebase();
-        if (!auth.currentUser) return;
+        if (!auth.currentUser || !publicEmail(auth.currentUser.email)) return;
         auth.languageCode = lang;
         await fb.sendEmailVerification(auth.currentUser, actionSettings());
     }, [getFirebase, lang]);
+
+    // Replaces a temporary password set by staff (the user has just signed in with it).
+    const changePassword = useCallback(
+        async newPassword => {
+            const { auth, fb } = await getFirebase();
+            if (!auth.currentUser) throw new ApiError('Not signed in', { code: 'auth/required' });
+            await fb.updatePassword(auth.currentUser, newPassword);
+            // Changing the password revokes earlier ID tokens; use a fresh one.
+            await auth.currentUser.getIdToken(true);
+            await apiRequest('/api/account/password-changed', { method: 'POST', body: {}, user: auth.currentUser });
+            await loadProfile(auth.currentUser);
+        },
+        [getFirebase, loadProfile]
+    );
 
     // After the user clicks the verification link elsewhere, refresh the token so the
     // server sees email_verified=true, then link guest history.
@@ -181,9 +201,12 @@ export function AuthProvider({ children }) {
     const value = useMemo(
         () => ({
             user,
+            // The real email of the account ('' for phone accounts); never user.email directly.
+            email: publicEmail(user?.email),
             profile,
             loading,
             isAdmin: claims.admin === true,
+            changePassword,
             signIn,
             signUp,
             signInWithGoogle,
@@ -194,7 +217,7 @@ export function AuthProvider({ children }) {
             reloadProfile: () => loadProfile(user),
             setProfile,
         }),
-        [user, profile, loading, claims, signIn, signUp, signInWithGoogle, signOut, resetPassword, resendVerification, refreshUser, loadProfile]
+        [user, profile, loading, claims, signIn, signUp, signInWithGoogle, signOut, resetPassword, resendVerification, refreshUser, loadProfile, changePassword]
     );
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
