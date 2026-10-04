@@ -84,7 +84,7 @@ export default function AdminReviews() {
                                     <td className="ui-muted">{formatDate(review.updatedAt, true)}</td>
                                     <td>{review.productTitle}</td>
                                     <td style={{ maxWidth: '28rem' }}>
-                                        <strong>{review.displayName}</strong> <Stars value={review.rating} size="sm" />
+                                        <strong><bdi>{review.displayName}</bdi></strong> <Stars value={review.rating} size="sm" />
                                         {review.comment && (
                                             <p className="mt-1" dir="auto" style={{ whiteSpace: 'pre-line', overflowWrap: 'anywhere' }}>
                                                 {review.comment}

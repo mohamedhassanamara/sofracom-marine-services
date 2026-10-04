@@ -484,6 +484,10 @@ a.record-card:hover {
     color: #334155;
 }
 
+.cart-form .address-option {
+    display: flex; /* .cart-form label is a grid; keep the radio beside its text */
+}
+
 .address-option input {
     margin-top: 0.2rem;
 }

@@ -71,16 +71,18 @@ export function AuthProvider({ children }) {
                 if (cancelled) return;
                 unsubscribe = fb.onIdTokenChanged(auth, async currentUser => {
                     setUser(currentUser);
-                    if (currentUser) {
-                        const token = await currentUser.getIdTokenResult();
-                        setClaims(token.claims || {});
-                        await linkGuestHistory(currentUser);
-                        await loadProfile(currentUser);
-                    } else {
+                    if (!currentUser) {
                         setClaims({});
                         setProfile(null);
+                        setLoading(false);
+                        return;
                     }
+                    const token = await currentUser.getIdTokenResult();
+                    setClaims(token.claims || {});
+                    // Pages can render as soon as we know who is signed in; linking guest
+                    // history and loading the profile continue in the background.
                     setLoading(false);
+                    linkGuestHistory(currentUser).finally(() => loadProfile(currentUser));
                 });
             })
             .catch(error => {

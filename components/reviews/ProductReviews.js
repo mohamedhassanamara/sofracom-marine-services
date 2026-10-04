@@ -175,7 +175,7 @@ export default function ProductReviews({ productId, productTitle }) {
                     {reviews.map(review => (
                         <article className="review-item" key={review.id}>
                             <div className="review-item__head">
-                                <span className="review-item__name">{review.displayName}</span>
+                                <bdi className="review-item__name">{review.displayName}</bdi>
                                 <Stars value={review.rating} size="sm" />
                                 {review.verified && <span className="verified-badge">✓ {t('reviews.verified')}</span>}
                                 <span className="review-item__date">{formatDate(review.createdAt)}</span>
