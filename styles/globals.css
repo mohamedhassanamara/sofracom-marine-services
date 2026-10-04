@@ -928,3 +928,68 @@ footer.site-footer a {
         justify-content: center;
     }
 }
+
+/* ---------- UI kit (components/ui) ---------- */
+/* An open modal dialog/drawer locks the page scroll; only its body scrolls. */
+html:has(dialog[open]) {
+    overflow: hidden;
+}
+
+/* Parent spacing utilities (space-y-*) must never move the top-layer box. */
+.ui-dialog {
+    margin-block: auto !important;
+}
+.ui-drawer {
+    margin-block: 0 !important;
+}
+
+.ui-dialog[open] {
+    animation: ui-dialog-in var(--dur-base) var(--ease-out);
+}
+.ui-dialog[open]::backdrop {
+    animation: ui-fade-in var(--dur-base) var(--ease-out);
+}
+.ui-drawer {
+    inset-block: 0;
+    border-radius: 0;
+}
+.ui-drawer--end[open] {
+    animation: ui-slide-from-right var(--dur-base) var(--ease-out);
+}
+.ui-drawer--start[open] {
+    animation: ui-slide-from-left var(--dur-base) var(--ease-out);
+}
+[dir='rtl'] .ui-drawer--end[open] {
+    animation-name: ui-slide-from-left;
+}
+[dir='rtl'] .ui-drawer--start[open] {
+    animation-name: ui-slide-from-right;
+}
+
+@keyframes ui-dialog-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.98);
+    }
+}
+@keyframes ui-fade-in {
+    from {
+        opacity: 0;
+    }
+}
+@keyframes ui-slide-from-right {
+    from {
+        transform: translateX(100%);
+    }
+}
+@keyframes ui-slide-from-left {
+    from {
+        transform: translateX(-100%);
+    }
+}
+@keyframes ui-toast-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+}

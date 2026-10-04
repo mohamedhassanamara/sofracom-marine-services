@@ -80,6 +80,27 @@ export function LangProvider({ children }) {
     return <LangContext.Provider value={value}>{children}</LangContext.Provider>;
 }
 
+// Renders children in another language (and direction) without changing the URL: used by
+// /styleguide to show components in English and Arabic side by side.
+export function LocaleScope({ lang, children }) {
+    const parent = useContext(LangContext);
+    const value = useMemo(() => {
+        const translator = (key, vars) => {
+            const text = TRANSLATIONS[lang]?.[key] || TRANSLATIONS.en[key] || key;
+            if (!vars) return text;
+            return text.replace(/\{(\w+)\}/g, (match, name) => (vars[name] === undefined ? match : String(vars[name])));
+        };
+        return { ...parent, lang, t: translator };
+    }, [lang, parent]);
+    return (
+        <LangContext.Provider value={value}>
+            <div lang={lang} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+                {children}
+            </div>
+        </LangContext.Provider>
+    );
+}
+
 export function useLang() {
     return useContext(LangContext);
 }

@@ -54,7 +54,7 @@ async function notifyTeam(order) {
             // No customer details in the push itself; the app loads them from Firestore.
             notification: {
                 title: `New order #${shortId(order.id)}`,
-                body: `${order.items.length} item(s) · ${formatPrice(order.total)}`,
+                body: `${order.items.length} item(s) · ${formatPrice(order.total, 'fr')}`,
             },
             data: { orderId: order.id },
         });

@@ -4,6 +4,7 @@ import Layout from '../components/Layout';
 import { LangProvider } from '../contexts/LangContext';
 import { CartProvider } from '../contexts/CartContext';
 import { AuthProvider } from '../contexts/AuthContext';
+import { ToastProvider } from '../components/ui/Toast';
 import '../styles/globals.css';
 import '../styles/account.css';
 import { Analytics } from '@vercel/analytics/next';
@@ -24,6 +25,7 @@ function MyApp({ Component, pageProps }) {
         <LangProvider>
             <AuthProvider>
                 <CartProvider>
+                    <ToastProvider>
                     <Head>
                         <meta name="viewport" content="width=device-width, initial-scale=1" />
                     </Head>
@@ -38,6 +40,7 @@ function MyApp({ Component, pageProps }) {
                     </Layout>
                     <Analytics />
                     <SpeedInsights />
+                    </ToastProvider>
                 </CartProvider>
             </AuthProvider>
         </LangProvider>

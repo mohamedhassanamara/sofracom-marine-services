@@ -31,6 +31,9 @@ npm run gallery-admin  # gallery admin console  → http://127.0.0.1:5174
 
 **Next.js Pages Router** (`pages/`), React 19, plain JavaScript. Deployed on Vercel. Styling: Tailwind **v3.4 via PostCSS** whose theme is **only** `lib/design/tokens.js` (navy/accent/slate/success/warning/danger/info, 8 font sizes, radii sm–xl, 3 shadows, motion), so off-palette classes don't exist; use logical utilities (`ms-/me-/ps-/pe-/start-/end-/text-start`) and `rtl:`. `styles/globals.css` + `styles/account.css` use `theme()` for every value. Fonts: next/font (Inter + IBM Plex Sans Arabic) in `_app.js`. Status/stock colours: `tones` + `statusTone` in the tokens (one palette for site, admin and staff app).
 
+### UI kit
+`components/ui/` (see `/styleguide`): Button, Field/Input/Select/…, Card, Badge/StatusBadge/StockBadge, Price, Stars, Dialog/Drawer (native `<dialog>`), Tabs/Segmented, Breadcrumb, LoadMore/Pagination, Toast (`useToast`, provider in `_app`), EmptyState/Skeleton, QuantityStepper, ProductCard, icons (lucide via `components/ui/icons.js`). Build pages from these; format money/dates only with `lib/format.js` / `hooks/useFormat`.
+
 ### Locales, SEO, images
 - URL locales (`next.config.js` `i18n`): English at `/`, `/fr`, `/ar`; `_document` renders `lang`/`dir`; `LangContext` reads `router.locale`, the switcher navigates and sets `NEXT_LOCALE`. `getStaticPaths` must return every locale. Links via `next/link`/`router` keep the locale; never hard-code `/fr`.
 - `components/Seo.js` (+ `lib/seo.js`) on every page: title/description/canonical/hreflang/OG/JSON-LD; `noindex` for private pages. `/sitemap.xml`, `/robots.txt` are pages. `NEXT_PUBLIC_SITE_URL` sets the canonical domain.
