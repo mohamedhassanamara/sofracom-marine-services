@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useLang } from '../contexts/LangContext';
+import { useAuth } from '../contexts/AuthContext';
 
 const NAV_LINKS = [
     { href: '#home', key: 'nav.home', type: 'anchor' },
@@ -23,6 +24,8 @@ const resolveLinkHref = link => {
 
 export default function Layout({ children }) {
     const { lang, setLang, t } = useLang();
+    const { user, profile, loading: authLoading } = useAuth();
+    const accountName = profile?.name || user?.displayName || user?.email || '';
     const [isNavSolid, setIsNavSolid] = useState(false);
     const [showToTop, setShowToTop] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
@@ -369,6 +372,20 @@ export default function Layout({ children }) {
                             </button>
                             {renderSuggestions()}
                         </form>
+                        {!authLoading && (
+                            <Link
+                                href={user ? '/account' : '/account/login'}
+                                className="header-account hidden md:inline-flex"
+                                title={user ? accountName : undefined}
+                            >
+                                {user && (
+                                    <span className="header-account__avatar" aria-hidden="true">
+                                        {(accountName[0] || '?').toUpperCase()}
+                                    </span>
+                                )}
+                                {user ? t('nav.account') : t('nav.signIn')}
+                            </Link>
+                        )}
                         <select
                             id="lang"
                             className="px-3 py-1.5 rounded-md bg-white bg-opacity-15 text-black border border-white border-opacity-20 focus:outline-none focus:ring-2 focus:ring-blue-200"
@@ -431,6 +448,15 @@ export default function Layout({ children }) {
                                     </Link>
                                 );
                             })}
+                            {!authLoading && (
+                                <Link
+                                    href={user ? '/account' : '/account/login'}
+                                    className="block font-semibold text-blue-200 hover:text-white"
+                                    onClick={() => setMenuOpen(false)}
+                                >
+                                    {user ? t('nav.account') : t('nav.signIn')}
+                                </Link>
+                            )}
                         </div>
                         {categories.length > 0 && (
                             <div className="mt-4 border-t border-white/30 pt-3 space-y-1">

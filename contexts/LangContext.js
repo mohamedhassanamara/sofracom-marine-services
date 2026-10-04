@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import en from '../lib/i18n/en';
 import fr from '../lib/i18n/fr';
 import ar from '../lib/i18n/ar';
@@ -31,6 +31,12 @@ export function LangProvider({ children }) {
         document.body.classList.toggle('rtl', lang === 'ar');
     }, [lang]);
 
+    const setLang = useCallback(newLang => {
+        if (TRANSLATIONS[newLang]) {
+            setLangState(newLang);
+        }
+    }, []);
+
     const value = useMemo(() => {
         // t('reviews.count', { count: 3 }) fills {count} placeholders.
         const translator = (key, vars) => {
@@ -42,14 +48,10 @@ export function LangProvider({ children }) {
         };
         return {
             lang,
-            setLang: newLang => {
-                if (TRANSLATIONS[newLang]) {
-                    setLangState(newLang);
-                }
-            },
+            setLang,
             t: translator,
         };
-    }, [lang]);
+    }, [lang, setLang]);
 
     return <LangContext.Provider value={value}>{children}</LangContext.Provider>;
 }
