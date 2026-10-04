@@ -3,6 +3,7 @@ import { getDb, getFirebaseApp, usingEmulators } from '../../lib/firebase/admin'
 import { apiRoute, clientIp, readJson, HttpError } from '../../lib/server/http';
 import { rateLimit, MINUTE } from '../../lib/server/rateLimit';
 import { cleanEmail, cleanString } from '../../lib/server/validate';
+import { getUser } from '../../lib/server/auth';
 
 async function notifyTeam(quote) {
     // There is no messaging emulator; skip push notifications in local/test runs.
@@ -33,6 +34,7 @@ export default apiRoute(
             const payload = await readJson(req, 50_000);
             if (!payload || typeof payload !== 'object') throw new HttpError(400, 'Missing request body');
 
+            const user = await getUser(req);
             const quoteId = randomUUID();
             const now = new Date().toISOString();
             const quote = {
@@ -44,10 +46,13 @@ export default apiRoute(
                 subject: cleanString(payload.subject, { field: 'Subject', max: 200 }),
                 details: cleanString(payload.details, { field: 'Details', min: 10, max: 5000, required: true }),
                 project_type: cleanString(payload.project_type, { field: 'Project type', max: 60 }) || 'general',
+                uid: user ? user.uid : null,
                 status: 'received',
                 statusHistory: [{ status: 'received', at: now }],
             };
 
+            // Linking key: the verified account email, or the email the guest typed.
+            quote.email = user?.email || quote.customer_email;
             await getDb().collection('quotes').doc(quoteId).set(quote);
             await notifyTeam(quote);
 

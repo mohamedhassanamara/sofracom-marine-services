@@ -2,18 +2,46 @@ import { randomUUID } from 'crypto';
 import { getDb, getFirebaseApp, usingEmulators } from '../../lib/firebase/admin';
 import { apiRoute, clientIp, readJson, HttpError } from '../../lib/server/http';
 import { rateLimit, MINUTE } from '../../lib/server/rateLimit';
-import { cleanString } from '../../lib/server/validate';
+import { cleanEmail, cleanString } from '../../lib/server/validate';
+import { getUser } from '../../lib/server/auth';
+import { addAddress, addressesRef, cleanAddress, ensureUserDoc, formatAddress } from '../../lib/server/users';
 import { priceCart } from '../../lib/server/catalog';
 import { formatPrice } from '../../lib/constants';
 
-function readCustomer(payload) {
-    const customer = payload.customer && typeof payload.customer === 'object' ? payload.customer : {};
+function readGuestCustomer(customer) {
     return {
         name: cleanString(customer.name, { field: 'Name', min: 2, max: 120, required: true }),
         phone: cleanString(customer.phone, { field: 'Phone', min: 6, max: 40, required: true }),
         address: cleanString(customer.address, { field: 'Address', min: 6, max: 500, required: true }),
-        notes: cleanString(customer.notes, { field: 'Notes', max: 1000 }),
+        addressId: null,
     };
+}
+
+// Signed-in customers either pick a saved address (read from their own
+// users/{uid}/addresses, never from the request) or enter a new one, optionally saved.
+async function readMemberCustomer(user, payload, customer) {
+    if (payload.addressId) {
+        const id = cleanString(payload.addressId, { field: 'Address id', max: 64, required: true });
+        const snapshot = await addressesRef(user.uid).doc(id).get();
+        if (!snapshot.exists) throw new HttpError(400, 'Saved address not found', 'address/not-found');
+        const address = snapshot.data();
+        return { name: address.fullName, phone: address.phone, address: formatAddress(address), addressId: id };
+    }
+    if (payload.newAddress) {
+        const address = cleanAddress(payload.newAddress);
+        let addressId = null;
+        if (payload.saveAddress === true) {
+            await ensureUserDoc(user);
+            try {
+                addressId = await addAddress(user.uid, address);
+            } catch (err) {
+                // A full address book must not block the order itself.
+                if (err.code !== 'address/limit') throw err;
+            }
+        }
+        return { name: address.fullName, phone: address.phone, address: formatAddress(address), addressId };
+    }
+    return readGuestCustomer(customer);
 }
 
 async function notifyTeam(order) {
@@ -45,9 +73,16 @@ export default apiRoute(
             const payload = await readJson(req);
             if (!payload || typeof payload !== 'object') throw new HttpError(400, 'Missing request body');
 
-            const customer = readCustomer(payload);
+            const user = await getUser(req);
+            const rawCustomer = payload.customer && typeof payload.customer === 'object' ? payload.customer : {};
             // Prices, titles and stock come from the catalog, never from the request.
             const priced = priceCart(payload.items);
+            const customer = user
+                ? await readMemberCustomer(user, payload, rawCustomer)
+                : readGuestCustomer(rawCustomer);
+            const notes = cleanString(rawCustomer.notes, { field: 'Notes', max: 1000 });
+            // Identity comes from the verified token; guests may leave an email to link later.
+            const email = user ? user.email : cleanEmail(rawCustomer.email) || null;
 
             const orderId = randomUUID();
             const now = new Date().toISOString();
@@ -57,7 +92,11 @@ export default apiRoute(
                 customer_name: customer.name,
                 customer_phone: customer.phone,
                 customer_address: customer.address,
-                customer_notes: customer.notes,
+                customer_address_id: customer.addressId,
+                customer_notes: notes,
+                customer_email: email || '',
+                uid: user ? user.uid : null,
+                email,
                 // `id` and `price` keep the line shape older readers (order-admin, mobile app) expect.
                 items: priced.items.map(({ stock, ...line }) => ({
                     ...line,
