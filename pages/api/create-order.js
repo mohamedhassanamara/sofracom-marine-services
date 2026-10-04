@@ -7,6 +7,7 @@ import { getUser } from '../../lib/server/auth';
 import { addAddress, addressesRef, cleanAddress, ensureUserDoc, formatAddress } from '../../lib/server/users';
 import { priceCart } from '../../lib/server/catalog';
 import { formatPrice } from '../../lib/constants';
+import { shortId } from '../../lib/status';
 
 function readGuestCustomer(customer) {
     return {
@@ -50,16 +51,12 @@ async function notifyTeam(order) {
     try {
         await getFirebaseApp().messaging().send({
             topic: 'sofracom-orders',
+            // No customer details in the push itself; the app loads them from Firestore.
             notification: {
-                title: `New order from ${order.customer_name}`,
+                title: `New order #${shortId(order.id)}`,
                 body: `${order.items.length} item(s) · ${formatPrice(order.total)}`,
             },
-            data: {
-                orderId: order.id,
-                customerName: order.customer_name,
-                total: String(order.total ?? 0),
-                currency: order.currency,
-            },
+            data: { orderId: order.id },
         });
     } catch (err) {
         console.warn('[order] FCM notify failed', err.message);

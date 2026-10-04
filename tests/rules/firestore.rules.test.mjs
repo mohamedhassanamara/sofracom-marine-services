@@ -47,6 +47,9 @@ beforeEach(async () => {
         await setDoc(doc(db, 'reviews/p1_carol'), { uid: 'carol', productId: 'p1', status: 'hidden', rating: 1 });
         await setDoc(doc(db, 'productStats/p1'), { count: 1, sum: 5, avg: 5 });
         await setDoc(doc(db, 'rateLimits/x'), { count: 1 });
+        await setDoc(doc(db, 'devices/phone1'), { name: 'Shop phone', active: true });
+        await setDoc(doc(db, 'devices/phone2'), { name: 'Old phone', active: false });
+        await setDoc(doc(db, 'enrollCodes/abc'), { status: 'active' });
     });
 });
 
@@ -54,6 +57,8 @@ const alice = () => env.authenticatedContext('alice', { email: 'alice@example.te
 const carol = () => env.authenticatedContext('carol').firestore();
 const staff = () => env.authenticatedContext('staff', { admin: true }).firestore();
 const guest = () => env.unauthenticatedContext().firestore();
+const device = deviceId =>
+    env.authenticatedContext(`device_${deviceId}`, { admin: true, device: true, deviceId }).firestore();
 
 describe('users', () => {
     test('a user can read their own profile and addresses', async () => {
@@ -143,6 +148,33 @@ describe('reviews and stats', () => {
         await assertFails(deleteDoc(doc(carol(), 'reviews/p1_carol')));
         await assertFails(setDoc(doc(alice(), 'productStats/p1'), { count: 100, avg: 5 }));
         await assertFails(updateDoc(doc(staff(), 'productStats/p1'), { avg: 1 }));
+    });
+});
+
+describe('staff app devices', () => {
+    test('an active enrolled device can read all orders and quotes', async () => {
+        await assertSucceeds(getDocs(collection(device('phone1'), 'orders')));
+        await assertSucceeds(getDocs(collection(device('phone1'), 'quotes')));
+        await assertSucceeds(getDoc(doc(device('phone1'), 'reviews/p1_carol')));
+    });
+
+    test('a revoked or unknown device cannot read anything private', async () => {
+        await assertFails(getDocs(collection(device('phone2'), 'orders')));
+        await assertFails(getDoc(doc(device('phone2'), 'quotes/q-alice')));
+        await assertFails(getDocs(collection(device('ghost'), 'orders')));
+    });
+
+    test('devices still cannot write orders, quotes or their own device record', async () => {
+        await assertFails(updateDoc(doc(device('phone1'), 'orders/o-bob'), { status: 'delivered' }));
+        await assertFails(updateDoc(doc(device('phone1'), 'devices/phone1'), { name: 'x' }));
+        await assertFails(updateDoc(doc(device('phone2'), 'devices/phone2'), { active: true }));
+    });
+
+    test('device records and enrolment codes are server-only', async () => {
+        await assertFails(getDoc(doc(device('phone1'), 'devices/phone1')));
+        await assertFails(getDoc(doc(staff(), 'enrollCodes/abc')));
+        await assertFails(getDocs(collection(guest(), 'enrollCodes')));
+        await assertFails(setDoc(doc(guest(), 'devices/new'), { active: true }));
     });
 });
 

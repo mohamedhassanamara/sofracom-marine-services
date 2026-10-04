@@ -2,15 +2,25 @@ rules_version = '2';
 
 // All writes go through the Next.js API routes (Admin SDK), which bypass these rules.
 // Clients may only read: their own profile, addresses, orders and quotes; published
-// reviews; and product rating stats. Staff with the `admin` custom claim can read all.
+// reviews; and product rating stats. Staff (admin claim, and for app devices an active
+// devices/{id} doc) can read all. devices, enrollCodes and logs are server-only.
 service cloud.firestore {
   match /databases/{database}/documents {
     function signedIn() {
       return request.auth != null;
     }
 
+    // Staff are either website accounts with the admin claim, or enrolled staff-app
+    // devices (custom tokens with device == true) whose devices/{id} doc is still active.
     function isAdmin() {
-      return signedIn() && request.auth.token.admin == true;
+      return signedIn()
+        && request.auth.token.admin == true
+        && (request.auth.token.get('device', false) != true || deviceActive());
+    }
+
+    function deviceActive() {
+      let path = /databases/$(database)/documents/devices/$(request.auth.token.deviceId);
+      return exists(path) && get(path).data.active == true;
     }
 
     function isOwner(uid) {

@@ -4,23 +4,20 @@ import { apiRoute, clientIp, readJson, HttpError } from '../../lib/server/http';
 import { rateLimit, MINUTE } from '../../lib/server/rateLimit';
 import { cleanEmail, cleanString } from '../../lib/server/validate';
 import { getUser } from '../../lib/server/auth';
+import { shortId } from '../../lib/status';
 
 async function notifyTeam(quote) {
     // There is no messaging emulator; skip push notifications in local/test runs.
     if (usingEmulators()) return;
     try {
-        const bodyText = quote.details.length > 100 ? `${quote.details.slice(0, 100)}…` : quote.details;
+        // No customer details in the push itself; the app loads them from Firestore.
         await getFirebaseApp().messaging().send({
             topic: 'sofracom-quotes',
             notification: {
-                title: `New quote from ${quote.customer_name}`,
-                body: bodyText || 'Project request received',
+                title: `New quote request #${shortId(quote.id)}`,
+                body: quote.subject ? quote.subject.slice(0, 80) : 'Project request received',
             },
-            data: {
-                quoteId: quote.id,
-                customerName: quote.customer_name,
-                subject: quote.subject || 'Project request',
-            },
+            data: { quoteId: quote.id },
         });
     } catch (err) {
         console.warn('[quote] FCM notify failed', err.message);
