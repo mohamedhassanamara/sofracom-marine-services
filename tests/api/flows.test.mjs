@@ -149,6 +149,23 @@ describe('accounts, addresses and order tracking', () => {
         assert.equal(doc.uid, verified.uid);
     });
 
+    test('the profile route works for an account that has no profile document yet', async () => {
+        const legacy = await createUser({ name: 'Old Account' });
+        assert.equal((await db().collection('users').doc(legacy.uid).get()).exists, false);
+        const response = await api('/api/account/profile', { user: legacy });
+        assert.equal(response.status, 200, JSON.stringify(response.body));
+        assert.equal(response.body.profile.name, 'Old Account');
+        assert.equal((await db().collection('users').doc(legacy.uid).get()).exists, true, 'created on first GET');
+    });
+
+    test('API errors always carry a code', async () => {
+        const missing = await api('/api/create-order', { method: 'POST', body: { customer: GUEST, items: [] } });
+        assert.ok(missing.body.code);
+        const wrongMethod = await api('/api/account/profile', { method: 'DELETE' });
+        assert.equal(wrongMethod.status, 405);
+        assert.equal(wrongMethod.body.code, 'method-not-allowed');
+    });
+
     test('profile and address routes require a valid token', async () => {
         assert.equal((await api('/api/account/profile')).status, 401);
         const forged = await api('/api/account/profile', { user: { token: 'forged' } });

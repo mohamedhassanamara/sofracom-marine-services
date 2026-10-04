@@ -9,6 +9,8 @@ import { ensureUserDoc, listAddresses, readProfile, userRef } from '../../../lib
 export default apiRoute({
     GET: async (req, res) => {
         const user = await requireUser(req);
+        // Accounts created before profiles existed (or by Google sign-in) get their doc now.
+        await ensureUserDoc(user);
         const [profile, addresses] = await Promise.all([readProfile(user), listAddresses(user.uid)]);
         res.status(200).json({ ok: true, profile, addresses });
     },
