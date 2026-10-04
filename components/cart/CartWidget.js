@@ -9,7 +9,7 @@ import CheckoutModal from './CheckoutModal';
 export default function CartWidget() {
     const { t } = useLang();
     const router = useRouter();
-    const { cart, count, total, updateQuantity, removeItem, isOpen, openCart, closeCart } = useCart();
+    const { cart, loaded, count, total, updateQuantity, removeItem, isOpen, openCart, closeCart } = useCart();
     const [checkoutOpen, setCheckoutOpen] = useState(false);
     const [onOrderNoticeVisible, setOnOrderNoticeVisible] = useState(false);
     const onOrderNoticeTimeout = useRef(null);
@@ -38,6 +38,18 @@ export default function CartWidget() {
         }
         setOnOrderNoticeVisible(false);
     };
+
+    // Back from signing in at checkout (?checkout=1): reopen the cart and checkout.
+    useEffect(() => {
+        // Wait until the saved cart has been read from storage.
+        if (!router.isReady || !loaded || router.query.checkout !== '1') return;
+        const { checkout, ...query } = router.query;
+        router.replace({ pathname: router.pathname, query }, undefined, { shallow: true, scroll: false });
+        if (cart.length) {
+            openCart();
+            setCheckoutOpen(true);
+        }
+    }, [router, loaded, cart.length, openCart]);
 
     const openCheckout = () => {
         if (!cart.length) return;

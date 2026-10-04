@@ -2,9 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '../contexts/AuthContext';
 
-// Only same-site paths are allowed as post-login destinations.
-export const safeNext = value =>
-    typeof value === 'string' && value.startsWith('/') && !value.startsWith('//') ? value : null;
+export { safeNext } from '../lib/redirect';
 
 // Sends signed-out visitors to the login page, remembering where they were going.
 export default function useRequireAuth() {

@@ -7,6 +7,7 @@ import { apiRequest, errorMessage } from '../../lib/apiClient';
 import { useFormatDate } from '../account/Status';
 import { Stars } from './Stars';
 import ReviewForm from './ReviewForm';
+import { authLink } from '../../lib/redirect';
 
 function RatingSummary({ stats }) {
     const { t } = useLang();
@@ -118,7 +119,7 @@ export default function ProductReviews({ productId, productTitle }) {
         if (!user) {
             return (
                 <p className="ui-muted">
-                    <Link href={`/account/login?next=${encodeURIComponent(router.asPath)}`} className="ui-link">
+                    <Link href={authLink('login', router.asPath, { hash: 'write-review' })} className="ui-link">
                         {t('nav.signIn')}
                     </Link>{' '}
                     {t('reviews.signInToReview')}

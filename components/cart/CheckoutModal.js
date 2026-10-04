@@ -6,6 +6,7 @@ import { useLang } from '../../contexts/LangContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { apiRequest, errorMessage } from '../../lib/apiClient';
 import AddressFields, { EMPTY_ADDRESS, addressError } from '../account/AddressForm';
+import { authLink } from '../../lib/redirect';
 
 const EMPTY_GUEST = { name: '', phone: '', address: '', notes: '', email: '' };
 const NEW_ADDRESS = 'new';
@@ -100,7 +101,8 @@ export default function CheckoutModal({ onClose, onOrderPlaced, onGoHome }) {
         }
     };
 
-    const loginHref = `/account/login?next=${encodeURIComponent(router.asPath)}`;
+    // After signing in, come back here with the checkout open again.
+    const loginHref = authLink('login', router.asPath, { reopenCheckout: true });
     const showSignInPrompt = !authLoading && !user && !guestChoice;
 
     const renderGuestFields = () => (

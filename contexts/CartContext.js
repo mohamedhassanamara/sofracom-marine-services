@@ -116,6 +116,7 @@ export function CartProvider({ children }) {
     const value = useMemo(
         () => ({
             cart,
+            loaded,
             addItem,
             addProduct,
             updateQuantity,
@@ -128,7 +129,7 @@ export function CartProvider({ children }) {
             openCart,
             closeCart,
         }),
-        [cart, addItem, addProduct, updateQuantity, removeItem, resetCart, isOpen, openCart, closeCart]
+        [cart, loaded, addItem, addProduct, updateQuantity, removeItem, resetCart, isOpen, openCart, closeCart]
     );
 
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
