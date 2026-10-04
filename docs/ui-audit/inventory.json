@@ -1,0 +1,3700 @@
+{
+  "meta": {
+    "project": "SOFRACOM marine services",
+    "generated": "2026-10-04",
+    "branch": "redesign",
+    "source": "docs/ui-audit/REPORT.md",
+    "notes": "Screenshot paths are relative to docs/ui-audit. Only the curated 78 are kept in screenshots/; extra captures were pruned. Tokens are as-found (not proposed)."
+  },
+  "pages": [
+    {
+      "route": "/",
+      "file": "pages/index.js",
+      "purpose": "Marketing home: hero, about, brands, services, testimonials, FAQ, contact + quote request form (the only \"quote mode\" on the site).",
+      "components": [
+        "Layout (header, mobile menu, search suggestions, footer, back-to-top)",
+        "hero",
+        "parallax bands",
+        "FAQ accordion",
+        "#quote-form"
+      ],
+      "dataSource": "static (i18n + hard-coded arrays); header suggestions fetch /assets/data/products.json client-side; quote POST /api/create-quote",
+      "states": [
+        "default",
+        "header glass vs solid on scroll",
+        "mobile menu open",
+        "search suggestions",
+        "products dropdown (hover)",
+        "FAQ open",
+        "quote: native-validation block (required name/email)",
+        "quote: custom error (missing message, EN only)",
+        "quote: sending (button disabled, \"Sending quote…\")",
+        "quote: success (auto-hides after 6s)",
+        "quote: API error",
+        "signed-in: name/email/phone prefilled"
+      ],
+      "screenshots": [
+        "screenshots/site-header-signed-in-390-en.png",
+        "screenshots/site-home-default-1440-en.png",
+        "screenshots/site-home-default-390-en.png",
+        "screenshots/site-home-hero-390-fr.png",
+        "screenshots/site-home-mobilemenu-390-en.png",
+        "screenshots/site-home-products-dropdown-1440-en.png",
+        "screenshots/site-home-quote-success-1440-en.png",
+        "screenshots/site-home-rtl-timeline-1440-ar.png",
+        "screenshots/site-home-scrolled-header-1440-en.png",
+        "screenshots/site-home-search-suggest-1440-en.png"
+      ]
+    },
+    {
+      "route": "/products",
+      "file": "pages/products/index.js",
+      "purpose": "Category grid (catalog landing).",
+      "components": [
+        "category cards",
+        "CartWidget"
+      ],
+      "dataSource": "static JSON (getStaticProps from products.json)",
+      "states": [
+        "default only (no empty/error states needed)"
+      ],
+      "screenshots": [
+        "screenshots/site-catalog-default-1440-en.png",
+        "screenshots/site-catalog-default-390-en.png"
+      ]
+    },
+    {
+      "route": "/products/[categorySlug]",
+      "file": "pages/products/[categorySlug]/index.js",
+      "purpose": "Product list for one category with brand filter, text filter, sort, reset.",
+      "components": [
+        "breadcrumb",
+        "brand select",
+        "search input",
+        "sort select",
+        "reset",
+        "ProductCard (variant select, stock badge, read more, datasheet, add to cart)",
+        "CardRating",
+        "CartWidget"
+      ],
+      "dataSource": "static JSON; ratings from GET /api/product-stats (client)",
+      "states": [
+        "default",
+        "brand filtered",
+        "sorted",
+        "empty filter result -> falls back to ALL products (no empty state)",
+        "card out of stock (dimmed, Add disabled)",
+        "card on order",
+        "card with variants (defaults to first in-stock variant)",
+        "read more / show less"
+      ],
+      "screenshots": [
+        "screenshots/site-category-default-1440-ar.png",
+        "screenshots/site-category-default-1440-en.png",
+        "screenshots/site-category-default-390-en.png",
+        "screenshots/site-category-empty-filter-1440-en.png"
+      ]
+    },
+    {
+      "route": "/products/[categorySlug]/[productId]",
+      "file": "pages/products/[categorySlug]/[productId].js",
+      "purpose": "Product detail: image + thumbnails, price, stock, variants, description, datasheet, add to cart, reviews.",
+      "components": [
+        "image + thumbnail buttons",
+        "variant buttons",
+        "stock badge",
+        "on-order note",
+        "Add to cart",
+        "ProductReviews (RatingSummary, list, sort, load more)",
+        "ReviewForm modal",
+        "CartWidget"
+      ],
+      "dataSource": "static JSON; GET /api/product-stats, GET /api/reviews, GET /api/reviews/mine (signed in), POST/DELETE /api/reviews",
+      "states": [
+        "in stock",
+        "out of stock (button disabled)",
+        "on order (orange note)",
+        "variants (default index 0 even if out)",
+        "multiple images",
+        "no description",
+        "long description read more",
+        "reviews loading/error/empty/list/load more",
+        "guest: sign-in prompt",
+        "signed in not eligible: \"only buyers\"",
+        "eligible: Write review",
+        "has review: Edit yours",
+        "review notice (thanks/updated/deleted)"
+      ],
+      "screenshots": [
+        "screenshots/site-product-checkout-signedin-newaddr-375x667-en.png",
+        "screenshots/site-product-onorder-1440-en.png",
+        "screenshots/site-product-outofstock-1440-en.png",
+        "screenshots/site-product-scrolled-fabs-1440-en.png",
+        "screenshots/site-product-variants-1440-en.png",
+        "screenshots/site-product-variants-390-en.png",
+        "screenshots/site-review-form-open-product-page-1440-en.png",
+        "screenshots/site-review-form-open-product-page-390-en.png"
+      ]
+    },
+    {
+      "route": "(drawer) CartWidget",
+      "file": "components/cart/CartWidget.js",
+      "purpose": "Floating cart button + slide-in cart drawer (only on /products, category and product pages).",
+      "components": [
+        "#cartFab",
+        "#cartOverlay",
+        "#cartDrawer",
+        "qty stepper",
+        "remove",
+        "summary",
+        "on-order notice"
+      ],
+      "dataSource": "localStorage sofracom.cart.v1 via CartContext",
+      "states": [
+        "closed",
+        "open empty (still shows delivery fee + grand total, Checkout disabled)",
+        "open with items",
+        "on-order notice after order (rendered inside the closed drawer)",
+        "reopen checkout after login (?checkout=1)"
+      ],
+      "screenshots": [
+        "screenshots/site-cart-empty-1440-en.png",
+        "screenshots/site-cart-items-1440-en.png",
+        "screenshots/site-cart-items-390-en.png"
+      ]
+    },
+    {
+      "route": "(modal) CheckoutModal",
+      "file": "components/cart/CheckoutModal.js",
+      "purpose": "Order checkout (orders only; quotes are the home contact form).",
+      "components": [
+        "sign-in prompt",
+        "guest fields",
+        "member address picker",
+        "AddressFields",
+        "save address checkbox",
+        "notes",
+        "error",
+        "confirmation"
+      ],
+      "dataSource": "GET /api/account/profile (member addresses); POST /api/create-order",
+      "states": [
+        "guest: sign-in prompt + guest form",
+        "guest: validation error",
+        "guest: filled",
+        "submitting",
+        "API error",
+        "confirmation (normal / delayed on-order variant)",
+        "member: loading addresses (submit disabled)",
+        "member: saved address selected",
+        "member: new address form",
+        "member with no addresses",
+        "member confirmation with Track order link"
+      ],
+      "screenshots": [
+        "screenshots/site-checkout-guest-confirmation-1440-en.png",
+        "screenshots/site-checkout-guest-errors-1440-en.png",
+        "screenshots/site-checkout-guest-form-1440-en.png",
+        "screenshots/site-checkout-guest-form-390-en.png",
+        "screenshots/site-checkout-member-saved-address-1440-en.png",
+        "screenshots/site-checkout-rtl-1440-ar.png"
+      ]
+    },
+    {
+      "route": "/search?q=",
+      "file": "pages/search.js",
+      "purpose": "Full catalog search page (no cart widget, no add to cart).",
+      "components": [
+        "search form",
+        "result count",
+        "result cards"
+      ],
+      "dataSource": "static JSON (getStaticProps); ratings /api/product-stats",
+      "states": [
+        "empty query prompt",
+        "results",
+        "no results"
+      ],
+      "screenshots": [
+        "screenshots/site-search-results-1440-en.png",
+        "screenshots/site-search-results-390-en.png"
+      ]
+    },
+    {
+      "route": "/gallery",
+      "file": "pages/gallery/index.js",
+      "purpose": "Project gallery of images and YouTube videos with type filter. No lightbox.",
+      "components": [
+        "filter pills",
+        "GalleryCard (img / iframe / fallback link)"
+      ],
+      "dataSource": "static JSON (public/assets/data/gallery.json via lib/gallery.js)",
+      "states": [
+        "all",
+        "images",
+        "videos",
+        "empty filter (gallery.empty)"
+      ],
+      "screenshots": [
+        "screenshots/site-gallery-default-1440-en.png",
+        "screenshots/site-gallery-default-390-en.png"
+      ]
+    },
+    {
+      "route": "/account/login",
+      "file": "pages/account/login.js",
+      "purpose": "Sign in with email or phone + password, or Google.",
+      "components": [
+        "AuthCard",
+        "GoogleButton",
+        "identifier/password",
+        "forgot link"
+      ],
+      "dataSource": "Firebase Auth (client)",
+      "states": [
+        "default",
+        "required error",
+        "wrong password error",
+        "busy",
+        "already signed in -> redirect to next"
+      ],
+      "screenshots": [
+        "screenshots/site-login-default-1440-en.png",
+        "screenshots/site-login-default-390-en.png"
+      ]
+    },
+    {
+      "route": "/account/signup",
+      "file": "pages/account/signup.js",
+      "purpose": "Create account (email or phone detected live).",
+      "components": [
+        "AuthCard",
+        "GoogleButton",
+        "name/identifier/password",
+        "detected-type hint"
+      ],
+      "dataSource": "Firebase Auth + POST /api/account/register",
+      "states": [
+        "default",
+        "required error",
+        "invalid identifier",
+        "password too short",
+        "email in use",
+        "busy",
+        "signed in -> redirect"
+      ],
+      "screenshots": [
+        "screenshots/site-signup-default-1440-en.png",
+        "screenshots/site-signup-default-390-en.png"
+      ]
+    },
+    {
+      "route": "/account/reset",
+      "file": "pages/account/reset.js",
+      "purpose": "Password reset: email link, or contact-shop info for phone accounts.",
+      "components": [
+        "AuthCard",
+        "identifier"
+      ],
+      "dataSource": "Firebase Auth sendPasswordResetEmail",
+      "states": [
+        "default",
+        "required error",
+        "sent (also shown for unknown emails)",
+        "phone account info",
+        "error"
+      ],
+      "screenshots": [
+        "screenshots/site-reset-default-1440-en.png",
+        "screenshots/site-reset-default-390-en.png"
+      ]
+    },
+    {
+      "route": "/account/change-password",
+      "file": "pages/account/change-password.js",
+      "purpose": "Set a new password (forced after staff temporary password).",
+      "components": [
+        "AccountLayout",
+        "new/confirm fields"
+      ],
+      "dataSource": "Firebase Auth updatePassword + POST /api/account/password-changed",
+      "states": [
+        "default",
+        "temporary-password warning",
+        "too short",
+        "mismatch",
+        "busy"
+      ],
+      "screenshots": [
+        "screenshots/site-account-change-password-default-1440-en.png",
+        "screenshots/site-account-change-password-default-390-en.png"
+      ]
+    },
+    {
+      "route": "/account",
+      "file": "pages/account/index.js",
+      "purpose": "Profile: name, login identifier (read-only), other contact, preferred language.",
+      "components": [
+        "AccountLayout (side nav, sign out)",
+        "verify-email banner",
+        "profile form"
+      ],
+      "dataSource": "profile from AuthContext; PUT /api/account/profile",
+      "states": [
+        "loading (auth)",
+        "guest -> redirect to login",
+        "default",
+        "name error",
+        "saved (also switches site language to the profile language)",
+        "verify email banner/sent/checking",
+        "phone account variant"
+      ],
+      "screenshots": [
+        "screenshots/site-account-profile-default-1440-en.png",
+        "screenshots/site-account-profile-default-390-en.png"
+      ]
+    },
+    {
+      "route": "/account/addresses",
+      "file": "pages/account/addresses.js",
+      "purpose": "Saved delivery addresses CRUD + default.",
+      "components": [
+        "AccountLayout",
+        "address cards",
+        "AddressFields form",
+        "inline delete confirm"
+      ],
+      "dataSource": "GET /api/account/profile; POST/PUT/DELETE /api/account/addresses",
+      "states": [
+        "loading",
+        "empty",
+        "with addresses",
+        "new/edit form",
+        "validation error",
+        "delete confirm",
+        "saved/deleted/default-set notices",
+        "busy"
+      ],
+      "screenshots": [
+        "screenshots/site-account-addresses-with-address-1440-en.png",
+        "screenshots/site-account-addresses-with-address-390-en.png"
+      ]
+    },
+    {
+      "route": "/account/orders",
+      "file": "pages/account/orders/index.js",
+      "purpose": "Order history list.",
+      "components": [
+        "AccountLayout",
+        "record cards (thumbs, total, StatusBadge, Rate pill)"
+      ],
+      "dataSource": "Firestore client read (lib/accountData listMine orders)",
+      "states": [
+        "loading",
+        "empty + browse CTA",
+        "list",
+        "error"
+      ],
+      "screenshots": [
+        "screenshots/site-account-orders-empty-1440-en.png",
+        "screenshots/site-account-orders-list-1440-en.png",
+        "screenshots/site-account-orders-list-390-en.png"
+      ]
+    },
+    {
+      "route": "/account/orders/[id]",
+      "file": "pages/account/orders/[id].js",
+      "purpose": "Order detail with items, totals, delivery info and status timeline.",
+      "components": [
+        "AccountLayout",
+        "order lines",
+        "totals",
+        "StatusTimeline",
+        "delivered rate prompt"
+      ],
+      "dataSource": "Firestore client read (getMine)",
+      "states": [
+        "loading",
+        "not found / not yours",
+        "in progress timeline",
+        "delivered + rate prompt",
+        "cancelled (stopped timeline)"
+      ],
+      "screenshots": [
+        "screenshots/site-account-order-detail-delivered-1440-en.png",
+        "screenshots/site-account-order-detail-delivered-390-en.png",
+        "screenshots/site-account-order-detail-in-progress-390-ar.png"
+      ]
+    },
+    {
+      "route": "/account/quotes",
+      "file": "pages/account/quotes/index.js",
+      "purpose": "Quote requests list.",
+      "components": [
+        "AccountLayout",
+        "record cards",
+        "New quote -> /#contact"
+      ],
+      "dataSource": "Firestore client read",
+      "states": [
+        "loading",
+        "empty",
+        "list",
+        "error"
+      ],
+      "screenshots": [
+        "screenshots/site-account-quotes-list-1440-en.png",
+        "screenshots/site-account-quotes-list-390-en.png"
+      ]
+    },
+    {
+      "route": "/account/quotes/[id]",
+      "file": "pages/account/quotes/[id].js",
+      "purpose": "Quote detail + timeline.",
+      "components": [
+        "AccountLayout",
+        "details dl",
+        "StatusTimeline"
+      ],
+      "dataSource": "Firestore client read",
+      "states": [
+        "loading",
+        "not found",
+        "detail with timeline (notes)"
+      ],
+      "screenshots": [
+        "screenshots/site-account-quote-detail-in-review-1440-en.png",
+        "screenshots/site-account-quote-detail-in-review-390-en.png"
+      ]
+    },
+    {
+      "route": "/account/reviews",
+      "file": "pages/account/reviews.js",
+      "purpose": "Products to review (from delivered orders) + my reviews.",
+      "components": [
+        "AccountLayout (nav badge)",
+        "to-review list",
+        "my reviews list",
+        "ReviewForm modal"
+      ],
+      "dataSource": "GET /api/reviews/mine; POST/DELETE /api/reviews",
+      "states": [
+        "loading",
+        "nothing to review",
+        "to review list (from-this-order first)",
+        "no reviews yet",
+        "my reviews (hidden badge)",
+        "form open / error / edit / delete confirm",
+        "notices"
+      ],
+      "screenshots": [
+        "screenshots/site-account-reviews-to-review-1440-en.png",
+        "screenshots/site-account-reviews-to-review-390-en.png"
+      ]
+    },
+    {
+      "route": "404 (Next default)",
+      "file": "(none: no pages/404.js)",
+      "purpose": "Unknown routes and unknown product ids (fallback:false) render the default Next.js 404.",
+      "components": [
+        "Next default 404 inside Layout"
+      ],
+      "dataSource": "n/a",
+      "states": [
+        "default"
+      ],
+      "screenshots": [
+        "screenshots/site-404-default-1440-en.png",
+        "screenshots/site-404-default-390-en.png"
+      ]
+    }
+  ],
+  "components": [
+    {
+      "name": "Layout (header + mobile menu + footer + back-to-top)",
+      "file": "components/Layout.js",
+      "variants": [
+        "nav-glass (scrollY<=40)",
+        "nav-solid (scrollY>40)",
+        "mobile menu open"
+      ],
+      "props": [
+        "children"
+      ],
+      "usedIn": [
+        "pages/_app.js (every page)"
+      ],
+      "duplicates": [
+        "Search box rendered twice (desktop #siteSearch :370 and mobile #siteSearchMobile :432) with different classes",
+        "Footer 'Back to top' button :544 duplicates floating #toTop :555",
+        "Footer quick links use bare '#home' anchors (:505-527) that only work on the home page; header uses resolveLinkHref('/#home')"
+      ]
+    },
+    {
+      "name": "Primary button (ui-btn--primary)",
+      "file": "styles/account.css:14-43",
+      "variants": [
+        "--primary",
+        "--secondary",
+        "--danger",
+        "--small",
+        "--block",
+        "google-btn"
+      ],
+      "props": [
+        "className composition only (no React component)"
+      ],
+      "usedIn": [
+        "pages/account/*",
+        "components/reviews/*",
+        "components/cart/CheckoutModal.js",
+        "components/account/AuthCard.js"
+      ],
+      "duplicates": [
+        ".cart-submit (styles/globals.css:505) same navy, different radius 0.75rem vs pill, used in CartWidget/CheckoutModal/category ProductCard",
+        "Tailwind 'px-6 py-3 rounded-xl bg-blue-900 ... hover:bg-blue-800' (#1e3a8a, not brand navy) at pages/index.js:520,600 and pages/search.js:120",
+        "Tailwind 'w-full rounded-2xl bg-blue-600 ...' at pages/products/[categorySlug]/[productId].js:219 (bright blue, no disabled style)",
+        "Hero CTAs pages/index.js:187,193 (white rounded-xl / outline)",
+        "Category reset 'px-3 py-2 rounded-lg border' pages/products/[categorySlug]/index.js:269",
+        "Gallery filter pills pages/gallery/index.js:140"
+      ]
+    },
+    {
+      "name": "Text link / link-button",
+      "file": "styles/account.css:74 (.ui-link)",
+      "variants": [
+        ".ui-link",
+        ".product-detail-btn",
+        ".product-readmore",
+        "text-blue-600 hover:underline",
+        "text-blue-700",
+        "hover:underline"
+      ],
+      "props": [],
+      "usedIn": [
+        "account pages",
+        ".product-detail-btn in category+search cards",
+        "detail page read-more"
+      ],
+      "duplicates": [
+        "5 link styles in 4 blues: --sea #0f3d72, #2563eb, #1d4ed8, #0f62fe"
+      ]
+    },
+    {
+      "name": "Text input / textarea",
+      "file": "styles/account.css:102-136 (.ui-field)",
+      "variants": [
+        ".ui-field input",
+        ".cart-form input (globals.css:488)",
+        "TW 'px-4 py-2 rounded-lg border focus:ring-2' (home quote form)",
+        "TW 'px-3 py-2 rounded-lg border' (category filters)",
+        "TW 'px-4 py-3 rounded-xl border-gray-200' (search page)",
+        "header search (TW, white opaque)"
+      ],
+      "props": [],
+      "usedIn": [
+        "account pages, AddressForm",
+        "CheckoutModal",
+        "pages/index.js:539-597",
+        "pages/products/[categorySlug]/index.js:252",
+        "pages/search.js:112",
+        "components/Layout.js:370,432"
+      ],
+      "duplicates": [
+        ".cart-form input and .ui-field input are byte-for-byte the same rules in two files",
+        "6 input looks overall; home quote form labels use text-gray-600 non-semibold, ui-field labels are 600 navy"
+      ]
+    },
+    {
+      "name": "Select",
+      "file": "styles/globals.css:598 (.variant-select)",
+      "variants": [
+        ".variant-select (custom chevron)",
+        ".ui-field select",
+        ".review-toolbar select (pill)",
+        "TW category filter selects",
+        "header language select"
+      ],
+      "props": [],
+      "usedIn": [
+        "category ProductCard",
+        "account pages",
+        "ProductReviews",
+        "category page",
+        "Layout"
+      ],
+      "duplicates": [
+        "5 select treatments; only .variant-select restyles the arrow, and its arrow uses background-position:right (not RTL-aware)"
+      ]
+    },
+    {
+      "name": "Language switcher",
+      "file": "components/Layout.js:400-409",
+      "variants": [
+        "native <select> EN/FR/AR"
+      ],
+      "props": [],
+      "usedIn": [
+        "header (desktop and mobile; not inside mobile menu)"
+      ],
+      "duplicates": [],
+      "notes": "No <label>/aria-label; intended translucent bg (bg-opacity-15) is not a TW2 class so it renders opaque white with black text inside the navy header."
+    },
+    {
+      "name": "Product card",
+      "file": "pages/products/[categorySlug]/index.js:17-148 (ProductCard, local)",
+      "variants": [
+        "in stock",
+        "out (product-out: grayscale+opacity)",
+        "on-order",
+        "with variants select",
+        "long description read-more"
+      ],
+      "props": [
+        "product",
+        "categorySlug",
+        "onAdd",
+        "rating"
+      ],
+      "usedIn": [
+        "pages/products/[categorySlug]/index.js"
+      ],
+      "duplicates": [
+        "pages/search.js:142-203 re-implements the card inline (h2 instead of h3, no variants, no add-to-cart, description not truncated, price uses .price instead of .product-price)",
+        "pages/products/index.js:43 category card reuses .product-card + conflicting TW (rounded-3xl, shadow, hover:-translate-y-1 all overridden by .product-card)"
+      ]
+    },
+    {
+      "name": "Generic card surfaces",
+      "file": "styles/account.css:6 (.ui-card)",
+      "variants": [
+        ".ui-card r1.25rem",
+        ".record-card r1.1rem",
+        ".address-card r1.1rem",
+        ".review-item r1.1rem",
+        ".product-card r1.2rem",
+        ".checkout-modal r1.25rem",
+        "TW rounded-2xl (1rem) home cards",
+        "TW rounded-3xl (1.5rem) gallery + detail panel"
+      ],
+      "props": [],
+      "usedIn": [
+        "account, reviews, checkout, home, gallery, detail"
+      ],
+      "duplicates": [
+        "8 card radii/shadow combos; border rgba(15,61,114,.08) is the only consistent piece"
+      ]
+    },
+    {
+      "name": "Badge / pill",
+      "file": "styles/account.css:195 (.ui-pill), :502 (.status-badge), :809 (.verified-badge); styles/globals.css:281 (.stock-badge), :276 (.tag)",
+      "variants": [
+        "status-badge --done/--stopped/--waiting/default",
+        "stock-badge --in/--out/--order",
+        "ui-pill",
+        "verified-badge",
+        "tag (usage chips)",
+        "gallery type badge (TW bg-white/80 - broken)",
+        "gallery tag chips (TW bg-blue-50 text-blue-800)",
+        "cart count chip (TW bg-white/15 - broken)",
+        "account-nav__badge",
+        "header avatar"
+      ],
+      "props": [
+        "StatusBadge {kind,status}"
+      ],
+      "usedIn": [
+        "account orders/quotes/reviews",
+        "product cards/detail/search",
+        "ProductReviews",
+        "gallery"
+      ],
+      "duplicates": [
+        "status-badge vs stock-badge encode the same green/red/orange semantics with different greens/oranges (#0f7a2e both; orange #c2410c vs #f97316) and paddings (0.25/0.7 vs 0.25/0.6) and weights (700 vs 600)",
+        "gallery tag chips vs .tag chips"
+      ]
+    },
+    {
+      "name": "Alert / notice",
+      "file": "styles/account.css:153-182 (.ui-alert)",
+      "variants": [
+        "--error",
+        "--success",
+        "--info",
+        "--warning"
+      ],
+      "props": [],
+      "usedIn": [
+        "account pages",
+        "ProductReviews",
+        "ReviewForm",
+        "CheckoutModal sign-in prompt"
+      ],
+      "duplicates": [
+        ".quote-status success/error (globals.css:40) on the home form",
+        ".cart-alert error/success (globals.css:670) plain text",
+        ".cart-onorder-popup (globals.css:684) == ui-alert--warning colours"
+      ]
+    },
+    {
+      "name": "Modal",
+      "file": "components/cart/CheckoutModal.js:193 / components/reviews/ReviewForm.js:64",
+      "variants": [
+        ".checkout-modal-overlay + .checkout-modal (z110, slate .65 overlay, no blur, no max-height)",
+        ".modal-overlay + .ui-card.modal-card (z90, navy .45 overlay, blur, max-height 90vh)"
+      ],
+      "props": [
+        "CheckoutModal {onClose,onOrderPlaced,onGoHome}",
+        "ReviewForm {productId,productTitle,existing,onClose,onSaved,onDeleted}"
+      ],
+      "usedIn": [
+        "CartWidget",
+        "ProductReviews"
+      ],
+      "duplicates": [
+        "Two overlay/modal implementations; only ReviewForm closes on Escape; neither traps focus or restores focus; titles are h3 (checkout) vs h2 (review)"
+      ]
+    },
+    {
+      "name": "Cart drawer + FAB",
+      "file": "components/cart/CartWidget.js",
+      "variants": [
+        "open/closed",
+        "empty",
+        "on-order notice"
+      ],
+      "props": [],
+      "usedIn": [
+        "pages/products/index.js",
+        "pages/products/[categorySlug]/index.js",
+        "pages/products/[categorySlug]/[productId].js (not on home, search, gallery, account)"
+      ],
+      "duplicates": [
+        "Close × button styled with TW here, .checkout-modal-close elsewhere, .cart-onorder-close for notice"
+      ],
+      "notes": "Drawer is right:0 + translateX(100%) in RTL too; FAB overlaps #toTop at same bottom-right spot."
+    },
+    {
+      "name": "Quantity stepper",
+      "file": "components/cart/CartWidget.js:132-165 (.cart-qty)",
+      "variants": [],
+      "props": [],
+      "usedIn": [
+        "CartWidget"
+      ],
+      "duplicates": [],
+      "notes": "Remove button sits inside the stepper pill with ml-3 (not logical)."
+    },
+    {
+      "name": "Stars / CardRating / StarInput",
+      "file": "components/reviews/Stars.js",
+      "variants": [
+        "Stars size sm/md/lg",
+        "CardRating (renders null without reviews)",
+        "StarInput radiogroup"
+      ],
+      "props": [
+        "Stars {value,size,label}",
+        "CardRating {stats}",
+        "StarInput {value,onChange}"
+      ],
+      "usedIn": [
+        "category, search, detail, ProductReviews, ReviewForm"
+      ],
+      "duplicates": []
+    },
+    {
+      "name": "Rating summary + bars",
+      "file": "components/reviews/ProductReviews.js:12-43",
+      "variants": [],
+      "props": [
+        "stats"
+      ],
+      "usedIn": [
+        "ProductReviews"
+      ],
+      "duplicates": []
+    },
+    {
+      "name": "Status timeline",
+      "file": "components/account/Status.js:49-88 (StatusTimeline)",
+      "variants": [
+        "done",
+        "current",
+        "stopped",
+        "todo"
+      ],
+      "props": [
+        "kind",
+        "doc"
+      ],
+      "usedIn": [
+        "pages/account/orders/[id].js",
+        "pages/account/quotes/[id].js"
+      ],
+      "duplicates": [
+        "Home 'process' timeline pages/index.js:393-413 is a separate ad-hoc timeline: border-l-2 + absolute -left-3 dots with inline rgba(15,32,80,x) colours (not brand navy, not RTL-mirrored)"
+      ]
+    },
+    {
+      "name": "Breadcrumb",
+      "file": "(none - inline)",
+      "variants": [
+        "pages/products/[categorySlug]/index.js:230 <nav id=breadcrumb>",
+        "pages/products/[categorySlug]/[productId].js:84 <div> (not a nav)"
+      ],
+      "props": [],
+      "usedIn": [
+        "category, detail"
+      ],
+      "duplicates": [
+        "two markups; dead .detail-breadcrumb/.detail-crumb CSS is a third design"
+      ]
+    },
+    {
+      "name": "Tabs / segmented filters",
+      "file": "(none - inline)",
+      "variants": [
+        "gallery filter pills pages/gallery/index.js:140",
+        "account-nav (styles/account.css:309)",
+        "dead .admin-tabs (account.css:862)"
+      ],
+      "props": [],
+      "usedIn": [
+        "gallery",
+        "AccountLayout"
+      ],
+      "duplicates": [
+        "gallery pills and account-nav both pill navs with navy active state, built separately"
+      ]
+    },
+    {
+      "name": "Account shell",
+      "file": "components/account/AccountLayout.js",
+      "variants": [
+        "loading",
+        "signed-in"
+      ],
+      "props": [
+        "title",
+        "eyebrow",
+        "actions",
+        "badges",
+        "children"
+      ],
+      "usedIn": [
+        "pages/account/index.js",
+        "addresses.js",
+        "change-password.js",
+        "orders/index.js",
+        "orders/[id].js",
+        "quotes/index.js",
+        "quotes/[id].js",
+        "reviews.js"
+      ],
+      "duplicates": []
+    },
+    {
+      "name": "AuthCard / GoogleButton",
+      "file": "components/account/AuthCard.js",
+      "variants": [],
+      "props": [
+        "AuthCard {title,subtitle,children}",
+        "GoogleButton {onSignedIn,onError}"
+      ],
+      "usedIn": [
+        "pages/account/login.js",
+        "signup.js",
+        "reset.js"
+      ],
+      "duplicates": []
+    },
+    {
+      "name": "AddressFields",
+      "file": "components/account/AddressForm.js",
+      "variants": [
+        "showLabel true/false"
+      ],
+      "props": [
+        "value",
+        "onChange",
+        "showLabel"
+      ],
+      "usedIn": [
+        "pages/account/addresses.js",
+        "components/cart/CheckoutModal.js"
+      ],
+      "duplicates": [
+        "Guest checkout fields CheckoutModal.js:108-131 are a different, flatter address form (single textarea)"
+      ]
+    },
+    {
+      "name": "Search suggestions dropdown",
+      "file": "components/Layout.js:243-273",
+      "variants": [],
+      "props": [],
+      "usedIn": [
+        "header desktop + mobile"
+      ],
+      "duplicates": [
+        "text-left hard-coded (:261) and .search-suggestion text-align:left / margin-right on img (globals.css:82,94) - not RTL-aware"
+      ]
+    },
+    {
+      "name": "Products mega-dropdown",
+      "file": "components/Layout.js:320-349",
+      "variants": [
+        "hover open/closed"
+      ],
+      "props": [],
+      "usedIn": [
+        "header desktop"
+      ],
+      "duplicates": [],
+      "notes": "Hover-only (onMouseEnter), no keyboard/focus open; -translate-y-1 is a no-op without TW2 'transform' class."
+    },
+    {
+      "name": "FAQ accordion",
+      "file": "pages/index.js:467-488",
+      "variants": [
+        "open/closed"
+      ],
+      "props": [],
+      "usedIn": [
+        "home"
+      ],
+      "duplicates": [],
+      "notes": "Clickable <div> (not button), no aria-expanded; '+'/'−' glyph icon; 'transition' class has no effect (display toggled)."
+    },
+    {
+      "name": "Gallery card",
+      "file": "pages/gallery/index.js:39-104 (GalleryCard)",
+      "variants": [
+        "image",
+        "video (YouTube iframe)",
+        "video fallback link"
+      ],
+      "props": [
+        "entry"
+      ],
+      "usedIn": [
+        "pages/gallery/index.js"
+      ],
+      "duplicates": []
+    },
+    {
+      "name": "Price formatter (logic)",
+      "file": "lib/constants.js formatPrice",
+      "variants": [],
+      "props": [],
+      "usedIn": [
+        "category, detail, cart"
+      ],
+      "duplicates": [
+        "pages/search.js:22-32 own formatPrice",
+        "components/Layout.js:53 formatCurrency"
+      ]
+    }
+  ],
+  "designTokens": {
+    "colors": [
+      {
+        "value": "#fff",
+        "count": 28,
+        "usedIn": [
+          "styles/globals.css:70",
+          "styles/globals.css:327",
+          "styles/globals.css:366",
+          "styles/globals.css:507",
+          "styles/globals.css:531",
+          "styles/globals.css:605",
+          "styles/globals.css:641",
+          "styles/globals.css:731",
+          "styles/globals.css:787",
+          "styles/globals.css:847",
+          "styles/globals.css:855",
+          "styles/account.css:7",
+          "styles/account.css:37",
+          "styles/account.css:46",
+          "styles/account.css:56",
+          "styles/account.css:120",
+          "styles/account.css:247",
+          "styles/account.css:271",
+          "styles/account.css:350",
+          "styles/account.css:364",
+          "styles/account.css:406",
+          "styles/account.css:439",
+          "styles/account.css:452",
+          "styles/account.css:572",
+          "styles/account.css:778",
+          "styles/account.css:834",
+          "styles/account.css:874",
+          "styles/account.css:881"
+        ],
+        "role": "surface/white text"
+      },
+      {
+        "value": "#0f172a",
+        "count": 14,
+        "usedIn": [
+          "styles/globals.css:19",
+          "styles/globals.css:46",
+          "styles/globals.css:85",
+          "styles/globals.css:409",
+          "styles/globals.css:640",
+          "styles/globals.css:642",
+          "styles/account.css:119",
+          "styles/account.css:242",
+          "styles/account.css:379",
+          "styles/account.css:422",
+          "styles/account.css:598",
+          "styles/account.css:646",
+          "styles/account.css:739",
+          "styles/account.css:791"
+        ],
+        "role": "body text (slate-900)"
+      },
+      {
+        "value": "#64748b",
+        "count": 8,
+        "usedIn": [
+          "styles/account.css:140",
+          "styles/account.css:185",
+          "styles/account.css:192",
+          "styles/account.css:386",
+          "styles/account.css:427",
+          "styles/account.css:609",
+          "styles/account.css:691",
+          "styles/account.css:907"
+        ],
+        "role": "muted text (slate-500)"
+      },
+      {
+        "value": "rgba(15,61,114,0.08)",
+        "count": 7,
+        "usedIn": [
+          "styles/globals.css:398",
+          "styles/globals.css:533",
+          "styles/globals.css:853",
+          "styles/account.css:9",
+          "styles/account.css:408",
+          "styles/account.css:779",
+          "styles/account.css:898"
+        ],
+        "role": "sea-tinted border/shadow alpha"
+      },
+      {
+        "value": "#f8fafc",
+        "count": 6,
+        "usedIn": [
+          "styles/globals.css:6",
+          "styles/globals.css:244",
+          "styles/globals.css:630",
+          "styles/globals.css:823",
+          "styles/globals.css:833",
+          "styles/account.css:253"
+        ],
+        "role": "page bg --sand / chip bg"
+      },
+      {
+        "value": "rgba(11,32,80,0.18)",
+        "count": 6,
+        "usedIn": [
+          "styles/globals.css:372",
+          "styles/globals.css:490",
+          "styles/account.css:113",
+          "styles/account.css:830",
+          "styles/account.css:873",
+          "styles/account.css:912"
+        ],
+        "role": "navy alpha (border/overlay/shadow)"
+      },
+      {
+        "value": "rgba(15,61,114,0.12)",
+        "count": 6,
+        "usedIn": [
+          "styles/globals.css:384",
+          "styles/globals.css:464",
+          "styles/globals.css:475",
+          "styles/account.css:223",
+          "styles/account.css:554",
+          "styles/account.css:647"
+        ],
+        "role": "sea-tinted border/shadow alpha"
+      },
+      {
+        "value": "#0b2050",
+        "count": 5,
+        "usedIn": [
+          "styles/globals.css:2",
+          "styles/globals.css:273",
+          "styles/globals.css:422",
+          "styles/globals.css:454",
+          "styles/globals.css:485"
+        ],
+        "role": "brand --deep-navy (primary)"
+      },
+      {
+        "value": "#f3f4f6",
+        "count": 5,
+        "usedIn": [
+          "styles/globals.css:267",
+          "styles/globals.css:417",
+          "styles/account.css:134",
+          "styles/account.css:440",
+          "styles/account.css:629"
+        ],
+        "role": "image placeholder bg"
+      },
+      {
+        "value": "#334155",
+        "count": 5,
+        "usedIn": [
+          "styles/account.css:149",
+          "styles/account.css:334",
+          "styles/account.css:484",
+          "styles/account.css:636",
+          "styles/account.css:801"
+        ],
+        "role": "secondary text (slate-700)"
+      },
+      {
+        "value": "#b91c1c",
+        "count": 4,
+        "usedIn": [
+          "styles/globals.css:56",
+          "styles/account.css:57",
+          "styles/account.css:162",
+          "styles/account.css:523"
+        ],
+        "role": "error text"
+      },
+      {
+        "value": "#0f7a2e",
+        "count": 4,
+        "usedIn": [
+          "styles/globals.css:293",
+          "styles/globals.css:681",
+          "styles/account.css:517",
+          "styles/account.css:815"
+        ],
+        "role": "success/in-stock"
+      },
+      {
+        "value": "#d72638",
+        "count": 4,
+        "usedIn": [
+          "styles/globals.css:299",
+          "styles/globals.css:677",
+          "styles/account.css:592",
+          "styles/account.css:593"
+        ],
+        "role": "danger/out-of-stock"
+      },
+      {
+        "value": "#94a3b8",
+        "count": 4,
+        "usedIn": [
+          "styles/account.css:212",
+          "styles/account.css:602",
+          "styles/account.css:796",
+          "styles/account.css:839"
+        ],
+        "role": "faint text (slate-400) - fails AA"
+      },
+      {
+        "value": "#0f3d72",
+        "count": 3,
+        "usedIn": [
+          "styles/globals.css:3",
+          "styles/globals.css:228",
+          "styles/globals.css:278"
+        ],
+        "role": "brand --sea (hover/link)"
+      },
+      {
+        "value": "rgba(15,23,42,0.15)",
+        "count": 3,
+        "usedIn": [
+          "styles/globals.css:73",
+          "styles/globals.css:74",
+          "styles/globals.css:780"
+        ],
+        "role": "slate alpha (shadow/overlay)"
+      },
+      {
+        "value": "rgba(11,32,80,0.35)",
+        "count": 3,
+        "usedIn": [
+          "styles/globals.css:198",
+          "styles/globals.css:330",
+          "styles/globals.css:343"
+        ],
+        "role": "navy alpha (border/overlay/shadow)"
+      },
+      {
+        "value": "rgba(15,61,114,0.15)",
+        "count": 3,
+        "usedIn": [
+          "styles/globals.css:538",
+          "styles/account.css:175",
+          "styles/account.css:512"
+        ],
+        "role": "sea-tinted border/shadow alpha"
+      },
+      {
+        "value": "#475569",
+        "count": 3,
+        "usedIn": [
+          "styles/globals.css:543",
+          "styles/account.css:135",
+          "styles/account.css:754"
+        ],
+        "role": "secondary text (slate-600)"
+      },
+      {
+        "value": "#fff7ed",
+        "count": 3,
+        "usedIn": [
+          "styles/globals.css:689",
+          "styles/account.css:179",
+          "styles/account.css:528"
+        ],
+        "role": "warning bg"
+      },
+      {
+        "value": "#92400e",
+        "count": 3,
+        "usedIn": [
+          "styles/globals.css:690",
+          "styles/globals.css:715",
+          "styles/account.css:180"
+        ],
+        "role": "warning text"
+      },
+      {
+        "value": "#f59e0b",
+        "count": 3,
+        "usedIn": [
+          "styles/account.css:671",
+          "styles/account.css:712",
+          "styles/account.css:767"
+        ],
+        "role": "stars/rating"
+      },
+      {
+        "value": "rgba(15,23,42,0.05)",
+        "count": 2,
+        "usedIn": [
+          "styles/globals.css:45",
+          "styles/account.css:409"
+        ],
+        "role": "slate alpha (shadow/overlay)"
+      },
+      {
+        "value": "#047857",
+        "count": 2,
+        "usedIn": [
+          "styles/globals.css:51",
+          "styles/account.css:168"
+        ],
+        "role": "success text (quote-status, ui-alert)"
+      },
+      {
+        "value": "rgba(11,32,80,0.85)",
+        "count": 2,
+        "usedIn": [
+          "styles/globals.css:61",
+          "styles/globals.css:108"
+        ],
+        "role": "navy alpha (border/overlay/shadow)"
+      },
+      {
+        "value": "rgba(15,23,42,0.06)",
+        "count": 2,
+        "usedIn": [
+          "styles/globals.css:98",
+          "styles/account.css:10"
+        ],
+        "role": "slate alpha (shadow/overlay)"
+      },
+      {
+        "value": "rgba(11,32,80,0.4)",
+        "count": 2,
+        "usedIn": [
+          "styles/globals.css:108",
+          "styles/globals.css:337"
+        ],
+        "role": "navy alpha (border/overlay/shadow)"
+      },
+      {
+        "value": "#e2e8f0",
+        "count": 2,
+        "usedIn": [
+          "styles/globals.css:205",
+          "styles/account.css:760"
+        ],
+        "role": "placeholder/track bg"
+      },
+      {
+        "value": "rgba(15,61,114,0.1)",
+        "count": 2,
+        "usedIn": [
+          "styles/globals.css:223",
+          "styles/account.css:454"
+        ],
+        "role": "sea-tinted border/shadow alpha"
+      },
+      {
+        "value": "rgba(11,32,80,0.15)",
+        "count": 2,
+        "usedIn": [
+          "styles/globals.css:429",
+          "styles/account.css:480"
+        ],
+        "role": "navy alpha (border/overlay/shadow)"
+      },
+      {
+        "value": "rgba(36,180,255,0.2)",
+        "count": 2,
+        "usedIn": [
+          "styles/globals.css:502",
+          "styles/account.css:130"
+        ],
+        "role": "accent alpha (focus ring, tag bg, hero glow)"
+      },
+      {
+        "value": "#2563eb",
+        "count": 2,
+        "usedIn": [
+          "styles/globals.css:555",
+          "styles/globals.css:584"
+        ],
+        "role": "link blue (product card)"
+      },
+      {
+        "value": "#0b1f3a",
+        "count": 2,
+        "usedIn": [
+          "styles/globals.css:606",
+          "styles/globals.css:834"
+        ],
+        "role": "select/variant text (near-navy one-off)"
+      },
+      {
+        "value": "rgba(15,61,114,0.2)",
+        "count": 2,
+        "usedIn": [
+          "styles/globals.css:627",
+          "styles/globals.css:832"
+        ],
+        "role": "sea-tinted border/shadow alpha"
+      },
+      {
+        "value": "#1f2937",
+        "count": 2,
+        "usedIn": [
+          "styles/globals.css:759",
+          "styles/account.css:248"
+        ],
+        "role": "close icon / google btn text"
+      },
+      {
+        "value": "rgba(11,32,80,0.2)",
+        "count": 2,
+        "usedIn": [
+          "styles/account.css:48",
+          "styles/account.css:249"
+        ],
+        "role": "navy alpha (border/overlay/shadow)"
+      },
+      {
+        "value": "rgba(239,68,68,0.08)",
+        "count": 2,
+        "usedIn": [
+          "styles/account.css:62",
+          "styles/account.css:161"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "#cbd5e1",
+        "count": 2,
+        "usedIn": [
+          "styles/account.css:664",
+          "styles/account.css:706"
+        ],
+        "role": "empty star"
+      },
+      {
+        "value": "#e6f0ff",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:4"
+        ],
+        "role": "brand --sky (tint bg)"
+      },
+      {
+        "value": "#24b4ff",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:5"
+        ],
+        "role": "brand --accent (focus, current step, avatar)"
+      },
+      {
+        "value": "rgba(16,185,129,0.15)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:50"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(239,68,68,0.15)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:55"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(255,255,255,0.1)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:62"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(5,20,64,0.98)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:102"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(11,32,80,0.7)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:103"
+        ],
+        "role": "navy alpha (border/overlay/shadow)"
+      },
+      {
+        "value": "rgba(36,180,255,0.35)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:107"
+        ],
+        "role": "accent alpha (focus ring, tag bg, hero glow)"
+      },
+      {
+        "value": "rgba(36,180,255,0)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:107"
+        ],
+        "role": "accent alpha (focus ring, tag bg, hero glow)"
+      },
+      {
+        "value": "rgba(0,0,0,0.15)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:147"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(11,32,80,0.1)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:180"
+        ],
+        "role": "navy alpha (border/overlay/shadow)"
+      },
+      {
+        "value": "rgba(11,32,80,0.55)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:198"
+        ],
+        "role": "navy alpha (border/overlay/shadow)"
+      },
+      {
+        "value": "#051836",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:243"
+        ],
+        "role": "footer gradient start"
+      },
+      {
+        "value": "#030b1d",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:243"
+        ],
+        "role": "footer gradient end"
+      },
+      {
+        "value": "rgba(255,255,255,0.08)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:245"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(36,180,255,0.12)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:277"
+        ],
+        "role": "accent alpha (focus ring, tag bg, hero glow)"
+      },
+      {
+        "value": "rgba(15,122,46,0.12)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:292"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(15,122,46,0.22)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:294"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(215,38,56,0.12)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:298"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(215,38,56,0.2)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:300"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(240,145,1,0.15)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:304"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "#f97316",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:305"
+        ],
+        "role": "on-order badge text - fails AA"
+      },
+      {
+        "value": "rgba(252,165,79,0.6)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:306"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "#0f62fe",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:562"
+        ],
+        "role": "datasheet link (IBM blue one-off)"
+      },
+      {
+        "value": "rgba(15,32,80,0.25)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:600"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "#1d4ed8",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:661"
+        ],
+        "role": "datasheet link detail"
+      },
+      {
+        "value": "rgba(245,158,11,0.5)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:688"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(15,23,42,0.65)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:723"
+        ],
+        "role": "slate alpha (shadow/overlay)"
+      },
+      {
+        "value": "rgba(15,23,42,0.35)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:735"
+        ],
+        "role": "slate alpha (shadow/overlay)"
+      },
+      {
+        "value": "#6b7280",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:776"
+        ],
+        "role": "empty-cart text"
+      },
+      {
+        "value": "#0f1f4e",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:784"
+        ],
+        "role": "dead detail-breadcrumb gradient"
+      },
+      {
+        "value": "rgba(185,28,28,0.3)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:58"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(239,68,68,0.25)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:163"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(16,185,129,0.08)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:167"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(16,185,129,0.25)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:169"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(245,158,11,0.4)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:181"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(255,255,255,0.35)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:267"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(255,255,255,0.12)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:277"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(15,23,42,0.1)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:416"
+        ],
+        "role": "slate alpha (shadow/overlay)"
+      },
+      {
+        "value": "rgba(15,122,46,0.1)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:516"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(15,122,46,0.25)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:518"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(215,38,56,0.08)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:522"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(215,38,56,0.25)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:524"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "#c2410c",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:529"
+        ],
+        "role": "status waiting text"
+      },
+      {
+        "value": "rgba(249,115,22,0.35)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:530"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(15,61,114,0.25)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:573"
+        ],
+        "role": "sea-tinted border/shadow alpha"
+      },
+      {
+        "value": "rgba(36,180,255,0.25)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:588"
+        ],
+        "role": "accent alpha (focus ring, tag bg, hero glow)"
+      },
+      {
+        "value": "rgba(15,122,46,0.08)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:816"
+        ],
+        "role": "one-off"
+      },
+      {
+        "value": "rgba(11,32,80,0.45)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:846"
+        ],
+        "role": "navy alpha (border/overlay/shadow)"
+      },
+      {
+        "value": "rgba(11,32,80,0.92)",
+        "count": 1,
+        "usedIn": [
+          "components/Layout.js:424"
+        ],
+        "role": "navy alpha (border/overlay/shadow)"
+      },
+      {
+        "value": "tw:text-gray-900 (#111827)",
+        "count": 38,
+        "usedIn": [
+          "pages/account/addresses.js",
+          "pages/account/orders/[id].js",
+          "pages/account/orders/index.js",
+          "pages/account/quotes/[id].js",
+          "pages/account/reviews.js",
+          "pages/gallery/index.js",
+          "pages/index.js",
+          "pages/products/[categorySlug]/[productId].js",
+          "pages/products/[categorySlug]/index.js",
+          "pages/products/index.js",
+          "pages/search.js",
+          "components/Layout.js",
+          "components/cart/CartWidget.js",
+          "components/cart/CheckoutModal.js",
+          "components/reviews/ProductReviews.js",
+          "components/reviews/ReviewForm.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:text-gray-600 (#4b5563)",
+        "count": 24,
+        "usedIn": [
+          "pages/gallery/index.js",
+          "pages/index.js",
+          "pages/products/[categorySlug]/[productId].js",
+          "pages/products/index.js",
+          "pages/search.js",
+          "components/cart/CheckoutModal.js",
+          "components/reviews/ProductReviews.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:text-gray-500 (#6b7280)",
+        "count": 22,
+        "usedIn": [
+          "pages/account/addresses.js",
+          "pages/account/orders/[id].js",
+          "pages/gallery/index.js",
+          "pages/index.js",
+          "pages/products/[categorySlug]/[productId].js",
+          "pages/products/[categorySlug]/index.js",
+          "pages/products/index.js",
+          "pages/search.js",
+          "components/Layout.js",
+          "components/cart/CartWidget.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:bg-white (#ffffff)",
+        "count": 20,
+        "usedIn": [
+          "pages/gallery/index.js",
+          "pages/index.js",
+          "pages/products/[categorySlug]/[productId].js",
+          "pages/products/index.js",
+          "components/Layout.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:text-white (#ffffff)",
+        "count": 14,
+        "usedIn": [
+          "pages/gallery/index.js",
+          "pages/index.js",
+          "pages/products/[categorySlug]/[productId].js",
+          "pages/search.js",
+          "components/Layout.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:text-gray-700 (#374151)",
+        "count": 13,
+        "usedIn": [
+          "pages/account/addresses.js",
+          "pages/account/orders/[id].js",
+          "pages/index.js",
+          "pages/products/[categorySlug]/[productId].js",
+          "pages/products/[categorySlug]/index.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:text-blue-900 (#1e3a8a)",
+        "count": 12,
+        "usedIn": [
+          "pages/gallery/index.js",
+          "pages/index.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:focus:ring-blue-200 (#bfdbfe)",
+        "count": 12,
+        "usedIn": [
+          "pages/index.js",
+          "pages/products/[categorySlug]/index.js",
+          "pages/search.js",
+          "components/Layout.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:bg-blue-900 (#1e3a8a)",
+        "count": 5,
+        "usedIn": [
+          "pages/gallery/index.js",
+          "pages/index.js",
+          "pages/search.js",
+          "components/Layout.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:border-white (#ffffff)",
+        "count": 4,
+        "usedIn": [
+          "pages/index.js",
+          "components/Layout.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:bg-gray-50 (#f9fafb)",
+        "count": 4,
+        "usedIn": [
+          "pages/index.js",
+          "pages/products/[categorySlug]/[productId].js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:text-blue-700 (#1d4ed8)",
+        "count": 4,
+        "usedIn": [
+          "pages/index.js",
+          "pages/products/index.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:hover:text-blue-200 (#bfdbfe)",
+        "count": 4,
+        "usedIn": [
+          "components/Layout.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:text-blue-100 (#dbeafe)",
+        "count": 3,
+        "usedIn": [
+          "pages/index.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:hover:bg-blue-800 (#1e40af)",
+        "count": 3,
+        "usedIn": [
+          "pages/index.js",
+          "pages/search.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:border-blue-900 (#1e3a8a)",
+        "count": 2,
+        "usedIn": [
+          "pages/gallery/index.js",
+          "components/Layout.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:border-gray-200 (#e5e7eb)",
+        "count": 2,
+        "usedIn": [
+          "pages/products/[categorySlug]/[productId].js",
+          "pages/search.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:hover:bg-gray-100 (#f3f4f6)",
+        "count": 2,
+        "usedIn": [
+          "pages/products/[categorySlug]/index.js",
+          "components/Layout.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:text-black (#000000)",
+        "count": 2,
+        "usedIn": [
+          "components/Layout.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:text-gray-800 (#1f2937)",
+        "count": 1,
+        "usedIn": [
+          "pages/account/orders/[id].js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:bg-blue-50 (#eff6ff)",
+        "count": 1,
+        "usedIn": [
+          "pages/gallery/index.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:text-blue-800 (#1e40af)",
+        "count": 1,
+        "usedIn": [
+          "pages/gallery/index.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:border-blue-200 (#bfdbfe)",
+        "count": 1,
+        "usedIn": [
+          "pages/gallery/index.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:bg-blue-300 (#93c5fd)",
+        "count": 1,
+        "usedIn": [
+          "pages/index.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:bg-transparent",
+        "count": 1,
+        "usedIn": [
+          "pages/index.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:hover:bg-white (#ffffff)",
+        "count": 1,
+        "usedIn": [
+          "pages/index.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:hover:text-blue-900 (#1e3a8a)",
+        "count": 1,
+        "usedIn": [
+          "pages/index.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:from-blue-50 (#eff6ff)",
+        "count": 1,
+        "usedIn": [
+          "pages/index.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:to-blue-100 (#dbeafe)",
+        "count": 1,
+        "usedIn": [
+          "pages/index.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:from-white (#ffffff)",
+        "count": 1,
+        "usedIn": [
+          "pages/index.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:to-blue-50 (#eff6ff)",
+        "count": 1,
+        "usedIn": [
+          "pages/index.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:border-blue-100 (#dbeafe)",
+        "count": 1,
+        "usedIn": [
+          "pages/index.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:border-gray-100 (#f3f4f6)",
+        "count": 1,
+        "usedIn": [
+          "pages/products/[categorySlug]/[productId].js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:border-blue-500 (#3b82f6)",
+        "count": 1,
+        "usedIn": [
+          "pages/products/[categorySlug]/[productId].js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:text-blue-600 (#2563eb)",
+        "count": 1,
+        "usedIn": [
+          "pages/products/[categorySlug]/[productId].js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:bg-blue-600 (#2563eb)",
+        "count": 1,
+        "usedIn": [
+          "pages/products/[categorySlug]/[productId].js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:hover:bg-blue-700 (#1d4ed8)",
+        "count": 1,
+        "usedIn": [
+          "pages/products/[categorySlug]/[productId].js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:bg-blue-100 (#dbeafe)",
+        "count": 1,
+        "usedIn": [
+          "pages/products/index.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:ring-white (#ffffff)",
+        "count": 1,
+        "usedIn": [
+          "components/Layout.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:divide-gray-100 (#f3f4f6)",
+        "count": 1,
+        "usedIn": [
+          "components/Layout.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:placeholder-black (#000000)",
+        "count": 1,
+        "usedIn": [
+          "components/Layout.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:placeholder-gray-500 (#6b7280)",
+        "count": 1,
+        "usedIn": [
+          "components/Layout.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:text-blue-200 (#bfdbfe)",
+        "count": 1,
+        "usedIn": [
+          "components/Layout.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:hover:text-white (#ffffff)",
+        "count": 1,
+        "usedIn": [
+          "components/Layout.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:hover:text-gray-800 (#1f2937)",
+        "count": 1,
+        "usedIn": [
+          "components/cart/CartWidget.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:text-red-500 (#ef4444)",
+        "count": 1,
+        "usedIn": [
+          "components/cart/CartWidget.js"
+        ],
+        "role": "tailwind class"
+      },
+      {
+        "value": "tw:text-orange-400 (NOT IN TW2 BUILD - no-op)",
+        "count": 1,
+        "usedIn": [
+          "pages/products/[categorySlug]/[productId].js"
+        ],
+        "role": "tailwind class"
+      }
+    ],
+    "fontFamilies": [
+      {
+        "value": "'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif",
+        "loadedVia": "Google Fonts <link> in next/head (pages/_app.js:23-26), weights 400/500/600/700/800, latin subset only; Arabic falls back to system font",
+        "usedIn": [
+          "styles/globals.css:16"
+        ]
+      }
+    ],
+    "fontSizes": [
+      {
+        "value": "tw:text-sm",
+        "count": 52
+      },
+      {
+        "value": "tw:text-xs",
+        "count": 17
+      },
+      {
+        "value": "tw:text-lg",
+        "count": 15
+      },
+      {
+        "value": "tw:text-3xl",
+        "count": 11
+      },
+      {
+        "value": "tw:sm:text-4xl",
+        "count": 9
+      },
+      {
+        "value": "tw:text-4xl",
+        "count": 3
+      },
+      {
+        "value": "tw:text-xl",
+        "count": 2
+      },
+      {
+        "value": "tw:text-2xl",
+        "count": 2
+      },
+      {
+        "value": "tw:sm:text-5xl",
+        "count": 1
+      },
+      {
+        "value": "tw:lg:text-6xl",
+        "count": 1
+      },
+      {
+        "value": "tw:sm:text-xl",
+        "count": 1
+      },
+      {
+        "value": "tw:text-base",
+        "count": 1
+      },
+      {
+        "value": "0.95rem",
+        "count": 4,
+        "usedIn": [
+          "styles/globals.css:41",
+          "styles/globals.css:493",
+          "styles/globals.css:603",
+          "styles/account.css:116"
+        ]
+      },
+      {
+        "value": "0.9rem",
+        "count": 3,
+        "usedIn": [
+          "styles/globals.css:84",
+          "styles/account.css:332",
+          "styles/account.css:635"
+        ]
+      },
+      {
+        "value": "0.75rem",
+        "count": 8,
+        "usedIn": [
+          "styles/globals.css:287",
+          "styles/globals.css:560",
+          "styles/globals.css:646",
+          "styles/account.css:201",
+          "styles/account.css:289",
+          "styles/account.css:383",
+          "styles/account.css:507",
+          "styles/account.css:838"
+        ]
+      },
+      {
+        "value": "1.05rem",
+        "count": 2,
+        "usedIn": [
+          "styles/globals.css:357",
+          "styles/globals.css:652"
+        ]
+      },
+      {
+        "value": "0.85rem",
+        "count": 13,
+        "usedIn": [
+          "styles/globals.css:407",
+          "styles/globals.css:483",
+          "styles/globals.css:583",
+          "styles/globals.css:632",
+          "styles/globals.css:660",
+          "styles/globals.css:672",
+          "styles/globals.css:836",
+          "styles/account.css:105",
+          "styles/account.css:269",
+          "styles/account.css:426",
+          "styles/account.css:675",
+          "styles/account.css:833",
+          "styles/account.css:915"
+        ]
+      },
+      {
+        "value": "1rem",
+        "count": 2,
+        "usedIn": [
+          "styles/globals.css:458",
+          "styles/globals.css:712"
+        ]
+      },
+      {
+        "value": "0.8rem",
+        "count": 3,
+        "usedIn": [
+          "styles/globals.css:553",
+          "styles/account.css:213",
+          "styles/account.css:795"
+        ]
+      },
+      {
+        "value": "0.88rem",
+        "count": 6,
+        "usedIn": [
+          "styles/globals.css:700",
+          "styles/account.css:148",
+          "styles/account.css:156",
+          "styles/account.css:186",
+          "styles/account.css:482",
+          "styles/account.css:872"
+        ]
+      },
+      {
+        "value": "0.82rem",
+        "count": 4,
+        "usedIn": [
+          "styles/globals.css:705",
+          "styles/account.css:67",
+          "styles/account.css:608",
+          "styles/account.css:753"
+        ]
+      },
+      {
+        "value": "1.25rem",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:750"
+        ]
+      },
+      {
+        "value": "1.35rem",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:756"
+        ]
+      },
+      {
+        "value": "0.65rem",
+        "count": 2,
+        "usedIn": [
+          "styles/globals.css:791",
+          "styles/globals.css:800"
+        ]
+      },
+      {
+        "value": "0.92rem",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:22"
+        ]
+      },
+      {
+        "value": "inherit",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:83"
+        ]
+      },
+      {
+        "value": "0.78rem",
+        "count": 2,
+        "usedIn": [
+          "styles/account.css:141",
+          "styles/account.css:690"
+        ]
+      },
+      {
+        "value": "1.6rem",
+        "count": 2,
+        "usedIn": [
+          "styles/account.css:240",
+          "styles/account.css:683"
+        ]
+      },
+      {
+        "value": "0.7rem",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:358"
+        ]
+      },
+      {
+        "value": "1.75rem",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:377"
+        ]
+      },
+      {
+        "value": "1.1rem",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:679"
+        ]
+      },
+      {
+        "value": "2rem",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:701"
+        ]
+      },
+      {
+        "value": "3rem",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:737"
+        ]
+      },
+      {
+        "value": "0.72rem",
+        "count": 2,
+        "usedIn": [
+          "styles/account.css:813",
+          "styles/account.css:904"
+        ]
+      },
+      {
+        "value": "0.86rem",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:892"
+        ]
+      }
+    ],
+    "radii": [
+      {
+        "value": "tw:rounded-full",
+        "count": 13
+      },
+      {
+        "value": "tw:rounded-lg",
+        "count": 11
+      },
+      {
+        "value": "tw:rounded-xl",
+        "count": 10
+      },
+      {
+        "value": "tw:rounded-2xl",
+        "count": 9
+      },
+      {
+        "value": "tw:rounded-md",
+        "count": 4
+      },
+      {
+        "value": "tw:rounded-3xl",
+        "count": 3
+      },
+      {
+        "value": "tw:first:rounded-t-lg",
+        "count": 1
+      },
+      {
+        "value": "tw:last:rounded-b-lg",
+        "count": 1
+      },
+      {
+        "value": "10px",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:44"
+        ]
+      },
+      {
+        "value": "0.75rem",
+        "count": 5,
+        "usedIn": [
+          "styles/globals.css:71",
+          "styles/globals.css:92",
+          "styles/globals.css:269",
+          "styles/globals.css:509",
+          "styles/account.css:627"
+        ]
+      },
+      {
+        "value": "999px",
+        "count": 19,
+        "usedIn": [
+          "styles/globals.css:286",
+          "styles/globals.css:329",
+          "styles/globals.css:430",
+          "styles/globals.css:628",
+          "styles/globals.css:786",
+          "styles/globals.css:831",
+          "styles/account.css:19",
+          "styles/account.css:200",
+          "styles/account.css:266",
+          "styles/account.css:283",
+          "styles/account.css:331",
+          "styles/account.css:357",
+          "styles/account.css:506",
+          "styles/account.css:571",
+          "styles/account.css:759",
+          "styles/account.css:766",
+          "styles/account.css:817",
+          "styles/account.css:831",
+          "styles/account.css:869"
+        ]
+      },
+      {
+        "value": "0.5rem",
+        "count": 2,
+        "usedIn": [
+          "styles/globals.css:416",
+          "styles/account.css:913"
+        ]
+      },
+      {
+        "value": "0.65rem",
+        "count": 3,
+        "usedIn": [
+          "styles/globals.css:491",
+          "styles/globals.css:601",
+          "styles/account.css:114"
+        ]
+      },
+      {
+        "value": "1.2rem",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:527"
+        ]
+      },
+      {
+        "value": "0.9rem",
+        "count": 4,
+        "usedIn": [
+          "styles/globals.css:687",
+          "styles/globals.css:820",
+          "styles/account.css:154",
+          "styles/account.css:479"
+        ]
+      },
+      {
+        "value": "1.25rem",
+        "count": 2,
+        "usedIn": [
+          "styles/globals.css:732",
+          "styles/account.css:8"
+        ]
+      },
+      {
+        "value": "1.5rem",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:852"
+        ]
+      },
+      {
+        "value": "1.1rem",
+        "count": 3,
+        "usedIn": [
+          "styles/account.css:407",
+          "styles/account.css:453",
+          "styles/account.css:777"
+        ]
+      },
+      {
+        "value": "0.6rem",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:437"
+        ]
+      },
+      {
+        "value": "0.4rem",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:721"
+        ]
+      }
+    ],
+    "shadows": [
+      {
+        "value": "tw:shadow",
+        "count": 7
+      },
+      {
+        "value": "tw:shadow-sm",
+        "count": 4
+      },
+      {
+        "value": "tw:shadow-xl",
+        "count": 3
+      },
+      {
+        "value": "tw:hover:shadow-xl",
+        "count": 2
+      },
+      {
+        "value": "tw:shadow-lg",
+        "count": 2
+      },
+      {
+        "value": "tw:hover:shadow-lg",
+        "count": 1
+      },
+      {
+        "value": "0 18px 30px rgba(15, 23, 42, 0.15)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:74"
+        ]
+      },
+      {
+        "value": "0 20px 45px rgba(0, 0, 0, 0.15)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:147"
+        ]
+      },
+      {
+        "value": "0 12px 24px rgba(11, 32, 80, 0.35)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:330"
+        ]
+      },
+      {
+        "value": "0 16px 32px rgba(11, 32, 80, 0.4)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:337"
+        ]
+      },
+      {
+        "value": "-8px 0 24px rgba(11, 32, 80, 0.18)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:372"
+        ]
+      },
+      {
+        "value": "0 0 0 3px rgba(36, 180, 255, 0.2)",
+        "count": 2,
+        "usedIn": [
+          "styles/globals.css:502",
+          "styles/account.css:130"
+        ]
+      },
+      {
+        "value": "0 20px 40px rgba(15, 61, 114, 0.15)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:538"
+        ]
+      },
+      {
+        "value": "0 25px 45px rgba(15, 23, 42, 0.35)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:735"
+        ]
+      },
+      {
+        "value": "0 20px 45px rgba(15, 23, 42, 0.15)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:780"
+        ]
+      },
+      {
+        "value": "0 10px 30px rgba(15, 23, 42, 0.06)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:10"
+        ]
+      },
+      {
+        "value": "0 6px 18px rgba(15, 23, 42, 0.05)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:409"
+        ]
+      },
+      {
+        "value": "0 12px 28px rgba(15, 23, 42, 0.1)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:416"
+        ]
+      },
+      {
+        "value": "0 0 0 1px var(--sea)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:459"
+        ]
+      },
+      {
+        "value": "0 0 0 4px rgba(36, 180, 255, 0.25)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:588"
+        ]
+      }
+    ],
+    "breakpoints": [
+      {
+        "value": "tw sm 640px",
+        "count": 26
+      },
+      {
+        "value": "tw md 768px",
+        "count": 12
+      },
+      {
+        "value": "tw lg 1024px",
+        "count": 10
+      },
+      {
+        "value": "(max-width: 768px)",
+        "count": 1,
+        "usedIn": [
+          "styles/globals.css:235"
+        ]
+      },
+      {
+        "value": "(max-width: 640px)",
+        "count": 2,
+        "usedIn": [
+          "styles/globals.css:858",
+          "styles/globals.css:864"
+        ]
+      },
+      {
+        "value": "(min-width: 640px)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:96"
+        ]
+      },
+      {
+        "value": "(min-width: 900px)",
+        "count": 2,
+        "usedIn": [
+          "styles/account.css:302",
+          "styles/account.css:316"
+        ]
+      },
+      {
+        "value": "(min-width: 720px)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:729"
+        ]
+      }
+    ],
+    "containers": [
+      {
+        "value": "max-w-7xl (1280px)",
+        "count": 13,
+        "usedIn": [
+          "components/Layout.js (header, footer)",
+          "pages/index.js sections",
+          "pages/products/index.js",
+          "pages/products/[categorySlug]/index.js",
+          "pages/search.js"
+        ]
+      },
+      {
+        "value": "max-w-6xl (1152px)",
+        "count": 2,
+        "usedIn": [
+          "pages/products/[categorySlug]/[productId].js:79",
+          "pages/gallery/index.js:125"
+        ]
+      },
+      {
+        "value": "max-w-4xl (896px)",
+        "count": 2,
+        "usedIn": [
+          "pages/index.js:392 (timeline)",
+          "pages/index.js:460 (FAQ)"
+        ]
+      },
+      {
+        "value": ".account-shell 72rem (1152px)",
+        "count": 1,
+        "usedIn": [
+          "styles/account.css:295"
+        ]
+      },
+      {
+        "value": ".auth-card min(440px,100%)",
+        "usedIn": [
+          "styles/account.css:236"
+        ]
+      },
+      {
+        "value": ".checkout-modal min(480px,100%)",
+        "usedIn": [
+          "styles/globals.css:733"
+        ]
+      },
+      {
+        "value": ".modal-card min(520px,100%)",
+        "usedIn": [
+          "styles/account.css:856"
+        ]
+      },
+      {
+        "value": ".cart-drawer min(420px,100vw)",
+        "usedIn": [
+          "styles/globals.css:365"
+        ]
+      }
+    ],
+    "cssCustomProperties": {
+      "--deep-navy": "#0b2050",
+      "--sea": "#0f3d72",
+      "--sky": "#e6f0ff",
+      "--accent": "#24b4ff",
+      "--sand": "#f8fafc"
+    }
+  },
+  "animations": [
+    {
+      "name": "Scroll reveal (fade + slide up)",
+      "file": "styles/globals.css:129-138 + components/Layout.js:116-131",
+      "impl": "CSS transition on [data-animate] (opacity 0, translateY(20px)) toggled to .in-view by IntersectionObserver (threshold .15, unobserve after first hit); re-queried on router.asPath",
+      "duration": "0.6s (but only 0.2s transform-only on elements that also have .tilt, because .tilt's transition overrides it - opacity then snaps)",
+      "easing": "ease",
+      "reducedMotion": "no",
+      "cost": "low runtime; 'transition: all' is broad. Risk: content (incl. hero h1, 34 elements on home) is opacity:0 in SSR HTML until JS hydrates -> delays LCP and hides content if JS fails; elements mounted after the effect runs are never observed"
+    },
+    {
+      "name": "3D tilt on hover",
+      "file": "components/Layout.js:133-158 + styles/globals.css:140-152",
+      "impl": "JS mousemove on every [data-tilt] (17 on home + every product/category card) -> getBoundingClientRect() + inline style.transform rotateX/rotateY up to 6deg; mouseleave resets",
+      "duration": "0.2s (CSS .tilt transition; product/category cards use .product-card 0.2s)",
+      "easing": "ease",
+      "reducedMotion": "no",
+      "cost": "medium: un-throttled mousemove handler with a layout read per event; no perspective set so rotation looks like a flat squash and .layer translateZ(18px)/preserve-3d do nothing; inline transform permanently overrides Tailwind hover:scale-105 (brand cards) and .product-card:hover translateY(-4px) lift once the pointer has moved; also runs on touch-less hover devices only"
+    },
+    {
+      "name": "Floating blurred circles",
+      "file": "pages/index.js:177-178 + styles/globals.css:111-127",
+      "impl": "CSS @keyframes float translateY 0 -> -12px, infinite, on two absolutely-positioned blur-lg/blur-xl circles in the hero",
+      "duration": "8s and 12s, infinite",
+      "easing": "ease-in-out",
+      "reducedMotion": "no",
+      "cost": "low (transform only) but two permanently running animations on filtered layers; barely visible (white/blue-300 at 10% over photo)"
+    },
+    {
+      "name": "Parallax bands",
+      "file": "styles/globals.css:187-199,235-239; pages/index.js:214,418",
+      "impl": "background-attachment: fixed on two .parallax sections (disabled <=768px)",
+      "duration": "scroll-linked",
+      "easing": "n/a",
+      "reducedMotion": "no",
+      "cost": "high on desktop Chrome: fixed backgrounds are repainted on every scroll frame (not composited); iOS ignores it anyway"
+    },
+    {
+      "name": "Header glass -> solid",
+      "file": "components/Layout.js:100-114,277-281; styles/globals.css:59-63,101-104",
+      "impl": "scroll listener (rAF-throttled, not passive) toggles nav-glass/nav-solid at scrollY>40; Tailwind transition-colors duration-300",
+      "duration": "0.3s",
+      "easing": "tw default cubic-bezier(0.4,0,0.2,1)",
+      "reducedMotion": "no",
+      "cost": "low JS; backdrop-filter blur(12px) on a sticky header costs paint on every scroll frame over images"
+    },
+    {
+      "name": "Back-to-top fade",
+      "file": "styles/globals.css:252-261; components/Layout.js:555",
+      "impl": "opacity transition toggled by .show at scrollY>500; click -> window.scrollTo smooth",
+      "duration": "0.3s",
+      "easing": "ease",
+      "reducedMotion": "no (smooth scroll forced)",
+      "cost": "low; z-index auto so it sits under the cart FAB at the same bottom-right position on catalog pages"
+    },
+    {
+      "name": "Products dropdown",
+      "file": "components/Layout.js:322-326",
+      "impl": "Tailwind 'transition duration-200' opacity 0<->100 on hover; -translate-y-1/translate-y-0 are no-ops (TW2 needs the 'transform' class)",
+      "duration": "0.2s",
+      "easing": "tw default",
+      "reducedMotion": "no",
+      "cost": "low"
+    },
+    {
+      "name": "Header search widen",
+      "file": "components/Layout.js:374-376",
+      "impl": "transition-all duration-200, md:w-44 -> md:w-64 on focus (nav links hidden via md:hidden at same time)",
+      "duration": "0.2s",
+      "easing": "tw default",
+      "reducedMotion": "no",
+      "cost": "low; animates width (layout) and the nav disappears abruptly"
+    },
+    {
+      "name": "Hover lifts",
+      "file": "styles/globals.css:335-338 (.cart-fab), 521-524 (.cart-submit), 536-539 (.product-card); styles/account.css:40-43 (.ui-btn--primary), 415-418 (a.record-card); pages/index.js:189 (hero CTA), 322 (brand hover:scale-105), pages/products/index.js:46",
+      "impl": "CSS transition on transform (+ box-shadow on product-card, cart-fab, record-card, .tilt)",
+      "duration": "0.2s (0.3s brand)",
+      "easing": "ease",
+      "reducedMotion": "no",
+      "cost": "low-medium: box-shadow transitions repaint; lifts overridden by tilt inline transform on cards"
+    },
+    {
+      "name": "Brand logo grayscale -> colour + zoom",
+      "file": "styles/globals.css:154-162",
+      "impl": "CSS transition on filter + transform of img inside .brand-card:hover",
+      "duration": "0.3s",
+      "easing": "ease",
+      "reducedMotion": "no",
+      "cost": "low-medium (filter animation repaints)"
+    },
+    {
+      "name": "Cart drawer slide + overlay fade",
+      "file": "styles/globals.css:340-377",
+      "impl": "transform translateX(100%) -> 0 (.open) and overlay opacity (.active); overlay backdrop-filter blur(2px)",
+      "duration": "0.28s drawer, 0.25s overlay",
+      "easing": "ease",
+      "reducedMotion": "no",
+      "cost": "low (compositor); not mirrored in RTL (always slides from the right)"
+    },
+    {
+      "name": "Modals (checkout, review)",
+      "file": "components/cart/CheckoutModal.js:193; components/reviews/ReviewForm.js:64",
+      "impl": "conditional render, no enter/exit animation",
+      "duration": "0",
+      "easing": "n/a",
+      "reducedMotion": "n/a",
+      "cost": "none"
+    },
+    {
+      "name": "FAQ open/close",
+      "file": "pages/index.js:479-483",
+      "impl": "toggles 'hidden'/'block' with a 'transition' class that cannot animate display",
+      "duration": "instant",
+      "easing": "n/a",
+      "reducedMotion": "n/a",
+      "cost": "none"
+    },
+    {
+      "name": "Star input hover",
+      "file": "styles/account.css:708,715-717",
+      "impl": "transform scale(1.12) + colour transition",
+      "duration": "0.15s",
+      "easing": "ease",
+      "reducedMotion": "no",
+      "cost": "low"
+    },
+    {
+      "name": "Input focus ring",
+      "file": "styles/globals.css:495-503; styles/account.css:122-131",
+      "impl": "border-color + box-shadow transition",
+      "duration": "0.2s",
+      "easing": "ease",
+      "reducedMotion": "no",
+      "cost": "low"
+    },
+    {
+      "name": "Button colour transitions",
+      "file": "styles/account.css:25, 273; styles/globals.css:513, 842; TW 'transition' on 11 elements",
+      "impl": "CSS transitions on background/color/border",
+      "duration": "0.2s (TW 0.15s)",
+      "easing": "ease / tw default",
+      "reducedMotion": "no",
+      "cost": "low"
+    }
+  ],
+  "adminTools": [
+    {
+      "name": "product-admin (catalog)",
+      "start": "npm run admin | npm run admin:emulated (catalog unaffected by mode)",
+      "port": "5173 (127.0.0.1)",
+      "stack": "Node http server (CJS) + vanilla JS/HTML templates + styles.css",
+      "auth": "none; loopback bind only; CORS * on all JSON + OPTIONS (server.js:91-95,431-438)",
+      "reads": [
+        "public/assets/data/products.json",
+        "public/assets/**",
+        ".env (PRODUCT_ADMIN_GITHUB_TOKEN/USERNAME)"
+      ],
+      "writes": [
+        "public/assets/data/products.json (whole file)",
+        "public/assets/{products,categories,datasheets}/* (git add on upload)",
+        "git commit (entire index) + git push current branch with token"
+      ],
+      "features": [
+        {
+          "name": "Category tabs / switch category",
+          "screen": "catalog",
+          "screenshot": null
+        },
+        {
+          "name": "Category editor (name, slug, image, description, FR/AR)",
+          "screen": "catalog",
+          "screenshot": null
+        },
+        {
+          "name": "Add category (local until save)",
+          "screen": "catalog",
+          "screenshot": null
+        },
+        {
+          "name": "Delete category (native confirm)",
+          "screen": "catalog",
+          "screenshot": null
+        },
+        {
+          "name": "Product editor (title, brand, usage, price, stock, description, images, datasheet)",
+          "screen": "catalog",
+          "screenshot": null
+        },
+        {
+          "name": "Variants (label, price, stock, add/remove)",
+          "screen": "catalog",
+          "screenshot": null
+        },
+        {
+          "name": "Add variant (local)",
+          "screen": "catalog",
+          "screenshot": null
+        },
+        {
+          "name": "Product translations FR/AR",
+          "screen": "catalog",
+          "screenshot": null
+        },
+        {
+          "name": "Collapse/expand product",
+          "screen": "catalog",
+          "screenshot": null
+        },
+        {
+          "name": "Add product (new p_ id)",
+          "screen": "catalog",
+          "screenshot": null
+        },
+        {
+          "name": "Delete product (native confirm)",
+          "screen": "catalog",
+          "screenshot": null
+        },
+        {
+          "name": "Image/PDF drag-and-drop upload",
+          "screen": "catalog",
+          "screenshot": null
+        },
+        {
+          "name": "Load error state",
+          "screen": "catalog",
+          "screenshot": null
+        },
+        {
+          "name": "Save & Deploy / Cmd+S (commit + push)",
+          "screen": "catalog",
+          "screenshot": null
+        },
+        {
+          "name": "Reload Data",
+          "screen": "catalog",
+          "screenshot": null
+        },
+        {
+          "name": "Jump to top/bottom",
+          "screen": "catalog",
+          "screenshot": null
+        }
+      ]
+    },
+    {
+      "name": "ops (operations)",
+      "start": "npm run admin (PRODUCTION) | npm run admin:emulated (EMULATOR); open /ops",
+      "port": "5173/ops (127.0.0.1)",
+      "stack": "ESM ops-api.mjs importing lib/firebase/admin.js + lib/server/{http,devices,statusUpdates,reviewModeration,adminUsers}.js (Admin SDK); vanilla JS ops.js + ops.css",
+      "auth": "none; loopback only; writes attributed to local-admin:<os user>",
+      "reads": [
+        "Firestore orders",
+        "Firestore quotes",
+        "Firestore reviews",
+        "Firestore users",
+        "Firestore devices",
+        "Firestore enrollCodes",
+        "Firebase Auth users",
+        "public/assets/data/products.json (titles)"
+      ],
+      "writes": [
+        "orders.status/statusHistory",
+        "quotes.status/statusHistory",
+        "reviews.status + productStats",
+        "devices.active + revoke refresh tokens",
+        "enrollCodes",
+        "deviceEvents/admin events",
+        "Auth password + mustChangePassword"
+      ],
+      "features": [
+        {
+          "name": "Target banner PRODUCTION/EMULATOR/unknown",
+          "screen": "all",
+          "screenshot": null
+        },
+        {
+          "name": "Orders list + filter + refresh",
+          "screen": "orders",
+          "screenshot": null
+        },
+        {
+          "name": "Order details (address, notes, lines, history)",
+          "screen": "orders",
+          "screenshot": null
+        },
+        {
+          "name": "Change order status + note",
+          "screen": "orders",
+          "screenshot": null
+        },
+        {
+          "name": "Status updated toast",
+          "screen": "orders",
+          "screenshot": null
+        },
+        {
+          "name": "Unchanged-status error toast",
+          "screen": "orders",
+          "screenshot": null
+        },
+        {
+          "name": "Filter result / empty",
+          "screen": "orders",
+          "screenshot": null
+        },
+        {
+          "name": "Quotes list + details + change status",
+          "screen": "quotes",
+          "screenshot": null
+        },
+        {
+          "name": "Reviews list + filter",
+          "screen": "reviews",
+          "screenshot": null
+        },
+        {
+          "name": "Hide/unhide review",
+          "screen": "reviews",
+          "screenshot": null
+        },
+        {
+          "name": "Customer search (phone/email/name)",
+          "screen": "customers",
+          "screenshot": null
+        },
+        {
+          "name": "Customer detail (orders, quotes)",
+          "screen": "customers",
+          "screenshot": null
+        },
+        {
+          "name": "Set temporary password (confirm + shown once)",
+          "screen": "customers",
+          "screenshot": null
+        },
+        {
+          "name": "Add device: 6-digit code + countdown",
+          "screen": "devices",
+          "screenshot": null
+        },
+        {
+          "name": "Code used / enrolled list",
+          "screen": "devices",
+          "screenshot": null
+        },
+        {
+          "name": "Revoke device (inline confirm)",
+          "screen": "devices",
+          "screenshot": null
+        }
+      ]
+    },
+    {
+      "name": "gallery-admin",
+      "start": "npm run gallery-admin",
+      "port": "5174 (127.0.0.1)",
+      "stack": "Node http server (fork of product-admin server) + vanilla JS + styles.css",
+      "auth": "none; loopback only; CORS *",
+      "reads": [
+        "public/assets/data/gallery.json",
+        "public/assets/**",
+        ".env (GALLERY_ADMIN_GITHUB_TOKEN -> PRODUCT_ADMIN_* -> GITHUB_*)"
+      ],
+      "writes": [
+        "public/assets/data/gallery.json",
+        "public/assets/gallery/* (git add on upload)",
+        "git commit (entire index) + git push current branch"
+      ],
+      "features": [
+        {
+          "name": "Entry list/editor (title, type, src, date, tags, description, preview)",
+          "screen": "gallery",
+          "screenshot": null
+        },
+        {
+          "name": "Add entry (local)",
+          "screen": "gallery",
+          "screenshot": null
+        },
+        {
+          "name": "Image upload dropzone",
+          "screen": "gallery",
+          "screenshot": null
+        },
+        {
+          "name": "Move up/down",
+          "screen": "gallery",
+          "screenshot": null
+        },
+        {
+          "name": "Delete entry (no confirm)",
+          "screen": "gallery",
+          "screenshot": null
+        },
+        {
+          "name": "Load error",
+          "screen": "gallery",
+          "screenshot": null
+        },
+        {
+          "name": "Save & Deploy (commit + push)",
+          "screen": "gallery",
+          "screenshot": null
+        }
+      ]
+    },
+    {
+      "name": "scripts/seed-emulator.js",
+      "start": "npm run seed:emulator",
+      "port": null,
+      "stack": "Node CJS + Admin SDK",
+      "auth": "refuses without emulator env",
+      "reads": [
+        "products.json"
+      ],
+      "writes": [
+        "Auth buyer@/staff@example.test",
+        "users",
+        "orders x2",
+        "quotes x1"
+      ],
+      "features": []
+    },
+    {
+      "name": "scripts/assign-product-ids.js",
+      "start": "node scripts/assign-product-ids.js",
+      "port": null,
+      "stack": "Node CJS",
+      "auth": "none",
+      "reads": [
+        "products.json"
+      ],
+      "writes": [
+        "products.json (id, legacyId)"
+      ],
+      "features": []
+    },
+    {
+      "name": "scripts/migrate-statuses.mjs",
+      "start": "node scripts/migrate-statuses.mjs [--apply]",
+      "port": null,
+      "stack": "Node ESM + Admin SDK",
+      "auth": "service-account key; prints target",
+      "reads": [
+        "orders",
+        "quotes"
+      ],
+      "writes": [
+        "status",
+        "legacyStatus",
+        "statusHistory"
+      ],
+      "features": []
+    },
+    {
+      "name": "Firestore rules/indexes deploy",
+      "start": "firebase deploy --only firestore:rules,firestore:indexes --project sofracom",
+      "port": null,
+      "stack": "firebase-tools (Java 21+)",
+      "auth": "firebase login",
+      "reads": [
+        "firestore.rules",
+        "firestore.indexes.json"
+      ],
+      "writes": [
+        "production rules/indexes"
+      ],
+      "features": []
+    },
+    {
+      "name": "Vercel deploy",
+      "start": "git push (Vercel Git integration)",
+      "port": null,
+      "stack": "Next.js 16 SSG (fallback:false) + API routes; vercel.json maxDuration 10",
+      "auth": "GitHub/Vercel",
+      "reads": [
+        "repo"
+      ],
+      "writes": [
+        "live site"
+      ],
+      "features": []
+    },
+    {
+      "name": "Staff phone app (Flutter)",
+      "start": "sideloaded APK",
+      "port": null,
+      "stack": "Flutter + Firebase Auth/Firestore/FCM",
+      "auth": "device enrolment custom token; devices/{id}.active",
+      "reads": [
+        "orders (live)",
+        "quotes (live)"
+      ],
+      "writes": [
+        "PATCH /api/admin/{orders,quotes}"
+      ],
+      "features": [
+        {
+          "name": "Enrolment",
+          "screen": "enroll",
+          "screenshot": null
+        },
+        {
+          "name": "Orders list + filter + status dialog",
+          "screen": "orders",
+          "screenshot": null
+        },
+        {
+          "name": "Quotes list + status dialog",
+          "screen": "quotes",
+          "screenshot": null
+        },
+        {
+          "name": "Stream error / revoked",
+          "screen": "all",
+          "screenshot": null
+        }
+      ]
+    }
+  ],
+  "adminWorkflows": [
+    {
+      "name": "Add product with variants, photos, datasheet",
+      "steps": 15,
+      "tools": [
+        "terminal",
+        "product-admin",
+        "file manager",
+        "Vercel/live site"
+      ],
+      "commands": [
+        "git pull",
+        "npm run admin"
+      ],
+      "painPoints": [
+        "placeholder.png missing -> broken image",
+        "price input step=1 vs decimal prices",
+        "variant inputs unlabeled; variant translations not editable",
+        "no image resizing (8MB allowed; 197/289 files >500KB)",
+        "uploads git-added immediately, leak into next commit",
+        "no search, no unsaved-changes guard",
+        "full redeploy needed"
+      ]
+    },
+    {
+      "name": "Edit price / stock status",
+      "steps": 7,
+      "tools": [
+        "terminal",
+        "product-admin",
+        "browser"
+      ],
+      "commands": [
+        "git pull",
+        "npm run admin"
+      ],
+      "painPoints": [
+        "redeploy for one field (SSG fallback:false)",
+        "product vs variant stock ambiguity",
+        "Cmd+S pushes without confirm",
+        "no search across 167 products"
+      ]
+    },
+    {
+      "name": "Add category",
+      "steps": 8,
+      "tools": [
+        "terminal",
+        "product-admin"
+      ],
+      "commands": [
+        "npm run admin"
+      ],
+      "painPoints": [
+        "slug typed by hand, no collision check",
+        "no reordering",
+        "placeholder image missing"
+      ]
+    },
+    {
+      "name": "Add gallery entry",
+      "steps": 8,
+      "tools": [
+        "terminal",
+        "gallery-admin"
+      ],
+      "commands": [
+        "git pull",
+        "npm run gallery-admin"
+      ],
+      "painPoints": [
+        "separate server/port",
+        "no FR/AR",
+        "delete without confirm",
+        "no test mode"
+      ]
+    },
+    {
+      "name": "Publish changes to live site",
+      "steps": 2,
+      "tools": [
+        "product-admin or gallery-admin",
+        "Vercel"
+      ],
+      "commands": [],
+      "painPoints": [
+        "commits entire git index (currently a staged .md would be included)",
+        "pushes current branch (redesign -> preview only)",
+        "no build status/preview/rollback UI",
+        "push failure leaves local commit",
+        "meaningless auto commit messages (303)"
+      ]
+    },
+    {
+      "name": "Process new order end to end",
+      "steps": 12,
+      "tools": [
+        "website",
+        "staff app (or /ops)",
+        "customer account page"
+      ],
+      "commands": [],
+      "painPoints": [
+        "4 status changes x dialog",
+        "app lacks order notes, short ref, history",
+        "/ops limited to latest 100 orders",
+        "no confirm on cancel"
+      ]
+    },
+    {
+      "name": "Handle a quote",
+      "steps": 6,
+      "tools": [
+        "staff app or /ops",
+        "phone/email"
+      ],
+      "commands": [],
+      "painPoints": [
+        "quote amount/reply not stored",
+        "no quote filter in app"
+      ]
+    },
+    {
+      "name": "Hide a review",
+      "steps": 4,
+      "tools": [
+        "terminal",
+        "/ops"
+      ],
+      "commands": [
+        "npm run admin"
+      ],
+      "painPoints": [
+        "laptop only",
+        "no search, no product link"
+      ]
+    },
+    {
+      "name": "Enrol / revoke a phone",
+      "steps": 6,
+      "tools": [
+        "terminal",
+        "/ops",
+        "staff app"
+      ],
+      "commands": [
+        "npm run admin"
+      ],
+      "painPoints": [
+        "laptop + phone together within 15 min",
+        "new code silently invalidates previous"
+      ]
+    },
+    {
+      "name": "Customer forgot password",
+      "steps": 7,
+      "tools": [
+        "website (email accounts) or phone call + terminal + /ops (phone accounts)"
+      ],
+      "commands": [
+        "npm run admin"
+      ],
+      "painPoints": [
+        "identity check manual",
+        "name search needs nameLower (seeded/older profiles lack it)",
+        "mixed-case temp password read aloud"
+      ]
+    }
+  ],
+  "statusPalette": [
+    {
+      "status": "pending",
+      "kind": "order",
+      "website": "waiting #c2410c on #fff7ed",
+      "ops": "badge-wait #c2410c on #fff7ed",
+      "staffApp": "#F59E0B"
+    },
+    {
+      "status": "confirmed",
+      "kind": "order",
+      "website": "default #0f3d72 on #e6f0ff",
+      "ops": "default #0f3d72 on #e6f0ff",
+      "staffApp": "#2563EB"
+    },
+    {
+      "status": "preparing",
+      "kind": "order",
+      "website": "default #0f3d72 on #e6f0ff",
+      "ops": "default #0f3d72 on #e6f0ff",
+      "staffApp": "#0EA5E9"
+    },
+    {
+      "status": "out_for_delivery",
+      "kind": "order",
+      "website": "default #0f3d72 on #e6f0ff",
+      "ops": "default #0f3d72 on #e6f0ff",
+      "staffApp": "#7C3AED"
+    },
+    {
+      "status": "delivered",
+      "kind": "order",
+      "website": "done #0f7a2e on rgba(15,122,46,.10)",
+      "ops": "badge-good #0f7a2e on rgba(15,122,46,.12)",
+      "staffApp": "#16A34A"
+    },
+    {
+      "status": "cancelled",
+      "kind": "order",
+      "website": "stopped #b91c1c on rgba(215,38,56,.08)",
+      "ops": "badge-bad #b91c1c on rgba(215,38,56,.10)",
+      "staffApp": "#DC2626"
+    },
+    {
+      "status": "received",
+      "kind": "quote",
+      "website": "waiting #c2410c on #fff7ed",
+      "ops": "badge-wait #c2410c on #fff7ed",
+      "staffApp": "#F59E0B"
+    },
+    {
+      "status": "in_review",
+      "kind": "quote",
+      "website": "default #0f3d72 on #e6f0ff",
+      "ops": "default #0f3d72 on #e6f0ff",
+      "staffApp": "#2563EB"
+    },
+    {
+      "status": "quoted",
+      "kind": "quote",
+      "website": "default #0f3d72 on #e6f0ff",
+      "ops": "default #0f3d72 on #e6f0ff",
+      "staffApp": "#0EA5E9"
+    },
+    {
+      "status": "accepted",
+      "kind": "quote",
+      "website": "done #0f7a2e",
+      "ops": "badge-good #0f7a2e",
+      "staffApp": "#7C3AED"
+    },
+    {
+      "status": "declined",
+      "kind": "quote",
+      "website": "stopped #b91c1c",
+      "ops": "badge-bad #b91c1c",
+      "staffApp": "#DC2626"
+    },
+    {
+      "status": "completed",
+      "kind": "quote",
+      "website": "done #0f7a2e",
+      "ops": "badge-good #0f7a2e",
+      "staffApp": "#16A34A"
+    }
+  ],
+  "contactSheets": [
+    "contact-sheets/1-public-desktop.png",
+    "contact-sheets/2-public-mobile.png",
+    "contact-sheets/3-account-checkout.png",
+    "contact-sheets/4-rtl-issues.png",
+    "contact-sheets/5-admin-tools.png",
+    "contact-sheets/6-staff-app.png"
+  ]
+}
