@@ -28,3 +28,6 @@ firestore-debug.log*
 ui-debug.log*
 .firebase/
 .emulator-data/
+
+# Copy of the production Firestore rules taken before deploying (DEPLOY.md step 6)
+rules.backup.txt
