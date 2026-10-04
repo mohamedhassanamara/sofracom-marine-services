@@ -1,0 +1,56 @@
+rules_version = '2';
+
+// All writes go through the Next.js API routes (Admin SDK), which bypass these rules.
+// Clients may only read: their own profile, addresses, orders and quotes; published
+// reviews; and product rating stats. Staff with the `admin` custom claim can read all.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn() && request.auth.token.admin == true;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    match /users/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow write: if false;
+
+      match /addresses/{addressId} {
+        allow read: if isOwner(uid) || isAdmin();
+        allow write: if false;
+      }
+    }
+
+    match /orders/{orderId} {
+      allow read: if isAdmin() || (signedIn() && resource.data.uid == request.auth.uid);
+      allow write: if false;
+    }
+
+    match /quotes/{quoteId} {
+      allow read: if isAdmin() || (signedIn() && resource.data.uid == request.auth.uid);
+      allow write: if false;
+    }
+
+    match /reviews/{reviewId} {
+      allow read: if resource.data.status == 'published'
+        || isAdmin()
+        || (signedIn() && resource.data.uid == request.auth.uid);
+      allow write: if false;
+    }
+
+    match /productStats/{productId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

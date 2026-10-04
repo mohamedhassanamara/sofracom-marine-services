@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
 const os = require('os');
+const { ensureProductIds } = require('../../lib/productIds');
 
 const HOST = process.env.HOST || '127.0.0.1';
 const PORT = Number(process.env.PORT || 5173);
@@ -436,6 +437,14 @@ const server = http.createServer(async (req, res) => {
     try {
       const payload = await parseBody(req);
       validatePayload(payload);
+      // Stable ids key reviews, ratings and orders; never let a save drop or duplicate them.
+      ensureProductIds(payload);
+      payload.categories = payload.categories.map(category => ({
+        ...category,
+        products: (category.products || []).map(({ id, legacyId, ...rest }) =>
+          legacyId ? { id, legacyId, ...rest } : { id, ...rest }
+        ),
+      }));
       const formatted = JSON.stringify(payload, null, 2);
       fs.writeFileSync(dataPath, `${formatted}\n`, 'utf-8');
       const gitResult = runGitCommands();

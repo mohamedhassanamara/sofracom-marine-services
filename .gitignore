@@ -20,3 +20,11 @@ public/.DS_Store
 dist/
 build/
 .next/
+.next-*/
+
+# Firebase emulator logs & local state
+firebase-debug.log*
+firestore-debug.log*
+ui-debug.log*
+.firebase/
+.emulator-data/

@@ -168,8 +168,9 @@ export default function Layout({ children }) {
                 (data.categories || []).forEach(category => {
                     const categorySlug = category.slug || slugify(category.name);
                     (category.products || []).forEach(product => {
-                        const productSlug = slugify(product.title);
-                        const id = `${categorySlug}-${productSlug || 'item'}`;
+                        const id =
+                            product.id ||
+                            `${categorySlug}-${slugify(product.title) || 'item'}`;
                         entries.push({
                             title: product.title || '',
                             description: product.description || '',

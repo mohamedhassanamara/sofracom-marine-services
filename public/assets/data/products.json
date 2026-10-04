@@ -7,6 +7,8 @@
       "description": "Bottom paints, primers, érodable, topcoats for local waters, erodable",
       "products": [
         {
+          "id": "p_bamzqzdm",
+          "legacyId": "antifouling-coatings-jotun-seaforce-active-2-5l-black-noir",
           "title": "Jotun SeaForce Active 2.5L Black / Noir",
           "images": [
             "assets/products/20251104_142605-mhkpnc7j.png",
@@ -59,6 +61,8 @@
           }
         },
         {
+          "id": "p_yyrselcc",
+          "legacyId": "antifouling-coatings-jotun-seaforce-active-04l-blue-bleu",
           "title": "Jotun SeaForce Active 04L Blue / Bleu",
           "images": [
             "assets/products/20251104_142934-mhkq1zha.png",
@@ -105,6 +109,8 @@
           }
         },
         {
+          "id": "p_gugfcc04",
+          "legacyId": "antifouling-coatings-jotun-safeguard-universal-es-15l-a-03l-b",
           "title": "JOTUN Safeguard universal es 15L(A)+03L(B)",
           "description": "This is a two component polyamide cured vinyl epoxy based coating. Specially designed as a tie coat between\nepoxy primers and antifouling systems. Can be used as tie coat / holding primer for a wide range of topcoats. To\nbe used as tie coat in atmospheric and immersed environments. Suitable on approved primers on aluminium,\ncarbon steel, galvanised and stainless steel substrates. It can be applied at sub zero surface temperatures",
           "brand": "JOTUN",
@@ -136,6 +142,8 @@
           }
         },
         {
+          "id": "p_po76v4p1",
+          "legacyId": "antifouling-coatings-jotun-penguard-primer-red-rouge-04l-a-01l-b",
           "title": "JOTUN Penguard Primer Red / Rouge 04L(A)+01L(B)",
           "description": "This is a two component, polyamide cured, high molecular weight epoxy coating. It has a semi gloss finish with\nfair gloss retention. Can be used as primer, finish coat or as single coat system in atmospheric environments or\nas a final coat in immersed environment. To be used as topcoat in atmospheric and immersed environments.",
           "brand": "JOTUN",
@@ -167,6 +175,8 @@
           }
         },
         {
+          "id": "p_s0zil1ca",
+          "legacyId": "antifouling-coatings-jotun-jotamastic-80-grey-gris",
           "title": "JOTUN jotamastic 80 Grey / Gris ",
           "description": "This is a two component polyamine cured epoxy mastic coating. It is a surface tolerant, high solids product.\nSpecially designed for areas where optimum surface preparation is not possible or required. Can be used as\nprimer, mid coat, finish coat or as single coat system in atmospheric environments. Suitable for properly\nprepared carbon steel and aged coating surfaces. It can be applied at sub zero surface temperatures",
           "brand": "JOTUN",
@@ -227,6 +237,8 @@
           }
         },
         {
+          "id": "p_hahdzmju",
+          "legacyId": "antifouling-coatings-jotun-thinner-diluant-n-07-0-8l",
           "title": "JOTUN Thinner / Diluant N° 07 0.8L",
           "description": "This is a paint thinner. Designed to improve the flow of a range of Jotun acrylic, vinyl and antifouling coatings.\nCan also be used as cleaner for pumps and tools before and after painting",
           "brand": "JOTUN",
@@ -269,6 +281,8 @@
           }
         },
         {
+          "id": "p_t4exg5jh",
+          "legacyId": "antifouling-coatings-jotun-thinner-diluant-n-17-0-8l",
           "title": "JOTUN Thinner / Diluant N° 17 0.8L",
           "description": "This is a paint thinner. Designed to improve the flow of a range of Jotun acrylic, vinyl and antifouling coatings.\nCan also be used as cleaner for pumps and tools before and after painting",
           "brand": "JOTUN",
@@ -325,6 +339,8 @@
           }
         },
         {
+          "id": "p_519rad9s",
+          "legacyId": "antifouling-coatings-hempel-s-antifouling-olympic-72900-3017-05kg-blue-bleu",
           "title": "HEMPEL'S Antifouling Olympic+ 72900/3017 05kg Blue/Bleu",
           "description": "Hempel's Antifouling Olympic+ 72900 is a high solid, self-polishingantifouling. The robust rosin technology combined with a good biocidepackage ensures predictable antifouling protection. The use ofmicrofiber technology ensures superior mechanical strength to avoidcracking and peeling and reduces maintenance costs during repair.\nHempel's Antifouling Olympic+ 72900 can be used for bothnewbuildings and maintenance of underwater hull and boottop.Recommended for slow steaming vessels. For drydocking intervals upto 36 months",
           "brand": "HEMPEL",
@@ -359,6 +375,8 @@
           }
         },
         {
+          "id": "p_03dv2zhn",
+          "legacyId": "antifouling-coatings-hempel-s-antifouling-olympic-72900-1999-05kg-black-noir",
           "title": "HEMPEL'S Antifouling Olympic+ 72900/1999 05kg Black/noir",
           "description": "Hempel's Antifouling Olympic+ 72900 is a high solid, self-polishingantifouling. The robust rosin technology combined with a good biocidepackage ensures predictable antifouling protection. The use ofmicrofiber technology ensures superior mechanical strength to avoidcracking and peeling and reduces maintenance costs during repair.\nHempel's Antifouling Olympic+ 72900 can be used for bothnewbuildings and maintenance of underwater hull and boottop.Recommended for slow steaming vessels. For drydocking intervals upto 36 months.",
           "brand": "HEMPEL",
@@ -393,6 +411,8 @@
           }
         },
         {
+          "id": "p_1xkasr5w",
+          "legacyId": "antifouling-coatings-seajet-039-mono-component-black",
           "title": "SEAJET 039 Mono-Component Black",
           "description": "Seajet 039 Mono-component is an ultimate performing SPC antifouling. Based on the latest resin technology from Japan it is suited to\nall fouling environments and ideal for application to boats in the highest fouling areas.\nCan be used on all substrates except aluminium.",
           "brand": "SEAJET",
@@ -433,6 +453,8 @@
           }
         },
         {
+          "id": "p_kk2n9pfq",
+          "legacyId": "antifouling-coatings-astral-rust-remover-01l",
           "title": "ASTRAL Rust Remover 01L",
           "image": "assets/products/20251121_134555-mi8ve35i.png",
           "description": "ASTRAL Rust Remover 01 L delivers powerful action to dissolve rust and restore metal surfaces to their original clean state. Its fast-acting formula penetrates deeply, removing oxidation, stains, and corrosion with minimal effort. Suitable for tools, machinery, automotive parts, and household metals, it ensures a smooth, ready-to-protect finish. A reliable 1-liter solution for efficient maintenance and long-lasting metal care.",
@@ -464,6 +486,8 @@
           }
         },
         {
+          "id": "p_hzvbdkwu",
+          "legacyId": "antifouling-coatings-astral-paint-remover-01l",
           "title": "ASTRAL Paint Remover 01L",
           "image": "assets/products/20251121_134511-mi8vqx18.png",
           "description": "ASTRAL Paint Stripper 01 L delivers fast and effective removal of old paint, varnish, and tough coatings on wood, metal, and masonry surfaces. Its powerful formula penetrates deeply, softening layers for easy scraping and clean results. Ideal for renovation and restoration projects, it works efficiently without excessive effort. A compact 1-liter solution offering strong performance and professional-grade stripping power.",
@@ -494,6 +518,8 @@
           }
         },
         {
+          "id": "p_48qdo8t0",
+          "legacyId": "antifouling-coatings-euro-master-400ml-eu-063-zinc-spray",
           "title": "EURO MASTER 400ml EU-063 Zinc Spray",
           "image": "assets/products/20251204_175734-mirotu7n.png",
           "description": "It is a galvanic paint providing cathodic protection to the iron-based surfaces and containing 96% pure zinc particles in dry film. It is ideal for repairing damaged or hot-dip applied galvanized materials. DANGER: H222 Extremely flammable aerosol. H229 Pressurised container: May burst if heated. H280 Contains gas under pressure; may explode if heated. H304 May be fatal if swallowed and enters airways. H315 Causes skin irritation. H319 Causes serious eye irritation. H336 May cause drowsiness or dizziness. P102 Keep out of reach of children. P210 Keep away from heat/sparks/open flames/hot surfaces. — No smoking. P211 Do not spray on an open flame or other ignition source. P251 Pressurized container: Do not pierce or burn, even after use. P261 Avoid breathing dust/fume/gas/mist/ vapours/ spray. P271 Use only outdoors or in a well-ventilated area. P280 Wear protective gloves/protective clothing/eye protection/face protection. P301 + P310",
@@ -523,6 +549,8 @@
           }
         },
         {
+          "id": "p_nh8795r0",
+          "legacyId": "antifouling-coatings-international-gray-trilux-prop-o-drev",
           "title": "INTERNATIONAL Gray Trilux Prop-O-Drev",
           "image": "assets/products/20251210_155234-mj05v3hw.png",
           "description": "Trilux Prop­O­Drev . is a hard antifouling that is specially formulated for use on outdrives, outboard legs, propellers and sterngear. \n* Aerosol spray is ideal for painting awkward shapes and difficult to reach areas. \n* Quick and easy application saves you time and effort. \n* Suitable for use on aluminium and stainless steel.",
@@ -555,6 +583,8 @@
           }
         },
         {
+          "id": "p_gu2jdmim",
+          "legacyId": "antifouling-coatings-selemix-01kg-7-510-2k-polyurethane-paint",
           "title": "SELEMIX 01Kg 7-510 2K Polyurethane Paint",
           "image": "assets/products/74f0561d-c158-4638-86a0-f71a190bb5fc-mj5i8sfq.png",
           "description": "SELEMIX 7-510 2K Polyurethane Paint (01 Kg) delivers a high-quality, durable finish for professional industrial and automotive applications. Its two-component formulation provides excellent adhesion, chemical resistance, and long-lasting color stability. Designed for easy application, it ensures a smooth, glossy surface with superior protection. A reliable coating solution for demanding environments and premium finishing results.",
@@ -598,6 +628,8 @@
           }
         },
         {
+          "id": "p_ugcixzvs",
+          "legacyId": "antifouling-coatings-selemix-01kg-7-120-2k-acrylic-paint",
           "title": "SELEMIX 01Kg 7-120 2K Acrylic Paint",
           "image": "assets/products/cb8e77f1-ce57-4670-bb5d-66a81f156791-mj5ige9b.png",
           "description": "SELEMIX 7-120 2K Acrylic Paint (01 Kg) delivers a premium, durable finish for automotive and industrial applications. Its two-component acrylic formula ensures excellent adhesion, fast drying, and long-lasting color and gloss retention. Designed for professional use, it provides a smooth, high-quality surface with strong resistance to weathering and chemicals. An ideal coating solution for precise, reliable, and long-term results.",
@@ -641,6 +673,8 @@
           }
         },
         {
+          "id": "p_b7dlnumf",
+          "legacyId": "antifouling-coatings-selemix-01kg-7-410-2k-epoxy-paint",
           "title": "SELEMIX 01Kg 7-410 2K Epoxy Paint",
           "image": "assets/products/7095553c-4eb5-477f-866b-5cc96a91cfbf-mj5j7fnr.png",
           "description": "SELEMIX 7-410 2K Epoxy Paint (01 Kg) provides exceptional protection and durability for industrial and heavy-duty applications. Its two-component epoxy formulation ensures excellent adhesion, high chemical resistance, and superior corrosion protection. Designed for professional use, it delivers a smooth, robust coating ideal for metal surfaces and demanding environments. A reliable solution for long-lasting performance and high-quality finishes.",
@@ -684,6 +718,8 @@
           }
         },
         {
+          "id": "p_jjfbjkf3",
+          "legacyId": "antifouling-coatings-envipaint-1-2l-epoxy-hardener",
           "title": "ENVIPAINT 1/2L Epoxy Hardener",
           "image": "assets/products/20251214_112657-mj5lsh9n.png",
           "description": "ENVIPAINT Epoxy Hardener 1/2 L is a high-performance curing agent designed to ensure optimal cross-linking and durability of epoxy coatings. It enhances adhesion, chemical resistance, and mechanical strength for long-lasting, professional finishes. Easy to mix and apply, it guarantees consistent results in industrial and automotive applications. An essential component for achieving strong, reliable epoxy systems.",
@@ -727,6 +763,8 @@
           }
         },
         {
+          "id": "p_t1vfyt6t",
+          "legacyId": "antifouling-coatings-envipaint-1-2l-polyurethane-hardener",
           "title": "ENVIPAINT 1/2L Polyurethane Hardener",
           "image": "assets/products/20251214_112912-mj5m7hzj.png",
           "description": "ENVIPAINT Polyurethane Hardener 1/2 L is a high-quality curing agent designed to enhance the performance and durability of polyurethane coatings. It ensures proper cross-linking, improving adhesion, hardness, and resistance to chemicals and weathering. Easy to mix and apply, it delivers consistent, professional results in automotive and industrial applications. An essential component for achieving strong, long-lasting polyurethane finishes.",
@@ -770,6 +808,8 @@
           }
         },
         {
+          "id": "p_qdwvbsbz",
+          "legacyId": "antifouling-coatings-envipaint-acrylic-hardener",
           "title": "ENVIPAINT  Acrylic Hardener",
           "image": "assets/products/durc-mj5mcixb.png",
           "description": "ENVIPAINT Acrylic Hardener is a high-performance curing agent designed to optimize the strength and durability of acrylic paint systems. It ensures proper cross-linking, delivering excellent adhesion, fast curing, and long-lasting gloss retention. Suitable for professional automotive and industrial applications, it provides consistent and reliable results. An essential component for achieving high-quality, durable acrylic finishes.",
@@ -813,6 +853,8 @@
           }
         },
         {
+          "id": "p_5ukb0o9y",
+          "legacyId": "antifouling-coatings-envipaint-1-2l-polyurethane-primer-hardener",
           "title": "ENVIPAINT 1/2L Polyurethane Primer Hardener",
           "image": "assets/products/20251214_121141-mj5mujfm.png",
           "description": "ENVIPAINT Polyurethane Primer Hardener 1/2 L is a specialized curing agent designed to optimize the performance of polyurethane primer systems. It ensures proper cross-linking, improving adhesion, hardness, and surface uniformity before topcoat application. Easy to mix and apply, it delivers consistent, professional results in automotive and industrial coating processes. An essential component for achieving strong, durable, and high-quality primer finishes.",
@@ -845,6 +887,8 @@
           }
         },
         {
+          "id": "p_gnbkk6zw",
+          "legacyId": "antifouling-coatings-envipaint-acrylic-thinner",
           "title": "ENVIPAINT Acrylic Thinner",
           "image": "assets/products/20251214_121251-mj5n9mle.png",
           "description": "ENVIPAINT Acrylic Thinner is specially formulated to ensure optimal viscosity and smooth application of acrylic paint systems. It improves flow, leveling, and sprayability, delivering a uniform, high-quality finish. Suitable for professional automotive and industrial use, it helps reduce defects and enhances overall coating performance. An essential thinner for achieving clean, precise, and professional acrylic results.",
@@ -888,6 +932,8 @@
           }
         },
         {
+          "id": "p_ug9l4bep",
+          "legacyId": "antifouling-coatings-envipaint-2k-white-polyurethane-primer-01kgprimer-1-2l-hardener",
           "title": "ENVIPAINT 2K White Polyurethane Primer (01KgPrimer + 1/2L Hardener)",
           "image": "assets/products/20251214_123854-mj5nmorx.png",
           "description": "ENVIPAINT 2K Polyurethane Primer (Primer + Hardener) delivers excellent adhesion and surface preparation for high-quality finishing systems. Its two-component formulation ensures strong bonding, uniform coverage, and enhanced durability on metal and other substrates. Designed for professional automotive and industrial applications, it provides a smooth, stable base for topcoats. A reliable primer system for long-lasting protection and superior finish results.",
@@ -921,6 +967,8 @@
           }
         },
         {
+          "id": "p_sd3o9xay",
+          "legacyId": "antifouling-coatings-envipaint-2k-white-acrylic-primer-01l-primer-1-4lhardener",
           "title": "ENVIPAINT 2K White Acrylic Primer (01L Primer + 1/4LHardener)",
           "image": "assets/products/20251214_124858-mj5o257e.png",
           "description": "ENVIPAINT 2K Acrylic Primer (Primer + Hardener) provides excellent surface preparation and strong adhesion for high-quality finishing systems. Its two-component acrylic formulation ensures uniform coverage, fast curing, and durable performance on metal and various substrates. Designed for professional automotive and industrial use, it creates a smooth, stable base for topcoats. A reliable primer system for consistent results and superior finish quality.",
@@ -954,6 +1002,8 @@
           }
         },
         {
+          "id": "p_ytxgtigc",
+          "legacyId": "antifouling-coatings-kapci-01l-1k-grey-acrylic-primer",
           "title": "KAPCI 01L 1K Grey Acrylic Primer",
           "image": "assets/products/20251120_153058-mj5obo5s.png",
           "description": "KAPCI 01L / 01K Grey Acrylic Primer is a high-performance primer designed to provide excellent adhesion and surface preparation for topcoats. Its grey formulation ensures uniform coverage, fast drying, and smooth sanding properties, making it ideal for automotive, industrial, and DIY applications. Designed for use on metal, wood, and other substrates, it creates a stable base for a professional finish. A reliable choice for long-lasting, high-quality results.",
@@ -988,6 +1038,8 @@
           }
         },
         {
+          "id": "p_ls7tx9fc",
+          "legacyId": "antifouling-coatings-sotach-2k-polyurethane-varnish-glossy-mat",
           "title": "SOTACH 2K Polyurethane Varnish, Glossy & Mat",
           "image": "assets/products/20251120_152857-mj5px1ro.png",
           "description": "Designation: This is a 2-component finishing varnish (Polyurethane or Acrylic), high-performance for interior and exterior use.\nUse: This is a highly filling varnish, suitable for protection and decoration of furniture, furnishings, store fittings, office furniture…\n\nProperties:\n\nFast drying\n\nSmooth, hard, and durable finish\n\nExcellent physical and chemical resistance\n\nEasy application\n\nCharacteristics:\n\nFinish: MAT or GLOSS depending on customer choice\n\nMixing density: 0.93\n\nDelivery viscosity: 60 sec CAFN No. 4 at 20°C\n\nNumber of components: 2\n\nMixing ratio: 75/25\n\nTheoretical yield: 9 to 11 m²/kg\n\nDrying time at 20°C:\n\nDust-free: 30 min\n\nTouch dry: 2 h\n\nHard: 4 h\n\nRecoatable: 6 h\n\nApplication: Only on a Polyurethane or Acrylic base\n\nSpray gun: dilute with PU/AC thinner by 15–25%.\nPreparation of the SOTACH 2K varnish:\n\nPU/AC primer: 750 parts\n\nHardener: 250 parts\n\nPU/AC thinner: 250 parts\n\nPot life: 2 hours\n\nStorage: 12 months in a closed container at 20°C\n\nPackaging: 0.750 kg + 0.250 kg hardener, 3 kg + 1 kg hardener, and 18 kg + 6 kg hardener",
@@ -1036,6 +1088,8 @@
           }
         },
         {
+          "id": "p_dpbhjdz5",
+          "legacyId": "antifouling-coatings-hempel-s-01l-0808-thinner",
           "title": "HEMPEL'S 01L 0808 Thinner",
           "image": "assets/products/fcfaf6ec-daf4-4b1f-9f91-f90a3884105a-mp2qv165.png",
           "description": "HEMPEL'S 01L 0808 Thinner is a high-quality solvent specially formulated for thinning compatible Hempel marine and protective coatings. It improves paint application, flow, and leveling while ensuring optimal drying performance. Suitable for cleaning spray equipment, brushes, and tools, it helps maintain professional finishing results. Widely used in marine, industrial, and maintenance applications, HEMPEL'S 0808 Thinner delivers reliable performance and consistent coating quality.",
@@ -1068,6 +1122,8 @@
           }
         },
         {
+          "id": "p_gl0vtm3c",
+          "legacyId": "antifouling-coatings-seajet-pellerclean-clear-coat",
           "title": "SEAJET PELLERCLEAN CLEAR COAT",
           "image": "assets/products/20260417_133210-mp2sf51l.png",
           "description": "Seajet Pellerclean Clear Coat is a protective underwater coating designed to prevent fouling on propellers and metal underwater parts. It creates a smooth, clear barrier that reduces marine growth and improves performance and efficiency. Easy to apply, it helps maintain cleaner surfaces for longer periods, reducing maintenance needs and fuel consumption.",
@@ -1099,6 +1155,8 @@
           }
         },
         {
+          "id": "p_gt31yerm",
+          "legacyId": "antifouling-coatings-luxtral-cellulosic-thinner",
           "title": "LUXTRAL Cellulosic Thinner",
           "image": "assets/products/20260513_181007-mp4btet7.png",
           "description": "Luxtral Cellulosic Thinner is a fast-evaporating solvent specially formulated for thinning nitrocellulose and cellulosic paints. It improves paint flow, spray application, and surface finish while ensuring quick drying and smooth leveling. It is also suitable for cleaning spray guns, brushes, and painting tools used in industrial and automotive applications.",
@@ -1159,6 +1217,8 @@
       "description": "Marine sealants for deck hardware, teak, hatches, and glazing.",
       "products": [
         {
+          "id": "p_n6zc6cxm",
+          "legacyId": "sealants-adhesives-sikaflex-291i-300ml-white-blanc-black-noir",
           "title": "Sikaflex 291i 300ml white/Blanc/Black/Noir",
           "description": "Sikaflex®-291i is a non-sag 1-component polyurethane sealant specifically developed for\nthe marine market, which cures on exposure to atmospheric moisture.\nSikaflex®-291i meets in addition the low\nspread of flame requirements set out by the\nInternational Maritime Organisation (IMO).\n▪ Wheelmark approved\n▪ 1-component formulation\n▪ Highly elastic\n▪ Low odour\n▪ Non-corrosive\n▪ Can be painted\nBonds well to a wide variety of marine substrates\n▪\n▪ Solvent free\n▪ Very low VOC\n▪ Low isocyanate conten",
           "brand": "SIKA",
@@ -1196,6 +1256,8 @@
           }
         },
         {
+          "id": "p_8p0st8fx",
+          "legacyId": "sealants-adhesives-sikaflex-295-uv-400ml-white-blanc-black-noir",
           "title": "Sikaflex 295 UV 400ml White/Blanc/Black/Noir",
           "description": "Sikaflex®-295 UV is a 1-component polyurethane adhesive of paste-like consistency that\ncures on exposure to atmospheric moisture. It\nis suitable for interior and exterior sealing applications and to bond organic glass in the\nMarine business.\nSikaflex®-295 UV meets the requirements set\nout by the International Maritime Organization (IMO).\n▪ Excellent application properties\n▪ Resistant to ageing and weathering\n▪ Suitable for organic glasses\n▪ Approved for the OEM market\n▪ Wheelmark approved",
           "brand": "SIKA",
@@ -1227,6 +1289,8 @@
           }
         },
         {
+          "id": "p_yp6h6pv2",
+          "legacyId": "sealants-adhesives-julien-striaform-2k-epoxy-putty-01kg",
           "title": "JULIEN STRIAFORM 2K Epoxy Putty 01kg ",
           "description": "2K Thixotropic epoxy putty ",
           "brand": "JULIEN",
@@ -1285,6 +1349,8 @@
           }
         },
         {
+          "id": "p_u0n8pch8",
+          "legacyId": "sealants-adhesives-sikaflex-primer-290-dc-225ml",
           "title": "Sikaflex Primer-290 DC 225ML",
           "description": "Sika® Primer-290 DC is used to improve adhesion\non Teak, Mahogany, Oregon pine and\nGRP based on polyester.\nSeek manufacturer’s advice and perform tests\non original substrates before using Sika®\nPrimer-290 DC on materials prone to stress\ncracking.\nThis product is suitable for experienced professional\nusers only. Tests with actual substrates\nand conditions have to be performed\nto ensure adhesion and material compatibility.",
           "brand": "SIKA",
@@ -1317,6 +1383,8 @@
           }
         },
         {
+          "id": "p_x2izad5f",
+          "legacyId": "sealants-adhesives-epokukdo-yd-114-low-viscosity-epoxy-resin-2k-01l",
           "title": "EPOKUKDO YD-114 Low Viscosity Epoxy Resin 2K 01L",
           "description": "EPOKUKDO YD-114 is a Bisphenol-A type liquid Epoxy Resin diluted with aliphatic glycidyl ether\n(C12–C14). YD-114 is recommended for non-solvent system or low VOC coating system and has\nexcellent mechanical properties, chemical resistance and non-toxic minimum odor. YD-114 is\ngenerally used in solvent-free coating, floor coating, trowelling application, crack injection systems,\nadhesives, decoupage system, and high solids or low VOC industrial coatings.",
           "brand": "KUKDO",
@@ -1349,6 +1417,8 @@
           }
         },
         {
+          "id": "p_rzf9mcul",
+          "legacyId": "sealants-adhesives-tp220tico-polyester-resin-01l",
           "title": "TP220TICO Polyester Resin 01L",
           "description": "TP220TICO is a thixotropic, pre-accelerated, low reactive, low viscosity orthophthalic unsaturated polyester resin. It is specially designed for non-critical applications. TP220 is suitable for handlay-up and spray-up applications.\n\nMODIFICATIONS:\nTICO: Thixotropic and Accelerated\nCO:Pre-accelerated (Cobalt Octoat)\nAABP:Amine Accelerated\nUV: Contains UV Stabilizers\nLSE: Low Styrene Emission\nHV: High Viscosity\nLV:Low Viscosity\nSV:Special Viscosity",
           "brand": "TURKUAZ",
@@ -1405,6 +1475,8 @@
           }
         },
         {
+          "id": "p_xtdv3l1f",
+          "legacyId": "sealants-adhesives-kapci-aluminium-pe-putty-380-0-9kg",
           "title": "KAPCI Aluminium PE Putty 380 0.9Kg",
           "description": "",
           "brand": "KAPCI",
@@ -1436,6 +1508,8 @@
           }
         },
         {
+          "id": "p_t8wi61l1",
+          "legacyId": "sealants-adhesives-kapci-polyester-putty-350",
           "title": "KAPCI Polyester Putty 350 ",
           "description": "Kapci 350 polyester is a general purpose putty. ",
           "brand": "KAPCI",
@@ -1493,6 +1567,8 @@
           }
         },
         {
+          "id": "p_x61fzhb6",
+          "legacyId": "sealants-adhesives-gc-ecogel-s3pa-v2-ral-9016-white",
           "title": "GC Ecogel S3PA V2 Ral 9016 White",
           "description": "Crystic Ecogel® S3PA is a high performance isophthalic neopentyl glycol gelcoat. This gelcoat is pre-accelerated and formulated for spray\napplication.\nCrystic Ecogel® S3PA is a low VOC product.\nCrystic Ecogel® S3PA has been specially designed for the production of high quality parts in the marine industry. This formulation offers an\nexcellent hydrolysis resistance combined with a high gloss and gloss retention.",
           "brand": "SCOTT BADER",
@@ -1549,6 +1625,8 @@
           }
         },
         {
+          "id": "p_sijivvr2",
+          "legacyId": "sealants-adhesives-methyl-acetate",
           "title": "Methyl Acetate",
           "image": "assets/products/chatgpt-image-nov-15-2025-05_37_02-pm-mi0jaacc.png",
           "description": "Acetone is a fast-evaporating, highly effective organic solvent widely used in industry and maintenance.\nIt dissolves oils, resins, adhesives, and contaminants, making it ideal for surface cleaning and degreasing.\nIts rapid evaporation leaves no residue, ensuring clean and ready-to-coat surfaces.\nCommonly used in automotive, marine, paint, and chemical applications for reliable, efficient cleaning performance.",
@@ -1604,6 +1682,8 @@
           }
         },
         {
+          "id": "p_or42picd",
+          "legacyId": "sealants-adhesives-pattex-pl-150",
           "title": "PATTEX PL 150",
           "image": "assets/products/snapchat-1780413442-mi7pwlzw.png",
           "description": "PL 150 (Construction Adhesive) is suitable for interior and\nexterior applications for bonding and mounting. It ensures a\npermanent bond, and is UV, weather and vibration resistant.\nCan be used for all absorbent and non-absorbent materials,\nsuch as Bricks, Ceramics, Concrete, Hardboard Drywall,\nPlywood, Stone, MDF, Wood, Metal, Rigid PVC, Polystyrene,\n(etc. except PE, PPTE, and Acrylic glass), painted/coated\nsurface and mirrors. Not suitable for bonding with constant exposure to moisture.",
@@ -1634,6 +1714,8 @@
           }
         },
         {
+          "id": "p_bckzhj1g",
+          "legacyId": "sealants-adhesives-pattex-promax-xl-pu-foam-750ml",
           "title": "PATTEX Promax XL PU Foam 750ml",
           "image": "assets/products/snapchat-494329941-mi7q6far.png",
           "description": "Pattex Promax XL is a multi purpose PU foam\nthat cures to a durable semi-rigid structure under\ninfluence of air humidity. Product can be used for\nbonding, sealing and filling purposes. Seals joints\naround windows and doors.",
@@ -1664,6 +1746,8 @@
           }
         },
         {
+          "id": "p_kmer5jpy",
+          "legacyId": "sealants-adhesives-sika-boom-pu-foam-750ml",
           "title": "SIKA Boom PU Foam 750ml",
           "image": "assets/products/snapchat-436358883-mi7q9ov7.png",
           "description": "Sika Boom® is a pre-pressurized, portable, onecomponent, polyurethane foam system applied in a\nbead form. Sika Boom® expands and cures slowly to a\nsemi-rigid, closed cell foam upon reaction with moisture,\nsuch as ambient humidity. It is designed for easy\ndispensing through a straw adapter that is included with\neach can.",
@@ -1694,6 +1778,8 @@
           }
         },
         {
+          "id": "p_wicyjmhg",
+          "legacyId": "sealants-adhesives-extracolor-0-9kg-soundproof-putty",
           "title": "EXTRACOLOR 0.9Kg Soundproof Putty",
           "image": "assets/products/20251215_111735-mj70u441.png",
           "description": "EXTRACOLOR 0.9 Kg Soundproof Putty is an effective solution for reducing noise and vibrations in construction and renovation projects. Its dense, flexible formulation absorbs sound and helps seal gaps, joints, and cavities on various surfaces. Easy to apply and shape, it ensures reliable acoustic insulation with long-lasting performance. An ideal product for improving comfort and sound control in residential and commercial spaces.",
@@ -1725,6 +1811,8 @@
           }
         },
         {
+          "id": "p_cl0s0ush",
+          "legacyId": "sealants-adhesives-roberlo-aircolor-isofast-fx2-1k-medium-gray-primer",
           "title": "ROBERLO Aircolor Isofast FX2 1K Medium Gray Primer",
           "image": "assets/products/20251215_111819-mj71x06p.png",
           "description": "One-component insulating sealant for bodywork repair. Its main features are its fast drying and excellent adhesion to the different materials used in bodywork.\nISOFAST is a primer which, due to its fast drying and fine spray, is ideal for the fast repair of small surfaces. ISOFAST can be recoated with any bodywork clear coat.\nISOFAST is a product that is economically advantageous for small jobs since, due to its aerosol presentation, it requires neither preparation nor cleaning of tools.",
@@ -1758,6 +1846,8 @@
           }
         },
         {
+          "id": "p_ysp53sfc",
+          "legacyId": "sealants-adhesives-quickline-qp-3000-aerosol-primer-400ml",
           "title": "QUICKLINE QP-3000 Aerosol Primer 400ml",
           "image": "assets/products/images-1-mj72cfzm.jpg",
           "description": "A one-pack aerosol primer that’s ideal for spot priming “rub-throughs” that have occurred during sanding. QP-3000 can be directly over-coated with colour without the need to sand.\n\nPacksize: 0.4L",
@@ -1786,6 +1876,8 @@
           }
         },
         {
+          "id": "p_9ebsai0g",
+          "legacyId": "sealants-adhesives-upol-plast-x-plastic-filler-600ml-fills-scuffs-and-scratches-on-plastics",
           "title": "UPOL Plast X Plastic Filler 600ml, fills Scuffs And Scratches On Plastics",
           "image": "assets/products/20251215_112405-mj73nhsf.png",
           "description": "PLAST X Highly Flexible Body Filler for Plastics\nA high adhesion and flexible polyester filler specifically designed for scuffs and scratches on plastic parts that require ultimate flexibility (e.g. bumpers).\n\nExcellent feather edge properties\nHigh adhesion and flexibility on most plastic components\n",
@@ -1817,6 +1909,8 @@
           }
         },
         {
+          "id": "p_c7bqsl5l",
+          "legacyId": "sealants-adhesives-sikaflex-292i-300ml-white-blanc-black-noir",
           "title": "Sikaflex 292i 300ml white/Blanc/Black/Noir",
           "image": "assets/products/20260326_113125-mn7cmx40.png",
           "description": "Sikaflex®-292i is a non-sag 1-component polyurethane adhesive of thixotropic, paste-like\nconsistency which cures on exposure to atmospheric moisture. It exhibits excellent adhesive properties and a good mechanical\nstrength.\nSikaflex®-292i meets the low spread of flame\nrequirements set out by the International\nMaritime Organisation (IMO).\n",
@@ -1846,6 +1940,8 @@
           }
         },
         {
+          "id": "p_9cwyqigj",
+          "legacyId": "sealants-adhesives-fiber-glass-fabric-tissu-roving-500-1-m2",
           "title": "Fiber Glass Fabric \"TISSU ROVING 500\", 1 m2",
           "image": "assets/products/20260123_115735-mkqtkp3d.png",
           "description": "Among reinforcements, Fiberglass Fabrics - also known as Fiberglass Cloth - continue to be the most commonly used reinforcement in the composites industry today. Generally, they are the least expensive among reinforcements and offer ease in handling. And when combined with resin, deliver composite parts with excellent strength, low weight, and great cosmetics.\n\nAll Fiberglass Fabrics are woven for fiber orientation, and each fabric features its own unique weight, strength, and fabric characteristics, which should be considered before starting any project.",
@@ -1877,6 +1973,8 @@
           }
         },
         {
+          "id": "p_kuez3sag",
+          "legacyId": "sealants-adhesives-fiberglass-mat-1-m2",
           "title": "Fiberglass Mat, 1 m2",
           "image": "assets/products/20260123_121124-mkqtsjlx.jpg",
           "description": "Fiberglass Mat is one of the most popular forms of reinforcement for non-structural applications. It's inexpensive, easy to use, and can quickly build thickness into parts, molds, or even a repair. It features randomly oriented strands throughout that effectively hide print-through of heavier fabrics and create an equal stiffness in all directions for molds and parts.\n\nNote: All Fiberglass Mat is made to be used with resin to create hard, composite parts. However, it is NOT compatible with epoxy resin. Mat has a light binder that holds it together. During lay-up, it requires styrene to break down that binder and allow for complete resin saturation. Epoxy does not contain styrene and therefore cannot be effectively used with the mat. Use polyester or vinyl ester resin with these applications.",
@@ -1906,6 +2004,8 @@
           }
         },
         {
+          "id": "p_207vw7jf",
+          "legacyId": "sealants-adhesives-belzona-1111-01kg",
           "title": "BELZONA 1111 / 01KG",
           "image": "assets/products/20260303_102353-mp2rlb5x.png",
           "description": "Belzona 1111 (Super Metal) is a two-component, solvent-free epoxy repair composite designed for rebuilding, resurfacing, and repairing metal components. It is reinforced for high mechanical strength and excellent resistance to corrosion, chemicals, and wear. Commonly used on pumps, shafts, pipes, tanks, and machinery, it can be machined and painted after curing. Belzona 1111 bonds strongly to metals and is widely applied in marine, industrial, and maintenance environments for durable metal restoration and emergency repairs.",
@@ -1934,6 +2034,8 @@
           }
         },
         {
+          "id": "p_n1no0yky",
+          "legacyId": "sealants-adhesives-sikaflex-290-dc-pro-300ml",
           "title": "Sikaflex 290 DC PRO 300ml",
           "image": "assets/products/2715200-mp5pd34f.webp",
           "description": "Sikaflex®-290 DC PRO is a 1-component polyurethane based joint sealing compound, specifically formulated for caulking joints in traditional timber marine decking. It exhibits excellent weathering resistance and is therefore\nwell suited for highly exposed open joints\nwithin the maritime environment. The sealing\ncompound cures to form a flexible elastomer\nwhich allows a fast and easy sanding process.\nSikaflex®-290 DC PRO meets the requirements set out by the International Maritime\nOrganisation (IMO).\n",
@@ -1962,6 +2064,8 @@
           }
         },
         {
+          "id": "p_kwy018pm",
+          "legacyId": "sealants-adhesives-sika-multiprimer-marine-250ml",
           "title": "Sika® MultiPrimer Marine 250Ml",
           "image": "assets/products/20260901_122024-mtillav4.png",
           "description": "Non-pigmented, solvent-based primer for different substrates in Marine application\nSika® MultiPrimer Marine is a solvent-based colorless to slightly yellow primer, which reacts with moisture and forms a thin layer. This layer acts as a link between substrates and adhesives.\nSika® MultiPrimer Marine is specifically formulated for the treatment of bond faces prior to application of Sika’s 1-component Polyurethanes.  ",
@@ -2011,6 +2115,8 @@
       "description": "Engine oils, filters and reliable onboard power.",
       "products": [
         {
+          "id": "p_qa181ekl",
+          "legacyId": "oils-filters-batteries-pack-of-4-kodak-zinc-batteries-aa",
           "title": "Pack Of 4 Kodak Zinc Batteries AA",
           "description": "AA Zinc battery cell composition.\nSingle use.",
           "brand": "KODAK",
@@ -2042,6 +2148,8 @@
           }
         },
         {
+          "id": "p_jqo49sz9",
+          "legacyId": "oils-filters-batteries-pack-of-4-kodak-zinc-batteries-aaa",
           "title": "Pack Of 4 Kodak Zinc Batteries AAA",
           "description": "AAA Zinc batteries cell composition.\nSingle use.",
           "brand": "KODAK",
@@ -2074,6 +2182,8 @@
           }
         },
         {
+          "id": "p_gllxwcwb",
+          "legacyId": "oils-filters-batteries-9v-kodak-zinc-battery",
           "title": "9V KODAK Zinc Battery",
           "description": "9V Zinc battery cell composition.\nSingle use.",
           "brand": "KODAK",
@@ -2106,6 +2216,8 @@
           }
         },
         {
+          "id": "p_rm1fv8je",
+          "legacyId": "oils-filters-batteries-cr2025-maxell-3v-battery",
           "title": "CR2025 MAXELL 3V Battery ",
           "description": "Lithium 3V Coin Battery.\nCar Key Fobs, Watches, Home/Medical/Fitness Devices.",
           "brand": "MAXELL",
@@ -2137,6 +2249,8 @@
           }
         },
         {
+          "id": "p_ua77ih84",
+          "legacyId": "oils-filters-batteries-revline-hydraulic-oil-hm-hlp-46",
           "title": "REVLINE Hydraulic Oil HM/HLP 46",
           "description": "HYDROL LHM/\nHLP hydraulic oils for hydrostatic systems are manufactured basing on high quality mineral\nbase oils and a set of enriching additives improving antiwear, anticorrosive and antioxidative properties",
           "brand": "REVLINE",
@@ -2183,6 +2297,8 @@
           }
         },
         {
+          "id": "p_q19s0nyv",
+          "legacyId": "oils-filters-batteries-liqui-moly-01l-anti-bacterial-diesel-additive",
           "title": "LIQUI MOLY 01L Anti-Bacterial Diesel Additive",
           "image": "assets/products/20251204_131741-miri3ir8.png",
           "description": "Highly active biocide with wide action spectrum\nagainst bacteria, yeasts and moulds. Use biocides\nsafely. Always read the label and product\ninformation before use.",
@@ -2213,6 +2329,8 @@
           }
         },
         {
+          "id": "p_88uic1dk",
+          "legacyId": "oils-filters-batteries-oceana-01l-atf-1",
           "title": "OCEANA 01L ATF-1",
           "image": "assets/products/20251204_131712-mirli6xm.png",
           "description": "",
@@ -2263,6 +2381,8 @@
       "description": "Every day tools that yachtsmen use ",
       "products": [
         {
+          "id": "p_x4tzzt2m",
+          "legacyId": "hardware-tools-cristal-disposable-paint-brush",
           "title": "CRISTAL Disposable paint brush ",
           "description": "Ideal for painting, cleaning parts,  and touch-up work\nFor use with glue, paint, resin, acetone, and other solvents",
           "brand": "CRISTAL",
@@ -2387,6 +2507,8 @@
           }
         },
         {
+          "id": "p_s3vh8q7p",
+          "legacyId": "hardware-tools-cristal-short-pile-paint-roller-pack-of-5",
           "title": "CRISTAL Short Pile Paint Roller Pack Of 5",
           "description": "100 mm Width, 7mm diameter. \nSuitable for interior, wood and metal.\nWorks with oil based paints.",
           "brand": "CRISTAL",
@@ -2418,6 +2540,8 @@
           }
         },
         {
+          "id": "p_r1l9cjsx",
+          "legacyId": "hardware-tools-cristal-long-pile-paint-roller-pack-of-5",
           "title": "CRISTAL long Pile Paint Roller Pack Of 5",
           "description": "100 mm Width, 7mm diameter. \nSuitable for interior, exterior, and wood.\nWorks with oil and water based paints.",
           "brand": "CRISTAL",
@@ -2450,6 +2574,8 @@
           }
         },
         {
+          "id": "p_m6ya95uy",
+          "legacyId": "hardware-tools-cristal-long-roller-frame",
           "title": "CRISTAL Long Roller Frame",
           "description": "CRISTAL Long roller frame.\n7mm diameter wire, 410mm length.\nPlastic handle.",
           "brand": "CRISTAL",
@@ -2480,6 +2606,8 @@
           }
         },
         {
+          "id": "p_6wwkbkks",
+          "legacyId": "hardware-tools-cristal-20cm-short-pile-paint-roller-plus-frame",
           "title": "CRISTAL 20CM Short Pile Paint Roller Plus Frame",
           "description": "Suitable for interior, exterior, and wood.\nWorks with oil and water based paints.",
           "brand": "CRISTAL",
@@ -2511,6 +2639,8 @@
           }
         },
         {
+          "id": "p_tnjqc69t",
+          "legacyId": "hardware-tools-wood-handle-filling-knife-50mm",
           "title": "Wood Handle Filling Knife 50MM",
           "description": "Made of steel and soft wood handle.",
           "brand": "CRISTAL",
@@ -2566,6 +2696,8 @@
           }
         },
         {
+          "id": "p_8vjn6m5k",
+          "legacyId": "hardware-tools-acem-body-filler-application-set-4pce",
           "title": "ACEM Body Filler Application Set 4pce",
           "description": "Spring steel blades with composite grips.\nBlade sizes 50, 80, 100 & 120mm",
           "brand": "ACEM",
@@ -2597,6 +2729,8 @@
           }
         },
         {
+          "id": "p_edd9te53",
+          "legacyId": "hardware-tools-apt-sds-paint-mixer-80-x-600-x-10mm",
           "title": "APT SDS Paint Mixer ( 80 X 600 x 10MM)",
           "description": "Twin mixing blade design.\nIdeal for use with electric drills with an SDS chuck.\n",
           "brand": "APT",
@@ -2627,6 +2761,8 @@
           }
         },
         {
+          "id": "p_hhv68n80",
+          "legacyId": "hardware-tools-technopole-6-in-1-penetrating-lubricant-oil-300ml",
           "title": "Technopole 6 In 1 Penetrating / Lubricant Oil 300ml",
           "description": "Rapid Penetration, Rust Defense, Versatile Utility, equipped with precision straw",
           "brand": "TECHNOPOLE",
@@ -2658,6 +2794,8 @@
           }
         },
         {
+          "id": "p_9234wswj",
+          "legacyId": "hardware-tools-technopole-degrippant-penetrating-express-spray-300ml",
           "title": "Technopole Degrippant / Penetrating Express Spray 300ml",
           "description": "Super Strong Penetrating Maintenance Spray 300ml.\nExcellent quality.",
           "brand": "TECHNOPOLE",
@@ -2686,6 +2824,8 @@
           }
         },
         {
+          "id": "p_9vdj8agj",
+          "legacyId": "hardware-tools-saratoga-unloose-lubricant-300ml",
           "title": "SARATOGA Unloose Lubricant 300ml",
           "description": "Saratoga LASER is the strong throwing power fluid that melts the rust, incrustations, saltiness; it loosens in a very short time the mechanical fits, screws, bolts, hinges, bearings, locks, connections. It does not corrode metals, varnishes or rubber. It eliminates the humidity from the electric circuit; it lubricates and protects from the corrosion and the oxidation. The valve “All Positions” consents the use of the bomb in whichever position.\n\nAPPLICATION: Spray directly on the part to loosen. Leave the fluid to penetrate, therefore to unbolt.",
           "brand": "SARATOGA",
@@ -2717,6 +2857,8 @@
           }
         },
         {
+          "id": "p_kj404e5v",
+          "legacyId": "hardware-tools-ds-earmuff-ear-protection-black-yellow",
           "title": "DS Earmuff, Ear Protection Black/Yellow",
           "description": "Comfortable and effective hearing protection. Reusable and lightweight",
           "brand": "DS",
@@ -2749,6 +2891,8 @@
           }
         },
         {
+          "id": "p_u0snl60w",
+          "legacyId": "hardware-tools-climax-half-mask-ref-324",
           "title": "CLIMAX Half Mask Ref. 324",
           "description": "Half mask for professional use against gases, vapors, solid and liquid particles. ",
           "brand": "CLIMAX",
@@ -2779,6 +2923,8 @@
           }
         },
         {
+          "id": "p_43peojha",
+          "legacyId": "hardware-tools-sun-nitrile-disposable-gloves-blackxl",
           "title": "SUN Nitrile Disposable Gloves, BlackXL",
           "description": "special heavy duty with rough surface.\nResist oils, acids, detergents and most chemicals.\nMade in china.",
           "brand": "SUN",
@@ -2810,6 +2956,8 @@
           }
         },
         {
+          "id": "p_jlrpefpk",
+          "legacyId": "hardware-tools-acem-screwdriver-orange-ph",
           "title": "ACEM Screwdriver, Orange, PH",
           "description": "PH1 Screwdriver.\nDurable chrome vanadium steel.\nMagnetic tip.",
           "brand": "ACEM",
@@ -2891,6 +3039,8 @@
           }
         },
         {
+          "id": "p_1uoj0nk5",
+          "legacyId": "hardware-tools-15-pack-disposable-face-mask-with-breathing-valve",
           "title": "15 Pack / Disposable Face Mask with Breathing Valve",
           "description": "Disposable non-toxic dust and filter mask.\nClear vision; low profile design lets you see where you are going. Easily wear glasses or safety googles.",
           "brand": "DS",
@@ -2923,6 +3073,8 @@
           }
         },
         {
+          "id": "p_cb5nnjwm",
+          "legacyId": "hardware-tools-deltaplus-dt117-disposable-suit",
           "title": "DELTAPLUS DT117 Disposable Suit",
           "description": "Disposable, anti-static, dry particle resistant chemical protective coveralls offering a good fit and enhanced protection.",
           "brand": "DELTAPLUS",
@@ -2991,6 +3143,8 @@
           }
         },
         {
+          "id": "p_rnp5h6vs",
+          "legacyId": "hardware-tools-gp-tape-25mm-x-25m-multi-surface-masking-tape",
           "title": "GP Tape 25mm X 25M Multi Surface Masking Tape",
           "description": "Multi Surface Masking Tape For Painting, Painters Tape for Sharp Paint Lines, Decorators Tapes, Painters Masking Tapes ",
           "brand": "GP TAPE",
@@ -3058,6 +3212,8 @@
           }
         },
         {
+          "id": "p_qyl2pk87",
+          "legacyId": "hardware-tools-tt-electrical-tape",
           "title": "TT Electrical Tape ",
           "description": "Electrical Tape, Durable, Insulating, Assorted Colors and Sizes.\nRuban adhésif à base de PVC de qualité supérieure pour isolation électrique très facile à mettre en œuvre, il apporte des réponses à tous les bricoleurs, qu'ils soient grands ou petits.\n\n",
           "brand": "TT",
@@ -3113,6 +3269,8 @@
           }
         },
         {
+          "id": "p_23mztwkl",
+          "legacyId": "hardware-tools-eurosil-packing-tape-clear-brown",
           "title": "EUROSIL Packing Tape Clear/Brown",
           "description": "Durable and Reliable Packing Tape, Strong Adhesion.",
           "brand": "EUROSIL",
@@ -3172,6 +3330,8 @@
           }
         },
         {
+          "id": "p_52pc5pwu",
+          "legacyId": "hardware-tools-technopole-multifonction-grease",
           "title": "TECHNOPOLE Multifonction Grease ",
           "description": "Lithium grease is a versatile, high-performance lubricant commonly used in automotive and industrial applications.\nIt provides excellent resistance to moisture, heat, and heavy loads, ensuring long-lasting protection.\nIts thick, stable consistency helps reduce friction and prevent wear on moving metal parts.\nWidely trusted for bearings, hinges, and machinery, lithium grease delivers reliable, all-purpose lubrication.",
           "brand": "TECHNOPOLE",
@@ -3250,6 +3410,8 @@
           }
         },
         {
+          "id": "p_ub5wci8a",
+          "legacyId": "hardware-tools-lechler-00916-water-borne-mordant-paste-250ml",
           "title": "LECHLER 00916 Water-Borne Mordant Paste 250Ml",
           "description": "White water-borne product containing abrasive extenders, carefully selected. It removes scratches and small defects from the painted surfaces.Ideal to remove impurities from the surface of the original coatings due to outside exposure, in contact with polluted environments. It is suitable, moreover, to remove small painting defects like dusts, sags (after sanding) and coarse sanding.Especially suitable for HS and UHS products.",
           "brand": "LECHLER",
@@ -3282,6 +3444,8 @@
           }
         },
         {
+          "id": "p_gkr56nwm",
+          "legacyId": "hardware-tools-kapci-k20-fast-cut-compound-1l",
           "title": "KAPCI K20 Fast Cut Compound 1L",
           "description": "Kapci K20 Fast Cut Compound is a high-performance polishing paste designed for rapid defect removal.\nIt eliminates sanding scratches, oxidation, and surface imperfections with minimal effort.\nThe formula delivers a smooth, high-gloss finish while reducing polishing time.\nIdeal for automotive refinishing, it ensures consistent, professional-grade results on all paint systems.",
           "brand": "KAPCI",
@@ -3314,6 +3478,8 @@
           }
         },
         {
+          "id": "p_mz4veks5",
+          "legacyId": "hardware-tools-pexcraft-foam-polishing-pad-with-holder-150-50mm-m14-2",
           "title": "PEXCRAFT Foam Polishing Pad With Holder 150*50MM/M14*2",
           "description": "This foam polishing pad with holder is designed for efficient cutting, polishing, and finishing on painted surfaces.\nIts 150×50 mm profile ensures smooth handling and optimal surface contact during work.\nEquipped with an M14×2 thread, it fits most standard rotary polishers securely.\nDurable and lightweight, it delivers consistent results for automotive and detailing applications.",
           "brand": "PEXCRAFT",
@@ -3382,6 +3548,8 @@
           }
         },
         {
+          "id": "p_kquftk2n",
+          "legacyId": "hardware-tools-pexcraft-lambswool-polishing-bonnet-125mm",
           "title": "PEXCRAFT Lambswool Polishing Bonnet 125mm",
           "description": "The lambswool polishing bonnet is a premium-grade pad designed for high-efficiency polishing.\nIts natural wool fibers provide excellent cutting power while maintaining a smooth, swirl-free finish.\nIdeal for removing scratches, oxidation, and sanding marks on automotive paintwork.\nDurable, breathable, and gentle on surfaces, it ensures fast, professional-quality results.",
           "brand": "PEXCRAFT",
@@ -3440,6 +3608,8 @@
           }
         },
         {
+          "id": "p_d362mpv1",
+          "legacyId": "hardware-tools-apt-plastic-backing-pad-with-velcro-5-m14",
           "title": "APT Plastic Backing Pad With Velcro 5\"*M14",
           "description": "This plastic backing pad features a 5-inch diameter and durable Velcro surface for quick pad attachment.\nDesigned with an M14 thread, it fits most rotary polishers used in automotive and detailing work.\nIts balanced, rigid construction ensures smooth operation and consistent polishing performance.\nIdeal for supporting foam, wool, and microfiber pads during cutting, polishing, and finishing tasks",
           "brand": "APT",
@@ -3470,6 +3640,8 @@
           }
         },
         {
+          "id": "p_6qq0xsb6",
+          "legacyId": "hardware-tools-apt-aluminum-oxyde-flap-disc-115-22mm-4-5-7-8",
           "title": "APT Aluminum Oxyde Flap disc 115*22mm 4.5*7/8\"",
           "description": "Upgrade your grinding and finishing performance with our premium Aluminum Oxide Flap Disc 115×22 mm (4.5″×7/8″), engineered for power and precision.\nIts durable, high-quality abrasive flaps deliver fast material removal while maintaining a smooth, consistent finish.\nPerfect for metal fabrication, welding cleanup, and general surface prep, it’s built to outlast and outperform standard discs.\nExperience cleaner cuts, longer life, and superior efficiency with every rotation—professional results made effortless.",
           "brand": "APT",
@@ -3548,6 +3720,8 @@
           }
         },
         {
+          "id": "p_057w7ila",
+          "legacyId": "hardware-tools-technopole-starm-tal-cold-welding-85gr",
           "title": "TECHNOPOLE StarMétal / Cold Welding 85Gr",
           "image": "assets/products/img-20251102-wa0061-mi1r8t8w.png",
           "description": "Boost your repair efficiency with StarMetal Cold Welding 85g, the ultimate solution for fast, reliable metal bonding.\nThis high-performance compound restores cracked, worn, or damaged parts with exceptional strength—no heat or special tools required.\nDesigned to bond, fill, and rebuild metal surfaces, it delivers a durable, long-lasting hold in minutes.\nPerfect for workshops and DIY users alike, StarMetal brings professional-grade results right to your hands.",
@@ -3578,6 +3752,8 @@
           }
         },
         {
+          "id": "p_zckpww9j",
+          "legacyId": "hardware-tools-abrapro-adhesive-sanding-discs-125-150mm",
           "title": "ABRAPRO Adhesive Sanding Discs 125/150mm",
           "image": "assets/products/snapchat-2057018395-mi3klhi6.png",
           "description": "Self-adhesive sanding discs offer fast, hassle-free attachment for smooth and efficient sanding on any surface. Their strong adhesive backing keeps each disc securely in place, reducing slippage and ensuring consistent results. Designed with durable, high-quality abrasives, they deliver superior cutting power and long-lasting performance. Ideal for woodworking, automotive, and DIY projects, these discs make every sanding task quicker, cleaner, and more professional.",
@@ -3801,6 +3977,8 @@
           }
         },
         {
+          "id": "p_cyow6nqg",
+          "legacyId": "hardware-tools-ema-metal-cutting-disc-115-230mm",
           "title": "EMA  Metal Cutting Disc 115/230MM",
           "image": "assets/products/20251110_124222-1-mi3nhcpw.png",
           "description": "EMA Metal Cutting Discs 230mm deliver exceptional cutting power, engineered for professionals who demand precision and speed. Their high-performance abrasive formula ensures clean, smooth cuts through steel, metal alloys, and tough materials with minimal effort. Built for durability, each disc maintains consistent performance even under intense workloads. Choose EMA for reliable, long-lasting cutting efficiency that boosts productivity on every job.",
@@ -3861,6 +4039,8 @@
           }
         },
         {
+          "id": "p_oi61yao0",
+          "legacyId": "hardware-tools-bosch-115mm-metal-cutting-discs-stainless-steel-mild-steel-iron-ultra-thin",
           "title": "Bosch 115mm Metal Cutting Discs - Stainless Steel Mild Steel Iron Ultra Thin",
           "image": "assets/products/20251104_145422-mi3oa54y.png",
           "description": "Bosch 115mm Ultra-Thin Metal Cutting Discs deliver outstanding precision and speed across stainless steel, mild steel, and iron. Their slim profile reduces friction for cooler, faster, and cleaner cuts every time. Engineered with Bosch’s high-performance abrasive technology, these discs offer exceptional durability and minimal burr formation. Choose Bosch for professional-grade cutting results that elevate efficiency and finish quality on every project.",
@@ -3891,6 +4071,8 @@
           }
         },
         {
+          "id": "p_r64p3teo",
+          "legacyId": "hardware-tools-ds-steel-twist-knot-wheel-115-125mm-m14-x-2",
           "title": "DS  Steel Twist-Knot Wheel 115/125mm M14 x 2 ",
           "image": "assets/products/20251104_151639-mi4jnnrq.png",
           "description": " Steel Twist-Knot Wheel 115mm M14 x 2 for Abrasive Grinding Paint Rust Removal descaling, deburring, Metal & Stone Working, Cleaning Use with Angle Grinders\nBROSSE CIRC PLAT TORSADES 0.50MM 115/ M14 RF 714",
@@ -3948,6 +4130,8 @@
           }
         },
         {
+          "id": "p_fg1x073c",
+          "legacyId": "hardware-tools-ema-metal-longlife-sanding-disc-115-230x6-4x22-2",
           "title": "EMA Metal Longlife Sanding Disc 115/230X6.4X22.2 ",
           "image": "assets/products/20251104_145358-mi4pw7rv.png",
           "description": "Metal Longlife sanding disc for small or big angle grinder and bore 22.23 mm (for Steel, Ø 115/230mm)\nDISQUE EBARBAGE ACIER 230X6.4X22.2 EMA",
@@ -4003,6 +4187,8 @@
           }
         },
         {
+          "id": "p_5o5eub2y",
+          "legacyId": "hardware-tools-ds-felt-flap-polishing-pad-115mm-polishing-pad-for-angle-grinder",
           "title": "DS Felt Flap Polishing Pad 115mm Polishing Pad for Angle Grinder",
           "image": "assets/products/20251116_131452-mi4te54t.png",
           "description": "DISQUE A LAMEL FEUTRE 115*22.2",
@@ -4032,6 +4218,8 @@
           }
         },
         {
+          "id": "p_mipm9ad4",
+          "legacyId": "hardware-tools-ds-mounted-cup-brushes-crimped-diameter-75-mm",
           "title": "DS Mounted Cup Brushes Crimped Diameter 75 mm",
           "image": "assets/products/20251104_152339-mi63s54l.png",
           "description": "Use for steel and metal\nFor removing burr, rust, slag, scale, surplus rubber, combustion residues and other forms of dirt in hard-to-reach areas and inner surfaces\nRange of applications: roughing, deburring, paint stripping, deslagging, descaling, matt sanding and cleaning",
@@ -4064,6 +4252,8 @@
           }
         },
         {
+          "id": "p_5frk2k1v",
+          "legacyId": "hardware-tools-ds-flap-wheel",
           "title": "DS Flap Wheel ",
           "image": "assets/products/20251116_131709-mi4tka8y.png",
           "description": "Flap wheel discs deliver powerful, consistent grinding and finishing performance on metal, wood, and plastics.\nTheir layered abrasive flaps ensure smooth material removal while maintaining a cool, even cut.\nDesigned for durability, they adapt to contours and hard-to-reach areas with ease.\nIdeal for professionals and workshops, flap wheel discs provide efficient, high-quality surface preparation every time.",
@@ -4208,6 +4398,8 @@
           }
         },
         {
+          "id": "p_suubckp4",
+          "legacyId": "hardware-tools-bosch-metal-cutting-disc-115mm",
           "title": "BOSCH  Metal Cutting Disc 115MM",
           "image": "assets/products/20251115_183437-mi4uugg1.png",
           "description": "The BOSCH 115 mm Metal Cutting Disc delivers fast, precise cuts through steel and metal profiles with exceptional efficiency.\nEngineered with premium abrasive grains, it ensures clean, burr-free results and reduced material buildup.\nIts reinforced construction provides long lifespan and maximum safety during high-speed cutting.\nPerfect for professionals and DIY users, this disc guarantees reliable performance on every project.",
@@ -4241,6 +4433,8 @@
           }
         },
         {
+          "id": "p_osmpyyzx",
+          "legacyId": "hardware-tools-abrapro-fibre-discs-for-grinder",
           "title": "ABRAPRO Fibre Discs for Grinder ",
           "image": "assets/products/20251115_183707-mi4v9wek.png",
           "description": "ABRAPRO Fibre Discs deliver powerful grinding performance with superior abrasive strength for metal fabrication.\nTheir tough fibre backing ensures stability, long life, and consistent material removal under heavy workloads.\nDesigned to handle rust, welds, and surface imperfections, they provide a smooth, professional finish.\nIdeal for workshops and industry, ABRAPRO Fibre Discs offer reliable efficiency on every grinding task.\n\nLes disques fibre ABRAPRO offrent une performance de meulage puissante grâce à une abrasivité supérieure pour les travaux métalliques.\nLeur support en fibre robuste garantit stabilité, longue durée de vie et enlèvement de matière constant même sous forte charge.\nConçus pour éliminer la rouille, les soudures et les imperfections, ils assurent une finition lisse et professionnelle.\nIdéals pour les ateliers et l’industrie, les disques fibre ABRAPRO offrent une efficacité fiable pour chaque opération de meulage.",
@@ -4340,6 +4534,8 @@
           }
         },
         {
+          "id": "p_rwzhbdm4",
+          "legacyId": "hardware-tools-ds-rotary-steel-wire-wheel-brush",
           "title": "DS Rotary Steel Wire Wheel Brush",
           "image": "assets/products/20251104_152730-mi61amt2.png",
           "description": "0.3 mm dia high tensile steel wire\nFor rust and paint removal, descaling, deburring and preparation of welding seams\nFor metal and stone working, cleaning, surface preparation and fabrication tasks\nFor use with power drills\n6 mm shank / max 4500rpm",
@@ -4419,6 +4615,8 @@
           }
         },
         {
+          "id": "p_795d4d87",
+          "legacyId": "hardware-tools-ds-85-0-3-x-m14-wire-cup-brush",
           "title": "DS 85/0.3 x M14 Wire Cup Brush",
           "image": "assets/products/img-20251102-wa0077-mi630b0p.png",
           "description": "Removes rust, paint, or corrosion from surfaces\nTough bristles for aggressive cleaning\nCompatible with power drills or angle grinders\nDurable construction for long-lasting use\nBROSSE CONIQUE 85/0.3 M14 RF 237 JN",
@@ -4451,6 +4649,8 @@
           }
         },
         {
+          "id": "p_t9b5s0sx",
+          "legacyId": "hardware-tools-ds-universal-wire-brush",
           "title": "DS Universal Wire Brush",
           "image": "assets/products/img-20251102-wa0083-mi63700a.png",
           "description": "Universal Wire Brush for Heavy Duty Cleaning of Wood, Metal, Masonry and More, Paint & Grime Removal, Cleaning Rust, Grills, Tiles, Wood, Metal, Brick, Masonry",
@@ -4482,6 +4682,8 @@
           }
         },
         {
+          "id": "p_xhxknl2u",
+          "legacyId": "hardware-tools-konaflex-felt-polishing-wheel-180x20x22-22",
           "title": "KONAFLEX Felt Polishing Wheel 180x20x22.22 ",
           "image": "assets/products/20251119_143918-mi63f6or.png",
           "description": "Felt polishing wheel 180x20x22.22, 100% wool.",
@@ -4514,6 +4716,8 @@
           }
         },
         {
+          "id": "p_bva6zsvm",
+          "legacyId": "hardware-tools-ds-sanding-blocks-wet-and-dry-dual-use-coarse-and-fine-sanding-sponges-60-80-100-120-180-220-grits",
           "title": "DS Sanding Blocks Wet and Dry Dual-use, Coarse and Fine Sanding Sponges 60/80/100/120/180/220 Grits",
           "image": "assets/products/20251119_144156-mi64dzjy.png",
           "description": "These dual-use wet and dry sanding blocks deliver versatile performance for smooth, controlled surface finishing.\nFeaturing coarse to fine grits (60/80/100/120/180/220), they adapt perfectly to cleaning, deburring, and polishing tasks.\nTheir flexible sponge design ensures comfortable handling and easy access to curves, corners, and detailed areas.\nDurable and washable, these sanding blocks provide long-lasting efficiency for professionals and DIY users alike.",
@@ -4571,6 +4775,8 @@
           }
         },
         {
+          "id": "p_1vimn4l3",
+          "legacyId": "hardware-tools-omsa-10-300mm-hardpoint-tenon-saw",
           "title": "OMSA 10\"/300mm Hardpoint Tenon Saw",
           "image": "assets/products/20251102_153457-mi64z16g.png",
           "description": "The 10″ (300 mm) Hardpoint Tenon Saw delivers razor-sharp, precision cutting for joinery and fine woodworking.\nWith its hardened teeth, it maintains long-lasting sharpness for clean, effortless tenon and mortise cuts.\nIts sturdy, ergonomic handle ensures comfort and control even during extended use.\nPerfect for carpenters and artisans, this saw brings professional-grade accuracy to every woodworking project.",
@@ -4602,6 +4808,8 @@
           }
         },
         {
+          "id": "p_vezx3ozl",
+          "legacyId": "hardware-tools-acem-trade-snap-off-knife-18mm",
           "title": "ACEM Trade Snap Off Knife 18mm",
           "image": "assets/products/20251102_164403-mi65zfsm.png",
           "description": "The ACEM Trade 18 mm Snap Off Knife offers sharp, reliable cutting performance for everyday professional use.\nIts segmented blade allows quick, safe snapping for a fresh edge whenever needed.\nBuilt with a sturdy ergonomic handle, it ensures comfort, control, and precision on every cut.\nIdeal for workshops, construction, and DIY tasks, this knife delivers durability and efficiency you can trust.",
@@ -4634,6 +4842,8 @@
           }
         },
         {
+          "id": "p_kozjvvce",
+          "legacyId": "hardware-tools-total-10pcs-knife-blades-set",
           "title": "TOTAL 10Pcs Knife Blades Set",
           "image": "assets/products/img-20251102-wa0027-mi668q71.png",
           "description": "The TOTAL 10-piece Knife Blades Set delivers sharp, durable replacement blades for precise cutting in various applications.\nCrafted from high-quality steel, each blade offers long-lasting edge retention and clean, smooth cuts.\nConveniently packaged for easy storage and quick access, they fit most standard utility knives.\nPerfect for professionals and DIY users, this set ensures reliability and efficiency on every project.",
@@ -4704,6 +4914,8 @@
           }
         },
         {
+          "id": "p_9860x8sw",
+          "legacyId": "hardware-tools-apt-8-compass-saw",
           "title": "APT 8\" Compass Saw",
           "image": "assets/products/img-20251102-wa0073-mi66nbsq.png",
           "description": "The APT 8\" Compass Saw delivers accurate, controlled cutting for curves, openings, and detailed woodworking tasks.\nIts sharp, tapered blade ensures smooth performance through wood, plastic, and drywall.\nDesigned with a comfortable, ergonomic handle, it provides excellent grip and stability during use.\nIdeal for professionals and DIY enthusiasts, this saw offers precision, durability, and reliable versatility.",
@@ -4767,6 +4979,8 @@
           }
         },
         {
+          "id": "p_ejccunja",
+          "legacyId": "hardware-tools-omsa-metal-hacksaw-blade-300x12-7x0-6",
           "title": "OMSA Metal Hacksaw Blade 300X12.7X0.6",
           "image": "assets/products/img-20251102-wa0074-mi66ya1t.png",
           "description": "The OMSA Metal Hacksaw Blade 300×12.7×0.6 delivers clean, accurate cuts through steel, aluminum, and other metals.\nEngineered from high-quality alloy steel, it offers excellent durability and long-lasting sharpness.\nIts precise tooth design ensures smooth cutting performance with reduced vibration and effort.\nPerfect for workshops and industrial use, this blade provides reliable efficiency for all metal-cutting tasks.",
@@ -4798,6 +5012,8 @@
           }
         },
         {
+          "id": "p_61vnlz2p",
+          "legacyId": "hardware-tools-ds-pvc-pipe-cutter-1-8-5-8-42mm",
           "title": "DS PVC Pipe Cutter 1-8-5/8\" 42mm",
           "image": "assets/products/ds-mi67eaqk.png",
           "description": "The DS PVC Pipe Cutter 1–8-5/8\" (42 mm) delivers clean, precise cuts on PVC, CPVC, PEX, and plastic tubing.\nIts sharp, high-strength blade ensures smooth, effortless cutting with minimal deformation.\nDesigned with a durable ratcheting mechanism, it provides maximum control and efficiency on every squeeze.\nIdeal for plumbers, installers, and DIY users, this cutter offers reliability, speed, and professional-grade performance.",
@@ -4829,6 +5045,8 @@
           }
         },
         {
+          "id": "p_owmqr10i",
+          "legacyId": "hardware-tools-shasang-pvc-pipe-cutter",
           "title": "SHASANG PVC Pipe Cutter",
           "image": "assets/products/20251119_172857-mi680nyp.png",
           "description": "",
@@ -4859,6 +5077,8 @@
           }
         },
         {
+          "id": "p_9pq7nxrl",
+          "legacyId": "hardware-tools-sumex-screwdriver-insulated-slotted",
           "title": "SUMEX Screwdriver Insulated Slotted",
           "image": "assets/products/img-20251102-wa0069-mi68k11b.png",
           "description": "The SUMEX Insulated Slotted Screwdriver delivers safe, reliable performance for electrical and precision work.\nIts fully insulated shaft and handle provide protection up to high-voltage standards.\nCrafted with a durable, magnetized tip, it ensures secure fastening and long-lasting accuracy.\nPerfect for professionals and technicians, this screwdriver combines comfort, safety, and dependable quality.",
@@ -4928,6 +5148,8 @@
           }
         },
         {
+          "id": "p_a6kjhfc2",
+          "legacyId": "hardware-tools-acem-ergo-side-cutting-plier-180mm-length",
           "title": "ACEM Ergo Side Cutting Plier, 180mm Length",
           "image": "assets/products/20251119_182209-mi6a0dm3.png",
           "description": "The ACEM Ergo Side Cutting Plier 180 mm delivers precise cutting of wires, pins, and small fasteners with minimal effort.\nIts sharp, hardened cutting edges ensure clean, accurate cuts and long-lasting durability.\nErgonomically designed handles provide superior comfort, grip, and reduced hand fatigue.\nIdeal for electricians, technicians, and DIY enthusiasts, this plier combines efficiency, safety, and professional-grade performance.",
@@ -4957,6 +5179,8 @@
           }
         },
         {
+          "id": "p_gag1zp3e",
+          "legacyId": "hardware-tools-acem-silver-box-joint-water-pump-plier-250mm",
           "title": "ACEM Silver Box Joint Water Pump Plier 250mm",
           "image": "assets/products/img-20251102-wa0071-mi699wzt.png",
           "description": "Box Joint Water Pump Pliers offer versatile, strong gripping for pipes, nuts, and irregular shapes.\nTheir adjustable jaw design ensures a secure hold on a wide range of sizes for maximum efficiency.\nDurable construction provides long-lasting performance and reliable strength under heavy use.\nPerfect for plumbers, mechanics, and DIY enthusiasts, these pliers combine precision, comfort, and professional-grade durability.",
@@ -4987,6 +5211,8 @@
           }
         },
         {
+          "id": "p_pwewu0bh",
+          "legacyId": "hardware-tools-ds-carpenter-pincer-9-with-handle",
           "title": "DS Carpenter Pincer 9\" with Handle",
           "image": "assets/products/img-20251102-wa0054-mi69f3l2.png",
           "description": "The DS Carpenter Pincer 9\" with Handle delivers precise cutting, pulling, and gripping for woodworking and construction tasks.\nIts sharp, hardened jaws ensure clean, effortless cuts on nails, wires, and small fasteners.\nDesigned with an ergonomic handle, it provides superior comfort, control, and reduced hand fatigue.\nIdeal for carpenters, craftsmen, and DIY enthusiasts, this pincer combines durability, efficiency, and professional-grade performance.",
@@ -5016,6 +5242,8 @@
           }
         },
         {
+          "id": "p_q40bvbid",
+          "legacyId": "hardware-tools-ds-7-combination-pliers",
           "title": "DS 7\" Combination Pliers",
           "image": "assets/products/20251119_181328-mi69om1t.png",
           "description": "The DS 7\" Combination Pliers deliver versatile performance for gripping, cutting, and bending wires and small components.\nCrafted with durable, hardened steel jaws, they ensure long-lasting strength and precise handling.\nErgonomic, insulated handles provide comfort, control, and safety during extended use.\nPerfect for electricians, technicians, and DIY users, these pliers combine reliability, efficiency, and professional-grade quality.",
@@ -5046,6 +5274,8 @@
           }
         },
         {
+          "id": "p_1aup9q40",
+          "legacyId": "hardware-tools-athlet-2-pc-mains-tester-04x100-0-5x3x40",
           "title": "ATHLET 2 pc Mains Tester 04x100/0.5x3x40",
           "image": "assets/products/20251119_183047-mi6aaxxh.png",
           "description": "The Mains Tester provides quick, reliable detection of live, neutral, and earth connections in electrical circuits.\nCompact and easy to use, it ensures safe testing with clear visual and/or audible indicators.\nDurable construction offers long-lasting performance for daily electrical inspections.\nEssential for electricians, technicians, and DIY users, this tester combines safety, accuracy, and convenience in every use.",
@@ -5075,6 +5305,8 @@
           }
         },
         {
+          "id": "p_ow21vjwg",
+          "legacyId": "hardware-tools-snzo-magnetic-nut-setter",
           "title": "SNZO Magnetic nut setter",
           "image": "assets/products/20251104_145648-mi6afmnf.png",
           "description": "Magnetic Nut Setter delivers fast, precise fastening of nuts and bolts with secure, hands-free hold.\nIts strong magnetic tip ensures alignment and prevents slipping during installation.\nDurable construction provides long-lasting performance for heavy-duty and repetitive tasks.\nPerfect for mechanics, builders, and DIY enthusiasts, this tool combines efficiency, convenience, and professional-grade reliability.",
@@ -5132,6 +5364,8 @@
           }
         },
         {
+          "id": "p_tpm111ii",
+          "legacyId": "hardware-tools-total-9pcs-screwdriver-bits-set",
           "title": "TOTAL 9Pcs Screwdriver Bits Set",
           "image": "assets/products/20251104_145437-mi6arjnk.png",
           "description": "The TOTAL 9 Pcs Screwdriver Bits Set provides versatile, reliable solutions for a wide range of fastening tasks.\nCrafted from high-quality steel, each bit ensures durability, strength, and long-lasting precision.\nConveniently organized for quick access, the set fits most standard screwdrivers and power tools.\nIdeal for professionals and DIY users, this set delivers efficiency, versatility, and dependable performance on every project.",
@@ -5161,6 +5395,8 @@
           }
         },
         {
+          "id": "p_vuea5xon",
+          "legacyId": "hardware-tools-bosch-screwdriver-bit-ph2-1-4-x-49mm",
           "title": "BOSCH Screwdriver Bit PH2 1/4\" x 49mm",
           "image": "assets/products/20251104_145817-mi6axjt5.png",
           "description": "The BOSCH PH2 Screwdriver Bit 1/4\" x 49mm delivers precise, high-performance fastening for a wide range of applications.\nCrafted from premium steel, it ensures long-lasting durability and reliable torque transfer.\nIts PH2 tip provides a perfect fit for Phillips screws, reducing cam-out and wear.\nIdeal for professionals and DIY enthusiasts, this bit combines accuracy, strength, and consistent efficiency in every use.",
@@ -5216,6 +5452,8 @@
           }
         },
         {
+          "id": "p_l3u03nl1",
+          "legacyId": "hardware-tools-diager-pack-10-screwdriver-bit-pz2-x-50mm",
           "title": "DIAGER Pack (10) Screwdriver Bit PZ2 x 50mm",
           "image": "assets/products/20251119_185541-mi6b4an9.png",
           "description": "The DIAGER Pack of 10 PZ2 x 50mm Screwdriver Bits delivers reliable, high-precision performance for Pozidriv screws.\nMade from durable, high-quality steel, each bit ensures long-lasting strength and consistent torque transfer.\nThe 50mm length provides easy access to recessed screws while maintaining perfect control.\nIdeal for professionals and DIY users, this set offers efficiency, versatility, and dependable fastening every time.",
@@ -5247,6 +5485,8 @@
           }
         },
         {
+          "id": "p_my0lluj2",
+          "legacyId": "hardware-tools-climax-755-756-gas-and-particulate-filter",
           "title": "CLIMAX 755/756 Gas And Particulate Filter",
           "image": "assets/products/20251120_153657-mi7jrtz2.png",
           "description": "Reliable and high-performance, the CLIMAX 755/756 Gas and Particulate Filter offers advanced protection against harmful gases, vapors, and fine dust. Designed for the 755/756 respirator series, it ensures a secure screw-type connection and optimal breathing comfort. Certified to meet stringent safety standards, it delivers consistent filtration efficiency in industrial environments. A durable, trusted solution for professionals seeking dependable respiratory protection.",
@@ -5306,6 +5546,8 @@
           }
         },
         {
+          "id": "p_tdzlknh2",
+          "legacyId": "hardware-tools-baoking-electric-soldering-iron-220v-high-power-quick-heated-welding-tool",
           "title": "BAOKING  Electric Soldering Iron, 220V High Power Quick-Heated Welding Tool",
           "image": "assets/products/img-20251102-wa0082-mi7mkkio.png",
           "description": "Heat up your soldering workflow with the BAOKING 220 V high-power electric soldering iron. Thanks to its fast-heating core, you’re ready to weld in seconds — minimizing downtime and boosting efficiency. Its robust construction delivers reliable, long-lasting performance for electronics, repair work, and DIY projects. Whether you're a professional or hobbyist, this tool combines power and precision for superior soldering results.",
@@ -5337,6 +5579,8 @@
           }
         },
         {
+          "id": "p_itnaq6rb",
+          "legacyId": "hardware-tools-sartex-claw-hammer",
           "title": "SARTEX Claw Hammer",
           "image": "assets/products/20251120_152647-mi7nz3ga.png",
           "description": "The SARTEX Claw Hammer delivers strong, precise performance for construction, carpentry, and everyday tasks. Its hardened steel head provides powerful impact, while the curved claw makes nail removal fast and effortless. Designed with a comfortable, shock-absorbing handle, it ensures better control and reduced fatigue. A dependable, long-lasting tool for professionals and DIY users alike.\nLe marteau arrache-clous SARTEX offre une performance solide et précise pour les travaux de construction, de menuiserie et d’entretien. Sa tête en acier trempé garantit un impact puissant, tandis que sa griffe courbée permet d’extraire les clous rapidement et sans effort. Conçu avec une poignée confortable et amortissante, il assure un meilleur contrôle et moins de fatigue. Un outil fiable et durable, idéal pour les professionnels comme pour les bricoleurs.",
@@ -5368,6 +5612,8 @@
           }
         },
         {
+          "id": "p_q9xvpk9s",
+          "legacyId": "hardware-tools-cuatrogasa-polyester-gloves-with-green-nitrile-coating",
           "title": "CUATROGASA Polyester Gloves With Green Nitrile Coating",
           "image": "assets/products/20251119_144324-mi7ocike.png",
           "description": "CUATROGASA Polyester Gloves with Green Nitrile Coating offer excellent grip, flexibility, and protection for industrial, mechanical, and general handling tasks. The breathable polyester liner ensures comfort during long working hours, while the nitrile coating provides superior resistance to oils, abrasives, and punctures. Designed for precision and control, they enhance safety without sacrificing dexterity. A reliable choice for professionals seeking durable and comfortable hand protection.\n\nLes gants en polyester CUATROGASA avec revêtement en nitrile vert offrent une excellente prise, flexibilité et protection pour les travaux industriels, mécaniques et de manutention. Leur support en polyester respirant assure un confort optimal même lors d’un usage prolongé, tandis que le revêtement nitrile garantit une résistance supérieure aux huiles, à l’abrasion et aux perforations. Conçus pour la précision et le contrôle, ils améliorent la sécurité sans compromettre la dextérité. Un choix fiable pour les professionnels à la recherche de gants durables et confortables.",
@@ -5427,6 +5673,8 @@
           }
         },
         {
+          "id": "p_tigpcsk5",
+          "legacyId": "hardware-tools-cuatrogasa-100-natural-latex-flocklined-gloves",
           "title": "CUATROGASA 100% Natural Latex Flocklined Gloves",
           "image": "assets/products/20251107_093838-mi7ok8at.png",
           "description": "CUATROGASA 100% Natural Latex Flocklined Gloves provide superior comfort, protection, and durability for cleaning, maintenance, and industrial applications. Made from high-quality natural latex, they offer excellent elasticity and resistance to chemicals and detergents. The soft cotton flock lining enhances comfort and absorbs perspiration for extended use. A dependable choice for users who need strong grip, flexibility, and reliable hand protection.\n\nLes gants CUATROGASA en latex naturel 100 % avec doublure floquée offrent un confort, une protection et une durabilité supérieurs pour les travaux de nettoyage, d’entretien et d’usage industriel. Fabriqués en latex naturel de haute qualité, ils garantissent une excellente élasticité et une bonne résistance aux produits chimiques et détergents. Leur doublure intérieure en coton floqué améliore le confort et absorbe la transpiration lors d’un usage prolongé. Un choix sûr pour ceux qui recherchent une bonne prise, une grande flexibilité et une protection fiable des mains.",
@@ -5498,6 +5746,8 @@
           }
         },
         {
+          "id": "p_t3cu21cs",
+          "legacyId": "hardware-tools-ds-12pcs-socket-set-1-2-1-4-3-8",
           "title": "DS 12Pcs Socket Set 1/2\", 1/4\", 3/8\"",
           "image": "assets/products/snapchat-897043000-mi7pfhxa.png",
           "description": "The DS 12-Piece Socket Set (1/2\" – 1/4\" – 3/8\") delivers versatile performance for mechanical, automotive, and general repair tasks. Precision-engineered sockets ensure a secure fit and smooth operation across multiple drive sizes. Made from durable, high-strength steel, the set offers long-lasting reliability under demanding use. Compact, organized, and ready for any job, it’s an essential toolkit for professionals and DIY users alike.\n\nFrançais\n\nLe coffret de douilles DS 12 pièces (1/2\" – 1/4\" – 3/8\") offre une performance polyvalente pour les travaux mécaniques, automobiles et de maintenance générale. Les douilles de précision garantissent un ajustement parfait et une utilisation fluide sur plusieurs tailles d'entraînement. Fabriqué en acier robuste et durable, l’ensemble assure une fiabilité longue durée même en usage intensif. Compact, organisé et prêt pour toutes les situations, c’est un outil indispensable pour les professionnels comme pour les bricoleurs.",
@@ -5566,6 +5816,8 @@
           }
         },
         {
+          "id": "p_vqo3piss",
+          "legacyId": "hardware-tools-ds-ratchet-handle-1-2",
           "title": "DS Ratchet Handle 1/2\"",
           "image": "assets/products/20251120_183124-mi7ppcx5.png",
           "description": "The DS 1/2\" Ratchet Handle delivers strong, smooth, and reliable performance for mechanical and automotive work. Its precision gear mechanism ensures efficient tightening and loosening with minimal effort. The ergonomic, non-slip handle provides excellent grip and comfort during prolonged use. A durable and dependable tool designed for professionals and serious DIY users.\n\nFrançais\n\nLa clé à cliquet DS 1/2\" offre une performance robuste, fluide et fiable pour les travaux mécaniques et automobiles. Son mécanisme de cliquet précis garantit un serrage et un desserrage efficaces avec un minimum d’effort. La poignée ergonomique antidérapante procure une excellente prise en main et un confort optimal lors d’un usage prolongé. Un outil durable et fiable, conçu pour les professionnels et les bricoleurs exigeants.",
@@ -5596,6 +5848,8 @@
           }
         },
         {
+          "id": "p_ca0dyafb",
+          "legacyId": "hardware-tools-vys-50-pcs-self-tapping-screws-m4-x-20mm-multi-purpose-screws-304-stainless-steel-phillips-flathead-screws-for-wood-drywall-and-furniture",
           "title": "VYS 50 Pcs Self Tapping Screws, M4 x 20mm Multi Purpose Screws, 304 Stainless Steel, Phillips Flathead Screws for Wood, Drywall and Furniture",
           "image": "assets/products/20251120_153242-mi8rv2a1.png",
           "description": "The VYS 50-Pcs Self-Tapping Screws set offers versatile fastening for wood, drywall, furniture assembly, and general home or workshop projects. Made from premium 304 stainless steel, these screws provide excellent corrosion resistance and long-lasting durability. The Phillips flathead design ensures easy driving and a flush, professional finish on all surfaces. A reliable multi-purpose solution ideal for builders, craftsmen, and DIY users.",
@@ -5764,6 +6018,8 @@
           }
         },
         {
+          "id": "p_lujoqmdd",
+          "legacyId": "hardware-tools-m12-stainless-steel-washers-12mm-form-a-thick-flat-washers-for-bolts-and-screws-metal-grade-a2-stainless-steel-304-50pcs",
           "title": "M12 Stainless Steel Washers (12mm) Form A Thick Flat washers For Bolts And Screws Metal Grade A2 Stainless Steel (304) (50pcs)",
           "image": "assets/products/20251122_155316-miafflbj.png",
           "description": "Stainless Steel Washers provide strong, reliable support for bolts and screws, distributing load evenly to prevent damage and ensure secure fastening. Made from high-quality stainless steel, they offer excellent corrosion resistance for indoor and outdoor use. Ideal for construction, machinery, furniture assembly, and marine environments. A durable, versatile choice for professionals and DIY users seeking long-lasting performance.",
@@ -5821,6 +6077,8 @@
           }
         },
         {
+          "id": "p_694k8w5d",
+          "legacyId": "hardware-tools-bosch-hand-sanding-sheets-c344-230x280mm-wet-and-dry-applications",
           "title": "BOSCH Hand Sanding Sheets C344 230x280mm Wet and Dry Applications",
           "image": "assets/products/20251124_094142-mid0a1va.png",
           "description": "Some sanding sheets you always want to keep at hand in your car body repair shop. Like the PRO C344. Whether you need to sand putty or remove paint defects before polishing, it will help you get the job done.\n\nWe made the PRO C344 wet and dry Hand Sanding Sheet to help car repair professionals, painters, and carpenters get the great finish they need. The sheets feature strong silicon carbide grains for long-lasting performance. Plus, we use a latex paper backing to make sure they are flexible and waterproof. This means they are suitable for wet and dry sanding: you can be sure they won't break and scratch the surface.",
@@ -5904,6 +6162,8 @@
           }
         },
         {
+          "id": "p_n88iwohz",
+          "legacyId": "hardware-tools-ds-02l-sprayer",
           "title": "DS 02L Sprayer",
           "image": "assets/products/20251128_083041-miilg25v.png",
           "description": "The DS 02L Sprayer is a compact and efficient tool designed for applying liquids with precision and ease. Its 2-liter capacity makes it perfect for cleaning products, gardening treatments, automotive care, and general maintenance. The adjustable nozzle allows fine misting or targeted spraying, ensuring versatility for multiple tasks. Durable and easy to handle, it offers reliable performance for both professional and household use.",
@@ -5934,6 +6194,8 @@
           }
         },
         {
+          "id": "p_stcv1vlk",
+          "legacyId": "hardware-tools-apt-combination-wrench-hardened-and-tempered-with-bright-satin-finishing-11mm",
           "title": "APT Combination Wrench Hardened and Tempered with Bright Satin finishing (11mm)",
           "image": "assets/products/20251128_092347-miilsexw.png",
           "description": "The APT Combination Wrench is engineered for strength, durability, and professional performance. Hardened and tempered for maximum resistance, it withstands heavy-duty use while maintaining precision. Its bright satin finish reduces glare and offers enhanced corrosion protection for long-lasting reliability. A must-have hand tool delivering secure grip, smooth operation, and dependable tightening in any workshop or job site.",
@@ -6020,6 +6282,8 @@
           }
         },
         {
+          "id": "p_d2z98ezn",
+          "legacyId": "hardware-tools-apt-l-type-wrench-6pt-12pt-14mm",
           "title": "APT L Type Wrench ( 6pt/12pt ) 14mm",
           "image": "assets/products/20251128_092402-miiqvu0a.png",
           "description": "The APT L-Type Wrench (6pt/12pt) delivers strong torque, precise fit, and dependable performance for tightening and loosening fasteners in hard-to-reach areas. Its dual-end design—available in 6-point or 12-point configurations—ensures excellent grip and versatility across different bolt types. Made from high-strength steel, it provides durability and long service life under demanding use. A practical, efficient tool for mechanics, technicians, and DIY users.",
@@ -6122,6 +6386,8 @@
           }
         },
         {
+          "id": "p_2nigaina",
+          "legacyId": "hardware-tools-apt-combination-ratchet-wrench-hardened-tempered-with-bright-satin-finishing-17mm",
           "title": "APT Combination Ratchet Wrench Hardened & Tempered with Bright Satin Finishing 17mm",
           "image": "assets/products/20251128_095543-miisnfst.png",
           "description": "The APT Combination Ratchet Wrench delivers fast, effortless fastening with its smooth ratcheting mechanism and precision-engineered open-end design. Hardened and tempered for superior strength, it withstands heavy-duty professional use without losing accuracy. Its bright satin finish reduces glare and provides excellent corrosion resistance for long-lasting reliability. A premium, high-performance tool ideal for mechanics, technicians, and demanding DIY users.",
@@ -6175,6 +6441,8 @@
           }
         },
         {
+          "id": "p_gz89ia3x",
+          "legacyId": "hardware-tools-apt-8pc-double-open-end-wrench-set-6x7-8x9-10x11-12x13-14x15-16x17-18x19-20x22",
           "title": "APT 8PC Double Open End Wrench Set 6x7/8x9/10x11/12x13/14x15/16x17/18x19/20x22",
           "image": "assets/products/snapchat-929383395-miit9co0.png",
           "description": "The APT 8-Piece Double Open-End Wrench Set provides reliable performance and versatile sizing for professional and workshop use. Each wrench features dual heads—ranging from 6x7 mm to 20x22 mm—offering excellent coverage for common fastening tasks. Crafted from strong, hardened steel, the set ensures durability, precise fit, and long-lasting strength. A well-organized, essential toolkit for mechanics, technicians, and DIY users who demand quality and efficiency.",
@@ -6205,6 +6473,8 @@
           }
         },
         {
+          "id": "p_gii75h8b",
+          "legacyId": "hardware-tools-ds-hex-key-wrench-carbon-steel-l-shape-long-short-arm",
           "title": "DS Hex Key Wrench Carbon Steel L-Shape Long/short Arm ",
           "image": "assets/products/20251128_104421-miitlu1p.png",
           "description": "The DS Hex Key Wrench is crafted from durable carbon steel, offering strong torque and long-lasting performance for mechanical, assembly, and maintenance tasks. Its L-shape design—available in long or short arm versions—provides excellent leverage and easy access to tight spaces. Precision-machined tips ensure a secure fit in hex fasteners, reducing wear and slippage. A reliable, essential tool for technicians, mechanics, and DIY users.",
@@ -6286,6 +6556,8 @@
           }
         },
         {
+          "id": "p_ofvwbj7d",
+          "legacyId": "hardware-tools-total-2-pcs-paint-tray-set-305x150mm-435x300mm",
           "title": "TOTAL 2 Pcs Paint Tray Set 305x150mm / 435x300mm",
           "image": "assets/products/20251203_143635-miq2dkyk.png",
           "description": "he TOTAL 2-Pcs Paint Tray Set provides practical, mess-free convenience for painting projects of any size. Featuring two tray dimensions—305×150 mm and 435×300 mm—it accommodates both small touch-ups and larger roller applications. Made from durable, easy-to-clean material, each tray ensures smooth paint loading and even coverage. A versatile, reliable set ideal for professionals and DIY painters alike.",
@@ -6319,6 +6591,8 @@
           }
         },
         {
+          "id": "p_dhh3vhr9",
+          "legacyId": "hardware-tools-ds-9-pcs-hex-key-set-short-long-arm-chrome-vanadium-steel1-5mm-2-0mm-2-5mm-3-0mm-4-0mm-5-0mm-6-0mm-8-0mm-10-0mm",
           "title": "DS 9 Pcs HEX Key Set Short & Long Arm Chrome Vanadium Steel1.5mm, 2.0mm, 2.5mm, 3.0mm, 4.0mm, 5.0mm, 6.0mm, 8.0mm, 10.0mm",
           "image": "assets/products/20251128_125138-miq3grd0.png",
           "description": "he DS 9-Pcs Hex Key Set includes both short and long keys, offering maximum versatility for assembly, repair, and maintenance tasks. Covering sizes from 1.5 mm to 10 mm, each key is precisely machined to ensure a perfect fit and strong torque on hex fasteners. Made from durable, high-quality steel, the set guarantees long-lasting performance and resistance to wear. A practical, essential toolkit for mechanics, technicians, and DIY users who need reliable fastening tools.",
@@ -6363,6 +6637,8 @@
           }
         },
         {
+          "id": "p_3lqgkca9",
+          "legacyId": "hardware-tools-ds-torx-hex-key-9-piece-t10-t50-short-arm-chrome-vanadium-steel",
           "title": "DS Torx Hex Key 9-Piece T10-T50 Short Arm Chrome Vanadium Steel",
           "image": "assets/products/20251128_125211-miq3ykam.png",
           "description": "The DS 9-Piece Torx Hex Key Set (T10–T50) delivers precise, secure engagement for Torx fasteners in automotive, mechanical, and equipment maintenance tasks. Built from premium chrome vanadium steel, each key offers high strength, durability, and resistance to wear. The short-arm design provides excellent control and access in tight spaces, ensuring efficient tightening and loosening. A compact, reliable set ideal for professionals and DIY users who demand dependable performance.",
@@ -6395,6 +6671,8 @@
           }
         },
         {
+          "id": "p_1karjg4k",
+          "legacyId": "hardware-tools-ds-torx-short-series-key-t6-t8-t10-t15-t20-t27-t30",
           "title": "DS TORX Short Series Key T6,T8,T10, T15, T20, T27, T30",
           "image": "assets/products/20251128_104421-miq5l1wt.png",
           "description": "The DS TORX Short Series Key is designed for precision, durability, and easy access in tight spaces. Made from high-quality steel, it provides strong torque and excellent resistance to wear during intensive use. Its short-arm design ensures better control and stability when working with Torx fasteners. A compact and reliable tool ideal for mechanics, technicians, and DIY users.",
@@ -6459,6 +6737,8 @@
           }
         },
         {
+          "id": "p_wtnsrgf6",
+          "legacyId": "hardware-tools-ds-female-to-male-socket-converter-1-2f-3-4m-1-2f-3-8m",
           "title": "DS Female to Male Socket Converter  1/2F 3/4M & 1/2F 3/8M",
           "image": "assets/products/20251203_161135-miq641m2.png",
           "description": "",
@@ -6500,6 +6780,8 @@
           }
         },
         {
+          "id": "p_1n1ptops",
+          "legacyId": "hardware-tools-ds-universal-joint-1-2f-1-2m",
           "title": "DS Universal Joint 1/2F / 1/2M",
           "image": "assets/products/20251203_161154-miq6xc1h.png",
           "description": "Hardened and tempered Chrome Vanadium steel with a fully polished mirror finish\nScrew type universal joint\nFitted with spring-ball socket retainer",
@@ -6530,6 +6812,8 @@
           }
         },
         {
+          "id": "p_wjrobln9",
+          "legacyId": "hardware-tools-apt-6-12-pcs-router-bits-08mm-shank",
           "title": "APT 6&12 Pcs Router Bits 08MM Shank",
           "image": "assets/products/20251203_170120-miq8e3vu.png",
           "description": "The APT 6 Pcs Router Bits Set offers precision, durability, and versatility for all your woodworking projects. Crafted from high-quality materials, each bit delivers clean, smooth, and accurate cuts. Suitable for edging, trimming, and shaping, this set is designed for both professionals and DIY users. Packaged in a convenient storage box, it ensures easy organization and long-lasting performance.",
@@ -6576,6 +6860,8 @@
           }
         },
         {
+          "id": "p_re8e67uo",
+          "legacyId": "hardware-tools-express-multifunction-lamp-cat-no-g8200",
           "title": "EXPRESS Multifunction Lamp Cat. No. G8200",
           "image": "assets/products/20251210_175909-mj2susf0.png",
           "description": "The multifunction blowlamp Cat. No. G8200, designed for copper brazing and tin brazing, represents what is more practical and easier to use in the brazing torch category.\n\nThis blowlamp has a great autonomy (> 1h15 mn) as well as an ergonomic handle giving the professional a better grip on the blowlamp.\n\nBy choosing this product Galaxy By Express from the Express brand, you are guaranteed to have a quality and high reliability product.",
@@ -6609,6 +6895,8 @@
           }
         },
         {
+          "id": "p_1rldltwx",
+          "legacyId": "hardware-tools-idealgas-camping-lamp-with-disposable-cartridges",
           "title": "IDEALGAS Camping Lamp With Disposable Cartridges",
           "image": "assets/products/20251212_125540-mj2tvue0.png",
           "description": "The IDEALGAS Camping Lamp with Disposable Cartridges provides bright, reliable illumination for all your outdoor adventures. Designed for convenience, it operates using easy-to-replace gas cartridges, ensuring continuous lighting whenever needed. Its durable build and stable flame make it perfect for camping, hiking, fishing, or emergency use. Compact and portable, it delivers safe and efficient lighting wherever your journey takes you.",
@@ -6643,6 +6931,8 @@
           }
         },
         {
+          "id": "p_xcacg01x",
+          "legacyId": "hardware-tools-ds-5mx19mm-pro-measuring-tape-with-thicker-blade",
           "title": "DS 5MX19MM Pro Measuring Tape With Thicker Blade",
           "image": "assets/products/20251216_152557-mj8qs5pa.png",
           "description": "The DS 5 m × 19 mm Pro Measuring Tape is designed for accuracy, durability, and professional use. Its thicker blade provides increased rigidity, allowing longer stand-out and precise measurements without bending. Clear, easy-to-read markings ensure fast and reliable readings on any job site. A robust, dependable measuring tool ideal for construction, carpentry, and DIY projects.",
@@ -6674,6 +6964,8 @@
           }
         },
         {
+          "id": "p_am5olw48",
+          "legacyId": "hardware-tools-ds-3mx16mm-pro-measuring-tape-with-thicker-blade",
           "title": "DS 3MX16MM Pro Measuring Tape With Thicker Blade",
           "image": "assets/products/20251216_152758-mj8qyyqa.png",
           "description": "The DS 3 m × 16 mm Pro Measuring Tape is designed for accuracy, durability, and professional use. Its thicker blade provides increased rigidity, allowing longer stand-out and precise measurements without bending. Clear, easy-to-read markings ensure fast and reliable readings on any job site. A robust, dependable measuring tool ideal for construction, carpentry, and DIY projects.",
@@ -6705,6 +6997,8 @@
           }
         },
         {
+          "id": "p_1ny2ijvw",
+          "legacyId": "hardware-tools-climax-12-pack-disposable-face-mask-with-breathing-valve",
           "title": "CLIMAX 12 Pack / Disposable Face Mask with Breathing Valve",
           "image": "assets/products/20260513_184151-mp4cz9x9.png",
           "description": "CLIMAX 12 Pack Disposable Face Mask with Breathing Valve provides high-efficiency respiratory protection against dust, particles, and airborne contaminants. Designed with a foldable ergonomic shape and exhalation valve, it ensures comfortable breathing and reduced heat buildup during extended use. Its adjustable fit and lightweight construction offer excellent comfort and secure sealing for professional and industrial environments. Ideal for construction, sanding, painting, and maintenance work, these FFP3-rated masks deliver reliable safety and everyday convenience.",
@@ -6763,6 +7057,8 @@
       },
       "products": [
         {
+          "id": "p_kk3yii6u",
+          "legacyId": "powertools&parts-femi-mitresaw-with-upper-table-305s",
           "title": "FEMI Mitresaw With Upper Table 305S ",
           "image": "assets/products/circulaire-miyr92lk.jpg",
           "description": "Very sturdy and robust structure: great reliability and cutting precision\nMovement of the turning table entirely on bearings\nHead return system protected with anti-fall spring\nSheet metal frontal blade protection\nSilent 1400W induction motor\nCutting angle adjustable from 0° to 45° right and left\nBlade with Widia inserts\n\nAdjustable bar stop-rod for mass-produced cuts\nKey set\nSupplementary protection and wood pusher\nhttps://www.femi.it/en/femi/linea-taglio-legno-e-alluminio/troncatrici-circolari-legno-e-alluminio/305s/",
@@ -6793,6 +7089,8 @@
           }
         },
         {
+          "id": "p_ndhvdwhk",
+          "legacyId": "powertools&parts-femi-tr1030-db-a-radial-mitresaw-with-dual-tilt",
           "title": "FEMI TR1030 DB/A Radial Mitresaw With Dual Tilt",
           "image": "assets/products/tr1030db-a-miyro3ei.jpg",
           "description": "2000 Watt belt drive motor\nSturdy alu die cast side extensions bars with integrated unlock lever\nTelescopic cuts ideal for very large panel\nTurning table with automatic locking device at 0°-15°-22.30°-30°-45° angle adjustment\nPre-arranged cutting angle at 33°\nDouble inclination for compound and combined cuts from 0° up to 45° right and left\nLaser and light devices included in the handle\nRight and left support bases with scale indication\nSturdy alu die cast vertical clamp \nVertical and frontal clamp\nDust bag collector\nKeys set\nMotor brushes set\nhttps://www.femi.it/en/job-line/linea-lavorazione-legno/troncatrici-circolari-legno/tr1030-db-a/",
@@ -6822,6 +7120,8 @@
           }
         },
         {
+          "id": "p_oandra6y",
+          "legacyId": "powertools&parts-bosch-drill-gsb-570w",
           "title": "BOSCH Drill GSB 570W",
           "image": "assets/products/20251209_171158-miysvfgk.png",
           "description": "Robust motor for an efficient and powerful performance\nCompact and ergonomic tool for easy drilling - even in tight spaces\nHigh speed for efficient drilling and screw-driving in metal, plastic, and wood",
@@ -6853,6 +7153,8 @@
           }
         },
         {
+          "id": "p_qnr1sfpt",
+          "legacyId": "powertools&parts-bosch-gbh-220-professional-rotary-hammer-with-sds-plus",
           "title": "BOSCH GBH 220 Professional Rotary Hammer with SDS plus",
           "image": "assets/products/o339316v54_gbh_220_full_execution_1619p16150b-miyt1hxb.webp",
           "description": "Compact rotary hammer offers professional Bosch hammer performance within reach\nPowerful 720 W motor and 2.0 J of impact energy for effective hammer drilling in concrete (up to 22-mm diameter)\nThree-mode rotary hammer for hammer drilling, drilling, and chiselling – ensuring versatility and convincing results",
@@ -6885,6 +7187,8 @@
           }
         },
         {
+          "id": "p_58ixvznr",
+          "legacyId": "powertools&parts-bosch-gsb-16-re-professional-drill",
           "title": "BOSCH GSB 16 RE Professional Drill",
           "image": "assets/products/o387549v54_gsb_16_re_hd_sos_060114e500_30_60_70-miyto7ho.webp",
           "description": "750 W for fast work progress\nCompact design for optimal handling\nRobust metal housing for long service life",
@@ -6915,6 +7219,8 @@
           }
         },
         {
+          "id": "p_dmtv0ove",
+          "legacyId": "powertools&parts-bosch-orbital-sander-gss-140-professional",
           "title": "BOSCH Orbital Sander GSS 140 Professional",
           "image": "assets/products/20251209_171444-miyu0pso.png",
           "description": "High material removal rate thanks to powerful 220W motor\nLess fatigue, even when sanding overhead, with multi-grip options\nReduced hand numbness thanks to very low vibration value up to 3.4 m/s2\nThe preferred choice for sanding wood, wood materials, and plaster",
@@ -6946,6 +7252,8 @@
           }
         },
         {
+          "id": "p_qirv3ffx",
+          "legacyId": "powertools&parts-bosch-115mm-angle-grinder-gws-700-professional",
           "title": "BOSCH 115MM Angle Grinder GWS 700 Professional",
           "image": "assets/products/20251209_171409-miyug50u.png",
           "description": "Professional small angle grinder with a small grip size of 176 mm offers best ergonomics for low fatigue work\nFlat gear head offers good working progress even in narrow spaces\nCompact 700 W motor delivers best power-to-grip ratio for continuous use",
@@ -6979,6 +7287,8 @@
           }
         },
         {
+          "id": "p_d3cbilno",
+          "legacyId": "powertools&parts-bosch-115mm-angle-grinder-gws-9-125-professional",
           "title": "BOSCH 115MM Angle Grinder GWS 9-125 Professional",
           "image": "assets/products/20251209_184140-miyvh25w.png",
           "description": "Fast work progress with the strong 900 W motor of the small angle grinder\nPerfect working results in a variety of materials thanks to the speed selection\nSmall grip size and ergonomic design for optimal tool control",
@@ -7011,6 +7321,8 @@
           }
         },
         {
+          "id": "p_j31vi8l4",
+          "legacyId": "powertools&parts-bosch-115mm-angle-grinder-gws-750-115-professional",
           "title": "BOSCH 115MM Angle Grinder GWS 750-115 Professional",
           "image": "assets/products/meuleuse-angulaire-115mm-bosch-gws-750-115-professional-miyvkxgf.png",
           "description": "Fast work progress with the strong 750 W motor of the small angle grinder\nPerfect working results in a variety of materials thanks to the speed selection\nSmall grip size and ergonomic design for optimal tool control",
@@ -7043,6 +7355,8 @@
           }
         },
         {
+          "id": "p_i9pggyxs",
+          "legacyId": "powertools&parts-bosch-laser-measure-0-15m-20m-glm-professional",
           "title": "BOSCH Laser Measure 0.15m-20m GLM professional",
           "image": "assets/products/20251209_171300-mj08b4i5.png",
           "description": "One button for everything – intuitive and easy measuring\nCompact – easily fits into any pocket\n",
@@ -7074,6 +7388,8 @@
           }
         },
         {
+          "id": "p_v2jq7oec",
+          "legacyId": "powertools&parts-bosch-planer-gho-700-professional",
           "title": "BOSCH Planer GHO 700 Professional ",
           "image": "assets/products/20251210_173938-mj08omwb.png",
           "description": "Smooth and flat finish enabled by consistent depth control mechanism and precisely machined flat aluminium base\nControlled planing due to compact design and optimised centre of gravity for steady planing\nEliminates wood chip blockage via improved airflow design and providing flexibility to discard wood chips from either right or left side",
@@ -7105,6 +7421,8 @@
           }
         },
         {
+          "id": "p_24yyqoym",
+          "legacyId": "powertools&parts-bosch-jigsaw-gst-650-professional",
           "title": "BOSCH Jigsaw GST 650 Professional ",
           "image": "assets/products/20251210_175601-mj09k3qt.png",
           "description": "Faster and more precise cutting experience with powerful 450 W motor\nAdjustable speed for different materials with the pre-selection speed wheel\nExcellent cutting experience with the ergonomic handle design using soft rubber\nEasy cutting in solid wood, metal, and other materials with this powerful corded jigsaw",
@@ -7136,6 +7454,8 @@
           }
         },
         {
+          "id": "p_o0l3mi0b",
+          "legacyId": "powertools&parts-crown-ct13394-rotary-sander-240w-24000min-sanding-plate-125mm",
           "title": "CROWN CT13394 Rotary Sander 240W, 24000MIN, Sanding Plate 125mm",
           "image": "assets/products/20251210_175719-mj0a43im.png",
           "description": "The CROWN CT13394 Rotary Sander delivers efficient sanding performance with its 240W motor and rapid 24,000 min⁻¹ speed. Equipped with a 125 mm sanding plate, it ensures smooth, consistent finishes on wood, metal, and painted surfaces. Lightweight and easy to handle, it reduces fatigue during prolonged use. Ideal for both DIY enthusiasts and professionals seeking reliable, high-quality surface preparation.",
@@ -7169,6 +7489,8 @@
           }
         },
         {
+          "id": "p_ehm947n6",
+          "legacyId": "powertools&parts-ds-gl148-air-sander",
           "title": "DS GL148 Air Sander",
           "image": "assets/products/20251210_180046-mj0aprnk.png",
           "description": "The DS GL148 Air Sander delivers powerful and consistent sanding performance for demanding surface preparation tasks. Its ergonomic, lightweight design ensures smooth handling and reduced fatigue during long working sessions. Built for durability, it provides stable operation and excellent control on wood, metal, and automotive surfaces. A reliable choice for professionals seeking precision and efficiency in every pass.",
@@ -7203,6 +7525,8 @@
           }
         },
         {
+          "id": "p_b5giapyj",
+          "legacyId": "powertools&parts-apt-circular-saw-1200w-185mm",
           "title": "APT Circular Saw 1200W 185mm",
           "image": "assets/products/20251210_180204-mj2rnbfb.png",
           "description": "The APT Circular Saw 1200W delivers powerful cutting performance for wood, boards, and construction materials with ease and precision. Its 185mm blade ensures deep, clean cuts, making it ideal for both professional and DIY applications. Designed with ergonomic handling and optimal balance, it offers superior control and comfort during long tasks. A dependable tool built for accuracy, efficiency, and everyday durability.",
@@ -7236,6 +7560,8 @@
           }
         },
         {
+          "id": "p_mas7ztc1",
+          "legacyId": "powertools&parts-bosch-armature-for-drill-gsb-570",
           "title": "BOSCH Armature For Drill GSB 570",
           "image": "assets/products/20251216_164416-mj8s2fu6.png",
           "description": "The BOSCH Armature for Drill GSB 570 is a genuine replacement part designed to restore optimal motor performance. Manufactured to precise specifications, it ensures smooth rotation, efficient power transfer, and long service life. Ideal for repairs and maintenance, it helps extend the lifespan of your drill. A reliable component for professional and workshop use.",
@@ -7267,6 +7593,8 @@
           }
         },
         {
+          "id": "p_tca6a2xg",
+          "legacyId": "powertools&parts-bosch-random-orbit-sander-pro-gex-125",
           "title": "BOSCH Random Orbit Sander PRO GEX 125",
           "image": "assets/products/20260825_160928-mt8tqsjs.png",
           "description": "Superior random orbital sander for comfortable, highly efficient sanding\nLess hand fatigue and numbness ensured by low tool vibration of 3.8 m/s2\nEffortless sander control and guidance thanks to well-balanced design\nHigh material removal rate with 290-watt motor power\nOptimal for sanding wood, paint, plaster, and metal surfaces",
@@ -7298,6 +7626,8 @@
           }
         },
         {
+          "id": "p_rkv9lsfy",
+          "legacyId": "powertools&parts-bilge-pump",
           "title": "BILGE PUMP",
           "image": "assets/products/20260825_162932-mt8tyfqg.png",
           "description": "Flow Rate: 3,700 gallons per hour (GPH) or about 233 liters per minuteVoltage Options: Available in 12V DC (Model 14A) drawing 15.5 amps or 24V DC (Model 16A) drawing fewer ampsHose Size: Fits a 1-1/2 inch (38mm) inner diameter discharge hoseRecommended Fuse: 25-amp fuse for the 12V versionFeaturesHeavy-Duty Build: Designed for both commercial and pleasure boats.Compact Design: Features a quick-release strainer base for easy cleaning.Discharge Head: Works effectively up to a maximum recommended head height of 4 meters (13 feet",
@@ -7357,6 +7687,8 @@
       },
       "products": [
         {
+          "id": "p_9usdl6fw",
+          "legacyId": "pneumatic-apt-suction-feed-spray-gun-1-7mm-4001s",
           "title": "APT Suction Feed Spray Gun 1.7mm 4001S ",
           "image": "assets/products/20251216_173033-mj8tyzxk.png",
           "description": "The APT Suction Feed Spray Gun 4001S with 1.7 mm nozzle is designed for smooth, consistent paint application. Its suction feed system ensures reliable material flow, making it ideal for primers, base coats, and general spraying tasks. Built for durability and precise control, it delivers professional-quality finishes with minimal overspray. A dependable choice for workshops, marine, automotive, and industrial painting applications.",
@@ -7392,6 +7724,8 @@
           }
         },
         {
+          "id": "p_5qkjz933",
+          "legacyId": "pneumatic-apt-hvlp-gravity-feed-spray-gun-1-4mm-set-up-h827",
           "title": "APT Hvlp Gravity Feed Spray Gun 1.4Mm Set-Up H827",
           "image": "assets/products/20251216_173732-mj8uaqzt.png",
           "description": "The APT HVLP Gravity Feed Spray Gun H827 with 1.4 mm set-up delivers precise, efficient paint application with reduced overspray. Its HVLP technology ensures high transfer efficiency and smooth, professional finishes. Designed for excellent control and comfort, it is ideal for automotive, marine, and industrial coating work. A reliable spray gun for consistent, high-quality results.",

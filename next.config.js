@@ -1,6 +1,28 @@
+const catalog = require('./public/assets/data/products.json');
+const { slugify } = require('./lib/productIds');
+
+// Product URLs moved from title-derived ids to stable ids; keep old links working.
+const productRedirects = () =>
+  (catalog.categories || []).flatMap(category => {
+    const categorySlug = category.slug || slugify(category.name);
+    return (category.products || [])
+      .filter(product => product.id && product.legacyId && product.legacyId !== product.id)
+      .map(product => ({
+        source: `/products/${categorySlug}/${product.legacyId}`,
+        destination: `/products/${categorySlug}/${product.id}`,
+        permanent: true,
+      }));
+  });
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Lets tests and a second dev server run beside `next dev` without sharing its lock.
+  distDir: process.env.NEXT_DIST_DIR || '.next',
+
+  async redirects() {
+    return productRedirects();
+  },
 
   // Optimize serverless functions by excluding large asset directories
   outputFileTracingExcludes: {

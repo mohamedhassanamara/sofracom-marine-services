@@ -424,9 +424,17 @@
     }
   }
 
+  // Same format as lib/productIds.js (p_ + 8 base36 chars); the server re-checks uniqueness.
+  function generateProductId() {
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    const bytes = crypto.getRandomValues(new Uint8Array(8));
+    return `p_${Array.from(bytes, byte => alphabet[byte % alphabet.length]).join('')}`;
+  }
+
   function addProduct(categoryIndex) {
     const category = state.categories[categoryIndex];
     category.products.push({
+      id: generateProductId(),
       title: 'Untitled product',
       image: 'assets/products/placeholder.png',
       description: '',

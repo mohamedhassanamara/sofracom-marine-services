@@ -1,120 +1,89 @@
-const { randomUUID } = require('crypto');
-const { getFirebaseApp } = require('./firebase-service');
+import { randomUUID } from 'crypto';
+import { getDb, getFirebaseApp, usingEmulators } from '../../lib/firebase/admin';
+import { apiRoute, clientIp, readJson, HttpError } from '../../lib/server/http';
+import { rateLimit, MINUTE } from '../../lib/server/rateLimit';
+import { cleanString } from '../../lib/server/validate';
+import { priceCart } from '../../lib/server/catalog';
+import { formatPrice } from '../../lib/constants';
 
-/* ---------- utils ---------- */
-async function readJson(req) {
-    if (req.body && typeof req.body === 'object') return req.body;
-
-    return new Promise((resolve, reject) => {
-        let data = '';
-        req.on('data', chunk => {
-            data += chunk.toString();
-            if (data.length > 1_000_000) {
-                reject(new Error('Payload too large'));
-                req.destroy();
-            }
-        });
-        req.on('end', () => {
-            try { resolve(data ? JSON.parse(data) : {}); }
-            catch { reject(new Error('Invalid JSON payload')); }
-        });
-        req.on('error', reject);
-    });
-}
-
-function validatePayload(payload) {
-    const errors = [];
-    if (!payload || typeof payload !== 'object') return ['Missing request body'];
-
-    const items = Array.isArray(payload.items) ? payload.items : [];
-    if (!items.length) errors.push('Cart is empty');
-
-    const customer = payload.customer || {};
-    if (!customer.name || String(customer.name).trim().length < 2) errors.push('Name is required');
-    if (!customer.phone || String(customer.phone).trim().length < 6) errors.push('Phone is required');
-    if (!customer.address || String(customer.address).trim().length < 6) errors.push('Address is required');
-
-    return errors;
-}
-
-/* ---------- handler ---------- */
-module.exports = async function handler(req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-    if (req.method === 'OPTIONS') {
-        res.status(204).end();
-        return;
-    }
-
-    if (req.method !== 'POST') {
-        res.setHeader('Allow', 'POST, OPTIONS');
-        res.status(405).json({ ok: false, error: 'Method not allowed' });
-        return;
-    }
-
-    let payload;
-    try {
-        payload = await readJson(req);
-    } catch (err) {
-        res.status(400).json({ ok: false, error: err.message });
-        return;
-    }
-
-    const errors = validatePayload(payload);
-    if (errors.length) {
-        res.status(400).json({ ok: false, error: errors.join(', ') });
-        return;
-    }
-
-    const orderId = randomUUID();
-    const timestamp = new Date().toISOString();
-
-    const order = {
-        id: orderId,
-        created_at: timestamp,
-        customer_name: payload.customer.name.trim(),
-        customer_phone: payload.customer.phone.trim(),
-        customer_address: payload.customer.address.trim(),
-        customer_notes: (payload.customer.notes || '').trim(),
-        items: payload.items,
-        total: Number.isFinite(payload.total) ? payload.total : 0,
-        currency: payload.currency || 'TND',
-        status: 'new',
+function readCustomer(payload) {
+    const customer = payload.customer && typeof payload.customer === 'object' ? payload.customer : {};
+    return {
+        name: cleanString(customer.name, { field: 'Name', min: 2, max: 120, required: true }),
+        phone: cleanString(customer.phone, { field: 'Phone', min: 6, max: 40, required: true }),
+        address: cleanString(customer.address, { field: 'Address', min: 6, max: 500, required: true }),
+        notes: cleanString(customer.notes, { field: 'Notes', max: 1000 }),
     };
+}
 
+async function notifyTeam(order) {
+    // There is no messaging emulator; skip push notifications in local/test runs.
+    if (usingEmulators()) return;
     try {
-        const firestore = getFirebaseApp().firestore();
-        await firestore.collection('orders').doc(orderId).set(order);
-
-        try {
-            const messaging = getFirebaseApp().messaging();
-            const summary = Number.isFinite(order.total)
-                ? new Intl.NumberFormat('fr-TN', { style: 'currency', currency: order.currency || 'TND' }).format(order.total)
-                : `${order.total || 0} ${order.currency || 'TND'}`;
-
-            await messaging.send({
-                topic: 'sofracom-orders',
-                notification: {
-                    title: `New order from ${order.customer_name}`,
-                    body: `${order.items.length} item(s) · ${summary}`,
-                },
-                data: {
-                    orderId,
-                    customerName: order.customer_name,
-                    total: String(order.total ?? 0),
-                    currency: order.currency || 'TND',
-                },
-            });
-        } catch (err) {
-            console.warn('[order] FCM notify failed', err);
-        }
-
-        res.status(200).json({ ok: true, orderId, persisted: true });
+        await getFirebaseApp().messaging().send({
+            topic: 'sofracom-orders',
+            notification: {
+                title: `New order from ${order.customer_name}`,
+                body: `${order.items.length} item(s) · ${formatPrice(order.total)}`,
+            },
+            data: {
+                orderId: order.id,
+                customerName: order.customer_name,
+                total: String(order.total ?? 0),
+                currency: order.currency,
+            },
+        });
     } catch (err) {
-        console.error('[order] persistence failed', err);
-        res.status(500).json({ ok: false, error: err.message || 'Unable to store order' });
+        console.warn('[order] FCM notify failed', err.message);
     }
-};
+}
+
+export default apiRoute(
+    {
+        POST: async (req, res) => {
+            rateLimit(`order:${clientIp(req)}`, { limit: 10, windowMs: 10 * MINUTE });
+            const payload = await readJson(req);
+            if (!payload || typeof payload !== 'object') throw new HttpError(400, 'Missing request body');
+
+            const customer = readCustomer(payload);
+            // Prices, titles and stock come from the catalog, never from the request.
+            const priced = priceCart(payload.items);
+
+            const orderId = randomUUID();
+            const now = new Date().toISOString();
+            const order = {
+                id: orderId,
+                created_at: now,
+                customer_name: customer.name,
+                customer_phone: customer.phone,
+                customer_address: customer.address,
+                customer_notes: customer.notes,
+                // `id` and `price` keep the line shape older readers (order-admin, mobile app) expect.
+                items: priced.items.map(({ stock, ...line }) => ({
+                    ...line,
+                    id: line.variantLabel ? `${line.productId}-${line.variantLabel}` : line.productId,
+                    price: line.unitPrice,
+                })),
+                productIds: priced.productIds,
+                subtotal: priced.subtotal,
+                delivery_fee: priced.deliveryFee,
+                total: priced.total,
+                currency: priced.currency,
+                status: 'pending',
+                statusHistory: [{ status: 'pending', at: now }],
+            };
+
+            await getDb().collection('orders').doc(orderId).set(order);
+            await notifyTeam(order);
+
+            res.status(200).json({
+                ok: true,
+                orderId,
+                persisted: true,
+                total: order.total,
+                hasOnOrderItem: priced.hasOnOrderItem,
+            });
+        },
+    },
+    { cors: true }
+);
