@@ -13,6 +13,7 @@ import { priceRange } from '../../../lib/format';
 import { localizeCategory, localizeProduct } from '../../../lib/localize';
 import { cardCategory, cardProduct, getCategories, getCategoryBySlug } from '../../../lib/products';
 import { breadcrumbJsonLd } from '../../../lib/seo';
+import { langAttrs } from '../../../lib/i18n/locales';
 import { sortByAlphabet } from '../../../lib/sort';
 
 const PAGE_SIZE = 24;
@@ -204,7 +205,11 @@ export default function CategoryPage({ category, categories }) {
                 <header className="mt-4 flex flex-wrap items-end justify-between gap-4">
                     <div className="max-w-3xl">
                         <h1 className="text-2xl font-bold text-navy-900 sm:text-3xl">{localizedCategory.name}</h1>
-                        {localizedCategory.description && <p className="mt-2 text-slate-600">{localizedCategory.description}</p>}
+                        {localizedCategory.description && (
+                            <p className="mt-2 text-slate-600" {...langAttrs(localizedCategory.contentLang.description, lang)}>
+                                {localizedCategory.description}
+                            </p>
+                        )}
                     </div>
                 </header>
 

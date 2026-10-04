@@ -14,6 +14,7 @@ import { imageAt } from '../../../lib/images';
 import { localizeCategory, localizeProduct } from '../../../lib/localize';
 import { cardProduct, getProductById, getProductPaths } from '../../../lib/products';
 import { breadcrumbJsonLd, productJsonLd } from '../../../lib/seo';
+import { langAttrs } from '../../../lib/i18n/locales';
 
 export async function getStaticPaths({ locales = ['en'] }) {
     const paths = locales.flatMap(locale =>
@@ -220,7 +221,9 @@ export default function ProductDetailPage({ product, category, related = [], sta
                                     {localized.brand}
                                 </Link>
                             )}
-                            <h1 className="mt-1 text-2xl font-bold leading-tight text-navy-900 sm:text-3xl">{localized.title}</h1>
+                            <h1 className="mt-1 text-2xl font-bold leading-tight text-navy-900 sm:text-3xl" {...langAttrs(localized.contentLang.title, lang)}>
+                                {localized.title}
+                            </h1>
                             {rating?.count > 0 && (
                                 <a href="#reviews" className="mt-2 inline-block hover:underline">
                                     <RatingSummary stats={rating} size="md" />
@@ -276,7 +279,7 @@ export default function ProductDetailPage({ product, category, related = [], sta
                             {t('product.description')}
                         </h2>
                         {description && (
-                            <div className="mt-3 whitespace-pre-line leading-relaxed text-slate-700">
+                            <div className="mt-3 whitespace-pre-line leading-relaxed text-slate-700" {...langAttrs(localized.contentLang.description, lang)}>
                                 {expanded || !longDescription ? description : `${description.slice(0, READ_MORE_LENGTH)}…`}
                             </div>
                         )}

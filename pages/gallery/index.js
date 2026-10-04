@@ -5,15 +5,20 @@ import { ChevronLeft, ChevronRight, Icon, ImageIcon, Play } from '../../componen
 import { useLang } from '../../contexts/LangContext';
 import useFormat from '../../hooks/useFormat';
 import { getGalleryEntries } from '../../lib/gallery';
+import { langAttrs } from '../../lib/i18n/locales';
 
 const YOUTUBE_ID = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/))([A-Za-z0-9_-]{11})/;
 const youtubeId = src => (src || '').match(YOUTUBE_ID)?.[1] || null;
 
-const localized = (entry, lang) => ({
-    ...entry,
-    title: (lang !== 'en' && entry.translations?.[lang]?.title) || entry.title,
-    description: (lang !== 'en' && entry.translations?.[lang]?.description) || entry.description,
-});
+const localized = (entry, lang) => {
+    const own = lang !== 'en' ? entry.translations?.[lang] || {} : {};
+    return {
+        ...entry,
+        title: own.title || entry.title,
+        description: own.description || entry.description,
+        contentLang: { title: own.title || lang === 'en' ? lang : 'en', description: own.description || lang === 'en' ? lang : 'en' },
+    };
+};
 
 export function getStaticProps() {
     return { props: { entries: getGalleryEntries() } };
@@ -109,8 +114,14 @@ export default function GalleryPage({ entries = [] }) {
                                             </Badge>
                                             {entry.date && <time dateTime={entry.date}>{format.date(entry.date)}</time>}
                                         </div>
-                                        <h2 className="line-clamp-2 font-semibold text-slate-900">{entry.title}</h2>
-                                        {entry.description && <p className="line-clamp-3 text-sm text-slate-600">{entry.description}</p>}
+                                        <h2 className="line-clamp-2 font-semibold text-slate-900" {...langAttrs(entry.contentLang.title, lang)}>
+                                            {entry.title}
+                                        </h2>
+                                        {entry.description && (
+                                            <p className="line-clamp-3 text-sm text-slate-600" {...langAttrs(entry.contentLang.description, lang)}>
+                                                {entry.description}
+                                            </p>
+                                        )}
                                     </div>
                                 </article>
                             </li>
@@ -143,7 +154,11 @@ export default function GalleryPage({ entries = [] }) {
                 {current && (
                     <div className="flex flex-col gap-4">
                         <Media entry={current} large />
-                        {current.description && <p className="whitespace-pre-line text-slate-700">{current.description}</p>}
+                        {current.description && (
+                            <p className="whitespace-pre-line text-slate-700" {...langAttrs(current.contentLang.description, lang)}>
+                                {current.description}
+                            </p>
+                        )}
                         {current.tags?.length > 0 && (
                             <ul className="flex flex-wrap gap-2">
                                 {current.tags.map(tag => (
