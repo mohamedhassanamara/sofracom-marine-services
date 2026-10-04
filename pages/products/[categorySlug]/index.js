@@ -13,6 +13,9 @@ import { formatPrice } from '../../../lib/constants';
 import CartWidget from '../../../components/cart/CartWidget';
 import { CardRating } from '../../../components/reviews/Stars';
 import useProductStats from '../../../hooks/useProductStats';
+import ResponsiveImage from '../../../components/ui/ResponsiveImage';
+import Seo from '../../../components/Seo';
+import { breadcrumbJsonLd } from '../../../lib/seo';
 
 function ProductCard({ product, categorySlug, onAdd, rating }) {
     const variants = Array.isArray(product.variants) ? product.variants : [];
@@ -48,18 +51,19 @@ function ProductCard({ product, categorySlug, onAdd, rating }) {
                 className="block"
                 aria-label={`View ${product.title}`}
             >
-                <img
+                <ResponsiveImage
                     src={product.image}
                     alt={product.title}
+                    sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 260px"
                     className="card-img"
                 />
             </Link>
             <div className="p-6 flex flex-col gap-3">
                 <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold text-gray-900">
+                    <h3 className="text-lg font-semibold text-slate-900">
                         {product.title}
                     </h3>
-                    <span className="text-xs text-gray-500 uppercase">
+                    <span className="text-xs text-slate-500 uppercase">
                         {product.brand}
                     </span>
                 </div>
@@ -147,11 +151,14 @@ function ProductCard({ product, categorySlug, onAdd, rating }) {
     );
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales = ['en'] }) {
     const categories = getCategories();
-    const paths = categories.map(category => ({
-        params: { categorySlug: category.slug },
-    }));
+    const paths = locales.flatMap(locale =>
+        categories.map(category => ({
+            params: { categorySlug: category.slug },
+            locale,
+        }))
+    );
     return {
         paths,
         fallback: false,
@@ -225,20 +232,33 @@ export default function CategoryPage({ category }) {
 
     return (
         <>
+            <Seo
+                title={localizedCategory.name}
+                description={t('seo.category.description', { category: localizedCategory.name, count: localizedProducts.length })}
+                path={`/products/${category.slug}`}
+                image={category.image}
+                jsonLd={breadcrumbJsonLd(
+                    [
+                        { name: t('nav.products'), path: '/products' },
+                        { name: localizedCategory.name, path: `/products/${category.slug}` },
+                    ],
+                    lang
+                )}
+            />
             <main className="max-w-7xl mx-auto px-6 py-12">
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-                    <nav className="text-sm text-gray-500" id="breadcrumb">
+                    <nav className="text-sm text-slate-500" id="breadcrumb">
                         <Link href="/products" className="hover:underline">
                             Catalog
                         </Link>
                         <span className="mx-1">/</span>
-                        <span className="text-gray-700 font-medium">
+                        <span className="text-slate-700 font-medium">
                             {localizedCategory.name}
                         </span>
                     </nav>
                     <div className="flex items-center gap-3 flex-wrap">
                         <select
-                            className="px-3 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200"
+                            className="px-3 py-2 rounded-lg border focus:ring-2 focus:ring-navy-200"
                             value={brandFilter}
                             onChange={event => setBrandFilter(event.target.value)}
                         >
@@ -254,10 +274,10 @@ export default function CategoryPage({ category }) {
                             value={searchTerm}
                             onChange={event => setSearchTerm(event.target.value)}
                             placeholder={t('products.controls.searchPlaceholder')}
-                            className="px-3 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200"
+                            className="px-3 py-2 rounded-lg border focus:ring-2 focus:ring-navy-200"
                         />
                         <select
-                            className="px-3 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200"
+                            className="px-3 py-2 rounded-lg border focus:ring-2 focus:ring-navy-200"
                             value={sortOption}
                             onChange={event => setSortOption(event.target.value)}
                         >
@@ -268,7 +288,7 @@ export default function CategoryPage({ category }) {
                         </select>
                         <button
                             type="button"
-                            className="px-3 py-2 rounded-lg border hover:bg-gray-100"
+                            className="px-3 py-2 rounded-lg border hover:bg-slate-100"
                             onClick={() => {
                                 setBrandFilter('');
                                 setSearchTerm('');

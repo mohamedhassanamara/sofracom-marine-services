@@ -8,6 +8,7 @@ import { StatusBadge, StatusTimeline, useFormatDate } from '../../../components/
 import { getMine } from '../../../lib/accountData';
 import { formatPrice } from '../../../lib/constants';
 import { normalizeOrderStatus, shortId } from '../../../lib/status';
+import { imageAt } from '../../../lib/images';
 
 // Older orders stored only `price`; newer ones also store unitPrice/lineTotal/subtotal.
 const linePrice = item => Number(item.unitPrice ?? item.price) || 0;
@@ -71,7 +72,7 @@ export default function OrderDetailPage() {
             <div className="grid lg:grid-cols-3 gap-5">
                 <div className="lg:col-span-2 space-y-5">
                     <section className="ui-card">
-                        <h2 className="font-bold text-lg text-gray-900 mb-4">{t('orders.items')}</h2>
+                        <h2 className="font-bold text-lg text-slate-900 mb-4">{t('orders.items')}</h2>
                         <div className="order-lines">
                             {items.map((item, index) => {
                                 const href = item.productId && item.categorySlug
@@ -79,14 +80,14 @@ export default function OrderDetailPage() {
                                     : null;
                                 return (
                                     <div className="order-line" key={`${item.id || item.productId}-${index}`}>
-                                        <img src={item.image || '/logo.jpeg'} alt="" />
+                                        <img src={imageAt(item.image || '/assets/site/logo-400.webp', 400)} loading="lazy" alt="" />
                                         <div>
                                             {href ? (
-                                                <Link href={href} className="font-semibold text-gray-900 hover:underline">
+                                                <Link href={href} className="font-semibold text-slate-900 hover:underline">
                                                     {item.title}
                                                 </Link>
                                             ) : (
-                                                <p className="font-semibold text-gray-900">{item.title}</p>
+                                                <p className="font-semibold text-slate-900">{item.title}</p>
                                             )}
                                             <p className="ui-muted">
                                                 {item.variantLabel ? `${item.variantLabel} · ` : ''}
@@ -96,7 +97,7 @@ export default function OrderDetailPage() {
                                                 })}
                                             </p>
                                         </div>
-                                        <p className="font-semibold text-gray-900">{formatPrice(lineTotal(item))}</p>
+                                        <p className="font-semibold text-slate-900">{formatPrice(lineTotal(item))}</p>
                                     </div>
                                 );
                             })}
@@ -117,17 +118,17 @@ export default function OrderDetailPage() {
                         </div>
                     </section>
                     <section className="ui-card">
-                        <h2 className="font-bold text-lg text-gray-900 mb-3">{t('orders.delivery')}</h2>
-                        <p className="text-gray-800">{order.customer_name}</p>
-                        <p className="text-gray-700">{order.customer_address}</p>
-                        <p className="text-gray-500" dir="ltr" style={{ textAlign: 'start' }}>
+                        <h2 className="font-bold text-lg text-slate-900 mb-3">{t('orders.delivery')}</h2>
+                        <p className="text-slate-800">{order.customer_name}</p>
+                        <p className="text-slate-700">{order.customer_address}</p>
+                        <p className="text-slate-500" dir="ltr" style={{ textAlign: 'start' }}>
                             {order.customer_phone}
                         </p>
                         {order.customer_notes && <p className="ui-muted mt-2">{order.customer_notes}</p>}
                     </section>
                 </div>
                 <section className="ui-card">
-                    <h2 className="font-bold text-lg text-gray-900 mb-4">{t('orders.status')}</h2>
+                    <h2 className="font-bold text-lg text-slate-900 mb-4">{t('orders.status')}</h2>
                     <StatusTimeline kind="order" doc={order} />
                 </section>
             </div>

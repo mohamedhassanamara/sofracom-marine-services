@@ -29,7 +29,13 @@ npm run gallery-admin  # gallery admin console  → http://127.0.0.1:5174
 
 ## Architecture
 
-**Next.js Pages Router** (`pages/`), React 19, plain JavaScript. Deployed on Vercel. Styling: `styles/globals.css` (site) + `styles/account.css` (accounts, reviews, admin; uses logical `inline-start/end` properties for RTL) plus Tailwind **v2.2.19 from a CDN**, so only stock v2 utilities exist.
+**Next.js Pages Router** (`pages/`), React 19, plain JavaScript. Deployed on Vercel. Styling: Tailwind **v3.4 via PostCSS** whose theme is **only** `lib/design/tokens.js` (navy/accent/slate/success/warning/danger/info, 8 font sizes, radii sm–xl, 3 shadows, motion), so off-palette classes don't exist; use logical utilities (`ms-/me-/ps-/pe-/start-/end-/text-start`) and `rtl:`. `styles/globals.css` + `styles/account.css` use `theme()` for every value. Fonts: next/font (Inter + IBM Plex Sans Arabic) in `_app.js`. Status/stock colours: `tones` + `statusTone` in the tokens (one palette for site, admin and staff app).
+
+### Locales, SEO, images
+- URL locales (`next.config.js` `i18n`): English at `/`, `/fr`, `/ar`; `_document` renders `lang`/`dir`; `LangContext` reads `router.locale`, the switcher navigates and sets `NEXT_LOCALE`. `getStaticPaths` must return every locale. Links via `next/link`/`router` keep the locale; never hard-code `/fr`.
+- `components/Seo.js` (+ `lib/seo.js`) on every page: title/description/canonical/hreflang/OG/JSON-LD; `noindex` for private pages. `/sitemap.xml`, `/robots.txt` are pages. `NEXT_PUBLIC_SITE_URL` sets the canonical domain.
+- Images are WebP `<stem>-{400,800,1600}.webp` (≤200 KB); JSON stores the `-800` path; render with `components/ui/ResponsiveImage` or `imageAt(src, 400)` (`lib/images.js`). `node scripts/optimize-images.mjs [--apply] [--delete-unreferenced]` converts anything else (idempotent; run it after merging catalog changes) and records old→new paths in `lib/data/image-redirects.json` (308 redirects). Admin uploads use the same pipeline (`tools/shared/images.js`).
+- Local QA servers: run with the emulator env vars, otherwise API routes read production through the local service-account file. `SEO_RATINGS=off` skips the build-time ratings read.
 
 ### Catalog is JSON in the repo
 - `public/assets/data/products.json` → `{ categories: [{ name, slug, image, description, translations, products: [...] }] }`. Each product has a **stable `id` (`p_` + 8 chars)** and `legacyId` (the old title-derived id) plus `title, brand, images[], image, description, usage[], variants[{label, price, stock}], price, stock, datasheet, translations`.

@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import { useLang } from './LangContext';
 import { ApiError, apiRequest } from '../lib/apiClient';
 import { parseIdentifier, publicEmail } from '../lib/identity';
+import { localePath } from '../lib/i18n/locales';
 
 // Optional customer accounts (Firebase Auth). Firebase is loaded lazily in the
 // browser so pages render without it; guests never need to sign in.
@@ -18,7 +19,7 @@ const loadFirebase = async () => {
 const LINKED_KEY = 'sofracom.linked.v1';
 
 export function AuthProvider({ children }) {
-    const { lang, setLang } = useLang();
+    const { lang } = useLang();
     const [user, setUser] = useState(null);
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -36,19 +37,15 @@ export function AuthProvider({ children }) {
         }
         try {
             const result = await apiRequest('/api/account/profile', { user: currentUser });
+            // The page language comes from the URL; profile.lang is only the account's
+            // preferred language (Firebase emails, staff contact) and never switches the page.
             setProfile(result.profile);
-            // Apply the saved language once per session; the header picker still wins after that.
-            const langKey = `sofracom.profileLang.v1:${currentUser.uid}`;
-            if (result.profile?.exists && typeof window !== 'undefined' && !window.sessionStorage.getItem(langKey)) {
-                window.sessionStorage.setItem(langKey, '1');
-                setLang(result.profile.lang);
-            }
             return result.profile;
         } catch (error) {
             console.warn('[auth] profile load failed', error);
             return null;
         }
-    }, [setLang]);
+    }, []);
 
     // Attach earlier guest orders/quotes to this account once the email is verified.
     const linkGuestHistory = useCallback(async currentUser => {
@@ -100,7 +97,7 @@ export function AuthProvider({ children }) {
     const actionSettings = () =>
         typeof window === 'undefined'
             ? undefined
-            : { url: `${window.location.origin}/account`, handleCodeInApp: false };
+            : { url: `${window.location.origin}${localePath('/account', lang)}`, handleCodeInApp: false };
 
     // `identifier` is an email address or a phone number (phone accounts sign in with
     // their synthetic auth email, which is derived here and never displayed).

@@ -1,8 +1,8 @@
-import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useLang } from '../../contexts/LangContext';
 import useRequireAuth from '../../hooks/useRequireAuth';
+import Seo from '../Seo';
 
 const NAV = [
     { href: '/account', key: 'account.nav.profile', exact: true },
@@ -36,10 +36,7 @@ export default function AccountLayout({ title, eyebrow, actions, badges = {}, ch
 
     return (
         <main className="account-shell">
-            <Head>
-                <title>{`${title} · SOFRACOM`}</title>
-                <meta name="robots" content="noindex" />
-            </Head>
+            <Seo title={title} noindex />
             <nav className="account-nav" aria-label={t('account.navLabel')}>
                 {NAV.map(item => (
                     <Link key={item.href} href={item.href} className={isActive(item) ? 'active' : ''}>

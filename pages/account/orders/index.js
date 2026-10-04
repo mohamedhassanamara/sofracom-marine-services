@@ -7,6 +7,7 @@ import { StatusBadge, useFormatDate } from '../../../components/account/Status';
 import { listMine } from '../../../lib/accountData';
 import { formatPrice } from '../../../lib/constants';
 import { normalizeOrderStatus, shortId } from '../../../lib/status';
+import { imageAt } from '../../../lib/images';
 
 export default function OrdersPage() {
     const { t } = useLang();
@@ -49,7 +50,7 @@ export default function OrdersPage() {
                                 <div className="flex items-center gap-3">
                                     <div className="record-card__thumbs" aria-hidden="true">
                                         {items.slice(0, 3).map((item, index) => (
-                                            <img key={`${order.id}-${index}`} src={item.image || '/logo.jpeg'} alt="" />
+                                            <img key={`${order.id}-${index}`} src={imageAt(item.image || '/assets/site/logo-400.webp', 400)} loading="lazy" alt="" />
                                         ))}
                                     </div>
                                     <div>
@@ -61,7 +62,7 @@ export default function OrdersPage() {
                                 </div>
                                 <div className="flex items-center gap-3 flex-wrap">
                                     {delivered && <span className="ui-pill">{t('orders.rateItems')}</span>}
-                                    <span className="font-bold text-gray-900">{formatPrice(Number(order.total))}</span>
+                                    <span className="font-bold text-slate-900">{formatPrice(Number(order.total))}</span>
                                     <StatusBadge kind="order" status={order.status} />
                                 </div>
                             </Link>

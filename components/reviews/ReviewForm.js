@@ -66,7 +66,7 @@ export default function ReviewForm({ productId, productTitle, existing, onClose,
                 <div className="flex items-start justify-between gap-3">
                     <div>
                         <p className="account-eyebrow">{existing ? t('reviews.editTitle') : t('reviews.writeTitle')}</p>
-                        <h2 id="review-form-title" className="font-bold text-lg text-gray-900">
+                        <h2 id="review-form-title" className="font-bold text-lg text-slate-900">
                             {productTitle}
                         </h2>
                     </div>

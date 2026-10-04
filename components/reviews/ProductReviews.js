@@ -146,7 +146,7 @@ export default function ProductReviews({ productId, productTitle }) {
     return (
         <section id="reviews" className="mt-12" aria-labelledby="reviews-title">
             <div className="review-toolbar mb-5">
-                <h2 id="reviews-title" className="text-2xl font-extrabold text-gray-900">
+                <h2 id="reviews-title" className="text-2xl font-extrabold text-slate-900">
                     {t('reviews.title')}
                 </h2>
                 {renderAction()}
@@ -158,7 +158,7 @@ export default function ProductReviews({ productId, productTitle }) {
             {stats?.count > 0 && (
                 <div className="review-toolbar mb-4">
                     <span className="ui-muted">{t('reviews.count', { count: stats.count })}</span>
-                    <label className="flex items-center gap-2 text-sm text-gray-600">
+                    <label className="flex items-center gap-2 text-sm text-slate-600">
                         {t('reviews.sortBy')}
                         <select value={sort} onChange={event => setSort(event.target.value)}>
                             <option value="newest">{t('reviews.sortNewest')}</option>

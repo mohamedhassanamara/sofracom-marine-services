@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { useLang } from '../../contexts/LangContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { errorMessage } from '../../lib/apiClient';
+import Seo from '../Seo';
 
 export function AuthCard({ title, subtitle, children }) {
     return (
         <main className="auth-page">
+            <Seo title={title} noindex />
             <div className="ui-card auth-card">
                 <p className="account-eyebrow">SOFRACOM</p>
                 <h1 className="mt-1">{title}</h1>

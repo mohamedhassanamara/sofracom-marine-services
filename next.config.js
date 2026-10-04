@@ -1,5 +1,6 @@
 const catalog = require('./public/assets/data/products.json');
 const { slugify } = require('./lib/productIds');
+const { LOCALES, DEFAULT_LOCALE } = require('./lib/i18n/locales');
 
 // Product URLs moved from title-derived ids to stable ids; keep old links working.
 const productRedirects = () =>
@@ -14,14 +15,37 @@ const productRedirects = () =>
       }));
   });
 
+// Images replaced by optimized WebP (scripts/optimize-images.mjs): old paths still live in
+// past orders, saved carts and outside links. (Not `locale: false`: with i18n that would
+// require the locale prefix in the source.)
+const imageRedirects = () => {
+  let map = {};
+  try {
+    map = require('./lib/data/image-redirects.json');
+  } catch {
+    return [];
+  }
+  return Object.entries(map).map(([source, destination]) => ({
+    source: source.replace(/[()[\]{}?+*:]/g, '\\$&'),
+    destination,
+    permanent: true,
+  }));
+};
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // English at /, French at /fr, Arabic at /ar. "/" redirects to the remembered locale
+  // (NEXT_LOCALE cookie, then Accept-Language); deeper links are never redirected.
+  i18n: {
+    locales: LOCALES,
+    defaultLocale: DEFAULT_LOCALE,
+  },
   // Lets tests and a second dev server run beside `next dev` without sharing its lock.
   distDir: process.env.NEXT_DIST_DIR || '.next',
 
   async redirects() {
-    return productRedirects();
+    return [...productRedirects(), ...imageRedirects()];
   },
 
   // Optimize serverless functions by excluding large asset directories

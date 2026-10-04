@@ -117,7 +117,7 @@ export default function AddressesPage() {
             )}
             {editing && (
                 <form className="ui-card ui-form mb-6" onSubmit={handleSave} noValidate>
-                    <h2 className="font-bold text-lg text-gray-900">
+                    <h2 className="font-bold text-lg text-slate-900">
                         {editing.id ? t('address.editTitle') : t('address.newTitle')}
                     </h2>
                     <AddressFields value={editing.value} onChange={value => setEditing({ ...editing, value })} />
@@ -159,10 +159,10 @@ export default function AddressesPage() {
                                     <p className="record-card__title">{address.label || address.fullName}</p>
                                     {isDefault && <span className="ui-pill">{t('address.default')}</span>}
                                 </div>
-                                <p className="text-sm text-gray-700">{address.fullName}</p>
-                                <p className="text-sm text-gray-700">{address.line}</p>
-                                <p className="text-sm text-gray-700">{address.city}</p>
-                                <p className="text-sm text-gray-500" dir="ltr" style={{ textAlign: 'start' }}>
+                                <p className="text-sm text-slate-700">{address.fullName}</p>
+                                <p className="text-sm text-slate-700">{address.line}</p>
+                                <p className="text-sm text-slate-700">{address.city}</p>
+                                <p className="text-sm text-slate-500" dir="ltr" style={{ textAlign: 'start' }}>
                                     {address.phone}
                                 </p>
                                 {address.notes && <p className="ui-muted">{address.notes}</p>}

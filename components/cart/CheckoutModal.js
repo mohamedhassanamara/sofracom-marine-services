@@ -205,12 +205,12 @@ export default function CheckoutModal({ onClose, onOrderPlaced, onGoHome }) {
                 </header>
                 {confirmation ? (
                     <div className="checkout-confirmation">
-                        <p className="text-base font-semibold text-gray-900">
+                        <p className="text-base font-semibold text-slate-900">
                             {confirmation.hadOnOrderItems
                                 ? t('checkout.confirmTitleDelayed')
                                 : t('checkout.confirmTitle')}
                         </p>
-                        <p className="text-sm text-gray-600 mt-1">
+                        <p className="text-sm text-slate-600 mt-1">
                             {confirmation.hadOnOrderItems
                                 ? t('checkout.confirmBodyDelayed')
                                 : t('checkout.confirmBody')}

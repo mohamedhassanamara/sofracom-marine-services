@@ -4,6 +4,7 @@ import { useCart } from '../../contexts/CartContext';
 import { useLang } from '../../contexts/LangContext';
 import { DELIVERY_FEE, formatPrice } from '../../lib/constants';
 import CheckoutModal from './CheckoutModal';
+import { imageAt } from '../../lib/images';
 
 // Floating cart button, cart drawer and checkout modal used on the catalog pages.
 export default function CartWidget() {
@@ -89,14 +90,14 @@ export default function CartWidget() {
             >
                 <div className="cart-header">
                     <div>
-                        <h3 className="text-lg font-semibold text-gray-900">{t('cart.title')}</h3>
-                        <p className="text-sm text-gray-500">{t('cart.subtitle')}</p>
+                        <h3 className="text-lg font-semibold text-slate-900">{t('cart.title')}</h3>
+                        <p className="text-sm text-slate-500">{t('cart.subtitle')}</p>
                     </div>
                     <button
                         id="cartClose"
                         type="button"
                         aria-label={t('cart.close')}
-                        className="text-2xl leading-none text-gray-500 hover:text-gray-800"
+                        className="text-2xl leading-none text-slate-500 hover:text-slate-800"
                         onClick={closeCart}
                     >
                         ×
@@ -122,10 +123,10 @@ export default function CartWidget() {
                     {cart.length ? (
                         cart.map(item => (
                             <div className="cart-item" key={item.id} data-id={item.id}>
-                                <img src={item.image} alt={item.title} />
+                                <img src={imageAt(item.image, 400)} alt={item.title} loading="lazy" />
                                 <div>
                                     <p className="cart-item-title">{item.title}</p>
-                                    <p className="text-xs text-gray-500">
+                                    <p className="text-xs text-slate-500">
                                         {item.variantLabel ? item.variantLabel : item.category}
                                     </p>
                                     <p className="cart-item-price">{formatPrice(item.price)}</p>
@@ -158,7 +159,7 @@ export default function CartWidget() {
                                         <button
                                             type="button"
                                             onClick={() => removeItem(item.id)}
-                                            className="text-xs text-red-500 ml-3"
+                                            className="text-xs text-danger-600 ms-3"
                                         >
                                             {t('cart.remove')}
                                         </button>

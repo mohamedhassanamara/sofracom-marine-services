@@ -5,6 +5,7 @@ import { useLang } from '../contexts/LangContext';
 import { useAuth } from '../contexts/AuthContext';
 import { authLink } from '../lib/redirect';
 import { formatPhone } from '../lib/identity';
+import { imageAt } from '../lib/images';
 
 const NAV_LINKS = [
     { href: '#home', key: 'nav.home', type: 'anchor' },
@@ -131,6 +132,7 @@ export default function Layout({ children }) {
     }, [router.asPath]);
 
     useEffect(() => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
         const tiltCards = Array.from(document.querySelectorAll('[data-tilt]'));
         const handlers = new Map();
         tiltCards.forEach(card => {
@@ -253,16 +255,17 @@ export default function Layout({ children }) {
                     >
                         {suggestion.image && (
                             <img
-                                src={suggestion.image}
+                                src={imageAt(suggestion.image, 400)}
+                                loading="lazy"
                                 alt={suggestion.localizedTitle || suggestion.title}
                                 className="search-suggestion-img"
                             />
                         )}
-                        <div className="flex flex-col text-left">
-                            <span className="font-semibold text-sm text-gray-900">
+                        <div className="flex flex-col text-start">
+                            <span className="font-semibold text-sm text-slate-900">
                                 {suggestion.localizedTitle || suggestion.title}
                             </span>
-                            <span className="text-xs text-gray-500">
+                            <span className="text-xs text-slate-500">
                                 {formatCurrency(suggestion.price)}
                             </span>
                         </div>
@@ -283,7 +286,7 @@ export default function Layout({ children }) {
                 <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
                     <Link href="/" className="flex items-center gap-3">
                         <img
-                            src="/logo.jpeg"
+                            src="/assets/site/logo-400.webp"
                             alt="SOFRACOM Logo"
                             className="h-10 w-10 rounded-lg ring-2 ring-white ring-opacity-30"
                         />
@@ -308,7 +311,7 @@ export default function Layout({ children }) {
                                     >
                                         <Link
                                             href={href}
-                                            className="inline-flex items-center gap-1 hover:text-blue-200"
+                                            className="inline-flex items-center gap-1 hover:text-navy-200"
                                         >
                                             {t(link.key)}
                                             {categories.length > 0 && (
@@ -319,22 +322,23 @@ export default function Layout({ children }) {
                                         </Link>
                                         {categories.length > 0 && (
                                             <div
-                                                className={`absolute left-0 top-full w-56 rounded-lg bg-white text-gray-900 shadow-xl transition duration-200 z-50 overflow-hidden ${
+                                                className={`absolute start-0 top-full w-56 rounded-lg bg-white text-slate-900 shadow-lg transition duration-200 z-50 overflow-hidden ${
                                                     showProductCategories
                                                         ? 'opacity-100 pointer-events-auto translate-y-0'
                                                         : 'opacity-0 pointer-events-none -translate-y-1'
                                                 }`}
                                             >
-                                                <div className="flex flex-col divide-y divide-gray-100">
+                                                <div className="flex flex-col divide-y divide-slate-100">
                                                     {categories.map(category => (
                                                         <Link
                                                             key={category.slug}
                                                             href={`/products/${category.slug}`}
-                                                            className="flex items-center gap-3 px-4 py-2 text-sm transition-colors hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg"
+                                                            className="flex items-center gap-3 px-4 py-2 text-sm transition-colors hover:bg-slate-100 first:rounded-t-lg last:rounded-b-lg"
                                                         >
                                                             {category.image && (
                                                                 <img
-                                                                    src={category.image}
+                                                                    src={imageAt(category.image, 400)}
+                                                                    loading="lazy"
                                                                     alt={`${category.name} category`}
                                                                     className="h-8 w-8 flex-shrink-0 rounded-md object-cover"
                                                                 />
@@ -354,7 +358,7 @@ export default function Layout({ children }) {
                                 <Link
                                     key={link.key}
                                     href={href}
-                                    className="hover:text-blue-200"
+                                    className="hover:text-accent-200"
                                 >
                                     {t(link.key)}
                                 </Link>
@@ -371,7 +375,7 @@ export default function Layout({ children }) {
                                 id="siteSearch"
                                 type="search"
                                 placeholder="Search products…"
-                                className={`hidden sm:block px-3 py-1.5 rounded-md bg-white bg-opacity-15 placeholder-black text-black border border-white border-opacity-20 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all duration-200 ${
+                                className={`hidden sm:block px-3 py-1.5 rounded-md bg-white bg-opacity-15 placeholder-black text-black border border-white border-opacity-20 focus:outline-none focus:ring-2 focus:ring-accent-200 transition-all duration-200 ${
                                     searchActive ? 'md:w-64' : 'md:w-44'
                                 }`}
                                 onFocus={() => setSearchActive(true)}
@@ -399,7 +403,8 @@ export default function Layout({ children }) {
                         )}
                         <select
                             id="lang"
-                            className="px-3 py-1.5 rounded-md bg-white bg-opacity-15 text-black border border-white border-opacity-20 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                            aria-label="Language / Langue / اللغة"
+                            className="px-3 py-1.5 rounded-md bg-white bg-opacity-15 text-black border border-white border-opacity-20 focus:outline-none focus:ring-2 focus:ring-navy-200"
                             value={lang}
                             onChange={handleLangChange}
                         >
@@ -433,7 +438,7 @@ export default function Layout({ children }) {
                                     id="siteSearchMobile"
                                     type="search"
                                     placeholder="Search products…"
-                                    className="w-full px-3 py-2 rounded-md bg-white text-gray-900 placeholder-gray-500 border border-white/30 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                                    className="w-full px-3 py-2 rounded-md bg-white text-slate-900 placeholder-slate-500 border border-white/30 focus:outline-none focus:ring-2 focus:ring-navy-200"
                                     onFocus={() => setSearchActive(true)}
                                     value={searchTerm}
                                     onChange={event => {
@@ -452,7 +457,7 @@ export default function Layout({ children }) {
                                     <Link
                                         key={link.key}
                                         href={href}
-                                        className="block font-medium hover:text-blue-200"
+                                        className="block font-medium hover:text-navy-200"
                                         onClick={() => setMenuOpen(false)}
                                     >
                                         {t(link.key)}
@@ -462,7 +467,7 @@ export default function Layout({ children }) {
                             {!authLoading && (
                                 <Link
                                     href={user ? '/account' : authLink('login', router.asPath)}
-                                    className="block font-semibold text-blue-200 hover:text-white"
+                                    className="block font-semibold text-accent-200 hover:text-white"
                                     onClick={() => setMenuOpen(false)}
                                 >
                                     {user ? t('nav.account') : t('nav.signIn')}
@@ -475,7 +480,7 @@ export default function Layout({ children }) {
                                     <Link
                                         key={category.slug}
                                         href={`/products/${category.slug}`}
-                                        className="block font-medium text-sm hover:text-blue-200"
+                                        className="block font-medium text-sm hover:text-navy-200"
                                         onClick={() => setMenuOpen(false)}
                                     >
                                         {category.name}
@@ -535,7 +540,7 @@ export default function Layout({ children }) {
                         </p>
                     </div>
                 </div>
-                <div className="border-t border-blue-900">
+                <div className="border-t border-navy-900">
                     <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between text-xs opacity-70">
                         <span>
                             © {new Date().getFullYear()} SOFRACOM. All rights
@@ -554,7 +559,7 @@ export default function Layout({ children }) {
 
             <button
                 id="toTop"
-                className={`fixed bottom-6 right-6 px-4 py-2 rounded-full bg-blue-900 text-white shadow-lg ${
+                className={`fixed bottom-6 end-6 px-4 py-2 rounded-full bg-navy-900 text-white shadow-lg ${
                     showToTop ? 'show' : ''
                 }`}
                 type="button"
