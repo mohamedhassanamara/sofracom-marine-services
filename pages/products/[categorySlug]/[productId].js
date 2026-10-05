@@ -166,7 +166,7 @@ function AdviceCard({ quoteHref }) {
                         {t('product.advice.call')} <bdi dir="ltr">{CONTACT.phone}</bdi>
                     </span>
                 </a>
-                <Button href={quoteHref} variant="accent" size="lg" icon={MessageSquareText}>
+                <Button href={quoteHref} variant="quote" size="lg" icon={MessageSquareText}>
                     {t('nav.quote')}
                 </Button>
             </div>

@@ -30,7 +30,7 @@ module.exports = {
                 slow: tokens.motion.duration.slow,
             },
             maxWidth: { container: '80rem', wide: '82.5rem' },
-            ringColor: { DEFAULT: tokens.colors.accent[600] },
+            ringColor: { DEFAULT: tokens.colors.navy[900] },
         },
     },
     plugins: [

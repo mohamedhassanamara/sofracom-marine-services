@@ -100,7 +100,7 @@ export default function OrderDetail({ kind, id }) {
 
     return (
         <>
-            <a href={`#/${kind}`} className="mb-3 inline-flex items-center gap-1 text-sm font-semibold text-accent-700 hover:underline">
+            <a href={`#/${kind}`} className="mb-3 inline-flex items-center gap-1 text-sm font-semibold text-navy-900 hover:underline">
                 <ArrowLeft size={16} /> {kind === 'orders' ? 'Orders' : 'Quotes'}
             </a>
             <PageHeader title={<span className="font-mono">{displayRef(item)}</span>} subtitle={`Received ${format.date(item.created_at, true)}${item.uid ? ' · customer account' : ' · guest'}`} actions={<StatusBadge kind={config.kind} status={item.status} />} />
@@ -109,13 +109,13 @@ export default function OrderDetail({ kind, id }) {
                     <Panel title="Customer">
                         <dl>
                             <Row label="Name">{item.customer_name}</Row>
-                            <Row label="Phone">{item.customer_phone ? <a href={`tel:${item.customer_phone}`} className="text-accent-700 hover:underline">{item.customer_phone}</a> : null}</Row>
-                            <Row label="Email">{item.customer_email || item.email ? <a href={`mailto:${item.customer_email || item.email}`} className="text-accent-700 hover:underline">{item.customer_email || item.email}</a> : null}</Row>
+                            <Row label="Phone">{item.customer_phone ? <a href={`tel:${item.customer_phone}`} className="text-navy-900 hover:underline">{item.customer_phone}</a> : null}</Row>
+                            <Row label="Email">{item.customer_email || item.email ? <a href={`mailto:${item.customer_email || item.email}`} className="text-navy-900 hover:underline">{item.customer_email || item.email}</a> : null}</Row>
                             {kind === 'orders' && <Row label="Address">{item.customer_address}</Row>}
                             {kind === 'orders' && <Row label="Customer notes">{item.customer_notes}</Row>}
                             {item.uid && (
                                 <Row label="Account">
-                                    <a href={`#/customers/${item.uid}`} className="text-accent-700 hover:underline">
+                                    <a href={`#/customers/${item.uid}`} className="text-navy-900 hover:underline">
                                         Open customer
                                     </a>
                                 </Row>

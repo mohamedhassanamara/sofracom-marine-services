@@ -10,6 +10,7 @@ import { formatPhone } from '../../lib/identity';
 import { LOCALES } from '../../lib/i18n/locales';
 import { authLink } from '../../lib/redirect';
 import CategoryArt from '../ui/CategoryArt';
+import { QUOTE } from '../ui/Button';
 import { cx } from '../ui/cx';
 import { ArrowRight, ChevronDown, Icon, Menu, Search, ShoppingCart, User } from '../ui/icons';
 
@@ -87,7 +88,7 @@ function CartButton() {
         <button type="button" onClick={openCart} className={iconButton} aria-label={t('header.cartLabel', { count: shown })}>
             <Icon as={ShoppingCart} size={20} />
             {shown > 0 && (
-                <span className="absolute -end-0.5 top-0 flex h-[1.125rem] min-w-[1.125rem] items-center justify-center rounded-full bg-accent-400 px-1 text-[0.6875rem] font-bold text-navy-950" aria-hidden="true">
+                <span className="absolute -end-0.5 top-0 flex h-[1.125rem] min-w-[1.125rem] items-center justify-center rounded-full bg-navy-900 px-1 text-[0.6875rem] font-bold text-white ring-2 ring-white" aria-hidden="true">
                     {shown > 99 ? '99+' : shown}
                 </span>
             )}
@@ -168,7 +169,7 @@ function ShopMenu() {
                     <div className="flex flex-col justify-end gap-4 border-s border-line ps-8">
                         <p className="font-display text-xl font-semibold tracking-[-0.01em] text-ink">{t('header.servicesPitch')}</p>
                         <p className="text-sm text-ink-muted">{t('header.servicesPitchBody')}</p>
-                        <Link prefetch={false} href="/quote" className="inline-flex h-10 w-fit items-center rounded-full bg-accent-600 px-4 text-sm font-semibold text-white hover:bg-accent-700">
+                        <Link prefetch={false} href="/quote" className={cx('inline-flex h-10 w-fit items-center rounded-full px-4 text-sm font-semibold transition-colors duration-fast', QUOTE)}>
                             {t('nav.quote')}
                         </Link>
                         <Link prefetch={false} href="/products" className="inline-flex items-center gap-1.5 text-sm font-semibold text-navy-900 hover:underline">
@@ -229,7 +230,7 @@ export default function SiteHeader() {
                     <button type="button" onClick={openSearch} aria-haspopup="dialog" className={iconButton} aria-label={t('header.openSearch')}>
                         <Icon as={Search} size={20} />
                     </button>
-                    <Link prefetch={false} href="/quote" className="mx-1 hidden h-10 items-center whitespace-nowrap rounded-full bg-accent-600 px-4 text-sm font-semibold text-white transition-colors duration-fast hover:bg-accent-700 lg:inline-flex">
+                    <Link prefetch={false} href="/quote" className={cx('mx-1 hidden h-10 items-center whitespace-nowrap rounded-full px-4 text-sm font-semibold transition-colors duration-fast lg:inline-flex', QUOTE)}>
                         {t('nav.quote')}
                     </Link>
                     <LanguageMenu />

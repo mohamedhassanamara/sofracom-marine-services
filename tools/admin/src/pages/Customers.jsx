@@ -37,7 +37,7 @@ function CustomerDetail({ uid }) {
     const { user } = data;
     return (
         <>
-            <a href="#/customers" className="mb-3 inline-flex items-center gap-1 text-sm font-semibold text-accent-700 hover:underline">
+            <a href="#/customers" className="mb-3 inline-flex items-center gap-1 text-sm font-semibold text-navy-900 hover:underline">
                 <ArrowLeft size={16} /> Customers
             </a>
             <PageHeader title={user.name || '(no name)'} subtitle={[user.phoneDisplay, user.email].filter(Boolean).join(' · ')} actions={<Button variant="secondary" onClick={() => setConfirm(true)}>Temporary password…</Button>} />

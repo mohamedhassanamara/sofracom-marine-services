@@ -152,7 +152,7 @@ export default function SearchPage() {
                             <Button size="lg" variant="secondary" href="/products">
                                 {t('header.allProducts')}
                             </Button>
-                            <Button size="lg" href="/quote?service=products">
+                            <Button size="lg" variant="quote" href="/quote?service=products">
                                 {t('nav.quote')}
                             </Button>
                         </div>

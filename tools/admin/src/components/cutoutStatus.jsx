@@ -48,7 +48,7 @@ export function CutoutBadge({ state, keepOriginal }) {
 }
 
 const TONES = {
-    info: 'bg-accent-100 text-accent-800',
+    info: 'bg-navy-100 text-navy-900',
     success: 'bg-success-100 text-success-800',
     warning: 'bg-warning-100 text-warning-800',
     danger: 'bg-danger-100 text-danger-700',

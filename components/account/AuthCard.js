@@ -13,7 +13,7 @@ export function AuthCard({ title, subtitle, children }) {
             <Seo title={title} noindex />
             <div className="flex items-center justify-center">
                 <div className="w-full max-w-md">
-                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent-700">SOFRACOM</p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ink-muted">SOFRACOM</p>
                     <h1 className="mt-3 text-[2rem] font-semibold leading-tight text-ink">{title}</h1>
                     {subtitle && <p className="mt-3 text-ink-muted">{subtitle}</p>}
                     <div className="mt-8">{children}</div>

@@ -22,7 +22,7 @@ export default function QuantityStepper({ value, onChange, min = 1, max = 99, si
                 value={value}
                 onChange={event => onChange(clamp(event.target.value))}
                 aria-label={label || t('ui.quantity')}
-                className="w-10 bg-transparent text-center text-base font-semibold tabular-nums text-ink [appearance:textfield] focus:outline-none focus-visible:rounded focus-visible:ring-2 focus-visible:ring-accent-600 [&::-webkit-inner-spin-button]:appearance-none"
+                className="w-10 bg-transparent text-center text-base font-semibold tabular-nums text-ink [appearance:textfield] focus:outline-none focus-visible:rounded focus-visible:ring-2 focus-visible:ring-navy-900 [&::-webkit-inner-spin-button]:appearance-none"
             />
             <button type="button" className={button} onClick={() => onChange(clamp(value + 1))} disabled={value >= max} aria-label={t('ui.increase')}>
                 <Icon as={Plus} size={16} />

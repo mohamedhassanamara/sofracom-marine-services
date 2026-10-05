@@ -8,7 +8,6 @@
     --deep-navy: theme('colors.navy.900');
     --sea: theme('colors.navy.700');
     --sky: theme('colors.navy.50');
-    --accent: theme('colors.accent.400');
     --sand: theme('colors.slate.50');
 
     /* motion: one easing, three durations */
@@ -58,8 +57,12 @@ h3 {
 }
 
 :focus-visible {
-    outline: 2px solid theme('colors.accent.600');
+    outline: 2px solid theme('colors.navy.900');
     outline-offset: 2px;
+}
+/* On dark areas (top bar, hero, photo cards, closing card, footer) the focus outline is white. */
+.on-dark :focus-visible {
+    outline-color: theme('colors.white');
 }
 
 /* Reduced motion: no parallax, tilt, float, fades or smooth scrolling. */
@@ -133,7 +136,7 @@ h3 {
 }
 
 .tag {
-    background: theme('colors.accent.400 / 0.12');
+    background: theme('colors.navy.50');
     color: theme('colors.navy.700');
 }
 
@@ -182,7 +185,7 @@ h3 {
 /* ---------- UI kit (components/ui) ---------- */
 /* RangeSlider: two native range inputs stacked on one track. Only the thumbs take the
    pointer; each thumb is a 44 px hit area drawn as a 24 px white disc with a navy ring
-   (the focus ring adds an accent-600 halo). */
+   (the focus ring adds a navy-900 halo). */
 .range-dual {
     position: absolute;
     inset: 0;
@@ -225,10 +228,10 @@ h3 {
     pointer-events: auto;
 }
 .range-dual:focus-visible::-webkit-slider-thumb {
-    background: radial-gradient(circle, theme('colors.white') 0 8.5px, theme('colors.navy.900') 9px 12px, theme('colors.white') 12.5px 14px, theme('colors.accent.600') 14.5px 16.5px, transparent 17px);
+    background: radial-gradient(circle, theme('colors.white') 0 8.5px, theme('colors.navy.900') 9px 12px, theme('colors.white') 12.5px 14px, theme('colors.navy.900') 14.5px 16.5px, transparent 17px);
 }
 .range-dual:focus-visible::-moz-range-thumb {
-    background: radial-gradient(circle, theme('colors.white') 0 8.5px, theme('colors.navy.900') 9px 12px, theme('colors.white') 12.5px 14px, theme('colors.accent.600') 14.5px 16.5px, transparent 17px);
+    background: radial-gradient(circle, theme('colors.white') 0 8.5px, theme('colors.navy.900') 9px 12px, theme('colors.white') 12.5px 14px, theme('colors.navy.900') 14.5px 16.5px, transparent 17px);
 }
 .range-dual:active::-webkit-slider-thumb {
     cursor: grabbing;

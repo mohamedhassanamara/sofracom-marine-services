@@ -7,10 +7,10 @@ import { AlertTriangle, CheckCircle2, Icon, Info, X, XCircle } from './icons';
 const ToastContext = createContext({ show: () => {}, dismiss: () => {} });
 
 const TONES = {
-    success: { icon: CheckCircle2, accent: 'text-success-700' },
-    danger: { icon: XCircle, accent: 'text-danger-600' },
-    warning: { icon: AlertTriangle, accent: 'text-warning-700' },
-    info: { icon: Info, accent: 'text-accent-700' },
+    success: { icon: CheckCircle2, iconClass: 'text-success-700' },
+    danger: { icon: XCircle, iconClass: 'text-danger-600' },
+    warning: { icon: AlertTriangle, iconClass: 'text-warning-700' },
+    info: { icon: Info, iconClass: 'text-navy-900' },
 };
 
 // show({ title, description, tone, action: { label, href | onClick }, duration })
@@ -84,19 +84,19 @@ function ToastItem({ toast, onDismiss }) {
             onFocus={() => setPaused(true)}
             onBlur={() => setPaused(false)}
         >
-            <Icon as={tone.icon} size={20} className={cx('mt-0.5', tone.accent)} />
+            <Icon as={tone.icon} size={20} className={cx('mt-0.5', tone.iconClass)} />
             <div className="min-w-0 flex-1">
                 <p className="font-semibold text-ink">{toast.title}</p>
                 {toast.description && <p className="mt-0.5 text-sm text-ink-muted">{toast.description}</p>}
                 {action &&
                     (action.href ? (
-                        <Link href={action.href} className="mt-2 inline-block text-sm font-semibold text-accent-700 underline-offset-2 hover:underline" onClick={() => onDismiss(toast.id)}>
+                        <Link href={action.href} className="mt-2 inline-block text-sm font-semibold text-navy-900 underline-offset-2 hover:underline" onClick={() => onDismiss(toast.id)}>
                             {action.label}
                         </Link>
                     ) : (
                         <button
                             type="button"
-                            className="mt-2 text-sm font-semibold text-accent-700 underline-offset-2 hover:underline"
+                            className="mt-2 text-sm font-semibold text-navy-900 underline-offset-2 hover:underline"
                             onClick={() => {
                                 action.onClick?.();
                                 onDismiss(toast.id);

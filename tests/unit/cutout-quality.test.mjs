@@ -23,8 +23,8 @@ const FIXTURES = {
              <rect x="365" y="110" width="70" height="60" fill="#fafafa" fill-opacity="0.8"/>`),
     // An illustration: flat colours over the whole frame, so nothing was removed.
     illustration: () =>
-        png(`<rect width="800" height="800" fill="#dfeffd"/>
-             <circle cx="400" cy="400" r="220" fill="#0b2050"/><rect x="0" y="600" width="800" height="200" fill="#24b4ff"/>`),
+        png(`<rect width="800" height="800" fill="#eef3fb"/>
+             <circle cx="400" cy="400" r="220" fill="#0b2050"/><rect x="0" y="600" width="800" height="200" fill="#b6c8e8"/>`),
     // A close-up whose subject runs off the left, top and right edges.
     edgeCut: () => png(`<rect x="0" y="0" width="800" height="520" fill="#3a5fa6"/><rect x="0" y="420" width="800" height="100" fill="#1d3a73"/>`),
     // Two products side by side, neither dominant.

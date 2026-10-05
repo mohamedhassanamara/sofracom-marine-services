@@ -323,7 +323,7 @@ export default function CategoryPage({ category }) {
                             <Button size="lg" onClick={clearAll}>
                                 {t('catalog.clear')}
                             </Button>
-                            <Button size="lg" variant="secondary" href="/quote">
+                            <Button size="lg" variant="quote" href="/quote">
                                 {t('nav.quote')}
                             </Button>
                         </div>

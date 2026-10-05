@@ -19,7 +19,7 @@ export const CONTACT = {
 function Column({ title, children }) {
     const [open, setOpen] = useState(false);
     const id = `footer-${useId().replace(/:/g, '')}`;
-    const heading = 'font-sans text-xs font-semibold uppercase tracking-[0.1em] text-accent-300';
+    const heading = 'font-sans text-xs font-semibold uppercase tracking-[0.1em] text-white/70';
     return (
         <div className="border-b border-white/10 md:border-0">
             <h2 className={heading}>
@@ -43,7 +43,7 @@ export default function SiteFooter({ flush = false }) {
     const { t, lang, setLang } = useLang();
     const { index } = useCatalogIndex();
     return (
-        <footer className={flush ? 'bg-navy-950 text-navy-100' : 'mt-24 bg-navy-950 text-navy-100 lg:mt-32'}>
+        <footer className={flush ? 'on-dark bg-navy-950 text-navy-100' : 'on-dark mt-24 bg-navy-950 text-navy-100 lg:mt-32'}>
             <div className="mx-auto grid max-w-wide px-4 py-10 sm:px-6 md:grid-cols-2 md:gap-12 md:py-16 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:py-20">
                 <div id="contact" className="mb-6 scroll-mt-24 md:mb-0">
                     <Link prefetch={false} href="/" className="inline-flex items-center gap-2.5">
@@ -53,7 +53,7 @@ export default function SiteFooter({ flush = false }) {
                     <p className="mt-4 max-w-sm text-[0.9375rem] text-navy-200 md:mt-5">{t('footer.tagline')}</p>
                     <ul className="mt-5 space-y-2.5 text-[0.9375rem] md:mt-6 md:space-y-3">
                         <li className="flex items-start gap-2.5">
-                            <Icon as={MapPin} size={18} className="mt-1 shrink-0 text-accent-400" />
+                            <Icon as={MapPin} size={18} className="mt-1 shrink-0 text-navy-200" />
                             <span>
                                 {t('contact.address2')} ·{' '}
                                 <a href={CONTACT.mapsHref} className={linkClass} target="_blank" rel="noreferrer">
@@ -62,19 +62,19 @@ export default function SiteFooter({ flush = false }) {
                             </span>
                         </li>
                         <li className="flex items-center gap-2.5">
-                            <Icon as={Phone} size={18} className="shrink-0 text-accent-400" />
+                            <Icon as={Phone} size={18} className="shrink-0 text-navy-200" />
                             <a href={CONTACT.phoneHref} className={linkClass} aria-label={`${t('footer.phone')} ${CONTACT.phone}`}>
                                 <bdi dir="ltr">{CONTACT.phone}</bdi>
                             </a>
                         </li>
                         <li className="flex items-center gap-2.5">
-                            <Icon as={Mail} size={18} className="shrink-0 text-accent-400" />
+                            <Icon as={Mail} size={18} className="shrink-0 text-navy-200" />
                             <a href={`mailto:${CONTACT.email}`} className={linkClass}>
                                 {CONTACT.email}
                             </a>
                         </li>
                         <li className="flex items-start gap-2.5">
-                            <Icon as={Clock} size={18} className="mt-1 shrink-0 text-accent-400" />
+                            <Icon as={Clock} size={18} className="mt-1 shrink-0 text-navy-200" />
                             <span>{t('contact.hours')}</span>
                         </li>
                     </ul>

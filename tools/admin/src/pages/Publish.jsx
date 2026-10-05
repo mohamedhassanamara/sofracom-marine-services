@@ -124,7 +124,7 @@ export default function Publish({ onChange }) {
                                 <ul className="mt-2 space-y-0.5 font-mono text-xs">
                                     {data.files.map(file => (
                                         <li key={file.path}>
-                                            <span className={file.status === 'added' ? 'text-success-700' : file.status === 'deleted' ? 'text-danger-700' : 'text-accent-700'}>{file.status.padEnd(8)}</span> {file.path}
+                                            <span className={file.status === 'added' ? 'text-success-700' : file.status === 'deleted' ? 'text-danger-700' : 'text-navy-900'}>{file.status.padEnd(8)}</span> {file.path}
                                         </li>
                                     ))}
                                 </ul>
@@ -148,7 +148,7 @@ export default function Publish({ onChange }) {
                                     {deployment.deployment.commit} · {format.date(deployment.deployment.createdAt, true)}
                                 </p>
                                 {deployment.deployment.url && (
-                                    <a href={deployment.deployment.url} target="_blank" rel="noreferrer" className="font-semibold text-accent-700 hover:underline">
+                                    <a href={deployment.deployment.url} target="_blank" rel="noreferrer" className="font-semibold text-navy-900 hover:underline">
                                         Open the deployment
                                     </a>
                                 )}

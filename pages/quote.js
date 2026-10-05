@@ -195,7 +195,7 @@ export default function QuotePage() {
                                     <label
                                         key={key}
                                         className={cx(
-                                            'relative flex cursor-pointer flex-col items-start gap-2.5 rounded-2xl border p-3.5 transition-colors duration-fast has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent-600 sm:p-5',
+                                            'relative flex cursor-pointer flex-col items-start gap-2.5 rounded-2xl border p-3.5 transition-colors duration-fast has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-navy-900 sm:p-5',
                                             checked ? 'border-navy-900 bg-navy-50 ring-1 ring-navy-900' : 'border-line bg-white hover:border-line-input'
                                         )}
                                     >

@@ -110,7 +110,7 @@ export default function GalleryPage({ entries = [] }) {
                                         )}
                                     </button>
                                     <div className="mt-4 flex flex-col gap-1.5">
-                                        <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.1em] text-accent-700">
+                                        <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.1em] text-ink-muted">
                                             {t(entry.type === 'video' ? 'gallery.video' : 'gallery.image')}
                                             {entry.date && (
                                                 <>

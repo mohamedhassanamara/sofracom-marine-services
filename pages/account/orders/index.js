@@ -70,7 +70,7 @@ export default function OrdersPage() {
                                     </div>
                                     <div className="flex flex-wrap items-center gap-3">
                                         {delivered && (
-                                            <Link href={`/account/reviews?order=${order.id}`} className="relative z-[1] inline-flex items-center gap-1.5 text-sm font-semibold text-accent-600 underline-offset-4 hover:text-accent-700 hover:underline">
+                                            <Link href={`/account/reviews?order=${order.id}`} className="relative z-[1] inline-flex items-center gap-1.5 text-sm font-semibold text-navy-900 underline-offset-4 hover:underline">
                                                 <Icon as={Star} size={16} />
                                                 {t('orders.rateItems')}
                                             </Link>

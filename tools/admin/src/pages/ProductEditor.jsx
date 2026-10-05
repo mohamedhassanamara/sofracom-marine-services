@@ -101,7 +101,7 @@ function Images({ images, onChange, keepOriginal }) {
                 ))}
                 <li>
                     <label
-                        className="flex aspect-square w-32 cursor-pointer flex-col items-center justify-center rounded-md border-2 border-dashed border-slate-300 bg-slate-50 text-center text-sm font-semibold text-accent-700 hover:border-accent-600"
+                        className="flex aspect-square w-32 cursor-pointer flex-col items-center justify-center rounded-md border-2 border-dashed border-slate-300 bg-slate-50 text-center text-sm font-semibold text-navy-900 hover:border-navy-900"
                         onDragOver={event => event.preventDefault()}
                         onDrop={event => {
                             event.preventDefault();
@@ -139,7 +139,7 @@ export default function ProductEditor({ store, id }) {
     if (!location) {
         return (
             <p className="text-slate-600">
-                Product not found. <a href="#/catalog" className="text-accent-700 underline">Back to the catalog</a>
+                Product not found. <a href="#/catalog" className="text-navy-900 underline">Back to the catalog</a>
             </p>
         );
     }
@@ -184,7 +184,7 @@ export default function ProductEditor({ store, id }) {
     return (
         <>
             <div className="mb-4 flex flex-wrap items-center gap-3">
-                <a href="#/catalog" className="inline-flex items-center gap-1 text-sm font-semibold text-accent-700 hover:underline">
+                <a href="#/catalog" className="inline-flex items-center gap-1 text-sm font-semibold text-navy-900 hover:underline">
                     <ArrowLeft size={16} /> Products
                 </a>
                 <span className="font-mono text-sm text-slate-500">{product.id}</span>
@@ -321,7 +321,7 @@ export default function ProductEditor({ store, id }) {
                     <Panel title="Datasheet">
                         <div className="flex flex-wrap items-center gap-3">
                             {product.datasheet ? (
-                                <a href={siteUrl(product.datasheet)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-medium text-accent-700 hover:underline">
+                                <a href={siteUrl(product.datasheet)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-medium text-navy-900 hover:underline">
                                     <FileText size={18} /> {product.datasheet.split('/').pop()}
                                 </a>
                             ) : (
@@ -364,7 +364,7 @@ export default function ProductEditor({ store, id }) {
                                         <Input value={entry.title || ''} onChange={event => setTranslation(lang, 'title', event.target.value)} />
                                     </Field>
                                     {entry.suggestedTitle && entry.suggestedTitle !== entry.title && (
-                                        <div className="flex flex-wrap items-center gap-2 rounded-md bg-accent-50 p-3 text-sm text-accent-800">
+                                        <div className="flex flex-wrap items-center gap-2 rounded-md bg-navy-50 p-3 text-sm text-navy-900">
                                             <span className="flex-1">Suggestion: {entry.suggestedTitle}</span>
                                             <Button size="sm" variant="secondary" onClick={() => edit(item => Object.assign(item.translations[lang], { title: entry.suggestedTitle, suggestedTitle: undefined }))}>
                                                 Use it

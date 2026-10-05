@@ -7,7 +7,7 @@ import { cx } from './cx';
 // lib/design/tokens.js `tones`: the same palette as the admin app and the staff app.
 const TONES = {
     neutral: { badge: 'bg-slate-100 text-slate-700', dot: 'bg-slate-500' },
-    info: { badge: 'bg-accent-100 text-accent-800', dot: 'bg-accent-600' },
+    info: { badge: 'bg-navy-100 text-navy-900', dot: 'bg-navy-700' },
     primary: { badge: 'bg-navy-100 text-navy-800', dot: 'bg-navy-600' },
     warning: { badge: 'bg-warning-100 text-warning-800', dot: 'bg-warning-600' },
     success: { badge: 'bg-success-100 text-success-800', dot: 'bg-success-600' },

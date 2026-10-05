@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useLang } from '../../contexts/LangContext';
 import useCatalogIndex from '../../hooks/useCatalogIndex';
 import { LOCALES } from '../../lib/i18n/locales';
+import { QUOTE } from '../ui/Button';
 import { cx } from '../ui/cx';
 import { Drawer } from '../ui/Dialog';
 import { Icon, MessageSquareText } from '../ui/icons';
@@ -20,7 +21,7 @@ export default function MobileMenu({ open, onClose }) {
     return (
         <Drawer open={open} onClose={onClose} title={t('header.menu')} side="start">
             <nav aria-label={t('header.mainNav')} className="flex flex-col gap-8 pb-4">
-                <Link prefetch={false} href="/quote" onClick={onClose} className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-accent-600 px-6 text-[0.9375rem] font-semibold text-white hover:bg-accent-700">
+                <Link prefetch={false} href="/quote" onClick={onClose} className={cx('inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-[0.9375rem] font-semibold transition-colors duration-fast', QUOTE)}>
                     <Icon as={MessageSquareText} size={18} />
                     {t('nav.quote')}
                 </Link>

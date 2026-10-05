@@ -15,7 +15,7 @@ body {
     color: theme('colors.slate.900');
 }
 :focus-visible {
-    outline: 2px solid theme('colors.accent.600');
+    outline: 2px solid theme('colors.navy.900');
     outline-offset: 2px;
 }
 html:has(dialog[open]) {

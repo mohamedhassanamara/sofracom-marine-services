@@ -51,7 +51,7 @@ export default function ProductsIndex({ categories = [] }) {
                         <p className="font-display text-xl font-semibold tracking-[-0.01em] text-ink">{t('header.servicesPitch')}</p>
                         <p className="mt-2 text-ink-muted">{t('faq.a5')}</p>
                     </div>
-                    <Button href="/quote" size="lg" icon={MessageSquareText}>
+                    <Button href="/quote" variant="quote" size="lg" icon={MessageSquareText}>
                         {t('nav.quote')}
                     </Button>
                 </div>

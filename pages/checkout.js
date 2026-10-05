@@ -144,7 +144,7 @@ function StepIndicator({ current }) {
                     return (
                         <li key={step.id} className="flex items-center gap-3">
                             <a href={`#step-${step.id}`} aria-current={active ? 'step' : undefined} className={cx('inline-flex items-center gap-2 font-medium', active ? 'text-ink' : 'text-ink-muted hover:text-ink')}>
-                                <span className={cx('flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold', active ? 'bg-navy-900 text-white' : done ? 'bg-accent-400 text-navy-950' : 'border border-line-input text-ink-muted')}>
+                                <span className={cx('flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold', active ? 'bg-navy-900 text-white' : done ? 'bg-navy-100 text-navy-900' : 'border border-line-input text-ink-muted')}>
                                     {done ? <Icon as={Check} size={14} /> : index + 1}
                                 </span>
                                 {t(step.key)}
@@ -225,8 +225,8 @@ function Confirmation({ order }) {
                 </h2>
                 <ol className="mt-6 grid gap-6 sm:grid-cols-3">
                     {[1, 2, 3].map(step => (
-                        <li key={step} className="border-t-2 border-accent-400 pt-4">
-                            <span className="text-sm font-semibold text-accent-700" aria-hidden="true">
+                        <li key={step} className="border-t-2 border-navy-900 pt-4">
+                            <span className="text-sm font-semibold text-navy-900" aria-hidden="true">
                                 {String(step).padStart(2, '0')}
                             </span>
                             <span className="mt-2 block font-semibold text-ink">{t(`confirm.step${step}.title`)}</span>
@@ -473,7 +473,7 @@ export default function CheckoutPage() {
                                                     {[...addresses, { id: NEW_ADDRESS }].map(address => {
                                                         const checked = addressChoice === address.id;
                                                         return (
-                                                            <label key={address.id} className={cx('flex cursor-pointer items-start gap-3 rounded-2xl border p-4 transition-colors duration-fast has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent-600', checked ? 'border-navy-900 ring-1 ring-navy-900' : 'border-line hover:border-line-input')}>
+                                                            <label key={address.id} className={cx('flex cursor-pointer items-start gap-3 rounded-2xl border p-4 transition-colors duration-fast has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-navy-900', checked ? 'border-navy-900 ring-1 ring-navy-900' : 'border-line hover:border-line-input')}>
                                                                 <input type="radio" name="addressChoice" className="mt-1 h-5 w-5 accent-navy-900" checked={checked} onChange={() => setAddressChoice(address.id)} />
                                                                 {address.id === NEW_ADDRESS ? (
                                                                     <span className="font-medium text-ink">{t('checkout.newAddress')}</span>

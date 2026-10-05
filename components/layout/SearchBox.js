@@ -116,7 +116,7 @@ export default function SearchBox({ className, onNavigate, variant = 'dark', lab
                 className={cx(
                     'h-12 w-full rounded-full border pe-4 ps-11 text-base transition-colors duration-fast focus:outline-none focus:ring-2',
                     dark
-                        ? 'border-white/20 bg-white/10 text-white placeholder:text-navy-200 hover:bg-white/15 focus:border-accent-400 focus:bg-white focus:text-ink focus:ring-accent-400/40 focus:placeholder:text-ink-muted'
+                        ? 'border-white/20 bg-white/10 text-white placeholder:text-navy-200 hover:bg-white/15 focus:border-white focus:bg-white focus:text-ink focus:ring-white/40 focus:placeholder:text-ink-muted'
                         : 'border-line-input bg-white text-ink placeholder:text-ink-muted focus:border-navy-900 focus:ring-navy-100'
                 )}
             />
@@ -156,7 +156,7 @@ export default function SearchBox({ className, onNavigate, variant = 'dark', lab
                             goToResults();
                         }}
                         onMouseEnter={() => setActive(results.length)}
-                        className={cx('cursor-pointer border-t border-line px-3 py-2.5 text-sm font-semibold text-accent-700', active === results.length && 'bg-navy-50')}
+                        className={cx('cursor-pointer border-t border-line px-3 py-2.5 text-sm font-semibold text-navy-900', active === results.length && 'bg-navy-50')}
                     >
                         {t('search.seeAll', { q: query.trim() })}
                     </li>

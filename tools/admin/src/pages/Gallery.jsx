@@ -89,7 +89,7 @@ export default function Gallery({ onSaved }) {
                                         <div className="flex aspect-video items-center justify-center rounded-md border border-dashed border-slate-300 text-sm text-slate-500">No photo</div>
                                     )}
                                     {entry.type === 'image' && (
-                                        <label className="mt-2 block cursor-pointer text-center text-sm font-semibold text-accent-700 hover:underline">
+                                        <label className="mt-2 block cursor-pointer text-center text-sm font-semibold text-navy-900 hover:underline">
                                             Upload photo
                                             <input type="file" accept="image/*" className="sr-only" onChange={event => event.target.files[0] && uploadImage(index, event.target.files[0])} />
                                         </label>

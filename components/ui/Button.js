@@ -3,11 +3,15 @@ import { forwardRef } from 'react';
 import { cx } from './cx';
 import { Icon, Loader2 } from './icons';
 
-// v2: pills, no shadows; navy is the primary action, accent-600 the quote action, line-input
-// outlines for the rest (3.3:1, visible on white).
+// v2: pills, no shadows, one blue (navy). Primary = navy fill; every "Get a quote" = the navy
+// outline (`quote`, white outline `quoteOnDark` over photos and navy); line-input outlines for
+// the rest (3.3:1, visible on white).
+export const QUOTE = 'border-[1.5px] border-navy-900 bg-white text-navy-900 hover:bg-navy-900 hover:text-white active:bg-navy-950 active:text-white';
+export const QUOTE_ON_DARK = 'border-[1.5px] border-white bg-transparent text-white hover:bg-white hover:text-navy-900 active:bg-white active:text-navy-900';
 const VARIANTS = {
     primary: 'bg-navy-900 text-white hover:bg-navy-800 active:bg-navy-950',
-    accent: 'bg-accent-600 text-white hover:bg-accent-700 active:bg-accent-800',
+    quote: QUOTE,
+    quoteOnDark: QUOTE_ON_DARK,
     secondary: 'border border-line-input bg-white text-ink hover:border-navy-900',
     ghost: 'bg-transparent text-ink hover:bg-surface',
     danger: 'bg-danger-600 text-white hover:bg-danger-700',

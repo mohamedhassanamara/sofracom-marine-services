@@ -82,7 +82,7 @@ const labelOn = hex => {
 };
 
 function Swatches() {
-    const scales = ['navy', 'accent', 'slate', 'success', 'warning', 'danger'];
+    const scales = ['navy', 'slate', 'success', 'warning', 'danger'];
     return (
         <div className="space-y-3">
             {scales.map(name => (
@@ -136,7 +136,7 @@ function Buttons() {
         <div className="space-y-4">
             <div className="flex flex-wrap gap-3">
                 <Button>{t('ui.addToCart')}</Button>
-                <Button variant="accent" icon={MessageSquareText}>
+                <Button variant="quote" icon={MessageSquareText}>
                     {t('nav.quote')}
                 </Button>
                 <Button variant="secondary">{t('ui.showMore')}</Button>
@@ -157,7 +157,7 @@ function Buttons() {
                 <Button variant="secondary" icon={Search} label={t('seo.search.title')} />
             </div>
             <div className="flex flex-wrap gap-3 rounded-md bg-navy-900 p-4">
-                <Button variant="accent">{t('nav.quote')}</Button>
+                <Button variant="quote">{t('nav.quote')}</Button>
                 <Button variant="inverse">{t('ui.showMore')}</Button>
             </div>
         </div>

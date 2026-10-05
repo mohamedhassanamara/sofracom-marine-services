@@ -54,7 +54,7 @@ export default function AccountLayout({ title, eyebrow, actions, badges = {}, ch
                             <li key={item.href}>
                                 <Link href={item.href} aria-current={active ? 'page' : undefined} className={linkClass(active)}>
                                     {t(item.key)}
-                                    {item.badge && badges[item.badge] > 0 && <span className="rounded-full bg-accent-400 px-2 text-xs font-semibold text-navy-950">{badges[item.badge]}</span>}
+                                    {item.badge && badges[item.badge] > 0 && <span className="rounded-full bg-navy-900 px-2 text-xs font-semibold text-white">{badges[item.badge]}</span>}
                                 </Link>
                             </li>
                         );
@@ -72,7 +72,7 @@ export default function AccountLayout({ title, eyebrow, actions, badges = {}, ch
             <section className="min-w-0">
                 <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
                     <div>
-                        {eyebrow && <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent-700">{eyebrow}</p>}
+                        {eyebrow && <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ink-muted">{eyebrow}</p>}
                         <h1 className="mt-2 text-[2rem] font-semibold leading-tight text-ink lg:text-title-1">{title}</h1>
                     </div>
                     {actions}

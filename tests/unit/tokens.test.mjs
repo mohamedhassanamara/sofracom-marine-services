@@ -16,7 +16,7 @@ const contrast = (a, b) => {
 };
 
 test('text shades pass AA (4.5:1) on white and on slate-50', () => {
-    const text = [colors.navy[500], colors.navy[900], colors.accent[600], colors.slate[500], colors.slate[700], colors.success[700], colors.warning[700], colors.danger[600]];
+    const text = [colors.navy[500], colors.navy[900], colors.slate[500], colors.slate[700], colors.success[700], colors.warning[700], colors.danger[600]];
     for (const fg of text) {
         assert.ok(contrast(fg, '#ffffff') >= 4.5, `${fg} on white: ${contrast(fg, '#ffffff').toFixed(2)}`);
         assert.ok(contrast(fg, colors.slate[50]) >= 4.5, `${fg} on slate-50`);
@@ -24,7 +24,7 @@ test('text shades pass AA (4.5:1) on white and on slate-50', () => {
 });
 
 test('white text passes AA on the primary and danger buttons', () => {
-    for (const bg of [colors.navy[900], colors.navy[700], colors.navy[600], colors.danger[600], colors.accent[700]]) {
+    for (const bg of [colors.navy[900], colors.navy[700], colors.navy[600], colors.danger[600]]) {
         assert.ok(contrast('#ffffff', bg) >= 4.5, `white on ${bg}: ${contrast('#ffffff', bg).toFixed(2)}`);
     }
 });
@@ -42,8 +42,12 @@ test('every order and quote status has a tone', () => {
     for (const status of QUOTE_STATUSES) assert.ok(tones[statusTone.quote[status]], status);
 });
 
-test('the accent brand blue is legible on navy (for links and focus on dark)', () => {
-    assert.ok(contrast(colors.accent[400], colors.navy[900]) >= 4.5);
+test('one blue only: no accent scale, and `info` is navy', () => {
+    assert.equal(colors.accent, undefined);
+    for (const [shade, hex] of Object.entries(colors.info)) assert.equal(hex, colors.navy[shade], `info-${shade}`);
+    // Focus on dark areas is white; on light areas navy-900 (both ≥ 3:1 against their background).
+    assert.ok(contrast(colors.white, colors.navy[900]) >= 3);
+    assert.ok(contrast(colors.navy[900], colors.white) >= 3);
 });
 
 test('v2 ink colours pass AA on white and on the neutral surface', () => {

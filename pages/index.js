@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import Seo from '../components/Seo';
 import { CONTACT } from '../components/layout/SiteFooter';
 import { CategoryArt, ProductRail, ResponsiveImage } from '../components/ui';
+import { QUOTE, QUOTE_ON_DARK } from '../components/ui/Button';
 import HeroImage from '../components/ui/HeroImage';
 import { SERVICE_ICONS } from '../components/ui/serviceIcons';
 import { cx } from '../components/ui/cx';
@@ -74,7 +75,7 @@ const MoreLink = ({ href, children }) => (
 function Hero() {
     const { t } = useLang();
     return (
-        <section className="relative isolate flex min-h-[34rem] items-end overflow-hidden bg-navy-900 sm:min-h-[40rem] lg:h-[min(86vh,48rem)]">
+        <section className="on-dark relative isolate flex min-h-[34rem] items-end overflow-hidden bg-navy-900 sm:min-h-[40rem] lg:h-[min(86vh,48rem)]">
             <HeroImage image={HERO.image} mobile={HERO.mobile} position={HERO.position} className="absolute inset-0 -z-10 h-full w-full object-cover" />
             {/* Phones: the text covers most of the photo, so the shade reaches higher. */}
             <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-950/85 via-navy-950/60 via-60% to-navy-950/20 sm:from-navy-950/80 sm:via-navy-950/25 sm:via-50% sm:to-transparent" />
@@ -87,7 +88,7 @@ function Hero() {
                         <Link prefetch={false} href="/products" className={cx(pill, 'bg-white text-ink hover:bg-surface')}>
                             {t('home.v2.shop')}
                         </Link>
-                        <Link prefetch={false} href="/quote" className={cx(pill, 'bg-accent-600 text-white hover:bg-accent-700')}>
+                        <Link prefetch={false} href="/quote" className={cx(pill, QUOTE_ON_DARK)}>
                             {t('nav.quote')}
                         </Link>
                     </div>
@@ -105,7 +106,7 @@ function TrustBar() {
             <ul className="mx-auto grid max-w-wide grid-cols-2 gap-x-4 gap-y-5 rounded-xl bg-white px-5 py-5 shadow-md sm:px-8 lg:grid-cols-4 lg:py-6">
                 {TRUST.map(item => (
                     <li key={item.key} className="flex items-center gap-3 text-sm font-semibold text-ink lg:justify-center">
-                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-50 text-accent-700" aria-hidden="true">
+                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy-50 text-navy-900" aria-hidden="true">
                             <Icon as={item.icon} size={20} />
                         </span>
                         {t(item.key)}
@@ -199,7 +200,7 @@ function Services({ cards }) {
             <SectionHeading id="home-services" title={t('services.title')} subtitle={t('home.services.subtitle')} />
             <ul className="grid gap-5 md:grid-cols-3 md:gap-6">
                 {cards.map(card => (
-                    <li key={card.key} className="group relative aspect-square overflow-hidden rounded-2xl bg-navy-900 md:aspect-[4/5]">
+                    <li key={card.key} className="on-dark group relative aspect-square overflow-hidden rounded-2xl bg-navy-900 md:aspect-[4/5]">
                         <div className="absolute inset-0">
                             <ServiceImage card={card} />
                         </div>
@@ -260,7 +261,7 @@ function HowItWorks() {
                         </li>
                     ))}
                 </ol>
-                <Link prefetch={false} href="/quote" className={cx(pill, 'mt-12 bg-navy-900 text-white hover:bg-navy-800')}>
+                <Link prefetch={false} href="/quote" className={cx(pill, 'mt-12', QUOTE)}>
                     {t('nav.quote')}
                 </Link>
             </div>
@@ -298,7 +299,7 @@ function About() {
                     <ResponsiveImage src="/assets/site/monastir-2-800.webp" alt={t('monoA.title')} sizes="(min-width: 1024px) 640px, 100vw" className="aspect-[4/3] w-full object-cover" />
                 </div>
                 <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent-700">{t('about.title')}</p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ink-muted">{t('about.title')}</p>
                     <h2 id="home-about" className="mt-4 text-[2rem] font-semibold leading-[1.1] text-ink lg:text-title-1">
                         {t('home.location.title')}
                     </h2>
@@ -355,7 +356,7 @@ function Closing() {
     const { t } = useLang();
     return (
         <section className="mx-auto max-w-wide px-4 py-14 sm:px-6 lg:py-20" aria-labelledby="home-cta">
-            <div className="flex flex-col gap-8 rounded-3xl bg-navy-900 px-6 py-12 text-white sm:px-10 lg:flex-row lg:items-end lg:justify-between lg:px-16 lg:py-16">
+            <div className="on-dark flex flex-col gap-8 rounded-3xl bg-navy-900 px-6 py-12 text-white sm:px-10 lg:flex-row lg:items-end lg:justify-between lg:px-16 lg:py-16">
                 <div className="max-w-2xl">
                     <h2 id="home-cta" className="text-[2rem] font-semibold leading-[1.1] lg:text-title-1">
                         {t('home.v2.ctaTitle')}
@@ -363,10 +364,10 @@ function Closing() {
                     <p className="mt-4 text-body-lg text-navy-100">{t('home.v2.ctaBody')}</p>
                 </div>
                 <div className="flex flex-wrap gap-3">
-                    <Link prefetch={false} href="/quote" className={cx(pill, 'bg-accent-600 text-white hover:bg-accent-700')}>
+                    <Link prefetch={false} href="/quote" className={cx(pill, QUOTE_ON_DARK)}>
                         {t('home.v2.ctaButton')}
                     </Link>
-                    <a href={CONTACT.phoneHref} className={cx(pill, 'border border-white text-white hover:bg-white/10')}>
+                    <a href={CONTACT.phoneHref} className={cx(pill, 'px-3 text-white underline-offset-4 hover:underline')}>
                         <Icon as={Phone} size={18} />
                         <bdi dir="ltr">{CONTACT.phone}</bdi>
                     </a>

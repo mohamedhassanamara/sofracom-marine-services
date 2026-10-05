@@ -19,7 +19,7 @@ export default function NotFound({ categories = [] }) {
             <Seo title={t('notFound.title')} noindex />
             <div className="mx-auto max-w-wide px-4 pb-8 pt-16 sm:px-6 lg:pt-24">
                 <div className="mx-auto max-w-2xl text-center">
-                    <p className="font-display text-display-2 font-semibold text-accent-600 lg:text-display-1">404</p>
+                    <p className="font-display text-display-2 font-semibold text-navy-900 lg:text-display-1">404</p>
                     <h1 className="mt-4 text-[2rem] font-semibold leading-tight text-ink lg:text-title-1">{t('notFound.title')}</h1>
                     <p className="mt-4 text-body-lg text-ink-muted">{t('notFound.body')}</p>
                     <SearchBox variant="light" label={t('search.title')} className="mx-auto mt-10 w-full max-w-lg text-start" />
@@ -27,7 +27,7 @@ export default function NotFound({ categories = [] }) {
                         <Button href="/" variant="secondary">
                             {t('nav.home')}
                         </Button>
-                        <Button href="/quote" variant="secondary" icon={MessageSquareText}>
+                        <Button href="/quote" variant="quote" icon={MessageSquareText}>
                             {t('nav.quote')}
                         </Button>
                     </div>
