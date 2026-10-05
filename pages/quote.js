@@ -205,7 +205,7 @@ export default function QuotePage({ art = {} }) {
                                 const checked = form.service === key;
                                 const picture = art[key] || {};
                                 return (
-                                    <label key={key} className={cx('group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border bg-white transition-colors duration-fast has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent-600', checked ? 'border-navy-900 ring-1 ring-navy-900' : 'border-line hover:border-line-strong')}>
+                                    <label key={key} className={cx('group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border bg-white transition-colors duration-fast has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent-600', checked ? 'border-navy-900 ring-1 ring-navy-900' : 'border-line hover:border-line-input')}>
                                         <input type="radio" name="service" value={key} checked={checked} onChange={update('service')} className="sr-only" />
                                         <span className="relative block aspect-[4/3] bg-surface">
                                             {picture.photo ? (
@@ -217,7 +217,7 @@ export default function QuotePage({ art = {} }) {
                                                     <Icon as={MessageSquareText} size={36} />
                                                 </span>
                                             )}
-                                            <span className={cx('absolute end-3 top-3 flex h-7 w-7 items-center justify-center rounded-full border-2 transition-colors duration-fast', checked ? 'border-navy-900 bg-navy-900 text-white' : 'border-white bg-white/80')} aria-hidden="true">
+                                            <span className={cx('absolute end-3 top-3 flex h-7 w-7 items-center justify-center rounded-full border-2 transition-colors duration-fast', checked ? 'border-navy-900 bg-navy-900 text-white' : 'border-line-input bg-white')} aria-hidden="true">
                                                 {checked && <Icon as={Check} size={14} />}
                                             </span>
                                         </span>

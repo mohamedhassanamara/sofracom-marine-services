@@ -422,8 +422,8 @@ export default function CheckoutPage() {
                                     {!user ? (
                                         <div className="grid gap-5">
                                             {!authLoading && (
-                                                <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-navy-50 p-4">
-                                                    <p className="text-sm text-navy-900">{t('checkout.signInPrompt')}</p>
+                                                <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-s-4 border-line border-s-navy-900 bg-white p-4">
+                                                    <p className="text-sm text-ink">{t('checkout.signInPrompt')}</p>
                                                     <Button href={authLink('login', '/checkout')} variant="secondary" size="sm">
                                                         {t('nav.signIn')}
                                                     </Button>
@@ -473,7 +473,7 @@ export default function CheckoutPage() {
                                                     {[...addresses, { id: NEW_ADDRESS }].map(address => {
                                                         const checked = addressChoice === address.id;
                                                         return (
-                                                            <label key={address.id} className={cx('flex cursor-pointer items-start gap-3 rounded-2xl border p-4 transition-colors duration-fast has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent-600', checked ? 'border-navy-900 ring-1 ring-navy-900' : 'border-line hover:border-line-strong')}>
+                                                            <label key={address.id} className={cx('flex cursor-pointer items-start gap-3 rounded-2xl border p-4 transition-colors duration-fast has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent-600', checked ? 'border-navy-900 ring-1 ring-navy-900' : 'border-line hover:border-line-input')}>
                                                                 <input type="radio" name="addressChoice" className="mt-1 h-5 w-5 accent-navy-900" checked={checked} onChange={() => setAddressChoice(address.id)} />
                                                                 {address.id === NEW_ADDRESS ? (
                                                                     <span className="font-medium text-ink">{t('checkout.newAddress')}</span>
