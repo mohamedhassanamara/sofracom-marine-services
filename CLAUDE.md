@@ -20,6 +20,7 @@ npm run test:api       # tests/api/*.test.mjs: spawns `next dev` on :3199 agains
 npm run admin          # local admin app → http://127.0.0.1:5180 (asks: emulator or production;
                        #   or pass -- --emulator / -- --production)
 npm run admin:emulated # same app against the emulators
+npm run cutouts:backup -- ~/Backups   # zip the git-ignored .cutouts-cache/ to a path outside the repo
 ```
 
 - Run a single test file: `node --test tests/i18n.test.mjs`, or for emulator suites `firebase emulators:exec --project demo-sofracom --only firestore,auth "node --test tests/api/flows.test.mjs"`. Filter by name with `--test-name-pattern="reviews"`.
