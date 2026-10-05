@@ -4,8 +4,9 @@ import Seo from '../components/Seo';
 import { CONTACT } from '../components/layout/SiteFooter';
 import { CategoryArt, ProductRail, ResponsiveImage } from '../components/ui';
 import HeroImage from '../components/ui/HeroImage';
+import { SERVICE_ICONS } from '../components/ui/serviceIcons';
 import { cx } from '../components/ui/cx';
-import { Anchor, ArrowRight, Award, Check, ChevronDown, Icon, MapPin, MessageCircle, Paintbrush, Phone, Ship, Sparkles, Truck, Wrench, Zap } from '../components/ui/icons';
+import { ArrowRight, Award, Check, ChevronDown, Icon, MapPin, MessageCircle, Phone, Truck } from '../components/ui/icons';
 import { useLang } from '../contexts/LangContext';
 import useAddToCart from '../hooks/useAddToCart';
 import useProductStats from '../hooks/useProductStats';
@@ -35,14 +36,7 @@ export function getStaticProps() {
 const BRANDS = ['jotun', 'hempel', 'international', 'akzonobel', 'sika', 'crown', 'varta', 'bosch'];
 
 // Every service (the quote form lists the same keys); the first three get a large card.
-export const SERVICES = [
-    { key: 'antifouling', icon: Paintbrush },
-    { key: 'gelcoat', icon: Sparkles },
-    { key: 'deck', icon: Anchor },
-    { key: 'electrical', icon: Zap },
-    { key: 'polishing', icon: Wrench },
-    { key: 'haulout', icon: Ship },
-];
+export const SERVICES = ['antifouling', 'gelcoat', 'deck', 'electrical', 'polishing', 'haulout'].map(key => ({ key, icon: SERVICE_ICONS[key] }));
 const FAQ = [1, 2, 3, 4, 5];
 const TRUST = [
     { icon: Truck, key: 'trust.berth' },

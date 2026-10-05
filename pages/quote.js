@@ -2,34 +2,22 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Seo from '../components/Seo';
-import { Breadcrumb, Button, CategoryArt, Field, Input, ResponsiveImage, Select, Textarea } from '../components/ui';
+import { Breadcrumb, Button, Field, Input, Select, Textarea } from '../components/ui';
 import { cx } from '../components/ui/cx';
 import { AlertTriangle, Check, Icon, MessageSquareText, X } from '../components/ui/icons';
+import { SERVICE_ICONS } from '../components/ui/serviceIcons';
 import { useAuth } from '../contexts/AuthContext';
 import { useLang } from '../contexts/LangContext';
 import useCatalogIndex from '../hooks/useCatalogIndex';
 import { apiRequest, errorMessage } from '../lib/apiClient';
 import { imageAt, photoClass } from '../lib/images';
-import { getProductById } from '../lib/products';
 import { BOAT_TYPES, QUOTE_SERVICES } from '../lib/quote';
-import { QUOTE_SERVICE_ART } from '../lib/siteMedia';
 
-// Each service card's picture (approved cutouts are used automatically).
-export function getStaticProps() {
-    const art = Object.fromEntries(
-        QUOTE_SERVICES.map(key => {
-            const entry = QUOTE_SERVICE_ART[key] || {};
-            return [key, { photo: entry.photo || null, images: (entry.products || []).map(id => getProductById(id)?.product.image).filter(Boolean) }];
-        })
-    );
-    return { props: { art } };
-}
 const serviceTitle = (t, key) => (key === 'products' || key === 'other' ? t(`quote.service.${key}`) : t(`home.service.${key}.title`));
-const serviceBody = (t, key) => (key === 'products' || key === 'other' ? t(`quote.service.${key}Body`) : t(`home.service.${key}.body`));
 
 const EMPTY = { service: '', boatType: '', boatLength: '', details: '', name: '', email: '', phone: '' };
 
-export default function QuotePage({ art = {} }) {
+export default function QuotePage() {
     const { t, lang } = useLang();
     const router = useRouter();
     const { user, email: accountEmail, profile } = useAuth();
@@ -200,30 +188,27 @@ export default function QuotePage({ art = {} }) {
 
                     <fieldset id="quote-service" tabIndex={-1} aria-invalid={errors.service ? true : undefined} className="focus:outline-none">
                         <legend className="mb-6">{stepTitle(1, 'quote.step.service')}</legend>
-                        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+                        <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
                             {QUOTE_SERVICES.map(key => {
                                 const checked = form.service === key;
-                                const picture = art[key] || {};
                                 return (
-                                    <label key={key} className={cx('group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border bg-white transition-colors duration-fast has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent-600', checked ? 'border-navy-900 ring-1 ring-navy-900' : 'border-line hover:border-line-input')}>
+                                    <label
+                                        key={key}
+                                        className={cx(
+                                            'relative flex cursor-pointer flex-col items-start gap-2.5 rounded-2xl border p-3.5 transition-colors duration-fast has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent-600 sm:p-5',
+                                            checked ? 'border-navy-900 bg-navy-50 ring-1 ring-navy-900' : 'border-line bg-white hover:border-line-input'
+                                        )}
+                                    >
                                         <input type="radio" name="service" value={key} checked={checked} onChange={update('service')} className="sr-only" />
-                                        <span className="relative block aspect-[4/3] bg-surface">
-                                            {picture.photo ? (
-                                                <ResponsiveImage src={picture.photo} alt="" sizes="(min-width: 1024px) 260px, 45vw" className="h-full w-full object-cover" />
-                                            ) : picture.images?.length ? (
-                                                <CategoryArt images={picture.images} sizes="160px" hover={false} className="h-full w-full" />
-                                            ) : (
-                                                <span className="flex h-full items-center justify-center text-navy-900">
-                                                    <Icon as={MessageSquareText} size={36} />
-                                                </span>
-                                            )}
-                                            <span className={cx('absolute end-3 top-3 flex h-7 w-7 items-center justify-center rounded-full border-2 transition-colors duration-fast', checked ? 'border-navy-900 bg-navy-900 text-white' : 'border-line-input bg-white')} aria-hidden="true">
-                                                {checked && <Icon as={Check} size={14} />}
-                                            </span>
+                                        <span className={cx('flex h-12 w-12 items-center justify-center rounded-full text-navy-900 sm:h-14 sm:w-14', checked ? 'bg-white' : 'bg-navy-50')} aria-hidden="true">
+                                            <Icon as={SERVICE_ICONS[key]} size={32} strokeWidth={1.75} />
                                         </span>
-                                        <span className="flex flex-1 flex-col gap-1 p-4">
-                                            <span className="font-semibold text-ink">{serviceTitle(t, key)}</span>
-                                            <span className="line-clamp-2 text-sm text-ink-muted">{serviceBody(t, key)}</span>
+                                        <span className="flex flex-col gap-0.5 pe-6">
+                                            <span className="font-semibold leading-snug text-ink">{serviceTitle(t, key)}</span>
+                                            <span className="line-clamp-2 text-sm text-ink-muted">{t(`quote.short.${key}`)}</span>
+                                        </span>
+                                        <span className={cx('absolute end-3 top-3 flex h-6 w-6 items-center justify-center rounded-full border-2 transition-colors duration-fast', checked ? 'border-navy-900 bg-navy-900 text-white' : 'border-line-input bg-white')} aria-hidden="true">
+                                            {checked && <Icon as={Check} size={14} strokeWidth={3} />}
                                         </span>
                                     </label>
                                 );

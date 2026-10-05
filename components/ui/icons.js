@@ -7,6 +7,7 @@ export {
     AlertTriangle,
     Anchor,
     Award,
+    Layers,
     ArrowLeft,
     ArrowRight,
     Calendar,
