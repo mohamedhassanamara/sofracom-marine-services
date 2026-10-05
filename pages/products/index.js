@@ -26,7 +26,7 @@ export default function ProductsIndex({ categories = [] }) {
                         return (
                             <li key={category.slug}>
                                 <Link prefetch={false} href={`/products/${category.slug}`} className="group block">
-                                    <CategoryArt images={raw.tiles.map(tile => tile.image)} fallback={raw.image} sizes="(min-width: 1024px) 220px, 45vw" className="aspect-[4/3] rounded-2xl" />
+                                    <CategoryArt images={raw.tiles.map(tile => tile.image)} sizes="(min-width: 1024px) 220px, 45vw" className="aspect-[4/3] rounded-2xl" />
                                     <span className="mt-5 flex items-start justify-between gap-4">
                                         <span className="min-w-0">
                                             <span className="block font-display text-xl font-semibold tracking-[-0.01em] text-ink group-hover:underline">{category.name}</span>

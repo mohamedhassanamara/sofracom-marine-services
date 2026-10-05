@@ -20,7 +20,7 @@ const PUBLIC = path.join(ROOT, 'public');
 const APPLY = process.argv.includes('--apply');
 const DELETE_UNREFERENCED = process.argv.includes('--delete-unreferenced');
 const RASTER = /\.(png|jpe?g|webp|gif|tiff?)$/i;
-const ASSET_DIRS = ['assets/products', 'assets/categories', 'assets/datasheets', 'assets/gallery'];
+const ASSET_DIRS = ['assets/products', 'assets/datasheets', 'assets/gallery'];
 const CODE_DIRS = ['pages', 'components', 'lib', 'styles', 'contexts', 'hooks', 'tools'];
 
 // Site photos and logos used directly by the code: source → output directory + stem
@@ -76,7 +76,6 @@ const collectRefs = () => {
         if (typeof value === 'string' && value.trim() && !/^https?:/.test(value)) found.push({ value, set });
     };
     for (const category of catalog.categories || []) {
-        addRef(category.image, v => (category.image = v));
         for (const product of category.products || []) {
             addRef(product.image, v => (product.image = v));
             (product.images || []).forEach((image, index) => addRef(image, v => (product.images[index] = v)));

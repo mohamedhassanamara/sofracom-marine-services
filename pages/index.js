@@ -133,7 +133,6 @@ function Categories({ categories }) {
                             >
                                 <CategoryArt
                                     images={raw.tiles.map(tile => tile.image)}
-                                    fallback={raw.image}
                                     sizes="(min-width: 1024px) 300px, 45vw"
                                     tight
                                     className="!absolute inset-x-[6%] bottom-[5%] top-[25%] !bg-transparent sm:top-[22%]"

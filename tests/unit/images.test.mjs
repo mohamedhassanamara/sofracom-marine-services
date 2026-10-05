@@ -58,7 +58,7 @@ test('every image the catalog and gallery reference is an optimized WebP that ex
     const gallery = JSON.parse(fs.readFileSync(path.join(root, 'assets/data/gallery.json'), 'utf-8'));
     const refs = [];
     for (const category of catalog.categories) {
-        refs.push(category.image);
+        assert.equal(category.image, undefined, `categories have no picture of their own (${category.slug})`);
         for (const product of category.products) refs.push(product.image, ...(product.images || []));
     }
     for (const entry of gallery.entries) if (entry.type !== 'video') refs.push(entry.src);

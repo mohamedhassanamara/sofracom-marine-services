@@ -158,7 +158,7 @@ function ShopMenu() {
                         {(index?.categories || []).map(category => (
                             <li key={category.slug}>
                                 <Link prefetch={false} href={`/products/${category.slug}`} className="group block">
-                                    <CategoryArt images={category.tiles} fallback={category.image} sizes="160px" className="aspect-[16/10] rounded-xl" />
+                                    <CategoryArt images={category.tiles} sizes="160px" className="aspect-[16/10] rounded-xl" />
                                     <span className="mt-3 block text-[0.9375rem] font-medium text-ink group-hover:underline">{category.name[lang] || category.name.en}</span>
                                     <span className="text-sm text-ink-muted">{t('header.productsCount', { count: category.count })}</span>
                                 </Link>

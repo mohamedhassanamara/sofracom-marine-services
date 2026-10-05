@@ -42,7 +42,7 @@ export default function NotFound({ categories = [] }) {
                             return (
                                 <li key={category.slug}>
                                     <Link prefetch={false} href={`/products/${category.slug}`} className="group block">
-                                        <CategoryArt images={raw.tiles.map(tile => tile.image)} fallback={raw.image} sizes="200px" className="aspect-square rounded-2xl" />
+                                        <CategoryArt images={raw.tiles.map(tile => tile.image)} sizes="200px" className="aspect-square rounded-2xl" />
                                         <span className="mt-3 block text-[0.9375rem] font-medium text-ink group-hover:underline">{category.name}</span>
                                     </Link>
                                 </li>

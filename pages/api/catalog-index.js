@@ -1,4 +1,4 @@
-import { getCategories } from '../../lib/products';
+import { POPULARITY, getCategories } from '../../lib/products';
 import { buildCatalogIndex } from '../../lib/catalogIndex';
 
 let cached = null;
@@ -10,7 +10,7 @@ export default function handler(req, res) {
         res.status(405).json({ ok: false, error: 'Method not allowed', code: 'method-not-allowed' });
         return;
     }
-    if (!cached) cached = buildCatalogIndex(getCategories());
+    if (!cached) cached = buildCatalogIndex(getCategories(), { popularity: POPULARITY });
     res.setHeader('Cache-Control', 'public, max-age=300, s-maxage=86400, stale-while-revalidate=604800');
     res.status(200).json(cached);
 }

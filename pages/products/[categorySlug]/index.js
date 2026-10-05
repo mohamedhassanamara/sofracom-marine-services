@@ -234,7 +234,7 @@ export default function CategoryPage({ category }) {
                 title={localizedCategory.name}
                 description={t('seo.category.description', { category: localizedCategory.name, count: products.length })}
                 path={`/products/${category.slug}`}
-                image={category.tiles?.[0]?.image || category.image}
+                image={`/og/categories/${encodeURIComponent(category.slug)}.jpg`}
                 jsonLd={breadcrumbJsonLd(
                     [
                         { name: t('nav.products'), path: '/products' },

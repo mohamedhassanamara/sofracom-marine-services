@@ -8,7 +8,6 @@ const categories = [
         slug: 'paints',
         name: 'Antifouling & Coatings',
         translations: { fr: { name: 'Antifouling et peintures' }, ar: { name: 'مضادات الحشف' } },
-        image: '/assets/categories/paints-800.webp',
         products: [
             { id: 'p_1', title: 'Jotun SeaForce Active 2.5L', brand: 'JOTUN', image: '/assets/products/a-800.webp', price: 0, stock: 'in', usage: ['Antifouling'], variants: [{ label: '2.5L', price: 341.887, stock: 'in' }, { label: '20L', price: 2498.405, stock: 'out' }], translations: { ar: { title: 'جوتن سي فورس' } } },
             { id: 'p_2', title: 'Hempel primer', brand: 'HEMPEL', image: '/assets/products/b-800.webp', price: 80, stock: 'out', usage: [], variants: [] },
@@ -20,7 +19,7 @@ const categories = [
 test('the index is slim: localized names/titles, the -400 image, the "from" price and overall stock', () => {
     const index = buildCatalogIndex(categories);
     assert.deepEqual(index.categories, [
-        { slug: 'paints', name: { en: 'Antifouling & Coatings', fr: 'Antifouling et peintures', ar: 'مضادات الحشف' }, image: '/assets/categories/paints-400.webp', count: 3, tiles: ['/assets/products/a-400.webp'] },
+        { slug: 'paints', name: { en: 'Antifouling & Coatings', fr: 'Antifouling et peintures', ar: 'مضادات الحشف' }, count: 3, tiles: ['/assets/products/a-400.webp', '/assets/products/b-400.webp'] },
     ]);
     const [jotun, hempel] = index.products;
     assert.deepEqual(jotun.title, { en: 'Jotun SeaForce Active 2.5L', fr: 'Jotun SeaForce Active 2.5L', ar: 'جوتن سي فورس' });

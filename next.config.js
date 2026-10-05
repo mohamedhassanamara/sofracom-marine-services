@@ -66,7 +66,6 @@ const nextConfig = {
     '/api/**': [
       'public/assets/products/**/*',
       'public/assets/datasheets/**/*',
-      'public/assets/categories/**/*',
       'public/assets/gallery/**/*',
       'public/**/*.png',
       'public/**/*.jpg',

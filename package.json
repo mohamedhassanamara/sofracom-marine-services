@@ -5,7 +5,8 @@
   "main": "script.js",
   "scripts": {
     "dev": "next dev",
-    "build": "next build --webpack",
+    "build": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/category-og.mjs && next build --webpack",
+    "og:categories": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/category-og.mjs",
     "start": "next start",
     "emulators": "firebase emulators:start --project demo-sofracom",
     "dev:emulated": "NEXT_PUBLIC_USE_FIREBASE_EMULATORS=true FIRESTORE_EMULATOR_HOST=127.0.0.1:8080 FIREBASE_AUTH_EMULATOR_HOST=127.0.0.1:9099 GCLOUD_PROJECT=demo-sofracom next dev",
