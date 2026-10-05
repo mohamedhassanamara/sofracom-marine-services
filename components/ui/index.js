@@ -5,7 +5,7 @@ export { default as Card } from './Card';
 export { Badge, StatusBadge, StockBadge } from './Badge';
 export { default as Price } from './Price';
 export { Stars, RatingSummary, StarInput } from './Stars';
-export { default as Dialog, Drawer } from './Dialog';
+export { default as Dialog, Drawer, Sheet } from './Dialog';
 export { Tabs, Segmented } from './Tabs';
 export { default as Breadcrumb } from './Breadcrumb';
 export { LoadMore, Pagination } from './Pagination';

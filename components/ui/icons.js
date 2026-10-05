@@ -6,6 +6,7 @@ import { cx } from './cx';
 export {
     AlertTriangle,
     Anchor,
+    Award,
     ArrowLeft,
     ArrowRight,
     Calendar,
@@ -27,6 +28,7 @@ export {
     Mail,
     MapPin,
     Menu,
+    MessageCircle,
     MessageSquareText,
     Minus,
     Package,
@@ -47,6 +49,7 @@ export {
     X,
     XCircle,
     Zap,
+    ZoomIn,
 } from 'lucide-react';
 
 export function Icon({ as: Component, size = 20, flip = false, className, label, ...rest }) {

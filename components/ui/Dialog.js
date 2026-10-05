@@ -10,6 +10,7 @@ const SIZES = { sm: 'max-w-sm', md: 'max-w-lg', lg: 'max-w-2xl', xl: 'max-w-4xl'
 // (focus can't leave it), Escape and the backdrop close it, focus returns to whatever
 // opened it, the title labels it, and only the body scrolls (header and footer stay put).
 //   variant="drawer" side="end" slides from the inline end (right in English, left in Arabic).
+//   variant="sheet" is a bottom sheet (phones).
 // Put data-autofocus on the element that should get focus first (default: the first control).
 export default function Dialog({
     open,
@@ -71,6 +72,7 @@ export default function Dialog({
     };
 
     const drawer = variant === 'drawer';
+    const sheet = variant === 'sheet';
     return (
         <dialog
             ref={ref}
@@ -80,9 +82,11 @@ export default function Dialog({
             onMouseDown={handleMouseDown}
             className={cx(
                 'ui-dialog bg-white p-0 text-slate-900 shadow-lg backdrop:bg-navy-950/60 open:flex open:flex-col',
-                drawer
-                    ? cx('ui-drawer h-dvh max-h-dvh w-full max-w-md', side === 'start' ? 'ui-drawer--start me-auto ms-0' : 'ui-drawer--end me-0 ms-auto')
-                    : cx('max-h-[calc(100dvh-2rem)] w-[calc(100vw-2rem)] rounded-xl', SIZES[size]),
+                sheet
+                    ? 'ui-sheet max-h-[85dvh] w-full max-w-none rounded-t-2xl'
+                    : drawer
+                      ? cx('ui-drawer h-dvh max-h-dvh w-full max-w-md', side === 'start' ? 'ui-drawer--start me-auto ms-0' : 'ui-drawer--end me-0 ms-auto')
+                      : cx('max-h-[calc(100dvh-2rem)] w-[calc(100vw-2rem)] rounded-xl', SIZES[size]),
                 className
             )}
         >
@@ -110,3 +114,5 @@ export default function Dialog({
 }
 
 export const Drawer = props => <Dialog variant="drawer" {...props} />;
+// Bottom sheet (phones): docked to the bottom edge, slides up.
+export const Sheet = props => <Dialog variant="sheet" {...props} />;

@@ -45,3 +45,11 @@ test('every order and quote status has a tone', () => {
 test('the accent brand blue is legible on navy (for links and focus on dark)', () => {
     assert.ok(contrast(colors.accent[400], colors.navy[900]) >= 4.5);
 });
+
+test('v2 ink colours pass AA on white and on the neutral surface', () => {
+    for (const fg of [colors.ink.DEFAULT, colors.ink.muted]) {
+        for (const bg of ['#ffffff', colors.surface.DEFAULT]) {
+            assert.ok(contrast(fg, bg) >= 4.5, `${fg} on ${bg}: ${contrast(fg, bg).toFixed(2)}`);
+        }
+    }
+});

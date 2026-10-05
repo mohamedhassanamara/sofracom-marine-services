@@ -20,7 +20,12 @@ const plexArabic = IBM_Plex_Sans_Arabic({
     preload: false,
 });
 
+// Not a Fragment: styled-jsx adds className to the elements here.
+const Bare = ({ children }) => children;
+
 function MyApp({ Component, pageProps }) {
+    // Pages that draw their own chrome (the design lab) opt out of the site header/footer.
+    const Shell = Component.bareLayout ? Bare : Layout;
     return (
         <LangProvider>
             <AuthProvider>
@@ -35,9 +40,9 @@ function MyApp({ Component, pageProps }) {
                             --font-arabic: ${plexArabic.style.fontFamily};
                         }
                     `}</style>
-                    <Layout>
+                    <Shell>
                         <Component {...pageProps} />
-                    </Layout>
+                    </Shell>
                     <Analytics />
                     <SpeedInsights />
                     </ToastProvider>

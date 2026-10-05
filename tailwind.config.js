@@ -12,6 +12,7 @@ module.exports = {
         borderRadius: tokens.borderRadius,
         boxShadow: tokens.boxShadow,
         fontFamily: {
+            display: ['var(--font-display)', 'var(--font-sans)', 'system-ui', 'sans-serif'],
             sans: ['var(--font-sans)', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'],
             mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
         },
@@ -28,9 +29,15 @@ module.exports = {
                 base: tokens.motion.duration.base,
                 slow: tokens.motion.duration.slow,
             },
-            maxWidth: { container: '80rem' },
+            maxWidth: { container: '80rem', wide: '82.5rem' },
             ringColor: { DEFAULT: tokens.colors.accent[600] },
         },
     },
-    plugins: [],
+    plugins: [
+        // `can-hover:` only on devices with a real pointer; `touch:` on touch screens (always-visible controls).
+        ({ addVariant }) => {
+            addVariant('can-hover', '@media (hover: hover) and (pointer: fine)');
+            addVariant('touch', '@media (hover: none)');
+        },
+    ],
 };

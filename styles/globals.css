@@ -20,11 +20,14 @@
 
     /* fonts: --font-inter / --font-arabic are set by next/font in pages/_app.js */
     --font-sans: var(--font-inter), var(--font-arabic);
+    /* headings (v2): the chosen grotesk; falls back to the body font */
+    --font-display: var(--font-heading, var(--font-inter)), var(--font-arabic);
 }
 
 :root:lang(ar) {
     /* Arabic first so Latin words in Arabic text use the same family. */
     --font-sans: var(--font-arabic), var(--font-inter);
+    --font-display: var(--font-arabic), var(--font-heading, var(--font-inter));
 }
 
 html {
@@ -175,6 +178,18 @@ html:has(dialog[open]) {
 .ui-drawer {
     inset-block: 0;
     border-radius: 0;
+}
+.ui-sheet {
+    margin: auto 0 0 !important;
+    inset-inline: 0;
+}
+.ui-sheet[open] {
+    animation: ui-slide-from-bottom var(--dur-base) var(--ease-out);
+}
+@keyframes ui-slide-from-bottom {
+    from {
+        transform: translateY(100%);
+    }
 }
 .ui-drawer--end[open] {
     animation: ui-slide-from-right var(--dur-base) var(--ease-out);
