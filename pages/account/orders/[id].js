@@ -70,7 +70,7 @@ export default function OrderDetailPage() {
                     </Link>
                 </div>
             )}
-            <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_22rem]">
+            <div className="grid items-start gap-6 min-[900px]:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
                 <div className="space-y-6">
                     <section className="ui-card">
                         <h2 className="mb-5 text-xl font-semibold text-ink">{t('orders.items')}</h2>
@@ -90,7 +90,7 @@ export default function OrderDetailPage() {
                                             ) : (
                                                 <p className="font-semibold text-ink">{item.title}</p>
                                             )}
-                                            <p className="ui-muted">
+                                            <p className="ui-muted text-sm">
                                                 {item.variantLabel ? `${item.variantLabel} · ` : ''}
                                                 {t('orders.qtyTimesPrice', {
                                                     quantity: item.quantity,
@@ -98,7 +98,7 @@ export default function OrderDetailPage() {
                                                 })}
                                             </p>
                                         </div>
-                                        <p className="font-semibold text-ink">{format.price(lineTotal(item))}</p>
+                                        <p className="whitespace-nowrap font-semibold tabular-nums text-ink">{format.price(lineTotal(item))}</p>
                                     </div>
                                 );
                             })}
@@ -128,7 +128,7 @@ export default function OrderDetailPage() {
                         {order.customer_notes && <p className="ui-muted mt-2">{order.customer_notes}</p>}
                     </section>
                 </div>
-                <section className="rounded-2xl bg-surface p-6 lg:sticky lg:top-24">
+                <section className="rounded-2xl bg-surface p-6 min-[900px]:sticky min-[900px]:top-24">
                     <h2 className="mb-5 text-xl font-semibold text-ink">{t('orders.status')}</h2>
                     <StatusTimeline kind="order" doc={order} />
                 </section>

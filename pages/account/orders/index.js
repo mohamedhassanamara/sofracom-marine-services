@@ -8,6 +8,7 @@ import { listMine } from '../../../lib/accountData';
 import useFormat from '../../../hooks/useFormat';
 import { normalizeOrderStatus, displayRef } from '../../../lib/status';
 import { imageAt, photoClass } from '../../../lib/images';
+import { Icon, Star } from '../../../components/ui/icons';
 
 export default function OrdersPage() {
     const { t } = useLang();
@@ -47,10 +48,13 @@ export default function OrdersPage() {
                         const count = items.reduce((sum, item) => sum + (Number(item.quantity) || 0), 0);
                         const delivered = normalizeOrderStatus(order.status) === 'delivered';
                         return (
-                            <Link key={order.id} href={`/account/orders/${order.id}`} className="record-card !block">
+                            // The title link stretches over the card; "Rate your items" is its own link on top.
+                            <div key={order.id} className="record-card record-card--link relative !block">
                                 <div className="flex flex-wrap items-start justify-between gap-3">
                                     <div>
-                                        <p className="record-card__title text-lg">{t('orders.number', { id: displayRef(order) })}</p>
+                                        <Link href={`/account/orders/${order.id}`} className="record-card__title text-lg after:absolute after:inset-0 after:rounded-2xl after:content-['']">
+                                            {t('orders.number', { id: displayRef(order) })}
+                                        </Link>
                                         <p className="record-card__meta">
                                             {formatDate(order.created_at)} · {t('orders.itemCount', { count })}
                                         </p>
@@ -65,11 +69,16 @@ export default function OrdersPage() {
                                         {items.length > 5 && <span className="flex h-14 w-14 items-center justify-center rounded-lg bg-surface text-sm font-semibold text-ink-muted">+{items.length - 5}</span>}
                                     </div>
                                     <div className="flex flex-wrap items-center gap-3">
-                                        {delivered && <span className="ui-pill">{t('orders.rateItems')}</span>}
+                                        {delivered && (
+                                            <Link href={`/account/reviews?order=${order.id}`} className="relative z-[1] inline-flex items-center gap-1.5 text-sm font-semibold text-accent-600 underline-offset-4 hover:text-accent-700 hover:underline">
+                                                <Icon as={Star} size={16} />
+                                                {t('orders.rateItems')}
+                                            </Link>
+                                        )}
                                         <span className="text-lg font-semibold tabular-nums text-ink">{format.price(Number(order.total))}</span>
                                     </div>
                                 </div>
-                            </Link>
+                            </div>
                         );
                     })}
                 </div>

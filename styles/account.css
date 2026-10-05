@@ -155,7 +155,8 @@
     transition: box-shadow var(--dur-fast) var(--ease-standard), transform var(--dur-fast) var(--ease-standard);
 }
 
-a.record-card:hover {
+a.record-card:hover,
+.record-card--link:hover {
     border-color: theme('colors.ink.muted');
     box-shadow: theme('boxShadow.soft');
 }
@@ -237,6 +238,11 @@ a.record-card:hover {
 .order-totals > div {
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
+}
+
+.order-totals > div > :last-child {
+    white-space: nowrap;
 }
 
 .order-totals__grand {
