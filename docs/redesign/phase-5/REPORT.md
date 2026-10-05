@@ -1,5 +1,7 @@
 # Phase 5: translation and RTL pass
 
+> **Images are not in git.** Screenshots and image files named here are kept, git-ignored, in `docs/_images/redesign/phase-5/` on the computer that made them (same file names).
+
 ## UI strings
 - Every UI string added in Phases 1–4 exists in EN/FR/AR (the parity test covers all 600+ keys). A scan of pages and components finds no hard-coded English left in JSX text, `aria-label`, `placeholder`, `title` or `alt`; the remaining English library fallbacks ("Variant", "Untitled gallery entry") are gone.
 - FR values identical to EN were reviewed: all are correct French (Services, Message, Catamaran…).

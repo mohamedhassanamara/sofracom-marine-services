@@ -25,6 +25,7 @@ npm run admin:emulated # same app against the emulators
 - Run a single test file: `node --test tests/i18n.test.mjs`, or for emulator suites `firebase emulators:exec --project demo-sofracom --only firestore,auth "node --test tests/api/flows.test.mjs"`. Filter by name with `--test-name-pattern="reviews"`.
 - firebase-tools needs **Java 21+** (`PATH=/opt/homebrew/opt/openjdk@21/bin:$PATH` on this machine).
 - `NEXT_DIST_DIR=.next-foo` gives a second `next dev` its own build dir (needed when one is already running; the API tests use `.next-test`).
+- Screenshots and image reports go in the git-ignored `docs/_images/` (same sub-paths as the reports in `docs/`); only Markdown/JSON reports are tracked.
 - One-off scripts: `node scripts/assign-product-ids.js`, `node scripts/migrate-statuses.mjs [--apply]` (dry run by default). Without emulator env vars these hit production.
 
 ## Architecture

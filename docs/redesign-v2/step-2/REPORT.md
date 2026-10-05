@@ -1,5 +1,7 @@
 # Visual redesign v2 · Step 2: the new look on the catalog pages
 
+> **Images are not in git.** Screenshots and image files named here are kept, git-ignored, in `docs/_images/redesign-v2/step-2/` on the computer that made them (same file names).
+
 Branch `redesign-v2`, not pushed. Your Step 1 choices are applied: hero A (full-bleed), Manrope + IBM Plex Sans Arabic, cutouts with admin review, product cutouts as category art, testimonials removed, the language switch in the header, and "Get a quote" in the phone menu.
 
 ## Through the tokens and components

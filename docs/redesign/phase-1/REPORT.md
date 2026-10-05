@@ -1,5 +1,7 @@
 # Phase 1: foundations
 
+> **Images are not in git.** Screenshots and image files named here are kept, git-ignored, in `docs/_images/redesign/phase-1/` on the computer that made them (same file names).
+
 ## What changed
 - **Tailwind v3.4 via npm/PostCSS** (`tailwind.config.js`, `postcss.config.js`) replaces the 251 KB render-blocking v2 CDN stylesheet (now ~11 KB, purged).
   - Theme = `lib/design/tokens.js` only: navy (brand #0b2050), accent (from #24b4ff, 600+ for text), slate, success/warning/danger/info; 8 font sizes; radii sm/md/lg/xl/full; 3 shadows; one easing + 3 durations; breakpoints sm/md/lg/xl.

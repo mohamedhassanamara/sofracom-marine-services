@@ -1,5 +1,7 @@
 # Phase 2: design system
 
+> **Images are not in git.** Screenshots and image files named here are kept, git-ignored, in `docs/_images/redesign/phase-2/` on the computer that made them (same file names).
+
 All components live in `components/ui/` (barrel: `components/ui/index.js`) and are shown at **/styleguide** (noindex, not in the sitemap) in English and Arabic side by side.
 
 | Component | Notes |

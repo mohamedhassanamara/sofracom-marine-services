@@ -1,5 +1,7 @@
 # Phase 4: the rest of the site
 
+> **Images are not in git.** Screenshots and image files named here are kept, git-ignored, in `docs/_images/redesign/phase-4/` on the computer that made them (same file names).
+
 ## New pages and flows
 - **Cart drawer** (`components/cart/CartDrawer.js`): every page, from the header. Lines with photo, option, quantity stepper, remove; on-order notice; totals; Checkout / Continue shopping; empty state. Quick add elsewhere shows a toast with "View cart" instead of opening it. The old drawer, floating button and checkout modal are deleted.
 - **/checkout** (full page, so the Order button is always reachable):

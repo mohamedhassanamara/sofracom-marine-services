@@ -1,5 +1,7 @@
 # SOFRACOM UI/UX audit (full report)
 
+> **Images are not in git.** Screenshots and image files named here are kept, git-ignored, in `docs/_images/ui-audit/` on the computer that made them (same file names).
+
 Audited 2026-10-04 on branch `redesign` (HEAD `ce00448`). This was a read-only audit: no app code, styles or config were changed, and nothing was committed. All runtime checks ran against the Firebase emulators (`demo-sofracom`): the emulated dev site on :3100, a production build on :3200 for Lighthouse, product-admin and `/ops` on :5183, and gallery-admin on :5184. Nothing was saved in the catalog or gallery tools, because they auto-commit and push.
 
 **Companion files.** `SUMMARY.md` is the short version (under 300 lines). `inventory.json` holds pages, components, design tokens, animations, admin tools, workflows and the status palette. `screenshots/` holds 78 curated shots, and `contact-sheets/` holds 6 grids. `lighthouse/` has 8 JSON+HTML reports and `axe/` has 31 scans. Some screenshot names cited below come from the full capture run (≈440 files) and were pruned to keep the set small. Most of them appear on the contact sheets. Paths like `$S/scripts/…` refer to throwaway audit scripts that were not kept in the repo.

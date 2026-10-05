@@ -1,5 +1,7 @@
 # SOFRACOM UI/UX audit: summary
 
+> **Images are not in git.** Screenshots and image files named here are kept, git-ignored, in `docs/_images/ui-audit/` on the computer that made them (same file names).
+
 Audited 2026-10-04 on branch `redesign`. This was a read-only audit run against the Firebase emulators, with no code changes. Full details are in `REPORT.md`. The machine-readable inventory is `inventory.json`. Visuals are in `contact-sheets/` (6 grids) and `screenshots/` (78 files). Raw data is in `lighthouse/` and `axe/`.
 
 ## Executive summary

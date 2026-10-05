@@ -1,5 +1,7 @@
 # Visual redesign v2 · Step 1: design lab
 
+> **Images are not in git.** Screenshots and image files named here are kept, git-ignored, in `docs/_images/redesign-v2/step-1/` on the computer that made them (same file names).
+
 Branch `redesign-v2`, created from `redesign`. Not pushed.
 
 **Open the lab:** `npm run dev:emulated`, then go to http://localhost:3000/design-lab (or `/ar/design-lab`).

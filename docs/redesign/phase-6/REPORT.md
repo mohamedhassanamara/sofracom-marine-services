@@ -1,5 +1,7 @@
 # Phase 6: the unified local admin app (`tools/admin`)
 
+> **Images are not in git.** Screenshots and image files named here are kept, git-ignored, in `docs/_images/redesign/phase-6/` on the computer that made them (same file names).
+
 ## Choice: Vite + React (not a second Next.js app)
 A local tool needs no SSR, routing or SEO. Vite runs **inside the admin's own Node server** (middleware mode), so there is **one command, one process, one port** (the hot-reload websocket shares it), it starts in about a second, and it imports the website's code directly: the UI kit (`components/ui`), tokens/Tailwind config, i18n (`LangContext`, status labels), `lib/format`, `lib/status`, `lib/quote` and the shared server modules. Two tiny shims replace `next/link`/`next/router`; one Vite plugin compiles the site's JSX-in-`.js`, another wraps the two CommonJS libs (`lib/i18n/locales.js`, `lib/design/tokens.js`).
 

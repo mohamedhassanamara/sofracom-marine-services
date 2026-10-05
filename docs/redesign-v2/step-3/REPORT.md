@@ -1,5 +1,7 @@
 # Visual redesign v2 · Step 3: the rest of the site, final QA
 
+> **Images are not in git.** Screenshots and image files named here are kept, git-ignored, in `docs/_images/redesign-v2/step-3/` on the computer that made them (same file names).
+
 Branch `redesign-v2`, not pushed.
 
 ## Your Step 2 feedback: colour

@@ -1,5 +1,7 @@
 # Phase 3: header, footer, home, category, product
 
+> **Images are not in git.** Screenshots and image files named here are kept, git-ignored, in `docs/_images/redesign/phase-3/` on the computer that made them (same file names).
+
 Built only from the Phase 2 kit.
 
 ## Header (`components/layout/SiteHeader.js`, `SearchBox.js`)

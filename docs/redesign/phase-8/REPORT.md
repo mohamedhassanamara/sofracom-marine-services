@@ -1,5 +1,7 @@
 # Phase 8: QA
 
+> **Images are not in git.** Screenshots and image files named here are kept, git-ignored, in `docs/_images/redesign/phase-8/` on the computer that made them (same file names).
+
 All checks were run against a **production build** (`npm run build`, served with `next start`). That build was wired to the Firebase emulators with demo data, so no production data was read or written.
 
 ## Performance fixes made in this phase

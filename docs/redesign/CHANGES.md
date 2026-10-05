@@ -1,5 +1,7 @@
 # SOFRACOM redesign: what changed and what you need to do
 
+> **Images are not in git.** Screenshots and image files named here are kept, git-ignored, in `docs/_images/redesign/` on the computer that made them (same file names).
+
 Branch `redesign` (website) and `redesign` in `../../IdeaProjects/sofracom_admin_pp` (staff app). The branches are **not pushed**. Nothing was deployed, and no production data was touched: all testing used the Firebase emulators. Each phase has a detailed report and screenshots in `docs/redesign/phase-N/`.
 
 ## What changed
