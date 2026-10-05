@@ -9,7 +9,7 @@ import { Empty, ErrorBox, PageHeader } from '../components/common';
 // Nothing is deleted, so every choice can be changed later; publish to put it online.
 const PAGE = 40;
 const STATUS = {
-    pending: { label: 'To review', tone: 'warning' },
+    pending: { label: 'Needs review', tone: 'warning' },
     approved: { label: 'Approved', tone: 'success' },
     original: { label: 'Kept original', tone: 'neutral' },
     missing: { label: 'No cutout yet', tone: 'neutral' },
@@ -116,7 +116,7 @@ export default function Photos({ onSaved }) {
         <div>
             <PageHeader
                 title="Photos"
-                subtitle="Product photos with the background removed. Approve a cutout and the site shows it instead of the photo; keep the original otherwise. Nothing is deleted, and nothing goes online until you publish."
+                subtitle={`Product photos with the background removed. New uploads get their cutout automatically; ${data?.settings?.autoApprove === false ? 'auto-approve is off (Settings), so every cutout waits here' : 'the ones that pass the checks are approved automatically (Settings), the others wait here with the reason'}. Approve a cutout and the site shows it instead of the photo; keep the original otherwise. Nothing goes online until you publish.`}
                 actions={
                     data?.available === false ? null : progress ? (
                         <Button variant="secondary" icon={X} onClick={() => (stopRef.current = true)}>
@@ -132,7 +132,7 @@ export default function Photos({ onSaved }) {
             <ErrorBox error={error} onRetry={load} />
             {data?.available === false && (
                 <p className="mb-4 rounded-md border border-warning-200 bg-warning-50 p-3 text-sm text-warning-800">
-                    Background removal is not installed on this computer, so new cutouts can't be generated or retried here (reviewing still works). {data.reason}
+                    Background removal isn't set up on this computer, so cutouts can't be generated yet (uploads and reviewing still work). Set BG_REMOVAL_PATH to the @imgly/background-removal-node folder and restart the admin: cutouts will then be made for new uploads, and Generate missing cutouts processes the backlog. {data.reason}
                 </p>
             )}
 
@@ -142,7 +142,7 @@ export default function Photos({ onSaved }) {
                     value={filter}
                     onChange={setFilter}
                     options={[
-                        { value: 'pending', label: `To review (${counts.pending || 0})` },
+                        { value: 'pending', label: `Needs review (${counts.pending || 0})` },
                         { value: 'approved', label: `Approved (${counts.approved || 0})` },
                         { value: 'original', label: `Kept original (${counts.original || 0})` },
                         { value: 'missing', label: `No cutout (${counts.missing || 0})` },
@@ -174,7 +174,7 @@ export default function Photos({ onSaved }) {
             {!data ? (
                 <Empty>Loading…</Empty>
             ) : !images.length ? (
-                <Empty>{filter === 'pending' ? 'Nothing to review.' : 'No photos here.'}</Empty>
+                <Empty>{filter === 'pending' ? 'Nothing needs review.' : 'No photos here.'}</Empty>
             ) : (
                 <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                     {visible.map(image => {
@@ -193,9 +193,16 @@ export default function Photos({ onSaved }) {
                                         </p>
                                     </div>
                                     <Badge tone={status.tone} size="sm">
-                                        {status.label}
+                                        {image.status === 'approved' && image.autoApproved ? 'Auto-approved' : status.label}
                                     </Badge>
                                 </div>
+                                {image.reasons?.length > 0 && (
+                                    <ul className="mb-2 list-disc space-y-0.5 rounded-md bg-warning-50 px-3 py-2 ps-6 text-xs text-warning-800" aria-label="Why it needs review">
+                                        {image.reasons.map(reason => (
+                                            <li key={reason}>{reason}</li>
+                                        ))}
+                                    </ul>
+                                )}
                                 <div className="grid grid-cols-2 gap-2">
                                     <figure>
                                         <img src={thumb(image.src)} alt="" loading="lazy" className="aspect-square w-full rounded-md border border-slate-200 bg-white object-contain" />

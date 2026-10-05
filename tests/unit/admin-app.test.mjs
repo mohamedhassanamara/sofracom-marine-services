@@ -157,10 +157,17 @@ test('publish: shows the diff, commits only catalog files to main; rollback reve
 
 test('photo cutouts: approving copies only that cutout into public and publishes it; keep original removes it', async () => {
     const src = '/assets/products/paint-800.webp';
+    const catalogFile = path.join(repo.work, 'public/assets/data/products.json');
+    const catalogBefore = fs.readFileSync(catalogFile, 'utf-8');
+    // A product using that photo (approved cutouts of photos no longer in the catalog are pruned
+    // before publishing, see the end of this test).
+    repo.write('public/assets/data/products.json', `${JSON.stringify({ categories: [{ name: 'Paints', slug: 'paints', products: [{ id: 'p_paint001', title: 'Paint', images: ['assets/products/paint-800.webp'], image: 'assets/products/paint-800.webp', price: 10, stock: 'in' }] }] })}\n`);
     // A generated cutout waiting in the (git-ignored) cache.
     repo.write('.cutouts-cache/manifest.json', `${JSON.stringify({ version: 1, images: { [src]: { file: 'paint-cut', model: 'medium' } } })}\n`);
     for (const width of [400, 800, 1600]) repo.write(`.cutouts-cache/files/paint-cut-${width}.webp`, 'webp');
-    assert.deepEqual((await request({ path: '/api/publish' })).json.files, [], 'cached cutouts are never published');
+    // (products.json is changed by this test; only the cutout files matter here)
+    const cutoutFiles = response => response.json.files.map(file => file.path).filter(file => file !== 'public/assets/data/products.json').sort();
+    assert.deepEqual(cutoutFiles(await request({ path: '/api/publish' })), [], 'cached cutouts are never published');
 
     assert.equal((await request({ method: 'POST', path: '/api/cutouts/status', body: { sources: [src], status: 'approved' } })).status, 403);
     assert.equal((await write('POST', '/api/cutouts/status', { sources: [src], status: 'deleted' })).status, 400);
@@ -168,14 +175,14 @@ test('photo cutouts: approving copies only that cutout into public and publishes
     assert.equal((await write('POST', '/api/cutouts/status', { sources: [src], status: 'approved' })).status, 200);
     assert.equal(JSON.parse(fs.readFileSync(path.join(repo.work, 'public/assets/data/cutouts.json'), 'utf-8')).images[src].status, 'approved');
     const preview = await request({ path: '/api/publish' });
-    assert.deepEqual(preview.json.files.map(file => file.path).sort(), ['public/assets/data/cutouts.json', 'public/assets/products/cutouts/paint-cut-1600.webp', 'public/assets/products/cutouts/paint-cut-400.webp', 'public/assets/products/cutouts/paint-cut-800.webp']);
+    assert.deepEqual(cutoutFiles(preview), ['public/assets/data/cutouts.json', 'public/assets/products/cutouts/paint-cut-1600.webp', 'public/assets/products/cutouts/paint-cut-400.webp', 'public/assets/products/cutouts/paint-cut-800.webp']);
     assert.deepEqual(preview.json.diff.cutouts.added.map(item => item.id), [src]);
     assert.equal((await request({ path: '/cutouts-cache/paint-cut-400.webp' })).status, 200, 'the admin previews cached cutouts');
 
     // Keep the original: the public files go away again, only the decision is published.
     await write('POST', '/api/cutouts/status', { sources: [src], status: 'original' });
     assert.ok(!fs.existsSync(path.join(repo.work, 'public/assets/products/cutouts/paint-cut-800.webp')));
-    assert.deepEqual((await request({ path: '/api/publish' })).json.files.map(file => file.path), ['public/assets/data/cutouts.json']);
+    assert.deepEqual(cutoutFiles(await request({ path: '/api/publish' })), ['public/assets/data/cutouts.json']);
     assert.ok(fs.existsSync(path.join(repo.work, '.cutouts-cache/files/paint-cut-800.webp')));
 
     // Without the background-removal library: listing still works, retrying says why it can't.
@@ -184,4 +191,14 @@ test('photo cutouts: approving copies only that cutout into public and publishes
     const retry = await write('POST', '/api/cutouts/retry', { src });
     assert.equal(retry.status, 503);
     assert.equal(retry.json.code, 'cutouts/unavailable');
+
+    // The photo leaves the catalog: its approved cutout is pruned at the next publish preview,
+    // so unused cutout files never go online (the cache keeps them).
+    assert.equal((await write('POST', '/api/cutouts/status', { sources: [src], status: 'approved' })).status, 200);
+    repo.write('public/assets/data/products.json', catalogBefore);
+    const pruned = await request({ path: '/api/publish' });
+    assert.ok(!fs.existsSync(path.join(repo.work, 'public/assets/products/cutouts/paint-cut-800.webp')));
+    assert.equal(JSON.parse(fs.readFileSync(path.join(repo.work, 'public/assets/data/cutouts.json'), 'utf-8')).images[src], undefined);
+    assert.match(pruned.json.notes.join(' '), /1 cutout of photos no longer in the catalog removed/);
+    assert.ok(fs.existsSync(path.join(repo.work, '.cutouts-cache/files/paint-cut-800.webp')));
 });

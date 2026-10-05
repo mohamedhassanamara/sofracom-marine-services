@@ -27,11 +27,12 @@ export default function Today() {
         <>
             <PageHeader title="Today" subtitle="What needs attention." />
             <ErrorBox error={error} onRetry={load} />
-            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
                 <Count label="New orders (pending)" value={data?.newOrders.count} href="#/orders?status=pending" tone="text-warning-700" />
                 <Count label="Quotes to answer" value={data?.openQuotes.count} href="#/quotes?status=received" tone="text-accent-700" />
                 <Count label="Reviews this week" value={data?.recentReviews.count} href="#/reviews" tone="text-navy-800" />
                 <Count label="Translations to review" value={data?.translations.count} href="#/catalog?review=1" tone="text-danger-700" />
+                <Count label="Photo cutouts to review" value={data?.cutouts?.needsReview} href="#/photos" tone="text-warning-700" />
             </div>
             <div className="mt-6 grid gap-6 xl:grid-cols-2">
                 <Panel title="New orders" actions={<a href="#/orders?status=pending" className="text-sm font-semibold text-accent-700">All →</a>}>

@@ -12,7 +12,6 @@ const images = require('../../shared/images.js');
 
 const BUCKETS = {
     products: { type: 'image', maxBytes: 15 * 1024 * 1024 },
-    categories: { type: 'image', maxBytes: 15 * 1024 * 1024 },
     gallery: { type: 'image', maxBytes: 15 * 1024 * 1024 },
     datasheets: { type: 'pdf', maxBytes: 12 * 1024 * 1024 },
 };

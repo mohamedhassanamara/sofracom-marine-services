@@ -89,6 +89,13 @@ export default function Publish({ onChange }) {
                     </ul>
                 </div>
             )}
+            {data?.notes?.length > 0 && (
+                <ul className="mb-4 list-disc rounded-md border border-slate-200 bg-white p-4 ps-8 text-sm text-slate-700">
+                    {data.notes.map(text => (
+                        <li key={text}>{text}</li>
+                    ))}
+                </ul>
+            )}
             <div className="grid gap-6 xl:grid-cols-[1fr_22rem]">
                 <Panel
                     title="Changes waiting to be published"

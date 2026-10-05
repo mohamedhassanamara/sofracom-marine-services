@@ -29,7 +29,7 @@ export function diffCatalog(before, after) {
         const previous = oldCats.get(slug);
         if (!previous) categories.added.push({ slug, name: category.name });
         else {
-            const fields = ['name', 'description', 'image', 'featuredProductIds', 'translations'].filter(field => !same(previous[field], category[field]));
+            const fields = ['name', 'description', 'featuredProductIds', 'translations'].filter(field => !same(previous[field], category[field]));
             if (previous.index !== category.index) fields.push('order');
             if (fields.length) categories.changed.push({ slug, name: category.name, fields });
         }

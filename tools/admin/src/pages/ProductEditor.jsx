@@ -1,7 +1,8 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Badge, Button, Checkbox, Field, Input, Select, Textarea, useToast } from '../../../../components/ui';
 import { ArrowLeft, ChevronLeft, ChevronRight, ExternalLink, FileText, Plus, Trash2, X } from '../../../../components/ui/icons';
-import { siteUrl, upload } from '../api';
+import { api, siteUrl, upload, uploadProductPhoto } from '../api';
+import { CutoutBadge, useCutoutStates, withSlash } from '../components/cutoutStatus';
 import { Confirm, Panel } from '../components/common';
 import { navigate } from '../router';
 
@@ -35,10 +36,15 @@ export const newProduct = () => ({
 const thumb = path => siteUrl(String(path || '').replace(/-800\.webp$/, '-400.webp'));
 const toList = text => text.split(',').map(item => item.trim()).filter(Boolean);
 
-function Images({ images, onChange }) {
+function Images({ images, onChange, keepOriginal }) {
     const toast = useToast();
     const [dragging, setDragging] = useState(null);
     const [busy, setBusy] = useState(0);
+    const [states] = useCutoutStates(keepOriginal ? [] : images.map(withSlash));
+    const [removal, setRemoval] = useState(null); // { available, reason }
+    useEffect(() => {
+        api('/api/settings').then(setRemoval, () => setRemoval(null));
+    }, []);
     const move = (from, to) => {
         if (to < 0 || to >= images.length || from === to) return;
         const next = [...images];
@@ -52,7 +58,7 @@ function Images({ images, onChange }) {
         const added = [];
         for (const file of list) {
             try {
-                added.push(await upload(file, 'products'));
+                added.push((await uploadProductPhoto(file, { keepOriginal })).path);
             } catch (err) {
                 toast.show({ tone: 'danger', title: `${file.name} not uploaded`, description: err.message });
             }
@@ -60,7 +66,10 @@ function Images({ images, onChange }) {
         }
         if (added.length) {
             onChange([...images, ...added]);
-            toast.show({ title: `${added.length} photo${added.length > 1 ? 's' : ''} added`, description: 'Resized to WebP (400/800/1600 px).' });
+            toast.show({
+                title: `${added.length} photo${added.length > 1 ? 's' : ''} added`,
+                description: keepOriginal ? 'Resized to WebP (400/800/1600 px). This product keeps its original photos.' : 'Resized to WebP; the background is being removed now (save the product to keep the photos).',
+            });
         }
     };
     return (
@@ -80,6 +89,9 @@ function Images({ images, onChange }) {
                     >
                         <img src={thumb(path)} alt="" className="aspect-square w-full object-contain" draggable={false} />
                         {index === 0 && <span className="absolute start-1 top-1 rounded bg-navy-900 px-1.5 text-xs font-semibold text-white">Main</span>}
+                        <div className="mt-1 flex min-h-[1.25rem]">
+                            <CutoutBadge state={states[withSlash(path)]} keepOriginal={keepOriginal} />
+                        </div>
                         <div className="mt-1 flex justify-between">
                             <Button size="sm" variant="ghost" icon={ChevronLeft} label="Move earlier" disabled={index === 0} onClick={() => move(index, index - 1)} className="h-7 w-7" />
                             <Button size="sm" variant="ghost" icon={X} label="Remove photo" onClick={() => onChange(images.filter((_, i) => i !== index))} className="h-7 w-7 text-danger-700" />
@@ -102,7 +114,12 @@ function Images({ images, onChange }) {
                     </label>
                 </li>
             </ul>
-            <p className="mt-2 text-sm text-slate-500">Drag to reorder (or use the arrows); the first photo is the main one. Uploads are resized automatically.</p>
+            <p className="mt-2 text-sm text-slate-500">Drag to reorder (or use the arrows); the first photo is the main one. Uploads are resized, then the background is removed automatically: cutouts that pass the checks are approved, the others wait in Photos.</p>
+            {!keepOriginal && removal && !removal.available && (
+                <p className="mt-3 rounded-md border border-warning-200 bg-warning-50 p-3 text-sm text-warning-800">
+                    Background removal isn't set up on this computer (BG_REMOVAL_PATH), so uploads keep their original photo for now. Cutouts will be generated once it's set: then use Photos → Generate missing cutouts.
+                </p>
+            )}
         </div>
     );
 }
@@ -202,19 +219,26 @@ export default function ProductEditor({ store, id }) {
                             <Field label="Description (EN)" className="md:col-span-2">
                                 <Textarea rows={6} value={product.description || ''} onChange={event => set({ description: event.target.value })} />
                             </Field>
-                            <Field label="Uses / tags (comma separated)" hint="Shown as tags and used by search and the “Use” filter. Common words are translated automatically." className="md:col-span-2">
+                            <Field label="Uses / tags (comma separated)" hint="Shown on the product page and used by search. Common words are translated automatically." className="md:col-span-2">
                                 <Input value={(product.usage || []).join(', ')} onChange={event => set({ usage: toList(event.target.value) })} />
                             </Field>
                         </div>
                     </Panel>
                     <Panel title="Photos">
-                        <Images images={images} onChange={setImages} />
+                        <Images images={images} onChange={setImages} keepOriginal={Boolean(product.keepOriginalPhoto)} />
                         <div className="mt-4 border-t border-slate-200 pt-4">
                             <Checkbox
                                 label="Needs a real photo"
                                 description="The current picture is an illustration or a placeholder. It's listed on Today until you untick this (after uploading a real photo)."
                                 checked={Boolean(product.needsPhoto)}
                                 onChange={event => set({ needsPhoto: event.target.checked || undefined })}
+                            />
+                            <Checkbox
+                                className="mt-3"
+                                label="Always keep original photo"
+                                description="No background removal for this product (illustrations, fibreglass, scenes): the site always shows the photos as uploaded, and they're skipped by Generate missing."
+                                checked={Boolean(product.keepOriginalPhoto)}
+                                onChange={event => set({ keepOriginalPhoto: event.target.checked || undefined })}
                             />
                         </div>
                     </Panel>

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { cx } from '../../../components/ui/cx';
-import { Anchor, Icon, ImageIcon, Info, MessageSquareText, Package, Phone, Sparkles, Star, Truck, User } from '../../../components/ui/icons';
+import { Anchor, Icon, ImageIcon, Info, MessageSquareText, Package, Phone, SlidersHorizontal, Sparkles, Star, Truck, User } from '../../../components/ui/icons';
 import { api } from './api';
 import { EnvPill, GitPill } from './components/common';
 import { useRoute } from './router';
@@ -14,6 +14,7 @@ import Reviews from './pages/Reviews';
 import Customers from './pages/Customers';
 import Devices from './pages/Devices';
 import Publish from './pages/Publish';
+import Settings from './pages/Settings';
 
 const NAV = [
     { path: '/', label: 'Today', icon: Info },
@@ -26,6 +27,7 @@ const NAV = [
     { path: '/customers', label: 'Customers', icon: User },
     { path: '/devices', label: 'Staff phones', icon: Phone },
     { path: '/publish', label: 'Publish', icon: Anchor },
+    { path: '/settings', label: 'Settings', icon: SlidersHorizontal },
 ];
 
 export default function App() {
@@ -51,6 +53,7 @@ export default function App() {
     else if (section === 'customers') page = <Customers id={id} />;
     else if (section === 'devices') page = <Devices />;
     else if (section === 'publish') page = <Publish onChange={refreshMeta} />;
+    else if (section === 'settings') page = <Settings />;
     else page = <Today />;
 
     return (

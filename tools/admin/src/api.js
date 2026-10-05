@@ -37,6 +37,10 @@ export const readFileAsDataUrl = file =>
     });
 
 export const upload = async (file, bucket) => (await api('/api/upload', { method: 'POST', body: { dataUrl: await readFileAsDataUrl(file), filename: file.name, bucket } })).path;
+// A product photo: resized like any upload, then its cutout is made in the background
+// (unless the product keeps its original photo). Returns { path, cutout: job }.
+export const uploadProductPhoto = async (file, { keepOriginal = false } = {}) =>
+    api('/api/upload', { method: 'POST', body: { dataUrl: await readFileAsDataUrl(file), filename: file.name, bucket: 'products', keepOriginal } });
 
 // Public site files for previews (served by the admin server at /site/...).
 export const siteUrl = value => (!value ? '' : /^https?:/.test(value) ? value : `/site/${String(value).replace(/^\/+/, '')}`);

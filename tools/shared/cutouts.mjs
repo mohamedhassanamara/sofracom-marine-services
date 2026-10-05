@@ -6,8 +6,12 @@
 //   public/assets/products/cutouts/  only APPROVED cutouts (copied from the cache on approval)
 //   public/assets/data/cutouts.json  the decisions, published with the catalog:
 //                                    {src: {status: "approved", cutout, …} | {status: "original"}}
-// A photo with a cached cutout and no decision is "pending"; without either it is "missing".
-// The site shows a cutout only when it is approved (lib/cutouts.js).
+// A photo with a cached cutout and no decision is "pending" (needs review); without either it
+// is "missing". Photos of products marked "Always keep original photo" are "original" and never
+// get a cutout. The site shows a cutout only when it is approved (lib/cutouts.js).
+// Each new cutout is checked (cutoutQuality.mjs); the result (and why it failed) is kept in the
+// cache manifest, and the admin approves passing cutouts automatically unless that's turned off
+// (settings.json in the cache folder: this computer's choice, never published).
 //
 // Used by scripts/cutouts.mjs (batches from the terminal) and the admin app (Photos page).
 // Background removal needs @imgly/background-removal-node (≈300 MB with its model, so it
@@ -17,6 +21,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
+import { assessCutout } from './cutoutQuality.mjs';
 
 const require = createRequire(import.meta.url);
 const sharp = require('sharp');
@@ -41,6 +46,18 @@ const writeJson = (file, images) => {
 };
 const cacheFiles = repoRoot => path.join(repoRoot, CACHE_DIR, 'files');
 const cacheManifestPath = repoRoot => path.join(repoRoot, CACHE_DIR, 'manifest.json');
+const settingsPath = repoRoot => path.join(repoRoot, CACHE_DIR, 'settings.json');
+
+// This computer's cutout settings.
+export const DEFAULT_SETTINGS = { autoApprove: true };
+export const readSettings = repoRoot => ({ ...DEFAULT_SETTINGS, ...readJson(settingsPath(repoRoot), {}) });
+export function writeSettings(repoRoot, changes) {
+    const next = { ...readSettings(repoRoot) };
+    if ('autoApprove' in changes) next.autoApprove = Boolean(changes.autoApprove);
+    fs.mkdirSync(path.dirname(settingsPath(repoRoot)), { recursive: true });
+    fs.writeFileSync(settingsPath(repoRoot), `${JSON.stringify(next, null, 2)}\n`);
+    return next;
+}
 
 // The published decisions.
 export const readManifest = repoRoot => ({ version: 1, images: readJson(path.join(repoRoot, MANIFEST), { images: {} }).images || {} });
@@ -66,7 +83,7 @@ export function catalogImages(repoRoot) {
             list.forEach((src, index) => {
                 const key = withSlash(src);
                 if (!seen.has(key) && !key.includes('/site/logo')) {
-                    seen.set(key, { src: key, productId: product.id, title: product.title, categorySlug: category.slug, position: index, needsPhoto: Boolean(product.needsPhoto) });
+                    seen.set(key, { src: key, productId: product.id, title: product.title, categorySlug: category.slug, position: index, needsPhoto: Boolean(product.needsPhoto), keepOriginal: Boolean(product.keepOriginalPhoto) });
                 }
             });
         }
@@ -74,8 +91,9 @@ export function catalogImages(repoRoot) {
     return [...seen.values()];
 }
 
-// Status of one photo: a decision wins; else a cached cutout is pending; else missing.
-const statusOf = (decision, cached) => decision?.status || (cached ? 'pending' : 'missing');
+// Status of one photo: "keep original" products and decisions win; else a cached cutout is
+// pending (needs review); else missing.
+const statusOf = (decision, cached, keepOriginal = false) => (keepOriginal ? 'original' : decision?.status || (cached ? 'pending' : 'missing'));
 
 // Catalog photos with their status, model and a preview path: the published file once
 // approved, else the cached one (served by the admin at /cutouts-cache/…).
@@ -85,9 +103,18 @@ export function photoStates(repoRoot) {
     return catalogImages(repoRoot).map(image => {
         const decision = decisions[image.src];
         const cached = cache[image.src];
-        const status = statusOf(decision, cached);
+        const status = statusOf(decision, cached, image.keepOriginal);
         const preview = status === 'approved' ? decision.cutout : cached ? `/cutouts-cache/${cached.file}-800.webp` : null;
-        return { ...image, status, model: cached?.model || decision?.model || null, updatedAt: cached?.updatedAt || decision?.updatedAt || null, preview };
+        return {
+            ...image,
+            status,
+            model: cached?.model || decision?.model || null,
+            updatedAt: cached?.updatedAt || decision?.updatedAt || null,
+            preview,
+            // Why it wasn't approved automatically (only while it waits for review).
+            reasons: status === 'pending' ? cached?.check?.reasons || [] : [],
+            autoApproved: Boolean(decision?.auto),
+        };
     });
 }
 
@@ -142,6 +169,7 @@ export async function makeCutout(repoRoot, src, { model = 'medium' } = {}) {
     const png = await sharp(sourceFile(repoRoot, key)).rotate().png().toBuffer();
     const blob = await removeBackground(new Blob([png], { type: 'image/png' }), { model, output: { format: 'image/png' } });
     const masked = Buffer.from(await blob.arrayBuffer());
+    const check = await assessCutout(masked);
     // Trim the transparent edges, fit inside the canvas minus the margin, centre.
     const trimmed = await sharp(masked).trim({ threshold: 1 }).toBuffer();
     const inner = Math.round(SIZE * (1 - 2 * MARGIN));
@@ -155,7 +183,7 @@ export async function makeCutout(repoRoot, src, { model = 'medium' } = {}) {
     fs.mkdirSync(cacheFiles(repoRoot), { recursive: true });
     for (const width of WIDTHS) fs.writeFileSync(path.join(cacheFiles(repoRoot), `${file}-${width}.webp`), await encode(canvas, width));
     const cache = readCache(repoRoot);
-    cache.images[key] = { file, model, updatedAt: new Date().toISOString() };
+    cache.images[key] = { file, model, updatedAt: new Date().toISOString(), check };
     writeCache(repoRoot, cache);
 
     const manifest = readManifest(repoRoot);
@@ -168,7 +196,8 @@ export async function makeCutout(repoRoot, src, { model = 'medium' } = {}) {
 }
 
 // Approve (copy the cached files into public), Keep original (no files), or back to review.
-export function setStatus(repoRoot, sources, status) {
+// `auto`: approved by the automatic check (shown as such in the admin).
+export function setStatus(repoRoot, sources, status, { auto = false } = {}) {
     if (!STATUSES.includes(status)) throw fail(400, `Unknown status: ${status}`, 'validation');
     const list = [...new Set((Array.isArray(sources) ? sources : [sources]).map(withSlash))];
     if (!list.length) throw fail(400, 'No images selected', 'validation');
@@ -190,7 +219,7 @@ export function setStatus(repoRoot, sources, status) {
             if (current?.status === 'approved') continue;
             const { file, model } = cache[src];
             for (const width of WIDTHS) fs.copyFileSync(path.join(cacheFiles(repoRoot), `${file}-${width}.webp`), path.join(repoRoot, OUT_DIR, `${file}-${width}.webp`));
-            manifest.images[src] = { status: 'approved', cutout: publicPath(file), model, updatedAt: now };
+            manifest.images[src] = { status: 'approved', cutout: publicPath(file), model, updatedAt: now, ...(auto ? { auto: true } : {}) };
         } else {
             removePublished(repoRoot, current);
             if (status === 'original') manifest.images[src] = { status: 'original', updatedAt: now };
@@ -201,7 +230,35 @@ export function setStatus(repoRoot, sources, status) {
     return list.map(src => ({ src, status: statusOf(manifest.images[src], cache[src]) }));
 }
 
-// Photos with neither a cutout nor a decision, in catalog order.
+// Photos with neither a cutout nor a decision, in catalog order ("keep original" ones excluded).
 export function missing(repoRoot) {
     return photoStates(repoRoot).filter(image => image.status === 'missing');
+}
+
+// Status of any photos, catalogued or just uploaded (the product editor asks before saving).
+export function statesOf(repoRoot, sources) {
+    const decisions = readManifest(repoRoot).images;
+    const cache = readCache(repoRoot).images;
+    return Object.fromEntries(
+        sources.map(withSlash).map(src => {
+            const status = statusOf(decisions[src], cache[src]);
+            return [src, { status, reasons: status === 'pending' ? cache[src]?.check?.reasons || [] : [], autoApproved: Boolean(decisions[src]?.auto) }];
+        })
+    );
+}
+
+// Approved cutouts whose photo is no longer in the catalog (replaced or deleted) are removed
+// from public/ and the manifest before publishing, so unused files never go online. The cache
+// keeps them (putting the photo back finds its cutout again).
+export function pruneUnreferenced(repoRoot) {
+    const used = new Set(catalogImages(repoRoot).map(image => image.src));
+    const manifest = readManifest(repoRoot);
+    const removed = Object.keys(manifest.images).filter(src => !used.has(src));
+    if (!removed.length) return [];
+    for (const src of removed) {
+        removePublished(repoRoot, manifest.images[src]);
+        delete manifest.images[src];
+    }
+    writeManifest(repoRoot, manifest);
+    return removed;
 }

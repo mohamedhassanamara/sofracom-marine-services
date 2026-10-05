@@ -1,5 +1,6 @@
 // JSON API of the local admin. Every Firebase write goes through the same shared functions
 // as the website (lib/server/*), so histories, review stats and enrolment rules match.
+import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { createRequire } from 'node:module';
@@ -53,8 +54,8 @@ export async function createApi({ repoRoot, codeRoot = repoRoot, targetMode }) {
         lib('staffDesk.js'),
     ]);
     const catalog = createCatalogStore({ repoRoot });
-    const publisher = createPublisher({ repoRoot });
     const cutouts = await createCutouts({ repoRoot, codeRoot });
+    const publisher = createPublisher({ repoRoot, prepare: () => beforePublish() });
     // Recorded as `by` in status history, notes, review moderation and device events.
     const STAFF = { uid: `local-admin:${os.userInfo().username}` };
 
@@ -70,6 +71,27 @@ export async function createApi({ repoRoot, codeRoot = repoRoot, targetMode }) {
 
     const titles = () => new Map(catalog.products().map(product => [product.id, product.title]));
 
+    // Before a publish preview: drop approved cutouts of photos no longer in the catalog, and
+    // refresh the review counts that rank automatic category tiles (lib/categoryTiles.js), so
+    // tiles only change when the catalog is published. Without Firebase the old snapshot stays.
+    async function beforePublish() {
+        const notes = [];
+        const pruned = cutouts.prune();
+        if (pruned.length) notes.push(`${pruned.length} cutout${pruned.length > 1 ? 's' : ''} of photos no longer in the catalog removed.`);
+        const file = path.join(repoRoot, 'public', 'assets', 'data', 'popularity.json');
+        try {
+            const counts = await Promise.race([moderation.reviewCounts(), new Promise((resolve, reject) => setTimeout(() => reject(new Error('Firebase did not answer in 4 s')), 4000))]);
+            const current = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf-8')) : {};
+            if (JSON.stringify(current.counts || {}) !== JSON.stringify(counts)) {
+                fs.writeFileSync(file, `${JSON.stringify({ version: 1, updatedAt: new Date().toISOString(), counts }, null, 2)}\n`);
+                notes.push('Review counts for the category tiles updated.');
+            }
+        } catch (err) {
+            notes.push(`Review counts not refreshed (${err.message}); the category tiles keep the last snapshot.`);
+        }
+        return notes;
+    }
+
     // [method, pattern, handler({ params, query, body })]
     const routes = [
         ['GET', '/api/meta', async () => ({ target: { ...target(), requested: targetMode }, git: publisher.gitSummary() })],
@@ -78,7 +100,7 @@ export async function createApi({ repoRoot, codeRoot = repoRoot, targetMode }) {
             const today = await desk.todayForStaff();
             const names = titles();
             today.recentReviews.items = today.recentReviews.items.map(review => ({ ...review, productTitle: names.get(review.productId) || review.productId }));
-            return { ...today, translations: catalog.translationQueue(), photos: catalog.photoQueue() };
+            return { ...today, translations: catalog.translationQueue(), photos: catalog.photoQueue(), cutouts: cutouts.counts() };
         }],
 
         // Orders and quotes
@@ -116,13 +138,25 @@ export async function createApi({ repoRoot, codeRoot = repoRoot, targetMode }) {
         ['POST', '/api/catalog/validate', async ({ body }) => catalog.validate(body.catalog)],
         ['GET', '/api/gallery', async () => ({ gallery: catalog.readGallery(), version: catalog.version('gallery') })],
         ['PUT', '/api/gallery', async ({ body }) => catalog.saveGallery(body.gallery, { version: body.version })],
-        ['POST', '/api/upload', async ({ body }) => catalog.upload(body)],
+        // Product photos get their cutout right away, in the background (unless the product
+        // keeps its original photo); the editor polls /api/cutouts/state for progress.
+        ['POST', '/api/upload', async ({ body }) => {
+            const result = await catalog.upload(body);
+            if (body.bucket === 'products' && !body.keepOriginal) result.cutout = cutouts.enqueue([result.path])[`/${result.path}`];
+            return result;
+        }],
 
         // Photo cutouts (review before the site uses them)
         ['GET', '/api/cutouts', async () => cutouts.list()],
         ['POST', '/api/cutouts/status', async ({ body }) => cutouts.setStatus(body)],
         ['POST', '/api/cutouts/retry', async ({ body }) => cutouts.retry(body)],
         ['POST', '/api/cutouts/generate', async ({ body }) => cutouts.generate(body)],
+        ['POST', '/api/cutouts/state', async ({ body }) => cutouts.states(body)],
+        ['POST', '/api/cutouts/enqueue', async ({ body }) => ({ jobs: cutouts.enqueue(Array.isArray(body.sources) ? body.sources : []) })],
+
+        // This computer's settings
+        ['GET', '/api/settings', async () => ({ ...cutouts.settings(), ...(await cutouts.available()) })],
+        ['PUT', '/api/settings', async ({ body }) => cutouts.saveSettings(body)],
 
         // Publish
         ['GET', '/api/publish', async () => publisher.preview()],

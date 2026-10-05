@@ -13,8 +13,8 @@ export const PUBLISH_SCOPE = [
     'public/assets/data/products.json',
     'public/assets/data/gallery.json',
     'public/assets/data/cutouts.json',
+    'public/assets/data/popularity.json',
     'public/assets/products',
-    'public/assets/categories',
     'public/assets/datasheets',
     'public/assets/gallery',
 ];
@@ -23,7 +23,9 @@ const PUBLISH_SUBJECT = /^(Publish catalog via admin|Update (products|gallery) v
 
 const fail = (status, message, code) => Object.assign(new Error(message), { status, code });
 
-export function createPublisher({ repoRoot }) {
+// `prepare`: runs before each full preview (prunes unused cutouts, refreshes the popularity
+// snapshot) and returns notes shown with it; its file changes then appear in the list.
+export function createPublisher({ repoRoot, prepare = async () => [] }) {
     const git = (...args) => {
         const result = spawnSync('git', args, { cwd: repoRoot, encoding: 'utf-8', env: { ...process.env, GIT_TERMINAL_PROMPT: '0' } });
         return { ok: result.status === 0, out: (result.stdout || '').trim(), err: (result.stderr || '').trim() };
@@ -67,10 +69,12 @@ export function createPublisher({ repoRoot }) {
         return { branch: result.branch, changes: result.files.length, blockers: result.blockers.filter(text => !/^Nothing to publish/.test(text)) };
     }
 
-    function preview() {
+    async function preview() {
+        const notes = await prepare();
         const result = shared.preview({ repoRoot, scope: PUBLISH_SCOPE, credentials: credentials() });
         return {
             ...result,
+            notes,
             diff: {
                 catalog: diffCatalog(committed('public/assets/data/products.json'), onDisk('public/assets/data/products.json')),
                 gallery: diffGallery(committed('public/assets/data/gallery.json'), onDisk('public/assets/data/gallery.json')),
