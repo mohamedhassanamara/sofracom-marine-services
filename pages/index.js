@@ -55,7 +55,7 @@ function Hero() {
     const { t } = useLang();
     return (
         <section className="relative isolate overflow-hidden bg-navy-950 text-white">
-            <ResponsiveImage src="/assets/site/hero-800.webp" alt="" sizes="100vw" priority className="absolute inset-0 -z-10 h-full w-full object-cover opacity-60" />
+            <ResponsiveImage src="/assets/site/hero-800.webp" alt="" sizes="(max-width: 640px) 50vw, 100vw" priority className="absolute inset-0 -z-10 h-full w-full object-cover opacity-60" />
             <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-950/95 via-navy-950/70 to-navy-950/10 rtl:bg-gradient-to-l" aria-hidden="true" />
             <div className="mx-auto flex min-h-[32rem] max-w-container flex-col justify-center px-4 py-16 sm:px-6 lg:min-h-[36rem]">
                 <p className="text-sm font-semibold uppercase tracking-widest text-accent-300">{t('home.hero.eyebrow')}</p>

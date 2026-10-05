@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useCart } from '../../contexts/CartContext';
 import { useLang } from '../../contexts/LangContext';
 import { DELIVERY_FEE } from '../../lib/constants';
@@ -14,7 +14,11 @@ export default function CartDrawer() {
     const router = useRouter();
     const { cart, count, total, updateQuantity, removeItem, isOpen, closeCart, hasOnOrderItem } = useCart();
 
+    // Close when the page changes (not on mount: the drawer is first mounted by opening it).
+    const lastPath = useRef(router.asPath);
     useEffect(() => {
+        if (lastPath.current === router.asPath) return;
+        lastPath.current = router.asPath;
         closeCart();
     }, [router.asPath, closeCart]);
 

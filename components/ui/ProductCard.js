@@ -9,7 +9,8 @@ import Price from './Price';
 import ResponsiveImage from './ResponsiveImage';
 import { RatingSummary } from './Stars';
 
-const CARD_SIZES = '(min-width: 1280px) 300px, (min-width: 1024px) 30vw, (min-width: 640px) 45vw, 260px';
+// Cards are about half the screen on phones (two columns), a third on desktop.
+const CARD_SIZES = '(min-width: 1280px) 300px, (min-width: 1024px) 30vw, 45vw';
 
 // Default option: the first one in stock (else the first).
 export const defaultVariantIndex = product => {

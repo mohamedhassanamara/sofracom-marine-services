@@ -17,6 +17,34 @@ const loadFirebase = async () => {
 };
 
 const LINKED_KEY = 'sofracom.linked.v1';
+// Set while someone is signed in on this browser: only then is Firebase loaded on page load.
+const SIGNED_IN_HINT = 'sofracom.signedIn.v1';
+const AUTH_PAGES = /^\/(account|checkout)(\/|$)/;
+
+const readHint = () => {
+    try {
+        return window.localStorage.getItem(SIGNED_IN_HINT) === '1';
+    } catch {
+        return false;
+    }
+};
+const writeHint = signedIn => {
+    try {
+        if (signedIn) window.localStorage.setItem(SIGNED_IN_HINT, '1');
+        else window.localStorage.removeItem(SIGNED_IN_HINT);
+    } catch {
+        // storage unavailable
+    }
+};
+// Firebase keeps sessions in this IndexedDB database (also covers sessions from before the hint).
+const hasFirebaseSession = async () => {
+    try {
+        if (!window.indexedDB?.databases) return false;
+        return (await window.indexedDB.databases()).some(db => db.name === 'firebaseLocalStorageDb');
+    } catch {
+        return false;
+    }
+};
 
 export function AuthProvider({ children }) {
     const { lang } = useLang();
@@ -24,11 +52,9 @@ export function AuthProvider({ children }) {
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const firebaseRef = useRef(null);
-
-    const getFirebase = useCallback(async () => {
-        if (!firebaseRef.current) firebaseRef.current = await loadFirebase();
-        return firebaseRef.current;
-    }, []);
+    const loadingRef = useRef(null);
+    const unsubscribeRef = useRef(() => {});
+    const onAuthChange = useRef(null);
 
     const loadProfile = useCallback(async currentUser => {
         if (!currentUser) {
@@ -60,34 +86,56 @@ export function AuthProvider({ children }) {
         }
     }, []);
 
+    onAuthChange.current = currentUser => {
+        setUser(currentUser);
+        writeHint(Boolean(currentUser));
+        if (!currentUser) {
+            setProfile(null);
+            setLoading(false);
+            return;
+        }
+        // Pages can render as soon as we know who is signed in; linking guest
+        // history and loading the profile continue in the background.
+        setLoading(false);
+        linkGuestHistory(currentUser).finally(() => loadProfile(currentUser));
+    };
+
+    // Loads the Firebase Auth SDK once (about 170 KB) and starts listening to the session.
+    const getFirebase = useCallback(() => {
+        if (!loadingRef.current) {
+            loadingRef.current = loadFirebase().then(firebase => {
+                firebaseRef.current = firebase;
+                unsubscribeRef.current = firebase.fb.onIdTokenChanged(firebase.auth, currentUser => onAuthChange.current(currentUser));
+                return firebase;
+            });
+            loadingRef.current.catch(() => {
+                loadingRef.current = null;
+            });
+        }
+        return loadingRef.current;
+    }, []);
+
+    // Guests never download Firebase: it starts on page load only when this browser has a
+    // session (or on account/checkout pages); otherwise on first use (e.g. the sign-in page).
     useEffect(() => {
-        let unsubscribe = () => {};
         let cancelled = false;
-        getFirebase()
-            .then(({ auth, fb }) => {
-                if (cancelled) return;
-                unsubscribe = fb.onIdTokenChanged(auth, async currentUser => {
-                    setUser(currentUser);
-                    if (!currentUser) {
-                        setProfile(null);
-                        setLoading(false);
-                        return;
-                    }
-                    // Pages can render as soon as we know who is signed in; linking guest
-                    // history and loading the profile continue in the background.
-                    setLoading(false);
-                    linkGuestHistory(currentUser).finally(() => loadProfile(currentUser));
-                });
-            })
-            .catch(error => {
+        (async () => {
+            const needed = readHint() || AUTH_PAGES.test(window.location.pathname.replace(/^\/(fr|ar)(?=\/|$)/, '')) || (await hasFirebaseSession());
+            if (cancelled) return;
+            if (!needed) {
+                setLoading(false);
+                return;
+            }
+            getFirebase().catch(error => {
                 console.error('[auth] failed to initialise Firebase', error);
                 setLoading(false);
             });
+        })();
         return () => {
             cancelled = true;
-            unsubscribe();
+            unsubscribeRef.current();
         };
-    }, [getFirebase, linkGuestHistory, loadProfile]);
+    }, [getFirebase]);
 
     // Firebase emails (verification, password reset) follow the site language.
     useEffect(() => {
@@ -134,7 +182,7 @@ export function AuthProvider({ children }) {
         const { auth, fb } = await getFirebase();
         const provider = new fb.GoogleAuthProvider();
         provider.setCustomParameters({ prompt: 'select_account' });
-        const credential = await fb.signInWithPopup(auth, provider);
+        const credential = await fb.signInWithPopup(auth, provider, fb.browserPopupRedirectResolver);
         return credential.user;
     }, [getFirebase]);
 

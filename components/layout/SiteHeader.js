@@ -10,10 +10,12 @@ import { authLink } from '../../lib/redirect';
 import { LOCALES } from '../../lib/i18n/locales';
 import Button from '../ui/Button';
 import { cx } from '../ui/cx';
-import { Drawer } from '../ui/Dialog';
 import { ArrowRight, ChevronDown, Globe, Icon, Menu, MessageSquareText, ShoppingCart, User } from '../ui/icons';
-import { Segmented } from '../ui/Tabs';
 import SearchBox from './SearchBox';
+import dynamic from 'next/dynamic';
+
+// The phone menu (a drawer) loads the first time it opens.
+const MobileMenu = dynamic(() => import('./MobileMenu'), { ssr: false });
 
 export const NAV_LINKS = [
     { href: '/#services', key: 'nav.services' },
@@ -26,7 +28,7 @@ export const LANGUAGE_NAMES = { en: 'English', fr: 'Français', ar: 'العرب�
 function Logo() {
     const { t } = useLang();
     return (
-        <Link href="/" className="flex shrink-0 items-center gap-2.5 rounded-md" aria-label={t('header.home')}>
+        <Link prefetch={false} href="/" className="flex shrink-0 items-center gap-2.5 rounded-md" aria-label={t('header.home')}>
             <img src="/assets/site/logo-400.webp" alt="" width="40" height="40" className="h-10 w-10 rounded-md ring-1 ring-white/25" />
             <span className="text-lg font-bold tracking-wide text-white">SOFRACOM</span>
         </Link>
@@ -63,7 +65,7 @@ function AccountLink({ compact }) {
     const href = user ? '/account' : authLink('login', router.asPath);
     const label = user ? t('nav.account') : t('nav.signIn');
     return (
-        <Link href={href} className="flex h-10 min-w-[2.5rem] items-center justify-center gap-2 rounded-md px-2 text-sm font-medium text-white hover:bg-white/10" aria-label={compact ? label : undefined} title={user ? name : undefined}>
+        <Link prefetch={false} href={href} className="flex h-10 min-w-[2.5rem] items-center justify-center gap-2 rounded-md px-2 text-sm font-medium text-white hover:bg-white/10" aria-label={compact ? label : undefined} title={user ? name : undefined}>
             {user ? (
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-accent-400 text-sm font-bold text-navy-950" aria-hidden="true">
                     {(name[0] || '?').toUpperCase()}
@@ -160,7 +162,7 @@ function ShopMenu() {
                         <ul className="grid grid-cols-2 gap-2 xl:grid-cols-3">
                             {(index?.categories || []).map(category => (
                                 <li key={category.slug}>
-                                    <Link href={`/products/${category.slug}`} className="flex items-center gap-3 rounded-md p-2 hover:bg-slate-50">
+                                    <Link prefetch={false} href={`/products/${category.slug}`} className="flex items-center gap-3 rounded-md p-2 hover:bg-slate-50">
                                         <img src={category.image} alt="" loading="lazy" className="h-12 w-12 shrink-0 rounded-md bg-slate-100 object-cover" />
                                         <span className="min-w-0">
                                             <span className="block truncate font-semibold">{category.name[lang] || category.name.en}</span>
@@ -170,7 +172,7 @@ function ShopMenu() {
                                 </li>
                             ))}
                         </ul>
-                        <Link href="/products" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-700 hover:underline">
+                        <Link prefetch={false} href="/products" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-700 hover:underline">
                             {t('header.allProducts')}
                             <Icon as={ArrowRight} size={16} flip />
                         </Link>
@@ -178,66 +180,13 @@ function ShopMenu() {
                     <div className="rounded-lg bg-navy-50 p-5">
                         <p className="font-semibold text-navy-900">{t('header.servicesPitch')}</p>
                         <p className="mt-2 text-sm text-slate-700">{t('header.servicesPitchBody')}</p>
-                        <Button href="/quote" variant="primary" size="sm" icon={MessageSquareText} className="mt-4">
+                        <Button href="/quote" prefetch={false} variant="primary" size="sm" icon={MessageSquareText} className="mt-4">
                             {t('nav.quote')}
                         </Button>
                     </div>
                 </div>
             </div>
         </li>
-    );
-}
-
-function MobileMenu({ open, onClose }) {
-    const { t, lang, setLang } = useLang();
-    const { index, load } = useCatalogIndex();
-    useEffect(() => {
-        if (open) load();
-    }, [open, load]);
-    const link = 'flex min-h-[2.75rem] items-center rounded-md px-3 font-medium text-slate-900 hover:bg-slate-100';
-    return (
-        <Drawer open={open} onClose={onClose} title={t('header.menu')} side="start">
-            <nav aria-label={t('header.mainNav')} className="flex flex-col gap-6">
-                <div>
-                    <p className="mb-1 px-3 text-xs font-semibold uppercase tracking-wide text-slate-600">{t('header.shopTitle')}</p>
-                    <ul>
-                        <li>
-                            <Link href="/products" className={cx(link, 'font-semibold')} onClick={onClose}>
-                                {t('header.allProducts')}
-                            </Link>
-                        </li>
-                        {(index?.categories || []).map(category => (
-                            <li key={category.slug}>
-                                <Link href={`/products/${category.slug}`} className={link} onClick={onClose}>
-                                    {category.name[lang] || category.name.en}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                <ul className="border-t border-slate-200 pt-4">
-                    {NAV_LINKS.map(item => (
-                        <li key={item.key}>
-                            <Link href={item.href} className={link} onClick={onClose}>
-                                {t(item.key)}
-                            </Link>
-                        </li>
-                    ))}
-                    <li>
-                        <Link href="/track" className={link} onClick={onClose}>
-                            {t('footer.trackOrder')}
-                        </Link>
-                    </li>
-                </ul>
-                <div className="border-t border-slate-200 px-3 pt-4">
-                    <p className="mb-2 text-sm font-medium text-slate-800">{t('header.language')}</p>
-                    <Segmented label={t('header.language')} value={lang} onChange={setLang} options={LOCALES.map(locale => ({ value: locale, label: LANGUAGE_NAMES[locale] }))} />
-                </div>
-                <Button href="/quote" variant="accent" icon={MessageSquareText} fullWidth onClick={onClose}>
-                    {t('nav.quote')}
-                </Button>
-            </nav>
-        </Drawer>
     );
 }
 
@@ -248,7 +197,11 @@ export default function SiteHeader() {
     const { t } = useLang();
     const router = useRouter();
     const [menuOpen, setMenuOpen] = useState(false);
+    const [menuUsed, setMenuUsed] = useState(false);
     useCatalogIndex({ prefetch: true });
+    useEffect(() => {
+        if (menuOpen) setMenuUsed(true);
+    }, [menuOpen]);
     useEffect(() => setMenuOpen(false), [router.asPath]);
 
     return (
@@ -271,7 +224,7 @@ export default function SiteHeader() {
                         <AccountLink compact />
                     </span>
                     <CartButton />
-                    <Button href="/quote" variant="accent" icon={MessageSquareText} className="ms-2 hidden lg:inline-flex">
+                    <Button href="/quote" prefetch={false} variant="accent" icon={MessageSquareText} className="ms-2 hidden lg:inline-flex">
                         {t('nav.quote')}
                     </Button>
                 </div>
@@ -281,7 +234,7 @@ export default function SiteHeader() {
                     <ShopMenu />
                     {NAV_LINKS.map(item => (
                         <li key={item.key}>
-                            <Link href={item.href} className="flex h-11 items-center rounded-md px-3 text-sm font-semibold text-navy-100 hover:bg-white/10 hover:text-white">
+                            <Link prefetch={false} href={item.href} className="flex h-11 items-center rounded-md px-3 text-sm font-semibold text-navy-100 hover:bg-white/10 hover:text-white">
                                 {t(item.key)}
                             </Link>
                         </li>
@@ -290,11 +243,11 @@ export default function SiteHeader() {
             </nav>
             <div className="flex gap-2 px-4 pb-3 lg:hidden">
                 <SearchBox className="min-w-0 flex-1" />
-                <Button href="/quote" variant="accent" icon={MessageSquareText} className="shrink-0 px-3">
+                <Button href="/quote" prefetch={false} variant="accent" icon={MessageSquareText} className="shrink-0 px-3">
                     {t('header.quoteShort')}
                 </Button>
             </div>
-            <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+            {menuUsed && <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />}
         </header>
     );
 }

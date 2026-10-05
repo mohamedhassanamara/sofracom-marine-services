@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 npm run dev            # Next.js dev server against PRODUCTION Firebase (site + /api routes)
-npm run build          # production build
+npm run build          # production build (`next build --webpack`: Turbopack duplicated shared chunks)
 npm run emulators      # Firebase Auth + Firestore emulators (project demo-sofracom), UI on :4000
 npm run dev:emulated   # Next.js dev server wired to the emulators (use this for local work)
 npm run seed:emulator  # demo users/orders: buyer@example.test, staff@example.test (pw emulator-pass-123)
@@ -16,6 +16,7 @@ npm test               # i18n completeness + Firestore rules tests + API tests (
 npm run test:i18n      # every key present in en/fr/ar with matching {placeholders}
 npm run test:rules     # tests/rules/*.test.mjs via firebase emulators:exec
 npm run test:api       # tests/api/*.test.mjs: spawns `next dev` on :3199 against the emulators
+                       #   (routing.test.mjs checks locale/legacy/image redirects and NEXT_LOCALE)
 npm run admin          # local admin app → http://127.0.0.1:5180 (asks: emulator or production;
                        #   or pass -- --emulator / -- --production)
 npm run admin:emulated # same app against the emulators
@@ -31,7 +32,7 @@ npm run admin:emulated # same app against the emulators
 **Next.js Pages Router** (`pages/`), React 19, plain JavaScript. Deployed on Vercel. Styling: Tailwind **v3.4 via PostCSS** whose theme is **only** `lib/design/tokens.js` (navy/accent/slate/success/warning/danger/info, 8 font sizes, radii sm–xl, 3 shadows, motion), so off-palette classes don't exist; use logical utilities (`ms-/me-/ps-/pe-/start-/end-/text-start`) and `rtl:`. `styles/globals.css` + `styles/account.css` use `theme()` for every value. Fonts: next/font (Inter + IBM Plex Sans Arabic) in `_app.js`. Status/stock colours: `tones` + `statusTone` in the tokens (one palette for site, admin and staff app).
 
 ### UI kit
-`components/ui/` (see `/styleguide`): Button, Field/Input/Select/…, Card, Badge/StatusBadge/StockBadge, Price, Stars, Dialog/Drawer (native `<dialog>`), Tabs/Segmented, Breadcrumb, LoadMore/Pagination, Toast (`useToast`, provider in `_app`), EmptyState/Skeleton, QuantityStepper, ProductCard, icons (lucide via `components/ui/icons.js`). Build pages from these; format money/dates only with `lib/format.js` / `hooks/useFormat`.
+`components/ui/` (see `/styleguide`): Button, Field/Input/Select/…, Card, Badge/StatusBadge/StockBadge, Price, Stars, Dialog/Drawer (native `<dialog>`), Tabs/Segmented, Breadcrumb, LoadMore/Pagination, Toast (`useToast`, provider in `_app`), EmptyState/Skeleton, QuantityStepper, ProductCard, icons (lucide via `components/ui/icons.js`). Build pages from these; format money/dates only with `lib/format.js` / `hooks/useFormat`. Keep first-load JS small: the cart drawer and mobile menu are `next/dynamic` (`ssr:false`), header/footer links use `prefetch={false}`, and only the LCP image gets `priority` (preloaded from `<head>`).
 
 ### Locales, SEO, images
 - URL locales (`next.config.js` `i18n`): English at `/`, `/fr`, `/ar`; `_document` renders `lang`/`dir`; `LangContext` reads `router.locale`, the switcher navigates and sets `NEXT_LOCALE`. `getStaticPaths` must return every locale. Links via `next/link`/`router` keep the locale; never hard-code `/fr`.
@@ -66,8 +67,8 @@ npm run admin:emulated # same app against the emulators
 
 ### Client state
 - Catalog languages: `translations[lang].{title,description,usage,variants[i].label}` win; otherwise use tags and option labels go through `lib/catalogGlossary.js` (EN/FR/AR terms, merges "noir"/"black"); missing text falls back to English and pages mark it with `langAttrs` (`lib/i18n/locales.js`). Arabic titles get bidi isolates (`lib/bidi.js`). Drafted translations carry `needsReview: true` (and `suggestedTitle` when an existing Arabic title is just English); `node scripts/apply-translation-drafts.mjs [--apply]` fills gaps from `scripts/data/ar-drafts.json` without overwriting.
-- `contexts/LangContext.js` + `lib/i18n/{en,fr,ar}.js`: `t(key, {vars})` with `{placeholder}` interpolation; missing keys fall back to English. Every new key must exist in all three files (`npm run test:i18n`). Catalog content uses `translations[lang]` via `lib/localize.js`.
-- `contexts/AuthContext.js`: optional accounts (email/password, Google, reset, verification). Signing in/out never touches the cart.
+- `contexts/LangContext.js` + `lib/i18n/{en,fr,ar}.js`: `t(key, {vars})` with `{placeholder}` interpolation; missing keys fall back to English. Dictionaries go through `lib/i18n/messages.js`: the server has all three, the browser gets only the page's one inlined by `_document` (`#__I18N__`) and loads another on language switch; never import `lib/i18n/{en,fr,ar}` directly from client code (non-Next entry points such as the admin call `registerMessages`). Every new key must exist in all three files (`npm run test:i18n`). Catalog content uses `translations[lang]` via `lib/localize.js`.
+- `contexts/AuthContext.js`: optional accounts (email/password, Google, reset, verification). Signing in/out never touches the cart. Firebase Auth is lazy: loaded on page load only with the `sofracom.signedIn.v1` hint, an existing Firebase IndexedDB session, or on `/account*` and `/checkout`; otherwise on first use (`getFirebase()`). `lib/firebase/client.js` uses `initializeAuth` and passes `browserPopupRedirectResolver` only to `signInWithPopup`.
 - `contexts/CartContext.js`: one cart for the whole site in `localStorage` (`sofracom.cart.v1`); `components/cart/CartDrawer` + `/checkout` are the only cart UI; `useAddToCart` adds with a toast. Old cart lines without `productId` are resolved server-side via `legacyId`.
 
 ### Local admin app (`tools/admin`)

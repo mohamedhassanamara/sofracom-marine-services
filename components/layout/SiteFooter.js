@@ -30,7 +30,7 @@ export default function SiteFooter() {
         <footer className="mt-20 bg-navy-950 text-navy-100">
             <div className="mx-auto grid max-w-container gap-10 px-4 py-14 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
                 <div>
-                    <Link href="/" className="inline-flex items-center gap-2.5">
+                    <Link prefetch={false} href="/" className="inline-flex items-center gap-2.5">
                         <img src="/assets/site/logo-400.webp" alt="" width="40" height="40" loading="lazy" className="h-10 w-10 rounded-md ring-1 ring-white/25" />
                         <span className="text-lg font-bold tracking-wide text-white">SOFRACOM</span>
                     </Link>
@@ -65,13 +65,13 @@ export default function SiteFooter() {
                 </div>
                 <Column title={t('footer.shop')}>
                     <li>
-                        <Link href="/products" className={linkClass}>
+                        <Link prefetch={false} href="/products" className={linkClass}>
                             {t('header.allProducts')}
                         </Link>
                     </li>
                     {(index?.categories || []).map(category => (
                         <li key={category.slug}>
-                            <Link href={`/products/${category.slug}`} className={linkClass}>
+                            <Link prefetch={false} href={`/products/${category.slug}`} className={linkClass}>
                                 {category.name[lang] || category.name.en}
                             </Link>
                         </li>
@@ -79,44 +79,44 @@ export default function SiteFooter() {
                 </Column>
                 <Column title={t('footer.help')}>
                     <li>
-                        <Link href="/#services" className={linkClass}>
+                        <Link prefetch={false} href="/#services" className={linkClass}>
                             {t('nav.services')}
                         </Link>
                     </li>
                     <li>
-                        <Link href="/quote" className={linkClass}>
+                        <Link prefetch={false} href="/quote" className={linkClass}>
                             {t('nav.quote')}
                         </Link>
                     </li>
                     <li>
-                        <Link href="/track" className={linkClass}>
+                        <Link prefetch={false} href="/track" className={linkClass}>
                             {t('footer.trackOrder')}
                         </Link>
                     </li>
                     <li>
-                        <Link href="/#faq" className={linkClass}>
+                        <Link prefetch={false} href="/#faq" className={linkClass}>
                             {t('footer.faq')}
                         </Link>
                     </li>
                     <li>
-                        <Link href="/#contact" className={linkClass}>
+                        <Link prefetch={false} href="/#contact" className={linkClass}>
                             {t('footer.contact')}
                         </Link>
                     </li>
                 </Column>
                 <Column title={t('footer.company')}>
                     <li>
-                        <Link href="/#about" className={linkClass}>
+                        <Link prefetch={false} href="/#about" className={linkClass}>
                             {t('nav.about')}
                         </Link>
                     </li>
                     <li>
-                        <Link href="/gallery" className={linkClass}>
+                        <Link prefetch={false} href="/gallery" className={linkClass}>
                             {t('nav.gallery')}
                         </Link>
                     </li>
                     <li>
-                        <Link href="/account" className={linkClass}>
+                        <Link prefetch={false} href="/account" className={linkClass}>
                             {t('nav.account')}
                         </Link>
                     </li>

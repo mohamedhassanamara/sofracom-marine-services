@@ -1,14 +1,23 @@
-import { useEffect } from 'react';
+import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '../contexts/AuthContext';
+import { useCart } from '../contexts/CartContext';
 import SiteHeader from './layout/SiteHeader';
 import SiteFooter from './layout/SiteFooter';
-import CartDrawer from './cart/CartDrawer';
+
+// Loaded the first time the cart opens: it isn't needed to show the page.
+const CartDrawer = dynamic(() => import('./cart/CartDrawer'), { ssr: false });
 
 // Every page: header (with the cart button), one <main>, footer, and the cart drawer.
 export default function Layout({ children }) {
     const router = useRouter();
     const { profile } = useAuth();
+    const { isOpen: cartOpen } = useCart();
+    const [cartUsed, setCartUsed] = useState(false);
+    useEffect(() => {
+        if (cartOpen) setCartUsed(true);
+    }, [cartOpen]);
 
     // A temporary password set by staff must be replaced right after signing in.
     useEffect(() => {
@@ -48,7 +57,7 @@ export default function Layout({ children }) {
                 {children}
             </main>
             <SiteFooter />
-            <CartDrawer />
+            {cartUsed && <CartDrawer />}
         </div>
     );
 }

@@ -5,7 +5,7 @@
   "main": "script.js",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "emulators": "firebase emulators:start --project demo-sofracom",
     "dev:emulated": "NEXT_PUBLIC_USE_FIREBASE_EMULATORS=true FIRESTORE_EMULATOR_HOST=127.0.0.1:8080 FIREBASE_AUTH_EMULATOR_HOST=127.0.0.1:9099 GCLOUD_PROJECT=demo-sofracom next dev",
