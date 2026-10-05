@@ -56,7 +56,7 @@ before(async () => {
     repo.git('push', '-q', 'origin', 'main');
     child = spawn('node', ['--disable-warning=MODULE_TYPELESS_PACKAGE_JSON', 'tools/admin/server.mjs', '--emulator'], {
         cwd: ROOT,
-        env: { ...process.env, ADMIN_PORT: String(PORT), ADMIN_REPO_ROOT: repo.work, HOST: '0.0.0.0' },
+        env: { ...process.env, ADMIN_PORT: String(PORT), ADMIN_REPO_ROOT: repo.work, HOST: '0.0.0.0', BG_REMOVAL_PATH: '' },
         stdio: 'ignore',
     });
     for (let attempt = 0; attempt < 80; attempt += 1) {
@@ -153,4 +153,36 @@ test('publish: shows the diff, commits only catalog files to main; rollback reve
     assert.match(repo.remoteHead(), /^Revert "Publish catalog via admin/);
     const reverted = JSON.parse(fs.readFileSync(path.join(repo.work, 'public/assets/data/products.json'), 'utf-8'));
     assert.equal(reverted.categories[0].products[0].variants[0].price, 10);
+});
+
+test('photo cutouts: bulk approve / keep original need the token, publish with the catalog, and are reversible', async () => {
+    const src = '/assets/products/paint-800.webp';
+    repo.write('public/assets/data/cutouts.json', `${JSON.stringify({ version: 1, images: { [src]: { cutout: '/assets/products/cutouts/paint-cut-800.webp', status: 'pending', model: 'medium' } } }, null, 2)}\n`);
+    repo.write('public/assets/products/cutouts/paint-cut-800.webp', 'webp');
+    repo.git('add', '-A');
+    repo.git('commit', '-qm', 'cutouts');
+    repo.git('push', '-q', 'origin', 'main');
+
+    assert.equal((await request({ method: 'POST', path: '/api/cutouts/status', body: { sources: [src], status: 'approved' } })).status, 403);
+    assert.equal((await write('POST', '/api/cutouts/status', { sources: [src], status: 'deleted' })).status, 400);
+
+    const approved = await write('POST', '/api/cutouts/status', { sources: [src], status: 'approved' });
+    assert.equal(approved.status, 200);
+    assert.equal(JSON.parse(fs.readFileSync(path.join(repo.work, 'public/assets/data/cutouts.json'), 'utf-8')).images[src].status, 'approved');
+    const preview = await request({ path: '/api/publish' });
+    assert.deepEqual(preview.json.files.map(file => file.path), ['public/assets/data/cutouts.json']);
+    assert.deepEqual(preview.json.diff.cutouts.added.map(item => item.id), [src]);
+
+    // Back to the original: the site would show nothing new; the cutout file is kept.
+    await write('POST', '/api/cutouts/status', { sources: [src], status: 'original' });
+    const reverted = (await request({ path: '/api/publish' })).json.diff.cutouts;
+    assert.deepEqual([reverted.added, reverted.removed], [[], []]);
+    assert.ok(fs.existsSync(path.join(repo.work, 'public/assets/products/cutouts/paint-cut-800.webp')));
+
+    // Without the background-removal library: listing still works, generating says why it can't.
+    const list = await request({ path: '/api/cutouts' });
+    assert.equal(list.json.available, false);
+    const retry = await write('POST', '/api/cutouts/retry', { src });
+    assert.equal(retry.status, 503);
+    assert.equal(retry.json.code, 'cutouts/unavailable');
 });

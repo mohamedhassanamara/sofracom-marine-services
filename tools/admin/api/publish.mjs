@@ -4,7 +4,7 @@ import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { createRequire } from 'node:module';
-import { diffCatalog, diffGallery } from './diff.mjs';
+import { diffCatalog, diffCutouts, diffGallery } from './diff.mjs';
 
 const require = createRequire(import.meta.url);
 const shared = require('../../shared/publish.js');
@@ -12,6 +12,7 @@ const shared = require('../../shared/publish.js');
 export const PUBLISH_SCOPE = [
     'public/assets/data/products.json',
     'public/assets/data/gallery.json',
+    'public/assets/data/cutouts.json',
     'public/assets/products',
     'public/assets/categories',
     'public/assets/datasheets',
@@ -72,6 +73,7 @@ export function createPublisher({ repoRoot }) {
             diff: {
                 catalog: diffCatalog(committed('public/assets/data/products.json'), onDisk('public/assets/data/products.json')),
                 gallery: diffGallery(committed('public/assets/data/gallery.json'), onDisk('public/assets/data/gallery.json')),
+                cutouts: diffCutouts(committed('public/assets/data/cutouts.json'), onDisk('public/assets/data/cutouts.json')),
             },
             lastPublish: lastPublish(),
             deploymentConfigured: Boolean(process.env.VERCEL_TOKEN && process.env.VERCEL_PROJECT_ID),

@@ -29,7 +29,7 @@ export function diffCatalog(before, after) {
         const previous = oldCats.get(slug);
         if (!previous) categories.added.push({ slug, name: category.name });
         else {
-            const fields = ['name', 'description', 'image', 'translations'].filter(field => !same(previous[field], category[field]));
+            const fields = ['name', 'description', 'image', 'featuredProductIds', 'translations'].filter(field => !same(previous[field], category[field]));
             if (previous.index !== category.index) fields.push('order');
             if (fields.length) categories.changed.push({ slug, name: category.name, fields });
         }
@@ -55,5 +55,19 @@ export function diffGallery(before, after) {
     return result;
 }
 
-export const isEmptyDiff = ({ catalog, gallery }) =>
-    [catalog.products.added, catalog.products.removed, catalog.products.changed, catalog.categories.added, catalog.categories.removed, catalog.categories.changed, gallery.added, gallery.removed, gallery.changed].every(list => !list.length);
+// Photo cutouts: "added" = the site starts showing the cutout, "removed" = back to the
+// original photo. Pending cutouts don't change the site, so they are not listed.
+export function diffCutouts(before, after) {
+    const shown = manifest => new Set(Object.entries(manifest?.images || {}).filter(([, entry]) => entry?.status === 'approved').map(([src]) => src));
+    const old = shown(before);
+    const now = shown(after);
+    const name = src => src.split('/').pop();
+    return {
+        added: [...now].filter(src => !old.has(src)).map(src => ({ id: src, title: name(src) })),
+        removed: [...old].filter(src => !now.has(src)).map(src => ({ id: src, title: name(src) })),
+        changed: [],
+    };
+}
+
+export const isEmptyDiff = ({ catalog, gallery, cutouts = { added: [], removed: [], changed: [] } }) =>
+    [catalog.products.added, catalog.products.removed, catalog.products.changed, catalog.categories.added, catalog.categories.removed, catalog.categories.changed, gallery.added, gallery.removed, gallery.changed, cutouts.added, cutouts.removed].every(list => !list.length);

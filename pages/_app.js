@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Inter, IBM_Plex_Sans_Arabic } from 'next/font/google';
+import { Inter, IBM_Plex_Sans_Arabic, Manrope } from 'next/font/google';
 import Layout from '../components/Layout';
 import { LangProvider } from '../contexts/LangContext';
 import { CartProvider } from '../contexts/CartContext';
@@ -12,10 +12,15 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 
 // Self-hosted by next/font: no render-blocking request to Google.
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
+// Headings (variable font, one file). Not preloaded: the LCP image goes first and headings
+// swap in when it arrives. Arabic headings use IBM Plex Sans Arabic.
+const manrope = Manrope({ subsets: ['latin'], display: 'swap', preload: false });
 // Only downloaded when Arabic glyphs are on the page (unicode-range), so not preloaded.
 const plexArabic = IBM_Plex_Sans_Arabic({
     subsets: ['arabic'],
-    weight: ['400', '500', '600', '700'],
+    // Two weights keep Arabic pages light: 400 for text, 600 for headings and emphasis
+    // (500 renders as 400, 700 as 600).
+    weight: ['400', '600'],
     display: 'swap',
     preload: false,
 });
@@ -37,10 +42,11 @@ function MyApp({ Component, pageProps }) {
                     <style jsx global>{`
                         :root {
                             --font-inter: ${inter.style.fontFamily};
+                            --font-heading: ${manrope.style.fontFamily};
                             --font-arabic: ${plexArabic.style.fontFamily};
                         }
                     `}</style>
-                    <Shell>
+                    <Shell flushFooter={Component.flushFooter}>
                         <Component {...pageProps} />
                     </Shell>
                     <Analytics />

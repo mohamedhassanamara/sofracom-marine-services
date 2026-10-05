@@ -9,7 +9,7 @@ export function LoadMore({ shown, total, onMore, className }) {
     if (total <= 0) return null;
     return (
         <div className={cx('flex flex-col items-center gap-3', className)}>
-            <p className="text-sm text-slate-600" aria-live="polite">
+            <p className="text-sm text-ink-muted" aria-live="polite">
                 {t('ui.showing', { shown: Math.min(shown, total), total })}
             </p>
             {shown < total && (

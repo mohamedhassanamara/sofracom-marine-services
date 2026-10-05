@@ -15,3 +15,6 @@ export { default as QuantityStepper } from './QuantityStepper';
 export { default as ProductCard, defaultVariantIndex, productStock } from './ProductCard';
 export { default as ResponsiveImage } from './ResponsiveImage';
 export { Icon } from './icons';
+export { default as Popover } from './Popover';
+export { default as ProductRail } from './ProductRail';
+export { default as CategoryArt } from './CategoryArt';

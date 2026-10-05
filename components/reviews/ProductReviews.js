@@ -149,15 +149,15 @@ export default function ProductReviews({ productId, productTitle }) {
     };
 
     return (
-        <section id="reviews" className="mt-12" aria-labelledby="reviews-title">
+        <section id="reviews" className="mt-20 scroll-mt-24 lg:mt-28" aria-labelledby="reviews-title">
             <div className="review-toolbar mb-5">
-                <h2 id="reviews-title" className="text-2xl font-extrabold text-slate-900">
+                <h2 id="reviews-title" className="text-[1.75rem] font-semibold text-ink lg:text-title-2">
                     {t('reviews.title')}
                 </h2>
                 {renderAction()}
             </div>
             {notice && <p className="ui-alert ui-alert--success mb-4" role="status">{notice}</p>}
-            <div className="ui-card mb-6">
+            <div className="mb-6 rounded-2xl bg-surface p-6 sm:p-8">
                 <RatingSummary stats={stats} />
             </div>
             {stats?.count > 0 && (
@@ -175,7 +175,7 @@ export default function ProductReviews({ productId, productTitle }) {
             )}
             {error && <p className="ui-alert ui-alert--error mb-4">{error}</p>}
             {!loading && !error && reviews.length === 0 ? (
-                <div className="ui-card ui-empty">{t('reviews.none')}</div>
+                <div className="rounded-2xl border border-line p-10 text-center text-ink-muted">{t('reviews.none')}</div>
             ) : (
                 <div className="review-list">
                     {reviews.map(review => (

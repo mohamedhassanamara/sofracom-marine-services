@@ -37,8 +37,24 @@ html {
 body {
     font-family: theme('fontFamily.sans');
     margin: 0;
-    background: var(--sand);
-    color: theme('colors.slate.900');
+    background: theme('colors.white');
+    color: theme('colors.ink.DEFAULT');
+    line-height: 1.6;
+}
+
+/* Headings: Manrope (Arabic: IBM Plex Sans Arabic), tight tracking. */
+h1,
+h2,
+h3 {
+    font-family: theme('fontFamily.display');
+    letter-spacing: -0.02em;
+}
+/* Letter-spacing breaks Arabic joining: none at all on Arabic pages (tracking utilities and
+   the title/display sizes included). */
+:root:lang(ar) *,
+:root:lang(ar) *::before,
+:root:lang(ar) *::after {
+    letter-spacing: 0 !important;
 }
 
 :focus-visible {
@@ -178,6 +194,23 @@ html:has(dialog[open]) {
 .ui-drawer {
     inset-block: 0;
     border-radius: 0;
+}
+/* Search panel: docked under the top edge, slides down. */
+.ui-search {
+    margin: 0 0 auto !important;
+    inset-inline: 0;
+}
+.ui-search[open] {
+    animation: ui-slide-from-top var(--dur-base) var(--ease-out);
+}
+.ui-search[open]::backdrop {
+    animation: ui-fade-in var(--dur-base) var(--ease-out);
+}
+@keyframes ui-slide-from-top {
+    from {
+        transform: translateY(-1.5rem);
+        opacity: 0;
+    }
 }
 .ui-sheet {
     margin: auto 0 0 !important;

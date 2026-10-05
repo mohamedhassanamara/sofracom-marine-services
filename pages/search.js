@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 import Seo from '../components/Seo';
-import { Breadcrumb, Button, EmptyState, Input, LoadMore, ProductCard, Select, Skeleton } from '../components/ui';
+import { Breadcrumb, Button, LoadMore, ProductCard, Skeleton } from '../components/ui';
 import { cx } from '../components/ui/cx';
-import { Icon, Search } from '../components/ui/icons';
+import { ChevronDown, Icon, Search } from '../components/ui/icons';
 import { useLang } from '../contexts/LangContext';
 import useAddToCart from '../hooks/useAddToCart';
 import useCatalogIndex from '../hooks/useCatalogIndex';
@@ -62,12 +62,12 @@ export default function SearchPage() {
     return (
         <>
             <Seo title={query ? `${t('seo.search.title')}: ${query}` : t('seo.search.title')} path="/search" noindex />
-            <div className="mx-auto max-w-container px-4 py-8 sm:px-6">
+            <div className="mx-auto max-w-wide px-4 pt-8 sm:px-6 lg:pt-12">
                 <Breadcrumb items={[{ label: t('nav.home'), href: '/' }, { label: t('search.title') }]} />
                 <form
                     role="search"
                     aria-label={t('search.title')}
-                    className="mt-4 flex max-w-2xl gap-2"
+                    className="mt-8 flex max-w-3xl items-center gap-3 border-b border-ink pb-3"
                     onSubmit={event => {
                         event.preventDefault();
                         setParams({ q: draft.trim(), category: '' });
@@ -76,20 +76,18 @@ export default function SearchPage() {
                     <label htmlFor="search-page-input" className="sr-only">
                         {t('search.label')}
                     </label>
-                    <div className="relative flex-1">
-                        <Icon as={Search} size={18} className="pointer-events-none absolute start-3 top-1/2 -translate-y-1/2 text-slate-500" />
-                        <Input id="search-page-input" type="search" enterKeyHint="search" className="ps-10" value={draft} onChange={event => setDraft(event.target.value)} placeholder={t('search.placeholder')} />
-                    </div>
+                    <Icon as={Search} size={24} className="shrink-0 text-ink" />
+                    <input id="search-page-input" type="search" enterKeyHint="search" value={draft} onChange={event => setDraft(event.target.value)} placeholder={t('search.placeholder')} className="min-w-0 flex-1 bg-transparent font-display text-xl font-medium text-ink placeholder:text-ink-muted focus:outline-none sm:text-[1.75rem]" />
                     <Button type="submit">{t('search.submit')}</Button>
                 </form>
 
-                <h1 className="mt-6 text-2xl font-bold text-navy-900" aria-live="polite">
+                <h1 className="mt-10 text-[2rem] font-semibold leading-[1.1] text-ink lg:text-title-1" aria-live="polite">
                     {query ? (index ? t('search.resultsFor', { count: results.length, q: query }) : t('ui.loading')) : t('search.title')}
                 </h1>
-                {!query && <p className="mt-2 text-slate-600">{t('search.prompt')}</p>}
+                {!query && <p className="mt-3 text-body-lg text-ink-muted">{t('search.prompt')}</p>}
 
                 {query && index && matches.length > 0 && (
-                    <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+                    <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
                         <ul className="flex flex-wrap gap-2" aria-label={t('catalog.categories')}>
                             {[{ slug: '', name: { en: t('search.allCategories') } }, ...index.categories.filter(item => counts.has(item.slug))].map(item => {
                                 const active = item.slug === category;
@@ -100,33 +98,34 @@ export default function SearchPage() {
                                             type="button"
                                             aria-pressed={active}
                                             onClick={() => setParams({ category: item.slug })}
-                                            className={cx('inline-flex h-9 items-center gap-1.5 rounded-full border px-4 text-sm font-medium', active ? 'border-navy-900 bg-navy-900 text-white' : 'border-slate-300 bg-white text-slate-700 hover:border-slate-400')}
+                                            className={cx('inline-flex h-10 items-center gap-1.5 rounded-full px-5 text-sm font-medium transition-colors duration-fast', active ? 'bg-ink text-white' : 'bg-surface text-ink hover:bg-surface-strong')}
                                         >
                                             {item.slug ? item.name[lang] || item.name.en : item.name.en}
-                                            <span className={active ? 'text-navy-100' : 'text-slate-500'}>({count})</span>
+                                            <span className={active ? 'text-white/70' : 'text-ink-muted'}>({count})</span>
                                         </button>
                                     </li>
                                 );
                             })}
                         </ul>
-                        <label className="flex items-center gap-2 text-sm text-slate-700">
+                        <label className="relative flex items-center gap-3 text-sm text-ink-muted">
                             <span>{t('catalog.sort')}</span>
-                            <Select value={sort} onChange={event => setParams({ sort: event.target.value })} className="min-w-[11rem]">
+                            <select value={sort} onChange={event => setParams({ sort: event.target.value })} className="h-10 appearance-none rounded-full border border-line-strong bg-white pe-9 ps-4 text-sm font-medium text-ink hover:border-ink focus:outline-none">
                                 {SORTS.map(option => (
                                     <option key={option.value} value={option.value}>
                                         {option.value === 'relevance' ? '—' : t(option.key)}
                                     </option>
                                 ))}
-                            </Select>
+                            </select>
+                            <Icon as={ChevronDown} size={16} className="pointer-events-none absolute end-3 text-ink" />
                         </label>
                     </div>
                 )}
 
                 {query && !index && (
-                    <ul className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
+                    <ul className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4">
                         {Array.from({ length: 8 }, (_, i) => (
                             <li key={i}>
-                                <Skeleton className="aspect-[3/4]" />
+                                <Skeleton className="aspect-square rounded-xl" />
                             </li>
                         ))}
                     </ul>
@@ -134,32 +133,30 @@ export default function SearchPage() {
 
                 {query && index && results.length > 0 && (
                     <>
-                        <ul className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+                        <ul className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-3 lg:grid-cols-4 lg:gap-y-14">
                             {results.slice(0, shown).map(entry => (
                                 <li key={entry.id} className="flex">
                                     <ProductCard product={indexToCardProduct(entry, lang)} stats={stats[entry.id]} onQuickAdd={addToCart} headingLevel={2} className="w-full" />
                                 </li>
                             ))}
                         </ul>
-                        <LoadMore className="mt-10" shown={shown} total={results.length} onMore={() => setShown(count => count + PAGE_SIZE)} />
+                        <LoadMore className="mt-14" shown={shown} total={results.length} onMore={() => setShown(count => count + PAGE_SIZE)} />
                     </>
                 )}
 
                 {query && index && !matches.length && (
-                    <EmptyState
-                        className="mt-6"
-                        icon={Search}
-                        title={t('search.emptyTitle', { q: query })}
-                        description={t('search.emptyBody')}
-                        action={
-                            <div className="flex flex-wrap justify-center gap-3">
-                                <Button href="/products" variant="secondary">
-                                    {t('header.allProducts')}
-                                </Button>
-                                <Button href="/quote?service=products">{t('nav.quote')}</Button>
-                            </div>
-                        }
-                    />
+                    <div className="mx-auto flex max-w-md flex-col items-center py-20 text-center">
+                        <p className="font-display text-title-2 font-semibold text-ink">{t('search.emptyTitle', { q: query })}</p>
+                        <p className="mt-3 text-ink-muted">{t('search.emptyBody')}</p>
+                        <div className="mt-8 flex flex-wrap justify-center gap-3">
+                            <Button size="lg" variant="secondary" href="/products">
+                                {t('header.allProducts')}
+                            </Button>
+                            <Button size="lg" href="/quote?service=products">
+                                {t('nav.quote')}
+                            </Button>
+                        </div>
+                    </div>
                 )}
             </div>
         </>

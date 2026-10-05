@@ -2,28 +2,36 @@ import Link from 'next/link';
 import { useMemo } from 'react';
 import Seo from '../components/Seo';
 import { CONTACT } from '../components/layout/SiteFooter';
-import { Button, ProductCard, ResponsiveImage } from '../components/ui';
+import { CategoryArt, ProductRail, ResponsiveImage } from '../components/ui';
 import { cx } from '../components/ui/cx';
-import { Anchor, ArrowRight, Check, ChevronDown, Icon, Mail, MapPin, MessageSquareText, Paintbrush, Phone, Ship, ShoppingCart, Sparkles, Wrench, Zap } from '../components/ui/icons';
+import { Anchor, ArrowRight, Award, Check, ChevronDown, Icon, MapPin, MessageCircle, Paintbrush, Phone, Ship, Sparkles, Truck, Wrench, Zap } from '../components/ui/icons';
 import { useLang } from '../contexts/LangContext';
 import useAddToCart from '../hooks/useAddToCart';
 import useProductStats from '../hooks/useProductStats';
 import { localizeCategory, localizeProduct } from '../lib/localize';
-import { cardCategory, cardProduct, featuredProducts, getCategories } from '../lib/products';
+import { cardCategory, cardProduct, featuredProducts, getCategories, getProductById } from '../lib/products';
 import { localBusinessJsonLd } from '../lib/seo';
+import { HERO, SERVICE_CARDS } from '../lib/siteMedia';
 
 export function getStaticProps() {
     const categories = getCategories();
     return {
         props: {
             categories: categories.map(cardCategory),
-            featured: featuredProducts(categories, 8).map(cardProduct),
+            featured: featuredProducts(categories, 10).map(cardProduct),
+            // Service cards: a photo, or the listed products' (cutout) images.
+            serviceCards: SERVICE_CARDS.map(card => ({
+                key: card.key,
+                photo: card.photo || null,
+                images: (card.products || []).map(id => getProductById(id)?.product.image).filter(Boolean),
+            })),
         },
     };
 }
 
 const BRANDS = ['jotun', 'hempel', 'international', 'akzonobel', 'sika', 'crown', 'varta', 'bosch'];
 
+// Every service (the quote form lists the same keys); the first three get a large card.
 export const SERVICES = [
     { key: 'antifouling', icon: Paintbrush },
     { key: 'gelcoat', icon: Sparkles },
@@ -32,52 +40,76 @@ export const SERVICES = [
     { key: 'polishing', icon: Wrench },
     { key: 'haulout', icon: Ship },
 ];
-
-// Placeholder testimonials kept at the owner's request until real ones are collected.
-const TESTIMONIALS = [1, 2, 3];
 const FAQ = [1, 2, 3, 4, 5];
+const TRUST = [
+    { icon: Truck, key: 'trust.berth' },
+    { icon: MessageCircle, key: 'trust.advice' },
+    { icon: Award, key: 'trust.brands' },
+    { icon: MapPin, key: 'trust.local' },
+];
 
-function SectionHeading({ id, title, subtitle, action, align = 'start' }) {
+const section = 'mx-auto max-w-wide px-4 py-14 sm:px-6 sm:py-24 lg:py-32';
+const pill = 'inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-[0.9375rem] font-semibold transition-colors duration-fast';
+
+function SectionHeading({ id, title, subtitle, action }) {
     return (
-        <div className={cx('mb-8 flex flex-wrap items-end justify-between gap-4', align === 'center' && 'flex-col items-center text-center')}>
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-6 lg:mb-14">
             <div className="max-w-2xl">
-                <h2 id={id} className="text-2xl font-bold text-navy-900 sm:text-3xl">
+                <h2 id={id} className="text-[2rem] font-semibold leading-[1.1] text-ink lg:text-title-1">
                     {title}
                 </h2>
-                {subtitle && <p className="mt-2 text-slate-600">{subtitle}</p>}
+                {subtitle && <p className="mt-4 text-body-lg text-ink-muted">{subtitle}</p>}
             </div>
             {action}
         </div>
     );
 }
 
+const MoreLink = ({ href, children }) => (
+    <Link prefetch={false} href={href} className="inline-flex items-center gap-1.5 text-[0.9375rem] font-semibold text-ink underline-offset-4 hover:underline">
+        {children}
+        <Icon as={ArrowRight} size={18} flip />
+    </Link>
+);
+
+// The marina photo edge to edge, a light shade only behind the text (bottom / start side).
 function Hero() {
     const { t } = useLang();
     return (
-        <section className="relative isolate overflow-hidden bg-navy-950 text-white">
-            <ResponsiveImage src="/assets/site/hero-800.webp" alt="" sizes="(max-width: 640px) 50vw, 100vw" priority className="absolute inset-0 -z-10 h-full w-full object-cover opacity-60" />
-            <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-950/95 via-navy-950/70 to-navy-950/10 rtl:bg-gradient-to-l" aria-hidden="true" />
-            <div className="mx-auto flex min-h-[32rem] max-w-container flex-col justify-center px-4 py-16 sm:px-6 lg:min-h-[36rem]">
-                <p className="text-sm font-semibold uppercase tracking-widest text-accent-300">{t('home.hero.eyebrow')}</p>
-                <h1 className="mt-3 max-w-2xl text-3xl font-bold leading-tight sm:text-4xl">{t('hero.title')}</h1>
-                <p className="mt-4 max-w-xl text-lg text-navy-100">{t('hero.subtitle')}</p>
-                <div className="mt-8 flex flex-wrap gap-3">
-                    <Button href="/products" variant="accent" size="lg" icon={ShoppingCart}>
-                        {t('home.hero.shop')}
-                    </Button>
-                    <Button href="/quote" variant="inverse" size="lg" icon={MessageSquareText}>
-                        {t('nav.quote')}
-                    </Button>
+        <section className="relative isolate flex min-h-[34rem] items-end overflow-hidden bg-ink sm:min-h-[40rem] lg:h-[min(86vh,48rem)]">
+            <ResponsiveImage src={HERO.image} alt="" sizes="100vw" priority className="absolute inset-0 -z-10 h-full w-full object-cover" style={{ objectPosition: HERO.position }} />
+            <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
+            <div aria-hidden="true" className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-black/30 to-transparent lg:block rtl:bg-gradient-to-l" />
+            <div className="mx-auto w-full max-w-wide px-4 pb-12 sm:px-6 sm:pb-16 lg:pb-24">
+                <div className="max-w-[46rem]">
+                    <h1 className="text-[2.75rem] font-semibold leading-[1.04] tracking-[-0.025em] text-white sm:text-display-2 lg:text-display-1">{t('home.v2.title')}</h1>
+                    <p className="mt-5 max-w-[32rem] text-body-lg text-white/90">{t('home.v2.subtitle')}</p>
+                    <div className="mt-8 flex flex-wrap gap-3">
+                        <Link prefetch={false} href="/products" className={cx(pill, 'bg-white text-ink hover:bg-surface')}>
+                            {t('home.v2.shop')}
+                        </Link>
+                        <Link prefetch={false} href="/quote" className={cx(pill, 'border border-white/70 text-white hover:bg-white/10')}>
+                            {t('nav.quote')}
+                        </Link>
+                    </div>
                 </div>
-                <ul className="mt-10 grid max-w-3xl gap-3 text-sm text-navy-100 sm:grid-cols-3">
-                    {[1, 2, 3].map(n => (
-                        <li key={n} className="flex items-start gap-2">
-                            <Icon as={Check} size={18} className="mt-0.5 text-accent-300" />
-                            {t(`home.hero.point${n}`)}
-                        </li>
-                    ))}
-                </ul>
             </div>
+        </section>
+    );
+}
+
+function TrustBar() {
+    const { t } = useLang();
+    return (
+        <section aria-label={t('trust.label')} className="border-b border-line">
+            <ul className="mx-auto grid max-w-wide grid-cols-2 gap-x-4 gap-y-5 px-4 py-6 sm:px-6 lg:grid-cols-4 lg:py-7">
+                {TRUST.map(item => (
+                    <li key={item.key} className="flex items-center gap-3 text-sm font-medium text-ink lg:justify-center">
+                        <Icon as={item.icon} size={20} className="shrink-0 text-navy-900" />
+                        {t(item.key)}
+                    </li>
+                ))}
+            </ul>
         </section>
     );
 }
@@ -85,33 +117,31 @@ function Hero() {
 function Categories({ categories }) {
     const { t, lang } = useLang();
     return (
-        <section className="mx-auto max-w-container px-4 py-16 sm:px-6" aria-labelledby="home-categories">
-            <SectionHeading
-                id="home-categories"
-                title={t('home.categories.title')}
-                subtitle={t('home.categories.subtitle')}
-                action={
-                    <Link href="/products" className="inline-flex items-center gap-1.5 font-semibold text-accent-700 hover:underline">
-                        {t('header.allProducts')}
-                        <Icon as={ArrowRight} size={18} flip />
-                    </Link>
-                }
-            />
-            <ul className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+        <section className={section} aria-labelledby="home-categories">
+            <SectionHeading id="home-categories" title={t('home.categories.title')} subtitle={t('home.categories.subtitle')} action={<MoreLink href="/products">{t('header.allProducts')}</MoreLink>} />
+            <ul className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
                 {categories.map(raw => {
                     const category = localizeCategory(raw, lang);
                     return (
                         <li key={category.slug}>
-                            <Link href={`/products/${category.slug}`} className="group flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-shadow duration-base hover:shadow-md">
-                                <span className="relative block aspect-[4/3] overflow-hidden bg-slate-100">
-                                    <ResponsiveImage src={category.image} alt="" sizes="(min-width: 1024px) 400px, 50vw" className="h-full w-full object-cover transition-transform duration-slow group-hover:scale-[1.03]" />
-                                </span>
-                                <span className="flex flex-1 items-center justify-between gap-2 p-3 sm:p-4">
+                            <Link prefetch={false} href={`/products/${category.slug}`} className="group relative block aspect-[4/5] overflow-hidden rounded-2xl bg-surface sm:aspect-[4/3]">
+                                <CategoryArt
+                                    images={raw.tiles.map(tile => tile.image)}
+                                    fallback={raw.image}
+                                    sizes="(min-width: 1024px) 220px, 30vw"
+                                    className="!absolute inset-x-0 bottom-0 top-[26%] sm:top-[22%]"
+                                />
+                                <span className="absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-4 sm:p-6">
                                     <span>
-                                        <span className="block font-semibold text-slate-900">{category.name}</span>
-                                        <span className="text-sm text-slate-600">{t('header.productsCount', { count: raw.count })}</span>
+                                        <span className="block font-display text-[1.0625rem] font-semibold leading-tight tracking-[-0.01em] text-ink sm:text-xl">{category.name}</span>
+                                        <span className="mt-1 block text-sm text-ink-muted">{t('header.productsCount', { count: raw.count })}</span>
                                     </span>
-                                    <Icon as={ArrowRight} size={18} flip className="text-navy-700" />
+                                    <span
+                                        className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-ink transition-colors duration-fast group-hover:bg-ink group-hover:text-white sm:flex"
+                                        aria-hidden="true"
+                                    >
+                                        <Icon as={ArrowRight} size={18} flip />
+                                    </span>
                                 </span>
                             </Link>
                         </li>
@@ -128,79 +158,87 @@ function Featured({ products }) {
     const addToCart = useAddToCart();
     const localized = useMemo(() => products.map(product => localizeProduct(product, lang)), [products, lang]);
     return (
-        <section className="bg-slate-100 py-16" aria-labelledby="home-featured">
-            <div className="mx-auto max-w-container px-4 sm:px-6">
-                <SectionHeading
-                    id="home-featured"
-                    title={t('home.featured.title')}
-                    subtitle={t('home.featured.subtitle')}
-                    action={
-                        <Button href="/products" variant="secondary" iconEnd={ArrowRight} iconFlip>
-                            {t('home.featured.all')}
-                        </Button>
-                    }
-                />
-                <ul className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-                    {localized.map(product => (
-                        <li key={product.id} className="flex">
-                            <ProductCard product={product} stats={stats[product.id]} onQuickAdd={addToCart} className="w-full" />
-                        </li>
-                    ))}
-                </ul>
+        <section className="border-t border-line" aria-labelledby="home-featured">
+            <div className={section}>
+                <SectionHeading id="home-featured" title={t('home.featured.title')} subtitle={t('home.featured.subtitle')} action={<MoreLink href="/products">{t('home.featured.all')}</MoreLink>} />
+                <ProductRail products={localized} stats={stats} onQuickAdd={addToCart} label={t('home.featured.title')} />
             </div>
         </section>
     );
 }
 
-function Services() {
-    const { t } = useLang();
-    return (
-        <section id="services" className="mx-auto max-w-container scroll-mt-32 px-4 py-16 sm:px-6" aria-labelledby="home-services">
-            <SectionHeading
-                id="home-services"
-                title={t('services.title')}
-                subtitle={t('home.services.subtitle')}
-                action={
-                    <Button href="/quote" variant="primary" icon={MessageSquareText}>
-                        {t('nav.quote')}
-                    </Button>
-                }
+function ServiceImage({ card }) {
+    if (card.photo)
+        return (
+            <ResponsiveImage
+                src={card.photo}
+                alt=""
+                sizes="(min-width: 1024px) 420px, 100vw"
+                className="h-full w-full object-cover transition-transform duration-base ease-out group-hover:scale-[1.03]"
             />
-            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {SERVICES.map(service => (
-                    <li key={service.key} className="flex gap-4 rounded-lg border border-slate-200 bg-white p-5 shadow-sm" data-animate>
-                        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-navy-50 text-navy-700">
-                            <Icon as={service.icon} size={22} />
-                        </span>
-                        <span>
-                            <h3 className="font-semibold text-slate-900">{t(`home.service.${service.key}.title`)}</h3>
-                            <p className="mt-1 text-sm text-slate-600">{t(`home.service.${service.key}.body`)}</p>
-                            <Link href={`/quote?service=${service.key}`} className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-accent-700 hover:underline">
-                                {t('nav.quote')}
-                                <Icon as={ArrowRight} size={14} flip />
-                            </Link>
-                        </span>
+        );
+    return <CategoryArt images={card.images} sizes="(min-width: 1024px) 260px, 50vw" className="h-full w-full" />;
+}
+
+function Services({ cards }) {
+    const { t } = useLang();
+    const others = SERVICES.filter(service => !cards.some(card => card.key === service.key));
+    return (
+        <section id="services" className={cx(section, 'scroll-mt-20')} aria-labelledby="home-services">
+            <SectionHeading id="home-services" title={t('services.title')} subtitle={t('home.services.subtitle')} />
+            <ul className="grid gap-x-6 gap-y-12 md:grid-cols-3">
+                {cards.map(card => (
+                    <li key={card.key} className="group flex flex-col">
+                        <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-surface md:aspect-[4/5]">
+                            <ServiceImage card={card} />
+                        </div>
+                        <h3 className="mt-6 text-xl font-semibold text-ink">{t(`home.service.${card.key}.title`)}</h3>
+                        <p className="mt-2 text-ink-muted">{t(`home.service.${card.key}.body`)}</p>
+                        {/* A visible quote link on every card, phones included. */}
+                        <Link
+                            prefetch={false}
+                            href={`/quote?service=${card.key}`}
+                            className="mt-4 inline-flex items-center gap-1.5 self-start text-[0.9375rem] font-semibold text-navy-900 underline-offset-4 hover:underline"
+                        >
+                            {t('nav.quote')}
+                            <Icon as={ArrowRight} size={16} flip />
+                        </Link>
                     </li>
                 ))}
             </ul>
-            <div className="mt-12 rounded-xl bg-navy-900 p-6 text-white sm:p-8" data-animate>
-                <h3 className="text-xl font-semibold">{t('home.how.title')}</h3>
-                <ol className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {others.length > 0 && (
+                <div className="mt-12 flex flex-wrap items-center gap-3 border-t border-line pt-8">
+                    <p className="me-2 text-sm font-medium text-ink-muted">{t('home.v2.alsoTitle')}</p>
+                    {others.map(service => (
+                        <Link
+                            key={service.key}
+                            prefetch={false}
+                            href={`/quote?service=${service.key}`}
+                            className="inline-flex h-10 items-center gap-2 rounded-full border border-line-strong px-4 text-sm font-medium text-ink hover:border-ink"
+                        >
+                            <Icon as={service.icon} size={16} className="text-navy-900" />
+                            {t(`home.service.${service.key}.title`)}
+                        </Link>
+                    ))}
+                </div>
+            )}
+
+            <div className="mt-20 lg:mt-28">
+                <h3 className="text-2xl font-semibold text-ink lg:text-title-2">{t('home.how.title')}</h3>
+                <ol className="mt-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
                     {[1, 2, 3, 4].map(step => (
-                        <li key={step} className="flex gap-3">
-                            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent-400 font-bold text-navy-950" aria-hidden="true">
-                                {step}
+                        <li key={step} className="border-t border-ink pt-5">
+                            <span className="font-display text-sm font-semibold tabular-nums text-ink-muted" aria-hidden="true">
+                                {String(step).padStart(2, '0')}
                             </span>
-                            <span>
-                                <span className="block font-semibold">{t(`home.how.step${step}.title`)}</span>
-                                <span className="mt-1 block text-sm text-navy-100">{t(`home.how.step${step}.body`)}</span>
-                            </span>
+                            <span className="mt-3 block text-lg font-semibold text-ink">{t(`home.how.step${step}.title`)}</span>
+                            <span className="mt-2 block text-ink-muted">{t(`home.how.step${step}.body`)}</span>
                         </li>
                     ))}
                 </ol>
-                <Button href="/quote" variant="accent" className="mt-8" icon={MessageSquareText}>
+                <Link prefetch={false} href="/quote" className={cx(pill, 'mt-10 bg-navy-900 text-white hover:bg-navy-800')}>
                     {t('nav.quote')}
-                </Button>
+                </Link>
             </div>
         </section>
     );
@@ -209,13 +247,22 @@ function Services() {
 function Brands() {
     const { t } = useLang();
     return (
-        <section id="brands" className="scroll-mt-32 border-y border-slate-200 bg-white py-12" aria-labelledby="home-brands">
-            <div className="mx-auto max-w-container px-4 sm:px-6">
-                <SectionHeading id="home-brands" align="center" title={t('brands.title')} subtitle={t('brands.subtitle')} />
-                <ul className="grid grid-cols-4 items-center gap-6 sm:grid-cols-8">
+        <section id="brands" className="scroll-mt-20 border-y border-line" aria-labelledby="home-brands">
+            <div className="mx-auto max-w-wide px-4 py-12 sm:px-6 lg:py-16">
+                <h2 id="home-brands" className="text-center font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink-muted">
+                    {t('brands.title')}
+                </h2>
+                <ul className="mt-8 grid grid-cols-4 items-center gap-x-6 gap-y-8 lg:grid-cols-8">
                     {BRANDS.map(brand => (
                         <li key={brand} className="flex justify-center">
-                            <img src={`/assets/brands/${brand}-400.webp`} alt={brand.toUpperCase()} loading="lazy" width="96" height="64" className="h-12 w-auto max-w-full object-contain opacity-80 grayscale transition duration-base hover:opacity-100 hover:grayscale-0 sm:h-14" />
+                            <img
+                                src={`/assets/brands/${brand}-400.webp`}
+                                alt={brand.toUpperCase()}
+                                loading="lazy"
+                                width="96"
+                                height="48"
+                                className="h-12 w-auto max-w-full object-contain opacity-80 mix-blend-multiply grayscale transition duration-base hover:opacity-100 hover:grayscale-0 sm:h-16"
+                            />
                         </li>
                     ))}
                 </ul>
@@ -224,59 +271,38 @@ function Brands() {
     );
 }
 
-function Location() {
+function About() {
     const { t } = useLang();
     return (
-        <section id="about" className="mx-auto grid max-w-container scroll-mt-32 items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2" aria-labelledby="home-about">
-            <div className="relative overflow-hidden rounded-xl" data-animate>
-                <ResponsiveImage src="/assets/site/monastir-1-800.webp" alt={t('monoA.title')} sizes="(min-width: 1024px) 600px, 100vw" className="aspect-[16/9] w-full object-cover" />
-                <p className="absolute bottom-3 start-3 rounded-md bg-navy-950/80 px-3 py-1.5 text-sm text-white">
-                    {t('monoB.title')} · {t('monoB.subtitle')}
-                </p>
-            </div>
-            <div data-animate>
-                <p className="text-sm font-semibold uppercase tracking-widest text-accent-700">{t('about.title')}</p>
-                <h2 id="home-about" className="mt-2 text-2xl font-bold text-navy-900 sm:text-3xl">
-                    {t('home.location.title')}
-                </h2>
-                <p className="mt-4 text-slate-700">{t('home.location.body')}</p>
-                <ul className="mt-6 space-y-3">
-                    {[1, 2, 3, 4].map(n => (
-                        <li key={n} className="flex items-start gap-3 text-slate-800">
-                            <Icon as={Check} size={20} className="mt-0.5 text-success-700" />
-                            {t(`home.location.fact${n}`)}
-                        </li>
-                    ))}
-                </ul>
-                <div className="mt-8 flex flex-wrap gap-3">
-                    <Button href={CONTACT.mapsHref} variant="secondary" icon={MapPin} target="_blank" rel="noreferrer">
-                        {t('footer.directions')}
-                    </Button>
-                    <Button href="/quote" variant="primary" icon={MessageSquareText}>
-                        {t('nav.quote')}
-                    </Button>
+        <section id="about" className="scroll-mt-20 bg-surface" aria-labelledby="home-about">
+            <div className={cx(section, 'grid items-center gap-12 lg:grid-cols-2 lg:gap-20')}>
+                <div className="overflow-hidden rounded-2xl">
+                    <ResponsiveImage src="/assets/site/monastir-2-800.webp" alt={t('monoA.title')} sizes="(min-width: 1024px) 640px, 100vw" className="aspect-[4/3] w-full object-cover" />
                 </div>
-            </div>
-        </section>
-    );
-}
-
-function Testimonials() {
-    const { t } = useLang();
-    return (
-        <section className="bg-slate-100 py-16" aria-labelledby="home-testimonials">
-            <div className="mx-auto max-w-container px-4 sm:px-6">
-                <SectionHeading id="home-testimonials" align="center" title={t('testimonials.title')} />
-                <ul className="grid gap-4 md:grid-cols-3">
-                    {TESTIMONIALS.map(n => (
-                        <li key={n}>
-                            <figure className="h-full rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-                                <blockquote className="text-slate-800">“{t(`home.testimonial${n}.quote`)}”</blockquote>
-                                <figcaption className="mt-4 text-sm font-medium text-slate-600">{t(`home.testimonial${n}.author`)}</figcaption>
-                            </figure>
-                        </li>
-                    ))}
-                </ul>
+                <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-navy-900">{t('about.title')}</p>
+                    <h2 id="home-about" className="mt-4 text-[2rem] font-semibold leading-[1.1] text-ink lg:text-title-1">
+                        {t('home.location.title')}
+                    </h2>
+                    <p className="mt-5 text-body-lg text-ink-muted">{t('home.location.body')}</p>
+                    <ul className="mt-8 space-y-4">
+                        {[1, 2, 3, 4].map(n => (
+                            <li key={n} className="flex items-start gap-3 text-ink">
+                                <Icon as={Check} size={20} className="mt-0.5 shrink-0 text-navy-900" />
+                                {t(`home.location.fact${n}`)}
+                            </li>
+                        ))}
+                    </ul>
+                    <a
+                        href={CONTACT.mapsHref}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-8 inline-flex items-center gap-1.5 text-[0.9375rem] font-semibold text-ink underline-offset-4 hover:underline"
+                    >
+                        <Icon as={MapPin} size={18} />
+                        {t('footer.directions')}
+                    </a>
+                </div>
             </div>
         </section>
     );
@@ -285,18 +311,18 @@ function Testimonials() {
 function Faq() {
     const { t } = useLang();
     return (
-        <section id="faq" className="mx-auto max-w-3xl scroll-mt-32 px-4 py-16 sm:px-6" aria-labelledby="home-faq">
-            <h2 id="home-faq" className="mb-6 text-2xl font-bold text-navy-900 sm:text-3xl">
+        <section id="faq" className={cx(section, 'grid scroll-mt-20 gap-10 lg:grid-cols-[1fr_1.6fr] lg:gap-20')} aria-labelledby="home-faq">
+            <h2 id="home-faq" className="text-[2rem] font-semibold leading-[1.1] text-ink lg:text-title-1">
                 {t('faq.title')}
             </h2>
-            <div className="divide-y divide-slate-200 rounded-lg border border-slate-200 bg-white">
+            <div className="divide-y divide-line border-y border-line">
                 {FAQ.map(n => (
                     <details key={n} className="group">
-                        <summary className="flex min-h-[3.5rem] cursor-pointer list-none items-center justify-between gap-4 px-5 py-3 font-semibold text-slate-900 hover:bg-slate-50 [&::-webkit-details-marker]:hidden">
+                        <summary className="flex min-h-[4rem] cursor-pointer list-none items-center justify-between gap-6 py-4 text-[1.0625rem] font-medium text-ink [&::-webkit-details-marker]:hidden">
                             {t(`faq.q${n}`)}
-                            <Icon as={ChevronDown} size={20} className="shrink-0 text-slate-500 transition-transform duration-fast group-open:rotate-180" />
+                            <Icon as={ChevronDown} size={20} className="shrink-0 transition-transform duration-fast group-open:rotate-180" />
                         </summary>
-                        <p className="px-5 pb-5 text-slate-700">{t(`faq.a${n}`)}</p>
+                        <p className="max-w-2xl pb-6 text-ink-muted">{t(`faq.a${n}`)}</p>
                     </details>
                 ))}
             </div>
@@ -304,73 +330,49 @@ function Faq() {
     );
 }
 
-function Contact() {
+// The page's one dark section.
+function Closing() {
     const { t } = useLang();
     return (
-        <section id="contact" className="mx-auto max-w-container scroll-mt-32 px-4 sm:px-6" aria-labelledby="home-contact">
-            <div className="grid gap-8 overflow-hidden rounded-xl bg-navy-900 p-6 text-white sm:p-10 lg:grid-cols-[1.3fr_1fr]">
-                <div>
-                    <h2 id="home-contact" className="text-2xl font-bold sm:text-3xl">
-                        {t('contact.title')}
+        <section className="bg-navy-900 text-white" aria-labelledby="home-cta">
+            <div className="mx-auto flex max-w-wide flex-col gap-8 px-4 py-16 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:py-24">
+                <div className="max-w-2xl">
+                    <h2 id="home-cta" className="text-[2rem] font-semibold leading-[1.1] lg:text-title-1">
+                        {t('home.v2.ctaTitle')}
                     </h2>
-                    <p className="mt-3 max-w-xl text-navy-100">{t('contact.lead')}</p>
-                    <div className="mt-6 flex flex-wrap gap-3">
-                        <Button href="/quote" variant="accent" size="lg" icon={MessageSquareText}>
-                            {t('nav.quote')}
-                        </Button>
-                        <Button href={CONTACT.phoneHref} variant="inverse" size="lg" icon={Phone}>
-                            {t('contact.call')}
-                        </Button>
-                        <Button href={`mailto:${CONTACT.email}`} variant="inverse" size="lg" icon={Mail}>
-                            {t('contact.emailUs')}
-                        </Button>
-                    </div>
+                    <p className="mt-4 text-body-lg text-navy-100">{t('home.v2.ctaBody')}</p>
                 </div>
-                <dl className="grid gap-4 text-sm sm:grid-cols-2 lg:grid-cols-1">
-                    <div>
-                        <dt className="font-semibold text-white">{t('contact.address1')}</dt>
-                        <dd className="text-navy-100">{t('contact.address2')}</dd>
-                    </div>
-                    <div>
-                        <dt className="font-semibold text-white">{t('footer.phone')}</dt>
-                        <dd className="text-navy-100">
-                            <a href={CONTACT.phoneHref} className="hover:underline">
-                                <bdi dir="ltr">{CONTACT.phone}</bdi>
-                            </a>
-                        </dd>
-                    </div>
-                    <div>
-                        <dt className="font-semibold text-white">{t('footer.email')}</dt>
-                        <dd className="text-navy-100">
-                            <a href={`mailto:${CONTACT.email}`} className="hover:underline">
-                                {CONTACT.email}
-                            </a>
-                        </dd>
-                    </div>
-                    <div>
-                        <dt className="sr-only">{t('contact.hours')}</dt>
-                        <dd className="text-navy-100">{t('contact.hours')}</dd>
-                    </div>
-                </dl>
+                <div className="flex flex-wrap gap-3">
+                    <Link prefetch={false} href="/quote" className={cx(pill, 'bg-white text-ink hover:bg-surface')}>
+                        {t('home.v2.ctaButton')}
+                    </Link>
+                    <a href={CONTACT.phoneHref} className={cx(pill, 'border border-white/50 text-white hover:bg-white/10')}>
+                        <Icon as={Phone} size={18} />
+                        <bdi dir="ltr">{CONTACT.phone}</bdi>
+                    </a>
+                </div>
             </div>
         </section>
     );
 }
 
-export default function HomePage({ categories, featured }) {
+export default function HomePage({ categories, featured, serviceCards }) {
     const { t, lang } = useLang();
     return (
         <>
-            <Seo title={t('seo.home.title')} description={t('seo.home.description')} path="/" jsonLd={localBusinessJsonLd(lang)} />
+            <Seo title={t('seo.home.title')} description={t('seo.home.description')} path="/" image={HERO.image} jsonLd={localBusinessJsonLd(lang)} />
             <Hero />
+            <TrustBar />
             <Categories categories={categories} />
             <Featured products={featured} />
-            <Services />
+            <Services cards={serviceCards} />
             <Brands />
-            <Location />
-            <Testimonials />
+            <About />
             <Faq />
-            <Contact />
+            <Closing />
         </>
     );
 }
+
+// The closing band sits right above the footer: no gap between them.
+HomePage.flushFooter = true;

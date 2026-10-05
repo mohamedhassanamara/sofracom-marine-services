@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Button, Field, Input, Textarea, useToast } from '../../../../components/ui';
-import { ChevronDown, ChevronUp, Plus, Trash2 } from '../../../../components/ui/icons';
+import { Button, Field, Input, Select, Textarea, useToast } from '../../../../components/ui';
+import { ChevronDown, ChevronUp, Plus, Trash2, X } from '../../../../components/ui/icons';
 import { siteUrl, upload } from '../api';
 import { Confirm, Panel } from '../components/common';
 
@@ -11,6 +11,48 @@ const slugify = value =>
         .replace(/[̀-ͯ]/g, '')
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/^-|-$/g, '');
+
+// The 1–3 products drawn on the category's tile (home, shop menu, /products). Empty =
+// automatic: in-stock products with a photo, one per brand.
+const MAX_TILES = 3;
+function TileProducts({ category, onChange }) {
+    const products = category.products || [];
+    const ids = (category.featuredProductIds || []).filter(id => products.some(product => product.id === id));
+    const byId = new Map(products.map(product => [product.id, product]));
+    const photo = product => siteUrl(String((product.images || [])[0] || product.image || '').replace(/-800\.webp$/, '-400.webp'));
+    return (
+        <div className="md:col-span-2">
+            <p className="text-sm font-medium text-slate-800">Tile products</p>
+            <p className="text-sm text-slate-600">Up to {MAX_TILES} products shown on the category tile (approved cutouts are used automatically). Leave empty to pick automatically.</p>
+            <ul className="mt-3 flex flex-wrap gap-3">
+                {ids.map(id => (
+                    <li key={id} className="flex w-40 flex-col rounded-md border border-slate-200 bg-white p-2">
+                        <img src={photo(byId.get(id))} alt="" className="aspect-square w-full rounded bg-surface object-contain" />
+                        <span className="mt-1 line-clamp-2 text-xs text-slate-700">{byId.get(id).title}</span>
+                        <Button size="sm" variant="ghost" icon={X} className="mt-1 self-start" onClick={() => onChange(ids.filter(item => item !== id))}>
+                            Remove
+                        </Button>
+                    </li>
+                ))}
+            </ul>
+            {ids.length < MAX_TILES && products.length > 0 && (
+                <label className="mt-3 flex max-w-md flex-col gap-1 text-sm">
+                    <span className="sr-only">Add a tile product</span>
+                    <Select value="" onChange={event => event.target.value && onChange([...ids, event.target.value])}>
+                        <option value="">{ids.length ? 'Add another product…' : 'Choose products (automatic until you do)…'}</option>
+                        {products
+                            .filter(product => !ids.includes(product.id))
+                            .map(product => (
+                                <option key={product.id} value={product.id}>
+                                    {product.title}
+                                </option>
+                            ))}
+                    </Select>
+                </label>
+            )}
+        </div>
+    );
+}
 
 export default function Categories({ store }) {
     const toast = useToast();
@@ -105,6 +147,7 @@ export default function Categories({ store }) {
                                         </Field>
                                     </div>
                                 ))}
+                                <TileProducts category={category} onChange={ids => set(index, { featuredProductIds: ids })} />
                                 <p className="text-sm text-slate-600 md:col-span-2">{(category.products || []).length} products</p>
                             </div>
                         </div>

@@ -3,26 +3,30 @@ import { useEffect } from 'react';
 import { useLang } from '../../contexts/LangContext';
 import useCatalogIndex from '../../hooks/useCatalogIndex';
 import { LOCALES } from '../../lib/i18n/locales';
-import Button from '../ui/Button';
 import { cx } from '../ui/cx';
 import { Drawer } from '../ui/Dialog';
-import { MessageSquareText } from '../ui/icons';
+import { Icon, MessageSquareText } from '../ui/icons';
 import { Segmented } from '../ui/Tabs';
 import { LANGUAGE_NAMES, NAV_LINKS } from './SiteHeader';
 
+// The phone menu: categories, the main links, tracking, language and Get a quote.
 export default function MobileMenu({ open, onClose }) {
     const { t, lang, setLang } = useLang();
     const { index, load } = useCatalogIndex();
     useEffect(() => {
         if (open) load();
     }, [open, load]);
-    const link = 'flex min-h-[2.75rem] items-center rounded-md px-3 font-medium text-slate-900 hover:bg-slate-100';
+    const link = 'flex min-h-[3rem] items-center text-[1.0625rem] text-ink hover:underline';
     return (
         <Drawer open={open} onClose={onClose} title={t('header.menu')} side="start">
-            <nav aria-label={t('header.mainNav')} className="flex flex-col gap-6">
+            <nav aria-label={t('header.mainNav')} className="flex flex-col gap-8 pb-4">
+                <Link prefetch={false} href="/quote" onClick={onClose} className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-navy-900 px-6 text-[0.9375rem] font-semibold text-white hover:bg-navy-800">
+                    <Icon as={MessageSquareText} size={18} />
+                    {t('nav.quote')}
+                </Link>
                 <div>
-                    <p className="mb-1 px-3 text-xs font-semibold uppercase tracking-wide text-slate-600">{t('header.shopTitle')}</p>
-                    <ul>
+                    <p className="mb-1 text-xs font-semibold uppercase tracking-[0.1em] text-ink-muted">{t('header.shopTitle')}</p>
+                    <ul className="divide-y divide-line">
                         <li>
                             <Link prefetch={false} href="/products" className={cx(link, 'font-semibold')} onClick={onClose}>
                                 {t('header.allProducts')}
@@ -37,7 +41,7 @@ export default function MobileMenu({ open, onClose }) {
                         ))}
                     </ul>
                 </div>
-                <ul className="border-t border-slate-200 pt-4">
+                <ul className="divide-y divide-line border-t border-line">
                     {NAV_LINKS.map(item => (
                         <li key={item.key}>
                             <Link prefetch={false} href={item.href} className={link} onClick={onClose}>
@@ -46,20 +50,21 @@ export default function MobileMenu({ open, onClose }) {
                         </li>
                     ))}
                     <li>
+                        <Link prefetch={false} href="/#contact" className={link} onClick={onClose}>
+                            {t('nav.contact')}
+                        </Link>
+                    </li>
+                    <li>
                         <Link prefetch={false} href="/track" className={link} onClick={onClose}>
                             {t('footer.trackOrder')}
                         </Link>
                     </li>
                 </ul>
-                <div className="border-t border-slate-200 px-3 pt-4">
-                    <p className="mb-2 text-sm font-medium text-slate-800">{t('header.language')}</p>
+                <div>
+                    <p className="mb-2 text-sm font-medium text-ink">{t('header.language')}</p>
                     <Segmented label={t('header.language')} value={lang} onChange={setLang} options={LOCALES.map(locale => ({ value: locale, label: LANGUAGE_NAMES[locale] }))} />
                 </div>
-                <Button href="/quote" prefetch={false} variant="accent" icon={MessageSquareText} fullWidth onClick={onClose}>
-                    {t('nav.quote')}
-                </Button>
             </nav>
         </Drawer>
     );
 }
-

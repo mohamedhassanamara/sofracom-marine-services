@@ -9,20 +9,20 @@
     @apply rounded-lg border border-slate-200 bg-white p-5 shadow-sm sm:p-6;
 }
 .ui-btn {
-    @apply inline-flex h-11 select-none items-center justify-center gap-2 whitespace-nowrap rounded-md px-4 text-base font-semibold no-underline transition-colors duration-fast;
+    @apply inline-flex h-11 select-none items-center justify-center gap-2 whitespace-nowrap rounded-full px-5 text-[0.9375rem] font-semibold no-underline transition-colors duration-fast;
     @apply disabled:cursor-not-allowed disabled:opacity-50;
 }
 .ui-btn--primary {
-    @apply bg-navy-900 text-white shadow-sm hover:bg-navy-800 active:bg-navy-950;
+    @apply bg-navy-900 text-white hover:bg-navy-800 active:bg-navy-950;
 }
 .ui-btn--secondary {
-    @apply border border-slate-300 bg-white text-navy-900 hover:border-slate-400 hover:bg-slate-50;
+    @apply border border-line-strong bg-white text-ink hover:border-ink;
 }
 .ui-btn--danger {
-    @apply bg-danger-600 text-white shadow-sm hover:bg-danger-700;
+    @apply bg-danger-600 text-white hover:bg-danger-700;
 }
 .ui-btn--small {
-    @apply h-9 gap-1.5 px-3 text-sm;
+    @apply h-9 gap-1.5 px-4 text-sm;
 }
 .ui-btn--block {
     @apply w-full;

@@ -15,29 +15,30 @@ export const CONTACT = {
 function Column({ title, children }) {
     return (
         <div>
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-white">{title}</h2>
-            <ul className="mt-4 space-y-2.5 text-sm">{children}</ul>
+            <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.1em] text-ink-muted">{title}</h2>
+            <ul className="mt-5 space-y-3 text-[0.9375rem]">{children}</ul>
         </div>
     );
 }
 
-const linkClass = 'text-navy-100 underline-offset-2 hover:text-white hover:underline';
+const linkClass = 'text-ink underline-offset-4 hover:underline';
 
-export default function SiteFooter() {
+// `flush`: no space above (pages that end with a full-width band).
+export default function SiteFooter({ flush = false }) {
     const { t, lang, setLang } = useLang();
     const { index } = useCatalogIndex();
     return (
-        <footer className="mt-20 bg-navy-950 text-navy-100">
-            <div className="mx-auto grid max-w-container gap-10 px-4 py-14 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
-                <div>
+        <footer className={flush ? 'bg-surface text-ink' : 'mt-24 border-t border-line bg-surface text-ink lg:mt-32'}>
+            <div className="mx-auto grid max-w-wide gap-12 px-4 py-16 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:py-20">
+                <div id="contact" className="scroll-mt-24">
                     <Link prefetch={false} href="/" className="inline-flex items-center gap-2.5">
-                        <img src="/assets/site/logo-400.webp" alt="" width="40" height="40" loading="lazy" className="h-10 w-10 rounded-md ring-1 ring-white/25" />
-                        <span className="text-lg font-bold tracking-wide text-white">SOFRACOM</span>
+                        <img src="/assets/site/logo-400.webp" alt="" width="36" height="36" loading="lazy" className="h-9 w-9 rounded-lg" />
+                        <span className="font-display text-[1.0625rem] font-bold tracking-[0.04em] text-ink">SOFRACOM</span>
                     </Link>
-                    <p className="mt-4 max-w-sm text-sm leading-relaxed">{t('footer.tagline')}</p>
-                    <ul className="mt-5 space-y-2.5 text-sm">
+                    <p className="mt-5 max-w-sm text-[0.9375rem] text-ink-muted">{t('footer.tagline')}</p>
+                    <ul className="mt-6 space-y-3 text-[0.9375rem]">
                         <li className="flex items-start gap-2.5">
-                            <Icon as={MapPin} size={18} className="mt-0.5 text-accent-400" />
+                            <Icon as={MapPin} size={18} className="mt-1 shrink-0 text-navy-900" />
                             <span>
                                 {t('contact.address2')} ·{' '}
                                 <a href={CONTACT.mapsHref} className={linkClass} target="_blank" rel="noreferrer">
@@ -46,19 +47,19 @@ export default function SiteFooter() {
                             </span>
                         </li>
                         <li className="flex items-center gap-2.5">
-                            <Icon as={Phone} size={18} className="text-accent-400" />
+                            <Icon as={Phone} size={18} className="shrink-0 text-navy-900" />
                             <a href={CONTACT.phoneHref} className={linkClass} aria-label={`${t('footer.phone')} ${CONTACT.phone}`}>
                                 <bdi dir="ltr">{CONTACT.phone}</bdi>
                             </a>
                         </li>
                         <li className="flex items-center gap-2.5">
-                            <Icon as={Mail} size={18} className="text-accent-400" />
+                            <Icon as={Mail} size={18} className="shrink-0 text-navy-900" />
                             <a href={`mailto:${CONTACT.email}`} className={linkClass}>
                                 {CONTACT.email}
                             </a>
                         </li>
                         <li className="flex items-start gap-2.5">
-                            <Icon as={Clock} size={18} className="mt-0.5 text-accent-400" />
+                            <Icon as={Clock} size={18} className="mt-1 shrink-0 text-navy-900" />
                             <span>{t('contact.hours')}</span>
                         </li>
                     </ul>
@@ -130,7 +131,7 @@ export default function SiteFooter() {
                                     lang={locale}
                                     onClick={() => setLang(locale)}
                                     aria-current={lang === locale ? 'true' : undefined}
-                                    className={lang === locale ? 'font-semibold text-white' : linkClass}
+                                    className={lang === locale ? 'font-semibold text-ink' : `${linkClass} text-ink-muted`}
                                 >
                                     {LANGUAGE_NAMES[locale]}
                                 </button>
@@ -139,12 +140,12 @@ export default function SiteFooter() {
                     </li>
                 </Column>
             </div>
-            <div className="border-t border-white/10">
-                <div className="mx-auto flex max-w-container flex-wrap items-center justify-between gap-3 px-4 py-5 text-sm sm:px-6">
+            <div className="border-t border-line">
+                <div className="mx-auto flex max-w-wide flex-wrap items-center justify-between gap-3 px-4 py-6 text-sm text-ink-muted sm:px-6">
                     <p>
                         © {new Date().getFullYear()} SOFRACOM · Monastir, Tunisia. {t('footer.rights')}
                     </p>
-                    <a href="#top" className={`${linkClass} inline-flex items-center gap-1.5`}>
+                    <a href="#top" className="inline-flex items-center gap-1.5 text-ink-muted underline-offset-4 hover:text-ink hover:underline">
                         <Icon as={ChevronUp} size={16} />
                         {t('footer.backToTop')}
                     </a>

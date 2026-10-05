@@ -35,6 +35,7 @@ export {
     Paintbrush,
     Phone,
     Play,
+    RotateCcw,
     Plus,
     Search,
     Ship,

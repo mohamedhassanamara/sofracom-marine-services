@@ -1229,7 +1229,12 @@
           "name": "مضاد الترسّبات وطلاءات الحماية",
           "description": "دهانات قاع القارب، البرايمر، الدهانات القابلة للتآكل وطبقات التشطيب المناسبة للمياه المحلية."
         }
-      }
+      },
+      "featuredProductIds": [
+        "p_bamzqzdm",
+        "p_519rad9s",
+        "p_nh8795r0"
+      ]
     },
     {
       "name": "Sealants & Adhesives",
@@ -2137,7 +2142,12 @@
           "name": "مواد السدّ و اللصق",
           "description": "سيليكون ومستلزمات لاصقة بحرية للأجهزة، الخشب، الفتحات والزجاج."
         }
-      }
+      },
+      "featuredProductIds": [
+        "p_x61fzhb6",
+        "p_n6zc6cxm",
+        "p_bckzhj1g"
+      ]
     },
     {
       "name": "Oils, Filters & Batteries",
@@ -2405,7 +2415,12 @@
           "name": "زيوت، فلاتر و بطّاريات",
           "description": "زيوت محرّكات، فلاتر، و طاقة كهربائية موثوقة على متن القارب."
         }
-      }
+      },
+      "featuredProductIds": [
+        "p_ua77ih84",
+        "p_q19s0nyv",
+        "p_qa181ekl"
+      ]
     },
     {
       "name": "Hardware Tools",
@@ -7118,7 +7133,12 @@
           "name": "عدة و مستلزمات",
           "description": "أدوات أساسية يستعملها أصحاب القوارب يوميًا."
         }
-      }
+      },
+      "featuredProductIds": [
+        "p_6wwkbkks",
+        "p_kj404e5v",
+        "p_x4tzzt2m"
+      ]
     },
     {
       "name": "Power Tools & Parts",
@@ -7767,6 +7787,11 @@
             }
           }
         }
+      ],
+      "featuredProductIds": [
+        "p_58ixvznr",
+        "p_kk3yii6u",
+        "p_qirv3ffx"
       ]
     },
     {
@@ -7862,6 +7887,10 @@
             }
           }
         }
+      ],
+      "featuredProductIds": [
+        "p_9usdl6fw",
+        "p_5qkjz933"
       ]
     }
   ]

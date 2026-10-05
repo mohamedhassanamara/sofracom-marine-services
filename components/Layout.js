@@ -10,7 +10,7 @@ import SiteFooter from './layout/SiteFooter';
 const CartDrawer = dynamic(() => import('./cart/CartDrawer'), { ssr: false });
 
 // Every page: header (with the cart button), one <main>, footer, and the cart drawer.
-export default function Layout({ children }) {
+export default function Layout({ children, flushFooter = false }) {
     const router = useRouter();
     const { profile } = useAuth();
     const { isOpen: cartOpen } = useCart();
@@ -56,7 +56,7 @@ export default function Layout({ children }) {
             <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
                 {children}
             </main>
-            <SiteFooter />
+            <SiteFooter flush={flushFooter} />
             {cartUsed && <CartDrawer />}
         </div>
     );

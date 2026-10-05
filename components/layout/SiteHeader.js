@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
@@ -6,74 +7,72 @@ import { useCart } from '../../contexts/CartContext';
 import { useLang } from '../../contexts/LangContext';
 import useCatalogIndex from '../../hooks/useCatalogIndex';
 import { formatPhone } from '../../lib/identity';
-import { authLink } from '../../lib/redirect';
 import { LOCALES } from '../../lib/i18n/locales';
-import Button from '../ui/Button';
+import { authLink } from '../../lib/redirect';
+import CategoryArt from '../ui/CategoryArt';
 import { cx } from '../ui/cx';
-import { ArrowRight, ChevronDown, Globe, Icon, Menu, MessageSquareText, ShoppingCart, User } from '../ui/icons';
-import SearchBox from './SearchBox';
-import dynamic from 'next/dynamic';
+import { ArrowRight, ChevronDown, Icon, Menu, Search, ShoppingCart, User } from '../ui/icons';
 
-// The phone menu (a drawer) loads the first time it opens.
+// Loaded the first time they open: neither is needed to show the page.
 const MobileMenu = dynamic(() => import('./MobileMenu'), { ssr: false });
+const SearchOverlay = dynamic(() => import('./SearchOverlay'), { ssr: false });
 
 export const NAV_LINKS = [
     { href: '/#services', key: 'nav.services' },
     { href: '/gallery', key: 'nav.gallery' },
     { href: '/#about', key: 'nav.about' },
-    { href: '/#contact', key: 'nav.contact' },
 ];
 export const LANGUAGE_NAMES = { en: 'English', fr: 'Français', ar: 'العربية' };
+
+const iconButton = 'relative flex h-10 w-10 items-center justify-center rounded-full text-ink transition-colors duration-fast hover:bg-surface';
+const navLink = 'inline-flex h-10 items-center gap-1 rounded-full px-4 text-[0.9375rem] font-medium text-ink transition-colors duration-fast hover:bg-surface';
 
 function Logo() {
     const { t } = useLang();
     return (
         <Link prefetch={false} href="/" className="flex shrink-0 items-center gap-2.5 rounded-md" aria-label={t('header.home')}>
-            <img src="/assets/site/logo-400.webp" alt="" width="40" height="40" className="h-10 w-10 rounded-md ring-1 ring-white/25" />
-            <span className="text-lg font-bold tracking-wide text-white">SOFRACOM</span>
+            <img src="/assets/site/logo-400.webp" alt="" width="36" height="36" className="h-9 w-9 rounded-lg" />
+            <span className="font-display text-[1.0625rem] font-bold tracking-[0.04em] text-ink">SOFRACOM</span>
         </Link>
     );
 }
 
-function LanguageSelect({ className }) {
+function LanguageMenu() {
     const { t, lang, setLang } = useLang();
     return (
-        <label className={cx('relative flex items-center', className)}>
+        <label className="relative hidden items-center lg:flex">
             <span className="sr-only">{t('header.language')}</span>
-            <Icon as={Globe} size={16} className="pointer-events-none absolute start-2.5 text-navy-200" />
-            <select
-                value={lang}
-                onChange={event => setLang(event.target.value)}
-                className="h-10 appearance-none rounded-md border border-white/20 bg-transparent pe-3 ps-8 text-sm font-medium text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-accent-400/60 [&>option]:text-slate-900"
-            >
+            <select value={lang} onChange={event => setLang(event.target.value)} className="h-10 cursor-pointer appearance-none rounded-full bg-transparent pe-7 ps-3 text-sm font-medium uppercase text-ink hover:bg-surface focus:outline-none">
                 {LOCALES.map(locale => (
                     <option key={locale} value={locale} lang={locale}>
-                        {LANGUAGE_NAMES[locale]}
+                        {locale.toUpperCase()} · {LANGUAGE_NAMES[locale]}
                     </option>
                 ))}
             </select>
+            <Icon as={ChevronDown} size={14} className="pointer-events-none absolute end-2.5 text-ink-muted" />
         </label>
     );
 }
 
-function AccountLink({ compact }) {
+function AccountButton() {
     const { t } = useLang();
     const router = useRouter();
     const { user, email, profile, loading } = useAuth();
-    const name = profile?.name || user?.displayName || email || formatPhone(profile?.phone) || '';
+    // Static pages only know their query string after hydration: add it once mounted.
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => setMounted(true), []);
     if (loading) return <span className="h-10 w-10" aria-hidden="true" />;
-    const href = user ? '/account' : authLink('login', router.asPath);
-    const label = user ? t('nav.account') : t('nav.signIn');
+    const name = profile?.name || user?.displayName || email || formatPhone(profile?.phone) || '';
+    const back = mounted ? router.asPath : router.asPath.split('?')[0];
     return (
-        <Link prefetch={false} href={href} className="flex h-10 min-w-[2.5rem] items-center justify-center gap-2 rounded-md px-2 text-sm font-medium text-white hover:bg-white/10" aria-label={compact ? label : undefined} title={user ? name : undefined}>
+        <Link prefetch={false} href={user ? '/account' : authLink('login', back)} className={iconButton} aria-label={user ? t('nav.account') : t('nav.signIn')} title={user ? name : undefined}>
             {user ? (
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-accent-400 text-sm font-bold text-navy-950" aria-hidden="true">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-navy-900 text-xs font-bold text-white" aria-hidden="true">
                     {(name[0] || '?').toUpperCase()}
                 </span>
             ) : (
                 <Icon as={User} size={20} />
             )}
-            {!compact && <span className="max-w-[9rem] truncate">{label}</span>}
         </Link>
     );
 }
@@ -83,10 +82,10 @@ function CartButton() {
     const { count, openCart, loaded } = useCart();
     const shown = loaded ? count : 0;
     return (
-        <button type="button" onClick={openCart} className="relative flex h-10 w-10 items-center justify-center rounded-md text-white hover:bg-white/10" aria-label={t('header.cartLabel', { count: shown })}>
-            <Icon as={ShoppingCart} size={22} />
+        <button type="button" onClick={openCart} className={iconButton} aria-label={t('header.cartLabel', { count: shown })}>
+            <Icon as={ShoppingCart} size={20} />
             {shown > 0 && (
-                <span className="absolute -end-0.5 -top-0.5 flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-accent-400 px-1 text-xs font-bold text-navy-950" aria-hidden="true">
+                <span className="absolute -end-0.5 top-0 flex h-[1.125rem] min-w-[1.125rem] items-center justify-center rounded-full bg-navy-900 px-1 text-[0.6875rem] font-semibold text-white" aria-hidden="true">
                     {shown > 99 ? '99+' : shown}
                 </span>
             )}
@@ -94,7 +93,8 @@ function CartButton() {
     );
 }
 
-// Disclosure menu: click (or hover) opens, Escape closes and returns focus, leaving with Tab closes.
+// Shop: a disclosure (click, or hover with a mouse) opening a panel of category tiles.
+// Escape closes it and returns focus; tabbing out of it closes it.
 function ShopMenu() {
     const { t, lang } = useLang();
     const router = useRouter();
@@ -113,31 +113,32 @@ function ShopMenu() {
         document.addEventListener('mousedown', onDown);
         return () => document.removeEventListener('mousedown', onDown);
     }, [open]);
+    useEffect(() => () => clearTimeout(hoverTimer.current), []);
 
     const show = () => {
         load();
         setOpen(true);
     };
-    const hoverOpen = () => {
+    const hover = next => {
         clearTimeout(hoverTimer.current);
-        hoverTimer.current = setTimeout(show, 120);
-    };
-    const hoverClose = () => {
-        clearTimeout(hoverTimer.current);
-        hoverTimer.current = setTimeout(() => setOpen(false), 200);
+        hoverTimer.current = setTimeout(next ? show : () => setOpen(false), next ? 120 : 200);
     };
 
     return (
-        <li className="static" onMouseEnter={hoverOpen} onMouseLeave={hoverClose}>
-            <button
-                ref={button}
-                type="button"
-                aria-expanded={open}
-                aria-controls="shop-menu"
-                onClick={() => (open ? setOpen(false) : show())}
-                onFocus={load}
-                className={cx('flex h-11 items-center gap-1 rounded-md px-3 text-sm font-semibold hover:bg-white/10', open && 'bg-white/10')}
-            >
+        <li
+            className="static"
+            onMouseEnter={() => hover(true)}
+            onMouseLeave={() => hover(false)}
+            onKeyDown={event => {
+                // From the button or anywhere in the panel.
+                if (event.key === 'Escape' && open) {
+                    clearTimeout(hoverTimer.current);
+                    setOpen(false);
+                    button.current?.focus();
+                }
+            }}
+        >
+            <button ref={button} type="button" aria-expanded={open} aria-controls="shop-menu" onClick={() => (open ? setOpen(false) : show())} onFocus={load} className={cx(navLink, open && 'bg-surface')}>
                 {t('nav.shop')}
                 <Icon as={ChevronDown} size={16} className={cx('transition-transform duration-fast', open && 'rotate-180')} />
             </button>
@@ -145,44 +146,33 @@ function ShopMenu() {
                 ref={panel}
                 id="shop-menu"
                 hidden={!open}
-                onKeyDown={event => {
-                    if (event.key === 'Escape') {
-                        setOpen(false);
-                        button.current?.focus();
-                    }
-                }}
                 onBlur={event => {
                     if (!panel.current?.contains(event.relatedTarget) && event.relatedTarget !== button.current) setOpen(false);
                 }}
-                className="absolute inset-x-0 top-full z-40 border-t border-slate-200 bg-white text-slate-900 shadow-lg"
+                className="absolute inset-x-0 top-full z-40 border-b border-line bg-white"
             >
-                <div className="mx-auto grid max-w-container gap-8 px-6 py-6 lg:grid-cols-[1fr_18rem]">
-                    <div>
-                        <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-600">{t('header.shopTitle')}</p>
-                        <ul className="grid grid-cols-2 gap-2 xl:grid-cols-3">
-                            {(index?.categories || []).map(category => (
-                                <li key={category.slug}>
-                                    <Link prefetch={false} href={`/products/${category.slug}`} className="flex items-center gap-3 rounded-md p-2 hover:bg-slate-50">
-                                        <img src={category.image} alt="" loading="lazy" className="h-12 w-12 shrink-0 rounded-md bg-slate-100 object-cover" />
-                                        <span className="min-w-0">
-                                            <span className="block truncate font-semibold">{category.name[lang] || category.name.en}</span>
-                                            <span className="block text-sm text-slate-600">{t('header.productsCount', { count: category.count })}</span>
-                                        </span>
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                        <Link prefetch={false} href="/products" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-700 hover:underline">
+                <div className="mx-auto grid max-w-wide gap-10 px-6 py-10 lg:grid-cols-[1fr_15rem]">
+                    <ul className="grid grid-cols-3 gap-x-6 gap-y-8">
+                        {(index?.categories || []).map(category => (
+                            <li key={category.slug}>
+                                <Link prefetch={false} href={`/products/${category.slug}`} className="group block">
+                                    <CategoryArt images={category.tiles} fallback={category.image} sizes="160px" className="aspect-[16/10] rounded-xl" />
+                                    <span className="mt-3 block text-[0.9375rem] font-medium text-ink group-hover:underline">{category.name[lang] || category.name.en}</span>
+                                    <span className="text-sm text-ink-muted">{t('header.productsCount', { count: category.count })}</span>
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                    <div className="flex flex-col justify-end gap-4 border-s border-line ps-8">
+                        <p className="font-display text-xl font-semibold tracking-[-0.01em] text-ink">{t('header.servicesPitch')}</p>
+                        <p className="text-sm text-ink-muted">{t('header.servicesPitchBody')}</p>
+                        <Link prefetch={false} href="/quote" className="inline-flex h-10 w-fit items-center rounded-full border border-ink px-4 text-sm font-medium text-ink hover:bg-ink hover:text-white">
+                            {t('nav.quote')}
+                        </Link>
+                        <Link prefetch={false} href="/products" className="inline-flex items-center gap-1.5 text-sm font-semibold text-navy-900 hover:underline">
                             {t('header.allProducts')}
                             <Icon as={ArrowRight} size={16} flip />
                         </Link>
-                    </div>
-                    <div className="rounded-lg bg-navy-50 p-5">
-                        <p className="font-semibold text-navy-900">{t('header.servicesPitch')}</p>
-                        <p className="mt-2 text-sm text-slate-700">{t('header.servicesPitchBody')}</p>
-                        <Button href="/quote" prefetch={false} variant="primary" size="sm" icon={MessageSquareText} className="mt-4">
-                            {t('nav.quote')}
-                        </Button>
                     </div>
                 </div>
             </div>
@@ -190,64 +180,66 @@ function ShopMenu() {
     );
 }
 
-// Sticky navy header. Desktop: logo · search · language · account · cart · Get a quote, then
-// the nav row (Shop mega menu, Services, Gallery, About, Contact). Phones: menu · logo ·
-// account · cart, then search + quote. Fits 360 px wide, signed in or not.
+// Sticky white header with a hairline border: logo · centred nav · search, Get a quote,
+// language, account, cart. On scroll it gets translucent (blurred) and shorter. Phones:
+// menu · logo · search · account · cart; the menu holds the links, language and Get a quote.
 export default function SiteHeader() {
     const { t } = useLang();
     const router = useRouter();
     const [menuOpen, setMenuOpen] = useState(false);
-    const [menuUsed, setMenuUsed] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
+    const [used, setUsed] = useState({ menu: false, search: false });
+    const [scrolled, setScrolled] = useState(false);
     useCatalogIndex({ prefetch: true });
+
     useEffect(() => {
-        if (menuOpen) setMenuUsed(true);
-    }, [menuOpen]);
+        const onScroll = () => setScrolled(window.scrollY > 8);
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
     useEffect(() => setMenuOpen(false), [router.asPath]);
+    const openMenu = () => (setUsed(current => ({ ...current, menu: true })), setMenuOpen(true));
+    const openSearch = () => (setUsed(current => ({ ...current, search: true })), setSearchOpen(true));
 
     return (
-        <header className="sticky top-0 z-40 bg-navy-900 text-white shadow-md">
-            <a href="#main" className="sr-only rounded-md bg-white px-4 py-2 font-semibold text-navy-900 focus:not-sr-only focus:absolute focus:start-4 focus:top-2 focus:z-50">
+        <header className={cx('sticky top-0 z-40 border-b border-line transition-colors duration-base', scrolled ? 'bg-white/85 backdrop-blur-md' : 'bg-white')}>
+            <a href="#main" className="sr-only rounded-full bg-navy-900 px-4 py-2 font-semibold text-white focus:not-sr-only focus:absolute focus:start-4 focus:top-3 focus:z-50">
                 {t('header.skip')}
             </a>
-            <div className="mx-auto flex max-w-container items-center gap-2 px-4 py-2.5 lg:gap-6 lg:px-6 lg:py-3">
-                <button type="button" onClick={() => setMenuOpen(true)} className="-ms-2 flex h-11 w-11 items-center justify-center rounded-md hover:bg-white/10 lg:hidden" aria-label={t('header.menu')} aria-expanded={menuOpen}>
-                    <Icon as={Menu} size={24} />
-                </button>
-                <Logo />
-                <SearchBox className="hidden max-w-xl flex-1 lg:block" />
-                <div className="ms-auto flex items-center gap-1 lg:gap-2">
-                    <LanguageSelect className="hidden lg:flex" />
-                    <span className="hidden lg:block">
-                        <AccountLink />
-                    </span>
-                    <span className="lg:hidden">
-                        <AccountLink compact />
-                    </span>
-                    <CartButton />
-                    <Button href="/quote" prefetch={false} variant="accent" icon={MessageSquareText} className="ms-2 hidden lg:inline-flex">
+            <div className={cx('mx-auto grid max-w-wide grid-cols-[1fr_auto] items-center gap-4 px-4 transition-[height] duration-base sm:px-6 lg:grid-cols-[1fr_auto_1fr]', scrolled ? 'h-14 lg:h-16' : 'h-16 lg:h-[4.5rem]')}>
+                <div className="flex items-center gap-1">
+                    <button type="button" onClick={openMenu} className={cx(iconButton, '-ms-2 lg:hidden')} aria-label={t('header.menu')} aria-expanded={menuOpen}>
+                        <Icon as={Menu} size={22} />
+                    </button>
+                    <Logo />
+                </div>
+                <nav aria-label={t('header.mainNav')} className="hidden lg:block">
+                    <ul className="flex items-center gap-1">
+                        <ShopMenu />
+                        {NAV_LINKS.map(item => (
+                            <li key={item.key}>
+                                <Link prefetch={false} href={item.href} className={navLink}>
+                                    {t(item.key)}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+                <div className="flex items-center justify-end gap-0.5 sm:gap-1">
+                    <button type="button" onClick={openSearch} aria-haspopup="dialog" className={iconButton} aria-label={t('header.openSearch')}>
+                        <Icon as={Search} size={20} />
+                    </button>
+                    <Link prefetch={false} href="/quote" className="mx-1 hidden h-10 items-center whitespace-nowrap rounded-full border border-ink px-4 text-sm font-medium text-ink transition-colors duration-fast hover:bg-ink hover:text-white lg:inline-flex">
                         {t('nav.quote')}
-                    </Button>
+                    </Link>
+                    <LanguageMenu />
+                    <AccountButton />
+                    <CartButton />
                 </div>
             </div>
-            <nav aria-label={t('header.mainNav')} className="relative hidden border-t border-white/10 lg:block">
-                <ul className="mx-auto flex max-w-container items-center gap-1 px-4">
-                    <ShopMenu />
-                    {NAV_LINKS.map(item => (
-                        <li key={item.key}>
-                            <Link prefetch={false} href={item.href} className="flex h-11 items-center rounded-md px-3 text-sm font-semibold text-navy-100 hover:bg-white/10 hover:text-white">
-                                {t(item.key)}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            </nav>
-            <div className="flex gap-2 px-4 pb-3 lg:hidden">
-                <SearchBox className="min-w-0 flex-1" />
-                <Button href="/quote" prefetch={false} variant="accent" icon={MessageSquareText} className="shrink-0 px-3">
-                    {t('header.quoteShort')}
-                </Button>
-            </div>
-            {menuUsed && <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />}
+            {used.menu && <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />}
+            {used.search && <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />}
         </header>
     );
 }

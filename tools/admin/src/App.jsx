@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { cx } from '../../../components/ui/cx';
-import { Anchor, Icon, ImageIcon, Info, MessageSquareText, Package, Phone, Star, Truck, User } from '../../../components/ui/icons';
+import { Anchor, Icon, ImageIcon, Info, MessageSquareText, Package, Phone, Sparkles, Star, Truck, User } from '../../../components/ui/icons';
 import { api } from './api';
 import { EnvPill, GitPill } from './components/common';
 import { useRoute } from './router';
@@ -9,6 +9,7 @@ import Orders from './pages/Orders';
 import OrderDetail from './pages/OrderDetail';
 import Catalog from './pages/Catalog';
 import Gallery from './pages/Gallery';
+import Photos from './pages/Photos';
 import Reviews from './pages/Reviews';
 import Customers from './pages/Customers';
 import Devices from './pages/Devices';
@@ -19,6 +20,7 @@ const NAV = [
     { path: '/orders', label: 'Orders', icon: Truck },
     { path: '/quotes', label: 'Quotes', icon: MessageSquareText },
     { path: '/catalog', label: 'Catalog', icon: Package },
+    { path: '/photos', label: 'Photos', icon: Sparkles },
     { path: '/gallery', label: 'Gallery', icon: ImageIcon },
     { path: '/reviews', label: 'Reviews', icon: Star },
     { path: '/customers', label: 'Customers', icon: User },
@@ -44,6 +46,7 @@ export default function App() {
         page = id ? <OrderDetail kind={kind} id={id} key={`${kind}-${id}`} /> : <Orders kind={kind} key={kind} />;
     } else if (section === 'catalog') page = <Catalog route={route} onSaved={refreshMeta} />;
     else if (section === 'gallery') page = <Gallery onSaved={refreshMeta} />;
+    else if (section === 'photos') page = <Photos onSaved={refreshMeta} />;
     else if (section === 'reviews') page = <Reviews />;
     else if (section === 'customers') page = <Customers id={id} />;
     else if (section === 'devices') page = <Devices />;

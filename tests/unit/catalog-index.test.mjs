@@ -20,7 +20,7 @@ const categories = [
 test('the index is slim: localized names/titles, the -400 image, the "from" price and overall stock', () => {
     const index = buildCatalogIndex(categories);
     assert.deepEqual(index.categories, [
-        { slug: 'paints', name: { en: 'Antifouling & Coatings', fr: 'Antifouling et peintures', ar: 'مضادات الحشف' }, image: '/assets/categories/paints-400.webp', count: 3 },
+        { slug: 'paints', name: { en: 'Antifouling & Coatings', fr: 'Antifouling et peintures', ar: 'مضادات الحشف' }, image: '/assets/categories/paints-400.webp', count: 3, tiles: ['/assets/products/a-400.webp'] },
     ]);
     const [jotun, hempel] = index.products;
     assert.deepEqual(jotun.title, { en: 'Jotun SeaForce Active 2.5L', fr: 'Jotun SeaForce Active 2.5L', ar: 'جوتن سي فورس' });
@@ -41,4 +41,9 @@ test('search matches every word, ignores accents and case, and ranks title match
     assert.deepEqual(searchProducts(index, 'جوتن', 'ar').map(p => p.id), ['p_1']);
     assert.deepEqual(searchProducts(index, '   ', 'en'), []);
     assert.equal(normalizeText('Décapant  ÉRODABLE!'), 'decapant erodable');
+});
+
+test('category tiles: the products picked in the admin win, else in-stock photos one per brand', () => {
+    const picked = buildCatalogIndex([{ ...categories[0], featuredProductIds: ['p_2', 'p_gone', 'p_1'] }]);
+    assert.deepEqual(picked.categories[0].tiles, ['/assets/products/b-400.webp', '/assets/products/a-400.webp']);
 });

@@ -33,6 +33,15 @@ export function validateCatalog(catalog, { previousSlugs = [] } = {}) {
         if (previousSlugs.length && category.slug && !previousSlugs.includes(category.slug) && category.products?.length) {
             warnings.push({ path: `${where}.slug`, message: `Changing a category slug changes its product URLs ("${category.slug}").` });
         }
+        // Tile products must be in this category (a moved or deleted product is just dropped on the site).
+        const featured = category.featuredProductIds || [];
+        if (!Array.isArray(featured)) errors.push({ path: `${where}.featuredProductIds`, message: `"${name}": tile products must be a list.` });
+        else {
+            if (featured.length > 3) errors.push({ path: `${where}.featuredProductIds`, message: `"${name}": at most 3 tile products.` });
+            featured
+                .filter(id => !(category.products || []).some(product => product.id === id))
+                .forEach(id => warnings.push({ path: `${where}.featuredProductIds`, message: `"${name}": tile product ${id} is no longer in this category.` }));
+        }
         (category.products || []).forEach((product, p) => {
             const at = `${where}.products[${p}]`;
             const title = String(product.title || '').trim();

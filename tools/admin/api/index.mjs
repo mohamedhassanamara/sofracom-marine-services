@@ -5,6 +5,7 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
 import { createCatalogStore } from './catalog.mjs';
+import { createCutouts } from './cutouts.mjs';
 import { createPublisher } from './publish.mjs';
 
 const require = createRequire(import.meta.url);
@@ -53,6 +54,7 @@ export async function createApi({ repoRoot, codeRoot = repoRoot, targetMode }) {
     ]);
     const catalog = createCatalogStore({ repoRoot });
     const publisher = createPublisher({ repoRoot });
+    const cutouts = await createCutouts({ repoRoot, codeRoot });
     // Recorded as `by` in status history, notes, review moderation and device events.
     const STAFF = { uid: `local-admin:${os.userInfo().username}` };
 
@@ -115,6 +117,12 @@ export async function createApi({ repoRoot, codeRoot = repoRoot, targetMode }) {
         ['GET', '/api/gallery', async () => ({ gallery: catalog.readGallery(), version: catalog.version('gallery') })],
         ['PUT', '/api/gallery', async ({ body }) => catalog.saveGallery(body.gallery, { version: body.version })],
         ['POST', '/api/upload', async ({ body }) => catalog.upload(body)],
+
+        // Photo cutouts (review before the site uses them)
+        ['GET', '/api/cutouts', async () => cutouts.list()],
+        ['POST', '/api/cutouts/status', async ({ body }) => cutouts.setStatus(body)],
+        ['POST', '/api/cutouts/retry', async ({ body }) => cutouts.retry(body)],
+        ['POST', '/api/cutouts/generate', async ({ body }) => cutouts.generate(body)],
 
         // Publish
         ['GET', '/api/publish', async () => publisher.preview()],

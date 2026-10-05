@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import Seo from '../../components/Seo';
-import { Breadcrumb, Button, ResponsiveImage } from '../../components/ui';
+import { Breadcrumb, Button, CategoryArt } from '../../components/ui';
 import { ArrowRight, Icon, MessageSquareText } from '../../components/ui/icons';
 import { useLang } from '../../contexts/LangContext';
+import { langAttrs } from '../../lib/i18n/locales';
 import { localizeCategory } from '../../lib/localize';
 import { cardCategory, getCategories } from '../../lib/products';
 
@@ -15,25 +16,29 @@ export default function ProductsIndex({ categories = [] }) {
     return (
         <>
             <Seo title={t('seo.products.title')} description={t('seo.products.description')} path="/products" />
-            <div className="mx-auto max-w-container px-4 py-8 sm:px-6">
+            <div className="mx-auto max-w-wide px-4 pt-8 sm:px-6 lg:pt-12">
                 <Breadcrumb items={[{ label: t('nav.home'), href: '/' }, { label: t('nav.products') }]} />
-                <h1 className="mt-4 text-2xl font-bold text-navy-900 sm:text-3xl">{t('catalog.title')}</h1>
-                <p className="mt-2 max-w-2xl text-slate-600">{t('catalog.subtitle')}</p>
-                <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <h1 className="mt-8 text-[2.25rem] font-semibold leading-[1.08] tracking-[-0.025em] text-ink sm:text-title-1 lg:text-display-2">{t('catalog.title')}</h1>
+                <p className="mt-4 max-w-2xl text-body-lg text-ink-muted">{t('catalog.subtitle')}</p>
+                <ul className="mt-10 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3">
                     {categories.map(raw => {
                         const category = localizeCategory(raw, lang);
                         return (
                             <li key={category.slug}>
-                                <Link href={`/products/${category.slug}`} className="group flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition-shadow duration-base hover:shadow-md">
-                                    <span className="block aspect-[16/10] overflow-hidden bg-slate-100">
-                                        <ResponsiveImage src={category.image} alt="" sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" priority={false} className="h-full w-full object-cover transition-transform duration-slow group-hover:scale-[1.03]" />
-                                    </span>
-                                    <span className="flex flex-1 flex-col gap-2 p-5">
-                                        <span className="text-lg font-semibold text-slate-900">{category.name}</span>
-                                        {category.description && <span className="line-clamp-2 text-sm text-slate-600">{category.description}</span>}
-                                        <span className="mt-auto flex items-center justify-between pt-2 text-sm">
-                                            <span className="text-slate-600">{t('header.productsCount', { count: raw.count })}</span>
-                                            <Icon as={ArrowRight} size={18} flip className="text-navy-700" />
+                                <Link prefetch={false} href={`/products/${category.slug}`} className="group block">
+                                    <CategoryArt images={raw.tiles.map(tile => tile.image)} fallback={raw.image} sizes="(min-width: 1024px) 220px, 45vw" className="aspect-[4/3] rounded-2xl" />
+                                    <span className="mt-5 flex items-start justify-between gap-4">
+                                        <span className="min-w-0">
+                                            <span className="block font-display text-xl font-semibold tracking-[-0.01em] text-ink group-hover:underline">{category.name}</span>
+                                            {category.description && (
+                                                <span className="mt-1 line-clamp-2 block text-ink-muted" {...langAttrs(category.contentLang.description, lang)}>
+                                                    {category.description}
+                                                </span>
+                                            )}
+                                            <span className="mt-2 block text-sm text-ink-muted">{t('header.productsCount', { count: raw.count })}</span>
+                                        </span>
+                                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line-strong text-ink transition-colors duration-fast group-hover:border-ink group-hover:bg-ink group-hover:text-white" aria-hidden="true">
+                                            <Icon as={ArrowRight} size={18} flip />
                                         </span>
                                     </span>
                                 </Link>
@@ -41,12 +46,12 @@ export default function ProductsIndex({ categories = [] }) {
                         );
                     })}
                 </ul>
-                <div className="mt-12 flex flex-col items-start justify-between gap-4 rounded-xl bg-navy-50 p-6 sm:flex-row sm:items-center">
-                    <div>
-                        <p className="font-semibold text-navy-900">{t('header.servicesPitch')}</p>
-                        <p className="mt-1 text-sm text-slate-700">{t('faq.a5')}</p>
+                <div className="mt-20 flex flex-col items-start justify-between gap-6 border-t border-line pt-10 sm:flex-row sm:items-center">
+                    <div className="max-w-2xl">
+                        <p className="font-display text-xl font-semibold tracking-[-0.01em] text-ink">{t('header.servicesPitch')}</p>
+                        <p className="mt-2 text-ink-muted">{t('faq.a5')}</p>
                     </div>
-                    <Button href="/quote" icon={MessageSquareText}>
+                    <Button href="/quote" size="lg" icon={MessageSquareText}>
                         {t('nav.quote')}
                     </Button>
                 </div>

@@ -69,7 +69,7 @@ export default function Publish({ onChange }) {
     };
 
     const diff = data?.diff;
-    const hasDiff = diff && [diff.catalog.products, diff.catalog.categories, diff.gallery].some(group => group.added.length || group.changed.length || group.removed.length);
+    const hasDiff = diff && [diff.catalog.products, diff.catalog.categories, diff.gallery, diff.cutouts].filter(Boolean).some(group => group.added.length || group.changed.length || group.removed.length);
     const blockers = (data?.blockers || []).filter(text => !/^Nothing to publish/.test(text));
     const stateTone = { READY: 'success', ERROR: 'danger', CANCELED: 'neutral', BUILDING: 'warning', QUEUED: 'warning', INITIALIZING: 'warning' };
 
@@ -109,6 +109,7 @@ export default function Publish({ onChange }) {
                                     <DiffList title="Products" diff={diff.catalog.products} label={item => item.title || item.id} />
                                     <DiffList title="Categories" diff={diff.catalog.categories} label={item => item.name || item.slug} />
                                     <DiffList title="Gallery" diff={diff.gallery} label={item => item.title || item.id} />
+                                    {diff.cutouts && <DiffList title="Photo cutouts (added = shown on the site, removed = back to the original)" diff={diff.cutouts} label={item => item.title || item.id} />}
                                 </>
                             )}
                             <details>

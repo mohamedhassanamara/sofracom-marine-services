@@ -3,26 +3,27 @@ import { forwardRef } from 'react';
 import { cx } from './cx';
 import { Icon, Loader2 } from './icons';
 
+// v2: pills, no shadows; navy is the primary action, ink outlines for the rest.
 const VARIANTS = {
-    primary: 'bg-navy-900 text-white shadow-sm hover:bg-navy-800 active:bg-navy-950',
-    accent: 'bg-accent-400 text-navy-950 shadow-sm hover:bg-accent-300 active:bg-accent-500',
-    secondary: 'border border-slate-300 bg-white text-navy-900 hover:border-slate-400 hover:bg-slate-50',
-    ghost: 'bg-transparent text-navy-800 hover:bg-navy-50',
-    danger: 'bg-danger-600 text-white shadow-sm hover:bg-danger-700',
-    inverse: 'border border-white/40 bg-transparent text-white hover:bg-white/10',
+    primary: 'bg-navy-900 text-white hover:bg-navy-800 active:bg-navy-950',
+    accent: 'bg-accent-400 text-navy-950 hover:bg-accent-300 active:bg-accent-500',
+    secondary: 'border border-line-strong bg-white text-ink hover:border-ink',
+    ghost: 'bg-transparent text-ink hover:bg-surface',
+    danger: 'bg-danger-600 text-white hover:bg-danger-700',
+    inverse: 'border border-white/50 bg-transparent text-white hover:bg-white/10',
 };
 
 const SIZES = {
-    sm: 'h-9 gap-1.5 px-3 text-sm',
-    md: 'h-11 gap-2 px-4 text-base',
-    lg: 'h-12 gap-2 px-6 text-base',
+    sm: 'h-9 gap-1.5 px-4 text-sm',
+    md: 'h-11 gap-2 px-5 text-[0.9375rem]',
+    lg: 'h-12 gap-2 px-7 text-[0.9375rem]',
 };
 const ICON_ONLY = { sm: 'h-9 w-9', md: 'h-11 w-11', lg: 'h-12 w-12' };
 const ICON_SIZE = { sm: 16, md: 18, lg: 20 };
 
 export const buttonClasses = ({ variant = 'primary', size = 'md', fullWidth = false, iconOnly = false, className } = {}) =>
     cx(
-        'inline-flex select-none items-center justify-center whitespace-nowrap rounded-md font-semibold transition-colors duration-fast',
+        'inline-flex select-none items-center justify-center whitespace-nowrap rounded-full font-semibold transition-colors duration-fast',
         'disabled:cursor-not-allowed disabled:opacity-50 aria-disabled:cursor-not-allowed aria-disabled:opacity-50',
         VARIANTS[variant],
         iconOnly ? ICON_ONLY[size] : SIZES[size],

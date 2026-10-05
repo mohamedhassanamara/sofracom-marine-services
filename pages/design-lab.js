@@ -49,8 +49,8 @@ export async function getStaticProps() {
         const product = withPhoto.find(item => !picks.some(pick => pick.product.id === item.id) && test(item));
         if (product) picks.push({ product, note });
     };
-    take(product => stockOf(product) === 'in' && (product.variants || []).length <= 1 && (product.images || []).length > 1, 'In stock · 2nd photo on hover · sample rating');
-    take(product => stockOf(product) === 'in' && (product.variants || []).length > 2 && new Set(product.variants.map(variant => variant.price)).size > 1, 'Options (from price) · sample rating');
+    take(product => stockOf(product) === 'in' && (product.variants || []).length <= 1 && (product.images || []).length > 1, 'In stock · 2nd photo on hover');
+    take(product => stockOf(product) === 'in' && (product.variants || []).length > 2 && new Set(product.variants.map(variant => variant.price)).size > 1, 'Options (from price)');
     take(product => stockOf(product) === 'on-order', 'On order');
     take(product => stockOf(product) === 'out', 'Out of stock (no +)');
     take(product => stockOf(product) === 'in' && (product.variants || []).length <= 1 && product.brand === 'SIKA', 'In stock, no rating');
@@ -60,9 +60,14 @@ export async function getStaticProps() {
 
     const entry = getProductById(SAMPLE_PRODUCT);
     const category = getCategoryBySlug(SAMPLE_CATEGORY);
+    // The first 10 real cutouts from the pipeline (public/assets/data/cutouts.json).
     let cutouts = [];
     try {
-        cutouts = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'public/design-lab/cutouts/manifest.json'), 'utf-8'));
+        const manifest = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'public/assets/data/cutouts.json'), 'utf-8'));
+        const owner = src => all.find(product => (product.images || []).includes(src) || product.image === src);
+        cutouts = Object.entries(manifest.images || {})
+            .slice(0, 10)
+            .map(([src, entry]) => ({ id: src, title: owner(src)?.title || src, original: src, cutout: entry.cutout, status: entry.status }));
     } catch {
         cutouts = [];
     }
@@ -78,11 +83,6 @@ export async function getStaticProps() {
     };
 }
 
-// Made-up ratings so the rating line can be judged (the emulator has few reviews).
-const SAMPLE_STATS = [
-    { count: 12, avg: 4.6 },
-    { count: 3, avg: 4 },
-];
 
 function Caption({ index, title, children }) {
     return (
@@ -115,7 +115,8 @@ export default function DesignLab({ categories, featured, cards, category, produ
     const [useCutouts, setUseCutouts] = useState(false);
     const cutoutFor = useMemo(() => Object.fromEntries(cutouts.map(item => [item.id, item.cutout])), [cutouts]);
 
-    const cardStats = (id, index) => realStats[id] || SAMPLE_STATS[index] || null;
+    // Real review data only (no sample ratings anywhere).
+    const cardStats = id => realStats[id] || null;
     const swap = item => (useCutouts && cutoutFor[item.id] ? { ...item, image: cutoutFor[item.id], image2: null } : item);
     const localizedCategory = useMemo(() => localizeCategory(category, lang), [category, lang]);
     const topBrand = useMemo(() => {
@@ -229,7 +230,7 @@ export default function DesignLab({ categories, featured, cards, category, produ
                 </div>
 
                 <Caption index={5} title="Product card">
-                    Real products. Hover a card for the + button and the second photo (always visible on touch screens). The last card shows the option picker open; on phones it becomes a bottom sheet. Ratings on the first two cards are samples.
+                    Real products. Hover a card for the + button and the second photo (always visible on touch screens). The last card shows the option picker open; on phones it becomes a bottom sheet. Ratings appear only where real reviews exist.
                 </Caption>
                 <div lang="en" dir="ltr" className="mx-auto flex max-w-wide items-center gap-3 px-4 pb-6 text-left text-sm sm:px-6">
                     <label className="inline-flex items-center gap-2">
@@ -238,9 +239,9 @@ export default function DesignLab({ categories, featured, cards, category, produ
                     </label>
                 </div>
                 <ul className="mx-auto grid max-w-wide grid-cols-2 gap-x-4 gap-y-10 px-4 sm:gap-x-6 sm:px-6 md:grid-cols-3 lg:grid-cols-4 lg:gap-y-14">
-                    {cards.map(({ product: item, note }, index) => (
+                    {cards.map(({ product: item, note }) => (
                         <li key={item.id} className="flex flex-col">
-                            <ProductCardV2 product={swap(localizeProduct(item, lang))} stats={cardStats(item.id, index)} onQuickAdd={addToCart} />
+                            <ProductCardV2 product={swap(localizeProduct(item, lang))} stats={cardStats(item.id)} onQuickAdd={addToCart} />
                             <p lang="en" dir="ltr" className="mt-3 text-left font-mono text-[0.6875rem] text-ink-muted">
                                 {note}
                             </p>
@@ -248,7 +249,7 @@ export default function DesignLab({ categories, featured, cards, category, produ
                     ))}
                     {cards[1] && (
                         <li className="flex flex-col">
-                            <ProductCardV2 product={swap(localizeProduct(cards[1].product, lang))} stats={SAMPLE_STATS[1]} onQuickAdd={addToCart} demoPickerOpen />
+                            <ProductCardV2 product={swap(localizeProduct(cards[1].product, lang))} stats={cardStats(cards[1].product.id)} onQuickAdd={addToCart} demoPickerOpen />
                             <p lang="en" dir="ltr" className="mt-3 text-left font-mono text-[0.6875rem] text-ink-muted">
                                 Option picker open
                             </p>
@@ -284,12 +285,12 @@ export default function DesignLab({ categories, featured, cards, category, produ
                 <Caption index={7} title="Product page · top">
                     Large gallery (click to enlarge), sticky info column: brand, title, rating, price, option chips with their price, stock, quantity + Add to cart, Ask for a quote, delivery line.
                 </Caption>
-                <ProductTopV2 key={lang} product={localizeProduct(product, lang)} stats={realStats[product.id] || SAMPLE_STATS[0]} onAdd={addToCart} />
+                <ProductTopV2 key={lang} product={localizeProduct(product, lang)} stats={realStats[product.id] || null} onAdd={addToCart} />
 
                 <Caption index={8} title="Photo cutouts (10 samples)">
                     {cutouts.length
-                        ? 'Generated on this computer by scripts/cutouts.mjs: background removed, trimmed, centred on a square with the same margin. Originals are untouched; each pair would be approved or rejected in the admin.'
-                        : 'No samples yet: run node scripts/cutouts.mjs --sample 10.'}
+                        ? 'The first 10 from the real pipeline (scripts/cutouts.mjs). Review them in the admin app → Photos; the site only shows approved ones.'
+                        : 'No cutouts yet: run node scripts/cutouts.mjs --all.'}
                 </Caption>
                 <ul className="mx-auto grid max-w-wide grid-cols-1 gap-6 px-4 pb-24 sm:grid-cols-2 sm:px-6 lg:grid-cols-5">
                     {cutouts.map(item => (
