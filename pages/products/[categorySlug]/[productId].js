@@ -5,7 +5,8 @@ import ProductReviews from '../../../components/reviews/ProductReviews';
 import { Breadcrumb, Button, Dialog, ProductRail, QuantityStepper, ResponsiveImage } from '../../../components/ui';
 import { StockLine, defaultVariantIndex } from '../../../components/ui/ProductCard';
 import { cx } from '../../../components/ui/cx';
-import { ChevronDown, ChevronLeft, ChevronRight, FileText, Icon, MessageSquareText, ShoppingCart, Truck, ZoomIn } from '../../../components/ui/icons';
+import { CONTACT } from '../../../components/layout/SiteFooter';
+import { ChevronDown, ChevronLeft, ChevronRight, FileText, Icon, MessageSquareText, Phone, ShoppingCart, Truck, ZoomIn } from '../../../components/ui/icons';
 import { Stars } from '../../../components/ui/Stars';
 import { useCart } from '../../../contexts/CartContext';
 import { useLang } from '../../../contexts/LangContext';
@@ -125,9 +126,13 @@ function OptionChips({ variants, value, onChange }) {
                             aria-checked={selected}
                             tabIndex={selected ? 0 : -1}
                             onClick={() => onChange(index)}
-                            className={cx('flex min-h-[3rem] flex-col justify-center rounded-xl border px-4 py-2 text-start transition-colors duration-fast', selected ? 'border-navy-900' : 'border-line hover:border-line-strong', variant.stock === 'out' && 'opacity-50')}
+                            className={cx(
+                                'flex min-h-[3rem] flex-col justify-center rounded-xl border px-4 py-2 text-start transition-colors duration-fast',
+                                selected ? 'border-navy-900 bg-navy-50 ring-1 ring-navy-900' : 'border-line-input bg-white hover:border-navy-900',
+                                variant.stock === 'out' && 'opacity-50'
+                            )}
                         >
-                            <span className="text-sm font-medium text-ink">{variant.label}</span>
+                            <span className={cx('text-sm text-ink', selected ? 'font-semibold' : 'font-medium')}>{variant.label}</span>
                             <span className="text-xs tabular-nums text-ink-muted">
                                 <bdi>{format.price(variant.price)}</bdi>
                                 {variant.stock !== 'in' && ` · ${t(`stock.${variant.stock}`)}`}
@@ -137,6 +142,36 @@ function OptionChips({ variants, value, onChange }) {
                 })}
             </div>
         </div>
+    );
+}
+
+// Catalog descriptions were often hard-wrapped when typed: join a single line break that
+// falls mid-sentence (no punctuation before it, a lowercase letter after); keep the rest
+// (lists, one fact per line, paragraphs).
+const unwrap = text => String(text).replace(/([^\s.!?:;])[ \t]*\n(?=[ \t]*[a-zà-ÿ(])/g, '$1 ');
+
+// Beside the description on desktop (sticky), below it on phones: call or ask for a quote.
+function AdviceCard({ quoteHref }) {
+    const { t } = useLang();
+    return (
+        <aside aria-labelledby="advice-title" className="self-start rounded-2xl bg-surface p-6 lg:sticky lg:top-24 lg:p-7">
+            <h2 id="advice-title" className="text-xl font-semibold text-ink">
+                {t('product.advice.title')}
+            </h2>
+            <p className="mt-2 text-ink-muted">{t('product.advice.body')}</p>
+            <div className="mt-5 flex flex-col gap-3">
+                <a href={CONTACT.phoneHref} className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-navy-900 px-6 text-[0.9375rem] font-semibold text-white transition-colors duration-fast hover:bg-navy-800">
+                    <Icon as={Phone} size={18} />
+                    <span>
+                        {t('product.advice.call')} <bdi dir="ltr">{CONTACT.phone}</bdi>
+                    </span>
+                </a>
+                <Button href={quoteHref} variant="accent" size="lg" icon={MessageSquareText}>
+                    {t('nav.quote')}
+                </Button>
+            </div>
+            <p className="mt-4 text-sm text-ink-muted">{t('contact.hours')}</p>
+        </aside>
     );
 }
 
@@ -284,11 +319,12 @@ export default function ProductDetailPage({ product, category, related = [], sta
                     </div>
                 </div>
 
-                <div className="mt-16 max-w-4xl border-t border-line lg:mt-24">
+                <div className="mt-16 grid gap-10 lg:mt-24 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] lg:gap-16">
+                <div className="border-t border-line">
                     {description && (
                         <Section id="description" title={t('product.description')} defaultOpen>
                             <div className="whitespace-pre-line text-body-lg leading-relaxed text-ink-muted" {...langAttrs(localized.contentLang.description, lang)}>
-                                {description}
+                                {unwrap(description)}
                             </div>
                         </Section>
                     )}
@@ -346,6 +382,8 @@ export default function ProductDetailPage({ product, category, related = [], sta
                             </Button>
                         </Section>
                     )}
+                </div>
+                <AdviceCard quoteHref={quoteHref} />
                 </div>
 
                 <ProductReviews productId={product.id} productTitle={localized.title} />
