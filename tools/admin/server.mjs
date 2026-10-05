@@ -73,10 +73,12 @@ const send = (res, status, payload) => {
     res.end(JSON.stringify(payload));
 };
 
-// The site's own public files (product photos, favicon) for previews.
+// The site's own public files (product photos, favicon) for previews, and the cutouts
+// waiting for review (git-ignored cache, never part of the site).
 function servePublic(req, res, pathname) {
-    const publicRoot = path.join(repoRoot, 'public');
-    const relative = decodeURIComponent(pathname.replace(/^\/site\//, '/'));
+    const cache = pathname.startsWith('/cutouts-cache/');
+    const publicRoot = cache ? path.join(repoRoot, '.cutouts-cache', 'files') : path.join(repoRoot, 'public');
+    const relative = decodeURIComponent(pathname.replace(cache ? /^\/cutouts-cache\// : /^\/site\//, '/'));
     const file = path.resolve(publicRoot, `.${relative}`);
     if (!file.startsWith(publicRoot) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
         res.writeHead(404).end('Not found');
@@ -99,7 +101,7 @@ const server = http.createServer(async (req, res) => {
         await api.handle(req, res, url);
         return;
     }
-    if (url.pathname.startsWith('/site/')) {
+    if (url.pathname.startsWith('/site/') || url.pathname.startsWith('/cutouts-cache/')) {
         servePublic(req, res, url.pathname);
         return;
     }

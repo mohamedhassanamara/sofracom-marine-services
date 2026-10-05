@@ -3,6 +3,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { useLang } from '../../contexts/LangContext';
 import useFormat from '../../hooks/useFormat';
 import { priceRange } from '../../lib/format';
+import { photoClass } from '../../lib/images';
 import { statusTone, tones } from '../../lib/design/tokens';
 import { cx } from './cx';
 import { Sheet } from './Dialog';
@@ -146,10 +147,10 @@ export default function ProductCard({ product, stats, onQuickAdd, priority = fal
                     alt=""
                     sizes={CARD_SIZES}
                     priority={priority}
-                    className={cx('absolute inset-0 h-full w-full object-contain p-[9%] mix-blend-multiply transition duration-base ease-out can-hover:group-hover:scale-[1.03]', product.image2 && 'can-hover:group-hover:opacity-0')}
+                    className={cx('absolute inset-0 h-full w-full object-contain p-[9%] transition duration-base ease-out can-hover:group-hover:scale-[1.03]', photoClass(product.image), product.image2 && 'can-hover:group-hover:opacity-0')}
                 />
                 {product.image2 && (
-                    <ResponsiveImage src={product.image2} alt="" sizes={CARD_SIZES} className="absolute inset-0 hidden h-full w-full object-contain p-[9%] opacity-0 mix-blend-multiply transition duration-base ease-out can-hover:block can-hover:group-hover:scale-[1.03] can-hover:group-hover:opacity-100" />
+                    <ResponsiveImage src={product.image2} alt="" sizes={CARD_SIZES} className={cx('absolute inset-0 hidden h-full w-full object-contain p-[9%] opacity-0 transition duration-base ease-out can-hover:block can-hover:group-hover:scale-[1.03] can-hover:group-hover:opacity-100', photoClass(product.image2))} />
                 )}
                 {onQuickAdd && stock !== 'out' && (
                     <button
@@ -160,7 +161,7 @@ export default function ProductCard({ product, stats, onQuickAdd, priority = fal
                         aria-expanded={hasChoices ? pickerOpen : undefined}
                         aria-controls={hasChoices && !narrow && pickerOpen ? pickerId : undefined}
                         className={cx(
-                            'absolute bottom-3 end-3 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-ink shadow-soft transition duration-fast ease-out hover:bg-ink hover:text-white focus-visible:translate-y-0 focus-visible:opacity-100',
+                            'absolute bottom-3 end-3 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white text-ink shadow-soft transition duration-fast ease-out hover:bg-navy-900 hover:text-white focus-visible:translate-y-0 focus-visible:opacity-100',
                             !pickerOpen && 'can-hover:translate-y-1 can-hover:opacity-0 can-hover:group-hover:translate-y-0 can-hover:group-hover:opacity-100'
                         )}
                     >

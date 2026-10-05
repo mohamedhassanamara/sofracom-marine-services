@@ -62,7 +62,7 @@ export default function AccountReviewsPage() {
             ) : (
                 <>
                     <section className="account-section">
-                        <h2 className="font-bold text-lg text-slate-900 mb-3">{t('reviews.toReview')}</h2>
+                        <h2 className="text-xl font-semibold text-ink mb-3">{t('reviews.toReview')}</h2>
                         {toReview.length === 0 ? (
                             <div className="ui-card ui-empty">
                                 <p>{t('reviews.nothingToReview')}</p>
@@ -101,7 +101,7 @@ export default function AccountReviewsPage() {
                         )}
                     </section>
                     <section className="account-section">
-                        <h2 className="font-bold text-lg text-slate-900 mb-3">{t('reviews.mine')}</h2>
+                        <h2 className="text-xl font-semibold text-ink mb-3">{t('reviews.mine')}</h2>
                         {data.reviews.length === 0 ? (
                             <div className="ui-card ui-empty">
                                 <p>{t('reviews.noneYet')}</p>

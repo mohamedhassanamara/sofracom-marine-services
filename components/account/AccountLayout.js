@@ -22,8 +22,8 @@ export default function AccountLayout({ title, eyebrow, actions, badges = {}, ch
 
     if (loading || !user) {
         return (
-            <div className="mx-auto max-w-container px-4 py-10 sm:px-6">
-                <p className="text-slate-600">{t('account.loading')}</p>
+            <div className="mx-auto max-w-wide px-4 py-12 sm:px-6">
+                <p className="text-ink-muted">{t('account.loading')}</p>
             </div>
         );
     }
@@ -36,31 +36,30 @@ export default function AccountLayout({ title, eyebrow, actions, badges = {}, ch
         router.push('/');
     };
 
+    // Desktop: a quiet list with a navy bar on the current page. Phones: underlined tabs.
     const linkClass = active =>
         cx(
-            'flex min-h-[2.75rem] shrink-0 items-center justify-between gap-2 whitespace-nowrap rounded-md px-3 text-sm font-semibold transition-colors duration-fast',
-            active ? 'bg-navy-900 text-white' : 'text-slate-700 hover:bg-slate-100'
+            'flex min-h-[2.75rem] shrink-0 items-center justify-between gap-2 whitespace-nowrap border-b-2 px-1 text-[0.9375rem] transition-colors duration-fast lg:border-b-0 lg:border-s-2 lg:px-4',
+            active ? 'border-navy-900 font-semibold text-ink' : 'border-transparent text-ink-muted hover:text-ink'
         );
 
     return (
-        <div className="mx-auto grid max-w-container gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[14rem_1fr] lg:gap-10">
+        <div className="mx-auto grid max-w-wide gap-8 px-4 pb-16 pt-8 sm:px-6 lg:grid-cols-[15rem_1fr] lg:gap-16 lg:pt-12">
             <Seo title={title} noindex />
-            <nav aria-label={t('account.navLabel')} className="-mx-4 overflow-x-auto px-4 lg:mx-0 lg:overflow-visible lg:px-0">
-                <ul className="flex gap-1 lg:sticky lg:top-32 lg:flex-col">
+            <nav aria-label={t('account.navLabel')} className="-mx-4 overflow-x-auto border-b border-line px-4 [scrollbar-width:none] lg:mx-0 lg:overflow-visible lg:border-b-0 lg:px-0 [&::-webkit-scrollbar]:hidden">
+                <ul className="flex gap-5 lg:sticky lg:top-24 lg:flex-col lg:gap-1">
                     {NAV.map(item => {
                         const active = isActive(item);
                         return (
                             <li key={item.href}>
                                 <Link href={item.href} aria-current={active ? 'page' : undefined} className={linkClass(active)}>
                                     {t(item.key)}
-                                    {item.badge && badges[item.badge] > 0 && (
-                                        <span className={cx('rounded-full px-2 text-xs', active ? 'bg-white text-navy-900' : 'bg-accent-400 text-navy-950')}>{badges[item.badge]}</span>
-                                    )}
+                                    {item.badge && badges[item.badge] > 0 && <span className="rounded-full bg-accent-400 px-2 text-xs font-semibold text-navy-950">{badges[item.badge]}</span>}
                                 </Link>
                             </li>
                         );
                     })}
-                    <li className="lg:mt-2 lg:border-t lg:border-slate-200 lg:pt-2">
+                    <li className="lg:mt-4 lg:border-t lg:border-line lg:pt-4">
                         <button type="button" onClick={handleSignOut} className={cx(linkClass(false), 'w-full')}>
                             <span className="flex items-center gap-2">
                                 <Icon as={LogOut} size={16} flip />
@@ -71,10 +70,10 @@ export default function AccountLayout({ title, eyebrow, actions, badges = {}, ch
                 </ul>
             </nav>
             <section className="min-w-0">
-                <header className="mb-6 flex flex-wrap items-end justify-between gap-4">
+                <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
                     <div>
-                        {eyebrow && <p className="text-sm font-semibold uppercase tracking-wide text-accent-700">{eyebrow}</p>}
-                        <h1 className="text-2xl font-bold text-navy-900 sm:text-3xl">{title}</h1>
+                        {eyebrow && <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent-700">{eyebrow}</p>}
+                        <h1 className="mt-2 text-[2rem] font-semibold leading-tight text-ink lg:text-title-1">{title}</h1>
                     </div>
                     {actions}
                 </header>

@@ -15,30 +15,30 @@ export const CONTACT = {
 function Column({ title, children }) {
     return (
         <div>
-            <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.1em] text-ink-muted">{title}</h2>
+            <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.1em] text-accent-300">{title}</h2>
             <ul className="mt-5 space-y-3 text-[0.9375rem]">{children}</ul>
         </div>
     );
 }
 
-const linkClass = 'text-ink underline-offset-4 hover:underline';
+const linkClass = 'text-navy-100 underline-offset-4 hover:text-white hover:underline';
 
 // `flush`: no space above (pages that end with a full-width band).
 export default function SiteFooter({ flush = false }) {
     const { t, lang, setLang } = useLang();
     const { index } = useCatalogIndex();
     return (
-        <footer className={flush ? 'bg-surface text-ink' : 'mt-24 border-t border-line bg-surface text-ink lg:mt-32'}>
+        <footer className={flush ? 'bg-navy-950 text-navy-100' : 'mt-24 bg-navy-950 text-navy-100 lg:mt-32'}>
             <div className="mx-auto grid max-w-wide gap-12 px-4 py-16 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:py-20">
                 <div id="contact" className="scroll-mt-24">
                     <Link prefetch={false} href="/" className="inline-flex items-center gap-2.5">
-                        <img src="/assets/site/logo-400.webp" alt="" width="36" height="36" loading="lazy" className="h-9 w-9 rounded-lg" />
-                        <span className="font-display text-[1.0625rem] font-bold tracking-[0.04em] text-ink">SOFRACOM</span>
+                        <img src="/assets/site/logo-400.webp" alt="" width="36" height="36" loading="lazy" className="h-9 w-9 rounded-lg ring-1 ring-white/20" />
+                        <span className="font-display text-[1.0625rem] font-bold tracking-[0.04em] text-white">SOFRACOM</span>
                     </Link>
-                    <p className="mt-5 max-w-sm text-[0.9375rem] text-ink-muted">{t('footer.tagline')}</p>
+                    <p className="mt-5 max-w-sm text-[0.9375rem] text-navy-200">{t('footer.tagline')}</p>
                     <ul className="mt-6 space-y-3 text-[0.9375rem]">
                         <li className="flex items-start gap-2.5">
-                            <Icon as={MapPin} size={18} className="mt-1 shrink-0 text-navy-900" />
+                            <Icon as={MapPin} size={18} className="mt-1 shrink-0 text-accent-400" />
                             <span>
                                 {t('contact.address2')} ·{' '}
                                 <a href={CONTACT.mapsHref} className={linkClass} target="_blank" rel="noreferrer">
@@ -47,19 +47,19 @@ export default function SiteFooter({ flush = false }) {
                             </span>
                         </li>
                         <li className="flex items-center gap-2.5">
-                            <Icon as={Phone} size={18} className="shrink-0 text-navy-900" />
+                            <Icon as={Phone} size={18} className="shrink-0 text-accent-400" />
                             <a href={CONTACT.phoneHref} className={linkClass} aria-label={`${t('footer.phone')} ${CONTACT.phone}`}>
                                 <bdi dir="ltr">{CONTACT.phone}</bdi>
                             </a>
                         </li>
                         <li className="flex items-center gap-2.5">
-                            <Icon as={Mail} size={18} className="shrink-0 text-navy-900" />
+                            <Icon as={Mail} size={18} className="shrink-0 text-accent-400" />
                             <a href={`mailto:${CONTACT.email}`} className={linkClass}>
                                 {CONTACT.email}
                             </a>
                         </li>
                         <li className="flex items-start gap-2.5">
-                            <Icon as={Clock} size={18} className="mt-1 shrink-0 text-navy-900" />
+                            <Icon as={Clock} size={18} className="mt-1 shrink-0 text-accent-400" />
                             <span>{t('contact.hours')}</span>
                         </li>
                     </ul>
@@ -131,7 +131,7 @@ export default function SiteFooter({ flush = false }) {
                                     lang={locale}
                                     onClick={() => setLang(locale)}
                                     aria-current={lang === locale ? 'true' : undefined}
-                                    className={lang === locale ? 'font-semibold text-ink' : `${linkClass} text-ink-muted`}
+                                    className={lang === locale ? 'font-semibold text-white' : linkClass}
                                 >
                                     {LANGUAGE_NAMES[locale]}
                                 </button>
@@ -140,12 +140,12 @@ export default function SiteFooter({ flush = false }) {
                     </li>
                 </Column>
             </div>
-            <div className="border-t border-line">
-                <div className="mx-auto flex max-w-wide flex-wrap items-center justify-between gap-3 px-4 py-6 text-sm text-ink-muted sm:px-6">
+            <div className="border-t border-white/10">
+                <div className="mx-auto flex max-w-wide flex-wrap items-center justify-between gap-3 px-4 py-6 text-sm text-navy-200 sm:px-6">
                     <p>
                         © {new Date().getFullYear()} SOFRACOM · Monastir, Tunisia. {t('footer.rights')}
                     </p>
-                    <a href="#top" className="inline-flex items-center gap-1.5 text-ink-muted underline-offset-4 hover:text-ink hover:underline">
+                    <a href="#top" className="inline-flex items-center gap-1.5 text-navy-200 underline-offset-4 hover:text-white hover:underline">
                         <Icon as={ChevronUp} size={16} />
                         {t('footer.backToTop')}
                     </a>

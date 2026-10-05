@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from 'react';
-import { Badge, Button, Field, Input, Select, Textarea, useToast } from '../../../../components/ui';
+import { Badge, Button, Checkbox, Field, Input, Select, Textarea, useToast } from '../../../../components/ui';
 import { ArrowLeft, ChevronLeft, ChevronRight, ExternalLink, FileText, Plus, Trash2, X } from '../../../../components/ui/icons';
 import { siteUrl, upload } from '../api';
 import { Confirm, Panel } from '../components/common';
@@ -209,6 +209,14 @@ export default function ProductEditor({ store, id }) {
                     </Panel>
                     <Panel title="Photos">
                         <Images images={images} onChange={setImages} />
+                        <div className="mt-4 border-t border-slate-200 pt-4">
+                            <Checkbox
+                                label="Needs a real photo"
+                                description="The current picture is an illustration or a placeholder. It's listed on Today until you untick this (after uploading a real photo)."
+                                checked={Boolean(product.needsPhoto)}
+                                onChange={event => set({ needsPhoto: event.target.checked || undefined })}
+                            />
+                        </div>
                     </Panel>
                     <Panel title="Price, options and stock" actions={<Button size="sm" variant="secondary" icon={Plus} onClick={() => edit(item => item.variants.push({ label: '', price: '', stock: 'in' }))}>Add option</Button>}>
                         {product.variants?.length ? (

@@ -37,7 +37,7 @@ export default function ProductRail({ products, stats = {}, onQuickAdd, label, h
         if (!node) return;
         node.scrollBy({ left: direction * (rtl ? -1 : 1) * node.clientWidth * 0.9, behavior: 'smooth' });
     };
-    const arrow = 'flex h-11 w-11 items-center justify-center rounded-full border border-line-strong text-ink transition-colors duration-fast hover:border-ink disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-line-strong';
+    const arrow = 'flex h-11 w-11 items-center justify-center rounded-full border border-line-strong text-ink transition-colors duration-fast hover:border-navy-900 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-line-strong';
 
     return (
         <div className={className}>

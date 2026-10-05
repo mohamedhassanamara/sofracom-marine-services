@@ -6,7 +6,7 @@
 /* The ui-* classes are the UI kit (components/ui) as CSS, for the account pages' forms:
    the same utilities as Button, Field, Card and the alerts, so both render identically. */
 .ui-card {
-    @apply rounded-lg border border-slate-200 bg-white p-5 shadow-sm sm:p-6;
+    @apply rounded-2xl border border-line bg-white p-5 sm:p-7;
 }
 .ui-btn {
     @apply inline-flex h-11 select-none items-center justify-center gap-2 whitespace-nowrap rounded-full px-5 text-[0.9375rem] font-semibold no-underline transition-colors duration-fast;
@@ -40,35 +40,35 @@
     @apply sm:grid-cols-2;
 }
 .ui-field {
-    @apply flex flex-col gap-1.5 text-sm font-medium text-slate-800;
+    @apply flex flex-col gap-1.5 text-sm font-medium text-ink;
 }
 .ui-field input,
 .ui-field textarea,
 .ui-field select {
-    @apply block w-full rounded-md border border-slate-300 bg-white px-3 text-base font-normal text-slate-900 shadow-sm transition-colors duration-fast;
-    @apply placeholder:text-slate-500 hover:border-slate-400 focus:border-accent-600 focus:outline-none focus:ring-2 focus:ring-accent-200;
+    @apply block w-full rounded-xl border border-line-strong bg-white px-4 text-base font-normal text-ink transition-colors duration-fast;
+    @apply placeholder:text-ink-muted hover:border-ink-muted focus:border-navy-900 focus:outline-none focus:ring-2 focus:ring-navy-100;
 }
 .ui-field input,
 .ui-field select {
-    @apply h-11;
+    @apply h-12;
 }
 .ui-field textarea {
-    @apply min-h-[6rem] py-2.5 leading-relaxed;
+    @apply min-h-[6rem] py-3 leading-relaxed;
 }
 .ui-field input:read-only {
-    @apply bg-slate-100 text-slate-600;
+    @apply bg-surface text-ink-muted;
 }
 .ui-field-hint {
-    @apply text-sm font-normal text-slate-600;
+    @apply text-sm font-normal text-ink-muted;
 }
 .ui-check {
-    @apply flex cursor-pointer items-start gap-3 text-base font-normal text-slate-800;
+    @apply flex cursor-pointer items-start gap-3 text-base font-normal text-ink;
 }
 .ui-check input {
     @apply mt-0.5 h-5 w-5 shrink-0 accent-navy-900;
 }
 .ui-alert {
-    @apply rounded-md border px-4 py-3 text-sm;
+    @apply rounded-xl border px-4 py-3 text-sm;
 }
 .ui-alert--error {
     @apply border-danger-200 bg-danger-50 text-danger-800;
@@ -83,20 +83,20 @@
     @apply border-warning-200 bg-warning-50 text-warning-800;
 }
 .ui-muted {
-    @apply text-slate-600;
+    @apply text-ink-muted;
 }
 .ui-empty {
-    @apply rounded-lg border border-dashed border-slate-300 bg-white px-6 py-10 text-center text-slate-600;
+    @apply rounded-2xl border border-dashed border-line-strong bg-white px-6 py-12 text-center text-ink-muted;
 }
 .ui-pill {
     @apply inline-flex items-center whitespace-nowrap rounded-full border border-navy-200 bg-navy-50 px-2.5 py-0.5 text-xs font-medium text-navy-800;
 }
 .ui-divider {
-    @apply flex items-center gap-3 text-xs uppercase tracking-wide text-slate-500;
+    @apply flex items-center gap-3 text-xs uppercase tracking-wide text-ink-muted;
 }
 .ui-divider::before,
 .ui-divider::after {
-    @apply h-px flex-1 bg-slate-200;
+    @apply h-px flex-1 bg-surface-strong;
     content: '';
 }
 
@@ -106,12 +106,12 @@
 .google-btn {
     width: 100%;
     background: theme('colors.white');
-    color: theme('colors.slate.800');
+    color: theme('colors.ink.DEFAULT');
     border: 1px solid theme('colors.navy.900 / 0.2');
 }
 
 .google-btn:hover:not(:disabled) {
-    background: theme('colors.slate.50');
+    background: theme('colors.surface.DEFAULT');
 }
 
 .google-btn svg {
@@ -127,7 +127,7 @@
     font-size: theme('fontSize.xs[0]');
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: theme('colors.slate.500');
+    color: theme('colors.ink.muted');
 }
 
 .account-section + .account-section {
@@ -146,61 +146,58 @@
     align-items: center;
     justify-content: space-between;
     gap: 0.75rem 1.25rem;
-    padding: 1.1rem 1.25rem;
+    padding: 1.25rem 1.5rem;
     background: theme('colors.white');
-    border-radius: theme('borderRadius.xl');
-    border: 1px solid theme('colors.navy.700 / 0.08');
-    box-shadow: theme('boxShadow.md');
+    border-radius: theme('borderRadius.2xl');
+    border: 1px solid theme('colors.line.DEFAULT');
     color: inherit;
     text-decoration: none;
     transition: box-shadow var(--dur-fast) var(--ease-standard), transform var(--dur-fast) var(--ease-standard);
 }
 
 a.record-card:hover {
-    box-shadow: theme('boxShadow.md');
-    transform: translateY(-1px);
+    border-color: theme('colors.ink.muted');
+    box-shadow: theme('boxShadow.soft');
 }
 
 .record-card__title {
-    font-weight: 700;
-    color: theme('colors.slate.900');
+    font-weight: 600;
+    color: theme('colors.ink.DEFAULT');
 }
 
 .record-card__meta {
     font-size: theme('fontSize.sm[0]');
-    color: theme('colors.slate.500');
+    color: theme('colors.ink.muted');
 }
 
+/* Thumbnail strip: each item on the neutral well. */
 .record-card__thumbs {
     display: flex;
+    gap: 0.5rem;
 }
 
 .record-card__thumbs img {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: theme('borderRadius.md');
-    object-fit: cover;
-    border: 2px solid theme('colors.white');
-    background: theme('colors.slate.100');
-}
-
-.record-card__thumbs img + img {
-    margin-inline-start: -0.6rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: theme('borderRadius.lg');
+    object-fit: contain;
+    padding: 0.25rem;
+    background: theme('colors.surface.DEFAULT');
 }
 
 .address-card {
     position: relative;
     display: grid;
     gap: 0.25rem;
-    padding: 1.1rem 1.25rem;
+    padding: 1.25rem 1.5rem;
     background: theme('colors.white');
-    border-radius: theme('borderRadius.xl');
-    border: 1px solid theme('colors.navy.700 / 0.1');
+    border-radius: theme('borderRadius.2xl');
+    border: 1px solid theme('colors.line.DEFAULT');
 }
 
 .address-card--default {
-    border-color: var(--sea);
-    box-shadow: 0 0 0 1px var(--sea);
+    border-color: theme('colors.navy.900');
+    box-shadow: 0 0 0 1px theme('colors.navy.900');
 }
 
 .address-card__actions {
@@ -226,15 +223,15 @@ a.record-card:hover {
     width: 3.5rem;
     height: 3.5rem;
     border-radius: theme('borderRadius.lg');
-    object-fit: cover;
-    background: theme('colors.slate.100');
+    object-fit: contain;
+    background: theme('colors.surface.DEFAULT');
 }
 
 .order-totals {
     display: grid;
     gap: 0.35rem;
     font-size: theme('fontSize.sm[0]');
-    color: theme('colors.slate.700');
+    color: theme('colors.ink.DEFAULT');
 }
 
 .order-totals > div {
@@ -244,8 +241,8 @@ a.record-card:hover {
 
 .order-totals__grand {
     font-weight: 800;
-    color: theme('colors.slate.900');
-    border-top: 1px solid theme('colors.navy.700 / 0.12');
+    color: theme('colors.ink.DEFAULT');
+    border-top: 1px solid theme('colors.line.DEFAULT');
     padding-top: 0.5rem;
     margin-top: 0.25rem;
 }
@@ -274,7 +271,7 @@ a.record-card:hover {
 .rating-summary__score {
     font-size: theme('fontSize.4xl[0]');
     font-weight: 800;
-    color: theme('colors.slate.900');
+    color: theme('colors.ink.DEFAULT');
     line-height: 1;
 }
 
@@ -289,13 +286,13 @@ a.record-card:hover {
     align-items: center;
     gap: 0.6rem;
     font-size: theme('fontSize.sm[0]');
-    color: theme('colors.slate.600');
+    color: theme('colors.ink.muted');
 }
 
 .rating-bar__track {
     height: 0.55rem;
     border-radius: theme('borderRadius.full');
-    background: theme('colors.slate.200');
+    background: theme('colors.line.DEFAULT');
     overflow: hidden;
 }
 
@@ -314,7 +311,7 @@ a.record-card:hover {
     padding: 1.1rem 1.25rem;
     border-radius: theme('borderRadius.xl');
     background: theme('colors.white');
-    border: 1px solid theme('colors.navy.700 / 0.08');
+    border: 1px solid theme('colors.line.DEFAULT');
 }
 
 .review-item__head {
@@ -326,17 +323,17 @@ a.record-card:hover {
 
 .review-item__name {
     font-weight: 700;
-    color: theme('colors.slate.900');
+    color: theme('colors.ink.DEFAULT');
 }
 
 .review-item__date {
     font-size: theme('fontSize.xs[0]');
-    color: theme('colors.slate.400');
+    color: theme('colors.ink.muted');
 }
 
 .review-item__comment {
     margin-top: 0.6rem;
-    color: theme('colors.slate.700');
+    color: theme('colors.ink.DEFAULT');
     line-height: 1.55;
     white-space: pre-line;
     overflow-wrap: anywhere;
@@ -374,7 +371,7 @@ a.record-card:hover {
 
 .char-count {
     font-size: theme('fontSize.xs[0]');
-    color: theme('colors.slate.400');
+    color: theme('colors.ink.muted');
     text-align: end;
 }
 

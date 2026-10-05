@@ -163,7 +163,7 @@ export default function ProductReviews({ productId, productTitle }) {
             {stats?.count > 0 && (
                 <div className="review-toolbar mb-4">
                     <span className="ui-muted">{t('reviews.count', { count: stats.count })}</span>
-                    <label className="flex items-center gap-2 text-sm text-slate-600">
+                    <label className="flex items-center gap-2 text-sm text-ink-muted">
                         {t('reviews.sortBy')}
                         <select value={sort} onChange={event => setSort(event.target.value)}>
                             <option value="newest">{t('reviews.sortNewest')}</option>

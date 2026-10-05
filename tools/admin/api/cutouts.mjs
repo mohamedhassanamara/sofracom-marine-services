@@ -1,7 +1,7 @@
 // Photo cutouts for the admin's Photos page: list originals with their cutout and status,
 // approve / keep the original (in bulk), retry with the other model, generate missing ones
-// in small batches. Files and the manifest live in the repository and are published like
-// the catalog (see api/publish.mjs).
+// in small batches. Generated files wait in the git-ignored .cutouts-cache/; approving copies
+// them into public/assets, which is published with the catalog (see api/publish.mjs).
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
@@ -29,8 +29,7 @@ export async function createCutouts({ repoRoot, codeRoot = repoRoot }) {
     }
 
     async function list() {
-        const manifest = shared.readManifest(repoRoot);
-        const images = shared.catalogImages(repoRoot).map(image => ({ ...image, ...(manifest.images[image.src] || { status: 'missing' }) }));
+        const images = shared.photoStates(repoRoot);
         const counts = images.reduce((total, image) => ({ ...total, [image.status]: (total[image.status] || 0) + 1 }), {});
         return { images, counts, busy, ...(await available()) };
     }
@@ -40,7 +39,7 @@ export async function createCutouts({ repoRoot, codeRoot = repoRoot }) {
     // Regenerates with the other model (or the one asked for); the result is pending again.
     const retry = ({ src, model }) =>
         exclusive(async () => {
-            const current = shared.readManifest(repoRoot).images[`/${String(src || '').replace(/^\//, '')}`];
+            const current = shared.readCache(repoRoot).images[`/${String(src || '').replace(/^\//, '')}`];
             const next = model || (current?.model === 'medium' ? 'small' : 'medium');
             return { item: await shared.makeCutout(repoRoot, src, { model: next }) };
         });

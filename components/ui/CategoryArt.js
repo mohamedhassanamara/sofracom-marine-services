@@ -1,4 +1,5 @@
 import { cx } from './cx';
+import { photoClass } from '../../lib/images';
 import ResponsiveImage from './ResponsiveImage';
 
 // A category's picture: its 1–3 tile products (approved cutouts, else the photo blended
@@ -16,11 +17,11 @@ export default function CategoryArt({ images = [], fallback, sizes = '400px', cl
             {list.length ? (
                 list.map((src, index) => (
                     <span key={src} className={cx('absolute block', LAYOUTS[list.length][index])}>
-                        <ResponsiveImage src={src} alt="" sizes={sizes} className={cx('h-full w-full object-contain mix-blend-multiply transition-transform duration-base ease-out', hover && 'group-hover:scale-[1.04]')} />
+                        <ResponsiveImage src={src} alt="" sizes={sizes} className={cx('h-full w-full object-contain transition-transform duration-base ease-out', photoClass(src), hover && 'group-hover:scale-[1.04]')} />
                     </span>
                 ))
             ) : fallback ? (
-                <ResponsiveImage src={fallback} alt="" sizes={sizes} className="h-full w-full object-contain p-[8%] mix-blend-multiply" />
+                <ResponsiveImage src={fallback} alt="" sizes={sizes} className={cx('h-full w-full object-contain p-[8%]', photoClass(fallback))} />
             ) : null}
         </span>
     );

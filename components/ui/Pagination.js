@@ -31,7 +31,7 @@ export function Pagination({ page, pageCount, onChange, className }) {
             <Button variant="ghost" size="sm" icon={ChevronLeft} iconFlip label={t('ui.previous')} disabled={page <= 1} onClick={() => onChange(page - 1)} />
             {pages.map((n, i) => (
                 <span key={n} className="flex items-center gap-1">
-                    {i > 0 && n - pages[i - 1] > 1 && <span className="px-1 text-slate-500">…</span>}
+                    {i > 0 && n - pages[i - 1] > 1 && <span className="px-1 text-ink-muted">…</span>}
                     <button
                         type="button"
                         onClick={() => onChange(n)}
@@ -39,7 +39,7 @@ export function Pagination({ page, pageCount, onChange, className }) {
                         aria-label={t('ui.page', { page: n })}
                         className={cx(
                             'h-9 min-w-[2.25rem] rounded-md px-2 text-sm font-semibold transition-colors duration-fast',
-                            n === page ? 'bg-navy-900 text-white' : 'text-slate-700 hover:bg-slate-100'
+                            n === page ? 'bg-navy-900 text-white' : 'text-ink hover:bg-surface'
                         )}
                     >
                         {n}

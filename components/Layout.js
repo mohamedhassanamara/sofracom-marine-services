@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext';
+import { useLang } from '../contexts/LangContext';
 import SiteHeader from './layout/SiteHeader';
+import TopBar from './layout/TopBar';
 import SiteFooter from './layout/SiteFooter';
 
 // Loaded the first time the cart opens: it isn't needed to show the page.
@@ -14,6 +16,7 @@ export default function Layout({ children, flushFooter = false }) {
     const router = useRouter();
     const { profile } = useAuth();
     const { isOpen: cartOpen } = useCart();
+    const { t } = useLang();
     const [cartUsed, setCartUsed] = useState(false);
     useEffect(() => {
         if (cartOpen) setCartUsed(true);
@@ -52,6 +55,10 @@ export default function Layout({ children, flushFooter = false }) {
 
     return (
         <div id="top" className="flex min-h-screen flex-col">
+            <a href="#main" className="sr-only rounded-full bg-navy-900 px-4 py-2 font-semibold text-white focus:not-sr-only focus:fixed focus:start-4 focus:top-3 focus:z-50">
+                {t('header.skip')}
+            </a>
+            <TopBar />
             <SiteHeader />
             <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
                 {children}

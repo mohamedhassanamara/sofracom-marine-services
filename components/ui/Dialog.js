@@ -81,7 +81,7 @@ export default function Dialog({
             onCancel={handleCancel}
             onMouseDown={handleMouseDown}
             className={cx(
-                'ui-dialog bg-white p-0 text-slate-900 shadow-lg backdrop:bg-navy-950/60 open:flex open:flex-col',
+                'ui-dialog bg-white p-0 text-ink shadow-lg backdrop:bg-navy-950/60 open:flex open:flex-col',
                 sheet
                     ? 'ui-sheet max-h-[85dvh] w-full max-w-none rounded-t-2xl'
                     : drawer
@@ -92,13 +92,13 @@ export default function Dialog({
         >
             {open && (
                 <>
-                    <div className="flex items-start justify-between gap-4 border-b border-slate-200 px-5 py-4">
+                    <div className="flex items-start justify-between gap-4 border-b border-line px-5 py-4">
                         <div className="min-w-0">
-                            <h2 id={titleId} className={cx('text-lg font-semibold text-slate-900', hideTitle && 'sr-only')}>
+                            <h2 id={titleId} className={cx('text-lg font-semibold text-ink', hideTitle && 'sr-only')}>
                                 {title}
                             </h2>
                             {description && (
-                                <p id={descId} className="mt-1 text-sm text-slate-600">
+                                <p id={descId} className="mt-1 text-sm text-ink-muted">
                                     {description}
                                 </p>
                             )}
@@ -106,7 +106,7 @@ export default function Dialog({
                         <Button variant="ghost" size="sm" icon={X} label={t('ui.close')} onClick={() => onCloseRef.current?.()} className="-me-2 -mt-1" />
                     </div>
                     <div className={cx('min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-4', bodyClassName)}>{children}</div>
-                    {footer && <div className="border-t border-slate-200 bg-white px-5 py-4">{footer}</div>}
+                    {footer && <div className="border-t border-line bg-white px-5 py-4">{footer}</div>}
                 </>
             )}
         </dialog>

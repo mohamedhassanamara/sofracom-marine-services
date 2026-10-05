@@ -77,7 +77,7 @@ function ToastItem({ toast, onDismiss }) {
     const action = toast.action;
     return (
         <div
-            className="pointer-events-auto flex w-full max-w-sm items-start gap-3 rounded-lg border border-slate-200 bg-white p-4 shadow-lg"
+            className="pointer-events-auto flex w-full max-w-sm items-start gap-3 rounded-lg border border-line bg-white p-4 shadow-lg"
             style={{ animation: 'ui-toast-in var(--dur-base) var(--ease-out)' }}
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
@@ -86,8 +86,8 @@ function ToastItem({ toast, onDismiss }) {
         >
             <Icon as={tone.icon} size={20} className={cx('mt-0.5', tone.accent)} />
             <div className="min-w-0 flex-1">
-                <p className="font-semibold text-slate-900">{toast.title}</p>
-                {toast.description && <p className="mt-0.5 text-sm text-slate-600">{toast.description}</p>}
+                <p className="font-semibold text-ink">{toast.title}</p>
+                {toast.description && <p className="mt-0.5 text-sm text-ink-muted">{toast.description}</p>}
                 {action &&
                     (action.href ? (
                         <Link href={action.href} className="mt-2 inline-block text-sm font-semibold text-accent-700 underline-offset-2 hover:underline" onClick={() => onDismiss(toast.id)}>
@@ -106,7 +106,7 @@ function ToastItem({ toast, onDismiss }) {
                         </button>
                     ))}
             </div>
-            <button type="button" className="-me-1 -mt-1 rounded-md p-1.5 text-slate-500 hover:bg-slate-100 hover:text-slate-800" onClick={() => onDismiss(toast.id)} aria-label={t('ui.dismiss')}>
+            <button type="button" className="-me-1 -mt-1 rounded-md p-1.5 text-ink-muted hover:bg-surface hover:text-ink" onClick={() => onDismiss(toast.id)} aria-label={t('ui.dismiss')}>
                 <Icon as={X} size={16} />
             </button>
         </div>

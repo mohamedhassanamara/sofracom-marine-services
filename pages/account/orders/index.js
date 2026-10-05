@@ -7,7 +7,7 @@ import { StatusBadge, useFormatDate } from '../../../components/account/Status';
 import { listMine } from '../../../lib/accountData';
 import useFormat from '../../../hooks/useFormat';
 import { normalizeOrderStatus, displayRef } from '../../../lib/status';
-import { imageAt } from '../../../lib/images';
+import { imageAt, photoClass } from '../../../lib/images';
 
 export default function OrdersPage() {
     const { t } = useLang();
@@ -47,24 +47,27 @@ export default function OrdersPage() {
                         const count = items.reduce((sum, item) => sum + (Number(item.quantity) || 0), 0);
                         const delivered = normalizeOrderStatus(order.status) === 'delivered';
                         return (
-                            <Link key={order.id} href={`/account/orders/${order.id}`} className="record-card">
-                                <div className="flex items-center gap-3">
-                                    <div className="record-card__thumbs" aria-hidden="true">
-                                        {items.slice(0, 3).map((item, index) => (
-                                            <img key={`${order.id}-${index}`} src={imageAt(item.image || '/assets/site/logo-400.webp', 400)} loading="lazy" alt="" />
-                                        ))}
-                                    </div>
+                            <Link key={order.id} href={`/account/orders/${order.id}`} className="record-card !block">
+                                <div className="flex flex-wrap items-start justify-between gap-3">
                                     <div>
-                                        <p className="record-card__title">{t('orders.number', { id: displayRef(order) })}</p>
+                                        <p className="record-card__title text-lg">{t('orders.number', { id: displayRef(order) })}</p>
                                         <p className="record-card__meta">
                                             {formatDate(order.created_at)} · {t('orders.itemCount', { count })}
                                         </p>
                                     </div>
-                                </div>
-                                <div className="flex items-center gap-3 flex-wrap">
-                                    {delivered && <span className="ui-pill">{t('orders.rateItems')}</span>}
-                                    <span className="font-bold text-slate-900">{format.price(Number(order.total))}</span>
                                     <StatusBadge kind="order" status={order.status} />
+                                </div>
+                                <div className="mt-4 flex flex-wrap items-end justify-between gap-4">
+                                    <div className="record-card__thumbs" aria-hidden="true">
+                                        {items.slice(0, 5).map((item, index) => (
+                                            <img key={`${order.id}-${index}`} src={imageAt(item.image || '/assets/site/logo-400.webp', 400)} loading="lazy" alt="" className={photoClass(item.image)} />
+                                        ))}
+                                        {items.length > 5 && <span className="flex h-14 w-14 items-center justify-center rounded-lg bg-surface text-sm font-semibold text-ink-muted">+{items.length - 5}</span>}
+                                    </div>
+                                    <div className="flex flex-wrap items-center gap-3">
+                                        {delivered && <span className="ui-pill">{t('orders.rateItems')}</span>}
+                                        <span className="text-lg font-semibold tabular-nums text-ink">{format.price(Number(order.total))}</span>
+                                    </div>
                                 </div>
                             </Link>
                         );

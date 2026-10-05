@@ -14,7 +14,10 @@ const STATUS = {
     original: { label: 'Kept original', tone: 'neutral' },
     missing: { label: 'No cutout yet', tone: 'neutral' },
 };
-const thumb = (src, version) => `${siteUrl(String(src).replace(/-(800|1600)\.webp$/, '-400.webp'))}${version ? `?v=${encodeURIComponent(version)}` : ''}`;
+const small = src => String(src).replace(/-(800|1600)\.webp$/, '-400.webp');
+const thumb = src => siteUrl(small(src));
+// Approved cutouts are in public/assets; pending ones in the cache (served by the admin).
+const preview = (path, version) => `${path.startsWith('/cutouts-cache/') ? small(path) : thumb(path)}${version ? `?v=${encodeURIComponent(version)}` : ''}`;
 
 export default function Photos({ onSaved }) {
     const toast = useToast();
@@ -199,7 +202,7 @@ export default function Photos({ onSaved }) {
                                         <figcaption className="mt-1 text-xs text-slate-500">Original</figcaption>
                                     </figure>
                                     <figure>
-                                        {image.cutout ? <img src={thumb(image.cutout, image.updatedAt)} alt="" loading="lazy" className="aspect-square w-full rounded-md bg-surface object-contain" /> : <div className="flex aspect-square items-center justify-center rounded-md border border-dashed border-slate-300 text-xs text-slate-500">Not generated</div>}
+                                        {image.preview ? <img src={preview(image.preview, image.updatedAt)} alt="" loading="lazy" className="aspect-square w-full rounded-md bg-surface object-contain" /> : <div className="flex aspect-square items-center justify-center rounded-md border border-dashed border-slate-300 text-xs text-slate-500">Not generated</div>}
                                         <figcaption className="mt-1 text-xs text-slate-500">Cutout (as on the site)</figcaption>
                                     </figure>
                                 </div>

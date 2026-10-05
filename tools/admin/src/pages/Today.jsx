@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { StatusBadge } from '../../../../components/ui';
 import useFormat from '../../../../hooks/useFormat';
 import { displayRef } from '../../../../lib/status';
-import { api } from '../api';
+import { api, siteUrl } from '../api';
 import { Empty, ErrorBox, PageHeader, Panel } from '../components/common';
 
 function Count({ label, value, href, tone }) {
@@ -105,6 +105,28 @@ export default function Today() {
                         </ul>
                     ) : (
                         <Empty>{data ? 'All translations reviewed.' : 'Loading…'}</Empty>
+                    )}
+                </Panel>
+                <Panel title={`Needs a real photo${data?.photos ? ` (${data.photos.count})` : ''}`} className="xl:col-span-2">
+                    {data?.photos?.items.length ? (
+                        <>
+                            <p className="mb-3 text-sm text-slate-600">These pictures are illustrations or placeholders. Upload a real photo in the product, then untick “Needs a real photo”.</p>
+                            <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                                {data.photos.items.map(item => (
+                                    <li key={item.id}>
+                                        <a href={`#/catalog/product/${item.id}`} className="flex items-center gap-3 rounded-md border border-slate-200 p-2 hover:bg-slate-50">
+                                            {item.image && <img src={siteUrl(item.image.replace(/-800\.webp$/, '-400.webp'))} alt="" className="h-14 w-14 shrink-0 rounded bg-surface object-contain" />}
+                                            <span className="min-w-0">
+                                                <span className="line-clamp-2 text-sm font-medium text-navy-900">{item.title}</span>
+                                                <span className="text-xs text-slate-500">{item.category}</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </>
+                    ) : (
+                        <Empty>{data ? 'Every product has a real photo.' : 'Loading…'}</Empty>
                     )}
                 </Panel>
             </div>

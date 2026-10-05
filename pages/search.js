@@ -67,7 +67,7 @@ export default function SearchPage() {
                 <form
                     role="search"
                     aria-label={t('search.title')}
-                    className="mt-8 flex max-w-3xl items-center gap-3 border-b border-ink pb-3"
+                    className="mt-8 flex max-w-3xl items-center gap-3 border-b border-navy-900 pb-3"
                     onSubmit={event => {
                         event.preventDefault();
                         setParams({ q: draft.trim(), category: '' });
@@ -98,7 +98,7 @@ export default function SearchPage() {
                                             type="button"
                                             aria-pressed={active}
                                             onClick={() => setParams({ category: item.slug })}
-                                            className={cx('inline-flex h-10 items-center gap-1.5 rounded-full px-5 text-sm font-medium transition-colors duration-fast', active ? 'bg-ink text-white' : 'bg-surface text-ink hover:bg-surface-strong')}
+                                            className={cx('inline-flex h-10 items-center gap-1.5 rounded-full px-5 text-sm font-medium transition-colors duration-fast', active ? 'bg-navy-900 text-white' : 'bg-surface text-ink hover:bg-surface-strong')}
                                         >
                                             {item.slug ? item.name[lang] || item.name.en : item.name.en}
                                             <span className={active ? 'text-white/70' : 'text-ink-muted'}>({count})</span>
@@ -109,7 +109,7 @@ export default function SearchPage() {
                         </ul>
                         <label className="relative flex items-center gap-3 text-sm text-ink-muted">
                             <span>{t('catalog.sort')}</span>
-                            <select value={sort} onChange={event => setParams({ sort: event.target.value })} className="h-10 appearance-none rounded-full border border-line-strong bg-white pe-9 ps-4 text-sm font-medium text-ink hover:border-ink focus:outline-none">
+                            <select value={sort} onChange={event => setParams({ sort: event.target.value })} className="h-10 appearance-none rounded-full border border-line-strong bg-white pe-9 ps-4 text-sm font-medium text-ink hover:border-navy-900 focus:outline-none">
                                 {SORTS.map(option => (
                                     <option key={option.value} value={option.value}>
                                         {option.value === 'relevance' ? '—' : t(option.key)}

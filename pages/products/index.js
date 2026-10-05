@@ -37,7 +37,7 @@ export default function ProductsIndex({ categories = [] }) {
                                             )}
                                             <span className="mt-2 block text-sm text-ink-muted">{t('header.productsCount', { count: raw.count })}</span>
                                         </span>
-                                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line-strong text-ink transition-colors duration-fast group-hover:border-ink group-hover:bg-ink group-hover:text-white" aria-hidden="true">
+                                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line-strong text-ink transition-colors duration-fast group-hover:border-navy-900 group-hover:bg-navy-900 group-hover:text-white" aria-hidden="true">
                                             <Icon as={ArrowRight} size={18} flip />
                                         </span>
                                     </span>

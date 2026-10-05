@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import Seo from '../../components/Seo';
 import { Badge, Breadcrumb, Button, Dialog, EmptyState, ResponsiveImage, Segmented } from '../../components/ui';
+import { cx } from '../../components/ui/cx';
 import { ChevronLeft, ChevronRight, Icon, ImageIcon, Play } from '../../components/ui/icons';
 import { useLang } from '../../contexts/LangContext';
 import useFormat from '../../hooks/useFormat';
@@ -34,16 +35,16 @@ function Media({ entry, large = false }) {
                     title={entry.title}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
-                    className="aspect-video w-full rounded-lg bg-black"
+                    className="aspect-video w-full rounded-xl bg-black"
                 />
             );
         }
-        return id ? <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt="" loading="lazy" className="h-full w-full object-cover" /> : <span className="flex h-full items-center justify-center bg-navy-900 text-white">▶</span>;
+        return id ? <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt="" loading="lazy" className="h-full w-full object-cover transition-transform duration-base ease-out group-hover:scale-[1.03]" /> : <span className="flex h-full items-center justify-center bg-navy-900 text-white">▶</span>;
     }
     return large ? (
-        <ResponsiveImage src={entry.src} alt={entry.title} sizes="(min-width: 1024px) 900px, 100vw" className="max-h-[70vh] w-full rounded-lg bg-slate-100 object-contain" />
+        <ResponsiveImage src={entry.src} alt={entry.title} sizes="(min-width: 1024px) 900px, 100vw" className="max-h-[70vh] w-full rounded-xl bg-surface object-contain" />
     ) : (
-        <ResponsiveImage src={entry.src} alt="" sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" className="h-full w-full object-cover transition-transform duration-slow group-hover:scale-[1.03]" />
+        <ResponsiveImage src={entry.src} alt="" sizes="(min-width: 1024px) 420px, (min-width: 640px) 50vw, 100vw" className="h-auto w-full transition-transform duration-base ease-out group-hover:scale-[1.03]" />
     );
 }
 
@@ -72,12 +73,12 @@ export default function GalleryPage({ entries = [] }) {
     return (
         <>
             <Seo title={t('seo.gallery.title')} description={t('seo.gallery.description')} path="/gallery" />
-            <div className="mx-auto max-w-container px-4 py-8 sm:px-6">
+            <div className="mx-auto max-w-wide px-4 pb-16 pt-8 sm:px-6 lg:pt-12">
                 <Breadcrumb items={[{ label: t('nav.home'), href: '/' }, { label: t('gallery.title') }]} />
-                <h1 className="mt-4 text-2xl font-bold text-navy-900 sm:text-3xl">{t('gallery.subtitle')}</h1>
-                <p className="mt-2 max-w-2xl text-slate-600">{t('gallery.description')}</p>
+                <h1 className="mt-6 text-[2.25rem] font-semibold leading-tight text-ink lg:text-display-2">{t('gallery.subtitle')}</h1>
+                <p className="mt-4 max-w-2xl text-body-lg text-ink-muted">{t('gallery.description')}</p>
                 <Segmented
-                    className="mt-6"
+                    className="mt-8"
                     label={t('gallery.filterLabel')}
                     value={filter}
                     onChange={setFilter}
@@ -88,37 +89,43 @@ export default function GalleryPage({ entries = [] }) {
                     ]}
                 />
                 {items.length ? (
-                    <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    // Masonry: CSS columns, each photo at its own height.
+                    <ul className="mt-10 columns-1 gap-6 sm:columns-2 lg:columns-3">
                         {items.map((entry, index) => (
-                            <li key={entry.id}>
-                                <article className="group flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+                            <li key={entry.id} className="mb-8 break-inside-avoid">
+                                <article className="group">
                                     <button
                                         type="button"
                                         onClick={() => setOpen(index)}
-                                        className="relative block aspect-[4/3] overflow-hidden bg-slate-100"
+                                        className={cx('relative block w-full overflow-hidden rounded-2xl bg-surface', entry.type === 'video' && 'aspect-video')}
                                         aria-label={entry.type === 'video' ? t('gallery.play', { title: entry.title }) : t('gallery.open', { title: entry.title })}
                                     >
                                         <Media entry={entry} />
                                         {entry.type === 'video' && (
-                                            <span className="absolute inset-0 flex items-center justify-center bg-navy-950/30">
-                                                <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-navy-900 shadow-md">
-                                                    <Icon as={Play} size={26} />
+                                            <span className="absolute inset-0 flex items-center justify-center bg-navy-950/25">
+                                                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-navy-900 shadow-soft">
+                                                    <Icon as={Play} size={28} />
                                                 </span>
                                             </span>
                                         )}
                                     </button>
-                                    <div className="flex flex-1 flex-col gap-2 p-4">
-                                        <div className="flex items-center gap-2 text-sm text-slate-600">
-                                            <Badge tone={entry.type === 'video' ? 'info' : 'neutral'} size="sm">
-                                                {t(entry.type === 'video' ? 'gallery.video' : 'gallery.image')}
-                                            </Badge>
-                                            {entry.date && <time dateTime={entry.date}>{format.date(entry.date)}</time>}
-                                        </div>
-                                        <h2 className="line-clamp-2 font-semibold text-slate-900" {...langAttrs(entry.contentLang.title, lang)}>
+                                    <div className="mt-4 flex flex-col gap-1.5">
+                                        <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.1em] text-accent-700">
+                                            {t(entry.type === 'video' ? 'gallery.video' : 'gallery.image')}
+                                            {entry.date && (
+                                                <>
+                                                    <span aria-hidden="true">·</span>
+                                                    <time dateTime={entry.date} className="font-normal normal-case tracking-normal text-ink-muted">
+                                                        {format.date(entry.date)}
+                                                    </time>
+                                                </>
+                                            )}
+                                        </p>
+                                        <h2 className="line-clamp-2 text-lg font-semibold text-ink" {...langAttrs(entry.contentLang.title, lang)}>
                                             {entry.title}
                                         </h2>
                                         {entry.description && (
-                                            <p className="line-clamp-3 text-sm text-slate-600" {...langAttrs(entry.contentLang.description, lang)}>
+                                            <p className="line-clamp-3 text-ink-muted" {...langAttrs(entry.contentLang.description, lang)}>
                                                 {entry.description}
                                             </p>
                                         )}
@@ -155,7 +162,7 @@ export default function GalleryPage({ entries = [] }) {
                     <div className="flex flex-col gap-4">
                         <Media entry={current} large />
                         {current.description && (
-                            <p className="whitespace-pre-line text-slate-700" {...langAttrs(current.contentLang.description, lang)}>
+                            <p className="whitespace-pre-line text-ink" {...langAttrs(current.contentLang.description, lang)}>
                                 {current.description}
                             </p>
                         )}

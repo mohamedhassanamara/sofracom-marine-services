@@ -11,7 +11,8 @@ import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 // Self-hosted by next/font: no render-blocking request to Google.
-const inter = Inter({ subsets: ['latin'], display: 'swap' });
+// Not preloaded: Arabic pages don't use it, and the LCP image should go first everywhere.
+const inter = Inter({ subsets: ['latin'], display: 'swap', preload: false });
 // Headings (variable font, one file). Not preloaded: the LCP image goes first and headings
 // swap in when it arrives. Arabic headings use IBM Plex Sans Arabic.
 const manrope = Manrope({ subsets: ['latin'], display: 'swap', preload: false });
@@ -25,12 +26,7 @@ const plexArabic = IBM_Plex_Sans_Arabic({
     preload: false,
 });
 
-// Not a Fragment: styled-jsx adds className to the elements here.
-const Bare = ({ children }) => children;
-
 function MyApp({ Component, pageProps }) {
-    // Pages that draw their own chrome (the design lab) opt out of the site header/footer.
-    const Shell = Component.bareLayout ? Bare : Layout;
     return (
         <LangProvider>
             <AuthProvider>
@@ -46,9 +42,9 @@ function MyApp({ Component, pageProps }) {
                             --font-arabic: ${plexArabic.style.fontFamily};
                         }
                     `}</style>
-                    <Shell flushFooter={Component.flushFooter}>
+                    <Layout flushFooter={Component.flushFooter}>
                         <Component {...pageProps} />
-                    </Shell>
+                    </Layout>
                     <Analytics />
                     <SpeedInsights />
                     </ToastProvider>

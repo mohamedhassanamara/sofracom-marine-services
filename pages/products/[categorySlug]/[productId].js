@@ -13,7 +13,7 @@ import useAddToCart from '../../../hooks/useAddToCart';
 import useFormat from '../../../hooks/useFormat';
 import useProductStats from '../../../hooks/useProductStats';
 import { DELIVERY_FEE } from '../../../lib/constants';
-import { imageAt } from '../../../lib/images';
+import { imageAt, photoClass } from '../../../lib/images';
 import { localizeCategory, localizeProduct } from '../../../lib/localize';
 import { cardProduct, getProductById, getProductPaths } from '../../../lib/products';
 import { breadcrumbJsonLd, productJsonLd } from '../../../lib/seo';
@@ -59,7 +59,7 @@ function Gallery({ images, title }) {
     return (
         <div>
             <button type="button" onClick={() => setZoom(true)} className="group relative block aspect-square w-full overflow-hidden rounded-2xl bg-surface" aria-label={`${t('product.zoom')}: ${title}`}>
-                <ResponsiveImage key={current} src={current} alt={title} priority={active === 0} sizes="(min-width: 1320px) 700px, (min-width: 1024px) 55vw, 100vw" className="h-full w-full object-contain p-[8%] mix-blend-multiply transition-transform duration-base ease-out can-hover:group-hover:scale-[1.03]" />
+                <ResponsiveImage key={current} src={current} alt={title} priority={active === 0} sizes="(min-width: 1320px) 700px, (min-width: 1024px) 55vw, 100vw" className={cx('h-full w-full object-contain p-[8%] transition-transform duration-base ease-out can-hover:group-hover:scale-[1.03]', photoClass(current))} />
                 <span className="absolute bottom-4 end-4 flex h-10 w-10 items-center justify-center rounded-full bg-white text-ink shadow-soft" aria-hidden="true">
                     <Icon as={ZoomIn} size={18} />
                 </span>
@@ -68,8 +68,8 @@ function Gallery({ images, title }) {
                 <ul className="mt-4 flex flex-wrap gap-3" aria-label={t('product.images')}>
                     {images.map((src, index) => (
                         <li key={src}>
-                            <button type="button" onClick={() => setActive(index)} aria-pressed={index === active} aria-label={t('product.imageN', { n: index + 1, total: images.length })} className={cx('block h-20 w-20 overflow-hidden rounded-xl bg-surface ring-offset-2 transition', index === active ? 'ring-2 ring-ink' : 'hover:ring-1 hover:ring-line-strong')}>
-                                <img src={imageAt(src, 400)} alt="" loading="lazy" className="h-full w-full object-contain p-2 mix-blend-multiply" />
+                            <button type="button" onClick={() => setActive(index)} aria-pressed={index === active} aria-label={t('product.imageN', { n: index + 1, total: images.length })} className={cx('block h-20 w-20 overflow-hidden rounded-xl bg-surface ring-offset-2 transition', index === active ? 'ring-2 ring-navy-900' : 'hover:ring-1 hover:ring-line-strong')}>
+                                <img src={imageAt(src, 400)} alt="" loading="lazy" className={cx('h-full w-full object-contain p-2', photoClass(src))} />
                             </button>
                         </li>
                     ))}
@@ -77,7 +77,7 @@ function Gallery({ images, title }) {
             )}
             <Dialog open={zoom} onClose={() => setZoom(false)} title={title} size="xl" bodyClassName="p-0">
                 <div className="relative bg-surface">
-                    <ResponsiveImage src={current} alt={t('product.imageN', { n: active + 1, total: images.length })} sizes="90vw" className="mx-auto max-h-[75dvh] w-full object-contain mix-blend-multiply" />
+                    <ResponsiveImage src={current} alt={t('product.imageN', { n: active + 1, total: images.length })} sizes="90vw" className={cx('mx-auto max-h-[75dvh] w-full object-contain', photoClass(current))} />
                     {images.length > 1 && (
                         <div className="absolute inset-x-4 top-1/2 flex -translate-y-1/2 justify-between">
                             <button type="button" onClick={() => step(-1)} className="flex h-11 w-11 items-center justify-center rounded-full bg-white shadow-soft" aria-label={t('ui.previous')}>
@@ -125,7 +125,7 @@ function OptionChips({ variants, value, onChange }) {
                             aria-checked={selected}
                             tabIndex={selected ? 0 : -1}
                             onClick={() => onChange(index)}
-                            className={cx('flex min-h-[3rem] flex-col justify-center rounded-xl border px-4 py-2 text-start transition-colors duration-fast', selected ? 'border-ink' : 'border-line hover:border-line-strong', variant.stock === 'out' && 'opacity-50')}
+                            className={cx('flex min-h-[3rem] flex-col justify-center rounded-xl border px-4 py-2 text-start transition-colors duration-fast', selected ? 'border-navy-900' : 'border-line hover:border-line-strong', variant.stock === 'out' && 'opacity-50')}
                         >
                             <span className="text-sm font-medium text-ink">{variant.label}</span>
                             <span className="text-xs tabular-nums text-ink-muted">

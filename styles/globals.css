@@ -171,6 +171,14 @@ h3 {
     color: theme('colors.slate.800');
 }
 
+/* Product photos on the neutral well (lib/images.js photoClass). */
+.photo-blend {
+    mix-blend-mode: multiply;
+}
+.photo-cutout {
+    filter: drop-shadow(0 0 0.75px rgb(17 17 17 / 0.34)) drop-shadow(0 6px 12px rgb(17 17 17 / 0.08));
+}
+
 /* ---------- UI kit (components/ui) ---------- */
 /* An open modal dialog/drawer locks the page scroll; only its body scrolls. */
 html:has(dialog[open]) {

@@ -22,10 +22,10 @@ export function StatusBadge({ kind, status, size }) {
 }
 
 const DOT = {
-    done: 'bg-success-600 text-white',
-    current: 'bg-white text-navy-900 ring-4 ring-navy-200 border-2 border-navy-900',
+    done: 'bg-navy-900 text-white',
+    current: 'bg-white text-navy-900 ring-4 ring-accent-200 border-2 border-navy-900',
     stopped: 'bg-danger-600 text-white',
-    todo: 'bg-white border-2 border-slate-300',
+    todo: 'bg-white border-2 border-line-strong',
 };
 
 // Every step of the normal flow: reached steps with their time and note, the current one
@@ -54,19 +54,19 @@ export function StatusTimeline({ kind, doc }) {
                 const last = index === steps.length - 1;
                 return (
                     <li key={status} className="relative flex gap-4 pb-6 last:pb-0" aria-current={isCurrent ? 'step' : undefined}>
-                        {!last && <span aria-hidden="true" className={cx('absolute start-[0.6875rem] top-6 h-[calc(100%-1.5rem)] w-0.5', state === 'done' ? 'bg-success-600' : 'bg-slate-200')} />}
+                        {!last && <span aria-hidden="true" className={cx('absolute start-[0.6875rem] top-6 h-[calc(100%-1.5rem)] w-0.5', state === 'done' ? 'bg-navy-900' : 'bg-line')} />}
                         <span aria-hidden="true" className={cx('relative z-[1] flex h-6 w-6 shrink-0 items-center justify-center rounded-full', DOT[state])}>
                             {state === 'done' && <Icon as={Check} size={14} />}
                             {state === 'stopped' && <Icon as={X} size={14} />}
                             {state === 'current' && <span className="h-2 w-2 rounded-full bg-navy-900" />}
                         </span>
                         <div className="min-w-0 pt-0.5">
-                            <p className={cx('font-semibold', state === 'todo' ? 'text-slate-500' : 'text-slate-900')} data-tone={statusTone[kind][status]}>
+                            <p className={cx('font-semibold', state === 'todo' ? 'text-ink-muted' : 'text-ink')} data-tone={statusTone[kind][status]}>
                                 {t(`status.${kind}.${status}`)}
                                 <span className="sr-only"> ({t(`timeline.${state}`)})</span>
                             </p>
-                            {entry?.at && <p className="text-sm text-slate-600">{format.date(entry.at, true)}</p>}
-                            {entry?.note && <p className="mt-1 rounded-md bg-slate-100 px-3 py-2 text-sm text-slate-700">{entry.note}</p>}
+                            {entry?.at && <p className="text-sm text-ink-muted">{format.date(entry.at, true)}</p>}
+                            {entry?.note && <p className="mt-2 rounded-xl bg-surface px-3 py-2 text-sm text-ink">{entry.note}</p>}
                         </div>
                     </li>
                 );

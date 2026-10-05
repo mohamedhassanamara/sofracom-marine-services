@@ -4,7 +4,8 @@ import { useEffect, useRef } from 'react';
 import { useCart } from '../../contexts/CartContext';
 import { useLang } from '../../contexts/LangContext';
 import { DELIVERY_FEE } from '../../lib/constants';
-import { imageAt } from '../../lib/images';
+import { cx } from '../ui/cx';
+import { imageAt, photoClass } from '../../lib/images';
 import { Button, Drawer, EmptyState, Price, QuantityStepper } from '../ui';
 import { Icon, Info, ShoppingCart, Trash2 } from '../ui/icons';
 
@@ -33,18 +34,18 @@ export default function CartDrawer() {
                     <div className="flex flex-col gap-3">
                         <dl className="space-y-1.5 text-sm">
                             <div className="flex justify-between">
-                                <dt className="text-slate-600">{t('cart.itemsTotal')}</dt>
+                                <dt className="text-ink-muted">{t('cart.itemsTotal')}</dt>
                                 <dd>
                                     <Price value={total} size="sm" />
                                 </dd>
                             </div>
                             <div className="flex justify-between">
-                                <dt className="text-slate-600">{t('cart.deliveryFee')}</dt>
+                                <dt className="text-ink-muted">{t('cart.deliveryFee')}</dt>
                                 <dd>
                                     <Price value={DELIVERY_FEE} size="sm" />
                                 </dd>
                             </div>
-                            <div className="flex justify-between border-t border-slate-200 pt-2 text-base">
+                            <div className="flex justify-between border-t border-line pt-2 text-base">
                                 <dt className="font-semibold">{t('cart.grandTotal')}</dt>
                                 <dd>
                                     <Price value={total + DELIVERY_FEE} size="lg" />
@@ -72,23 +73,23 @@ export default function CartDrawer() {
                             </span>
                         </p>
                     )}
-                    <ul className="divide-y divide-slate-200">
+                    <ul className="divide-y divide-line">
                         {cart.map(item => (
                             <li key={item.id} className="flex gap-3 py-4 first:pt-0">
-                                <img src={imageAt(item.image, 400)} alt="" loading="lazy" className="h-20 w-20 shrink-0 rounded-md border border-slate-200 bg-white object-contain p-1" />
+                                <img src={imageAt(item.image, 400)} alt="" loading="lazy" className={cx('h-20 w-20 shrink-0 rounded-xl bg-surface object-contain p-1.5', photoClass(item.image))} />
                                 <div className="min-w-0 flex-1">
                                     <div className="flex items-start justify-between gap-2">
                                         <div className="min-w-0">
                                             {item.productId && item.categorySlug ? (
-                                                <Link href={`/products/${item.categorySlug}/${item.productId}`} className="line-clamp-2 font-medium text-slate-900 hover:underline">
+                                                <Link href={`/products/${item.categorySlug}/${item.productId}`} className="line-clamp-2 font-medium text-ink hover:underline">
                                                     {item.title}
                                                 </Link>
                                             ) : (
-                                                <p className="line-clamp-2 font-medium text-slate-900">{item.title}</p>
+                                                <p className="line-clamp-2 font-medium text-ink">{item.title}</p>
                                             )}
-                                            {item.variantLabel && <p className="text-sm text-slate-600">{item.variantLabel}</p>}
+                                            {item.variantLabel && <p className="text-sm text-ink-muted">{item.variantLabel}</p>}
                                         </div>
-                                        <Button variant="ghost" size="sm" icon={Trash2} label={t('cart.removeItem', { title: item.title })} onClick={() => removeItem(item.id)} className="-me-2 -mt-1 text-slate-500 hover:text-danger-700" />
+                                        <Button variant="ghost" size="sm" icon={Trash2} label={t('cart.removeItem', { title: item.title })} onClick={() => removeItem(item.id)} className="-me-2 -mt-1 text-ink-muted hover:text-danger-700" />
                                     </div>
                                     <div className="mt-2 flex items-center justify-between gap-2">
                                         <QuantityStepper size="sm" value={item.quantity} onChange={quantity => updateQuantity(item.id, quantity)} label={`${t('ui.quantity')}: ${item.title}`} />

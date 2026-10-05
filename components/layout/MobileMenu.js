@@ -20,7 +20,7 @@ export default function MobileMenu({ open, onClose }) {
     return (
         <Drawer open={open} onClose={onClose} title={t('header.menu')} side="start">
             <nav aria-label={t('header.mainNav')} className="flex flex-col gap-8 pb-4">
-                <Link prefetch={false} href="/quote" onClick={onClose} className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-navy-900 px-6 text-[0.9375rem] font-semibold text-white hover:bg-navy-800">
+                <Link prefetch={false} href="/quote" onClick={onClose} className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-accent-400 px-6 text-[0.9375rem] font-semibold text-navy-950 hover:bg-accent-300">
                     <Icon as={MessageSquareText} size={18} />
                     {t('nav.quote')}
                 </Link>

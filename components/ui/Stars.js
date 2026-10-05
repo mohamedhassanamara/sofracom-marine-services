@@ -17,7 +17,7 @@ export function Stars({ value = 0, size = 'md', label, className }) {
             {[0, 1, 2, 3, 4].map(index => {
                 const fill = Math.max(0, Math.min(1, rating - index));
                 return (
-                    <span className="relative inline-block text-slate-300" key={index} aria-hidden="true">
+                    <span className="relative inline-block text-line-strong" key={index} aria-hidden="true">
                         ★
                         <span className="absolute inset-y-0 start-0 overflow-hidden text-star" style={{ width: `${fill * 100}%` }}>
                             ★
@@ -34,10 +34,10 @@ export function RatingSummary({ stats, size = 'sm', className }) {
     const { t } = useLang();
     if (!stats || !stats.count) return null;
     return (
-        <span className={cx('inline-flex items-center gap-1.5 text-sm text-slate-600', className)}>
+        <span className={cx('inline-flex items-center gap-1.5 text-sm text-ink-muted', className)}>
             <Stars value={stats.avg} size={size} />
             <span>
-                <span className="font-medium text-slate-800">{Number(stats.avg).toFixed(1)}</span>
+                <span className="font-medium text-ink">{Number(stats.avg).toFixed(1)}</span>
                 <span className="sr-only">, </span> ({t('ui.reviewsCount', { count: stats.count })})
             </span>
         </span>
@@ -70,8 +70,8 @@ export function StarInput({ value, onChange, label }) {
                     aria-label={t('reviews.nStars', { count: star })}
                     tabIndex={value === star || (!value && star === 1) ? 0 : -1}
                     className={cx(
-                        'h-11 w-11 rounded-md text-3xl leading-none transition-colors duration-fast hover:bg-slate-100',
-                        star <= (value || 0) ? 'text-star' : 'text-slate-300'
+                        'h-11 w-11 rounded-md text-3xl leading-none transition-colors duration-fast hover:bg-surface',
+                        star <= (value || 0) ? 'text-star' : 'text-line-strong'
                     )}
                     onClick={() => onChange(star)}
                 >

@@ -131,5 +131,13 @@ export function createCatalogStore({ repoRoot }) {
         return { count: items.length, items: items.slice(0, 200) };
     }
 
-    return { readCatalog, saveCatalog, validate, readGallery, saveGallery, upload, products, translationQueue, version };
+    // Products whose picture is an illustration or a placeholder (flag set in the editor).
+    function photoQueue() {
+        const items = readCatalog().categories.flatMap(category =>
+            (category.products || []).filter(product => product.needsPhoto).map(product => ({ id: product.id, title: product.title, category: category.name, image: (product.images || [])[0] || product.image || '' }))
+        );
+        return { count: items.length, items };
+    }
+
+    return { readCatalog, saveCatalog, validate, readGallery, saveGallery, upload, products, translationQueue, photoQueue, version };
 }

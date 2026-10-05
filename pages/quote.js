@@ -1,22 +1,35 @@
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Seo from '../components/Seo';
-import { Breadcrumb, Button, Card, Field, Input, Select, Textarea } from '../components/ui';
+import { Breadcrumb, Button, CategoryArt, Field, Input, ResponsiveImage, Select, Textarea } from '../components/ui';
 import { cx } from '../components/ui/cx';
-import { AlertTriangle, Anchor, CheckCircle2, Icon, MessageSquareText, Package, Paintbrush, Ship, Sparkles, Wrench, X, Zap } from '../components/ui/icons';
+import { AlertTriangle, Check, Icon, MessageSquareText, X } from '../components/ui/icons';
 import { useAuth } from '../contexts/AuthContext';
 import { useLang } from '../contexts/LangContext';
 import useCatalogIndex from '../hooks/useCatalogIndex';
 import { apiRequest, errorMessage } from '../lib/apiClient';
+import { imageAt, photoClass } from '../lib/images';
+import { getProductById } from '../lib/products';
 import { BOAT_TYPES, QUOTE_SERVICES } from '../lib/quote';
+import { QUOTE_SERVICE_ART } from '../lib/siteMedia';
 
-const SERVICE_ICONS = { antifouling: Paintbrush, gelcoat: Sparkles, deck: Anchor, electrical: Zap, polishing: Wrench, haulout: Ship, products: Package, other: MessageSquareText };
+// Each service card's picture (approved cutouts are used automatically).
+export function getStaticProps() {
+    const art = Object.fromEntries(
+        QUOTE_SERVICES.map(key => {
+            const entry = QUOTE_SERVICE_ART[key] || {};
+            return [key, { photo: entry.photo || null, images: (entry.products || []).map(id => getProductById(id)?.product.image).filter(Boolean) }];
+        })
+    );
+    return { props: { art } };
+}
 const serviceTitle = (t, key) => (key === 'products' || key === 'other' ? t(`quote.service.${key}`) : t(`home.service.${key}.title`));
 const serviceBody = (t, key) => (key === 'products' || key === 'other' ? t(`quote.service.${key}Body`) : t(`home.service.${key}.body`));
 
 const EMPTY = { service: '', boatType: '', boatLength: '', details: '', name: '', email: '', phone: '' };
 
-export default function QuotePage() {
+export default function QuotePage({ art = {} }) {
     const { t, lang } = useLang();
     const router = useRouter();
     const { user, email: accountEmail, profile } = useAuth();
@@ -104,58 +117,69 @@ export default function QuotePage() {
         return (
             <>
                 <Seo title={t('quote.title')} path="/quote" />
-                <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6">
-                    <Card padding="lg" className="text-center">
-                        <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-success-50 text-success-700">
-                            <Icon as={CheckCircle2} size={32} />
-                        </span>
-                        <h1 ref={successRef} tabIndex={-1} className="mt-4 text-2xl font-bold text-navy-900 focus:outline-none sm:text-3xl">
-                            {t('quote.successTitle')}
-                        </h1>
-                        {sent.ref && (
-                            <div className="mx-auto mt-6 max-w-sm rounded-lg border-2 border-dashed border-navy-200 bg-navy-50 p-4">
-                                <p className="text-sm font-medium text-slate-700">{t('quote.refLabel')}</p>
-                                <p className="mt-1 font-mono text-3xl font-bold tracking-wider text-navy-900">
-                                    <bdi dir="ltr">{sent.ref}</bdi>
-                                </p>
-                            </div>
+                <div className="mx-auto max-w-2xl px-4 py-14 text-center sm:px-6 lg:py-24">
+                    <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-navy-50 text-navy-900">
+                        <Icon as={Check} size={30} />
+                    </span>
+                    <h1 ref={successRef} tabIndex={-1} className="mt-6 text-[2rem] font-semibold leading-tight text-ink focus:outline-none lg:text-title-1">
+                        {t('quote.successTitle')}
+                    </h1>
+                    {sent.ref && (
+                        <>
+                            <p className="mt-8 text-sm font-medium uppercase tracking-[0.12em] text-ink-muted">{t('quote.refLabel')}</p>
+                            <p className="mt-2 font-display text-[2.75rem] font-semibold tracking-[0.04em] text-navy-900 sm:text-display-2">
+                                <bdi dir="ltr">{sent.ref}</bdi>
+                            </p>
+                        </>
+                    )}
+                    <p className="mx-auto mt-4 max-w-md text-ink-muted">{t('quote.successBody')}</p>
+                    {user && <p className="mt-2 text-sm text-ink-muted">{t('quote.accountHint')}</p>}
+                    <div className="mt-10 flex flex-wrap justify-center gap-3">
+                        {user && (
+                            <Button size="lg" href="/account/quotes">
+                                {t('confirm.viewAccount')}
+                            </Button>
                         )}
-                        <p className="mt-4 text-slate-700">{t('quote.successBody')}</p>
-                        {user && <p className="mt-1 text-sm text-slate-600">{t('quote.accountHint')}</p>}
-                        <div className="mt-6 flex flex-wrap justify-center gap-3">
-                            {user && <Button href="/account/quotes">{t('confirm.viewAccount')}</Button>}
-                            <Button
-                                variant="secondary"
-                                onClick={() => {
-                                    setSent(null);
-                                    setForm(current => ({ ...EMPTY, name: current.name, email: current.email, phone: current.phone }));
-                                    setProductId('');
-                                }}
-                            >
-                                {t('quote.another')}
-                            </Button>
-                            <Button href="/products" variant="ghost">
-                                {t('home.hero.shop')}
-                            </Button>
-                        </div>
-                    </Card>
+                        <Button
+                            size="lg"
+                            variant="secondary"
+                            onClick={() => {
+                                setSent(null);
+                                setForm(current => ({ ...EMPTY, name: current.name, email: current.email, phone: current.phone }));
+                                setProductId('');
+                            }}
+                        >
+                            {t('quote.another')}
+                        </Button>
+                    </div>
+                    <p className="mt-8">
+                        <Link href="/products" prefetch={false} className="text-sm font-semibold text-navy-900 underline-offset-4 hover:underline">
+                            {t('home.v2.shop')}
+                        </Link>
+                    </p>
                 </div>
             </>
         );
     }
 
     const errorList = Object.entries(errors);
+    const stepTitle = (number, key) => (
+        <span className="flex items-center gap-3 text-xl font-semibold text-ink">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-navy-50 font-sans text-sm font-semibold text-navy-900">{number}</span>
+            {t(key)}
+        </span>
+    );
     return (
         <>
             <Seo title={t('quote.title')} description={t('quote.intro')} path="/quote" />
-            <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+            <div className="mx-auto max-w-wide px-4 pb-16 pt-8 sm:px-6 lg:pt-12">
                 <Breadcrumb items={[{ label: t('nav.home'), href: '/' }, { label: t('quote.title') }]} />
-                <h1 className="mt-4 text-2xl font-bold text-navy-900 sm:text-3xl">{t('quote.title')}</h1>
-                <p className="mt-2 text-slate-600">{t('quote.intro')}</p>
+                <h1 className="mt-6 text-[2.25rem] font-semibold leading-tight text-ink lg:text-title-1">{t('quote.title')}</h1>
+                <p className="mt-4 max-w-2xl text-body-lg text-ink-muted">{t('quote.intro')}</p>
 
-                <form onSubmit={submit} noValidate className="mt-6 flex flex-col gap-6">
+                <form onSubmit={submit} noValidate className="mt-10 flex max-w-5xl flex-col gap-12">
                     {(errorList.length > 0 || serverError) && (
-                        <div ref={alertRef} tabIndex={-1} role="alert" className="rounded-lg border border-danger-200 bg-danger-50 p-4 text-danger-800 focus:outline-none">
+                        <div ref={alertRef} tabIndex={-1} role="alert" className="rounded-xl border border-danger-200 bg-danger-50 p-4 text-danger-800 focus:outline-none">
                             <p className="flex items-center gap-2 font-semibold">
                                 <Icon as={AlertTriangle} size={18} />
                                 {serverError || t('checkout.errorSummary')}
@@ -174,20 +198,32 @@ export default function QuotePage() {
                         </div>
                     )}
 
-                    <Card as="fieldset" id="quote-service" tabIndex={-1} aria-invalid={errors.service ? true : undefined}>
-                        <legend className="float-start mb-4 w-full text-lg font-semibold text-navy-900">1. {t('quote.step.service')}</legend>
-                        <div className="clear-both grid gap-2 sm:grid-cols-2">
+                    <fieldset id="quote-service" tabIndex={-1} aria-invalid={errors.service ? true : undefined} className="focus:outline-none">
+                        <legend className="mb-6">{stepTitle(1, 'quote.step.service')}</legend>
+                        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
                             {QUOTE_SERVICES.map(key => {
                                 const checked = form.service === key;
+                                const picture = art[key] || {};
                                 return (
-                                    <label key={key} className={cx('flex cursor-pointer items-start gap-3 rounded-lg border-2 p-3 transition-colors duration-fast has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-accent-600 has-[:focus-visible]:ring-offset-2', checked ? 'border-navy-900 bg-navy-50' : 'border-slate-200 hover:border-slate-300')}>
+                                    <label key={key} className={cx('group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border bg-white transition-colors duration-fast has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent-600', checked ? 'border-navy-900 ring-1 ring-navy-900' : 'border-line hover:border-line-strong')}>
                                         <input type="radio" name="service" value={key} checked={checked} onChange={update('service')} className="sr-only" />
-                                        <span className={cx('flex h-9 w-9 shrink-0 items-center justify-center rounded-md', checked ? 'bg-navy-900 text-white' : 'bg-navy-50 text-navy-700')}>
-                                            <Icon as={SERVICE_ICONS[key]} size={18} />
+                                        <span className="relative block aspect-[4/3] bg-surface">
+                                            {picture.photo ? (
+                                                <ResponsiveImage src={picture.photo} alt="" sizes="(min-width: 1024px) 260px, 45vw" className="h-full w-full object-cover" />
+                                            ) : picture.images?.length ? (
+                                                <CategoryArt images={picture.images} sizes="160px" hover={false} className="h-full w-full" />
+                                            ) : (
+                                                <span className="flex h-full items-center justify-center text-navy-900">
+                                                    <Icon as={MessageSquareText} size={36} />
+                                                </span>
+                                            )}
+                                            <span className={cx('absolute end-3 top-3 flex h-7 w-7 items-center justify-center rounded-full border-2 transition-colors duration-fast', checked ? 'border-navy-900 bg-navy-900 text-white' : 'border-white bg-white/80')} aria-hidden="true">
+                                                {checked && <Icon as={Check} size={14} />}
+                                            </span>
                                         </span>
-                                        <span>
-                                            <span className="block font-semibold text-slate-900">{serviceTitle(t, key)}</span>
-                                            <span className="block text-sm text-slate-600">{serviceBody(t, key)}</span>
+                                        <span className="flex flex-1 flex-col gap-1 p-4">
+                                            <span className="font-semibold text-ink">{serviceTitle(t, key)}</span>
+                                            <span className="line-clamp-2 text-sm text-ink-muted">{serviceBody(t, key)}</span>
                                         </span>
                                     </label>
                                 );
@@ -198,66 +234,57 @@ export default function QuotePage() {
                                 {t(errors.service)}
                             </p>
                         )}
-                    </Card>
+                    </fieldset>
 
-                    <Card as="fieldset">
-                        <legend className="float-start mb-1 w-full text-lg font-semibold text-navy-900">2. {t('quote.step.boat')}</legend>
-                        <p className="clear-both mb-4 text-sm text-slate-600">{t('quote.boatOptional')}</p>
-                        <div className="grid gap-4 sm:grid-cols-2">
-                            <Field id="quote-boatType" label={t('quote.boatType')}>
-                                <Select value={form.boatType} onChange={update('boatType')}>
-                                    <option value="">{t('quote.boatTypeNone')}</option>
-                                    {BOAT_TYPES.map(type => (
-                                        <option key={type} value={type}>
-                                            {t(`quote.boat.${type}`)}
-                                        </option>
-                                    ))}
-                                </Select>
-                            </Field>
-                            <Field id="quote-boatLength" label={t('quote.boatLength')}>
-                                <Input type="number" inputMode="decimal" min="1" max="100" step="0.1" value={form.boatLength} onChange={update('boatLength')} />
-                            </Field>
-                        </div>
-                    </Card>
-
-                    <Card as="fieldset">
-                        <legend className="float-start mb-4 w-full text-lg font-semibold text-navy-900">3. {t('quote.step.details')}</legend>
-                        <div className="clear-both grid gap-4">
+                    <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+                        <fieldset className="flex flex-col gap-5">
+                            <legend className="mb-6">{stepTitle(2, 'quote.step.boat')}</legend>
+                            <p className="-mt-2 text-sm text-ink-muted">{t('quote.boatOptional')}</p>
+                            <div className="grid grid-cols-2 gap-4">
+                                <Field id="quote-boatType" label={t('quote.boatType')}>
+                                    <Select value={form.boatType} onChange={update('boatType')}>
+                                        <option value="">{t('quote.boatTypeNone')}</option>
+                                        {BOAT_TYPES.map(type => (
+                                            <option key={type} value={type}>
+                                                {t(`quote.boat.${type}`)}
+                                            </option>
+                                        ))}
+                                    </Select>
+                                </Field>
+                                <Field id="quote-boatLength" label={t('quote.boatLength')}>
+                                    <Input type="number" inputMode="decimal" min="1" max="100" step="0.1" value={form.boatLength} onChange={update('boatLength')} />
+                                </Field>
+                            </div>
                             {productId && productTitle && (
-                                <div className="flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 p-3">
-                                    <img src={product.image} alt="" className="h-12 w-12 rounded-md bg-white object-contain p-0.5" />
+                                <div className="flex items-center gap-3 rounded-xl bg-surface p-3">
+                                    <img src={imageAt(product.image, 400)} alt="" className={cx('h-14 w-14 rounded-lg bg-white object-contain p-1', photoClass(product.image))} />
                                     <span className="min-w-0 flex-1 text-sm">
-                                        <span className="block text-slate-600">{t('quote.about')}</span>
-                                        <span className="block truncate font-semibold text-slate-900">{productTitle}</span>
+                                        <span className="block text-ink-muted">{t('quote.about')}</span>
+                                        <span className="block truncate font-medium text-ink">{productTitle}</span>
                                     </span>
                                     <Button variant="ghost" size="sm" icon={X} label={t('quote.removeProduct')} onClick={() => setProductId('')} />
                                 </div>
                             )}
                             <Field id="quote-details" label={t('quote.details')} hint={t('quote.detailsHint')} required error={fieldError('details')}>
-                                <Textarea rows={6} value={form.details} onChange={update('details')} maxLength={5000} />
+                                <Textarea rows={4} value={form.details} onChange={update('details')} maxLength={5000} />
                             </Field>
-                        </div>
-                    </Card>
+                        </fieldset>
 
-                    <Card as="fieldset">
-                        <legend className="float-start mb-4 w-full text-lg font-semibold text-navy-900">4. {t('quote.step.contact')}</legend>
-                        <div className="clear-both grid gap-4 sm:grid-cols-2">
+                        <fieldset className="flex flex-col gap-5">
+                            <legend className="mb-6">{stepTitle(3, 'quote.step.contact')}</legend>
                             <Field id="quote-name" label={t('form.name')} required error={fieldError('name')}>
                                 <Input autoComplete="name" value={form.name} onChange={update('name')} maxLength={120} />
                             </Field>
                             <Field id="quote-email" label={t('form.email')} required error={fieldError('email')}>
                                 <Input type="email" autoComplete="email" dir="ltr" value={form.email} onChange={update('email')} maxLength={200} />
                             </Field>
-                            <Field id="quote-phone" label={t('quote.phoneOptional')} className="sm:col-span-2">
+                            <Field id="quote-phone" label={t('quote.phoneOptional')}>
                                 <Input type="tel" inputMode="tel" autoComplete="tel" dir="ltr" value={form.phone} onChange={update('phone')} maxLength={40} />
                             </Field>
-                        </div>
-                    </Card>
-
-                    <div>
-                        <Button type="submit" size="lg" icon={MessageSquareText} loading={sending}>
-                            {sending ? t('quote.sending') : t('quote.submit')}
-                        </Button>
+                            <Button type="submit" size="lg" icon={MessageSquareText} loading={sending} fullWidth className="mt-2 h-14 text-base">
+                                {sending ? t('quote.sending') : t('quote.submit')}
+                            </Button>
+                        </fieldset>
                     </div>
                 </form>
             </div>

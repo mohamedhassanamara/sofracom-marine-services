@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import Seo from '../components/Seo';
 import { CONTACT } from '../components/layout/SiteFooter';
 import { CategoryArt, ProductRail, ResponsiveImage } from '../components/ui';
+import HeroImage from '../components/ui/HeroImage';
 import { cx } from '../components/ui/cx';
 import { Anchor, ArrowRight, Award, Check, ChevronDown, Icon, MapPin, MessageCircle, Paintbrush, Phone, Ship, Sparkles, Truck, Wrench, Zap } from '../components/ui/icons';
 import { useLang } from '../contexts/LangContext';
@@ -66,7 +67,7 @@ function SectionHeading({ id, title, subtitle, action }) {
 }
 
 const MoreLink = ({ href, children }) => (
-    <Link prefetch={false} href={href} className="inline-flex items-center gap-1.5 text-[0.9375rem] font-semibold text-ink underline-offset-4 hover:underline">
+    <Link prefetch={false} href={href} className="inline-flex items-center gap-1.5 text-[0.9375rem] font-semibold text-navy-900 underline-offset-4 hover:underline">
         {children}
         <Icon as={ArrowRight} size={18} flip />
     </Link>
@@ -76,10 +77,10 @@ const MoreLink = ({ href, children }) => (
 function Hero() {
     const { t } = useLang();
     return (
-        <section className="relative isolate flex min-h-[34rem] items-end overflow-hidden bg-ink sm:min-h-[40rem] lg:h-[min(86vh,48rem)]">
-            <ResponsiveImage src={HERO.image} alt="" sizes="100vw" priority className="absolute inset-0 -z-10 h-full w-full object-cover" style={{ objectPosition: HERO.position }} />
-            <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
-            <div aria-hidden="true" className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-black/30 to-transparent lg:block rtl:bg-gradient-to-l" />
+        <section className="relative isolate flex min-h-[34rem] items-end overflow-hidden bg-navy-900 sm:min-h-[40rem] lg:h-[min(86vh,48rem)]">
+            <HeroImage image={HERO.image} mobile={HERO.mobile} position={HERO.position} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+            <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-950/80 via-navy-950/25 to-transparent" />
+            <div aria-hidden="true" className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-navy-950/45 to-transparent lg:block rtl:bg-gradient-to-l" />
             <div className="mx-auto w-full max-w-wide px-4 pb-12 sm:px-6 sm:pb-16 lg:pb-24">
                 <div className="max-w-[46rem]">
                     <h1 className="text-[2.75rem] font-semibold leading-[1.04] tracking-[-0.025em] text-white sm:text-display-2 lg:text-display-1">{t('home.v2.title')}</h1>
@@ -88,7 +89,7 @@ function Hero() {
                         <Link prefetch={false} href="/products" className={cx(pill, 'bg-white text-ink hover:bg-surface')}>
                             {t('home.v2.shop')}
                         </Link>
-                        <Link prefetch={false} href="/quote" className={cx(pill, 'border border-white/70 text-white hover:bg-white/10')}>
+                        <Link prefetch={false} href="/quote" className={cx(pill, 'bg-accent-400 text-navy-950 hover:bg-accent-300')}>
                             {t('nav.quote')}
                         </Link>
                     </div>
@@ -101,7 +102,7 @@ function Hero() {
 function TrustBar() {
     const { t } = useLang();
     return (
-        <section aria-label={t('trust.label')} className="border-b border-line">
+        <section aria-label={t('trust.label')} className="bg-navy-50">
             <ul className="mx-auto grid max-w-wide grid-cols-2 gap-x-4 gap-y-5 px-4 py-6 sm:px-6 lg:grid-cols-4 lg:py-7">
                 {TRUST.map(item => (
                     <li key={item.key} className="flex items-center gap-3 text-sm font-medium text-ink lg:justify-center">
@@ -137,7 +138,7 @@ function Categories({ categories }) {
                                         <span className="mt-1 block text-sm text-ink-muted">{t('header.productsCount', { count: raw.count })}</span>
                                     </span>
                                     <span
-                                        className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-ink transition-colors duration-fast group-hover:bg-ink group-hover:text-white sm:flex"
+                                        className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-ink transition-colors duration-fast group-hover:bg-navy-900 group-hover:text-white sm:flex"
                                         aria-hidden="true"
                                     >
                                         <Icon as={ArrowRight} size={18} flip />
@@ -214,7 +215,7 @@ function Services({ cards }) {
                             key={service.key}
                             prefetch={false}
                             href={`/quote?service=${service.key}`}
-                            className="inline-flex h-10 items-center gap-2 rounded-full border border-line-strong px-4 text-sm font-medium text-ink hover:border-ink"
+                            className="inline-flex h-10 items-center gap-2 rounded-full border border-line-strong px-4 text-sm font-medium text-ink hover:border-navy-900"
                         >
                             <Icon as={service.icon} size={16} className="text-navy-900" />
                             {t(`home.service.${service.key}.title`)}
@@ -227,8 +228,8 @@ function Services({ cards }) {
                 <h3 className="text-2xl font-semibold text-ink lg:text-title-2">{t('home.how.title')}</h3>
                 <ol className="mt-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
                     {[1, 2, 3, 4].map(step => (
-                        <li key={step} className="border-t border-ink pt-5">
-                            <span className="font-display text-sm font-semibold tabular-nums text-ink-muted" aria-hidden="true">
+                        <li key={step} className="border-t-2 border-accent-400 pt-5">
+                            <span className="font-display text-sm font-semibold tabular-nums text-accent-700" aria-hidden="true">
                                 {String(step).padStart(2, '0')}
                             </span>
                             <span className="mt-3 block text-lg font-semibold text-ink">{t(`home.how.step${step}.title`)}</span>
@@ -274,13 +275,13 @@ function Brands() {
 function About() {
     const { t } = useLang();
     return (
-        <section id="about" className="scroll-mt-20 bg-surface" aria-labelledby="home-about">
+        <section id="about" className="scroll-mt-20 bg-navy-50" aria-labelledby="home-about">
             <div className={cx(section, 'grid items-center gap-12 lg:grid-cols-2 lg:gap-20')}>
                 <div className="overflow-hidden rounded-2xl">
                     <ResponsiveImage src="/assets/site/monastir-2-800.webp" alt={t('monoA.title')} sizes="(min-width: 1024px) 640px, 100vw" className="aspect-[4/3] w-full object-cover" />
                 </div>
                 <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-navy-900">{t('about.title')}</p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent-700">{t('about.title')}</p>
                     <h2 id="home-about" className="mt-4 text-[2rem] font-semibold leading-[1.1] text-ink lg:text-title-1">
                         {t('home.location.title')}
                     </h2>
@@ -334,7 +335,7 @@ function Faq() {
 function Closing() {
     const { t } = useLang();
     return (
-        <section className="bg-navy-900 text-white" aria-labelledby="home-cta">
+        <section className="border-b border-white/10 bg-navy-900 text-white" aria-labelledby="home-cta">
             <div className="mx-auto flex max-w-wide flex-col gap-8 px-4 py-16 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:py-24">
                 <div className="max-w-2xl">
                     <h2 id="home-cta" className="text-[2rem] font-semibold leading-[1.1] lg:text-title-1">
@@ -343,7 +344,7 @@ function Closing() {
                     <p className="mt-4 text-body-lg text-navy-100">{t('home.v2.ctaBody')}</p>
                 </div>
                 <div className="flex flex-wrap gap-3">
-                    <Link prefetch={false} href="/quote" className={cx(pill, 'bg-white text-ink hover:bg-surface')}>
+                    <Link prefetch={false} href="/quote" className={cx(pill, 'bg-accent-400 text-navy-950 hover:bg-accent-300')}>
                         {t('home.v2.ctaButton')}
                     </Link>
                     <a href={CONTACT.phoneHref} className={cx(pill, 'border border-white/50 text-white hover:bg-white/10')}>

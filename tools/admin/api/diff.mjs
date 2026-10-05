@@ -1,5 +1,5 @@
 // Human summary of catalog/gallery changes between the last commit and the files on disk.
-const FIELDS = ['title', 'brand', 'description', 'price', 'stock', 'image', 'images', 'variants', 'usage', 'datasheet', 'translations'];
+const FIELDS = ['title', 'brand', 'description', 'price', 'stock', 'image', 'images', 'variants', 'usage', 'datasheet', 'translations', 'needsPhoto'];
 const same = (a, b) => JSON.stringify(a ?? null) === JSON.stringify(b ?? null);
 
 export function diffCatalog(before, after) {

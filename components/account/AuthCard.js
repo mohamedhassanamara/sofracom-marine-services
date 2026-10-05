@@ -3,16 +3,25 @@ import { useLang } from '../../contexts/LangContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { errorMessage } from '../../lib/apiClient';
 import Seo from '../Seo';
+import ResponsiveImage from '../ui/ResponsiveImage';
 
+// Sign-in, sign-up, reset: a centred, minimal form; on desktop the marina photo fills the
+// other half.
 export function AuthCard({ title, subtitle, children }) {
     return (
-        <div className="flex min-h-[70vh] items-start justify-center px-4 py-10 sm:items-center sm:py-16">
+        <div className="mx-auto grid max-w-wide gap-10 px-4 py-10 sm:px-6 lg:min-h-[calc(100vh-7rem)] lg:grid-cols-2 lg:items-stretch lg:gap-16 lg:py-12">
             <Seo title={title} noindex />
-            <div className="w-full max-w-md rounded-xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-                <p className="text-sm font-semibold uppercase tracking-wide text-accent-700">SOFRACOM</p>
-                <h1 className="mt-1 text-2xl font-bold text-navy-900">{title}</h1>
-                {subtitle && <p className="mt-2 text-slate-600">{subtitle}</p>}
-                <div className="mt-6">{children}</div>
+            <div className="flex items-center justify-center">
+                <div className="w-full max-w-md">
+                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent-700">SOFRACOM</p>
+                    <h1 className="mt-3 text-[2rem] font-semibold leading-tight text-ink">{title}</h1>
+                    {subtitle && <p className="mt-3 text-ink-muted">{subtitle}</p>}
+                    <div className="mt-8">{children}</div>
+                </div>
+            </div>
+            <div className="relative hidden overflow-hidden rounded-2xl bg-navy-50 lg:block">
+                <ResponsiveImage src="/assets/site/home-hero-800.webp" alt="" sizes="50vw" className="absolute inset-0 h-full w-full object-cover" />
+                <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-navy-950/50 to-transparent" />
             </div>
         </div>
     );

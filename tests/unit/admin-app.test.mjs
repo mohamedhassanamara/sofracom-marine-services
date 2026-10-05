@@ -155,31 +155,30 @@ test('publish: shows the diff, commits only catalog files to main; rollback reve
     assert.equal(reverted.categories[0].products[0].variants[0].price, 10);
 });
 
-test('photo cutouts: bulk approve / keep original need the token, publish with the catalog, and are reversible', async () => {
+test('photo cutouts: approving copies only that cutout into public and publishes it; keep original removes it', async () => {
     const src = '/assets/products/paint-800.webp';
-    repo.write('public/assets/data/cutouts.json', `${JSON.stringify({ version: 1, images: { [src]: { cutout: '/assets/products/cutouts/paint-cut-800.webp', status: 'pending', model: 'medium' } } }, null, 2)}\n`);
-    repo.write('public/assets/products/cutouts/paint-cut-800.webp', 'webp');
-    repo.git('add', '-A');
-    repo.git('commit', '-qm', 'cutouts');
-    repo.git('push', '-q', 'origin', 'main');
+    // A generated cutout waiting in the (git-ignored) cache.
+    repo.write('.cutouts-cache/manifest.json', `${JSON.stringify({ version: 1, images: { [src]: { file: 'paint-cut', model: 'medium' } } })}\n`);
+    for (const width of [400, 800, 1600]) repo.write(`.cutouts-cache/files/paint-cut-${width}.webp`, 'webp');
+    assert.deepEqual((await request({ path: '/api/publish' })).json.files, [], 'cached cutouts are never published');
 
     assert.equal((await request({ method: 'POST', path: '/api/cutouts/status', body: { sources: [src], status: 'approved' } })).status, 403);
     assert.equal((await write('POST', '/api/cutouts/status', { sources: [src], status: 'deleted' })).status, 400);
 
-    const approved = await write('POST', '/api/cutouts/status', { sources: [src], status: 'approved' });
-    assert.equal(approved.status, 200);
+    assert.equal((await write('POST', '/api/cutouts/status', { sources: [src], status: 'approved' })).status, 200);
     assert.equal(JSON.parse(fs.readFileSync(path.join(repo.work, 'public/assets/data/cutouts.json'), 'utf-8')).images[src].status, 'approved');
     const preview = await request({ path: '/api/publish' });
-    assert.deepEqual(preview.json.files.map(file => file.path), ['public/assets/data/cutouts.json']);
+    assert.deepEqual(preview.json.files.map(file => file.path).sort(), ['public/assets/data/cutouts.json', 'public/assets/products/cutouts/paint-cut-1600.webp', 'public/assets/products/cutouts/paint-cut-400.webp', 'public/assets/products/cutouts/paint-cut-800.webp']);
     assert.deepEqual(preview.json.diff.cutouts.added.map(item => item.id), [src]);
+    assert.equal((await request({ path: '/cutouts-cache/paint-cut-400.webp' })).status, 200, 'the admin previews cached cutouts');
 
-    // Back to the original: the site would show nothing new; the cutout file is kept.
+    // Keep the original: the public files go away again, only the decision is published.
     await write('POST', '/api/cutouts/status', { sources: [src], status: 'original' });
-    const reverted = (await request({ path: '/api/publish' })).json.diff.cutouts;
-    assert.deepEqual([reverted.added, reverted.removed], [[], []]);
-    assert.ok(fs.existsSync(path.join(repo.work, 'public/assets/products/cutouts/paint-cut-800.webp')));
+    assert.ok(!fs.existsSync(path.join(repo.work, 'public/assets/products/cutouts/paint-cut-800.webp')));
+    assert.deepEqual((await request({ path: '/api/publish' })).json.files.map(file => file.path), ['public/assets/data/cutouts.json']);
+    assert.ok(fs.existsSync(path.join(repo.work, '.cutouts-cache/files/paint-cut-800.webp')));
 
-    // Without the background-removal library: listing still works, generating says why it can't.
+    // Without the background-removal library: listing still works, retrying says why it can't.
     const list = await request({ path: '/api/cutouts' });
     assert.equal(list.json.available, false);
     const retry = await write('POST', '/api/cutouts/retry', { src });

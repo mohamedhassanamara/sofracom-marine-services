@@ -1,13 +1,15 @@
 // Product photo cutouts: background removed on this computer, trimmed, centred on a square
-// with the same margin, saved as transparent WebP (400/800/1600) next to the originals.
-// Nothing is replaced: public/assets/data/cutouts.json records, per original photo, its
-// cutout and a status, and the site shows a cutout only once it is "approved".
+// with the same margin, saved as transparent WebP (400/800/1600). Originals are never touched.
 //
-//   status: pending  → generated, waiting for review (the site shows the original)
-//           approved → the site shows the cutout
-//           original → reviewed, keep the original photo
+// Two places, so only approved files ever reach git:
+//   .cutouts-cache/ (git-ignored)   every generated cutout + manifest.json {src: {file, model, updatedAt}}
+//   public/assets/products/cutouts/  only APPROVED cutouts (copied from the cache on approval)
+//   public/assets/data/cutouts.json  the decisions, published with the catalog:
+//                                    {src: {status: "approved", cutout, …} | {status: "original"}}
+// A photo with a cached cutout and no decision is "pending"; without either it is "missing".
+// The site shows a cutout only when it is approved (lib/cutouts.js).
 //
-// Used by scripts/cutouts.mjs (batches from the terminal) and the admin app (review page).
+// Used by scripts/cutouts.mjs (batches from the terminal) and the admin app (Photos page).
 // Background removal needs @imgly/background-removal-node (≈300 MB with its model, so it
 // is not a dependency of the site): set BG_REMOVAL_PATH to the installed package folder,
 // or `npm i --no-save @imgly/background-removal-node` in this repository.
@@ -21,6 +23,7 @@ const sharp = require('sharp');
 
 export const MANIFEST = 'public/assets/data/cutouts.json';
 export const OUT_DIR = 'public/assets/products/cutouts';
+export const CACHE_DIR = '.cutouts-cache';
 export const STATUSES = ['pending', 'approved', 'original'];
 export const MODELS = ['medium', 'small'];
 const SIZE = 1600; // canvas = the largest file written
@@ -30,18 +33,28 @@ const MAX_BYTES = 200 * 1024;
 
 const fail = (status, message, code) => Object.assign(new Error(message), { status, code });
 const withSlash = value => (value ? `/${String(value).replace(/^\//, '')}` : '');
+const readJson = (file, fallback) => (fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf-8')) : fallback);
+const writeJson = (file, images) => {
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    const sorted = Object.fromEntries(Object.entries(images).sort(([a], [b]) => a.localeCompare(b)));
+    fs.writeFileSync(file, `${JSON.stringify({ version: 1, images: sorted }, null, 2)}\n`);
+};
+const cacheFiles = repoRoot => path.join(repoRoot, CACHE_DIR, 'files');
+const cacheManifestPath = repoRoot => path.join(repoRoot, CACHE_DIR, 'manifest.json');
 
-export function readManifest(repoRoot) {
-    const file = path.join(repoRoot, MANIFEST);
-    if (!fs.existsSync(file)) return { version: 1, images: {} };
-    const data = JSON.parse(fs.readFileSync(file, 'utf-8'));
-    return { version: 1, images: data.images || {} };
-}
+// The published decisions.
+export const readManifest = repoRoot => ({ version: 1, images: readJson(path.join(repoRoot, MANIFEST), { images: {} }).images || {} });
+export const writeManifest = (repoRoot, manifest) => writeJson(path.join(repoRoot, MANIFEST), manifest.images);
+// What has been generated on this computer.
+export const readCache = repoRoot => ({ version: 1, images: readJson(cacheManifestPath(repoRoot), { images: {} }).images || {} });
+const writeCache = (repoRoot, cache) => writeJson(cacheManifestPath(repoRoot), cache.images);
 
-export function writeManifest(repoRoot, manifest) {
-    const images = Object.fromEntries(Object.entries(manifest.images).sort(([a], [b]) => a.localeCompare(b)));
-    fs.writeFileSync(path.join(repoRoot, MANIFEST), `${JSON.stringify({ version: 1, images }, null, 2)}\n`);
-}
+const publicPath = file => `/${OUT_DIR.replace(/^public\//, '')}/${file}-800.webp`;
+const removePublished = (repoRoot, entry) => {
+    if (!entry?.cutout) return;
+    const stem = path.basename(entry.cutout).replace(/-800\.webp$/, '');
+    for (const width of WIDTHS) fs.rmSync(path.join(repoRoot, OUT_DIR, `${stem}-${width}.webp`), { force: true });
+};
 
 // Every product photo in the catalog, once, with the product it belongs to.
 export function catalogImages(repoRoot) {
@@ -53,12 +66,29 @@ export function catalogImages(repoRoot) {
             list.forEach((src, index) => {
                 const key = withSlash(src);
                 if (!seen.has(key) && !key.includes('/site/logo')) {
-                    seen.set(key, { src: key, productId: product.id, title: product.title, categorySlug: category.slug, position: index });
+                    seen.set(key, { src: key, productId: product.id, title: product.title, categorySlug: category.slug, position: index, needsPhoto: Boolean(product.needsPhoto) });
                 }
             });
         }
     }
     return [...seen.values()];
+}
+
+// Status of one photo: a decision wins; else a cached cutout is pending; else missing.
+const statusOf = (decision, cached) => decision?.status || (cached ? 'pending' : 'missing');
+
+// Catalog photos with their status, model and a preview path: the published file once
+// approved, else the cached one (served by the admin at /cutouts-cache/…).
+export function photoStates(repoRoot) {
+    const decisions = readManifest(repoRoot).images;
+    const cache = readCache(repoRoot).images;
+    return catalogImages(repoRoot).map(image => {
+        const decision = decisions[image.src];
+        const cached = cache[image.src];
+        const status = statusOf(decision, cached);
+        const preview = status === 'approved' ? decision.cutout : cached ? `/cutouts-cache/${cached.file}-800.webp` : null;
+        return { ...image, status, model: cached?.model || decision?.model || null, updatedAt: cached?.updatedAt || decision?.updatedAt || null, preview };
+    });
 }
 
 let remover = null;
@@ -73,8 +103,8 @@ export async function loadRemover() {
     }
     // Its model files sit in the package's dist/ folder; tell it where (it guesses from cwd).
     const dist = from ? path.join(from, 'dist') : path.dirname(require.resolve('@imgly/background-removal-node'));
-    const publicPath = pathToFileURL(`${dist}${path.sep}`).href;
-    remover = (input, config) => module.removeBackground(input, { publicPath, ...config });
+    const modelPath = pathToFileURL(`${dist}${path.sep}`).href;
+    remover = (input, config) => module.removeBackground(input, { publicPath: modelPath, ...config });
     return remover;
 }
 
@@ -103,7 +133,8 @@ async function encode(canvas, width) {
     return sharp(canvas).resize(width).webp({ quality: 48, alphaQuality: 80, effort: 6 }).toBuffer();
 }
 
-// Generates (or regenerates) the cutout of one original and records it as pending.
+// Generates (or regenerates) the cutout of one original into the cache. A new cutout must
+// be reviewed again, so an earlier decision for this photo is cleared (and unpublished).
 export async function makeCutout(repoRoot, src, { model = 'medium' } = {}) {
     if (!MODELS.includes(model)) throw fail(400, `Unknown model: ${model}`, 'validation');
     const removeBackground = await loadRemover();
@@ -120,36 +151,57 @@ export async function makeCutout(repoRoot, src, { model = 'medium' } = {}) {
         .png()
         .toBuffer();
 
-    const dir = path.join(repoRoot, OUT_DIR);
-    fs.mkdirSync(dir, { recursive: true });
-    const stem = `${stemOf(key)}-cut`;
-    for (const width of WIDTHS) fs.writeFileSync(path.join(dir, `${stem}-${width}.webp`), await encode(canvas, width));
+    const file = `${stemOf(key)}-cut`;
+    fs.mkdirSync(cacheFiles(repoRoot), { recursive: true });
+    for (const width of WIDTHS) fs.writeFileSync(path.join(cacheFiles(repoRoot), `${file}-${width}.webp`), await encode(canvas, width));
+    const cache = readCache(repoRoot);
+    cache.images[key] = { file, model, updatedAt: new Date().toISOString() };
+    writeCache(repoRoot, cache);
 
     const manifest = readManifest(repoRoot);
-    const entry = { cutout: `/${OUT_DIR.replace(/^public\//, '')}/${stem}-800.webp`, status: 'pending', model, updatedAt: new Date().toISOString() };
-    manifest.images[key] = entry;
-    writeManifest(repoRoot, manifest);
-    return { src: key, ...entry };
+    if (manifest.images[key]) {
+        removePublished(repoRoot, manifest.images[key]);
+        delete manifest.images[key];
+        writeManifest(repoRoot, manifest);
+    }
+    return { src: key, status: 'pending', ...cache.images[key] };
 }
 
-// Sets the status of several originals at once (Approve / Keep original / back to review).
+// Approve (copy the cached files into public), Keep original (no files), or back to review.
 export function setStatus(repoRoot, sources, status) {
     if (!STATUSES.includes(status)) throw fail(400, `Unknown status: ${status}`, 'validation');
-    const list = (Array.isArray(sources) ? sources : [sources]).map(withSlash);
+    const list = [...new Set((Array.isArray(sources) ? sources : [sources]).map(withSlash))];
     if (!list.length) throw fail(400, 'No images selected', 'validation');
     const manifest = readManifest(repoRoot);
-    const missing = list.filter(src => !manifest.images[src]);
-    if (missing.length) throw fail(400, `No cutout yet for ${missing[0]}`, 'validation');
+    const cache = readCache(repoRoot).images;
     const now = new Date().toISOString();
-    list.forEach(src => {
-        manifest.images[src] = { ...manifest.images[src], status, updatedAt: now };
-    });
+    // Check everything first, so a bad entry changes nothing.
+    for (const src of list) {
+        if (!cache[src] && !manifest.images[src]) throw fail(400, `No cutout yet for ${src}`, 'validation');
+        if (status === 'approved' && manifest.images[src]?.status !== 'approved') {
+            const files = cache[src] && WIDTHS.map(width => path.join(cacheFiles(repoRoot), `${cache[src].file}-${width}.webp`));
+            if (!files || !files.every(file => fs.existsSync(file))) throw fail(409, `The cutout files for ${src} are not on this computer. Generate it again (Retry), then approve.`, 'cutouts/not-cached');
+        }
+    }
+    fs.mkdirSync(path.join(repoRoot, OUT_DIR), { recursive: true });
+    for (const src of list) {
+        const current = manifest.images[src];
+        if (status === 'approved') {
+            if (current?.status === 'approved') continue;
+            const { file, model } = cache[src];
+            for (const width of WIDTHS) fs.copyFileSync(path.join(cacheFiles(repoRoot), `${file}-${width}.webp`), path.join(repoRoot, OUT_DIR, `${file}-${width}.webp`));
+            manifest.images[src] = { status: 'approved', cutout: publicPath(file), model, updatedAt: now };
+        } else {
+            removePublished(repoRoot, current);
+            if (status === 'original') manifest.images[src] = { status: 'original', updatedAt: now };
+            else delete manifest.images[src];
+        }
+    }
     writeManifest(repoRoot, manifest);
-    return list.map(src => ({ src, ...manifest.images[src] }));
+    return list.map(src => ({ src, status: statusOf(manifest.images[src], cache[src]) }));
 }
 
-// Originals without a cutout yet, in catalog order.
+// Photos with neither a cutout nor a decision, in catalog order.
 export function missing(repoRoot) {
-    const manifest = readManifest(repoRoot);
-    return catalogImages(repoRoot).filter(image => !manifest.images[image.src]);
+    return photoStates(repoRoot).filter(image => image.status === 'missing');
 }

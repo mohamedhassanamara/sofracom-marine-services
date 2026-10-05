@@ -5,6 +5,7 @@ import { useLang } from '../../contexts/LangContext';
 import useCatalogIndex from '../../hooks/useCatalogIndex';
 import useFormat from '../../hooks/useFormat';
 import { indexToCardProduct, searchProducts } from '../../lib/catalogIndex';
+import { photoClass } from '../../lib/images';
 import { Icon, Search, X } from '../ui/icons';
 import ResponsiveImage from '../ui/ResponsiveImage';
 
@@ -76,7 +77,7 @@ export default function SearchOverlay({ open, onClose }) {
                 onCloseRef.current?.();
             }}
             onMouseDown={event => event.target === dialog.current && onCloseRef.current?.()}
-            className="ui-search m-0 max-h-[100dvh] w-full max-w-none overflow-y-auto bg-white p-0 text-ink backdrop:bg-ink/40 open:block"
+            className="ui-search m-0 max-h-[100dvh] w-full max-w-none overflow-y-auto bg-white p-0 text-ink backdrop:bg-navy-950/40 open:block"
         >
             {open && (
                 <div className="mx-auto max-w-wide px-4 pb-10 pt-4 sm:px-6 sm:pt-6">
@@ -86,7 +87,7 @@ export default function SearchOverlay({ open, onClose }) {
                             event.preventDefault();
                             if (term) router.push({ pathname: '/search', query: { q: term } });
                         }}
-                        className="flex items-center gap-3 border-b border-ink pb-3"
+                        className="flex items-center gap-3 border-b border-navy-900 pb-3"
                     >
                         <Icon as={Search} size={24} className="shrink-0" />
                         <label htmlFor="site-search" className="sr-only">
@@ -117,7 +118,7 @@ export default function SearchOverlay({ open, onClose }) {
                             <ul className="mt-4 flex flex-wrap gap-2 lg:flex-col lg:gap-3">
                                 {(index?.categories || []).map(category => (
                                     <li key={category.slug}>
-                                        <Link prefetch={false} href={`/products/${category.slug}`} className="inline-flex h-9 items-center rounded-full border border-line px-4 text-sm hover:border-ink lg:h-auto lg:border-0 lg:px-0 lg:text-[0.9375rem] lg:hover:underline">
+                                        <Link prefetch={false} href={`/products/${category.slug}`} className="inline-flex h-9 items-center rounded-full border border-line px-4 text-sm hover:border-navy-900 lg:h-auto lg:border-0 lg:px-0 lg:text-[0.9375rem] lg:hover:underline">
                                             {category.name[lang] || category.name.en}
                                         </Link>
                                     </li>
@@ -134,7 +135,7 @@ export default function SearchOverlay({ open, onClose }) {
                                         <li key={product.id}>
                                             <Link prefetch={false} href={`/products/${product.categorySlug}/${product.id}`} className="group block">
                                                 <span className="block aspect-square overflow-hidden rounded-xl bg-surface">
-                                                    <ResponsiveImage src={product.image} alt="" sizes="200px" className="h-full w-full object-contain p-[10%] mix-blend-multiply transition-transform duration-base ease-out group-hover:scale-[1.03]" />
+                                                    <ResponsiveImage src={product.image} alt="" sizes="200px" className={`h-full w-full object-contain p-[10%] transition-transform duration-base ease-out group-hover:scale-[1.03] ${photoClass(product.image)}`} />
                                                 </span>
                                                 <span className="mt-2 line-clamp-2 text-sm font-medium group-hover:underline">{product.title}</span>
                                                 <span className="text-sm tabular-nums text-ink-muted">
@@ -147,7 +148,7 @@ export default function SearchOverlay({ open, onClose }) {
                                 </ul>
                             )}
                             {matches?.length > 0 && (
-                                <Link prefetch={false} href={{ pathname: '/search', query: { q: term } }} className="mt-8 inline-flex h-11 items-center rounded-full border border-ink px-5 text-sm font-semibold hover:bg-ink hover:text-white">
+                                <Link prefetch={false} href={{ pathname: '/search', query: { q: term } }} className="mt-8 inline-flex h-11 items-center rounded-full border border-navy-900 px-5 text-sm font-semibold hover:bg-navy-900 hover:text-white">
                                     {t('search.seeAll', { q: term })}
                                 </Link>
                             )}

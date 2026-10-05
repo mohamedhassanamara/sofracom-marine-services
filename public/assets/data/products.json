@@ -632,7 +632,8 @@
               "variants": [],
               "needsReview": true
             }
-          }
+          },
+          "needsPhoto": true
         },
         {
           "id": "p_ugcixzvs",
@@ -678,7 +679,8 @@
               "variants": [],
               "needsReview": true
             }
-          }
+          },
+          "needsPhoto": true
         },
         {
           "id": "p_b7dlnumf",
@@ -724,7 +726,8 @@
               "variants": [],
               "needsReview": true
             }
-          }
+          },
+          "needsPhoto": true
         },
         {
           "id": "p_jjfbjkf3",
@@ -1705,7 +1708,8 @@
                 }
               ]
             }
-          }
+          },
+          "needsPhoto": true
         },
         {
           "id": "p_or42picd",

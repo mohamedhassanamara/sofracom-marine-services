@@ -78,7 +78,7 @@ export async function createApi({ repoRoot, codeRoot = repoRoot, targetMode }) {
             const today = await desk.todayForStaff();
             const names = titles();
             today.recentReviews.items = today.recentReviews.items.map(review => ({ ...review, productTitle: names.get(review.productId) || review.productId }));
-            return { ...today, translations: catalog.translationQueue() };
+            return { ...today, translations: catalog.translationQueue(), photos: catalog.photoQueue() };
         }],
 
         // Orders and quotes

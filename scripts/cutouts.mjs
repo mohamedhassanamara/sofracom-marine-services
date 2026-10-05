@@ -28,7 +28,7 @@ try {
 const model = arg('model') || 'medium';
 if (arg('src')) {
     const entry = await makeCutout(root, arg('src'), { model });
-    console.log(`${entry.src} → ${entry.cutout} (pending)`);
+    console.log(`${entry.src} → .cutouts-cache/files/${entry.file}-*.webp (pending review)`);
     process.exit(0);
 }
 

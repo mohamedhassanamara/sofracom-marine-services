@@ -41,12 +41,12 @@ export default function Popover({ label, count = 0, children, align = 'start', d
                 onClick={() => setOpen(value => !value)}
                 className={cx(
                     'inline-flex h-10 items-center gap-1.5 whitespace-nowrap rounded-full border px-4 text-sm font-medium transition-colors duration-fast',
-                    count > 0 || open ? 'border-ink text-ink' : 'border-line-strong text-ink hover:border-ink',
+                    count > 0 || open ? 'border-navy-900 text-ink' : 'border-line-strong text-ink hover:border-navy-900',
                     buttonClassName
                 )}
             >
                 {label}
-                {count > 0 && <span className="rounded-full bg-ink px-1.5 text-xs font-semibold leading-5 text-white">{count}</span>}
+                {count > 0 && <span className="rounded-full bg-navy-900 px-1.5 text-xs font-semibold leading-5 text-white">{count}</span>}
                 <Icon as={ChevronDown} size={16} className={cx('transition-transform duration-fast', open && 'rotate-180')} />
             </button>
             {open && (

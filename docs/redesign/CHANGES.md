@@ -145,12 +145,52 @@ Branch `redesign` (website) and `redesign` in `../../IdeaProjects/sofracom_admin
 - **Tests:** routing tests added; 68 unit, 19 rules, 63 API, all green.
 - **Before/after comparisons:** `phase-8/compare/`.
 
+### Visual redesign v2 (branch `redesign-v2`, built on `redesign`; reports in `docs/redesign-v2/step-{1,2,3}/`)
+- **Look:**
+  - "Clean premium": white pages, a neutral `#F5F5F3` well under every product photo, ink text and hairlines.
+  - Manrope headings; IBM Plex Sans Arabic in Arabic.
+  - Pill buttons, no resting shadows.
+  - Colour comes from the brand:
+    - a slim navy top bar (delivery, phone, tracking);
+    - sky-blue "Get a quote" pills;
+    - a navy-tinted hero;
+    - pale-blue trust and About bands;
+    - navy selected states;
+    - a navy closing band + footer.
+- **Catalog pages:**
+  - a new header with a Shop panel and a search overlay;
+  - one product card everywhere: "+" quick add with an option picker or bottom sheet, the 2nd photo on hover, real ratings only;
+  - home: hero, trust bar, category tiles, product rail, service cards, steps, brands, FAQ, closing band;
+  - category with no sidebar: sticky toolbar, popover filters including price, chips, a bottom sheet on phones;
+  - product page: big gallery + lightbox, sticky buy column, accordions, "You may also need";
+  - `/products` and `/search` match.
+- **Rest of the site:**
+  - checkout in 3 clear steps, with a sticky summary on desktop and a collapsible one on phones;
+  - a calm confirmation with the large ref and "what happens next";
+  - quote with image service cards;
+  - track;
+  - the account shell, order cards with thumbnails, an order timeline;
+  - auth pages with the marina photo;
+  - gallery as masonry;
+  - a friendly 404.
+- **Photos:**
+  - Background-removed **cutouts** for all 225 product photos, waiting for review in **Admin → Photos** (approve / keep original / retry / bulk).
+  - Only approved cutouts are copied into `public/assets` and published; the rest stay in the git-ignored `.cutouts-cache/`.
+  - Category tiles use 2–3 chosen products each (Admin → Categories → Tile products).
+  - Illustrated product pictures are flagged "Needs a real photo" (Admin → Today).
+- **Hero:** a separate 3:4 phone crop with a media-scoped preload. Run `node scripts/hero-image.mjs <photo> --focus 0.6` to swap it.
+- **Removed:** the placeholder testimonials (section, code and strings) and the temporary `/design-lab`.
+- **Checks:**
+  - all tests green (74 unit, 19 rules, 63 API);
+  - axe 0 issues on every page, in EN and AR, at 1440 and 390, signed in and out;
+  - Lighthouse mobile 93–97 on home, category, product and checkout in both languages.
+
 ## What you need to do
 
 ### Before merging to `main`
 1. **Review the branch.** In particular:
    - the home page copy;
-   - the testimonials, which are still placeholders: replace them with real ones (they are marked in `pages/index.js`).
+   - testimonials: v2 removed the placeholder section completely. Add a section back once you have real ones.
 2. **Vercel settings**
    - Leave the Build Command at its default, or set it to `npm run build`. That script now runs `next build --webpack`. If the project overrides it with `next build`, Turbopack is used and pages ship duplicated JS.
    - Node.js 20.9 or newer, which Next.js 16 requires.
@@ -167,6 +207,18 @@ Branch `redesign` (website) and `redesign` in `../../IdeaProjects/sofracom_admin
    - First run `node scripts/backfill-refs.mjs` (a dry run that lists what it would do).
    - Then run `node scripts/backfill-refs.mjs --apply`.
    - It uses your production credentials, so run it yourself. Until then, older orders show their short ID.
+
+### Visual redesign v2 (before merging `redesign-v2`)
+- **Cutouts**
+  - Review them in `npm run admin` → **Photos**:
+    - approve the good ones;
+    - "Keep original" for illustrations, fabrics and failed masks (the fibreglass items);
+    - then Publish.
+  - To generate or retry cutouts on your computer, install `@imgly/background-removal-node` somewhere and set `BG_REMOVAL_PATH=` in `.env` to that package folder. It is ~300 MB, so it is not a site dependency.
+  - The cutouts waiting for review are only in `.cutouts-cache/` on this computer. They aren't in git: run `node scripts/cutouts.mjs --all` on another machine.
+- **Hero photo:** when you have the closer marina/berth photo, run `node scripts/hero-image.mjs photo.jpg --focus 0.6`. The current source is only 1280×576, so the phone crop is slightly upscaled.
+- **Replace the 4 illustrated product pictures** listed on Admin → Today, then untick "Needs a real photo".
+- **Service pictures** (home cards, quote form) are product cutouts until you have photos of the work. Edit them in `lib/siteMedia.js`.
 
 ### Local admin app (your computer only)
 - `.env` can hold `VERCEL_TOKEN`, `VERCEL_PROJECT_ID` and, for a team project, `VERCEL_TEAM_ID`. With them, Publish shows the Vercel build status.
@@ -190,11 +242,10 @@ Branch `redesign` (website) and `redesign` in `../../IdeaProjects/sofracom_admin
 Nothing to do. Old product URLs, old image paths and the language pages all redirect automatically, via `next.config.js` and `lib/data/image-redirects.json`. These redirects are tested.
 
 ## Known gaps
-- **Mobile LCP in Lighthouse's simulated throttling is 2.8–3.0 s**, against the 2.5 s target. The cause is the bandwidth the hero image shares with the web font and the Next.js runtime; details are in `phase-8/REPORT.md`. With DevTools throttling it is 1.6–2.0 s, and on desktop 0.6–0.8 s. The remaining options are design decisions:
-  - drop Inter for the system font;
-  - inline a tiny hero placeholder.
+- **Mobile LCP in Lighthouse's simulated throttling is 2.6–3.2 s (v2)**, against the 2.5 s target. Fonts are no longer preloaded and the hero has a small phone crop, which brought performance to 93–97. The rest is the Next.js runtime sharing the simulated 1.6 Mbps link.
 - **Best practices 96 locally:** only the `/_vercel/insights` 404, which doesn't happen on Vercel.
 - **The admin app is English only.** It is a staff tool; status labels come from the shared translations.
 - **3 pre-existing `unused_element_parameter` warnings** in the staff app's `flutter analyze`. They were not introduced by the redesign.
-- **The testimonials are placeholders** (kept on purpose).
+- **The gallery has a single entry** (a video), so the masonry grid looks sparse until more are added in the admin.
+- **Some catalog photos are illustrations** (4, flagged), and white products' cutouts need a careful review.
 - **Rate limits on API routes other than `/track`** remain in-memory per serverless instance, as before.

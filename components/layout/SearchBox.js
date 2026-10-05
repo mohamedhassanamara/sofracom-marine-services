@@ -90,7 +90,7 @@ export default function SearchBox({ className, onNavigate, variant = 'dark', lab
             <label htmlFor={`${listId}-input`} className="sr-only">
                 {t('search.label')}
             </label>
-            <Icon as={Search} size={18} className={cx('pointer-events-none absolute start-3 top-1/2 -translate-y-1/2', dark ? 'text-navy-200' : 'text-slate-500')} />
+            <Icon as={Search} size={18} className={cx('pointer-events-none absolute start-4 top-1/2 -translate-y-1/2', dark ? 'text-navy-200' : 'text-ink-muted')} />
             <input
                 id={`${listId}-input`}
                 type="search"
@@ -114,16 +114,16 @@ export default function SearchBox({ className, onNavigate, variant = 'dark', lab
                 }}
                 onKeyDown={onKeyDown}
                 className={cx(
-                    'h-11 w-full rounded-md border pe-3 ps-10 text-base transition-colors duration-fast focus:outline-none focus:ring-2',
+                    'h-12 w-full rounded-full border pe-4 ps-11 text-base transition-colors duration-fast focus:outline-none focus:ring-2',
                     dark
-                        ? 'border-white/20 bg-white/10 text-white placeholder:text-navy-200 hover:bg-white/15 focus:border-accent-400 focus:bg-white focus:text-slate-900 focus:ring-accent-400/40 focus:placeholder:text-slate-500'
-                        : 'border-slate-300 bg-white text-slate-900 placeholder:text-slate-500 focus:border-accent-600 focus:ring-accent-200'
+                        ? 'border-white/20 bg-white/10 text-white placeholder:text-navy-200 hover:bg-white/15 focus:border-accent-400 focus:bg-white focus:text-ink focus:ring-accent-400/40 focus:placeholder:text-ink-muted'
+                        : 'border-line-strong bg-white text-ink placeholder:text-ink-muted focus:border-navy-900 focus:ring-navy-100'
                 )}
             />
             <button type="submit" className="sr-only">
                 {t('search.submit')}
             </button>
-            <div className={cx('absolute inset-x-0 top-full z-50 mt-1 overflow-hidden rounded-lg border border-slate-200 bg-white text-slate-900 shadow-lg', !showList && 'hidden')}>
+            <div className={cx('absolute inset-x-0 top-full z-50 mt-2 overflow-hidden rounded-2xl border border-line bg-white text-ink shadow-soft', !showList && 'hidden')}>
                 <ul id={listId} role="listbox" aria-label={t('search.suggestions')}>
                     {results.map((product, position) => (
                         <li
@@ -138,15 +138,15 @@ export default function SearchBox({ className, onNavigate, variant = 'dark', lab
                             onMouseEnter={() => setActive(position)}
                             className={cx('flex cursor-pointer items-center gap-3 px-3 py-2', active === position && 'bg-navy-50')}
                         >
-                            <img src={product.image} alt="" loading="lazy" className="h-12 w-12 shrink-0 rounded-md bg-slate-50 object-contain" />
+                            <img src={product.image} alt="" loading="lazy" className="h-12 w-12 shrink-0 rounded-md bg-surface object-contain" />
                             <span className="min-w-0 flex-1">
                                 <span className="block truncate font-medium">{product.title[lang] || product.title.en}</span>
-                                <span className="block truncate text-sm text-slate-600">{product.brand}</span>
+                                <span className="block truncate text-sm text-ink-muted">{product.brand}</span>
                             </span>
                             <Price value={product.price} from={product.varies} size="sm" />
                         </li>
                     ))}
-                    {!results.length && <li role="option" aria-disabled="true" aria-selected="false" className="px-3 py-3 text-sm text-slate-600">{t('search.noResults', { q: query.trim() })}</li>}
+                    {!results.length && <li role="option" aria-disabled="true" aria-selected="false" className="px-3 py-3 text-sm text-ink-muted">{t('search.noResults', { q: query.trim() })}</li>}
                     <li
                         id={optionId(results.length)}
                         role="option"
@@ -156,7 +156,7 @@ export default function SearchBox({ className, onNavigate, variant = 'dark', lab
                             goToResults();
                         }}
                         onMouseEnter={() => setActive(results.length)}
-                        className={cx('cursor-pointer border-t border-slate-200 px-3 py-2.5 text-sm font-semibold text-accent-700', active === results.length && 'bg-navy-50')}
+                        className={cx('cursor-pointer border-t border-line px-3 py-2.5 text-sm font-semibold text-accent-700', active === results.length && 'bg-navy-50')}
                     >
                         {t('search.seeAll', { q: query.trim() })}
                     </li>
