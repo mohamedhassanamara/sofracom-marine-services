@@ -69,6 +69,9 @@ npm run admin:emulated # same app against the emulators
 - Staff-app devices (Flutter app in `../../IdeaProjects/sofracom_admin_pp`): the admin app's Staff phones page issues a single-use 6-digit code (`enrollCodes/{sha256}`, 15 min, newest only, 5 wrong attempts burn it); `POST /api/devices/enroll` returns a custom token `{device, deviceId}`. `devices/{id}.active` is checked by `requireDevice` and by `isStaffDevice()` in the rules (website accounts never get staff access, whatever their claims); revoking also revokes refresh tokens. The app reads orders/quotes live via Firestore but changes statuses only through `PATCH /api/admin/{orders,quotes}` (device tokens only). Production rollout steps: `DEPLOY.md`.
 - Guest orders/quotes get attached to an account by `POST /api/account/link`, only when the token's email is verified (called by `AuthContext` once per session).
 
+### Site settings
+`lib/siteSettings.js` (CommonJS): `GALLERY_MIN_ENTRIES` (6): the Gallery link in the header, phone menu, footer and sitemap shows only once `gallery.json` has that many entries (`next.config.js` inlines `process.env.SHOW_GALLERY_LINK` at build time); `/gallery` itself always works.
+
 ### Pages added by the redesign
 `/checkout` (full page; guest or saved addresses; confirmation with the ref, kept in sessionStorage under `?placed=REF`), `/track`, `/quote` (`?service=` / `?product=` pre-fill; options in `lib/quote.js`; quotes store `service, boat_type, boat_length_m, product_id, product_title`), `/search` (client-side on `/api/catalog-index`), `/404`, `/styleguide`. The cart is `components/cart/CartDrawer.js`, mounted by Layout.
 

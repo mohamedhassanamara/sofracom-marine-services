@@ -65,3 +65,14 @@ test('private pages are noindex', async () => {
         assert.match(await (await get(path)).text(), /<meta name="robots" content="noindex, follow"/, path);
     }
 });
+
+test('the Gallery link follows the setting (lib/siteSettings.js); the page always works', async () => {
+    const { showGalleryLink } = require('../../lib/siteSettings.js');
+    const shown = showGalleryLink(require('../../public/assets/data/gallery.json').entries.length);
+    for (const path of ['/', '/ar/products']) {
+        const html = await (await get(path)).text();
+        assert.equal(/href="(\/ar)?\/gallery"/.test(html), shown, `${path}: Gallery link ${shown ? 'missing' : 'should be hidden'}`);
+    }
+    assert.equal(/\/gallery</.test(await (await get('/sitemap.xml')).text()), shown);
+    assert.equal((await get('/gallery')).status, 200);
+});

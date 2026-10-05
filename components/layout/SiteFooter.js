@@ -3,7 +3,7 @@ import { useLang } from '../../contexts/LangContext';
 import useCatalogIndex from '../../hooks/useCatalogIndex';
 import { LOCALES } from '../../lib/i18n/locales';
 import { ChevronUp, Clock, Icon, Mail, MapPin, Phone } from '../ui/icons';
-import { LANGUAGE_NAMES } from './SiteHeader';
+import { LANGUAGE_NAMES, SHOW_GALLERY_LINK } from './SiteHeader';
 
 export const CONTACT = {
     phone: '+216 52 663 210',
@@ -111,11 +111,13 @@ export default function SiteFooter({ flush = false }) {
                             {t('nav.about')}
                         </Link>
                     </li>
-                    <li>
+                    {SHOW_GALLERY_LINK && (
+                        <li>
                         <Link prefetch={false} href="/gallery" className={linkClass}>
                             {t('nav.gallery')}
                         </Link>
                     </li>
+                    )}
                     <li>
                         <Link prefetch={false} href="/account" className={linkClass}>
                             {t('nav.account')}

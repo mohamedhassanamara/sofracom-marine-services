@@ -17,9 +17,11 @@ import { ArrowRight, ChevronDown, Icon, Menu, Search, ShoppingCart, User } from 
 const MobileMenu = dynamic(() => import('./MobileMenu'), { ssr: false });
 const SearchOverlay = dynamic(() => import('./SearchOverlay'), { ssr: false });
 
+// The Gallery link only once the gallery has enough entries (lib/siteSettings.js).
+export const SHOW_GALLERY_LINK = process.env.SHOW_GALLERY_LINK === '1';
 export const NAV_LINKS = [
     { href: '/#services', key: 'nav.services' },
-    { href: '/gallery', key: 'nav.gallery' },
+    ...(SHOW_GALLERY_LINK ? [{ href: '/gallery', key: 'nav.gallery' }] : []),
     { href: '/#about', key: 'nav.about' },
 ];
 export const LANGUAGE_NAMES = { en: 'English', fr: 'Français', ar: 'العربية' };

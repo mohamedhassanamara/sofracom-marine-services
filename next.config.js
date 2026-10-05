@@ -1,6 +1,8 @@
 const catalog = require('./public/assets/data/products.json');
 const { slugify } = require('./lib/productIds');
 const { LOCALES, DEFAULT_LOCALE } = require('./lib/i18n/locales');
+const { showGalleryLink } = require('./lib/siteSettings');
+const gallery = require('./public/assets/data/gallery.json');
 
 // Product URLs moved from title-derived ids to stable ids; keep old links working.
 const productRedirects = () =>
@@ -43,6 +45,12 @@ const nextConfig = {
   },
   // Lets tests and a second dev server run beside `next dev` without sharing its lock.
   distDir: process.env.NEXT_DIST_DIR || '.next',
+
+  // Built into the pages (the gallery changes only with a redeploy anyway): whether the
+  // header/footer show the Gallery link (lib/siteSettings.js).
+  env: {
+    SHOW_GALLERY_LINK: showGalleryLink((gallery.entries || []).length) ? '1' : '0',
+  },
 
   async redirects() {
     return [...productRedirects(), ...imageRedirects()];
