@@ -1,8 +1,10 @@
 import Link from 'next/link';
+import { useId, useState } from 'react';
 import { useLang } from '../../contexts/LangContext';
 import useCatalogIndex from '../../hooks/useCatalogIndex';
 import { LOCALES } from '../../lib/i18n/locales';
-import { ChevronUp, Clock, Icon, Mail, MapPin, Phone } from '../ui/icons';
+import { cx } from '../ui/cx';
+import { ChevronDown, ChevronUp, Clock, Icon, Mail, MapPin, Phone } from '../ui/icons';
 import { LANGUAGE_NAMES, SHOW_GALLERY_LINK } from './SiteHeader';
 
 export const CONTACT = {
@@ -12,11 +14,24 @@ export const CONTACT = {
     mapsHref: 'https://www.google.com/maps/search/?api=1&query=SOFRACOM+Monastir+Tunisia',
 };
 
+// A link column; below 768 px an accordion (the list is hidden by CSS until opened, so wide
+// screens always show it, even before hydration).
 function Column({ title, children }) {
+    const [open, setOpen] = useState(false);
+    const id = `footer-${useId().replace(/:/g, '')}`;
+    const heading = 'font-sans text-xs font-semibold uppercase tracking-[0.1em] text-accent-300';
     return (
-        <div>
-            <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.1em] text-accent-300">{title}</h2>
-            <ul className="mt-5 space-y-3 text-[0.9375rem]">{children}</ul>
+        <div className="border-b border-white/10 md:border-0">
+            <h2 className={heading}>
+                <button type="button" aria-expanded={open} aria-controls={id} onClick={() => setOpen(value => !value)} className="flex min-h-[3rem] w-full items-center justify-between gap-4 uppercase md:hidden">
+                    {title}
+                    <Icon as={ChevronDown} size={18} className={cx('text-navy-200 transition-transform duration-fast', open && 'rotate-180')} />
+                </button>
+                <span className="hidden md:inline">{title}</span>
+            </h2>
+            <ul id={id} className={cx('space-y-3 pb-5 text-[0.9375rem] md:mt-5 md:block md:pb-0', !open && 'hidden')}>
+                {children}
+            </ul>
         </div>
     );
 }
@@ -29,14 +44,14 @@ export default function SiteFooter({ flush = false }) {
     const { index } = useCatalogIndex();
     return (
         <footer className={flush ? 'bg-navy-950 text-navy-100' : 'mt-24 bg-navy-950 text-navy-100 lg:mt-32'}>
-            <div className="mx-auto grid max-w-wide gap-12 px-4 py-16 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:py-20">
-                <div id="contact" className="scroll-mt-24">
+            <div className="mx-auto grid max-w-wide px-4 py-10 sm:px-6 md:grid-cols-2 md:gap-12 md:py-16 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:py-20">
+                <div id="contact" className="mb-6 scroll-mt-24 md:mb-0">
                     <Link prefetch={false} href="/" className="inline-flex items-center gap-2.5">
                         <img src="/assets/site/logo-400.webp" alt="" width="36" height="36" loading="lazy" className="h-9 w-9 rounded-lg ring-1 ring-white/20" />
                         <span className="font-display text-[1.0625rem] font-bold tracking-[0.04em] text-white">SOFRACOM</span>
                     </Link>
-                    <p className="mt-5 max-w-sm text-[0.9375rem] text-navy-200">{t('footer.tagline')}</p>
-                    <ul className="mt-6 space-y-3 text-[0.9375rem]">
+                    <p className="mt-4 max-w-sm text-[0.9375rem] text-navy-200 md:mt-5">{t('footer.tagline')}</p>
+                    <ul className="mt-5 space-y-2.5 text-[0.9375rem] md:mt-6 md:space-y-3">
                         <li className="flex items-start gap-2.5">
                             <Icon as={MapPin} size={18} className="mt-1 shrink-0 text-accent-400" />
                             <span>
@@ -143,7 +158,7 @@ export default function SiteFooter({ flush = false }) {
                 </Column>
             </div>
             <div className="border-t border-white/10">
-                <div className="mx-auto flex max-w-wide flex-wrap items-center justify-between gap-3 px-4 py-6 text-sm text-navy-200 sm:px-6">
+                <div className="mx-auto flex max-w-wide flex-wrap items-center justify-between gap-3 px-4 py-5 text-sm text-navy-200 sm:px-6 md:py-6">
                     <p>
                         © {new Date().getFullYear()} SOFRACOM · Monastir, Tunisia. {t('footer.rights')}
                     </p>
