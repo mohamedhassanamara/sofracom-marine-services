@@ -82,7 +82,8 @@ function Hero() {
     return (
         <section className="relative isolate flex min-h-[34rem] items-end overflow-hidden bg-navy-900 sm:min-h-[40rem] lg:h-[min(86vh,48rem)]">
             <HeroImage image={HERO.image} mobile={HERO.mobile} position={HERO.position} className="absolute inset-0 -z-10 h-full w-full object-cover" />
-            <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-950/80 via-navy-950/25 to-transparent" />
+            {/* Phones: the text covers most of the photo, so the shade reaches higher. */}
+            <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-950/85 via-navy-950/60 via-60% to-navy-950/20 sm:from-navy-950/80 sm:via-navy-950/25 sm:via-50% sm:to-transparent" />
             <div aria-hidden="true" className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-navy-950/45 to-transparent lg:block rtl:bg-gradient-to-l" />
             <div className="mx-auto w-full max-w-wide px-4 pb-20 sm:px-6 sm:pb-24 lg:pb-32">
                 <div className="max-w-[46rem]">
@@ -209,7 +210,7 @@ function Services({ cards }) {
                         <div className="absolute inset-0">
                             <ServiceImage card={card} />
                         </div>
-                        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-navy-950/95 via-navy-950/55 to-transparent" />
+                        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-navy-950/95 from-0% via-navy-950/85 via-45% to-transparent to-80%" />
                         <div className="absolute inset-x-0 bottom-0 p-6 lg:p-7">
                             <h3 className="text-xl font-semibold text-white">{t(`home.service.${card.key}.title`)}</h3>
                             <p className="mt-2 text-navy-100">{t(`home.service.${card.key}.body`)}</p>
