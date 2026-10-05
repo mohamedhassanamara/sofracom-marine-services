@@ -180,6 +180,59 @@ h3 {
 }
 
 /* ---------- UI kit (components/ui) ---------- */
+/* RangeSlider: two native range inputs stacked on one track. Only the thumbs take the
+   pointer; each thumb is a 44 px hit area drawn as a 24 px white disc with a navy ring
+   (the focus ring adds an accent-600 halo). */
+.range-dual {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 2.75rem;
+    margin: 0;
+    background: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+    pointer-events: none;
+}
+.range-dual:focus {
+    outline: none;
+}
+.range-dual::-webkit-slider-runnable-track {
+    height: 2.75rem;
+    background: transparent;
+}
+.range-dual::-moz-range-track {
+    height: 2.75rem;
+    background: transparent;
+}
+.range-dual::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 0;
+    border-radius: 9999px;
+    background: radial-gradient(circle, theme('colors.white') 0 8.5px, theme('colors.navy.900') 9px 12px, transparent 12.5px);
+    cursor: grab;
+    pointer-events: auto;
+}
+.range-dual::-moz-range-thumb {
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 0;
+    border-radius: 9999px;
+    background: radial-gradient(circle, theme('colors.white') 0 8.5px, theme('colors.navy.900') 9px 12px, transparent 12.5px);
+    cursor: grab;
+    pointer-events: auto;
+}
+.range-dual:focus-visible::-webkit-slider-thumb {
+    background: radial-gradient(circle, theme('colors.white') 0 8.5px, theme('colors.navy.900') 9px 12px, theme('colors.white') 12.5px 14px, theme('colors.accent.600') 14.5px 16.5px, transparent 17px);
+}
+.range-dual:focus-visible::-moz-range-thumb {
+    background: radial-gradient(circle, theme('colors.white') 0 8.5px, theme('colors.navy.900') 9px 12px, theme('colors.white') 12.5px 14px, theme('colors.accent.600') 14.5px 16.5px, transparent 17px);
+}
+.range-dual:active::-webkit-slider-thumb {
+    cursor: grabbing;
+}
 /* An open modal dialog/drawer locks the page scroll; only its body scrolls. */
 html:has(dialog[open]) {
     overflow: hidden;

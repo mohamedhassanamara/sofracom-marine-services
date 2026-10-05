@@ -13,6 +13,7 @@ export { ToastProvider, useToast } from './Toast';
 export { EmptyState, Skeleton } from './EmptyState';
 export { default as QuantityStepper } from './QuantityStepper';
 export { default as ProductCard, defaultVariantIndex, productStock } from './ProductCard';
+export { default as RangeSlider } from './RangeSlider';
 export { default as ResponsiveImage } from './ResponsiveImage';
 export { Icon } from './icons';
 export { default as Popover } from './Popover';

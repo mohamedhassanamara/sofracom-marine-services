@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useEffect, useId, useRef, useState } from 'react';
 import { useLang } from '../../contexts/LangContext';
 import useFormat from '../../hooks/useFormat';
+import { productStock } from '../../lib/catalogFilters';
 import { priceRange } from '../../lib/format';
 import { photoClass } from '../../lib/images';
 import { statusTone, tones } from '../../lib/design/tokens';
@@ -21,12 +22,8 @@ export const defaultVariantIndex = product => {
     return index >= 0 ? index : 0;
 };
 
-export const productStock = product => {
-    const variants = Array.isArray(product?.variants) ? product.variants : [];
-    if (!variants.length) return product?.stock || 'in';
-    const stocks = variants.map(variant => variant.stock);
-    return stocks.includes('in') ? 'in' : stocks.includes('on-order') ? 'on-order' : 'out';
-};
+// "in" when any option is in stock (lib/catalogFilters.js, shared with the filters).
+export { productStock };
 
 // "● On order" / "● Out of stock"; nothing when in stock.
 export function StockLine({ stock, className }) {

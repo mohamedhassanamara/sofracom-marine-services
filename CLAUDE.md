@@ -17,6 +17,8 @@ npm run test:i18n      # every key present in en/fr/ar with matching {placeholde
 npm run test:rules     # tests/rules/*.test.mjs via firebase emulators:exec
 npm run test:api       # tests/api/*.test.mjs: spawns `next dev` on :3199 against the emulators
                        #   (routing.test.mjs checks locale/legacy/image redirects and NEXT_LOCALE)
+                       #   price-slider.test.mjs drives Chromium: set PLAYWRIGHT_PATH to a playwright
+                       #   package (not a dependency); skipped without it
 npm run admin          # local admin app → http://127.0.0.1:5180 (asks: emulator or production;
                        #   or pass -- --emulator / -- --production)
 npm run admin:emulated # same app against the emulators

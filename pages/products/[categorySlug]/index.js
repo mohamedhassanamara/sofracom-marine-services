@@ -1,16 +1,14 @@
 import { useRouter } from 'next/router';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Seo from '../../../components/Seo';
-import { Breadcrumb, Button, Checkbox, LoadMore, Popover, ProductCard, Radio, Sheet } from '../../../components/ui';
-import { productStock } from '../../../components/ui/ProductCard';
-import { cx } from '../../../components/ui/cx';
+import { Breadcrumb, Button, Checkbox, Input, LoadMore, Popover, ProductCard, RangeSlider, Sheet } from '../../../components/ui';
 import { ChevronDown, Icon, SlidersHorizontal, X } from '../../../components/ui/icons';
 import { useLang } from '../../../contexts/LangContext';
 import useAddToCart from '../../../hooks/useAddToCart';
-import useFormat from '../../../hooks/useFormat';
 import useProductStats from '../../../hooks/useProductStats';
+import { filterProducts, filterQuery, parseFilters, priceBounds } from '../../../lib/catalogFilters';
 import { normalizeText } from '../../../lib/catalogIndex';
-import { priceRange } from '../../../lib/format';
+import { formatNumber, priceRange } from '../../../lib/format';
 import { langAttrs } from '../../../lib/i18n/locales';
 import { localizeCategory, localizeProduct } from '../../../lib/localize';
 import { cardCategory, cardProduct, getCategories, getCategoryBySlug } from '../../../lib/products';
@@ -24,13 +22,8 @@ const SORTS = [
     { value: 'price', key: 'products.controls.sortPriceAsc' },
     { value: 'price-desc', key: 'products.controls.sortPriceDesc' },
 ];
-// Price bands (DT), by the product's lowest price.
-const BANDS = [
-    { id: 'u50', min: 0, max: 50 },
-    { id: '50-200', min: 50, max: 200 },
-    { id: '200-500', min: 200, max: 500 },
-    { id: 'o500', min: 500, max: Infinity },
-];
+// A moved price handle applies after this pause (a drag applies on release).
+const PRICE_DEBOUNCE_MS = 400;
 
 export async function getStaticPaths({ locales = ['en'] }) {
     const paths = locales.flatMap(locale => getCategories().map(category => ({ params: { categorySlug: category.slug }, locale })));
@@ -43,31 +36,14 @@ export async function getStaticProps({ params }) {
     return { props: { category: { ...cardCategory(category), products: category.products.map(cardProduct) } } };
 }
 
-// Filters live in the URL (?brand=JOTUN&use=Antifouling&stock=in&price=50-200&sort=price&q=…)
-// so a filtered list can be shared and survives the back button.
-const asList = value => (Array.isArray(value) ? value : value ? [value] : []);
-
-function useFilters() {
+// Filters live in the URL (?brand=JOTUN&stock=in&min=100&max=500&sort=price&q=…, see
+// lib/catalogFilters.js) so a filtered list can be shared and survives the back button.
+function useFilters(bounds) {
     const router = useRouter();
-    const query = router.query;
-    const filters = {
-        brands: asList(query.brand),
-        uses: asList(query.use),
-        inStock: query.stock === 'in',
-        band: BANDS.some(band => band.id === query.price) ? query.price : '',
-        sort: SORTS.some(sort => sort.value === query.sort) ? query.sort : 'name',
-        q: typeof query.q === 'string' ? query.q : '',
-    };
+    const filters = parseFilters(router.query, bounds);
     const update = changes => {
-        const next = { ...filters, ...changes };
-        const params = { categorySlug: query.categorySlug };
-        if (next.brands.length) params.brand = next.brands;
-        if (next.uses.length) params.use = next.uses;
-        if (next.inStock) params.stock = 'in';
-        if (next.band) params.price = next.band;
-        if (next.sort !== 'name') params.sort = next.sort;
-        if (next.q) params.q = next.q;
-        router.replace({ pathname: router.pathname, query: params }, undefined, { shallow: true, scroll: false });
+        const query = { categorySlug: router.query.categorySlug, ...filterQuery({ ...filters, ...changes }, bounds) };
+        router.replace({ pathname: router.pathname, query }, undefined, { shallow: true, scroll: false });
     };
     return [filters, update];
 }
@@ -80,26 +56,112 @@ const tally = values => {
     return [...counts.entries()].sort((a, b) => b[1] - a[1] || String(a[0]).localeCompare(String(b[0])));
 };
 
-function useBandLabel() {
-    const { t } = useLang();
-    const format = useFormat();
-    return band => {
-        if (!band) return t('catalog.priceAny');
-        if (band.min === 0) return t('catalog.priceUnder', { max: format.price(band.max) });
-        if (band.max === Infinity) return t('catalog.priceOver', { min: format.price(band.min) });
-        return t('catalog.priceBetween', { min: format.price(band.min), max: format.price(band.max) });
-    };
-}
-
 const optionLabel = (text, count) => (
     <span className="text-[0.9375rem] text-ink">
         {text} {count !== undefined && <span className="text-ink-muted">({count})</span>}
     </span>
 );
 
-function FilterOptions({ kind, brands, uses, filters, update, idPrefix }) {
+// Whole dinars in the page language ("1,250" / "1 250").
+const useDinars = () => {
+    const { lang } = useLang();
+    return value => formatNumber(value, lang, { maximumFractionDigits: 0 });
+};
+
+// The price slider with Min/Max number fields kept in step. Moving shows the matching count
+// at once; the URL (and the product list) follow on release or after a short pause.
+function PriceFilter({ bounds, filters, update, countFor, idPrefix }) {
     const { t } = useLang();
-    const bandLabel = useBandLabel();
+    const dinars = useDinars();
+    const committed = [filters.min ?? bounds.min, filters.max ?? bounds.max];
+    const [draft, setDraft] = useState(committed);
+    const [typed, setTyped] = useState(null); // { lo, hi } while a number field is being edited
+    const timer = useRef(null);
+    useEffect(() => setDraft(committed), [committed[0], committed[1]]); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => () => clearTimeout(timer.current), []);
+
+    const apply = ([lo, hi]) => {
+        clearTimeout(timer.current);
+        if (lo === committed[0] && hi === committed[1]) return;
+        update({ min: lo, max: hi });
+    };
+    const applySoon = range => {
+        clearTimeout(timer.current);
+        timer.current = setTimeout(() => apply(range), PRICE_DEBOUNCE_MS);
+    };
+    const fromField = (which, raw) => {
+        const number = Math.round(Number(raw));
+        if (raw === '' || !Number.isFinite(number)) return draft;
+        const clamped = Math.min(bounds.max, Math.max(bounds.min, number));
+        return which === 'lo' ? [Math.min(clamped, draft[1]), draft[1]] : [draft[0], Math.max(clamped, draft[0])];
+    };
+    const field = which => (
+        <Input
+            id={`${idPrefix}-price-${which}`}
+            type="number"
+            inputMode="numeric"
+            size="sm"
+            min={bounds.min}
+            max={bounds.max}
+            step={1}
+            value={typed?.[which] ?? draft[which === 'lo' ? 0 : 1]}
+            onChange={event => setTyped(current => ({ ...current, [which]: event.target.value }))}
+            onBlur={event => {
+                const next = fromField(which, event.target.value);
+                setTyped(null);
+                setDraft(next);
+                apply(next);
+            }}
+            onKeyDown={event => event.key === 'Enter' && event.currentTarget.blur()}
+            className="tabular-nums"
+        />
+    );
+
+    if (bounds.max <= bounds.min) return <p className="text-sm text-ink-muted">{t('catalog.priceChip', { min: dinars(bounds.min), max: dinars(bounds.max) })}</p>;
+    return (
+        <div className="flex w-full flex-col gap-4 sm:w-72">
+            <RangeSlider
+                min={bounds.min}
+                max={bounds.max}
+                value={draft}
+                onChange={setDraft}
+                onCommit={applySoon}
+                labelMin={t('catalog.priceSliderMin')}
+                labelMax={t('catalog.priceSliderMax')}
+                valueText={value => t('catalog.priceValue', { value: dinars(value) })}
+            />
+            <div className="grid grid-cols-2 gap-3">
+                <label className="flex flex-col gap-1 text-sm font-medium text-ink" htmlFor={`${idPrefix}-price-lo`}>
+                    {t('catalog.priceMin')}
+                    {field('lo')}
+                </label>
+                <label className="flex flex-col gap-1 text-sm font-medium text-ink" htmlFor={`${idPrefix}-price-hi`}>
+                    {t('catalog.priceMax')}
+                    {field('hi')}
+                </label>
+            </div>
+            <div className="flex items-center justify-between gap-3 text-sm">
+                <p className="text-ink-muted" aria-live="polite">
+                    {t('catalog.results', { count: countFor(draft[0], draft[1]) })}
+                </p>
+                <button
+                    type="button"
+                    onClick={() => {
+                        setDraft([bounds.min, bounds.max]);
+                        apply([bounds.min, bounds.max]);
+                    }}
+                    disabled={draft[0] === bounds.min && draft[1] === bounds.max}
+                    className="font-medium text-ink underline underline-offset-4 hover:text-navy-900 disabled:text-ink-muted disabled:no-underline"
+                >
+                    {t('catalog.priceFull')}
+                </button>
+            </div>
+        </div>
+    );
+}
+
+function FilterOptions({ kind, brands, bounds, filters, update, countFor, idPrefix }) {
+    const { t } = useLang();
     if (kind === 'brand') {
         return (
             <div className="flex max-h-72 flex-col gap-3 overflow-y-auto">
@@ -109,32 +171,16 @@ function FilterOptions({ kind, brands, uses, filters, update, idPrefix }) {
             </div>
         );
     }
-    if (kind === 'use') {
-        return (
-            <div className="flex max-h-72 flex-col gap-3 overflow-y-auto">
-                {uses.map(([use, count]) => (
-                    <Checkbox key={use} id={`${idPrefix}-u-${use}`} label={optionLabel(use, count)} checked={filters.uses.includes(use)} onChange={() => update({ uses: toggle(filters.uses, use) })} />
-                ))}
-            </div>
-        );
-    }
     if (kind === 'stock') {
         return <Checkbox id={`${idPrefix}-stock`} label={optionLabel(t('catalog.inStockOnly'))} checked={filters.inStock} onChange={() => update({ inStock: !filters.inStock })} />;
     }
-    return (
-        <div className="flex flex-col gap-3">
-            {[null, ...BANDS].map(band => (
-                <Radio key={band?.id || 'any'} id={`${idPrefix}-p-${band?.id || 'any'}`} name={`${idPrefix}-price`} label={optionLabel(bandLabel(band))} checked={filters.band === (band?.id || '')} onChange={() => update({ band: band?.id || '' })} />
-            ))}
-        </div>
-    );
+    return <PriceFilter bounds={bounds} filters={filters} update={update} countFor={countFor} idPrefix={idPrefix} />;
 }
 
 export default function CategoryPage({ category }) {
     const { lang, t } = useLang();
     const router = useRouter();
-    const bandLabel = useBandLabel();
-    const [filters, update] = useFilters();
+    const dinars = useDinars();
     const [shown, setShown] = useState(PAGE_SIZE);
     const [sheetOpen, setSheetOpen] = useState(false);
     const stats = useProductStats();
@@ -142,50 +188,45 @@ export default function CategoryPage({ category }) {
 
     const localizedCategory = useMemo(() => localizeCategory(category, lang), [category, lang]);
     const products = localizedCategory.products;
+    const bounds = useMemo(() => priceBounds(products), [products]);
+    const [filters, update] = useFilters(bounds);
     const brands = useMemo(() => tally(products.map(product => product.brand)), [products]);
-    const uses = useMemo(() => tally(products.flatMap(product => product.usage || [])).slice(0, 12), [products]);
     useEffect(() => setShown(PAGE_SIZE), [router.asPath]);
 
-    const results = useMemo(() => {
+    // Search words apply on top of brand / stock / price.
+    const searched = useMemo(() => {
         const words = normalizeText(filters.q).split(' ').filter(Boolean);
-        const band = BANDS.find(item => item.id === filters.band);
-        const matching = products.filter(product => {
-            if (filters.brands.length && !filters.brands.includes(product.brand)) return false;
-            if (filters.uses.length && !filters.uses.some(use => (product.usage || []).includes(use))) return false;
-            if (filters.inStock && productStock(product) !== 'in') return false;
-            if (band) {
-                const { min } = priceRange(product);
-                if (min < band.min || min >= band.max) return false;
-            }
-            if (words.length) {
-                const haystack = normalizeText(`${product.title} ${product.brand} ${(product.usage || []).join(' ')}`);
-                if (!words.every(word => haystack.includes(word))) return false;
-            }
-            return true;
+        if (!words.length) return products;
+        return products.filter(product => {
+            const haystack = normalizeText(`${product.title} ${product.brand} ${(product.usage || []).join(' ')}`);
+            return words.every(word => haystack.includes(word));
         });
+    }, [products, filters.q]);
+    const brandKey = filters.brands.join('|');
+    const countFor = (min, max) => filterProducts(searched, { ...filters, min, max }).length;
+    const results = useMemo(() => {
+        const matching = filterProducts(searched, filters);
         if (filters.sort === 'price' || filters.sort === 'price-desc') {
             const sorted = [...matching].sort((a, b) => priceRange(a).min - priceRange(b).min);
             return filters.sort === 'price' ? sorted : sorted.reverse();
         }
         const sorted = sortByAlphabet(matching, product => product.title, lang);
         return filters.sort === 'name-desc' ? sorted.reverse() : sorted;
-    }, [products, filters.brands, filters.uses, filters.inStock, filters.band, filters.q, filters.sort, lang]);
+    }, [searched, brandKey, filters.inStock, filters.min, filters.max, filters.sort, lang]); // eslint-disable-line react-hooks/exhaustive-deps
 
+    const priceOn = filters.min !== null || filters.max !== null;
     const chips = [
         ...filters.brands.map(brand => ({ label: brand, remove: () => update({ brands: filters.brands.filter(item => item !== brand) }) })),
-        ...filters.uses.map(use => ({ label: use, remove: () => update({ uses: filters.uses.filter(item => item !== use) }) })),
         ...(filters.inStock ? [{ label: t('catalog.inStockOnly'), remove: () => update({ inStock: false }) }] : []),
-        ...(filters.band ? [{ label: bandLabel(BANDS.find(band => band.id === filters.band)), remove: () => update({ band: '' }) }] : []),
+        ...(priceOn ? [{ label: t('catalog.priceChip', { min: dinars(filters.min ?? bounds.min), max: dinars(filters.max ?? bounds.max) }), remove: () => update({ min: null, max: null }) }] : []),
         ...(filters.q ? [{ label: `“${filters.q}”`, remove: () => update({ q: '' }) }] : []),
     ];
-    const clearAll = () => update({ brands: [], uses: [], inStock: false, band: '', q: '' });
+    const clearAll = () => update({ brands: [], inStock: false, min: null, max: null, q: '' });
     const groups = [
         brands.length > 1 && { kind: 'brand', label: t('catalog.brand'), count: filters.brands.length },
-        uses.length > 0 && { kind: 'use', label: t('catalog.usage'), count: filters.uses.length },
         { kind: 'stock', label: t('catalog.availability'), count: filters.inStock ? 1 : 0 },
-        { kind: 'price', label: t('catalog.price'), count: filters.band ? 1 : 0 },
+        bounds.max > bounds.min && { kind: 'price', label: t('catalog.price'), count: priceOn ? 1 : 0 },
     ].filter(Boolean);
-    const pillClass = on => cx('h-10 whitespace-nowrap rounded-full px-5 text-sm font-medium transition-colors duration-fast', on ? 'bg-navy-900 text-white' : 'bg-surface text-ink hover:bg-surface-strong');
 
     return (
         <>
@@ -210,27 +251,6 @@ export default function CategoryPage({ category }) {
                         {localizedCategory.description}
                     </p>
                 )}
-                {uses.length > 0 && (
-                    <nav aria-label={t('catalog.usage')} className="-mx-4 mt-8 overflow-x-auto px-4 [scrollbar-width:none] sm:-mx-6 sm:px-6 [&::-webkit-scrollbar]:hidden">
-                        <ul className="flex gap-2">
-                            <li>
-                                <button type="button" aria-pressed={!filters.uses.length} onClick={() => update({ uses: [] })} className={pillClass(!filters.uses.length)}>
-                                    {t('catalog.allUses')}
-                                </button>
-                            </li>
-                            {uses.slice(0, 8).map(([use]) => {
-                                const on = filters.uses.length === 1 && filters.uses[0] === use;
-                                return (
-                                    <li key={use}>
-                                        <button type="button" aria-pressed={on} onClick={() => update({ uses: on ? [] : [use] })} className={pillClass(on)}>
-                                            {use}
-                                        </button>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </nav>
-                )}
             </header>
 
             {/* Sticks under the header (56 px once scrolled, 64 px on desktop). */}
@@ -239,7 +259,7 @@ export default function CategoryPage({ category }) {
                     <div className="hidden items-center gap-2 lg:flex" role="group" aria-label={t('catalog.filters')}>
                         {groups.map(group => (
                             <Popover key={group.kind} label={group.label} count={group.count}>
-                                <FilterOptions kind={group.kind} brands={brands} uses={uses} filters={filters} update={update} idPrefix="pop" />
+                                <FilterOptions kind={group.kind} brands={brands} bounds={bounds} filters={filters} update={update} countFor={countFor} idPrefix="pop" />
                             </Popover>
                         ))}
                     </div>
@@ -317,7 +337,7 @@ export default function CategoryPage({ category }) {
                 title={t('catalog.filters')}
                 footer={
                     <div className="flex items-center gap-3">
-                        <button type="button" onClick={clearAll} disabled={!chips.length} className="h-12 rounded-full px-5 text-[0.9375rem] font-medium text-ink underline underline-offset-4 disabled:text-ink-muted disabled:no-underline">
+                        <button type="button" onClick={clearAll} disabled={!chips.length} className="h-12 whitespace-nowrap rounded-full px-5 text-[0.9375rem] font-medium text-ink underline underline-offset-4 disabled:text-ink-muted disabled:no-underline">
                             {t('catalog.clearAll')}
                         </button>
                         <Button size="lg" fullWidth onClick={() => setSheetOpen(false)}>
@@ -332,7 +352,7 @@ export default function CategoryPage({ category }) {
                             <h3 id={`sheet-${group.kind}`} className="mb-4 font-sans text-[0.9375rem] font-semibold tracking-normal text-ink">
                                 {group.label}
                             </h3>
-                            <FilterOptions kind={group.kind} brands={brands} uses={uses} filters={filters} update={update} idPrefix="sheet" />
+                            <FilterOptions kind={group.kind} brands={brands} bounds={bounds} filters={filters} update={update} countFor={countFor} idPrefix="sheet" />
                         </div>
                     ))}
                 </div>
