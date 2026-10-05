@@ -61,8 +61,9 @@ export function createPublisher({ repoRoot }) {
         return null;
     }
 
+    // The header polls this every few seconds: no network, the last fetched origin/main.
     function gitSummary() {
-        const result = shared.preview({ repoRoot, scope: PUBLISH_SCOPE, credentials: credentials() });
+        const result = shared.preview({ repoRoot, scope: PUBLISH_SCOPE, credentials: credentials(), fetchRemote: false });
         return { branch: result.branch, changes: result.files.length, blockers: result.blockers.filter(text => !/^Nothing to publish/.test(text)) };
     }
 

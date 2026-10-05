@@ -2,6 +2,8 @@
 // pushes only to main, against a throwaway repository.
 import { afterEach, beforeEach, test } from 'node:test';
 import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
+import path from 'node:path';
 import { createRequire } from 'node:module';
 import { makeRepo } from './admin-repo.mjs';
 
@@ -63,7 +65,7 @@ test('refuses on any branch other than main, so feature work is never pushed', (
     repo.git('commit', '-qam', 'feature work');
     repo.write('public/assets/data/products.json', '{"categories":[2]}\n');
 
-    assert.match(preview().blockers.join(' '), /main branch checked out \(currently redesign\)/);
+    assert.match(preview().blockers.join(' '), /^Merge your branch into main first\. .*main branch checked out \(currently redesign\)/);
     assert.throws(() => run({ confirmed: ['public/assets/data/products.json'] }), err => err.statusCode === 409);
     assert.equal(repo.remoteCommits(), 1);
 });
@@ -85,10 +87,40 @@ test('an https remote needs a token, and the token never appears in errors', () 
     repo.write('public/assets/data/products.json', '{"categories":[4]}\n');
     assert.match(preview().blockers.join(' '), /Missing PRODUCT_ADMIN_GITHUB_TOKEN/);
 
+    // With a token, GitHub can't be reached here: publishing pauses at the origin/main check,
+    // nothing is committed, and the token isn't in the message.
     const credentials = { token: 'secret-token-123' };
-    const { files } = publisher.preview({ repoRoot: repo.work, scope: SCOPE, credentials });
+    const { files, blockers } = publisher.preview({ repoRoot: repo.work, scope: SCOPE, credentials });
+    assert.match(blockers.join(' '), /git fetch failed/);
+    assert.ok(!blockers.join(' ').includes('secret-token-123'));
     assert.throws(
         () => run({ credentials, confirmed: files.map(file => file.path) }),
-        err => err.statusCode === 502 && /Committed locally/.test(err.message) && !err.message.includes('secret-token-123')
+        err => err.statusCode === 409 && /git fetch failed/.test(err.message) && !err.message.includes('secret-token-123')
     );
+    assert.match(repo.status(), / M public\/assets\/data\/products\.json/);
+});
+
+test('refuses while main is behind origin/main (someone else published or pushed)', () => {
+    // Another computer pushes a commit to main.
+    const other = path.join(repo.root, 'other');
+    execFileSync('git', ['clone', '-q', path.join(repo.root, 'remote.git'), other]);
+    const inOther = (...args) => execFileSync('git', args, { cwd: other });
+    inOther('-c', 'user.name=Other', '-c', 'user.email=o@example.test', 'commit', '-q', '--allow-empty', '-m', 'elsewhere');
+    inOther('push', '-q', 'origin', 'main');
+
+    repo.write('public/assets/data/products.json', '{"categories":[5]}\n');
+    assert.match(preview().blockers.join(' '), /main is 1 commit\(s\) behind origin\/main\. Run "git pull"/);
+    assert.throws(() => run({ confirmed: ['public/assets/data/products.json'] }), err => err.statusCode === 409 && /behind origin\/main/.test(err.message));
+    assert.equal(repo.remoteCommits(), 2, 'nothing was pushed');
+    assert.match(repo.status(), / M public\/assets\/data\/products\.json/, 'the change is still unpublished');
+});
+
+test('refuses while main has commits that are not on origin/main (they would be pushed too)', () => {
+    repo.write('lib/code.js', 'module.exports = 9;\n');
+    repo.git('commit', '-qam', 'local work on main');
+    repo.write('public/assets/data/products.json', '{"categories":[6]}\n');
+
+    assert.match(preview().blockers.join(' '), /main has 1 commit\(s\) that aren't on origin\/main.*Merge your branch into main/);
+    assert.throws(() => run({ confirmed: ['public/assets/data/products.json'] }), err => err.statusCode === 409);
+    assert.equal(repo.remoteCommits(), 1);
 });

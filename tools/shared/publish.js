@@ -1,6 +1,8 @@
 // "Publish" for the local admin tools: commit ONLY the tool's own data file and asset
 // folders, then push to main. Nothing else in the repository is ever committed or pushed:
 // - the checked-out branch must be main (pushing HEAD from another branch would ship it)
+// - main must match origin/main: not behind (pull first) and no unpushed commits of its own
+//   (they would be pushed along with the catalog)
 // - it refuses while anything outside the scope is staged
 // - it commits exactly the files the user confirmed (`git commit --only -- <files>`)
 const { spawnSync } = require('child_process');
@@ -64,16 +66,51 @@ function resolveRemote(repoRoot, { token, username = 'x-access-token' } = {}) {
   return { url: https.replace(/^https:\/\//, `https://${auth}`), secret: encodeURIComponent(token) };
 }
 
+// Is local main exactly origin/main? `fetchRemote` refreshes origin/main first (the publish
+// page and the publish itself); without it the last fetched state is used (the header poll).
+// Returns a blocker message, or null when in sync.
+function syncBlocker(repoRoot, credentials, fetchRemote) {
+  let remote;
+  try {
+    remote = resolveRemote(repoRoot, credentials);
+  } catch {
+    return null; // reported separately (missing token, odd remote)
+  }
+  const tracking = `refs/remotes/origin/${PUBLISH_BRANCH}`;
+  if (fetchRemote) {
+    const fetched = spawnSync('git', ['fetch', '--quiet', '--no-tags', remote.url, `+refs/heads/${PUBLISH_BRANCH}:${tracking}`], {
+      cwd: repoRoot,
+      encoding: 'utf-8',
+      env: { ...process.env, GIT_TERMINAL_PROMPT: '0' },
+    });
+    if (fetched.status !== 0) {
+      const detail = (fetched.stderr || '').trim();
+      return `Couldn't check ${PUBLISH_BRANCH} against GitHub (git fetch failed), so publishing is paused. ${remote.secret ? detail.split(remote.secret).join('***') : detail}`;
+    }
+  }
+  const known = spawnSync('git', ['rev-parse', '--verify', '--quiet', tracking], { cwd: repoRoot, encoding: 'utf-8' });
+  if (known.status !== 0) return `origin/${PUBLISH_BRANCH} is unknown on this computer. Run "git fetch origin", then reload this page.`;
+  const [ahead, behind] = git(repoRoot, ['rev-list', '--left-right', '--count', `HEAD...${tracking}`]).trim().split(/\s+/).map(Number);
+  if (behind > 0) return `${PUBLISH_BRANCH} is ${behind} commit(s) behind origin/${PUBLISH_BRANCH}. Run "git pull", then reload this page.`;
+  if (ahead > 0) {
+    return `${PUBLISH_BRANCH} has ${ahead} commit(s) that aren't on origin/${PUBLISH_BRANCH}; publishing would push them too. Merge your branch into ${PUBLISH_BRANCH} properly and push it with git first.`;
+  }
+  return null;
+}
+
 // What a publish would commit right now, and anything that prevents it.
-function preview({ repoRoot, scope, credentials }) {
+function preview({ repoRoot, scope, credentials, fetchRemote = true }) {
   const branch = currentBranch(repoRoot);
   const files = changedFiles(repoRoot, scope);
   const blockers = [];
   if (branch !== PUBLISH_BRANCH) {
     blockers.push(
-      `Publishing only works with the ${PUBLISH_BRANCH} branch checked out (currently ${branch || 'a detached HEAD'}). ` +
-        `Run "git switch ${PUBLISH_BRANCH} && git pull", then reload this page.`
+      `Merge your branch into ${PUBLISH_BRANCH} first. Publishing only works with the ${PUBLISH_BRANCH} branch checked out (currently ${branch || 'a detached HEAD'}): ` +
+        `run "git switch ${PUBLISH_BRANCH} && git pull", then reload this page.`
     );
+  } else {
+    const sync = syncBlocker(repoRoot, credentials, fetchRemote);
+    if (sync) blockers.push(sync);
   }
   const unrelated = unrelatedStaged(repoRoot, scope);
   if (unrelated.length) {
