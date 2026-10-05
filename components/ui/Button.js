@@ -3,11 +3,12 @@ import { forwardRef } from 'react';
 import { cx } from './cx';
 import { Icon, Loader2 } from './icons';
 
-// v2: pills, no shadows; navy is the primary action, ink outlines for the rest.
+// v2: pills, no shadows; navy is the primary action, accent-600 the quote action, line-input
+// outlines for the rest (3.3:1, visible on white).
 const VARIANTS = {
     primary: 'bg-navy-900 text-white hover:bg-navy-800 active:bg-navy-950',
-    accent: 'bg-accent-400 text-navy-950 hover:bg-accent-300 active:bg-accent-500',
-    secondary: 'border border-line-strong bg-white text-ink hover:border-navy-900',
+    accent: 'bg-accent-600 text-white hover:bg-accent-700 active:bg-accent-800',
+    secondary: 'border border-line-input bg-white text-ink hover:border-navy-900',
     ghost: 'bg-transparent text-ink hover:bg-surface',
     danger: 'bg-danger-600 text-white hover:bg-danger-700',
     inverse: 'border border-white/50 bg-transparent text-white hover:bg-white/10',

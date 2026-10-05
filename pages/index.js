@@ -89,7 +89,7 @@ function Hero() {
                         <Link prefetch={false} href="/products" className={cx(pill, 'bg-white text-ink hover:bg-surface')}>
                             {t('home.v2.shop')}
                         </Link>
-                        <Link prefetch={false} href="/quote" className={cx(pill, 'bg-accent-400 text-navy-950 hover:bg-accent-300')}>
+                        <Link prefetch={false} href="/quote" className={cx(pill, 'bg-accent-600 text-white hover:bg-accent-700')}>
                             {t('nav.quote')}
                         </Link>
                     </div>
@@ -215,7 +215,7 @@ function Services({ cards }) {
                             key={service.key}
                             prefetch={false}
                             href={`/quote?service=${service.key}`}
-                            className="inline-flex h-10 items-center gap-2 rounded-full border border-line-strong px-4 text-sm font-medium text-ink hover:border-navy-900"
+                            className="inline-flex h-10 items-center gap-2 rounded-full border border-line-input px-4 text-sm font-medium text-ink hover:border-navy-900"
                         >
                             <Icon as={service.icon} size={16} className="text-navy-900" />
                             {t(`home.service.${service.key}.title`)}
@@ -344,7 +344,7 @@ function Closing() {
                     <p className="mt-4 text-body-lg text-navy-100">{t('home.v2.ctaBody')}</p>
                 </div>
                 <div className="flex flex-wrap gap-3">
-                    <Link prefetch={false} href="/quote" className={cx(pill, 'bg-accent-400 text-navy-950 hover:bg-accent-300')}>
+                    <Link prefetch={false} href="/quote" className={cx(pill, 'bg-accent-600 text-white hover:bg-accent-700')}>
                         {t('home.v2.ctaButton')}
                     </Link>
                     <a href={CONTACT.phoneHref} className={cx(pill, 'border border-white/50 text-white hover:bg-white/10')}>

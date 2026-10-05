@@ -144,7 +144,7 @@ function StepIndicator({ current }) {
                     return (
                         <li key={step.id} className="flex items-center gap-3">
                             <a href={`#step-${step.id}`} aria-current={active ? 'step' : undefined} className={cx('inline-flex items-center gap-2 font-medium', active ? 'text-ink' : 'text-ink-muted hover:text-ink')}>
-                                <span className={cx('flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold', active ? 'bg-navy-900 text-white' : done ? 'bg-accent-400 text-navy-950' : 'border border-line-strong')}>
+                                <span className={cx('flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold', active ? 'bg-navy-900 text-white' : done ? 'bg-accent-400 text-navy-950' : 'border border-line-input text-ink-muted')}>
                                     {done ? <Icon as={Check} size={14} /> : index + 1}
                                 </span>
                                 {t(step.key)}

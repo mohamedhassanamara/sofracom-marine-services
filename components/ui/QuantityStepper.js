@@ -10,7 +10,7 @@ export default function QuantityStepper({ value, onChange, min = 1, max = 99, si
     const clamp = n => Math.max(min, Math.min(max, Math.round(Number(n) || min)));
     const button = cx(BOX[size] || BOX.md, 'flex items-center justify-center rounded-full text-ink hover:bg-surface disabled:text-ink-muted disabled:hover:bg-transparent');
     return (
-        <div className={cx('inline-flex items-center rounded-full border border-line-strong bg-white px-0.5', className)} role="group" aria-label={label || t('ui.quantity')}>
+        <div className={cx('inline-flex items-center rounded-full border border-line-input bg-white px-0.5', className)} role="group" aria-label={label || t('ui.quantity')}>
             <button type="button" className={button} onClick={() => onChange(clamp(value - 1))} disabled={value <= min} aria-label={t('ui.decrease')}>
                 <Icon as={Minus} size={16} />
             </button>

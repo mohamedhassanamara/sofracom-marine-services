@@ -25,7 +25,7 @@ const DOT = {
     done: 'bg-navy-900 text-white',
     current: 'bg-white text-navy-900 ring-4 ring-accent-200 border-2 border-navy-900',
     stopped: 'bg-danger-600 text-white',
-    todo: 'bg-white border-2 border-line-strong',
+    todo: 'bg-white border-2 border-line-input',
 };
 
 // Every step of the normal flow: reached steps with their time and note, the current one

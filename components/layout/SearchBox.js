@@ -117,7 +117,7 @@ export default function SearchBox({ className, onNavigate, variant = 'dark', lab
                     'h-12 w-full rounded-full border pe-4 ps-11 text-base transition-colors duration-fast focus:outline-none focus:ring-2',
                     dark
                         ? 'border-white/20 bg-white/10 text-white placeholder:text-navy-200 hover:bg-white/15 focus:border-accent-400 focus:bg-white focus:text-ink focus:ring-accent-400/40 focus:placeholder:text-ink-muted'
-                        : 'border-line-strong bg-white text-ink placeholder:text-ink-muted focus:border-navy-900 focus:ring-navy-100'
+                        : 'border-line-input bg-white text-ink placeholder:text-ink-muted focus:border-navy-900 focus:ring-navy-100'
                 )}
             />
             <button type="submit" className="sr-only">

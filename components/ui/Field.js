@@ -3,12 +3,13 @@ import { useLang } from '../../contexts/LangContext';
 import { cx } from './cx';
 import { AlertTriangle, ChevronDown, Icon } from './icons';
 
-// 16 px text (no iOS zoom), 48 px tall, hairline border, navy focus, error from aria-invalid.
+// 16 px text (no iOS zoom), 48 px tall, line-input border (3.3:1), focus = a 2 px navy edge
+// (border + an inset outline, so nothing shifts) and the navy-100 ring; error from aria-invalid.
 const CONTROL =
-    'block w-full rounded-xl border border-line-strong bg-white text-base text-ink transition-colors duration-fast ' +
-    'placeholder:text-ink-muted hover:border-ink-muted focus:border-navy-900 focus:outline-none focus:ring-2 focus:ring-navy-100 ' +
+    'block w-full rounded-xl border border-line-input bg-white text-base text-ink transition-colors duration-fast ' +
+    'placeholder:text-ink-muted hover:border-ink-muted focus:border-navy-900 focus:outline focus:outline-1 focus:-outline-offset-2 focus:outline-navy-900 focus:ring-2 focus:ring-navy-100 ' +
     'disabled:cursor-not-allowed disabled:bg-surface disabled:text-ink-muted ' +
-    'aria-[invalid=true]:border-danger-600 aria-[invalid=true]:focus:ring-danger-100';
+    'aria-[invalid=true]:border-danger-600 aria-[invalid=true]:focus:outline-danger-600 aria-[invalid=true]:focus:ring-danger-100';
 
 // Label + control + hint + error, wired with ids. `children` is one control element (it gets
 // id, aria-describedby, aria-invalid and required) or a function receiving those props.

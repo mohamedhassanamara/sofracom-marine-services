@@ -243,7 +243,7 @@ export default function CategoryPage({ category }) {
                             </Popover>
                         ))}
                     </div>
-                    <button type="button" onClick={() => setSheetOpen(true)} className="inline-flex h-10 shrink-0 items-center gap-2 whitespace-nowrap rounded-full border border-line-strong px-4 text-sm font-medium text-ink lg:hidden">
+                    <button type="button" onClick={() => setSheetOpen(true)} className="inline-flex h-10 shrink-0 items-center gap-2 whitespace-nowrap rounded-full border border-line-input px-4 text-sm font-medium text-ink lg:hidden">
                         <Icon as={SlidersHorizontal} size={16} />
                         {t('catalog.filters')}
                         {chips.length > 0 && <span className="rounded-full bg-navy-900 px-1.5 text-xs font-semibold leading-5 text-white">{chips.length}</span>}
@@ -254,7 +254,7 @@ export default function CategoryPage({ category }) {
                         </p>
                         <label className="relative flex items-center">
                             <span className="sr-only">{t('catalog.sort')}</span>
-                            <select value={filters.sort} onChange={event => update({ sort: event.target.value })} className="h-10 max-w-[11rem] appearance-none truncate rounded-full border border-line-strong bg-white pe-9 ps-4 text-sm font-medium text-ink hover:border-navy-900 focus:outline-none sm:max-w-none">
+                            <select value={filters.sort} onChange={event => update({ sort: event.target.value })} className="h-10 max-w-[11rem] appearance-none truncate rounded-full border border-line-input bg-white pe-9 ps-4 text-sm font-medium text-ink hover:border-navy-900 focus:outline-none sm:max-w-none">
                                 {SORTS.map(sort => (
                                     <option key={sort.value} value={sort.value}>
                                         {t(sort.key)}

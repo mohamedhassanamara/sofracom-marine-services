@@ -109,7 +109,7 @@ export default function SearchPage() {
                         </ul>
                         <label className="relative flex items-center gap-3 text-sm text-ink-muted">
                             <span>{t('catalog.sort')}</span>
-                            <select value={sort} onChange={event => setParams({ sort: event.target.value })} className="h-10 appearance-none rounded-full border border-line-strong bg-white pe-9 ps-4 text-sm font-medium text-ink hover:border-navy-900 focus:outline-none">
+                            <select value={sort} onChange={event => setParams({ sort: event.target.value })} className="h-10 appearance-none rounded-full border border-line-input bg-white pe-9 ps-4 text-sm font-medium text-ink hover:border-navy-900 focus:outline-none">
                                 {SORTS.map(option => (
                                     <option key={option.value} value={option.value}>
                                         {option.value === 'relevance' ? '—' : t(option.key)}

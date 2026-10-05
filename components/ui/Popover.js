@@ -41,7 +41,7 @@ export default function Popover({ label, count = 0, children, align = 'start', d
                 onClick={() => setOpen(value => !value)}
                 className={cx(
                     'inline-flex h-10 items-center gap-1.5 whitespace-nowrap rounded-full border px-4 text-sm font-medium transition-colors duration-fast',
-                    count > 0 || open ? 'border-navy-900 text-ink' : 'border-line-strong text-ink hover:border-navy-900',
+                    count > 0 || open ? 'border-navy-900 text-ink' : 'border-line-input text-ink hover:border-navy-900',
                     buttonClassName
                 )}
             >

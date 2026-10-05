@@ -168,7 +168,7 @@ function ShopMenu() {
                     <div className="flex flex-col justify-end gap-4 border-s border-line ps-8">
                         <p className="font-display text-xl font-semibold tracking-[-0.01em] text-ink">{t('header.servicesPitch')}</p>
                         <p className="text-sm text-ink-muted">{t('header.servicesPitchBody')}</p>
-                        <Link prefetch={false} href="/quote" className="inline-flex h-10 w-fit items-center rounded-full bg-accent-400 px-4 text-sm font-semibold text-navy-950 hover:bg-accent-300">
+                        <Link prefetch={false} href="/quote" className="inline-flex h-10 w-fit items-center rounded-full bg-accent-600 px-4 text-sm font-semibold text-white hover:bg-accent-700">
                             {t('nav.quote')}
                         </Link>
                         <Link prefetch={false} href="/products" className="inline-flex items-center gap-1.5 text-sm font-semibold text-navy-900 hover:underline">
@@ -229,7 +229,7 @@ export default function SiteHeader() {
                     <button type="button" onClick={openSearch} aria-haspopup="dialog" className={iconButton} aria-label={t('header.openSearch')}>
                         <Icon as={Search} size={20} />
                     </button>
-                    <Link prefetch={false} href="/quote" className="mx-1 hidden h-10 items-center whitespace-nowrap rounded-full bg-accent-400 px-4 text-sm font-semibold text-navy-950 transition-colors duration-fast hover:bg-accent-300 lg:inline-flex">
+                    <Link prefetch={false} href="/quote" className="mx-1 hidden h-10 items-center whitespace-nowrap rounded-full bg-accent-600 px-4 text-sm font-semibold text-white transition-colors duration-fast hover:bg-accent-700 lg:inline-flex">
                         {t('nav.quote')}
                     </Link>
                     <LanguageMenu />

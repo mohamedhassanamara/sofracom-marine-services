@@ -17,7 +17,7 @@ export function Stars({ value = 0, size = 'md', label, className }) {
             {[0, 1, 2, 3, 4].map(index => {
                 const fill = Math.max(0, Math.min(1, rating - index));
                 return (
-                    <span className="relative inline-block text-line-strong" key={index} aria-hidden="true">
+                    <span className="relative inline-block text-star-empty" key={index} aria-hidden="true">
                         ★
                         <span className="absolute inset-y-0 start-0 overflow-hidden text-star" style={{ width: `${fill * 100}%` }}>
                             ★

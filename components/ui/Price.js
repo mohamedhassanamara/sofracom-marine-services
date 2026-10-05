@@ -10,8 +10,8 @@ export default function Price({ value, from = false, size = 'md', className }) {
     const { t } = useLang();
     const format = useFormat();
     return (
-        <span className={cx('inline-flex flex-wrap items-baseline gap-x-1 font-semibold tabular-nums text-slate-900', SIZES[size], className)}>
-            {from && <span className="text-[0.8em] font-medium text-slate-600">{t('ui.from')}</span>}
+        <span className={cx('inline-flex flex-wrap items-baseline gap-x-1 font-semibold tabular-nums text-ink', SIZES[size], className)}>
+            {from && <span className="text-[0.8em] font-medium text-ink-muted">{t('ui.from')}</span>}
             <bdi className="whitespace-nowrap">{format.price(value)}</bdi>
         </span>
     );
