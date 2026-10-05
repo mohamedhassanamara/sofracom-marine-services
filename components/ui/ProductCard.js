@@ -98,7 +98,7 @@ function OptionList({ product, onPick, autoFocus }) {
 // when it is NOT in stock. The whole card links to the product. Quick add is a round "+" on
 // the image (on hover with a mouse, always on touch screens); products with several
 // options open a small picker (a bottom sheet on phones). Hover shows the second photo.
-export default function ProductCard({ product, stats, onQuickAdd, priority = false, headingLevel = 3, className }) {
+export default function ProductCard({ product, stats, onQuickAdd, priority = false, headingLevel = 3, onSurface = false, className }) {
     const { t } = useLang();
     const format = useFormat();
     const narrow = useNarrow();
@@ -141,7 +141,7 @@ export default function ProductCard({ product, stats, onQuickAdd, priority = fal
 
     return (
         <article className={cx('group relative flex flex-col', className)}>
-            <div className="relative aspect-square overflow-hidden rounded-xl bg-surface">
+            <div className={cx('relative aspect-square overflow-hidden rounded-xl', onSurface ? 'bg-white' : 'bg-surface')}>
                 <ResponsiveImage
                     src={product.image}
                     alt=""

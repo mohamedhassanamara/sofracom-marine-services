@@ -7,7 +7,8 @@ import ProductCard from './ProductCard';
 // A horizontal row of product cards: swipe on phones, ‹ › buttons on larger screens (they
 // follow the reading direction and are disabled at the ends). Every card stays a normal
 // list item, so keyboard users simply tab through them.
-export default function ProductRail({ products, stats = {}, onQuickAdd, label, headingLevel = 3, className }) {
+// `onSurface`: the rail sits on a surface section, so the cards' image wells are white.
+export default function ProductRail({ products, stats = {}, onQuickAdd, label, headingLevel = 3, onSurface = false, className }) {
     const { t, lang } = useLang();
     const list = useRef(null);
     const id = `rail-${useId().replace(/:/g, '')}`;
@@ -52,7 +53,7 @@ export default function ProductRail({ products, stats = {}, onQuickAdd, label, h
             <ul id={id} ref={list} aria-label={label} className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:-mx-6 sm:scroll-px-6 sm:gap-6 sm:px-6 [&::-webkit-scrollbar]:hidden">
                 {products.map(product => (
                     <li key={product.id} className={cx('flex w-[46%] shrink-0 snap-start sm:w-[31%] lg:w-[calc((100%-4.5rem)/4)]')}>
-                        <ProductCard product={product} stats={stats[product.id]} onQuickAdd={onQuickAdd} headingLevel={headingLevel} className="w-full" />
+                        <ProductCard product={product} stats={stats[product.id]} onQuickAdd={onQuickAdd} headingLevel={headingLevel} onSurface={onSurface} className="w-full" />
                     </li>
                 ))}
             </ul>
