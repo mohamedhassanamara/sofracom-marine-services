@@ -2,9 +2,8 @@
 // SOFRACOM local admin: one app for orders, quotes, catalog, gallery, reviews, customers,
 // staff phones and publishing. Runs only on this computer (127.0.0.1) and is never deployed.
 //
-//   npm run admin                 # asks: emulator or production
-//   npm run admin -- --emulator   # the Firebase emulators (demo-sofracom)
-//   npm run admin -- --production # real data (red banner in the app)
+//   npm run admin                 # production: real data (red banner in the app)
+//   npm run admin:emulated        # the Firebase emulators (demo-sofracom), same as -- --emulator
 //
 // Same protections as Phase 0 (tools/shared/guard.js): own Host/Origin only, a per-session
 // token on every write. Catalog/gallery edits are saved to the files; Publish commits only
@@ -12,7 +11,6 @@
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
-import readline from 'node:readline/promises';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 
@@ -41,25 +39,12 @@ function loadEnvFile() {
     }
 }
 
-async function chooseTarget() {
-    if (process.argv.includes('--emulator')) return 'emulator';
-    if (process.argv.includes('--production')) return 'production';
-    if (process.env.FIRESTORE_EMULATOR_HOST) return 'emulator';
-    if (!process.stdin.isTTY) {
-        console.error('Choose a target: npm run admin -- --emulator   or   npm run admin -- --production');
-        process.exit(1);
-    }
-    const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-    const answer = (await rl.question('Firebase target? [e]mulator / [p]roduction: ')).trim().toLowerCase();
-    rl.close();
-    if (answer.startsWith('p')) return 'production';
-    if (answer.startsWith('e')) return 'emulator';
-    console.error('Nothing chosen; exiting.');
-    process.exit(1);
-}
+// Production unless asked for the emulators (or their env vars are already set).
+const chooseTarget = () =>
+    process.argv.includes('--emulator') || process.env.FIRESTORE_EMULATOR_HOST ? 'emulator' : 'production';
 
 loadEnvFile();
-const targetMode = await chooseTarget();
+const targetMode = chooseTarget();
 if (targetMode === 'emulator') Object.assign(process.env, EMULATOR_ENV);
 process.env.ADMIN_REPO_ROOT = repoRoot;
 

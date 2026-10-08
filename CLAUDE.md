@@ -20,9 +20,8 @@ npm run test:api       # tests/api/*.test.mjs: spawns `next dev` on :3199 agains
                        #   (routing.test.mjs checks locale/legacy/image redirects and NEXT_LOCALE)
                        #   price-slider.test.mjs drives Chromium: set PLAYWRIGHT_PATH to a playwright
                        #   package (not a dependency); skipped without it
-npm run admin          # local admin app → http://127.0.0.1:5180 (asks: emulator or production;
-                       #   or pass -- --emulator / -- --production)
-npm run admin:emulated # same app against the emulators
+npm run admin          # local admin app → http://127.0.0.1:5180 against PRODUCTION (no prompt)
+npm run admin:emulated # same app against the emulators (= -- --emulator; the tests use this)
 npm run cutouts:backup -- ~/Backups   # zip the git-ignored .cutouts-cache/ to a path outside the repo
 ```
 
