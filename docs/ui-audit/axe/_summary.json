@@ -1,0 +1,1083 @@
+{
+ "byPage": {
+  "account-addresses": [
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "account-change-password": [
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "account-order-detail": [
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "account-orders": [
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "account-profile": [
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "account-quote-detail": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 4
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "account-quotes": [
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "account-reviews": [
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "cart-drawer-open-ar": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 3
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "cart-drawer-open": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 2
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "category-ar": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 2
+   },
+   {
+    "id": "page-has-heading-one",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 3
+   }
+  ],
+  "category": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 2
+   },
+   {
+    "id": "page-has-heading-one",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 3
+   }
+  ],
+  "checkout-modal-guest-error-ar": [
+   {
+    "id": "aria-dialog-name",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 3
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "checkout-modal-guest-error": [
+   {
+    "id": "aria-dialog-name",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 2
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "checkout-modal-open-ar": [
+   {
+    "id": "aria-dialog-name",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 3
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "checkout-modal-open": [
+   {
+    "id": "aria-dialog-name",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 2
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "checkout-modal-signed-in": [
+   {
+    "id": "aria-dialog-name",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 3
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "gallery-ar": [
+   {
+    "id": "aria-allowed-attr",
+    "impact": "critical",
+    "nodes": 1
+   },
+   {
+    "id": "aria-prohibited-attr",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "gallery": [
+   {
+    "id": "aria-allowed-attr",
+    "impact": "critical",
+    "nodes": 1
+   },
+   {
+    "id": "aria-prohibited-attr",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "home-ar": [
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "home": [
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "login-ar": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "login": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "product-ar": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "product": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "productsIndex-ar": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "productsIndex": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "search-ar": [
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "search": [
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "signup-ar": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ],
+  "signup": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 1
+   },
+   {
+    "id": "heading-order",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-main-is-top-level",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-no-duplicate-main",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "landmark-unique",
+    "impact": "moderate",
+    "nodes": 1
+   },
+   {
+    "id": "select-name",
+    "impact": "critical",
+    "nodes": 1
+   }
+  ]
+ },
+ "byRule": {
+  "heading-order": {
+   "impact": "moderate",
+   "pages": {
+    "account-addresses": 1,
+    "account-change-password": 1,
+    "account-orders": 1,
+    "account-profile": 1,
+    "account-quotes": 1,
+    "login-ar": 1,
+    "login": 1,
+    "signup-ar": 1,
+    "signup": 1
+   }
+  },
+  "landmark-main-is-top-level": {
+   "impact": "moderate",
+   "pages": {
+    "account-addresses": 1,
+    "account-change-password": 1,
+    "account-order-detail": 1,
+    "account-orders": 1,
+    "account-profile": 1,
+    "account-quote-detail": 1,
+    "account-quotes": 1,
+    "account-reviews": 1,
+    "cart-drawer-open-ar": 1,
+    "cart-drawer-open": 1,
+    "category-ar": 1,
+    "category": 1,
+    "checkout-modal-guest-error-ar": 1,
+    "checkout-modal-guest-error": 1,
+    "checkout-modal-open-ar": 1,
+    "checkout-modal-open": 1,
+    "checkout-modal-signed-in": 1,
+    "gallery-ar": 1,
+    "gallery": 1,
+    "login-ar": 1,
+    "login": 1,
+    "product-ar": 1,
+    "product": 1,
+    "productsIndex-ar": 1,
+    "productsIndex": 1,
+    "search-ar": 1,
+    "search": 1,
+    "signup-ar": 1,
+    "signup": 1
+   }
+  },
+  "landmark-no-duplicate-main": {
+   "impact": "moderate",
+   "pages": {
+    "account-addresses": 1,
+    "account-change-password": 1,
+    "account-order-detail": 1,
+    "account-orders": 1,
+    "account-profile": 1,
+    "account-quote-detail": 1,
+    "account-quotes": 1,
+    "account-reviews": 1,
+    "cart-drawer-open-ar": 1,
+    "cart-drawer-open": 1,
+    "category-ar": 1,
+    "category": 1,
+    "checkout-modal-guest-error-ar": 1,
+    "checkout-modal-guest-error": 1,
+    "checkout-modal-open-ar": 1,
+    "checkout-modal-open": 1,
+    "checkout-modal-signed-in": 1,
+    "gallery-ar": 1,
+    "gallery": 1,
+    "login-ar": 1,
+    "login": 1,
+    "product-ar": 1,
+    "product": 1,
+    "productsIndex-ar": 1,
+    "productsIndex": 1,
+    "search-ar": 1,
+    "search": 1,
+    "signup-ar": 1,
+    "signup": 1
+   }
+  },
+  "landmark-unique": {
+   "impact": "moderate",
+   "pages": {
+    "account-addresses": 1,
+    "account-change-password": 1,
+    "account-order-detail": 1,
+    "account-orders": 1,
+    "account-profile": 1,
+    "account-quote-detail": 1,
+    "account-quotes": 1,
+    "account-reviews": 1,
+    "cart-drawer-open-ar": 1,
+    "cart-drawer-open": 1,
+    "category-ar": 2,
+    "category": 2,
+    "checkout-modal-guest-error-ar": 1,
+    "checkout-modal-guest-error": 1,
+    "checkout-modal-open-ar": 1,
+    "checkout-modal-open": 1,
+    "checkout-modal-signed-in": 1,
+    "gallery-ar": 1,
+    "gallery": 1,
+    "login-ar": 1,
+    "login": 1,
+    "product-ar": 1,
+    "product": 1,
+    "productsIndex-ar": 1,
+    "productsIndex": 1,
+    "search-ar": 1,
+    "search": 1,
+    "signup-ar": 1,
+    "signup": 1
+   }
+  },
+  "select-name": {
+   "impact": "critical",
+   "pages": {
+    "account-addresses": 1,
+    "account-change-password": 1,
+    "account-order-detail": 1,
+    "account-orders": 1,
+    "account-profile": 1,
+    "account-quote-detail": 1,
+    "account-quotes": 1,
+    "account-reviews": 1,
+    "cart-drawer-open-ar": 1,
+    "cart-drawer-open": 1,
+    "category-ar": 3,
+    "category": 3,
+    "checkout-modal-guest-error-ar": 1,
+    "checkout-modal-guest-error": 1,
+    "checkout-modal-open-ar": 1,
+    "checkout-modal-open": 1,
+    "checkout-modal-signed-in": 1,
+    "gallery-ar": 1,
+    "gallery": 1,
+    "home-ar": 1,
+    "home": 1,
+    "login-ar": 1,
+    "login": 1,
+    "product-ar": 1,
+    "product": 1,
+    "productsIndex-ar": 1,
+    "productsIndex": 1,
+    "search-ar": 1,
+    "search": 1,
+    "signup-ar": 1,
+    "signup": 1
+   }
+  },
+  "color-contrast": {
+   "impact": "serious",
+   "pages": {
+    "account-quote-detail": 4,
+    "cart-drawer-open-ar": 3,
+    "cart-drawer-open": 2,
+    "category-ar": 1,
+    "category": 1,
+    "checkout-modal-guest-error-ar": 3,
+    "checkout-modal-guest-error": 2,
+    "checkout-modal-open-ar": 3,
+    "checkout-modal-open": 2,
+    "checkout-modal-signed-in": 3,
+    "login-ar": 1,
+    "login": 1,
+    "product-ar": 1,
+    "product": 1,
+    "signup-ar": 1,
+    "signup": 1
+   }
+  },
+  "aria-hidden-focus": {
+   "impact": "serious",
+   "pages": {
+    "category-ar": 1,
+    "category": 1,
+    "product-ar": 1,
+    "product": 1,
+    "productsIndex-ar": 1,
+    "productsIndex": 1
+   }
+  },
+  "page-has-heading-one": {
+   "impact": "moderate",
+   "pages": {
+    "category-ar": 1,
+    "category": 1
+   }
+  },
+  "aria-dialog-name": {
+   "impact": "serious",
+   "pages": {
+    "checkout-modal-guest-error-ar": 1,
+    "checkout-modal-guest-error": 1,
+    "checkout-modal-open-ar": 1,
+    "checkout-modal-open": 1,
+    "checkout-modal-signed-in": 1
+   }
+  },
+  "aria-allowed-attr": {
+   "impact": "critical",
+   "pages": {
+    "gallery-ar": 1,
+    "gallery": 1
+   }
+  },
+  "aria-prohibited-attr": {
+   "impact": "serious",
+   "pages": {
+    "gallery-ar": 1,
+    "gallery": 1
+   }
+  }
+ }
+}

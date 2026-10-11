@@ -8,6 +8,8 @@ import { useFormatDate } from '../../components/account/Status';
 import { Stars } from '../../components/reviews/Stars';
 import ReviewForm from '../../components/reviews/ReviewForm';
 import { apiRequest, errorMessage } from '../../lib/apiClient';
+import { imageAt } from '../../lib/images';
+import { Badge } from '../../components/ui';
 
 const productHref = item => (item.categorySlug ? `/products/${item.categorySlug}/${item.productId}` : null);
 
@@ -60,7 +62,7 @@ export default function AccountReviewsPage() {
             ) : (
                 <>
                     <section className="account-section">
-                        <h2 className="font-bold text-lg text-gray-900 mb-3">{t('reviews.toReview')}</h2>
+                        <h2 className="text-xl font-semibold text-ink mb-3">{t('reviews.toReview')}</h2>
                         {toReview.length === 0 ? (
                             <div className="ui-card ui-empty">
                                 <p>{t('reviews.nothingToReview')}</p>
@@ -71,7 +73,7 @@ export default function AccountReviewsPage() {
                                     <div className="record-card" key={item.productId}>
                                         <div className="flex items-center gap-3" style={{ minWidth: 0 }}>
                                             <div className="record-card__thumbs" aria-hidden="true">
-                                                <img src={item.image} alt="" />
+                                                <img src={imageAt(item.image, 400)} alt="" loading="lazy" />
                                             </div>
                                             <div style={{ minWidth: 0 }}>
                                                 {productHref(item) ? (
@@ -99,7 +101,7 @@ export default function AccountReviewsPage() {
                         )}
                     </section>
                     <section className="account-section">
-                        <h2 className="font-bold text-lg text-gray-900 mb-3">{t('reviews.mine')}</h2>
+                        <h2 className="text-xl font-semibold text-ink mb-3">{t('reviews.mine')}</h2>
                         {data.reviews.length === 0 ? (
                             <div className="ui-card ui-empty">
                                 <p>{t('reviews.noneYet')}</p>
@@ -119,7 +121,7 @@ export default function AccountReviewsPage() {
                                             <Stars value={review.rating} size="sm" />
                                             <span className="review-item__date">{formatDate(review.updatedAt)}</span>
                                             {review.status === 'hidden' && (
-                                                <span className="status-badge status-badge--stopped">{t('reviews.hidden')}</span>
+                                                <Badge tone="danger" size="sm">{t('reviews.hidden')}</Badge>
                                             )}
                                         </div>
                                         {review.comment && (

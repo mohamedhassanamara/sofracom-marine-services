@@ -5,7 +5,7 @@ import { useAuth } from '../../../contexts/AuthContext';
 import AccountLayout from '../../../components/account/AccountLayout';
 import { StatusBadge, useFormatDate } from '../../../components/account/Status';
 import { listMine } from '../../../lib/accountData';
-import { shortId } from '../../../lib/status';
+import { displayRef } from '../../../lib/status';
 
 export default function QuotesPage() {
     const { t } = useLang();
@@ -48,7 +48,7 @@ export default function QuotesPage() {
                         <Link key={quote.id} href={`/account/quotes/${quote.id}`} className="record-card">
                             <div style={{ minWidth: 0 }}>
                                 <p className="record-card__title">
-                                    {quote.subject || t('quotes.untitled', { id: shortId(quote.id) })}
+                                    {quote.subject || t('quotes.untitled', { id: displayRef(quote) })}
                                 </p>
                                 <p className="record-card__meta">{formatDate(quote.created_at)}</p>
                             </div>

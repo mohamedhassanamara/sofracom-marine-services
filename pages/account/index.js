@@ -12,7 +12,7 @@ const LANG_OPTIONS = [
 ];
 
 export default function ProfilePage() {
-    const { t, setLang } = useLang();
+    const { t } = useLang();
     const { user, profile, setProfile, resendVerification, refreshUser } = useAuth();
     const [form, setForm] = useState({ name: '', phone: '', email: '', lang: 'en' });
     const [status, setStatus] = useState(null);
@@ -48,7 +48,6 @@ export default function ProfilePage() {
             else body.phone = form.phone;
             const result = await apiRequest('/api/account/profile', { method: 'PUT', body, user });
             setProfile(result.profile);
-            setLang(result.profile.lang);
             setStatus({ type: 'success', key: 'account.profile.saved' });
         } catch (err) {
             setStatus({ type: 'error', text: errorMessage(t, err) });

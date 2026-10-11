@@ -5,11 +5,14 @@ import { useAuth } from '../../../contexts/AuthContext';
 import AccountLayout from '../../../components/account/AccountLayout';
 import { StatusBadge, useFormatDate } from '../../../components/account/Status';
 import { listMine } from '../../../lib/accountData';
-import { formatPrice } from '../../../lib/constants';
-import { normalizeOrderStatus, shortId } from '../../../lib/status';
+import useFormat from '../../../hooks/useFormat';
+import { normalizeOrderStatus, displayRef } from '../../../lib/status';
+import { imageAt, photoClass } from '../../../lib/images';
+import { Icon, Star } from '../../../components/ui/icons';
 
 export default function OrdersPage() {
     const { t } = useLang();
+    const format = useFormat();
     const { user } = useAuth();
     const formatDate = useFormatDate();
     const [orders, setOrders] = useState(null);
@@ -45,26 +48,37 @@ export default function OrdersPage() {
                         const count = items.reduce((sum, item) => sum + (Number(item.quantity) || 0), 0);
                         const delivered = normalizeOrderStatus(order.status) === 'delivered';
                         return (
-                            <Link key={order.id} href={`/account/orders/${order.id}`} className="record-card">
-                                <div className="flex items-center gap-3">
-                                    <div className="record-card__thumbs" aria-hidden="true">
-                                        {items.slice(0, 3).map((item, index) => (
-                                            <img key={`${order.id}-${index}`} src={item.image || '/logo.jpeg'} alt="" />
-                                        ))}
-                                    </div>
+                            // The title link stretches over the card; "Rate your items" is its own link on top.
+                            <div key={order.id} className="record-card record-card--link relative !block">
+                                <div className="flex flex-wrap items-start justify-between gap-3">
                                     <div>
-                                        <p className="record-card__title">{t('orders.number', { id: shortId(order.id) })}</p>
+                                        <Link href={`/account/orders/${order.id}`} className="record-card__title text-lg after:absolute after:inset-0 after:rounded-2xl after:content-['']">
+                                            {t('orders.number', { id: displayRef(order) })}
+                                        </Link>
                                         <p className="record-card__meta">
                                             {formatDate(order.created_at)} · {t('orders.itemCount', { count })}
                                         </p>
                                     </div>
-                                </div>
-                                <div className="flex items-center gap-3 flex-wrap">
-                                    {delivered && <span className="ui-pill">{t('orders.rateItems')}</span>}
-                                    <span className="font-bold text-gray-900">{formatPrice(Number(order.total))}</span>
                                     <StatusBadge kind="order" status={order.status} />
                                 </div>
-                            </Link>
+                                <div className="mt-4 flex flex-wrap items-end justify-between gap-4">
+                                    <div className="record-card__thumbs" aria-hidden="true">
+                                        {items.slice(0, 5).map((item, index) => (
+                                            <img key={`${order.id}-${index}`} src={imageAt(item.image || '/assets/site/logo-400.webp', 400)} loading="lazy" alt="" className={photoClass(item.image)} />
+                                        ))}
+                                        {items.length > 5 && <span className="flex h-14 w-14 items-center justify-center rounded-lg bg-surface text-sm font-semibold text-ink-muted">+{items.length - 5}</span>}
+                                    </div>
+                                    <div className="flex flex-wrap items-center gap-3">
+                                        {delivered && (
+                                            <Link href={`/account/reviews?order=${order.id}`} className="relative z-[1] inline-flex items-center gap-1.5 text-sm font-semibold text-navy-900 underline-offset-4 hover:underline">
+                                                <Icon as={Star} size={16} />
+                                                {t('orders.rateItems')}
+                                            </Link>
+                                        )}
+                                        <span className="text-lg font-semibold tabular-nums text-ink">{format.price(Number(order.total))}</span>
+                                    </div>
+                                </div>
+                            </div>
                         );
                     })}
                 </div>

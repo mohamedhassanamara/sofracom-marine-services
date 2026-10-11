@@ -1,8 +1,10 @@
-import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useLang } from '../../contexts/LangContext';
 import useRequireAuth from '../../hooks/useRequireAuth';
+import Seo from '../Seo';
+import { cx } from '../ui/cx';
+import { Icon, LogOut } from '../ui/icons';
 
 const NAV = [
     { href: '/account', key: 'account.nav.profile', exact: true },
@@ -20,9 +22,9 @@ export default function AccountLayout({ title, eyebrow, actions, badges = {}, ch
 
     if (loading || !user) {
         return (
-            <main className="account-shell">
-                <p className="ui-muted">{t('account.loading')}</p>
-            </main>
+            <div className="mx-auto max-w-wide px-4 py-12 sm:px-6">
+                <p className="text-ink-muted">{t('account.loading')}</p>
+            </div>
         );
     }
 
@@ -34,35 +36,49 @@ export default function AccountLayout({ title, eyebrow, actions, badges = {}, ch
         router.push('/');
     };
 
+    // Desktop: a quiet list with a navy bar on the current page. Phones: underlined tabs.
+    const linkClass = active =>
+        cx(
+            'flex min-h-[2.75rem] shrink-0 items-center justify-between gap-2 whitespace-nowrap border-b-2 px-1 text-[0.9375rem] transition-colors duration-fast lg:border-b-0 lg:border-s-2 lg:px-4',
+            active ? 'border-navy-900 font-semibold text-ink' : 'border-transparent text-ink-muted hover:text-ink'
+        );
+
     return (
-        <main className="account-shell">
-            <Head>
-                <title>{`${title} · SOFRACOM`}</title>
-                <meta name="robots" content="noindex" />
-            </Head>
-            <nav className="account-nav" aria-label={t('account.navLabel')}>
-                {NAV.map(item => (
-                    <Link key={item.href} href={item.href} className={isActive(item) ? 'active' : ''}>
-                        {t(item.key)}
-                        {item.badge && badges[item.badge] > 0 && (
-                            <span className="account-nav__badge">{badges[item.badge]}</span>
-                        )}
-                    </Link>
-                ))}
-                <button type="button" onClick={handleSignOut}>
-                    {t('account.nav.signOut')}
-                </button>
+        <div className="mx-auto grid max-w-wide gap-8 px-4 pb-16 pt-8 sm:px-6 lg:grid-cols-[15rem_1fr] lg:gap-16 lg:pt-12">
+            <Seo title={title} noindex />
+            <nav aria-label={t('account.navLabel')} className="-mx-4 overflow-x-auto border-b border-line px-4 [scrollbar-width:none] lg:mx-0 lg:overflow-visible lg:border-b-0 lg:px-0 [&::-webkit-scrollbar]:hidden">
+                <ul className="flex gap-5 lg:sticky lg:top-24 lg:flex-col lg:gap-1">
+                    {NAV.map(item => {
+                        const active = isActive(item);
+                        return (
+                            <li key={item.href}>
+                                <Link href={item.href} aria-current={active ? 'page' : undefined} className={linkClass(active)}>
+                                    {t(item.key)}
+                                    {item.badge && badges[item.badge] > 0 && <span className="rounded-full bg-navy-900 px-2 text-xs font-semibold text-white">{badges[item.badge]}</span>}
+                                </Link>
+                            </li>
+                        );
+                    })}
+                    <li className="lg:mt-4 lg:border-t lg:border-line lg:pt-4">
+                        <button type="button" onClick={handleSignOut} className={cx(linkClass(false), 'w-full')}>
+                            <span className="flex items-center gap-2">
+                                <Icon as={LogOut} size={16} flip />
+                                {t('account.nav.signOut')}
+                            </span>
+                        </button>
+                    </li>
+                </ul>
             </nav>
-            <section>
-                <header className="account-header">
+            <section className="min-w-0">
+                <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
                     <div>
-                        {eyebrow && <p className="account-eyebrow">{eyebrow}</p>}
-                        <h1>{title}</h1>
+                        {eyebrow && <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ink-muted">{eyebrow}</p>}
+                        <h1 className="mt-2 text-[2rem] font-semibold leading-tight text-ink lg:text-title-1">{title}</h1>
                     </div>
                     {actions}
                 </header>
                 {children}
             </section>
-        </main>
+        </div>
     );
 }

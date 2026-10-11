@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useLang } from '../../contexts/LangContext';
 import { useAuth } from '../../contexts/AuthContext';
@@ -101,9 +101,14 @@ export default function ProductReviews({ productId, productTitle }) {
         loadMine();
     }, [loadMine]);
 
-    // Deep link from "Rate your items": /products/...#write-review opens the form.
+    // Deep link from "Rate your items": /products/...#write-review opens the form once.
+    // The hash is then dropped, so publishing (which reloads `mine`) doesn't reopen it.
+    const autoOpened = useRef(false);
     useEffect(() => {
-        if (mine?.eligible && router.asPath.endsWith('#write-review')) setFormOpen(true);
+        if (autoOpened.current || !mine?.eligible || !router.asPath.endsWith('#write-review')) return;
+        autoOpened.current = true;
+        setFormOpen(true);
+        window.history.replaceState(window.history.state, '', window.location.pathname + window.location.search);
     }, [mine, router.asPath]);
 
     const afterChange = (result, message) => {
@@ -144,21 +149,21 @@ export default function ProductReviews({ productId, productTitle }) {
     };
 
     return (
-        <section id="reviews" className="mt-12" aria-labelledby="reviews-title">
+        <section id="reviews" className="mt-20 scroll-mt-24 lg:mt-28" aria-labelledby="reviews-title">
             <div className="review-toolbar mb-5">
-                <h2 id="reviews-title" className="text-2xl font-extrabold text-gray-900">
+                <h2 id="reviews-title" className="text-[1.75rem] font-semibold text-ink lg:text-title-2">
                     {t('reviews.title')}
                 </h2>
                 {renderAction()}
             </div>
             {notice && <p className="ui-alert ui-alert--success mb-4" role="status">{notice}</p>}
-            <div className="ui-card mb-6">
+            <div className="mb-6 rounded-2xl bg-surface p-6 sm:p-8">
                 <RatingSummary stats={stats} />
             </div>
             {stats?.count > 0 && (
                 <div className="review-toolbar mb-4">
                     <span className="ui-muted">{t('reviews.count', { count: stats.count })}</span>
-                    <label className="flex items-center gap-2 text-sm text-gray-600">
+                    <label className="flex items-center gap-2 text-sm text-ink-muted">
                         {t('reviews.sortBy')}
                         <select value={sort} onChange={event => setSort(event.target.value)}>
                             <option value="newest">{t('reviews.sortNewest')}</option>
@@ -170,7 +175,7 @@ export default function ProductReviews({ productId, productTitle }) {
             )}
             {error && <p className="ui-alert ui-alert--error mb-4">{error}</p>}
             {!loading && !error && reviews.length === 0 ? (
-                <div className="ui-card ui-empty">{t('reviews.none')}</div>
+                <div className="rounded-2xl border border-line p-10 text-center text-ink-muted">{t('reviews.none')}</div>
             ) : (
                 <div className="review-list">
                     {reviews.map(review => (

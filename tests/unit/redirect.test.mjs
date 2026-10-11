@@ -22,11 +22,8 @@ test('auth pages never redirect back to an auth page', () => {
     assert.equal(afterAuthPath('/account/signup?next=/x'), '/account');
 });
 
-test('links carry the way back, reopening checkout or the review form', () => {
-    assert.equal(
-        authLink('login', '/products/antifouling-coatings', { reopenCheckout: true }),
-        `/account/login?next=${encodeURIComponent('/products/antifouling-coatings?checkout=1')}`
-    );
+test('links carry the way back (checkout, the review form)', () => {
+    assert.equal(authLink('login', '/checkout'), `/account/login?next=${encodeURIComponent('/checkout')}`);
     assert.equal(
         authLink('signup', '/products/a/p_x?ref=1#top', { hash: 'write-review' }),
         `/account/signup?next=${encodeURIComponent('/products/a/p_x?ref=1#write-review')}`

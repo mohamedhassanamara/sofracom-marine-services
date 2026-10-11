@@ -1,621 +1,400 @@
-import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useMemo } from 'react';
+import Seo from '../components/Seo';
+import { CONTACT } from '../components/layout/SiteFooter';
+import { CategoryArt, ProductRail, ResponsiveImage } from '../components/ui';
+import { QUOTE, QUOTE_ON_DARK } from '../components/ui/Button';
+import HeroImage from '../components/ui/HeroImage';
+import { SERVICE_ICONS } from '../components/ui/serviceIcons';
+import { cx } from '../components/ui/cx';
+import { ArrowRight, Award, Check, ChevronDown, Icon, MapPin, MessageCircle, Phone, Truck } from '../components/ui/icons';
 import { useLang } from '../contexts/LangContext';
-import { useAuth } from '../contexts/AuthContext';
-import { apiRequest } from '../lib/apiClient';
+import useAddToCart from '../hooks/useAddToCart';
+import useProductStats from '../hooks/useProductStats';
+import { localizeCategory, localizeProduct } from '../lib/localize';
+import { cardCategory, cardProduct, featuredProducts, getCategories, getProductById } from '../lib/products';
+import { localBusinessJsonLd } from '../lib/seo';
+import { HERO, SERVICE_CARDS } from '../lib/siteMedia';
 
-const BRAND_LOGOS = [
-    { name: 'AKZONOBEL', src: '/assets/akzonobel.png' },
-    { name: 'BOSCH', src: '/assets/bosch.png' },
-    { name: 'CROWN', src: '/assets/crown.png' },
-    { name: 'HEMPEL', src: '/assets/hempel.png' },
-    { name: 'INTERNATIONAL', src: '/assets/international.png' },
-    { name: 'JOTUN', src: '/assets/jotun.png' },
-    { name: 'SIKA', src: '/assets/sika.png' },
-    { name: 'VARTA', src: '/assets/varta.png' },
+export function getStaticProps() {
+    const categories = getCategories();
+    return {
+        props: {
+            categories: categories.map(cardCategory),
+            featured: featuredProducts(categories, 10).map(cardProduct),
+            // Service cards: a photo, or the listed products' (cutout) images.
+            serviceCards: SERVICE_CARDS.map(card => ({
+                key: card.key,
+                photo: card.photo || null,
+                position: card.position || null,
+                zoom: card.zoom || null,
+                images: (card.products || []).map(id => getProductById(id)?.product.image).filter(Boolean),
+            })),
+        },
+    };
+}
+
+const BRANDS = ['jotun', 'hempel', 'international', 'akzonobel', 'sika', 'crown', 'varta', 'bosch'];
+
+// Every service (the quote form lists the same keys); the first three get a large card.
+export const SERVICES = ['antifouling', 'gelcoat', 'deck', 'electrical', 'polishing', 'haulout'].map(key => ({ key, icon: SERVICE_ICONS[key] }));
+const FAQ = [1, 2, 3, 4, 5];
+const TRUST = [
+    { icon: Truck, key: 'trust.berth' },
+    { icon: MessageCircle, key: 'trust.advice' },
+    { icon: Award, key: 'trust.brands' },
+    { icon: MapPin, key: 'trust.local' },
 ];
 
-const SERVICE_CARDS = [
-    {
-        title: 'Antifouling & Painting',
-        description: 'Surface prep, primer, coatings. Correct systems for local waters.',
-        path: 'M3 8l7.89 5.26c.68.45 1.54.45 2.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
-    },
-    {
-        title: 'Gelcoat & Fiberglass',
-        description: 'Crack repair, fairing, color matching, finish restoration.',
-        path: 'M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 4v-4m0-4h.01',
-    },
-    {
-        title: 'Deck & Hardware',
-        description: 'Non-skid renewal, teak work, fittings, sealants (SIKA).',
-        path: 'M3 7l9-4 9 4-9 4-9-4zm0 6l9 4 9-4',
-    },
-    {
-        title: 'Electrical & Mechanical',
-        description: 'Batteries (VARTA), engines (SHELL oils), wiring, diagnostics.',
-        path: 'M6 13l4 4L18 9',
-    },
-    {
-        title: 'Polishing & Protection',
-        description: 'Cut, polish, sealants, corrosion & chain galvanizing support.',
-        path: 'M12 6v12m6-6H6',
-    },
-    {
-        title: 'Haul-out Coordination',
-        description: 'Partner yard in Port de pêche. Free quote on request.',
-        path: 'M8 7v10l9-5-9-5z',
-    },
-];
+// Sections alternate white and surface; the background change is the separator (no hairlines).
+const section = 'mx-auto max-w-wide px-4 py-14 sm:px-6 sm:py-24 lg:py-28';
+const pill = 'inline-flex h-12 items-center justify-center gap-2 rounded-full px-7 text-[0.9375rem] font-semibold transition-colors duration-fast';
 
-const TIMELINE = [
-    {
-        title: '1. Share your project',
-        description: 'Tell us what you need: size, material, timeline.',
-    },
-    {
-        title: '2. Quote & scheduling',
-        description: 'We propose the system, products, and plan.',
-    },
-    {
-        title: '3. Execution',
-        description: 'Professionals carry out the work with our supplies.',
-    },
-    {
-        title: '4. Delivery',
-        description: 'Inspection, guidance, and after-care products.',
-    },
-];
+function SectionHeading({ id, title, subtitle, action }) {
+    return (
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-6 lg:mb-14">
+            <div className="max-w-2xl">
+                <h2 id={id} className="text-[2rem] font-semibold leading-[1.1] text-ink lg:text-title-1">
+                    {title}
+                </h2>
+                {subtitle && <p className="mt-4 text-body-lg text-ink-muted">{subtitle}</p>}
+            </div>
+            {action}
+        </div>
+    );
+}
 
-const TESTIMONIALS = [
-    {
-        quote: '“Quick turnaround on antifouling. Helpful advice and fair pricing.”',
-        author: '— A., 42ft sloop',
-    },
-    {
-        quote: '“They organized haul-out and sorted a gelcoat repair that looks new.”',
-        author: '— M., catamaran owner',
-    },
-    {
-        quote: '“Stocked most of what we needed and delivered to the marina.”',
-        author: '— M., motor yacht',
-    },
-];
+const MoreLink = ({ href, children }) => (
+    <Link prefetch={false} href={href} className="inline-flex items-center gap-1.5 text-[0.9375rem] font-semibold text-navy-900 underline-offset-4 hover:underline">
+        {children}
+        <Icon as={ArrowRight} size={18} flip />
+    </Link>
+);
 
-const FAQ_ITEMS = [
-    { questionKey: 'faq.q1', answerKey: 'faq.a1' },
-    { questionKey: 'faq.q2', answerKey: 'faq.a2' },
-    { questionKey: 'faq.q3', answerKey: 'faq.a3' },
-];
-
-export default function HomePage() {
+// The marina photo edge to edge, a light shade only behind the text (bottom / start side).
+function Hero() {
     const { t } = useLang();
-    const [openFaq, setOpenFaq] = useState(null);
-    const [quoteForm, setQuoteForm] = useState({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        details: '',
-    });
-    const [formStatus, setFormStatus] = useState({ message: '', type: '' });
-    const { user, email: accountEmail, profile } = useAuth();
+    return (
+        <section className="on-dark relative isolate flex min-h-[34rem] items-end overflow-hidden bg-navy-900 sm:min-h-[40rem] lg:h-[min(86vh,48rem)]">
+            <HeroImage image={HERO.image} mobile={HERO.mobile} position={HERO.position} className="absolute inset-0 -z-10 h-full w-full object-cover" />
+            {/* Phones: the text covers most of the photo, so the shade reaches higher. */}
+            <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-950/85 via-navy-950/60 via-60% to-navy-950/20 sm:from-navy-950/80 sm:via-navy-950/25 sm:via-50% sm:to-transparent" />
+            <div aria-hidden="true" className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-navy-950/45 to-transparent lg:block rtl:bg-gradient-to-l" />
+            <div className="mx-auto w-full max-w-wide px-4 pb-20 sm:px-6 sm:pb-24 lg:pb-32">
+                <div className="max-w-[46rem]">
+                    <h1 className="text-[2.75rem] font-semibold leading-[1.04] tracking-[-0.025em] text-white sm:text-display-2 lg:text-display-1">{t('home.v2.title')}</h1>
+                    <p className="mt-5 max-w-[32rem] text-body-lg text-white/90">{t('home.v2.subtitle')}</p>
+                    <div className="mt-8 flex flex-wrap gap-3">
+                        <Link prefetch={false} href="/products" className={cx(pill, 'bg-white text-ink hover:bg-surface')}>
+                            {t('home.v2.shop')}
+                        </Link>
+                        <Link prefetch={false} href="/quote" className={cx(pill, QUOTE_ON_DARK)}>
+                            {t('nav.quote')}
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
 
-    // Signed-in visitors get their details prefilled; empty fields only.
-    useEffect(() => {
-        if (!user) return;
-        setQuoteForm(form => ({
-            ...form,
-            name: form.name || profile?.name || user.displayName || '',
-            email: form.email || accountEmail || profile?.email || '',
-            phone: form.phone || profile?.phone || '',
-        }));
-    }, [user, profile]);
-    const [submitting, setSubmitting] = useState(false);
+// A white card overlapping the bottom of the hero (2×2 on phones, one row on desktop).
+function TrustBar() {
+    const { t } = useLang();
+    return (
+        <section aria-label={t('trust.label')} className="relative z-10 -mt-10 px-4 sm:px-6">
+            <ul className="mx-auto grid max-w-wide grid-cols-2 gap-x-4 gap-y-5 rounded-xl bg-white px-5 py-5 shadow-md sm:px-8 lg:grid-cols-4 lg:py-6">
+                {TRUST.map(item => (
+                    <li key={item.key} className="flex items-center gap-3 text-sm font-semibold text-ink lg:justify-center">
+                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy-50 text-navy-900" aria-hidden="true">
+                            <Icon as={item.icon} size={20} />
+                        </span>
+                        {t(item.key)}
+                    </li>
+                ))}
+            </ul>
+        </section>
+    );
+}
 
-    const handleFaqToggle = index => {
-        setOpenFaq(openFaq === index ? null : index);
-    };
+function Categories({ categories }) {
+    const { t, lang } = useLang();
+    return (
+        <section className={section} aria-labelledby="home-categories">
+            <SectionHeading id="home-categories" title={t('home.categories.title')} subtitle={t('home.categories.subtitle')} action={<MoreLink href="/products">{t('header.allProducts')}</MoreLink>} />
+            <ul className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
+                {categories.map(raw => {
+                    const category = localizeCategory(raw, lang);
+                    return (
+                        <li key={category.slug}>
+                            <Link
+                                prefetch={false}
+                                href={`/products/${category.slug}`}
+                                className="group relative block aspect-[4/5] overflow-hidden rounded-2xl bg-surface transition duration-base ease-out hover:-translate-y-1 hover:bg-surface-strong sm:aspect-[4/3]"
+                            >
+                                <CategoryArt
+                                    images={raw.tiles.map(tile => tile.image)}
+                                    sizes="(min-width: 1024px) 300px, 45vw"
+                                    tight
+                                    className="!absolute inset-x-[6%] bottom-[5%] top-[25%] !bg-transparent sm:top-[22%]"
+                                />
+                                <span className="absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-4 sm:p-6">
+                                    <span>
+                                        <span className="block font-display text-lg font-semibold leading-tight tracking-[-0.01em] text-ink">{category.name}</span>
+                                        <span className="mt-1 block text-sm text-ink-muted">{t('header.productsCount', { count: raw.count })}</span>
+                                    </span>
+                                    <span
+                                        className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-ink transition-colors duration-fast group-hover:bg-navy-900 group-hover:text-white sm:flex"
+                                        aria-hidden="true"
+                                    >
+                                        <Icon as={ArrowRight} size={18} flip />
+                                    </span>
+                                </span>
+                            </Link>
+                        </li>
+                    );
+                })}
+            </ul>
+        </section>
+    );
+}
 
-    const handleInput = event => {
-        const { name, value } = event.target;
-        setQuoteForm(form => ({ ...form, [name]: value }));
-    };
+function Featured({ products }) {
+    const { t, lang } = useLang();
+    const stats = useProductStats();
+    const addToCart = useAddToCart();
+    const localized = useMemo(() => products.map(product => localizeProduct(product, lang)), [products, lang]);
+    return (
+        <section className="bg-surface" aria-labelledby="home-featured">
+            <div className={section}>
+                <SectionHeading id="home-featured" title={t('home.featured.title')} subtitle={t('home.featured.subtitle')} action={<MoreLink href="/products">{t('home.featured.all')}</MoreLink>} />
+                <ProductRail products={localized} stats={stats} onQuickAdd={addToCart} label={t('home.featured.title')} onSurface />
+            </div>
+        </section>
+    );
+}
 
-    const handleSubmit = async event => {
-        event.preventDefault();
-        const { name, email, details } = quoteForm;
-        if (!name || !email || !details) {
-            setFormStatus({
-                message: 'Please provide name, email, and a message.',
-                type: 'error',
-            });
-            return;
-        }
-        setSubmitting(true);
-        setFormStatus({ message: 'Sending quote…', type: '' });
-        try {
-            await apiRequest('/api/create-quote', {
-                method: 'POST',
-                body: quoteForm,
-                user,
-            });
-            setFormStatus({
-                message: 'Quote received! We will reply within a day.',
-                type: 'success',
-            });
-            setQuoteForm({
-                name: '',
-                email: '',
-                phone: '',
-                subject: '',
-                details: '',
-            });
-        } catch (error) {
-            console.error('[quote] submit failed', error);
-            setFormStatus({
-                message: error.message || 'Unable to send quote right now.',
-                type: 'error',
-            });
-        } finally {
-            setSubmitting(false);
-            setTimeout(() => setFormStatus({ message: '', type: '' }), 6000);
-        }
-    };
+function ServiceImage({ card }) {
+    if (card.photo)
+        return (
+            <div className="h-full w-full" style={card.zoom ? { transform: `scale(${card.zoom})`, transformOrigin: card.position || 'center' } : undefined}>
+                <ResponsiveImage
+                    src={card.photo}
+                    alt=""
+                    sizes="(min-width: 768px) 800px, 100vw"
+                    style={card.position ? { objectPosition: card.position } : undefined}
+                    className="h-full w-full object-cover transition-transform duration-base ease-out group-hover:scale-[1.03]"
+                />
+            </div>
+        );
+    return <CategoryArt images={card.images} sizes="(min-width: 1024px) 260px, 50vw" className="h-full w-full" />;
+}
 
+// Three photo cards (navy shade at the bottom, white text, the whole card links to the quote
+// form for that service), then the other services as chips.
+function Services({ cards }) {
+    const { t } = useLang();
+    const others = SERVICES.filter(service => !cards.some(card => card.key === service.key));
+    return (
+        <section id="services" className={cx(section, 'scroll-mt-20')} aria-labelledby="home-services">
+            <SectionHeading id="home-services" title={t('services.title')} subtitle={t('home.services.subtitle')} />
+            <ul className="grid gap-5 md:grid-cols-3 md:gap-6">
+                {cards.map(card => (
+                    <li key={card.key} className="on-dark group relative aspect-square overflow-hidden rounded-2xl bg-navy-900 md:aspect-[4/5]">
+                        <div className="absolute inset-0">
+                            <ServiceImage card={card} />
+                        </div>
+                        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-navy-950/95 from-0% via-navy-950/85 via-45% to-transparent to-80%" />
+                        <div className="absolute inset-x-0 bottom-0 p-6 lg:p-7">
+                            <h3 className="text-xl font-semibold text-white">{t(`home.service.${card.key}.title`)}</h3>
+                            <p className="mt-2 text-navy-100">{t(`home.service.${card.key}.body`)}</p>
+                            <Link
+                                prefetch={false}
+                                href={`/quote?service=${card.key}`}
+                                className="mt-4 inline-flex items-center gap-1.5 text-[0.9375rem] font-semibold text-white underline-offset-4 after:absolute after:inset-0 after:content-[''] hover:underline"
+                            >
+                                {t('nav.quote')}
+                                <Icon as={ArrowRight} size={16} flip />
+                            </Link>
+                        </div>
+                    </li>
+                ))}
+            </ul>
+            {others.length > 0 && (
+                <div className="mt-10 flex flex-wrap items-center gap-3">
+                    <p className="me-2 text-sm font-medium text-ink-muted">{t('home.v2.alsoTitle')}</p>
+                    {others.map(service => (
+                        <Link
+                            key={service.key}
+                            prefetch={false}
+                            href={`/quote?service=${service.key}`}
+                            className="inline-flex h-10 items-center gap-2 rounded-full border border-line-input px-4 text-sm font-medium text-ink hover:border-navy-900"
+                        >
+                            <Icon as={service.icon} size={16} className="text-navy-900" />
+                            {t(`home.service.${service.key}.title`)}
+                        </Link>
+                    ))}
+                </div>
+            )}
+        </section>
+    );
+}
+
+// Four numbered steps on the surface band: navy circles joined by a dashed line on desktop.
+function HowItWorks() {
+    const { t } = useLang();
+    return (
+        <section className="bg-surface" aria-labelledby="home-how">
+            <div className={section}>
+                <h2 id="home-how" className="text-[2rem] font-semibold leading-[1.1] text-ink lg:text-title-1">
+                    {t('home.how.title')}
+                </h2>
+                <ol className="mt-10 grid gap-10 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4">
+                    {[1, 2, 3, 4].map(step => (
+                        <li key={step} className="relative">
+                            {step < 4 && <span aria-hidden="true" className="absolute -end-10 start-14 top-5 hidden border-t-2 border-dashed border-line-input lg:block" />}
+                            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-navy-900 font-display text-base font-semibold tabular-nums text-white" aria-hidden="true">
+                                {step}
+                            </span>
+                            <span className="mt-5 block text-lg font-semibold text-ink">{t(`home.how.step${step}.title`)}</span>
+                            <span className="mt-2 block text-ink-muted">{t(`home.how.step${step}.body`)}</span>
+                        </li>
+                    ))}
+                </ol>
+                <Link prefetch={false} href="/quote" className={cx(pill, 'mt-12', QUOTE)}>
+                    {t('nav.quote')}
+                </Link>
+            </div>
+        </section>
+    );
+}
+
+// Full-colour logos at one height, evenly spaced.
+function Brands() {
+    const { t } = useLang();
+    return (
+        <section id="brands" className="scroll-mt-20" aria-labelledby="home-brands">
+            <div className="mx-auto max-w-wide px-4 py-14 sm:px-6 lg:py-20">
+                <h2 id="home-brands" className="text-center font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink-muted">
+                    {t('brands.title')}
+                </h2>
+                <ul className="mt-8 grid grid-cols-4 items-center gap-x-6 gap-y-8 lg:grid-cols-8">
+                    {BRANDS.map(brand => (
+                        <li key={brand} className="flex justify-center">
+                            <img src={`/assets/brands/${brand}-400.webp`} alt={brand.toUpperCase()} loading="lazy" width="120" height="32" className="h-6 w-auto max-w-full object-contain sm:h-8" />
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </section>
+    );
+}
+
+function About() {
+    const { t } = useLang();
+    return (
+        <section id="about" className="scroll-mt-20" aria-labelledby="home-about">
+            <div className={cx(section, 'grid items-center gap-12 lg:grid-cols-2 lg:gap-20')}>
+                <div className="overflow-hidden rounded-2xl">
+                    <ResponsiveImage src="/assets/site/monastir-2-800.webp" alt={t('monoA.title')} sizes="(min-width: 1024px) 640px, 100vw" className="aspect-[4/3] w-full object-cover" />
+                </div>
+                <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ink-muted">{t('about.title')}</p>
+                    <h2 id="home-about" className="mt-4 text-[2rem] font-semibold leading-[1.1] text-ink lg:text-title-1">
+                        {t('home.location.title')}
+                    </h2>
+                    <p className="mt-5 text-body-lg text-ink-muted">{t('home.location.body')}</p>
+                    <ul className="mt-8 space-y-4">
+                        {[1, 2, 3, 4].map(n => (
+                            <li key={n} className="flex items-start gap-3 text-ink">
+                                <Icon as={Check} size={20} className="mt-0.5 shrink-0 text-navy-900" />
+                                {t(`home.location.fact${n}`)}
+                            </li>
+                        ))}
+                    </ul>
+                    <a
+                        href={CONTACT.mapsHref}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-8 inline-flex items-center gap-1.5 text-[0.9375rem] font-semibold text-ink underline-offset-4 hover:underline"
+                    >
+                        <Icon as={MapPin} size={18} />
+                        {t('footer.directions')}
+                    </a>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function Faq() {
+    const { t } = useLang();
+    return (
+        <section id="faq" className="scroll-mt-20 bg-surface" aria-labelledby="home-faq">
+            <div className={cx(section, 'grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:gap-20')}>
+                <h2 id="home-faq" className="text-[2rem] font-semibold leading-[1.1] text-ink lg:text-title-1">
+                    {t('faq.title')}
+                </h2>
+                <div className="divide-y divide-line-strong border-y border-line-strong">
+                    {FAQ.map(n => (
+                        <details key={n} className="group">
+                            <summary className="flex min-h-[4rem] cursor-pointer list-none items-center justify-between gap-6 py-4 text-[1.0625rem] font-medium text-ink [&::-webkit-details-marker]:hidden">
+                                {t(`faq.q${n}`)}
+                                <Icon as={ChevronDown} size={20} className="shrink-0 transition-transform duration-fast group-open:rotate-180" />
+                            </summary>
+                            <p className="max-w-2xl pb-6 text-ink-muted">{t(`faq.a${n}`)}</p>
+                        </details>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+// An inset navy card above the footer (not a full-width band, so it never meets the footer).
+function Closing() {
+    const { t } = useLang();
+    return (
+        <section className="mx-auto max-w-wide px-4 py-14 sm:px-6 lg:py-20" aria-labelledby="home-cta">
+            <div className="on-dark flex flex-col gap-8 rounded-3xl bg-navy-900 px-6 py-12 text-white sm:px-10 lg:flex-row lg:items-end lg:justify-between lg:px-16 lg:py-16">
+                <div className="max-w-2xl">
+                    <h2 id="home-cta" className="text-[2rem] font-semibold leading-[1.1] lg:text-title-1">
+                        {t('home.v2.ctaTitle')}
+                    </h2>
+                    <p className="mt-4 text-body-lg text-navy-100">{t('home.v2.ctaBody')}</p>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                    <Link prefetch={false} href="/quote" className={cx(pill, QUOTE_ON_DARK)}>
+                        {t('home.v2.ctaButton')}
+                    </Link>
+                    <a href={CONTACT.phoneHref} className={cx(pill, 'px-3 text-white underline-offset-4 hover:underline')}>
+                        <Icon as={Phone} size={18} />
+                        <bdi dir="ltr">{CONTACT.phone}</bdi>
+                    </a>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default function HomePage({ categories, featured, serviceCards }) {
+    const { t, lang } = useLang();
     return (
         <>
-            <section
-                id="home"
-                className="relative h-screen flex items-center justify-center text-white"
-            >
-                <img
-                    src="/hero.jpeg"
-                    alt="Monastir Marina"
-                    className="absolute inset-0 w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 hero-overlay" />
-                <div className="absolute top-20 left-16 w-24 h-24 bg-white bg-opacity-10 rounded-full blur-lg float-slow" />
-                <div className="absolute bottom-24 right-24 w-40 h-40 bg-blue-300 bg-opacity-10 rounded-full blur-xl float-slower" />
-                <div className="relative text-center px-6" data-animate>
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
-                        {t('hero.title')}
-                    </h1>
-                    <p className="mt-4 text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto">
-                        {t('hero.subtitle')}
-                    </p>
-                    <div className="mt-8 flex items-center justify-center gap-4">
-                        <a
-                            href="#services"
-                            className="px-6 py-3 rounded-xl bg-white text-blue-900 font-semibold shadow hover:shadow-lg transform hover:-translate-y-0.5 transition"
-                        >
-                            {t('hero.cta1')}
-                        </a>
-                        <a
-                            href="#contact"
-                            className="px-6 py-3 rounded-xl bg-transparent border border-white text-white font-semibold hover:bg-white hover:text-blue-900 transition"
-                        >
-                            {t('hero.cta2')}
-                        </a>
-                    </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0">
-                    <svg
-                        viewBox="0 0 1440 160"
-                        className="w-full h-24 text-white"
-                    >
-                        <path
-                            fill="currentColor"
-                            d="M0,96L48,117.3C96,139,192,181,288,170.7C384,160,480,96,576,101.3C672,107,768,181,864,208C960,235,1056,213,1152,176C1248,139,1344,85,1392,58.7L1440,32L1440,160L1392,160C1344,160,1248,160,1152,160C1056,160,960,160,864,160C768,160,672,160,576,160C480,160,384,160,288,160C192,160,96,160,48,160L0,160Z"
-                        />
-                    </svg>
-                </div>
-            </section>
-
-            <section
-                className="parallax"
-                style={{ backgroundImage: 'url(/monastir2.jpeg)' }}
-            >
-                <div className="shade" />
-                <div className="content max-w-7xl mx-auto px-6 py-24 text-center text-white" data-animate>
-                    <h2 className="text-4xl font-extrabold">
-                        {t('monoA.title')}
-                    </h2>
-                    <p className="mt-3 text-blue-100">{t('monoA.subtitle')}</p>
-                </div>
-            </section>
-
-            <section id="about" className="py-20 bg-white">
-                <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
-                    <div data-animate>
-                        <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
-                            {t('about.title')}
-                        </h2>
-                        <p className="mt-4 text-gray-600 leading-relaxed">
-                            SOFRACOM is based in Monastir, Tunisia. We provide a
-                            complete package for the marine community: a
-                            well-stocked store and a services division. We’re
-                            close to <strong>Marina Monastir</strong> and the{' '}
-                            <strong>Port de pêche</strong>, enabling quick
-                            deliveries throughout the day.
-                        </p>
-                        <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-gray-700">
-                            <li>
-                                • Premium marine paints:{' '}
-                                <b>JOTUN</b>, <b>HEMPEL</b>, <b>INTERNATIONAL</b>,{' '}
-                                <b>AKZONOBEL</b>
-                            </li>
-                            <li>
-                                • Products & tools: <b>SIKA</b>, <b>SHELL</b>{' '}
-                                oils, <b>VARTA</b> batteries, <b>BOSCH</b>{' '}
-                                machinery
-                            </li>
-                            <li>
-                                • Network of pros: carpenters, electricians,
-                                mechanics, upholsterers, welders
-                            </li>
-                            <li>
-                                • Expert support for quick fixes & major refits
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="relative" data-animate>
-                        <div className="tilt bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 shadow-xl">
-                            <div className="layer">
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="p-4 bg-white rounded-xl shadow-sm">
-                                        <p className="font-semibold text-blue-900">
-                                            Antifouling
-                                        </p>
-                                        <p className="text-sm text-gray-600">
-                                            Protection & performance.
-                                        </p>
-                                    </div>
-                                    <div className="p-4 bg-white rounded-xl shadow-sm">
-                                        <p className="font-semibold text-blue-900">
-                                            Gelcoat Repair
-                                        </p>
-                                        <p className="text-sm text-gray-600">
-                                            Finish restoration.
-                                        </p>
-                                    </div>
-                                    <div className="p-4 bg-white rounded-xl shadow-sm">
-                                        <p className="font-semibold text-blue-900">
-                                            Deck Renewal
-                                        </p>
-                                        <p className="text-sm text-gray-600">
-                                            Teak & non-skid.
-                                        </p>
-                                    </div>
-                                    <div className="p-4 bg-white rounded-xl shadow-sm">
-                                        <p className="font-semibold text-blue-900">
-                                            Haul-out
-                                        </p>
-                                        <p className="text-sm text-gray-600">
-                                            Partner yard, 1 mile away.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="brands" className="py-20 bg-gray-50 wave-top">
-                <div className="max-w-7xl mx-auto px-6">
-                    <h2
-                        className="text-3xl sm:text-4xl font-extrabold text-center text-gray-900"
-                        data-animate
-                    >
-                        {t('brands.title')}
-                    </h2>
-                    <p
-                        className="text-center text-gray-600 mt-2 max-w-2xl mx-auto"
-                        data-animate
-                    >
-                        {t('brands.subtitle')}
-                    </p>
-                    <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-                        {BRAND_LOGOS.map(brand => (
-                            <div
-                                key={brand.name}
-                                className="brand-card tilt bg-white rounded-2xl p-6 flex flex-col items-center justify-center shadow transform transition duration-300 hover:scale-105 hover:shadow-xl"
-                                data-animate
-                                data-tilt
-                            >
-                                <img
-                                    src={brand.src}
-                                    alt={brand.name}
-                                    className="h-20 w-auto object-contain"
-                                />
-                                <span className="mt-3 text-sm font-semibold text-blue-900 layer">
-                                    {brand.name}
-                                </span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section id="services" className="py-20 bg-white">
-                <div className="max-w-7xl mx-auto px-6">
-                    <h2
-                        className="text-3xl sm:text-4xl font-extrabold text-center text-gray-900"
-                        data-animate
-                    >
-                        {t('services.title')}
-                    </h2>
-                    <p
-                        className="text-center text-gray-600 mt-2 max-w-2xl mx-auto"
-                        data-animate
-                    >
-                        From quick fixes to full refits. Our partner haul-out
-                        facility is located in Monastir’s Port de pêche, about 1
-                        mile from Monastir Marina.
-                    </p>
-                    <div className="mt-10 grid md:grid-cols-3 gap-6">
-                        {SERVICE_CARDS.map(card => (
-                            <div
-                                key={card.title}
-                                className="tilt bg-gradient-to-br from-white to-blue-50 rounded-2xl p-6 shadow"
-                                data-animate
-                                data-tilt
-                            >
-                                <div className="layer">
-                                    <div className="flex items-start gap-3">
-                                        <svg
-                                            className="w-7 h-7 text-blue-700"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeWidth="1.5"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                d={card.path}
-                                            />
-                                        </svg>
-                                        <div>
-                                            <h3 className="font-semibold text-lg text-blue-900">
-                                                {card.title}
-                                            </h3>
-                                            <p className="text-gray-600 text-sm mt-1">
-                                                {card.description}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="mt-16 max-w-4xl mx-auto" data-animate>
-                        <ol className="relative border-l-2 border-blue-100 pl-6 space-y-8">
-                            {TIMELINE.map((step, index) => (
-                                <li key={step.title}>
-                                    <span
-                                        className="absolute -left-3 w-6 h-6 rounded-full"
-                                        style={{
-                                            backgroundColor: `rgba(15,32,80,${
-                                                1 -
-                                                index / TIMELINE.length / 2
-                                            })`,
-                                        }}
-                                    />
-                                    <h4 className="font-semibold text-blue-900">
-                                        {step.title}
-                                    </h4>
-                                    <p className="text-gray-600 text-sm">
-                                        {step.description}
-                                    </p>
-                                </li>
-                            ))}
-                        </ol>
-                    </div>
-                </div>
-            </section>
-
-            <section
-                className="parallax"
-                style={{ backgroundImage: 'url(/monastir1.jpeg)' }}
-            >
-                <div className="shade" />
-                <div className="content max-w-7xl mx-auto px-6 py-24 text-center text-white" data-animate>
-                    <h2 className="text-3xl font-bold">
-                        {t('monoB.title')}
-                    </h2>
-                    <p className="mt-2 text-blue-100">{t('monoB.subtitle')}</p>
-                </div>
-            </section>
-
-            <section className="py-20 bg-gray-50">
-                <div className="max-w-7xl mx-auto px-6">
-                    <h2
-                        className="text-3xl sm:text-4xl font-extrabold text-center text-gray-900"
-                        data-animate
-                    >
-                        {t('testimonials.title')}
-                    </h2>
-                    <div className="mt-10 grid md:grid-cols-3 gap-6">
-                        {TESTIMONIALS.map(item => (
-                            <figure
-                                key={item.quote}
-                                className="tilt bg-white rounded-2xl p-6 shadow"
-                                data-animate
-                                data-tilt
-                            >
-                                <blockquote className="layer text-gray-700">
-                                    {item.quote}
-                                </blockquote>
-                                <figcaption className="mt-4 text-sm text-gray-500">
-                                    {item.author}
-                                </figcaption>
-                            </figure>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section className="py-20 bg-white">
-                <div className="max-w-4xl mx-auto px-6">
-                    <h2
-                        className="text-3xl sm:text-4xl font-extrabold text-gray-900"
-                        data-animate
-                    >
-                        {t('faq.title')}
-                    </h2>
-                    <div className="mt-6 divide-y">
-                        {FAQ_ITEMS.map((item, index) => (
-                            <div key={item.questionKey} className="faq-item py-4" data-animate>
-                                <div
-                                    className="faq-q flex items-center justify-between"
-                                    onClick={() => handleFaqToggle(index)}
-                                >
-                                    <p className="font-semibold text-blue-900">
-                                        {t(item.questionKey)}
-                                    </p>
-                                    <span>{openFaq === index ? '−' : '+'}</span>
-                                </div>
-                                <div
-                                    className={`faq-a text-gray-600 mt-2 transition ${
-                                        openFaq === index ? 'block' : 'hidden'
-                                    }`}
-                                >
-                                    {t(item.answerKey)}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section id="contact" className="py-20 bg-gray-50 wave-top">
-                <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10">
-                    <div data-animate>
-                        <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
-                            {t('contact.title')}
-                        </h2>
-                        <p className="mt-3 text-gray-700">
-                            {t('contact.address1')}
-                            <br />
-                            {t('contact.address2')}
-                        </p>
-                        <p className="mt-3 text-gray-700">
-                            Phone:{' '}
-                            <a className="text-blue-700" href="tel:+21652663210">
-                                +216 52 663 210
-                            </a>
-                        </p>
-                        <p className="text-gray-700">
-                            Email:{' '}
-                            <a
-                                className="text-blue-700"
-                                href="mailto:sofracomtunisia@gmail.com"
-                            >
-                                sofracomtunisia@gmail.com
-                            </a>
-                        </p>
-                        <p className="text-gray-700">{t('contact.hours')}</p>
-                        <div className="mt-6">
-                            <a
-                                href="#contact"
-                                className="inline-block px-6 py-3 rounded-xl bg-blue-900 text-white font-semibold hover:bg-blue-800 transition"
-                            >
-                                {t('contact.btn')}
-                            </a>
-                        </div>
-                    </div>
-                    <form
-                        id="quote-form"
-                        className="bg-white rounded-2xl p-6 shadow"
-                        onSubmit={handleSubmit}
-                        data-animate
-                    >
-                        <div className="grid sm:grid-cols-2 gap-4">
-                            <div>
-                                <label className="block text-sm text-gray-600" htmlFor="name">
-                                    {t('form.name')}
-                                </label>
-                                <input
-                                    id="name"
-                                    name="name"
-                                    value={quoteForm.name}
-                                    onChange={handleInput}
-                                    className="mt-1 w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm text-gray-600" htmlFor="email">
-                                    {t('form.email')}
-                                </label>
-                                <input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    value={quoteForm.email}
-                                    onChange={handleInput}
-                                    className="mt-1 w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200"
-                                    required
-                                />
-                            </div>
-                            <div className="sm:col-span-2">
-                                <label className="block text-sm text-gray-600" htmlFor="phone">
-                                    Phone
-                                </label>
-                                <input
-                                    id="phone"
-                                    name="phone"
-                                    value={quoteForm.phone}
-                                    onChange={handleInput}
-                                    className="mt-1 w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200"
-                                />
-                            </div>
-                            <div className="sm:col-span-2">
-                                <label className="block text-sm text-gray-600" htmlFor="subject">
-                                    {t('form.subject')}
-                                </label>
-                                <input
-                                    id="subject"
-                                    name="subject"
-                                    value={quoteForm.subject}
-                                    onChange={handleInput}
-                                    className="mt-1 w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200"
-                                />
-                            </div>
-                            <div className="sm:col-span-2">
-                                <label className="block text-sm text-gray-600" htmlFor="details">
-                                    {t('form.message')}
-                                </label>
-                                <textarea
-                                    id="details"
-                                    name="details"
-                                    rows="4"
-                                    value={quoteForm.details}
-                                    onChange={handleInput}
-                                    className="mt-1 w-full px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-200"
-                                />
-                            </div>
-                        </div>
-                        <button
-                            type="submit"
-                            className="mt-4 w-full px-6 py-3 rounded-xl bg-blue-900 text-white font-semibold hover:bg-blue-800 transition"
-                            disabled={submitting}
-                        >
-                            {t('form.send')}
-                        </button>
-                        <p
-                            id="quote-status"
-                            className={`quote-status ${formStatus.type} mt-4 text-sm ${
-                                formStatus.message ? '' : 'hidden'
-                            }`}
-                            aria-live="polite"
-                        >
-                            {formStatus.message}
-                        </p>
-                    </form>
-                </div>
-            </section>
+            <Seo title={t('seo.home.title')} description={t('seo.home.description')} path="/" image={HERO.image} jsonLd={localBusinessJsonLd(lang)} />
+            <Hero />
+            <TrustBar />
+            <Categories categories={categories} />
+            <Featured products={featured} />
+            <Services cards={serviceCards} />
+            <HowItWorks />
+            <Brands />
+            <About />
+            <Faq />
+            <Closing />
         </>
     );
 }
+
+// The closing card brings its own spacing above the footer.
+HomePage.flushFooter = true;

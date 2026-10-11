@@ -6,8 +6,9 @@ import { useAuth } from '../../../contexts/AuthContext';
 import AccountLayout from '../../../components/account/AccountLayout';
 import { StatusBadge, StatusTimeline, useFormatDate } from '../../../components/account/Status';
 import { getMine } from '../../../lib/accountData';
-import { formatPrice } from '../../../lib/constants';
-import { normalizeOrderStatus, shortId } from '../../../lib/status';
+import useFormat from '../../../hooks/useFormat';
+import { normalizeOrderStatus, displayRef } from '../../../lib/status';
+import { imageAt, photoClass } from '../../../lib/images';
 
 // Older orders stored only `price`; newer ones also store unitPrice/lineTotal/subtotal.
 const linePrice = item => Number(item.unitPrice ?? item.price) || 0;
@@ -15,6 +16,7 @@ const lineTotal = item => Number(item.lineTotal) || linePrice(item) * (Number(it
 
 export default function OrderDetailPage() {
     const { t } = useLang();
+    const format = useFormat();
     const { user } = useAuth();
     const router = useRouter();
     const formatDate = useFormatDate();
@@ -27,7 +29,7 @@ export default function OrderDetailPage() {
             .catch(() => setOrder(null));
     }, [user, router.query.id]);
 
-    const title = order ? t('orders.number', { id: shortId(order.id) }) : t('orders.title');
+    const title = order ? t('orders.number', { id: displayRef(order) }) : t('orders.title');
 
     if (order === undefined || order === null) {
         return (
@@ -68,10 +70,10 @@ export default function OrderDetailPage() {
                     </Link>
                 </div>
             )}
-            <div className="grid lg:grid-cols-3 gap-5">
-                <div className="lg:col-span-2 space-y-5">
+            <div className="grid items-start gap-6 min-[900px]:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+                <div className="space-y-6">
                     <section className="ui-card">
-                        <h2 className="font-bold text-lg text-gray-900 mb-4">{t('orders.items')}</h2>
+                        <h2 className="mb-5 text-xl font-semibold text-ink">{t('orders.items')}</h2>
                         <div className="order-lines">
                             {items.map((item, index) => {
                                 const href = item.productId && item.categorySlug
@@ -79,24 +81,24 @@ export default function OrderDetailPage() {
                                     : null;
                                 return (
                                     <div className="order-line" key={`${item.id || item.productId}-${index}`}>
-                                        <img src={item.image || '/logo.jpeg'} alt="" />
+                                        <img src={imageAt(item.image || '/assets/site/logo-400.webp', 400)} loading="lazy" alt="" className={photoClass(item.image)} />
                                         <div>
                                             {href ? (
-                                                <Link href={href} className="font-semibold text-gray-900 hover:underline">
+                                                <Link href={href} className="font-semibold text-ink hover:underline">
                                                     {item.title}
                                                 </Link>
                                             ) : (
-                                                <p className="font-semibold text-gray-900">{item.title}</p>
+                                                <p className="font-semibold text-ink">{item.title}</p>
                                             )}
-                                            <p className="ui-muted">
+                                            <p className="ui-muted text-sm">
                                                 {item.variantLabel ? `${item.variantLabel} · ` : ''}
                                                 {t('orders.qtyTimesPrice', {
                                                     quantity: item.quantity,
-                                                    price: formatPrice(linePrice(item)),
+                                                    price: format.price(linePrice(item)),
                                                 })}
                                             </p>
                                         </div>
-                                        <p className="font-semibold text-gray-900">{formatPrice(lineTotal(item))}</p>
+                                        <p className="whitespace-nowrap font-semibold tabular-nums text-ink">{format.price(lineTotal(item))}</p>
                                     </div>
                                 );
                             })}
@@ -104,30 +106,30 @@ export default function OrderDetailPage() {
                         <div className="order-totals mt-5">
                             <div>
                                 <span>{t('cart.itemsTotal')}</span>
-                                <span>{formatPrice(subtotal)}</span>
+                                <span>{format.price(subtotal)}</span>
                             </div>
                             <div>
                                 <span>{t('cart.deliveryFee')}</span>
-                                <span>{formatPrice(deliveryFee)}</span>
+                                <span>{format.price(deliveryFee)}</span>
                             </div>
                             <div className="order-totals__grand">
                                 <span>{t('cart.grandTotal')}</span>
-                                <span>{formatPrice(total)}</span>
+                                <span>{format.price(total)}</span>
                             </div>
                         </div>
                     </section>
                     <section className="ui-card">
-                        <h2 className="font-bold text-lg text-gray-900 mb-3">{t('orders.delivery')}</h2>
-                        <p className="text-gray-800">{order.customer_name}</p>
-                        <p className="text-gray-700">{order.customer_address}</p>
-                        <p className="text-gray-500" dir="ltr" style={{ textAlign: 'start' }}>
+                        <h2 className="mb-3 text-xl font-semibold text-ink">{t('orders.delivery')}</h2>
+                        <p className="text-ink">{order.customer_name}</p>
+                        <p className="text-ink">{order.customer_address}</p>
+                        <p className="text-ink-muted" dir="ltr" style={{ textAlign: 'start' }}>
                             {order.customer_phone}
                         </p>
                         {order.customer_notes && <p className="ui-muted mt-2">{order.customer_notes}</p>}
                     </section>
                 </div>
-                <section className="ui-card">
-                    <h2 className="font-bold text-lg text-gray-900 mb-4">{t('orders.status')}</h2>
+                <section className="rounded-2xl bg-surface p-6 min-[900px]:sticky min-[900px]:top-24">
+                    <h2 className="mb-5 text-xl font-semibold text-ink">{t('orders.status')}</h2>
                     <StatusTimeline kind="order" doc={order} />
                 </section>
             </div>

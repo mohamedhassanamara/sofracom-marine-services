@@ -13,6 +13,8 @@ pnpm-debug.log*
 # Editor & OS cruft
 .DS_Store
 public/.DS_Store
+# category link-preview images, generated at build (scripts/category-og.mjs)
+public/og/
 .idea/
 *.swp
 
@@ -31,3 +33,9 @@ ui-debug.log*
 
 # Copy of the production Firestore rules taken before deploying (DEPLOY.md step 6)
 rules.backup.txt
+
+# Generated photo cutouts waiting for review (scripts/cutouts.mjs); approved ones are copied to public/assets
+.cutouts-cache/
+
+# Screenshots and image reports (kept on this computer, not in git)
+docs/_images/
