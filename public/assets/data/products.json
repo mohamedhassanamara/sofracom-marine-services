@@ -393,7 +393,18 @@
           "images": [
             "assets/products/20251104_181235-mhkup44o-800.webp"
           ],
-          "variants": [],
+          "variants": [
+            {
+              "label": "01kg Black/noir",
+              "price": 62.765,
+              "stock": "in"
+            },
+            {
+              "label": "05kg Black/noir",
+              "price": 311.611,
+              "stock": "in"
+            }
+          ],
           "datasheet": "assets/datasheets/en-gb-mhqipu39.pdf",
           "image": "assets/products/20251104_181235-mhkup44o-800.webp",
           "translations": {
@@ -2883,7 +2894,7 @@
             "dégrippant"
           ],
           "price": 8.767,
-          "stock": "in",
+          "stock": "out",
           "images": [
             "assets/products/laser-1-mht2j39t-800.webp",
             "assets/products/20251110_113411-mht2gwwd-800.webp"
