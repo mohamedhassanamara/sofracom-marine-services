@@ -8,6 +8,7 @@ import { transformWithOxc } from 'vite';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..', '..');
+const rootPosix = root.replace(/\\/g, '/');
 
 // lib/i18n/locales.js and lib/design/tokens.js are CommonJS (Node and Tailwind load them);
 // wrap them as ES modules for the browser. Named exports come from `module.exports = { … }`.
@@ -32,7 +33,7 @@ const siteJsx = {
     name: 'sofracom-site-jsx',
     enforce: 'pre',
     async transform(code, id) {
-        if (!SITE_JSX.test(id) || id.includes('node_modules') || !id.startsWith(root) || !/<[A-Za-z>]/.test(code)) return null;
+        if (!SITE_JSX.test(id) || id.includes('node_modules') || !id.replace(/\\/g, '/').startsWith(rootPosix) || !/<[A-Za-z>]/.test(code)) return null;
         const result = await transformWithOxc(code, `${id}x`, { lang: 'jsx', jsx: { runtime: 'automatic' }, sourcemap: true });
         return { code: result.code, map: result.map };
     },
