@@ -6,6 +6,33 @@
       "description": "Bottom paints, primers, érodable, topcoats for local waters, erodable",
       "products": [
         {
+          "id": "p_6smhc4a6",
+          "title": "JOTUN Penguard HB Primer Grey / Gris 04L(A)+01L(B)",
+          "brand": "JOTUN",
+          "description": "This is a two component, polyamide cured, high molecular weight epoxy coating. It has a matt finish with fair\ngloss retention. It is a high solids, high build product. Can be used as mid coat or finish coat in atmospheric\nenvironments. It can be applied at sub zero surface temperatures",
+          "images": [
+            "assets/products/penguard-hb-800.webp"
+          ],
+          "image": "assets/products/penguard-hb-800.webp",
+          "usage": [
+            "JOTUN"
+          ],
+          "variants": [],
+          "price": 988.417,
+          "stock": "in",
+          "datasheet": "assets/datasheets/penguard-hb.pdf",
+          "translations": {
+            "fr": {
+              "title": "JOTUN Penguard HB Primer Grey / Gris 04L(A)+01L(B)",
+              "description": "Il s’agit d’un revêtement époxy bicomposant, réticulé avec un durcisseur polyamide et formulé à base de résine époxy de haut poids moléculaire.\n\nIl présente un aspect mat avec une bonne tenue du brillant dans le temps. C’est un produit à haute teneur en matières solides permettant une application en couche épaisse.\n\nIl peut être utilisé comme couche intermédiaire ou couche de finition dans des environnements atmosphériques.\n\nIl peut être appliqué sur des surfaces dont la température est inférieure à 0 °C."
+            },
+            "ar": {
+              "title": "JOTUN Penguard HB Primer Grey / Gris 04L(A)+01L(B)",
+              "description": "هو طلاء إيبوكسي ثنائي المكونات، يتم تصلّبه باستخدام مادة مقسّية من نوع بولي أميد، ويعتمد على راتنج إيبوكسي ذي وزن جزيئي مرتفع.\n\nيتميز بلمسة نهائية مطفية مع قدرة جيدة على الاحتفاظ بدرجة اللمعان بمرور الوقت. كما أنه منتج غني بالمواد الصلبة، مما يسمح بتطبيقه بسماكة عالية.\n\nيمكن استخدامه كطبقة وسيطة أو كطبقة نهائية في البيئات المعرضة للعوامل الجوية.\n\nيمكن تطبيقه على الأسطح التي تقل درجة حرارتها عن الصفر المئوي."
+            }
+          }
+        },
+        {
           "id": "p_bamzqzdm",
           "legacyId": "antifouling-coatings-jotun-seaforce-active-2-5l-black-noir",
           "title": "Jotun SeaForce Active 2.5L Black / Noir",

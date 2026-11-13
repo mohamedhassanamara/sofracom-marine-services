@@ -1415,6 +1415,13 @@
       "status": "original",
       "updatedAt": "2026-11-13T16:42:46.096Z"
     },
+    "/assets/products/penguard-hb-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/penguard-hb-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T17:04:50.996Z",
+      "auto": true
+    },
     "/assets/products/pinceau-cristan-n30-mhhmgsae-800.webp": {
       "status": "approved",
       "cutout": "/assets/products/cutouts/pinceau-cristan-n30-mhhmgsae-cut-800.webp",
