@@ -1394,6 +1394,13 @@
       "updatedAt": "2026-11-13T15:34:07.405Z",
       "auto": true
     },
+    "/assets/products/interprime-198-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/interprime-198-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T17:47:18.760Z",
+      "auto": true
+    },
     "/assets/products/laser-1-mht2j39t-800.webp": {
       "status": "approved",
       "cutout": "/assets/products/cutouts/laser-1-mht2j39t-cut-800.webp",

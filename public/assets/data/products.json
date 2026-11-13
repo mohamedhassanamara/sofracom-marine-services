@@ -6,6 +6,33 @@
       "description": "Bottom paints, primers, érodable, topcoats for local waters, erodable",
       "products": [
         {
+          "id": "p_rklktala",
+          "title": "INTERNATIONAL Interprime 198 / 20L",
+          "brand": "INTERNATIONAL",
+          "description": "A one component, fast drying, high performance, universal alkyd primer.\nPrimarily intended for use as a maintenance primer on hand prepared steel.\nQuick drying properties make it equally suitable for use at new construction in the fabrication shop.\nSuitable for overcoating hand prepared substrates, and overcoatable with a wide range of topcoats,\nincluding epoxies and polyurethanes.",
+          "images": [
+            "assets/products/interprime-198-800.webp"
+          ],
+          "image": "assets/products/interprime-198-800.webp",
+          "usage": [
+            "INTERNATIONAL"
+          ],
+          "variants": [],
+          "price": 709.189,
+          "stock": "in",
+          "datasheet": "assets/datasheets/interprime_198_eng_a4_20150205.pdf",
+          "translations": {
+            "fr": {
+              "title": "INTERNATIONAL Interprime 198 / 20L",
+              "description": "Il s’agit d’un primaire alkyde universel monocomposant, à séchage rapide et haute performance.\n\nIl est principalement destiné à être utilisé comme primaire d’entretien sur les surfaces en acier préparées manuellement.\n\nGrâce à ses propriétés de séchage rapide, il convient également aux travaux de construction neuve et peut être utilisé directement en atelier de fabrication.\n\nIl est adapté à l’application sur des supports préparés manuellement et peut être recouvert par une large gamme de peintures de finition, notamment les revêtements époxy et polyuréthane."
+            },
+            "ar": {
+              "title": "INTERNATIONAL Interprime 198 / 20L",
+              "description": "هو طلاء تأسيسي ألكيدي أحادي المكوّن، سريع الجفاف وعالي الأداء، ومتعدد الاستخدامات.\n\nيُستخدم بشكل أساسي كطبقة تأسيسية لأعمال الصيانة على الأسطح الفولاذية التي تم تجهيزها وتنظيفها يدويًا.\n\nبفضل خصائصه سريعة الجفاف، فهو مناسب أيضًا لأعمال الإنشاءات الجديدة ويمكن استخدامه داخل ورشات التصنيع.\n\nيمكن تطبيقه على الأسطح التي تم تجهيزها يدويًا، كما يمكن إعادة طلائه بمجموعة واسعة من الدهانات النهائية، بما في ذلك دهانات الإيبوكسي والبولي يوريثان."
+            }
+          }
+        },
+        {
           "id": "p_6smhc4a6",
           "title": "JOTUN Penguard HB Primer Grey / Gris 04L(A)+01L(B)",
           "brand": "JOTUN",
