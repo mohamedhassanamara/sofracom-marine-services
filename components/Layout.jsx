@@ -1,0 +1,70 @@
+import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useAuth } from '../contexts/AuthContext';
+import { useCart } from '../contexts/CartContext';
+import { useLang } from '../contexts/LangContext';
+import SiteHeader from './layout/SiteHeader';
+import TopBar from './layout/TopBar';
+import SiteFooter from './layout/SiteFooter';
+
+// Loaded the first time the cart opens: it isn't needed to show the page.
+const CartDrawer = dynamic(() => import('./cart/CartDrawer'), { ssr: false });
+
+// Every page: header (with the cart button), one <main>, footer, and the cart drawer.
+export default function Layout({ children, flushFooter = false }) {
+    const router = useRouter();
+    const { profile } = useAuth();
+    const { isOpen: cartOpen } = useCart();
+    const { t } = useLang();
+    const [cartUsed, setCartUsed] = useState(false);
+    useEffect(() => {
+        if (cartOpen) setCartUsed(true);
+    }, [cartOpen]);
+
+    // A temporary password set by staff must be replaced right after signing in.
+    useEffect(() => {
+        // Not on the sign-in pages: they redirect first, so `next` is the real destination.
+        const exempt = ['/account/change-password', '/account/login', '/account/signup', '/account/reset'];
+        if (profile?.mustChangePassword && !exempt.includes(router.pathname)) {
+            router.replace(`/account/change-password?next=${encodeURIComponent(router.asPath)}`);
+        }
+    }, [profile, router]);
+
+    // Gentle fade-in of [data-animate] sections (shown immediately with reduced motion).
+    useEffect(() => {
+        const elements = document.querySelectorAll('[data-animate]:not(.in-view)');
+        if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            elements.forEach(element => element.classList.add('in-view'));
+            return undefined;
+        }
+        const observer = new IntersectionObserver(
+            entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.12 }
+        );
+        elements.forEach(element => observer.observe(element));
+        return () => observer.disconnect();
+    }, [router.asPath]);
+
+    return (
+        <div id="top" className="flex min-h-screen flex-col">
+            <a href="#main" className="sr-only rounded-full bg-navy-900 px-4 py-2 font-semibold text-white focus:not-sr-only focus:fixed focus:start-4 focus:top-3 focus:z-50">
+                {t('header.skip')}
+            </a>
+            <TopBar />
+            <SiteHeader />
+            <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
+                {children}
+            </main>
+            <SiteFooter flush={flushFooter} />
+            {cartUsed && <CartDrawer />}
+        </div>
+    );
+}

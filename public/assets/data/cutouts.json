@@ -1,4 +1,1496 @@
 {
   "version": 1,
-  "images": {}
+  "images": {
+    "/assets/products/20251027_153952-mhkvp45z-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251027_153952-mhkvp45z-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:28:49.632Z",
+      "auto": true
+    },
+    "/assets/products/20251027_154046-mhkvwi0x-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251027_154046-mhkvwi0x-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:28:29.544Z",
+      "auto": true
+    },
+    "/assets/products/20251102_153457-mi64z16g-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251102_153457-mi64z16g-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:09:58.873Z",
+      "auto": true
+    },
+    "/assets/products/20251102_164403-mi65zfsm-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251102_164403-mi65zfsm-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:10:41.704Z",
+      "auto": true
+    },
+    "/assets/products/20251104_142605-mhkpnc7j-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251104_142605-mhkpnc7j-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:15:55.488Z",
+      "auto": true
+    },
+    "/assets/products/20251104_142934-mhkq1zha-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251104_142934-mhkq1zha-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:16:20.351Z",
+      "auto": true
+    },
+    "/assets/products/20251104_145358-mi4pw7rv-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251104_145358-mi4pw7rv-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:03:46.983Z",
+      "auto": true
+    },
+    "/assets/products/20251104_145422-mi3oa54y-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251104_145422-mi3oa54y-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:02:28.372Z",
+      "auto": true
+    },
+    "/assets/products/20251104_145437-mi6arjnk-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251104_145437-mi6arjnk-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:17:48.003Z",
+      "auto": true
+    },
+    "/assets/products/20251104_145648-mi6afmnf-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:42:24.935Z"
+    },
+    "/assets/products/20251104_145748-mi6afrmy-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251104_145748-mi6afrmy-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:17:25.973Z",
+      "auto": true
+    },
+    "/assets/products/20251104_145817-mi6axjt5-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:42:27.495Z"
+    },
+    "/assets/products/20251104_151027-mi4oz4ri-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251104_151027-mi4oz4ri-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:03:25.093Z",
+      "auto": true
+    },
+    "/assets/products/20251104_151639-mi4jnnrq-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251104_151639-mi4jnnrq-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:03:02.274Z",
+      "auto": true
+    },
+    "/assets/products/20251104_152106-mi61aio3-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251104_152106-mi61aio3-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:07:30.319Z",
+      "auto": true
+    },
+    "/assets/products/20251104_152315-mi63s8el-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:41:46.382Z"
+    },
+    "/assets/products/20251104_152339-mi63s54l-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:41:44.419Z"
+    },
+    "/assets/products/20251104_152730-mi61amt2-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251104_152730-mi61amt2-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:07:04.800Z",
+      "auto": true
+    },
+    "/assets/products/20251104_162916-mhkrjjaq-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251104_162916-mhkrjjaq-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:17:09.759Z",
+      "auto": true
+    },
+    "/assets/products/20251104_163007-mhktrhqq-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251104_163007-mhktrhqq-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:17:33.077Z",
+      "auto": true
+    },
+    "/assets/products/20251104_163524-mhktr74d-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251104_163524-mhktr74d-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:16:42.405Z",
+      "auto": true
+    },
+    "/assets/products/20251104_164917-mhktskts-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251104_164917-mhktskts-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:18:16.552Z",
+      "auto": true
+    },
+    "/assets/products/20251104_164929-mhktsgsm-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251104_164929-mhktsgsm-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:17:55.437Z",
+      "auto": true
+    },
+    "/assets/products/20251104_181223-mhkujr6y-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251104_181223-mhkujr6y-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:18:37.756Z",
+      "auto": true
+    },
+    "/assets/products/20251104_181235-mhkup44o-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251104_181235-mhkup44o-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:18:58.490Z",
+      "auto": true
+    },
+    "/assets/products/20251107_093838-mi7ok8at-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251107_093838-mi7ok8at-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:20:55.962Z",
+      "auto": true
+    },
+    "/assets/products/20251110_113411-mht2gwwd-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251110_113411-mht2gwwd-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:45:19.215Z",
+      "auto": true
+    },
+    "/assets/products/20251110_114405-mhxgyngd-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251110_114405-mhxgyngd-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:39:32.599Z",
+      "auto": true
+    },
+    "/assets/products/20251110_120322-mht5esn2-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251110_120322-mht5esn2-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:29:37.571Z",
+      "auto": true
+    },
+    "/assets/products/20251110_120330-mht5evx2-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251110_120330-mht5evx2-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:29:57.303Z",
+      "auto": true
+    },
+    "/assets/products/20251110_124222-1-mi3nhcpw-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251110_124222-1-mi3nhcpw-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:01:40.868Z",
+      "auto": true
+    },
+    "/assets/products/20251110_124232-mi3nsafu-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251110_124232-mi3nsafu-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:02:03.236Z",
+      "auto": true
+    },
+    "/assets/products/20251111_140038-mhw5opvd-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251111_140038-mhw5opvd-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:30:18.198Z",
+      "auto": true
+    },
+    "/assets/products/20251111_171059-mhw8zwyx-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251111_171059-mhw8zwyx-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:30:39.749Z",
+      "auto": true
+    },
+    "/assets/products/20251113_140442-2-mhxnqwac-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251113_140442-2-mhxnqwac-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:19:22.042Z",
+      "auto": true
+    },
+    "/assets/products/20251113_143051-mhxon7dr-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251113_143051-mhxon7dr-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:31:00.848Z",
+      "auto": true
+    },
+    "/assets/products/20251113_164339-mhxm0uaz-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:41:33.138Z"
+    },
+    "/assets/products/20251113_164351-mhxm6lki-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251113_164351-mhxm6lki-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:48:57.705Z",
+      "auto": true
+    },
+    "/assets/products/20251113_173709-mhxo6tvi-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251113_173709-mhxo6tvi-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:47:24.472Z",
+      "auto": true
+    },
+    "/assets/products/20251113_173720-mhxobgoq-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251113_173720-mhxobgoq-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:47:46.853Z",
+      "auto": true
+    },
+    "/assets/products/20251113_181252-mhxp9pwe-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251113_181252-mhxp9pwe-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:31:21.780Z",
+      "auto": true
+    },
+    "/assets/products/20251114_115423-mhyu1t2z-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251114_115423-mhyu1t2z-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:31:47.576Z",
+      "auto": true
+    },
+    "/assets/products/20251114_120122-mhyrsca7-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251114_120122-mhyrsca7-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T16:41:38.560Z"
+    },
+    "/assets/products/20251114_125508-mhytwhwc-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251114_125508-mhytwhwc-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:51:06.552Z",
+      "auto": true
+    },
+    "/assets/products/20251115_160924-mi0flac8-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251115_160924-mi0flac8-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:59:33.708Z",
+      "auto": true
+    },
+    "/assets/products/20251115_161208-mi0jwpaj-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251115_161208-mi0jwpaj-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:59:56.508Z",
+      "auto": true
+    },
+    "/assets/products/20251115_183413-mi1n2j4w-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251115_183413-mi1n2j4w-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:00:18.022Z",
+      "auto": true
+    },
+    "/assets/products/20251115_183437-mi4uugg1-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251115_183437-mi4uugg1-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:06:12.520Z",
+      "auto": true
+    },
+    "/assets/products/20251115_183707-mi4v9wek-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251115_183707-mi4v9wek-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:06:38.848Z",
+      "auto": true
+    },
+    "/assets/products/20251116_131452-mi4te54t-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251116_131452-mi4te54t-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:04:31.036Z",
+      "auto": true
+    },
+    "/assets/products/20251116_131709-mi4tka8y-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251116_131709-mi4tka8y-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:05:46.961Z",
+      "auto": true
+    },
+    "/assets/products/20251119_143918-mi63f6or-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251119_143918-mi63f6or-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:08:35.806Z",
+      "auto": true
+    },
+    "/assets/products/20251119_144148-mi64dwre-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251119_144148-mi64dwre-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:09:39.069Z",
+      "auto": true
+    },
+    "/assets/products/20251119_144156-mi64dzjy-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251119_144156-mi64dzjy-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:09:18.443Z",
+      "auto": true
+    },
+    "/assets/products/20251119_144324-mi7ocike-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251119_144324-mi7ocike-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:20:28.727Z",
+      "auto": true
+    },
+    "/assets/products/20251119_160020-mi64z8a4-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251119_160020-mi64z8a4-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:10:19.800Z",
+      "auto": true
+    },
+    "/assets/products/20251119_162412-mi65zzez-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:41:49.389Z"
+    },
+    "/assets/products/20251119_172857-mi680nyp-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251119_172857-mi680nyp-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:13:40.296Z",
+      "auto": true
+    },
+    "/assets/products/20251119_181307-mi69op8x-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:41:59.962Z"
+    },
+    "/assets/products/20251119_181328-mi69om1t-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251119_181328-mi69om1t-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:15:57.987Z",
+      "auto": true
+    },
+    "/assets/products/20251119_182209-mi6a0dm3-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251119_182209-mi6a0dm3-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:14:58.805Z",
+      "auto": true
+    },
+    "/assets/products/20251119_183047-mi6aaxxh-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:42:05.703Z"
+    },
+    "/assets/products/20251119_185541-mi6b4an9-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251119_185541-mi6b4an9-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:18:30.951Z",
+      "auto": true
+    },
+    "/assets/products/20251120_152647-mi7nz3ga-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251120_152647-mi7nz3ga-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:20:07.191Z",
+      "auto": true
+    },
+    "/assets/products/20251120_152857-mj5px1ro-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251120_152857-mj5px1ro-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:25:48.842Z",
+      "auto": true
+    },
+    "/assets/products/20251120_152948-mj5px6h0-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251120_152948-mj5px6h0-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:26:08.119Z",
+      "auto": true
+    },
+    "/assets/products/20251120_153058-mj5obo5s-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251120_153058-mj5obo5s-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:25:08.096Z",
+      "auto": true
+    },
+    "/assets/products/20251120_153105-mj5obtvh-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251120_153105-mj5obtvh-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:25:29.278Z",
+      "auto": true
+    },
+    "/assets/products/20251120_153242-mi8rv2a1-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251120_153242-mi8rv2a1-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:21:44.626Z",
+      "auto": true
+    },
+    "/assets/products/20251120_153657-mi7jrtz2-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251120_153657-mi7jrtz2-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:18:50.226Z",
+      "auto": true
+    },
+    "/assets/products/20251120_153724-mi7kl05h-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251120_153724-mi7kl05h-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:19:08.825Z",
+      "auto": true
+    },
+    "/assets/products/20251120_154319-mi7n33rv-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251120_154319-mi7n33rv-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:19:28.376Z",
+      "auto": true
+    },
+    "/assets/products/20251120_183124-mi7ppcx5-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251120_183124-mi7ppcx5-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:21:28.784Z",
+      "auto": true
+    },
+    "/assets/products/20251121_134511-mi8vqx18-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251121_134511-mi8vqx18-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:20:07.067Z",
+      "auto": true
+    },
+    "/assets/products/20251121_134555-mi8ve35i-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251121_134555-mi8ve35i-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:19:44.465Z",
+      "auto": true
+    },
+    "/assets/products/20251122_155316-miafflbj-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251122_155316-miafflbj-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:22:00.702Z",
+      "auto": true
+    },
+    "/assets/products/20251122_173555-micvxszq-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251122_173555-micvxszq-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:42:11.496Z",
+      "auto": true
+    },
+    "/assets/products/20251122_173610-miaimyzf-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251122_173610-miaimyzf-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:42:31.167Z",
+      "auto": true
+    },
+    "/assets/products/20251122_173620-miaiod3m-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251122_173620-miaiod3m-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:41:53.193Z",
+      "auto": true
+    },
+    "/assets/products/20251124_094142-mid0a1va-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251124_094142-mid0a1va-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:22:18.983Z",
+      "auto": true
+    },
+    "/assets/products/20251128_083041-miilg25v-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251128_083041-miilg25v-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:22:34.844Z",
+      "auto": true
+    },
+    "/assets/products/20251128_092347-miilsexw-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251128_092347-miilsexw-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:22:51.142Z",
+      "auto": true
+    },
+    "/assets/products/20251128_092402-miiqvu0a-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251128_092402-miiqvu0a-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:23:07.142Z",
+      "auto": true
+    },
+    "/assets/products/20251128_095543-miisnfst-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251128_095543-miisnfst-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:23:23.237Z",
+      "auto": true
+    },
+    "/assets/products/20251128_104421-miitlu1p-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251128_104421-miitlu1p-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T16:42:30.657Z"
+    },
+    "/assets/products/20251128_104421-miq5l1wt-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251128_104421-miq5l1wt-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T16:42:33.219Z"
+    },
+    "/assets/products/20251128_125138-miq3grd0-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251128_125138-miq3grd0-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:24:46.563Z",
+      "auto": true
+    },
+    "/assets/products/20251128_125155-miq3ipyn-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251128_125155-miq3ipyn-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:25:05.674Z",
+      "auto": true
+    },
+    "/assets/products/20251128_125211-miq3ykam-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251128_125211-miq3ykam-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:25:22.799Z",
+      "auto": true
+    },
+    "/assets/products/20251203_143635-miq2dkyk-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251203_143635-miq2dkyk-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:24:11.699Z",
+      "auto": true
+    },
+    "/assets/products/20251203_143653-miq2dpl1-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251203_143653-miq2dpl1-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:24:29.210Z",
+      "auto": true
+    },
+    "/assets/products/20251203_161135-miq641m2-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251203_161135-miq641m2-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:25:56.230Z",
+      "auto": true
+    },
+    "/assets/products/20251203_161154-miq6xc1h-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251203_161154-miq6xc1h-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:26:13.983Z",
+      "auto": true
+    },
+    "/assets/products/20251203_170120-miq8e3vu-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251203_170120-miq8e3vu-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:26:31.770Z",
+      "auto": true
+    },
+    "/assets/products/20251203_170120-miq8vqh3-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251203_170120-miq8vqh3-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:27:33.162Z",
+      "auto": true
+    },
+    "/assets/products/20251203_170139-miq8e8za-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:42:35.753Z"
+    },
+    "/assets/products/20251203_170214-miq8eti2-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251203_170214-miq8eti2-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:27:14.865Z",
+      "auto": true
+    },
+    "/assets/products/20251204_131712-mirli6xm-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251204_131712-mirli6xm-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:40:19.017Z",
+      "auto": true
+    },
+    "/assets/products/20251204_131724-mirmue6x-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251204_131724-mirmue6x-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:40:42.726Z",
+      "auto": true
+    },
+    "/assets/products/20251204_131741-miri3ir8-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251204_131741-miri3ir8-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:39:57.828Z",
+      "auto": true
+    },
+    "/assets/products/20251204_175734-mirotu7n-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251204_175734-mirotu7n-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:20:28.226Z",
+      "auto": true
+    },
+    "/assets/products/20251209_171158-miysvfgk-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251209_171158-miysvfgk-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:32:43.936Z",
+      "auto": true
+    },
+    "/assets/products/20251209_171300-mj08b4i5-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251209_171300-mj08b4i5-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:34:59.097Z",
+      "auto": true
+    },
+    "/assets/products/20251209_171409-miyug50u-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251209_171409-miyug50u-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:33:49.631Z",
+      "auto": true
+    },
+    "/assets/products/20251209_171444-miyu0pso-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251209_171444-miyu0pso-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:33:32.851Z",
+      "auto": true
+    },
+    "/assets/products/20251209_184140-miyvh25w-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251209_184140-miyvh25w-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:34:24.429Z",
+      "auto": true
+    },
+    "/assets/products/20251210_155234-mj05v3hw-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251210_155234-mj05v3hw-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:20:49.317Z",
+      "auto": true
+    },
+    "/assets/products/20251210_173938-mj08omwb-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251210_173938-mj08omwb-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:35:17.358Z",
+      "auto": true
+    },
+    "/assets/products/20251210_175601-mj09k3qt-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251210_175601-mj09k3qt-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:35:33.121Z",
+      "auto": true
+    },
+    "/assets/products/20251210_175719-mj0a43im-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251210_175719-mj0a43im-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:35:49.424Z",
+      "auto": true
+    },
+    "/assets/products/20251210_175756-mj0a472w-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251210_175756-mj0a472w-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:36:05.128Z",
+      "auto": true
+    },
+    "/assets/products/20251210_175909-mj2susf0-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251210_175909-mj2susf0-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:27:51.175Z",
+      "auto": true
+    },
+    "/assets/products/20251210_180046-mj0aprnk-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251210_180046-mj0aprnk-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:36:21.167Z",
+      "auto": true
+    },
+    "/assets/products/20251210_180204-mj2rnbfb-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251210_180204-mj2rnbfb-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:37:36.485Z",
+      "auto": true
+    },
+    "/assets/products/20251210_180215-2-mj2rrah7-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251210_180215-2-mj2rrah7-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:37:54.719Z",
+      "auto": true
+    },
+    "/assets/products/20251210_183723-mj0apxpi-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251210_183723-mj0apxpi-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:36:49.217Z",
+      "auto": true
+    },
+    "/assets/products/20251210_183949-mj0aubot-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251210_183949-mj0aubot-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:37:18.493Z",
+      "auto": true
+    },
+    "/assets/products/20251212_124147-mj2swr64-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:42:38.305Z"
+    },
+    "/assets/products/20251212_124206-mj2u5slm-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251212_124206-mj2u5slm-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:28:40.427Z",
+      "auto": true
+    },
+    "/assets/products/20251212_125540-mj2tvue0-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251212_125540-mj2tvue0-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:28:58.236Z",
+      "auto": true
+    },
+    "/assets/products/20251212_125557-mj2tyxio-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251212_125557-mj2tyxio-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:29:16.832Z",
+      "auto": true
+    },
+    "/assets/products/20251212_125853-mj2u4us5-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251212_125853-mj2u4us5-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:29:36.924Z",
+      "auto": true
+    },
+    "/assets/products/20251212_125908-mj2u88c6-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251212_125908-mj2u88c6-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:30:11.019Z",
+      "auto": true
+    },
+    "/assets/products/20251212_125916-mj2u8swb-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:42:39.936Z"
+    },
+    "/assets/products/20251214_112657-mj5lsh9n-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251214_112657-mj5lsh9n-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:22:31.063Z",
+      "auto": true
+    },
+    "/assets/products/20251214_112912-mj5m7hzj-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251214_112912-mj5m7hzj-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:22:55.227Z",
+      "auto": true
+    },
+    "/assets/products/20251214_121141-mj5mujfm-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251214_121141-mj5mujfm-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:23:37.484Z",
+      "auto": true
+    },
+    "/assets/products/20251214_121251-mj5n9mle-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251214_121251-mj5n9mle-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:24:00.371Z",
+      "auto": true
+    },
+    "/assets/products/20251214_123854-mj5nmorx-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251214_123854-mj5nmorx-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T16:40:38.300Z"
+    },
+    "/assets/products/20251214_124858-mj5o257e-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251214_124858-mj5o257e-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:24:45.271Z",
+      "auto": true
+    },
+    "/assets/products/20251215_111735-mj70u441-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251215_111735-mj70u441-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:34:13.456Z",
+      "auto": true
+    },
+    "/assets/products/20251215_111819-mj71x06p-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251215_111819-mj71x06p-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:34:33.762Z",
+      "auto": true
+    },
+    "/assets/products/20251215_112405-mj73nhsf-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251215_112405-mj73nhsf-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:35:13.090Z",
+      "auto": true
+    },
+    "/assets/products/20251215_112417-mj73nllb-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251215_112417-mj73nllb-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:35:34.827Z",
+      "auto": true
+    },
+    "/assets/products/20251216_152557-mj8qs5pa-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251216_152557-mj8qs5pa-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:30:50.317Z",
+      "auto": true
+    },
+    "/assets/products/20251216_152758-mj8qyyqa-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251216_152758-mj8qyyqa-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:31:07.794Z",
+      "auto": true
+    },
+    "/assets/products/20251216_164416-mj8s2fu6-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251216_164416-mj8s2fu6-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:38:10.004Z",
+      "auto": true
+    },
+    "/assets/products/20251216_173033-mj8tyzxk-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251216_173033-mj8tyzxk-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:39:00.844Z",
+      "auto": true
+    },
+    "/assets/products/20251216_173421-mj8tz3v6-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251216_173421-mj8tz3v6-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:39:16.928Z",
+      "auto": true
+    },
+    "/assets/products/20251216_173500-mj8u32c9-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:42:48.346Z"
+    },
+    "/assets/products/20251216_173603-mj8ufmhu-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:42:53.198Z"
+    },
+    "/assets/products/20251216_173732-mj8uaqzt-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20251216_173732-mj8uaqzt-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:40:11.189Z",
+      "auto": true
+    },
+    "/assets/products/20251216_173753-mj8ufj1v-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:42:51.579Z"
+    },
+    "/assets/products/20260123_115735-mkqtkp3d-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:41:14.286Z"
+    },
+    "/assets/products/20260123_121124-mkqtsjlx-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:41:15.789Z"
+    },
+    "/assets/products/20260303_102353-mp2rlb5x-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20260303_102353-mp2rlb5x-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:37:04.818Z",
+      "auto": true
+    },
+    "/assets/products/20260326_113104-mn7cj9ie-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20260326_113104-mn7cj9ie-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:28:08.938Z",
+      "auto": true
+    },
+    "/assets/products/20260326_113125-mn7cmx40-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20260326_113125-mn7cmx40-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:35:55.344Z",
+      "auto": true
+    },
+    "/assets/products/20260417_133210-mp2sf51l-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:40:43.896Z"
+    },
+    "/assets/products/20260417_133349-mp2seypy-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20260417_133349-mp2seypy-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:27:25.140Z",
+      "auto": true
+    },
+    "/assets/products/20260513_181007-mp4btet7-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20260513_181007-mp4btet7-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:27:46.557Z",
+      "auto": true
+    },
+    "/assets/products/20260513_184151-mp4cz9x9-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20260513_184151-mp4cz9x9-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:31:25.485Z",
+      "auto": true
+    },
+    "/assets/products/20260513_185037-mp4dtt2v-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20260513_185037-mp4dtt2v-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:31:43.989Z",
+      "auto": true
+    },
+    "/assets/products/20260825_160928-mt8tqsjs-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20260825_160928-mt8tqsjs-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:38:26.616Z",
+      "auto": true
+    },
+    "/assets/products/20260825_162932-mt8tyfqg-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20260825_162932-mt8tyfqg-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:38:43.400Z",
+      "auto": true
+    },
+    "/assets/products/20260901_122024-mtillav4-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20260901_122024-mtillav4-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:37:44.918Z",
+      "auto": true
+    },
+    "/assets/products/22-mi63o0mk-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/22-mi63o0mk-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:08:56.814Z",
+      "auto": true
+    },
+    "/assets/products/2715200-mp5pd34f-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/2715200-mp5pd34f-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T16:41:22.287Z"
+    },
+    "/assets/products/7095553c-4eb5-477f-866b-5cc96a91cfbf-mj5j7fnr-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/7095553c-4eb5-477f-866b-5cc96a91cfbf-mj5j7fnr-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:22:09.512Z",
+      "auto": true
+    },
+    "/assets/products/74f0561d-c158-4638-86a0-f71a190bb5fc-mj5i8sfq-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/74f0561d-c158-4638-86a0-f71a190bb5fc-mj5i8sfq-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:21:17.621Z",
+      "auto": true
+    },
+    "/assets/products/cb8e77f1-ce57-4670-bb5d-66a81f156791-mj5ige9b-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/cb8e77f1-ce57-4670-bb5d-66a81f156791-mj5ige9b-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:21:48.978Z",
+      "auto": true
+    },
+    "/assets/products/chatgpt-image-nov-15-2025-05_37_02-pm-mi0jaacc-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:40:56.062Z"
+    },
+    "/assets/products/chatgpt-image-nov-15-2025-05_37_02-pm-mi0jadjc-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:40:58.239Z"
+    },
+    "/assets/products/circulaire-miyr92lk-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/circulaire-miyr92lk-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:32:02.542Z",
+      "auto": true
+    },
+    "/assets/products/ds-mi67eaqk-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/ds-mi67eaqk-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:13:20.571Z",
+      "auto": true
+    },
+    "/assets/products/durc-mj5mcixb-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/durc-mj5mcixb-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:23:15.649Z",
+      "auto": true
+    },
+    "/assets/products/eurosil-tape-mhyrsewj-mi8riu4y-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/eurosil-tape-mhyrsewj-mi8riu4y-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:50:43.208Z",
+      "auto": true
+    },
+    "/assets/products/fcfaf6ec-daf4-4b1f-9f91-f90a3884105a-mp2qv165-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/fcfaf6ec-daf4-4b1f-9f91-f90a3884105a-mp2qv165-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:26:26.833Z",
+      "auto": true
+    },
+    "/assets/products/gp-tape-mhyol11t-mi8rr510-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/gp-tape-mhyol11t-mi8rr510-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:49:17.850Z",
+      "auto": true
+    },
+    "/assets/products/images-1-mj72cfzm-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:41:11.941Z"
+    },
+    "/assets/products/img-20251102-wa0027-mi668q71-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0027-mi668q71-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:11:41.816Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0028-mi668tw3-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0028-mi668tw3-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:12:00.669Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0036-mhqjeamb-mi3jvo3n-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0036-mhqjeamb-mi3jvo3n-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:41:34.645Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0037-mht3ka2d-mi8r8in0-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0037-mht3ka2d-mi8r8in0-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:45:40.478Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0038-mi668wea-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0038-mi668wea-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:12:19.737Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0039-mhyozp4v-mi8r98vs-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0039-mhyozp4v-mi8r98vs-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T16:41:36.101Z"
+    },
+    "/assets/products/img-20251102-wa0040-mhsvjyhi-miaj1dgp-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0040-mhsvjyhi-miaj1dgp-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:38:28.178Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0041-mhyozmf6-mi8rf96d-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0041-mhyozmf6-mi8rf96d-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:50:01.562Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0044-mhsvehha-miaj2953-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0044-mhsvehha-miaj2953-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:39:07.103Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0048-mhqj1nks-miaidk2i-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0048-mhqj1nks-miaidk2i-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:41:17.269Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0050-mhqkqz6f-mi3nup9i-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:41:24.945Z"
+    },
+    "/assets/products/img-20251102-wa0053-mi0dmf9z-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0053-mi0dmf9z-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:51:55.450Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0054-mi69f3l2-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0054-mi69f3l2-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:15:36.492Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0056-mhsxtls9-mi8r6fwb-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0056-mhsxtls9-mi8r6fwb-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:43:21.809Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0057-mhsvepow-miaj22av-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0057-mhsvepow-miaj22av-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:38:47.938Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0058-mhsw40fp-mi8r6p2p-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0058-mhsw40fp-mi8r6p2p-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:43:05.084Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0059-mi0exdo6-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0059-mi0exdo6-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:58:54.567Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0061-mi1r8t8w-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0061-mi1r8t8w-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:00:37.756Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0062-mi7nfzyk-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0062-mi7nfzyk-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:46:42.845Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0063-mht3sbov-mi8rh5r5-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0063-mht3sbov-mi8rh5r5-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:46:02.541Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0064-mi7ng2la-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0064-mi7ng2la-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T16:41:30.258Z"
+    },
+    "/assets/products/img-20251102-wa0069-mi68k11b-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0069-mi68k11b-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T16:41:53.998Z"
+    },
+    "/assets/products/img-20251102-wa0070-mi68k3c2-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:41:57.470Z"
+    },
+    "/assets/products/img-20251102-wa0071-mi699wzt-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0071-mi699wzt-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:15:17.790Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0072-mi68k5j4-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0072-mi68k5j4-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:14:36.601Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0073-mi66nbsq-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0073-mi66nbsq-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:12:39.000Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0074-mi66ya1t-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:41:51.724Z"
+    },
+    "/assets/products/img-20251102-wa0075-mht46qor-mi8rhed4-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0075-mht46qor-mi8rhed4-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:46:23.195Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0076-mhsup940-miaj1lgl-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0076-mhsup940-miaj1lgl-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:38:07.663Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0077-mi630b0p-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0077-mi630b0p-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:07:51.556Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0078-mhsz9862-mi8r52d2-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0078-mhsz9862-mi8r52d2-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:43:42.868Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0080-mhszkdn9-mi8rg66l-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0080-mhszkdn9-mi8rg66l-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:44:00.310Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0082-mi7mkkio-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0082-mi7mkkio-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:19:47.169Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0083-mi63700a-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0083-mi63700a-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:08:11.656Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0085-mi0ef6qw-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0085-mi0ef6qw-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:58:34.773Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0088-mhytwnq7-mi8rjahb-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0088-mhytwnq7-mi8rjahb-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:51:33.220Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0089-mi0exg70-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0089-mi0exg70-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:59:13.337Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0090-mhszv052-mi8rggsa-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0090-mhszv052-mi8rggsa-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:44:18.241Z",
+      "auto": true
+    },
+    "/assets/products/img-20251102-wa0091-mht0g77i-mi8rgqa3-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/img-20251102-wa0091-mht0g77i-mi8rgqa3-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:44:37.269Z",
+      "auto": true
+    },
+    "/assets/products/in-miyup6kz-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/in-miyup6kz-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:34:07.405Z",
+      "auto": true
+    },
+    "/assets/products/laser-1-mht2j39t-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/laser-1-mht2j39t-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T16:41:28.043Z"
+    },
+    "/assets/products/meuleuse-angulaire-115mm-bosch-gws-750-115-professional-miyvkxgf-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/meuleuse-angulaire-115mm-bosch-gws-750-115-professional-miyvkxgf-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:34:41.105Z",
+      "auto": true
+    },
+    "/assets/products/o339316v54_gbh_220_full_execution_1619p16150b-miyt1hxb-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:42:41.724Z"
+    },
+    "/assets/products/o387549v54_gsb_16_re_hd_sos_060114e500_30_60_70-miyto7ho-800.webp": {
+      "status": "original",
+      "updatedAt": "2026-11-13T16:42:46.096Z"
+    },
+    "/assets/products/pinceau-cristan-n30-mhhmgsae-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/pinceau-cristan-n30-mhhmgsae-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:40:59.635Z",
+      "auto": true
+    },
+    "/assets/products/snapchat-1780413442-mi7pwlzw-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/snapchat-1780413442-mi7pwlzw-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:33:07.178Z",
+      "auto": true
+    },
+    "/assets/products/snapchat-1953210948-mi3n9ylu-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/snapchat-1953210948-mi3n9ylu-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:01:18.796Z",
+      "auto": true
+    },
+    "/assets/products/snapchat-2057018395-mi3klhi6-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/snapchat-2057018395-mi3klhi6-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:00:58.333Z",
+      "auto": true
+    },
+    "/assets/products/snapchat-436358883-mi7q9ov7-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/snapchat-436358883-mi7q9ov7-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:33:52.080Z",
+      "auto": true
+    },
+    "/assets/products/snapchat-494329941-mi7q6far-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/snapchat-494329941-mi7q6far-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:33:29.879Z",
+      "auto": true
+    },
+    "/assets/products/snapchat-897043000-mi7pfhxa-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/snapchat-897043000-mi7pfhxa-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:21:13.059Z",
+      "auto": true
+    },
+    "/assets/products/snapchat-929383395-miit9co0-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/snapchat-929383395-miit9co0-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:23:38.461Z",
+      "auto": true
+    },
+    "/assets/products/sqsq-mi4px37w-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/sqsq-mi4px37w-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:04:09.106Z",
+      "auto": true
+    },
+    "/assets/products/striaform-22-mht2r1sx-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/striaform-22-mht2r1sx-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T14:29:15.176Z",
+      "auto": true
+    },
+    "/assets/products/tr1030db-a-miyro3ei-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/tr1030db-a-miyro3ei-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-13T15:32:25.215Z",
+      "auto": true
+    }
+  }
 }
