@@ -6,6 +6,56 @@
       "description": "Bottom paints, primers, érodable, topcoats for local waters, erodable",
       "products": [
         {
+          "id": "p_19xa8mf6",
+          "title": "INTERNATIONAL Intershield 300 /Aluminium/17.5L",
+          "brand": "INTERNATIONAL",
+          "description": "A two component, abrasion resistant pure epoxy coating pigmented with aluminium to give\nexcellent long term anti-corrosive protection.\nFormulated on proprietary polymer technology, enabling rapid cure and overcoating even under low\ntemperature conditions.\nAs an abrasion resistant coating that can reduce corrosion due to mechanical damage and provide\nbarrier protection in aggressive environments.\nIdeally suited for use as a universal primer on offshore platforms and floating production and\nstorage facilities on areas such as underwater hull, topsides, external superstructure, decks, cargo\ntanks and ballast tanks.\nCan be applied directly to mechanically prepared shop primer or suitably prepared bare steel.",
+          "images": [
+            "assets/products/intershield-300-800.webp"
+          ],
+          "image": "assets/products/intershield-300-800.webp",
+          "usage": [],
+          "variants": [],
+          "price": 927.673,
+          "stock": "in",
+          "datasheet": "assets/datasheets/intershield_300_eng_a4_20151012.pdf",
+          "translations": {
+            "fr": {
+              "title": "INTERNATIONAL Intershield 300 /Aluminium/17.5L",
+              "description": "Revêtement époxy pur bicomposant, résistant à l’abrasion et pigmenté à l’aluminium, offrant une excellente protection anticorrosion à long terme.\n\nFormulé à partir d’une technologie polymère exclusive permettant un durcissement rapide et l’application de couches de finition dans des délais réduits, même à basse température.\n\nGrâce à sa résistance à l’abrasion, ce revêtement limite les risques de corrosion liés aux dommages mécaniques et assure une protection par effet barrière dans les environnements particulièrement agressifs.\n\nIl est particulièrement adapté à une utilisation comme primaire universel sur les plateformes offshore et les unités flottantes de production et de stockage, notamment sur les œuvres vives des coques, les parties émergées, les superstructures extérieures, les ponts, les citernes à cargaison et les ballasts.\n\nPeut être appliqué directement sur un primaire d’atelier préparé mécaniquement ou sur de l’acier nu convenablement préparé."
+            },
+            "ar": {
+              "title": "INTERNATIONAL Intershield 300 /Aluminium/17.5L",
+              "description": "طلاء إيبوكسي نقي ثنائي المكوّنات، مقاوم للتآكل والاحتكاك، ومُدعّم بصبغة الألومنيوم، مما يوفر حماية ممتازة وطويلة الأمد ضد التآكل والصدأ.\n\nتم تطوير تركيبته اعتماداً على تقنية بوليمر خاصة تتيح سرعة التصلّب وإمكانية تطبيق طبقات الطلاء اللاحقة في وقت قصير، حتى في ظروف درجات الحرارة المنخفضة.\n\nبفضل مقاومته العالية للاحتكاك والتآكل، يساهم هذا الطلاء في الحد من مخاطر الصدأ الناتجة عن الأضرار الميكانيكية، كما يوفر حماية عازلة وفعّالة في البيئات شديدة القسوة.\n\nيُعدّ مثالياً للاستخدام كبطانة أولية متعددة الأغراض على المنصات البحرية والمنشآت العائمة المخصصة للإنتاج والتخزين، وخاصة في مناطق الأجزاء المغمورة من هياكل السفن، والأجزاء العلوية فوق خط الماء، والهياكل الخارجية، والأسطح، وخزانات الشحن وخزانات مياه الاتزان (Ballast Tanks).\n\nيمكن تطبيقه مباشرة على طبقة الطلاء الأولية الصناعية (Shop Primer) بعد تحضيرها ميكانيكياً، أو على الأسطح الفولاذية العارية بعد تجهيزها بالشكل المناسب."
+            }
+          }
+        },
+        {
+          "id": "p_xdzrkntr",
+          "title": "INTERNATIONAL Interseal 670 HS / Grey / 20L",
+          "brand": "INTERNATIONAL",
+          "description": "A low VOC, two component high build, high solids surface tolerant epoxy maintenance coating.\nFor application to a wide variety of substrates including hand prepared rusty steel, abrasive blast cleaned and\nhydroblasted steel, and a wide range of intact, aged coatings.\nProvides excellent anti-corrosive protection in industrial, coastal structures, pulp and paper plants, bridges\nand offshore environments in both atmospheric exposure and immersion service.",
+          "images": [
+            "assets/products/interseal-670hs-800.webp"
+          ],
+          "image": "assets/products/interseal-670hs-800.webp",
+          "usage": [],
+          "variants": [],
+          "price": 956.768,
+          "stock": "in",
+          "datasheet": "assets/datasheets/interseal_670hs_eng_a4_20190122.pdf",
+          "translations": {
+            "fr": {
+              "title": "INTERNATIONAL Interseal 670 HS / Grey / 20L",
+              "description": "Revêtement époxy bicomposant à faible teneur en COV, à haut extrait sec et à forte épaisseur, spécialement conçu pour les applications de maintenance sur des surfaces présentant différents niveaux de préparation.\n\nConvient à une large gamme de supports, notamment l’acier rouillé préparé manuellement, l’acier décapé par projection d’abrasifs ou par hydro-décapage, ainsi que les anciens revêtements adhérents et en bon état.\n\nOffre une excellente protection anticorrosion dans les environnements industriels, les installations côtières, les usines de pâte et papier, les ponts et les installations offshore, aussi bien en exposition atmosphérique qu'en immersion."
+            },
+            "ar": {
+              "title": "INTERNATIONAL Interseal 670 HS / Grey / 20L",
+              "description": "طلاء إيبوكسي ثنائي المكوّنات، منخفض المحتوى من المركبات العضوية المتطايرة (VOC)، عالي المواد الصلبة وقابل للتطبيق بسماكات مرتفعة، مصمّم خصيصاً لأعمال الصيانة على الأسطح التي تختلف مستويات تحضيرها.\n\nمناسب لمجموعة واسعة من الأسطح، بما في ذلك الفولاذ الصدئ الذي تمت معالجته يدوياً، والفولاذ المنظّف بالسفع الكاشط أو بنفث المياه عالي الضغط، بالإضافة إلى مختلف الطلاءات القديمة المتماسكة وذات الحالة الجيدة.\n\nيوفّر حماية ممتازة ضد التآكل في البيئات الصناعية والمنشآت الساحلية ومصانع الورق ولبّ الخشب والجسور والمنشآت البحرية offshore، سواء في ظروف التعرّض للعوامل الجوية أو في ظروف الغمر بالمياه."
+            }
+          }
+        },
+        {
           "id": "p_rklktala",
           "title": "INTERNATIONAL Interprime 198 / 20L",
           "brand": "INTERNATIONAL",
