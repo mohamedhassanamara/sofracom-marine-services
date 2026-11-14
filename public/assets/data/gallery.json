@@ -7,7 +7,17 @@
       "type": "video",
       "src": "https://www.youtube.com/watch?v=NE4IITSman8",
       "tags": [],
-      "date": "2026-06-12"
+      "date": "2026-06-12",
+      "translations": {
+        "fr": {
+          "title": "Marina de Monastir, Tunisie : formalités douanières, réparations de bateaux, antifouling et informations essentielles pour les plaisanciers.",
+          "description": "Vous envisagez d’amener votre yacht à Monastir, en Tunisie, pour effectuer des réparations ou des travaux d’antifouling ? Cette vidéo accompagne les propriétaires de bateaux étrangers à travers toutes les étapes des démarches à suivre.\n\nDécouvrez les procédures de dédouanement, les formalités auprès de la marina ainsi que des conseils pratiques pour faciliter votre arrivée en Tunisie. [3]\n\nExplorez les services proposés par les chantiers navals locaux, les différentes solutions de maintenance et les opérations essentielles d’entretien de la coque afin de maintenir votre bateau en excellent état. [2]\n\nQue vous souhaitiez sortir votre bateau de l’eau pour appliquer un antifouling, effectuer des réparations ou réaliser une rénovation complète, Monastir offre de nombreux services et un accompagnement précieux aux plaisanciers de passage. [5]\n\nRegardez cette vidéo avant votre arrivée afin de rendre votre séjour à la Marina de Monastir plus simple, plus sûr et plus efficace."
+        },
+        "ar": {
+          "title": "مارينا المنستير، تونس: الإجراءات الديوانية، إصلاح القوارب، الطلاء المضاد للحشف البحري (Antifouling)، وأهم المعلومات الضرورية لهواة الملاحة الترفيهية.",
+          "description": "هل تخطط لإحضار يختك إلى المنستير، تونس، لإجراء الإصلاحات أو تطبيق الطلاء المضاد للحشف البحري (Antifouling)؟ يرافقكم هذا الفيديو، بصفتكم مالكي قوارب أجانب، للتعرّف على جميع مراحل وإجراءات هذه العملية.\n\nتعرّفوا على إجراءات التخليص الديواني، والشكليات الإدارية الخاصة بالميناء الترفيهي، بالإضافة إلى نصائح عملية لتسهيل وصولكم إلى تونس وضمان إقامة سلسة. [3]\n\nاكتشفوا الخدمات التي تقدمها ورشات إصلاح السفن المحلية، وخيارات الصيانة المتاحة، وأهم أعمال العناية بهيكل القارب للحفاظ عليه في أفضل حالة. [2]\n\nسواء كنتم تخططون لإخراج قاربكم من الماء لتطبيق الطلاء المضاد للحشف البحري، أو لإجراء الإصلاحات، أو لتنفيذ عملية تجديد وصيانة شاملة، فإن المنستير توفر خدمات مهمة ودعماً قيّماً للبحّارة وأصحاب القوارب الزائرين. [5]\n\nشاهدوا هذا الفيديو قبل وصولكم لتكون إقامتكم في مارينا المنستير أكثر سهولة وأماناً وفعالية."
+        }
+      }
     }
   ]
 }
