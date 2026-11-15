@@ -65,12 +65,12 @@ test('BreadcrumbList positions and locale URLs', () => {
     ]);
 });
 
-test('the gallery is in the sitemap only while its link is shown (6+ entries by default)', async () => {
+test('the gallery is in the sitemap only while its link is shown (1+ entries by default)', async () => {
     const { createRequire } = await import('node:module');
     const { GALLERY_MIN_ENTRIES, showGalleryLink } = createRequire(import.meta.url)('../../lib/siteSettings.js');
-    assert.equal(GALLERY_MIN_ENTRIES, 6);
-    assert.equal(showGalleryLink(5), false);
-    assert.equal(showGalleryLink(6), true);
+    assert.equal(GALLERY_MIN_ENTRIES, 1);
+    assert.equal(showGalleryLink(0), false);
+    assert.equal(showGalleryLink(1), true);
     const paths = gallery => sitemapEntries([], { gallery }).map(entry => entry.path);
     assert.deepEqual(paths(false), ['/', '/products']);
     assert.deepEqual(paths(true), ['/', '/products', '/gallery']);
