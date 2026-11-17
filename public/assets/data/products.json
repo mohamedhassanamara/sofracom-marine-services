@@ -6,6 +6,66 @@
       "description": "Bottom paints, primers, érodable, topcoats for local waters, erodable",
       "products": [
         {
+          "id": "p_q1271qlj",
+          "title": "HEMPEL Hempadur Profair Filler 35290 ",
+          "brand": "HEMPEL",
+          "description": "Hempel's Profair is a light weight two-component, epoxy filler with good adhesion and water resistance. Easy to sand when fully cured.\nHempel's Profair is suitable for use on glass fibre, hardwood, steel and other rigid materials. For interior and exterior use above and below the waterline.\nAs a filler and fairing compound for profiling large areas. For detailed fairing where structural strength and flexibility is required. Can be applied to a film thickness up to 25 mm without sagging.",
+          "images": [
+            "assets/products/hempel-profair-800.webp"
+          ],
+          "image": "assets/products/hempel-profair-800.webp",
+          "usage": [
+            "filler"
+          ],
+          "variants": [
+            {
+              "label": "20L",
+              "price": 2020.149,
+              "stock": "in"
+            },
+            {
+              "label": "01L",
+              "price": 110.288,
+              "stock": "in"
+            }
+          ],
+          "price": 0,
+          "stock": "in",
+          "datasheet": "assets/datasheets/hempadur-putty-35290en-gb.pdf",
+          "translations": {
+            "fr": {
+              "title": "HEMPEL Hempadur Profair Filler 35290 ",
+              "description": "HEMPEL'S PROFAIR est un enduit époxy bicomposant léger, offrant une excellente adhérence et une bonne résistance à l'eau. Facile à poncer après durcissement complet.\n\nConvient à une application sur la fibre de verre, le bois dur, l'acier et autres supports rigides. Adapté à une utilisation intérieure et extérieure, au-dessus et au-dessous de la ligne de flottaison.\n\nIdéal pour le rebouchage et le profilage de grandes surfaces, ainsi que pour les travaux de finition nécessitant une bonne résistance mécanique et une certaine flexibilité. Peut être appliqué en épaisseur jusqu'à 25 mm sans affaissement.",
+              "variants": [
+                {
+                  "label": "20L"
+                },
+                {
+                  "label": "01L"
+                }
+              ],
+              "usage": [
+                "profair"
+              ]
+            },
+            "ar": {
+              "title": "HEMPEL Hempadur Profair Filler 35290 ",
+              "description": "HEMPEL'S PROFAIR هو معجون إيبوكسي خفيف الوزن مكوّن من جزأين، يتميز بقوة التصاق جيدة ومقاومة للماء، كما يسهل صنفرته بعد اكتمال عملية التصلب.\n\nمناسب للاستخدام على الألياف الزجاجية (الفيبرغلاس)، والأخشاب الصلبة، والفولاذ وغيرها من الأسطح الصلبة. يمكن استخدامه في الأماكن الداخلية والخارجية، فوق وتحت خط الماء.\n\nمثالي لملء وتسوية المساحات الكبيرة، وكذلك لأعمال التشكيل والتنعيم الدقيق للأسطح التي تتطلب مقاومة ميكانيكية ومرونة جيدة. يمكن تطبيقه بسماكة تصل إلى 25 مم دون أن يترهل أو يفقد شكله.",
+              "variants": [
+                {
+                  "label": "20ل"
+                },
+                {
+                  "label": "01ل"
+                }
+              ],
+              "usage": [
+                "HEMPEL"
+              ]
+            }
+          }
+        },
+        {
           "id": "p_bduzi6t8",
           "title": "HEMPEL Hempadur-Zinc-17360 / 10L",
           "brand": "HEMPEL",
