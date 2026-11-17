@@ -6,6 +6,39 @@
       "description": "Bottom paints, primers, érodable, topcoats for local waters, erodable",
       "products": [
         {
+          "id": "p_bduzi6t8",
+          "title": "HEMPEL Hempadur-Zinc-17360 / 10L",
+          "brand": "HEMPEL",
+          "description": "HEMPADUR ZINC 17360 is a two-component, zinc rich epoxy primer. It cures to a hard wearing and\nhighly weather-resistant coating. Offers cathodic protection of local mechanical damage.\nAs a \"V.O.C.-compliant\", versatile, long-term primer on steel for epoxy, vinyl and acrylic coating\nsystems in medium to severely corrosive environments.\nIn complience with SSPC-Paint 20, type 2, level 2 and ISO 12944-5.",
+          "images": [
+            "assets/products/hempadur-zinc-17360-800.webp"
+          ],
+          "image": "assets/products/hempadur-zinc-17360-800.webp",
+          "usage": [
+            "zinc"
+          ],
+          "variants": [],
+          "price": 971.829,
+          "stock": "in",
+          "datasheet": "assets/datasheets/hempadur-zinc-17360-en-gb.pdf",
+          "translations": {
+            "fr": {
+              "title": "HEMPEL Hempadur-Zinc-17360 / 10L",
+              "description": "HEMPADUR ZINC 17360 est un primaire époxy bicomposant riche en zinc, offrant une excellente protection contre la corrosion.\nIl forme, après durcissement, un revêtement résistant à l'usure et aux intempéries.\nAssure une protection cathodique contre les dommages mécaniques localisés sur les surfaces en acier.\nConvient comme primaire polyvalent et durable pour les systèmes de peinture époxy, vinyliques et acryliques, dans les environnements moyennement à fortement corrosifs. Conforme aux normes SSPC-Paint 20, Type 2, Niveau 2 et ISO 12944-5.",
+              "usage": [
+                "zinc"
+              ]
+            },
+            "ar": {
+              "title": "HEMPEL Hempadur-Zinc-17360 / 10L",
+              "description": "HEMPADUR ZINC 17360 هو طلاء أساس إيبوكسي ثنائي المكونات غني بالزنك، يوفر حماية ممتازة ضد التآكل والصدأ.\n\nيشكّل بعد الجفاف طبقة صلبة ومقاومة للاهتراء والعوامل الجوية.\n\nيوفر حماية كاثودية ضد الأضرار الميكانيكية الموضعية التي قد تصيب الأسطح الفولاذية.\n\nيُستخدم كطبقة أساس متعددة الاستعمالات وطويلة الأمد ضمن أنظمة الطلاء الإيبوكسية والفينيلية والأكريليكية، في البيئات ذات الظروف المتوسطة إلى الشديدة التسبب في التآكل.\n\nمطابق للمعايير الدولية SSPC-Paint 20، النوع 2، المستوى 2 و ISO 12944-5.",
+              "usage": [
+                "zinc"
+              ]
+            }
+          }
+        },
+        {
           "id": "p_19xa8mf6",
           "title": "INTERNATIONAL Intershield 300 /Aluminium/17.5L",
           "brand": "INTERNATIONAL",
