@@ -1122,6 +1122,12 @@
       "updatedAt": "2026-11-13T14:49:17.850Z",
       "auto": true
     },
+    "/assets/products/hempadur-zinc-17360-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/hempadur-zinc-17360-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-17T13:42:41.861Z"
+    },
     "/assets/products/images-1-mj72cfzm-800.webp": {
       "status": "original",
       "updatedAt": "2026-11-13T16:41:11.941Z"
