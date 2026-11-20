@@ -1038,6 +1038,13 @@
       "updatedAt": "2026-11-13T14:37:44.918Z",
       "auto": true
     },
+    "/assets/products/20261120_184207-800.webp": {
+      "status": "approved",
+      "cutout": "/assets/products/cutouts/20261120_184207-cut-800.webp",
+      "model": "medium",
+      "updatedAt": "2026-11-20T17:48:58.903Z",
+      "auto": true
+    },
     "/assets/products/22-mi63o0mk-800.webp": {
       "status": "approved",
       "cutout": "/assets/products/cutouts/22-mi63o0mk-cut-800.webp",

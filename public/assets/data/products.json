@@ -2655,6 +2655,31 @@
       "description": "Every day tools that yachtsmen use ",
       "products": [
         {
+          "id": "p_isrs6jpa",
+          "title": "SIGNUM 140mm/21 Aluminum Paddle Roller",
+          "brand": "SIGNUM",
+          "description": "The SIGNUM Aluminum Paddle Roller is designed for efficient air removal and proper consolidation during fiberglass and composite lamination work.\nIts aluminum roller head helps eliminate trapped air bubbles and ensures uniform resin distribution between fiberglass layers.\nLightweight yet durable, it provides excellent handling, control, and long-lasting performance.\nIdeal for boatbuilding, marine repairs, and composite manufacturing, it ensures stronger laminations and a smooth, professional finish.",
+          "images": [
+            "assets/products/20261120_184207-800.webp"
+          ],
+          "image": "assets/products/20261120_184207-800.webp",
+          "usage": [],
+          "variants": [],
+          "price": 28.754,
+          "stock": "in",
+          "datasheet": "",
+          "translations": {
+            "fr": {
+              "title": "Rouleau débulleur en aluminium SIGNUM 140 mm / 21.",
+              "description": "Le rouleau débulleur en aluminium SIGNUM est conçu pour éliminer efficacement les bulles d’air et assurer une bonne consolidation lors des travaux de stratification en fibre de verre et matériaux composites.\nSa tête en aluminium permet une répartition uniforme de la résine entre les différentes couches de fibre.\nLéger et robuste, il offre une excellente maniabilité, un contrôle optimal et une grande durabilité.\nIdéal pour la construction navale, la réparation nautique et la fabrication de pièces composites, il garantit une stratification homogène et une finition professionnelle."
+            },
+            "ar": {
+              "title": "أسطوانة إزالة فقاعات الهواء من الألومنيوم SIGNUM مقاس 140 مم / 21",
+              "description": "أسطوانة SIGNUM المصنوعة من الألومنيوم بعرض 140 مم مخصصة لإزالة فقاعات الهواء وضمان التوزيع المتساوي للراتنج أثناء عملية تشريب الألياف الزجاجية.\nمزودة بأسطوانة ألومنيوم متينة لضغط طبقات الألياف الزجاجية وتماسكها بشكل فعال.\nتساعد على تحسين قوة الطبقات المركبة والحصول على سطح أملس ومتجانس.\nمثالية لأعمال تصنيع وإصلاح الألياف الزجاجية والمواد المركبة."
+            }
+          }
+        },
+        {
           "id": "p_x4tzzt2m",
           "legacyId": "hardware-tools-cristal-disposable-paint-brush",
           "title": "CRISTAL Disposable paint brush ",
